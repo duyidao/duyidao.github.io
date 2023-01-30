@@ -1,26 +1,30 @@
 ---
-home: true
+layout: home
 
-heroAlt: Logo image
-heroText: Hero Title
-tagline: Hero subtitle
-actionText: Get Started
-actionLink: /guide/
-navbar: false
-sidebar: false
-head:
-  - - meta
-    - name: description
-      content: hello
-  - - meta
-    - name: keywords
-      content: super duper SEO
+hero:
+  name: 刀刀博客
+  text: 欢迎来到刀刀小站，我是杜一刀。                                     这里记录自己的学习成果，项目学习经验。不定时更新~
+  tagline: 每天都要比昨天更有进步💪
+  actions:
+    - theme: brand
+      text: 前端知识
+      link: /learn/HTML/
+    - theme: alt
+      text: 项目总结
+      link: /project/Music/
+    - theme: alt
+      text: 测试按钮2
+      link: /business/index
+
 features:
-  - title: Simplicity First
-    details: Minimal setup with markdown-centered project structure helps you focus on writing.
-  - title: Vue-Powered
-    details: Enjoy the dev experience of Vue + webpack, use Vue components in markdown, and develop custom themes with Vue.
-  - title: Performant
-    details: VitePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
-footer: MIT Licensed | Copyright © 2019-present Evan You
+  - icon: 📕
+    title: 学习之旅
+    details: 自学成果
+    link: /learn/HTML/
+  - icon: ⚡
+    title: 项目之旅
+    details: 项目总结
+  - icon:  🎈️
+    title: 未完待续
+    details: 尽情期待
 ---
