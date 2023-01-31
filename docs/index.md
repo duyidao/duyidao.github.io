@@ -24,6 +24,10 @@ features:
   - icon: ⚡
     title: 项目之旅
     details: 项目总结
+  - icon:  ⌛
+    title: 博客部署
+    details: 从0到1部署博客
+    link: /vitePress/
   - icon:  🎈️
     title: 未完待续
     details: 尽情期待
