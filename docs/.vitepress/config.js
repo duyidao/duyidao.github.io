@@ -8,19 +8,11 @@ module.exports = {
   head: [
     // 添加图标
     ["link", { rel: "icon", href: "/favicon.ico" }],
-    ["meta", { property: "og:title", content: "谢夏戈博客" }],
-    ["meta", { property: "og:site_name", content: "谢夏戈博客" }],
+    ["meta", { property: "og:title", content: "刀刀博客" }],
+    ["meta", { property: "og:site_name", content: "刀刀博客" }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:description", content: "前端教程" }],
-    ["meta", { property: "og:url", content: "https://xxggg.github.io/" }],
-    [
-      "script",
-      {
-        "data-ad-client": "ca-pub-7650804804345609",
-        async: true,
-        src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
-      },
-    ],
+    ["meta", { property: "og:url", content: "https://duyidao.github.io/" }],
   ],
   // 使用插件
   plugins: [
@@ -78,7 +70,7 @@ module.exports = {
     },
     //社交链接
     socialLinks: [
-      { icon: "github", link: "https://github.com/XXGGG" }
+      { icon: "github", link: "https://gitee.com/duyidao" }
     ],
     //页脚
     footer: {
