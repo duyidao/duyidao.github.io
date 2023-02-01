@@ -33,11 +33,7 @@ module.exports = {
       {
         text: "💻 前端知识",
         items: [
-          { text: "🟧 HTML", link: "/learn/HTML/" },
-          { text: "🟥 CSS", link: "/learn/CSS/" },
-          { text: "🟨 JavaScript", link: "/learn/JavaScript/" },
-          { text: "🟦 TypeScript", link: "/learn/TypeScript/" },
-          { text: "🟩 Vue", link: "/learn/Vue/" }
+          { text: "正在施工中", link: "/learn/" }
         ],
       },
       {
@@ -84,36 +80,18 @@ module.exports = {
 function getLearnSidebar() {
   return [
     {
-      text: 'HTML',
+      text: "💻 前端知识",
       collapsible: true,
       items: [
-        { text: '基础', link: '/learn/HTML/' },
-        { text: '进阶', link: '/learn/HTML/advanced' },
-      ]
-    },
-    {
-      text: 'CSS',
-      collapsible: true,
-      items: [
-        { text: '基础', link: '/learn/CSS/' },
-        { text: '进阶', link: '/learn/CSS/advanced' },
-      ]
-    },
-    {
-      text: 'Javascript',
-      collapsible: true,
-      items: [
-        { text: '基础', link: '/learn/Javascript/' },
-        { text: '进阶', link: '/learn/Javascript/advanced' },
-      ]
-    },
-    {
-      text: 'Vue',
-      collapsible: true,
-      items: [
-        { text: '基础', link: '/learn/Vue/' },
-        { text: '进阶', link: '/learn/Vue/advanced' },
-      ]
+        { text: "引言", link: "/learn/" },
+        {
+          text: "HTML",
+          collapsible: true,
+          items: [
+            { text: "HTML", link: "/learn/HTML/" },
+          ],
+        }
+      ],
     }
   ]
 }
