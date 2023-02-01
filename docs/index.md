@@ -13,8 +13,8 @@ hero:
       text: 项目总结
       link: /project/Music/
     - theme: alt
-      text: 测试按钮2
-      link: /business/index
+      text: 关于
+      link: /about/
 
 features:
   - icon: 📕

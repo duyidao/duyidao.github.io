@@ -26,6 +26,9 @@ module.exports = {
   themeConfig: {
     // 获取每个文件最后一次 git 提交的 UNIX 时间戳(ms)，同时它将以合适的日期格式显示在每一页的底部
     lastUpdated: 'Last Updated', // string | boolean
+    siteTitle: "『 刀刀小站 』",
+    outlineTitle: '我是一个目录哦~',
+    outline: [2, 4],
     // 启动页面丝滑滚动
     smoothScroll: true,
     // 头部导航栏配置
@@ -39,12 +42,7 @@ module.exports = {
       {
         text: "📖 项目总结",
         items: [
-          { text: "🎶 音果云音", link: "/project/Music/" },
-          { text: "🛒 视频分销", link: "/project/Sale/" },
-          {
-            text: "🔎 CRM",
-            link: "/project/CRM/",
-          },
+          { text: "🎶 音果云音", link: "/music/" }
         ],
       },
       {
@@ -62,8 +60,9 @@ module.exports = {
     // 左侧导航栏
     sidebar: {
       '/learn': getLearnSidebar(),
-      '/project': getProjectSidebar(),
-      '/vitePress': getVitePressSidebar()
+      '/music': getMusicSidebar(),
+      '/vitePress': getVitePressSidebar(),
+      '/about': getAboutSidebar(),
     },
     //社交链接
     socialLinks: [
@@ -96,19 +95,33 @@ function getLearnSidebar() {
   ]
 }
 
-// 获取项目的数组
-function getProjectSidebar() {
+// 获取音果云音的数组
+function getMusicSidebar() {
   return [
     {
-      text: "📖 项目笔记",
+      text: "🎶 音果云音",
       collapsible: true,
       items: [
-        { text: "🎶 音果云音", link: "/project/Music/" },
-        { text: "🛒 视频分销", link: "/project/Sale/" },
         {
-          text: "🔎 CRM",
-          link: "/project/CRM/",
-        },
+          text: "🎶 音果云音",
+          // collapsible: true,
+          link: "/music/",
+          items: [
+            {
+              text: " APP",
+              collapsible: true,
+              items: [
+                { text: '登录页', link: "/music/APP/login" },
+                { text: 'tabbar页', link: "/music/APP/tabbar" },
+                { text: '详情页', link: "/music/APP/detail" },
+                { text: '分享页', link: "/music/APP/share" },
+                { text: '测试页', link: "/music/APP/test" },
+                { text: '操作页', link: "/music/APP/do" },
+                { text: '支付页', link: "/music/APP/pay" },
+              ]
+            }
+          ],
+        }
       ],
     }
   ]
@@ -125,6 +138,20 @@ function getVitePressSidebar() {
         { text: "🧩 搭建", link: "/vitePress/Dev" },
         { text: "🎁 打包", link: "/vitePress/Build" },
         { text: "⏳ 部署", link: "/vitePress/Deploy" },
+      ]
+    }
+  ]
+}
+
+// 获取关于的数组
+function getAboutSidebar() {
+  return [
+    {
+      text: '⭐ 关于',
+      collapsible: true,
+      items: [
+        { text: '🧑 关于我', link: '/about/' },
+        { text: '🔪 关于刀刀小站', link: '/about/blog' }
       ]
     }
   ]
