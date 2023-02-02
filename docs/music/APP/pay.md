@@ -63,14 +63,14 @@ const toPayFn = async () => {
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |
-| provider | String | 是 | 服务提供商，通过 [uni.getProvider](https://uniapp.dcloud.net.cn/api/plugins/provider)<br /> 获取。 |
-| orderInfo | String/Object | 是 | 订单数据，[注意事项](https://uniapp.dcloud.net.cn/api/plugins/payment#orderinfo) |
-| timeStamp | String | 微信小程序必填 | 时间戳从1970年1月1日至今的秒数，即当前的时间。 |
-| nonceStr | String | 微信小程序必填 | 随机字符串，长度为32个字符以下。 |
-| package | String | 微信小程序必填 | 统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=xx。 |
-| signType | String | 微信小程序必填 | 签名算法，应与后台下单时的值一致 |
-| paySign | String | 微信小程序必填 | 签名，具体签名方案参见 [微信小程序支付文档](https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=7_7&index=3) |
-| bannedChannels | Array<String> | 否 | 需要隐藏的支付方式，详见 [百度小程序支付文档](https://smartprogram.baidu.com/docs/develop/api/open_payment/#requestPolymerPayment/) |
+| `provider` | `String` | 是 | 服务提供商，通过 [uni.getProvider](https://uniapp.dcloud.net.cn/api/plugins/provider)<br /> 获取。 |
+| `orderInfo` | `String/Object` | 是 | 订单数据，[注意事项](https://uniapp.dcloud.net.cn/api/plugins/payment#orderinfo) |
+| `timeStamp` | `String` | 微信小程序必填 | 时间戳从1970年1月1日至今的秒数，即当前的时间。 |
+| `nonceStr` | `String` | 微信小程序必填 | 随机字符串，长度为32个字符以下。 |
+| `package` | `String` | 微信小程序必填 | 统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=xx。 |
+| `signType` | `String` | 微信小程序必填 | 签名算法，应与后台下单时的值一致 |
+| `paySign` | `String` | 微信小程序必填 | 签名，具体签名方案参见 [微信小程序支付文档](https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=7_7&index=3) |
+| `bannedChannels` | `Array<String>` | 否 | 需要隐藏的支付方式，详见 [百度小程序支付文档](https://smartprogram.baidu.com/docs/develop/api/open_payment/#requestPolymerPayment/) |
 
 ```javascript
 const realPay = (res) => {
@@ -109,6 +109,7 @@ const realPay = (res) => {
 
 1. 在manifest.json - App模块权限选择 中勾选 payment(支付)
 2. 在 manifest.json - App SDK配置 中，勾选需要的支付平台，目前有微信支付、支付宝支付、苹果应用内支付(IAP)，其中微信支付需要填写从微信开放平台获取的AppID
+   
 	![image.png](https://cdn.nlark.com/yuque/0/2023/png/29781801/1675153459411-cbfb222d-a554-4761-bbe6-01e3554e34b7.png#averageHue=%23fbf4e3&clientId=ube96eebc-a010-4&from=paste&id=u283c3e12&name=image.png&originHeight=510&originWidth=823&originalType=url&ratio=1&rotation=0&showTitle=false&size=29552&status=done&style=stroke&taskId=u03c7e62d-253f-47c2-be89-503f84719d1&title=)
 3. 这些配置需要打包生效，真机运行仍然是HBuilder基座的设置，可使用自定义基座调试。离线打包请参考离线打包文档在原生工程中配置。
 4. 配置并打包后，通过 `uni.getProvider` 可以得到配置的结果列表，注意这里返回的是manifest配置的，与手机端是否安装微信、支付宝无关。

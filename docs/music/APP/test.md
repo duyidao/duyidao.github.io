@@ -1,9 +1,11 @@
 ---
 title 测试页
 ---
+# 测试页
+
 测试页效果如下图所示。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29781801/1675154592707-70fb31ab-c916-44c5-8014-b1cf8f92c505.png#averageHue=%23fbf8f6&clientId=u53cdd7a3-5c2f-4&from=paste&height=600&id=u015be58b&name=image.png&originHeight=610&originWidth=294&originalType=binary&ratio=1&rotation=0&showTitle=false&size=28953&status=done&style=stroke&taskId=udef48793-5cf9-4ba6-ba23-70d432d5227&title=&width=289)
+![图片](https://cdn.nlark.com/yuque/0/2023/png/29781801/1675154592707-70fb31ab-c916-44c5-8014-b1cf8f92c505.png#averageHue=%23fbf8f6&clientId=u53cdd7a3-5c2f-4&from=paste&height=600&id=u015be58b&name=image.png&originHeight=610&originWidth=294&originalType=binary&ratio=1&rotation=0&showTitle=false&size=28953&status=done&style=stroke&taskId=udef48793-5cf9-4ba6-ba23-70d432d5227&title=&width=289)
 
 点击上一题前往上一题，点击下一题前往下一题，最后一道题提交测试。看到效果第一时间考虑的是该如何布局才能更简便呢？（以下思路以及代码由CharHua同事提供）
 
@@ -13,14 +15,10 @@ title 测试页
 
 | 属性名 | 类型 | 默认值 | 说明 |
 | --- | --- | --- | --- |
-| indicator-dots | Boolean | false | 是否显示面板指示点 |
-| indicator-color | Color | rgba(0, 0, 0, .3) | 指示点颜色 |
-| indicator-active-color | Color | #000000 | 当前选中的指示点颜色 |
-| active-class | String |  | swiper-item 可见时的 class |
-| current | Number | 0 | 当前所在滑块的 index |
-| current-item-id | String |  | 当前所在滑块的 item-id ，不能与 current 被同时指定 |
-| interval | Number | 5000 | 自动切换时间间隔 |
-| @change | EventHandle |  | current 改变时会触发 change 事件，event.detail = {current: current, source: source} |
+| `indicator-dots` | `Boolean` | `false` | 是否显示面板指示点 |
+| `current` | `Number` | 0 | 当前所在滑块的 index |
+| `current-item-id` | `String` |  | 当前所在滑块的 item-id ，不能与 `current` 被同时指定 |
+| `@change` | `EventHandle` |  | `current` 改变时会触发 `change` 事件，`event.detail = {current: current, source: source}` |
 
 滑块正好符合测试题上下题切换的需求，每一个 `swiper-item` 为一道题目，切换题目即触发 `change` 事件切换到相邻的滑块。
 
