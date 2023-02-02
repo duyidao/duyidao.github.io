@@ -22,7 +22,10 @@ title 测试页
 | interval | Number | 5000 | 自动切换时间间隔 |
 | @change | EventHandle |  | current 改变时会触发 change 事件，event.detail = {current: current, source: source} |
 
-滑块正好符合测试题上下题切换的需求，每一个 `swiper-item` 为一道题目，切换题目即触发 `change` 事件切换到相邻的滑块。<br />整体代码如下所示。
+滑块正好符合测试题上下题切换的需求，每一个 `swiper-item` 为一道题目，切换题目即触发 `change` 事件切换到相邻的滑块。
+
+整体代码如下所示。
+
 ```vue
 <script setup>
 	import {
