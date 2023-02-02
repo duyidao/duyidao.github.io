@@ -119,6 +119,13 @@ function getMusicSidebar() {
                 { text: '操作页', link: "/music/APP/do" },
                 { text: '支付页', link: "/music/APP/pay" },
               ]
+            },
+            {
+              text: 'H5',
+              collapsible: true,
+              items: [
+                { text: '海报页', link: '/music/H5/'}
+              ]
             }
           ],
         }
