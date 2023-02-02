@@ -42,7 +42,8 @@ module.exports = {
       {
         text: "📖 项目总结",
         items: [
-          { text: "🎶 音果云音", link: "/music/" }
+          { text: "🎶 音果云音", link: "/music/" },
+          { text: "💴 视频分销", link: "/sale/" },
         ],
       },
       {
@@ -63,6 +64,7 @@ module.exports = {
       '/music': getMusicSidebar(),
       '/vitePress': getVitePressSidebar(),
       '/about': getAboutSidebar(),
+      '/sale': getSaleSidebar()
     },
     //社交链接
     socialLinks: [
@@ -130,6 +132,22 @@ function getMusicSidebar() {
           ],
         }
       ],
+    }
+  ]
+}
+
+function getSaleSidebar() {
+  return [
+    {
+      text: '💴 视频分销',
+      collapsible: true,
+      items: [
+        { text: '简介', link: '/sale/' },
+        { text: '请求封装', link: '/sale/request' },
+        { text: 'token刷新', link: '/sale/token' },
+        { text: '视频轮播', link: '/sale/video' },
+        { text: '图片上传组件封装', link: '/sale/upload' },
+      ]
     }
   ]
 }
