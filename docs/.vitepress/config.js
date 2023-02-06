@@ -44,6 +44,14 @@ module.exports = {
         items: [
           { text: "🎶 音果云音", link: "/music/" },
           { text: "💴 视频分销", link: "/sale/" },
+          {
+            items: [
+              {
+                text: '项目学习',
+                link: '/knowledgePoint/'
+              }
+            ]
+          }
         ],
       },
       {
@@ -64,7 +72,8 @@ module.exports = {
       '/music': getMusicSidebar(),
       '/vitePress': getVitePressSidebar(),
       '/about': getAboutSidebar(),
-      '/sale': getSaleSidebar()
+      '/sale': getSaleSidebar(),
+      '/knowledgePoint': getKnowledgePointSidebar(),
     },
     //社交链接
     socialLinks: [
@@ -136,6 +145,7 @@ function getMusicSidebar() {
   ]
 }
 
+// 获取分销的数组
 function getSaleSidebar() {
   return [
     {
@@ -163,6 +173,20 @@ function getVitePressSidebar() {
         { text: "🧩 搭建", link: "/vitePress/Dev" },
         { text: "🎁 打包", link: "/vitePress/Build" },
         { text: "⏳ 部署", link: "/vitePress/Deploy" },
+      ]
+    }
+  ]
+}
+
+// 获取项目学习的数组
+function getKnowledgePointSidebar() {
+  return [
+    {
+      text: '0F81A2AF.png 项目学习',
+      collapsible: true,
+      items: [
+        { text: "🌩️ 引言", link: "/knowledgePoint/" },
+        { text: "🧩 vue-color的使用", link: "/knowledgePoint/vue_color" },
       ]
     }
   ]
