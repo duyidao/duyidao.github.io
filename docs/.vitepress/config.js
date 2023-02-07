@@ -42,12 +42,12 @@ module.exports = {
       {
         text: "📖 项目总结",
         items: [
-          { text: "🎶 音果云音", link: "/music/" },
-          { text: "💴 视频分销", link: "/sale/" },
+          { text: "🎶 音果云音", link: "/project/lingsi/music/" },
+          { text: "💴 视频分销", link: "/project/lingsi/sale/" },
           {
             items: [
               {
-                text: '项目学习',
+                text: '🎒 项目学习',
                 link: '/knowledgePoint/'
               }
             ]
@@ -69,11 +69,13 @@ module.exports = {
     // 左侧导航栏
     sidebar: {
       '/learn': getLearnSidebar(),
-      '/music': getMusicSidebar(),
+      '/knowledgePoint': getKnowledgePointSidebar(),
+      '/project/lingsi/sale': getSaleSidebar(),
+      '/project/lingsi/music': getMusicSidebar(),
+      '/project/lingsi/crm': getCRMSidebar(),
+      '/project/lingsi/elk': getELKSidebar(),
       '/vitePress': getVitePressSidebar(),
       '/about': getAboutSidebar(),
-      '/sale': getSaleSidebar(),
-      '/knowledgePoint': getKnowledgePointSidebar(),
     },
     //社交链接
     socialLinks: [
@@ -94,13 +96,22 @@ function getLearnSidebar() {
       collapsible: true,
       items: [
         { text: "引言", link: "/learn/" },
-        {
-          text: "HTML",
-          collapsible: true,
-          items: [
-            { text: "HTML", link: "/learn/HTML/" },
-          ],
-        }
+      ],
+    },
+    {
+      text: "HTML",
+      collapsible: true,
+      items: [
+        { text: "HTML", link: "/learn/HTML/" },
+      ],
+    },
+    {
+      text: "Javascript",
+      collapsible: true,
+      items: [
+        { text: "Javascript", link: "/learn/Javascript/" },
+        { text: "数据类型", link: "/learn/Javascript/type" },
+        { text: "运算符", link: "/learn/Javascript/sort" },
       ],
     }
   ]
@@ -116,26 +127,26 @@ function getMusicSidebar() {
         {
           text: "🎶 音果云音",
           // collapsible: true,
-          link: "/music/",
+          link: "/project/lingsi/music/",
           items: [
             {
               text: " APP",
               collapsible: true,
               items: [
-                { text: '登录页', link: "/music/APP/login" },
-                { text: 'tabbar页', link: "/music/APP/tabbar" },
-                { text: '详情页', link: "/music/APP/detail" },
-                { text: '分享页', link: "/music/APP/share" },
-                { text: '测试页', link: "/music/APP/test" },
-                { text: '操作页', link: "/music/APP/do" },
-                { text: '支付页', link: "/music/APP/pay" },
+                { text: '登录页', link: "/project/lingsi/music/APP/login" },
+                { text: 'tabbar页', link: "/project/lingsi/music/APP/tabbar" },
+                { text: '详情页', link: "/project/lingsi/music/APP/detail" },
+                { text: '分享页', link: "/project/lingsi/music/APP/share" },
+                { text: '测试页', link: "/project/lingsi/music/APP/test" },
+                { text: '操作页', link: "/project/lingsi/music/APP/do" },
+                { text: '支付页', link: "/project/lingsi/music/APP/pay" },
               ]
             },
             {
               text: 'H5',
               collapsible: true,
               items: [
-                { text: '海报页', link: '/music/H5/'}
+                { text: '海报页', link: '/project/lingsi/music/H5/'}
               ]
             }
           ],
@@ -152,11 +163,45 @@ function getSaleSidebar() {
       text: '💴 视频分销',
       collapsible: true,
       items: [
-        { text: '简介', link: '/sale/' },
-        { text: '请求封装', link: '/sale/request' },
-        { text: 'token刷新', link: '/sale/token' },
-        { text: '视频轮播', link: '/sale/video' },
-        { text: '图片上传组件封装', link: '/sale/upload' },
+        { text: '简介', link: '/project/lingsi/sale/' },
+        { text: '请求封装', link: '/project/lingsi/sale/request' },
+        { text: 'token刷新', link: '/project/lingsi/sale/token' },
+        { text: '视频轮播', link: '/project/lingsi/sale/video' },
+        { text: '图片上传组件封装', link: '/project/lingsi/sale/upload' },
+      ]
+    }
+  ]
+}
+
+// 获取elk的数组
+function getELKSidebar() {
+  return [
+    {
+      text: '🎲 ELK',
+      collapsible: true,
+      items: [
+        { text: '简介', link: '/project/lingsi/elk/' },
+        { text: '接收后端返回的二进制流文件', link: '/project/lingsi/elk/blob' },
+        { text: 'vue-core的使用', link: '/project/lingsi/elk/vue_core' },
+        { text: 'Canvas绘制表格图', link: '/project/lingsi/elk/canvas_table' },
+        { text: 'DIV可编辑文本', link: '/project/lingsi/elk/edit_div' },
+        { text: 'JSON编辑器', link: '/project/lingsi/elk/edit_JSON' },
+        { text: '导出PDF', link: '/project/lingsi/elk/pdf' },
+      ]
+    }
+  ]
+}
+
+// 获取crm的数组
+function getCRMSidebar() {
+  return [
+    {
+      text: '🔍 crm',
+      collapsible: true,
+      items: [
+        { text: '简介', link: '/project/lingsi/crm/' },
+        { text: '拨打电话', link: '/project/lingsi/crm/call' },
+        { text: 'navigateBack传参', link: '/project/lingsi/crm/navigateBack' }
       ]
     }
   ]
@@ -173,6 +218,7 @@ function getVitePressSidebar() {
         { text: "🧩 搭建", link: "/vitePress/Dev" },
         { text: "🎁 打包", link: "/vitePress/Build" },
         { text: "⏳ 部署", link: "/vitePress/Deploy" },
+        { text: "✨ 拓展", link: "/vitePress/Know" },
       ]
     }
   ]
@@ -182,7 +228,7 @@ function getVitePressSidebar() {
 function getKnowledgePointSidebar() {
   return [
     {
-      text: '0F81A2AF.png 项目学习',
+      text: '🎒 项目学习',
       collapsible: true,
       items: [
         { text: "🌩️ 引言", link: "/knowledgePoint/" },

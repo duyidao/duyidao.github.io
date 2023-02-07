@@ -11,7 +11,7 @@ hero:
       link: /learn/HTML/
     - theme: alt
       text: 项目总结
-      link: /project/Music/
+      link: /project/
     - theme: alt
       text: 关于
       link: /about/
@@ -24,6 +24,7 @@ features:
   - icon: ⚡
     title: 项目之旅
     details: 项目总结
+    link: /project/
   - icon:  ⌛
     title: 博客部署
     details: 从0到1部署博客
