@@ -294,8 +294,8 @@ console.log('daodao'[3]) // d
 
 使用 `slice、substr、substring` 函数都可以截取字符串。
 
-- slice、substring 第二个参数为截取的结束位置
-- substr 第二个参数指定获取字符数量
+- `slice`、`substring` 第二个参数为截取的结束位置，`substr` 第二个参数指定获取字符数量
+- `slice`、`substr` 仅有一个参数且该参数为负数，则从后面找起，`substring` 无法读取负数，会默认为0，抓取全部
 
 ```js
 let hd = 'daodao.com';
@@ -308,8 +308,11 @@ console.log(hd.substring(3, 6)); //dao
 console.log(hd.substring(3, 0)); //dao 较小的做为起始位置
 console.log(hd.substr(3, 6)); //dao.
 
-console.log(hd.slice(3, -1)); //dao.co 第二个为负数表示从后面算的字符
 console.log(hd.slice(-2));//om 从末尾取
+console.log(hd.substr(-2));//om 从末尾取
+console.log(hd.substring(-2));//daodao.com 获取全部
+
+console.log(hd.slice(3, -1)); //dao.co 第二个为负数表示从后面算的字符
 console.log(hd.substring(3, -9)); //dao 负数转为0
 console.log(hd.substr(-3, 2)); //co 从后面第三个开始取两个
 ```
