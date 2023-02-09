@@ -354,26 +354,26 @@ console.log(arr); //[1, "刀刀", "daodao", "daodao.com"]
 
 使用展示语法批量添加元素
 
-```text
-let arr = ["后盾人", "hdcms"];
-let hd = ["houdunren"];
+```js
+let arr = ["刀刀", "daodao"];
+let hd = ["duyidao"];
 hd.push(...arr);
-console.log(hd); //["houdunren", "后盾人", "hdcms"]
+console.log(hd); // ["duyidao", "刀刀", "daodao"]
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#push)push
+### push
 
 压入元素，直接改变元数组，返回值为数组元素数量
 
-```text
-let arr = ["后盾人", "hdcms"];
-console.log(arr.push('向军大叔', 'houdunren')); //4
-console.log(arr); //["后盾人", "hdcms", "向军大叔", "houdunren"]
+```js
+let arr = ["刀刀", "daodao"];
+console.log(arr.push('杜一刀', 'duyidao')); // 4
+console.log(arr); // ["刀刀", "daodao", "杜一刀", "duyidao"]
 ```
 
 根据区间创建新数组
 
-```text
+```js
 function rangeArray(begin, end) {
   const array = [];
   for (let i = begin; i <= end; i++) {
@@ -384,113 +384,119 @@ function rangeArray(begin, end) {
 console.log(rangeArray(1, 6));
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#pop)pop
+### pop
 
 从末尾弹出元素，直接改变元数组，返回值为弹出的元素
 
-```text
-let arr = ["后盾人", "hdcms"];
-console.log(arr.pop()); //hdcms
-console.log(arr); //["后盾人"]
+```js
+let arr = ["刀刀", "daodao"];
+console.log(arr.pop()); // daodao
+console.log(arr); // ["刀刀"]
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#shift)shift
+### shift
 
 从数组前面取出一个元素
 
-```text
-let arr = ["后盾人", "hdcms"];
-console.log(arr.shift()); //后盾人
-console.log(arr); //["hdcms"]
+```js
+let arr = ["刀刀", "daodao"];
+console.log(arr.shift()); // 刀刀
+console.log(arr); // ["daodao"]
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#unshift)unshift
+### unshift
 
 从数组前面添加元素
 
-```text
-let arr = ["后盾人", "hdcms"];
-console.log(arr.unshift('向军大叔', 'houdunren')); //4
-console.log(arr); //["向军大叔", "houdunren", "后盾人", "hdcms"]
+```js
+let arr = ["刀刀", "daodao"];
+console.log(arr.unshift('杜一刀', 'duyidao')); // 4
+console.log(arr); //["杜一刀", "duyidao", "刀刀", "daodao"]
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#fill)fill
+### fill
 
 使用`fill` 填充数组元素
 
-```text
-console.dir(Array(4).fill("后盾人")); //["后盾人", "后盾人", "后盾人", "后盾人"]
+```js
+console.dir(Array(4).fill("刀刀")); // ["刀刀", "刀刀", "刀刀", "刀刀"]
 ```
 
 指定填充位置
 
-```text
-console.log([1, 2, 3, 4].fill("后盾人", 1, 2)); //[1, "后盾人", 3, 4]
+- 参数2：起始位置
+- 参数3：结束位置前一项
+
+```js
+console.log([1, 2, 3, 4].fill("刀刀", 1, 2)); //[1, "刀刀", 3, 4]
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#slice)slice
+### slice
 
 使用 `slice` 方法从数组中截取部分元素组合成新数组（并不会改变原数组），不传第二个参数时截取到数组的最后元素。
 
-```text
+```js
 let arr = [0, 1, 2, 3, 4, 5, 6];
 console.log(arr.slice(1, 3)); // [1,2]
+console.log(arr); // [0, 1, 2, 3, 4, 5, 6]
 ```
 
 不设置参数是为获取所有元素
 
-```text
+```js
 let arr = [0, 1, 2, 3, 4, 5, 6];
-console.log(arr.slice()); //[0, 1, 2, 3, 4, 5, 6]
+console.log(arr.slice()); // [0, 1, 2, 3, 4, 5, 6]
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#splice)splice
+### splice
 
 使用 `splice` 方法可以添加、删除、替换数组中的元素，会对原数组进行改变，返回值为删除的元素。
 
-删除数组元素第一个参数为从哪开始删除，第二个参数为删除的数量。
+- 参数1：从哪开始删除
+- 参数2：删除的数量
+- 参数3：可选，如果有参数3则把删除的内容替换为参数3
 
-```text
+```js
 let arr = [0, 1, 2, 3, 4, 5, 6];
-console.log(arr.splice(1, 3)); //返回删除的元素 [1, 2, 3]
-console.log(arr); //删除数据后的原数组 [0, 4, 5, 6]
+console.log(arr.splice(1, 3)); // 返回删除的元素 [1, 2, 3]
+console.log(arr); // 删除数据后的原数组 [0, 4, 5, 6]
 ```
 
 通过修改`length`删除最后一个元素
 
-```text
-let arr = ["后盾人", "hdcms"];
+```js
+let arr = ["刀刀", "daodao"];
 arr.length = arr.length - 1;
-console.log(arr);
+console.log(arr); // ["刀刀"]
 ```
 
 通过指定第三个参数来设置在删除位置添加的元素
 
-```text
+```js
 let arr = [0, 1, 2, 3, 4, 5, 6];
-console.log(arr.splice(1, 3, 'hdcms', '后盾人')); //[1, 2, 3]
-console.log(arr); //[0, "hdcms", "后盾人", 4, 5, 6]
+console.log(arr.splice(1, 3, 'daodao', '刀刀')); //[1, 2, 3]
+console.log(arr); //[0, "daodao", "刀刀", 4, 5, 6]
 ```
 
 向末尾添加元素
 
-```text
+```js
 let arr = [0, 1, 2, 3, 4, 5, 6];
-console.log(arr.splice(arr.length, 0, 'hdcms', '后盾人')); //[]
-console.log(arr); // [0, 1, 2, 3, 4, 5, 6, "hdcms", "后盾人"]
+console.log(arr.splice(arr.length, 0, 'daodao', '刀刀')); //[]
+console.log(arr); // [0, 1, 2, 3, 4, 5, 6, "daodao", "刀刀"]
 ```
 
 向数组前添加元素
 
-```text
+```js
 let arr = [0, 1, 2, 3, 4, 5, 6];
-console.log(arr.splice(0, 0, 'hdcms', '后盾人')); //[]
-console.log(arr); //["hdcms", "后盾人", 0, 1, 2, 3, 4, 5, 6]
+console.log(arr.splice(0, 0, 'daodao', '刀刀')); //[]
+console.log(arr); //["daodao", "刀刀", 0, 1, 2, 3, 4, 5, 6]
 ```
 
 数组元素位置调整函数
 
-```text
+```js
 function move(array, before, to) {
   if (before < 0 || to >= array.length) {
     console.error("指定位置错误");
@@ -505,80 +511,80 @@ const array = [1, 2, 3, 4];
 console.table(move(array, 0, 3));
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#清空数组)清空数组
+### 清空数组
 
-将数组值修改为`[]`可以清空数组，如果有多个引用时数组在内存中存在被其他变量引用。
+将数组值修改为`[]`可以清空数组，如果有多个引用时数组在内存中存在被其他变量引用。该方法为开辟一个新空间存放一个空数组，而原本的数组还在。
 
-```text
-let user = [{ name: "hdcms" }, { name: "后盾人" }];
+```js
+let user = [{ name: "刀刀" }, { name: "daodao" }];
 let cms = user;
 user = [];
-console.log(user);
-console.log(cms);
+console.log(user); // []
+console.log(cms); // []
 ```
 
 将数组`length`设置为 0 也可以清空数组
 
-```text
-let user = [{ name: "hdcms" }, { name: "后盾人" }];
+```js
+let user = [{ name: "刀刀" }, { name: "daodao" }];
 user.length = 0;
-console.log(user);
+console.log(user); // []
 ```
 
 使用`splice`方法删除所有数组元素
 
-```text
-let user = [{ name: "hdcms" }, { name: "后盾人" }];
+```js
+let user = [{ name: "刀刀" }, { name: "daodao" }];
 user.splice(0, user.length);
-console.log(user);
+console.log(user); // []
 ```
 
 使用`pop/shift`删除所有元素，来清空数组
 
-```text
-let user = [{ name: "hdcms" }, { name: "后盾人" }];
+```js
+let user = [{ name: "刀刀" }, { name: "daodao" }];
 while (user.pop()) {}
-console.log(user);
+console.log(user); // []
 ```
 
-## [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#合并拆分)合并拆分
+## 合并拆分
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#join)join
+### join
 
 使用`join`连接成字符串
 
-```text
-let arr = [1, "后盾人", "hdcms"];
-console.log(arr.join('-')); //1-后盾人-hdcms 使用join可以指定转换的连接方式
+```js
+let arr = [1, "刀刀", "daodao"];
+console.log(arr.join('-')); //1-刀刀-daodao 使用join可以指定转换的连接方式
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#split)split
+### split
 
 `split` 方法用于将字符串分割成数组，类似`join`方法的反函数。
 
-```text
+```js
 let price = "99,78,68";
 console.log(price.split(",")); //["99", "78", "68"]
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#concat)concat
+### concat
 
 `concat`方法用于连接两个或多个数组，元素是值类型的是复制操作，如果是引用类型还是指向同一对象
 
-```text
-let array = ["hdcms", "houdunren"];
+```js
+let array = ["刀刀", "daodao"];
 let hd = [1, 2];
 let cms = [3, 4];
-console.log(array.concat(hd, cms)); //["hdcms", "houdunren", 1, 2, 3, 4]
+console.log(array.concat(hd, cms)); //["刀刀", "daodao", 1, 2, 3, 4]
 ```
 
 也可以使用扩展语法实现连接
 
-```text
+```js
 console.log([...array, ...hd, ...cms]);
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#copywithin)copyWithin
+### copyWithin
 
 使用 `copyWithin` 从数组中复制一部分到同数组中的另外位置。
 
@@ -596,51 +602,51 @@ array.copyWithin(target, start, end)
 | *start*  | 可选。元素复制的起始位置。                                   |
 | *end*    | 可选。停止复制的索引位置 (默认为 *array*.length)。如果为负值，表示倒数。 |
 
-```text
+```js
 const arr = [1, 2, 3, 4];
 console.log(arr.copyWithin(2, 0, 2)); //[1, 2, 1, 2]
 ```
 
-## [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#查找元素)查找元素
+## 查找元素
 
 数组包含多种查找的函数，需要把这些函数掌握清楚，然后根据不同场景选择合适的函数。
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#indexof)indexOf
+### indexOf
 
 使用 `indexOf` 从前向后查找元素出现的位置，如果找不到返回 `-1`。
 
-```text
+```js
 let arr = [7, 3, 2, 8, 2, 6];
 console.log(arr.indexOf(2)); // 2 从前面查找2出现的位置
 ```
 
 如下面代码一下，使用 `indexOf` 查找字符串将找不到，因为`indexOf` 类似于`===`是严格类型约束。
 
-```text
+```js
 let arr = [7, 3, 2, '8', 2, 6];
 console.log(arr.indexOf(8)); // -1
 ```
 
 第二个参数用于指定查找开始位置
 
-```text
+```js
 let arr = [7, 3, 2, 8, 2, 6];
 //从第二个元素开始向后查找
 console.log(arr.indexOf(2, 3)); //4
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#lastindexof)lastIndexOf
+### lastIndexOf
 
 使用 `lastIndexOf` 从后向前查找元素出现的位置，如果找不到返回 `-1`。
 
-```text
+```js
 let arr = [7, 3, 2, 8, 2, 6];
 console.log(arr.lastIndexOf(2)); // 4 从后查找2出现的位置
 ```
 
 第二个参数用于指定查找开始位置
 
-```text
+```js
 let arr = [7, 3, 2, 8, 2, 6];
 //从第五个元素向前查找
 console.log(arr.lastIndexOf(2, 5));
@@ -649,18 +655,18 @@ console.log(arr.lastIndexOf(2, 5));
 console.log(arr.lastIndexOf(2, -2));
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#includes)includes
+### includes
 
 使用 `includes` 查找字符串返回值是布尔类型更方便判断
 
-```text
+```js
 let arr = [7, 3, 2, 6];
 console.log(arr.includes(6)); //true
 ```
 
 我们来实现一个自已经的`includes`函数，来加深对`includes`方法的了解
 
-```text
+```js
 function includes(array, item) {
   for (const value of array)
     if (item === value) return true;
@@ -670,59 +676,59 @@ function includes(array, item) {
 console.log(includes([1, 2, 3, 4], 3)); //true
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#find)find
+### find
 
 find 方法找到后会把值返回出来
 
-- 如果找不到返回值为`undefined`
+> 如果找不到返回值为`undefined`
 
 返回第一次找到的值，不继续查找
 
-```text
-let arr = ["hdcms", "houdunren", "hdcms"];
+```js
+let arr = ["daodao", "duyidao", "xiaodao"];
 
 let find = arr.find(function(item) {
-  return item == "hdcms";
+  return item == "daodao";
 });
 
-console.log(find); //hdcms
+console.log(find); // daodao
 ```
 
 使用`includes`等不能查找引用类型，因为它们的内存地址是不相等的
 
-```text
-const user = [{ name: "李四" }, { name: "张三" }, { name: "后盾人" }];
-const find = user.includes({ name: "后盾人" });
-console.log(find);
+```js
+const user = [{ name: "李四" }, { name: "张三" }, { name: "刀刀" }];
+const find = user.includes({ name: "刀刀" });
+console.log(find); // false
 ```
 
 `find` 可以方便的查找引用类型
 
-```text
-const user = [{ name: "李四" }, { name: "张三" }, { name: "后盾人" }];
-const find = user.find(user => (user.name = "后盾人"));
-console.log(find);
+```js
+const user = [{ name: "李四" }, { name: "张三" }, { name: "刀刀" }];
+const find = user.find(user => (user.name = "刀刀"));
+console.log(find); // { name: "刀刀" }
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#findindex)findIndex
+### findIndex
 
 `findIndex` 与 `find` 的区别是返回索引值，参数也是 : 当前值，索引，操作数组。
 
-- 查找不到时返回 `-1`
+> 查找不到时返回 `-1`
 
-```text
+```js
 let arr = [7, 3, 2, '8', 2, 6];
 
 console.log(arr.findIndex(function (v) {
 	return v == 8;
-})); //3
+})); // 3
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#find-原理)find 原理
+### find 原理
 
 下面使用自定义函数
 
-```text
+```js
 let arr = [1, 2, 3, 4, 5];
 function find(array, callback) {
   for (const value of array) {
@@ -738,7 +744,7 @@ console.log(res);
 
 下面添加原型方法实现
 
-```text
+```js
 Array.prototype.findValue = function(callback) {
   for (const value of this) {
     if (callback(value) === true) return value;
@@ -752,20 +758,20 @@ let re = arr.findValue(function(item) {
 console.log(re);
 ```
 
-## [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#数组排序)数组排序
+## 数组排序
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#reverse)reverse
+### reverse
 
 反转数组顺序
 
-```text
+```js
 let arr = [1, 4, 2, 9];
 console.log(arr.reverse()); //[9, 2, 4, 1]
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#sort)sort
+### sort
 
-```
+```js
 sort`每次使用两个值进行比较 `Array.sort((a,b)=>a-b
 ```
 
@@ -775,14 +781,14 @@ sort`每次使用两个值进行比较 `Array.sort((a,b)=>a-b
 
 默认从小于大排序数组元素
 
-```text
+```js
 let arr = [1, 4, 2, 9];
 console.log(arr.sort()); //[1, 2, 4, 9]
 ```
 
 使用排序函数从大到小排序，参数一与参数二比较，返回正数为降序负数为升序
 
-```text
+```js
 let arr = [1, 4, 2, 9];
 
 console.log(arr.sort(function (v1, v2) {
@@ -803,7 +809,7 @@ let sortLessons = lessons.sort((v1, v2) => v2.click - v1.click);
 console.log(sortLessons);
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#排序原理)排序原理
+### 排序原理
 
 ```text
 let arr = [1, 5, 3, 9, 7];
@@ -825,9 +831,9 @@ arr = sort(arr, function(a, b) {
 console.table(arr);
 ```
 
-## [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#循环遍历)循环遍历
+## 循环遍历
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#for)for
+### for
 
 根据数组长度结合`for` 循环来遍历数组
 
@@ -844,7 +850,7 @@ for (let i = 0; i < lessons.length; i++) {
 console.log(lessons);
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#foreach)forEach
+### forEach
 
 `forEach`使函数作用在每个数组元素上，但是没有返回值。
 
@@ -863,7 +869,7 @@ lessons.forEach((item, index, array) => {
 console.log(lessons);
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#for-in)for/in
+### for/in
 
 遍历时的 key 值为数组的索引
 
@@ -879,7 +885,7 @@ for (const key in lessons) {
 }
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#for-of)for/of
+### for/of
 
 与 `for/in` 不同的是 `for/of` 每次循环取其中的值而不是索引。
 
@@ -931,11 +937,11 @@ function arrayMax(array) {
 console.log(arrayMax([1, 3, 2, 9]));
 ```
 
-## [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#迭代器方法)迭代器方法
+## 迭代器方法
 
 数组中可以使用多种迭代器方法，迭代器后面章节会详解。
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#keys)keys
+### keys
 
 通过迭代对象获取索引
 
@@ -966,7 +972,7 @@ while (({ value, done } = values.keys()) && done === false) {
 }
 ```
 
-## [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#values)values
+## values
 
 通过迭代对象获取值
 
@@ -989,7 +995,7 @@ for (const value of arr.values()) {
 }
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#entries)entries
+### entries
 
 返回数组所有键值对，下面使用解构语法循环
 
@@ -1011,9 +1017,9 @@ let {done,value: [k, v]} = iterator.next();
 console.log(v);
 ```
 
-## [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#扩展方法)扩展方法
+## 扩展方法
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#every)every
+### every
 
 `every` 用于递归的检测元素，要所有元素操作都要返回真结果才为真。
 
@@ -1042,7 +1048,7 @@ let state = words.every(function (item, index, array) {
 if (state == false) console.log('标题必须包含所有关键词');
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#some)some
+### some
 
 使用 `some` 函数可以递归的检测元素，如果有一个返回 true，表达式结果就是真。第一个参数为元素，第二个参数为索引，第三个参数为原数组。
 
@@ -1059,7 +1065,7 @@ let state = words.some(function (item, index, array) {
 if (state) console.log('标题含有违规关键词');
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#filter)filter
+### filter
 
 使用 `filter` 可以过滤数据中元素，下面是获取所有在 CSS 栏目的课程。
 
@@ -1093,7 +1099,7 @@ const array = [1, 2, 3, 4];
 console.log(except(array, [2, 3])); //[1,4]
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#map)map
+### map
 
 使用 `map` 映射可以在数组的所有元素上应用函数，用于映射出新的值。
 
@@ -1125,7 +1131,7 @@ lessons = lessons.map(function (item, index, array) {
 console.log(lessons);
 ```
 
-### [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#reduce)reduce
+### reduce
 
 使用 `reduce` 与 `reduceRight` 函数可以迭代数组的所有元素，`reduce` 从前开始 `reduceRight` 从后面开始。下面通过函数计算课程点击数的和。
 
@@ -1232,7 +1238,7 @@ let filterArr = arr.reduce((pre, cur, index, array) => {
 console.log(filterArr); // [1,2,6]
 ```
 
-## [#](https://doc.houdunren.com/系统课程/js/4 数组类型.html#动画案例)动画案例
+## 动画案例
 
 ![Untitled](https://doc.houdunren.com/assets/img/Untitled-0803682.b8920733.gif)
 

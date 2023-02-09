@@ -41,6 +41,7 @@ function getLearnJsSidebar() {
         { text: "Javascript", link: "/learn/Javascript/" },
         { text: "运算符", link: "/learn/Javascript/sort" },
         { text: "数据类型", link: "/learn/Javascript/type" },
+        { text: "数组", link: "/learn/Javascript/array" },
       ],
     }
   ]
