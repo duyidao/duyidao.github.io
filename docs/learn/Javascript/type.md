@@ -76,7 +76,7 @@ console.log(hd.length); //9
 console.log(cms.length); //5
 ```
 
-## 基本类型
+## 基本数据类型
 
 ### 字符串 String
 
@@ -748,6 +748,13 @@ console.log((0.1).add(0.2))
 </script>
 ```
 
+## 复杂数据类型
+
+复杂数据类型单独一篇介绍
+
+- 数组
+- 对象
+
 ## Math
 
 `Math` 对象提供了众多方法用来进行数学计算，下面介绍常用的方法，更多方法使用请查看 [MDN 官网 (opens new window)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)了解。
@@ -870,6 +877,7 @@ console.log(end - start);
 当然也可以使用控制台测试
 
 ```js
+// 这里的testFor为自定义名称，可自定义取，注意前后要一致
 console.time("testFor");
 for (let i = 0; i < 20000000; i++) {}
 console.timeEnd("testFor");
