@@ -798,7 +798,7 @@ console.log(arr.sort(function (v1, v2) {
 
 下面是按课程点击数由高到低排序
 
-```text
+```js
 let lessons = [
   { title: "媒体查询响应式布局", click: 78 },
   { title: "FLEX 弹性盒模型", click: 12 },

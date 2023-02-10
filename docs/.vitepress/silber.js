@@ -58,6 +58,9 @@ function getLearnNodeSidebar() {
         { text: "fs", link: "/learn/Node/fs" },
         { text: "path", link: "/learn/Node/path" },
         { text: "http", link: "/learn/Node/http" },
+        { text: "module", link: "/learn/Node/module" },
+        { text: "express", link: "/learn/Node/express" },
+        { text: "npm", link: "/learn/Node/npm" },
       ]
     }
   ]
