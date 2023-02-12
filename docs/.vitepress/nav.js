@@ -8,10 +8,9 @@ export default [
     ],
   },
   {
-    text: "📖 项目总结",
+    text: "💾 项目",
     items: [
-      { text: "🎶 音果云音", link: "/project/lingsi/music/" },
-      { text: "💴 视频分销", link: "/project/lingsi/sale/" },
+      { text: "📖 项目总结", link: "/project/lingsi/" },
       {
         items: [
           {

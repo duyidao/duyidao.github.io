@@ -134,8 +134,8 @@ console.log(name + '成立于' + year + '年');
 
 ```js
 let web = '刀刀';
-web += '网址：houdunren.com';
-console.log(web); //刀刀网址：houdunren.com
+web += '网址：duyidao.com';
+console.log(web); //刀刀网址：duyidao.com
 ```
 
 #### 模板字面量
@@ -144,7 +144,7 @@ console.log(web); //刀刀网址：houdunren.com
 
 ```js
 let url = 'daodao.com';
-console.log(`刀刀网址是${url}`); //刀刀网址是houdunren.com
+console.log(`刀刀网址是${url}`); //刀刀网址是duyidao.com
 ```
 
 支持换行操作不会产生错误
@@ -248,7 +248,7 @@ console.log("daodao.com".length)
 将字符转换成大写格式
 
 ```js
-console.log('daodao.com'.toUpperCase()); //HOUDUNREN.COM
+console.log('daodao.com'.toUpperCase()); //duyidao.COM
 ```
 
 转字符为小写格式
@@ -634,7 +634,7 @@ if (Number.isNaN(res)) {
 也可以使用 `Object.is` 方法判断两个值是否完全相同
 
 ```js
-var res = 2 / 'houdunren';
+var res = 2 / 'duyidao';
 console.log(Object.is(res, NaN)); // true
 ```
 
@@ -645,7 +645,7 @@ console.log(Object.is(res, NaN)); // true
 使用 Number 函数基本上可以转换所有类型
 
 ```js
-console.log(Number('houdunren')); //NaN
+console.log(Number('duyidao')); //NaN
 console.log(Number(true));	//1
 console.log(Number(false));	//0
 console.log(Number('9'));	//9
@@ -660,7 +660,7 @@ console.log(Number({}));	//NaN
 提取字符串开始去除空白后的数字转为整数。
 
 ```js
-console.log(parseInt('  99houdunren'));	//99
+console.log(parseInt('  99duyidao'));	//99
 console.log(parseInt('18.55'));	//18
 ```
 
@@ -669,14 +669,14 @@ console.log(parseInt('18.55'));	//18
 转换字符串为浮点数，忽略字符串前面空白字符。
 
 ```js
-console.log(parseFloat('  99houdunren'));	//99
+console.log(parseFloat('  99duyidao'));	//99
 console.log(parseFloat('18.55'));	//18.55
 ```
 
 比如从表单获取的数字是字符串类型需要类型转换才可以计算，下面使用乘法进行隐式类型转换。
 
 ```html
-<input type="text" name="num" value="66">
+<input type="js" name="num" value="66">
 <script>
   let num = document.querySelector("[name='num']").value;
   console.log(num + 5); //665

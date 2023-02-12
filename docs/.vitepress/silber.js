@@ -3,6 +3,25 @@ export default {
   '/learn/Javascript': getLearnJsSidebar(),
   '/learn/Node': getLearnNodeSidebar(),
   '/knowledgePoint': getKnowledgePointSidebar(),
+  '/project': [
+    {
+      text: '项目',
+      items: [
+        {text: '灵思', link: '/project/lingsi/'}
+      ]
+    }
+  ],
+  '/project/lingsi': [
+    {
+      text: '灵思',
+      items: [
+        {text: '🎶 音果云音', link: '/project/lingsi/music/'},
+        {text: '💴 视频分销', link: '/project/lingsi/sale/'},
+        {text: '🔍 CRM', link: '/project/lingsi/crm/'},
+        {text: '🎲 ELK', link: '/project/lingsi/elk/'}
+      ]
+    }
+  ],
   '/project/lingsi/sale': getSaleSidebar(),
   '/project/lingsi/music': getMusicSidebar(),
   '/project/lingsi/crm': getCRMSidebar(),
@@ -42,6 +61,10 @@ function getLearnJsSidebar() {
         { text: "运算符", link: "/learn/Javascript/sort" },
         { text: "数据类型", link: "/learn/Javascript/type" },
         { text: "数组", link: "/learn/Javascript/array" },
+        { text: "函数", link: "/learn/Javascript/function" },
+        { text: "Set", link: "/learn/Javascript/set" },
+        { text: "Map", link: "/learn/Javascript/map" },
+        { text: "Symbol", link: "/learn/Javascript/symbol" },
       ],
     }
   ]

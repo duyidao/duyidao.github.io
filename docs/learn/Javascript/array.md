@@ -290,7 +290,7 @@ console.log(a); //Array(10)
 ```js
 "use strict";
 
-[web, url] = ["hdcms.com", "houdunren.com"]; // 报错
+[web, url] = ["daodao.com", "houdunren.com"]; // 报错
 console.log(web);
 ```
 
@@ -590,7 +590,7 @@ console.log([...array, ...hd, ...cms]);
 
 语法说明
 
-```text
+```js
 array.copyWithin(target, start, end)
 ```
 
@@ -811,7 +811,7 @@ console.log(sortLessons);
 
 ### 排序原理
 
-```text
+```js
 let arr = [1, 5, 3, 9, 7];
 function sort(array, callback) {
   for (const n in array) {
@@ -837,15 +837,15 @@ console.table(arr);
 
 根据数组长度结合`for` 循环来遍历数组
 
-```text
+```js
 let lessons = [
-	{title: '媒体查询响应式布局',category: 'css'},
-  {title: 'FLEX 弹性盒模型',category: 'css'},
-	{title: 'MYSQL多表查询随意操作',category: 'mysql'}
+	{title: 'path',category: 'node'},
+ 	{title: 'flex',category: 'css'},
+	{title: 'array',category: 'JavaScript'}
 ];
 
 for (let i = 0; i < lessons.length; i++) {
-  lessons[i] = `后盾人: ${lessons[i].title}`;
+  lessons[i] = `刀刀博客: ${lessons[i].title}`;
 }
 console.log(lessons);
 ```
@@ -856,15 +856,15 @@ console.log(lessons);
 
 下面例子是截取标签的五个字符。
 
-```text
+```js
 let lessons = [
-	{title: '媒体查询响应式布局',category: 'css'},
-  {title: 'FLEX 弹性盒模型',category: 'css'},
-	{title: 'MYSQL多表查询随意操作',category: 'mysql'}
+	{title: 'path',category: 'node'}, // pa
+ 	{title: 'flex',category: 'css'}, // fl
+	{title: 'array',category: 'JavaScript'} // ar
 ];
 
 lessons.forEach((item, index, array) => {
-    item.title = item.title.substr(0, 5);
+    item.title = item.title.substr(0, 2);
 });
 console.log(lessons);
 ```
@@ -873,15 +873,15 @@ console.log(lessons);
 
 遍历时的 key 值为数组的索引
 
-```text
+```js
 let lessons = [
-	{title: '媒体查询响应式布局',category: 'css'},
-  {title: 'FLEX 弹性盒模型',category: 'css'},
-	{title: 'MYSQL多表查询随意操作',category: 'mysql'}
+	{title: 'path',category: 'node'},
+ 	{title: 'flex',category: 'css'},
+	{title: 'array',category: 'JavaScript'}
 ];
 
 for (const key in lessons) {
-    console.log(`标题: ${lessons[key].title}`);
+    console.log(`刀刀博客: ${lessons[key].title}`);
 }
 ```
 
@@ -889,34 +889,34 @@ for (const key in lessons) {
 
 与 `for/in` 不同的是 `for/of` 每次循环取其中的值而不是索引。
 
-```text
+```js
 let lessons = [
-	{title: '媒体查询响应式布局',category: 'css'},
-  {title: 'FLEX 弹性盒模型',category: 'css'},
-	{title: 'MYSQL多表查询随意操作',category: 'mysql'}
+	{title: 'path',category: 'node'},
+ 	{title: 'flex',category: 'css'},
+	{title: 'array',category: 'JavaScript'}
 ];
 
 for (const item of lessons) {
   console.log(`
     标题: ${item.title}
-    栏目: ${item.category == "css" ? "前端" : "数据库"}
   `);
 }
 ```
 
-使用数组的迭代对象遍历获取索引与值（有关迭代器知识后面章节会讲到）
+使用数组的迭代对象遍历获取索引与值
 
-```text
-const hd = ['houdunren', 'hdcms'];
+```js
+const hd = ['daodao', '刀刀'];
 const iterator = hd.entries();
-console.log(iterator.next()); //value:{0:0,1:'houdunren'}
-console.log(iterator.next()); //value:{0:1,1:'hdcms'}
+const keys = hd.keys();
+console.log(iterator.next()); //value:{0:0,1:'daodao'}
+console.log(iterator.next()); //value:{0:1,1:'刀刀'}
 ```
 
 这样就可以使用解构特性与 `for/of` 遍历并获取索引与值了
 
-```text
-const hd = ["hdcms", "houdunren"];
+```js
+const hd = ["daodao", "刀刀"];
 
 for (const [key, value] of hd.entries()) {
   console.log(key, value); //这样就可以遍历了
@@ -925,7 +925,7 @@ for (const [key, value] of hd.entries()) {
 
 取数组中的最大值
 
-```text
+```js
 function arrayMax(array) {
   let max = array[0];
   for (const elem of array) {
@@ -945,18 +945,18 @@ console.log(arrayMax([1, 3, 2, 9]));
 
 通过迭代对象获取索引
 
-```text
-const hd = ["houdunren", "hdcms"];
+```js
+const hd = ["daodao", "刀刀"];
 const keys = hd.keys();
-console.log(keys.next());
-console.log(keys.next());
+console.log(keys.next()); // 0
+console.log(keys.next()); // 1
 ```
 
 获取数组所有键
 
-```text
+```js
 "use strict";
-const arr = ["a", "b", "c", "后盾人"];
+const arr = ["a", "b", "c", "daodao"];
 
 for (const key of arr.keys()) {
   console.log(key);
@@ -965,8 +965,8 @@ for (const key of arr.keys()) {
 
 使用 while 遍历
 
-```text
-let arr = ["hdcms", "houdunren"];
+```js
+let arr = ["daodao", "duyidao"];
 while (({ value, done } = values.keys()) && done === false) {
 	console.log(value);
 }
@@ -976,8 +976,8 @@ while (({ value, done } = values.keys()) && done === false) {
 
 通过迭代对象获取值
 
-```text
-const hd = ["houdunren", "hdcms"];
+```js
+const hd = ["daodao", "duyidao"];
 const values = hd.values();
 console.log(values.next());
 console.log(values.next());
@@ -986,9 +986,9 @@ console.log(values.next());
 
 获取数组的所有值
 
-```text
+```js
 "use strict";
-const arr = ["a", "b", "c", "后盾人"];
+const arr = ["a", "b", "c", "daodao"];
 
 for (const value of arr.values()) {
   console.log(value);
@@ -999,17 +999,17 @@ for (const value of arr.values()) {
 
 返回数组所有键值对，下面使用解构语法循环
 
-```text
-const arr = ["a", "b", "c", "后盾人"];
+```js
+const arr = ["a", "b", "c", "daodao"];
 for (const [key, value] of arr.entries()) {
   console.log(key, value);
 }
 ```
 
-解构获取内容（对象章节会详细讲解）
+解构获取内容
 
-```text
-const hd = ["houdunren", "hdcms"];
+```js
+const hd = ["daodao", "duyidao"];
 const iterator = hd.entries();
 
 let {done,value: [k, v]} = iterator.next();
@@ -1025,21 +1025,21 @@ console.log(v);
 
 查看班级中同学的 JS 成绩是否都及格
 
-```text
+```js
 const user = [
   { name: "李四", js: 89 },
   { name: "马六", js: 55 },
   { name: "张三", js: 78 }
 ];
 const resust = user.every(user => user.js >= 60);
-console.log(resust);
+console.log(resust); // false
 ```
 
 标题的关键词检查
 
-```text
-let words = ['后盾', '北京', '培训'];
-let title = '后盾人不断分享技术教程';
+```js
+let words = ['daodao', '刀刀', '杜一刀'];
+let title = '欢迎来到刀刀博客';
 
 let state = words.every(function (item, index, array) {
   return title.indexOf(item) >= 0;
@@ -1054,9 +1054,9 @@ if (state == false) console.log('标题必须包含所有关键词');
 
 下面是使用 `some` 检测规则关键词的示例，如果匹配到一个词就提示违规。
 
-```text
-let words = ['后盾', '北京', '武汉'];
-let title = '后盾人不断分享技术教程'
+```js
+let words = ['刀刀', '北京', '武汉'];
+let title = '欢迎来到刀刀博客'
 
 let state = words.some(function (item, index, array) {
 	return title.indexOf(item) >= 0;
@@ -1067,68 +1067,62 @@ if (state) console.log('标题含有违规关键词');
 
 ### filter
 
-使用 `filter` 可以过滤数据中元素，下面是获取所有在 CSS 栏目的课程。
+使用 `filter` 可以过滤数据中元素，下面是获取所有包含风属性的元素。
 
-```text
-let lessons = [
-  {title: '媒体查询响应式布局',category: 'css'},
-  {title: 'FLEX 弹性盒模型',category: 'css'},
-  {title: 'MYSQL多表查询随意操作',category: 'mysql'}
+```js
+let person = [
+  {name: '万叶',type: '风'},
+  {name: '艾尔海森',type: '草'},
+  {name: '魈',type: '风'}
 ];
 
-let cssLessons = lessons.filter(function (item, index, array) {
-  if (item.category.toLowerCase() == 'css') {
+let windyPerson = person.filter(function (item, index, array) {
+  if (item.type == '风') {
     return true;
   }
 });
 
-console.log(cssLessons);
+console.log(windyPerson);
 ```
 
 我们来写一个过滤元素的方法来加深些技术
 
-```text
-function except(array, excepts) {
-  const newArray = [];
-  for (const elem of array)
-    if (!excepts.includes(elem)) newArray.push(elem);
-  return newArray;
+```js
+const arr = [1,2,3,4,5]
+
+function filter(arr, callback) {
+  // 定义新数组
+  let array = []
+
+  // 遍历参数获取每一项
+  for (const value of arr) {
+    // 如果为真则把该元素塞到数组内
+    if(callback(value)) {
+      array.push(value)
+    }
+  }
+  return array
 }
 
-const array = [1, 2, 3, 4];
-console.log(except(array, [2, 3])); //[1,4]
+console.log(filter(arr, (v) => {
+  return v >= 3
+})); // [3, 4, 5]
 ```
 
 ### map
 
 使用 `map` 映射可以在数组的所有元素上应用函数，用于映射出新的值。
 
-获取数组所有标题组合的新数组
+获取数组所有角色名称的新数组
 
-```text
-let lessons = [
-  {title: '媒体查询响应式布局',category: 'css'},
-  {title: 'FLEX 弹性盒模型',category: 'css'},
-  {title: 'MYSQL多表查询随意操作',category: 'mysql'}
+```js
+let person = [
+  {name: '万叶',type: '风'},
+  {name: '艾尔海森',type: '草'},
+  {name: '魈',type: '风'}
 ];
 
-console.log(lessons.map(item => item.title));
-```
-
-为所有标题添加上 `后盾人`
-
-```text
-let lessons = [
-  {title: '媒体查询响应式布局',category: 'css'},
-  {title: 'FLEX 弹性盒模型',category: 'css'},
-  {title: 'MYSQL多表查询随意操作',category: 'mysql'}
-];
-
-lessons = lessons.map(function (item, index, array) {
-    item.title = `[后盾人] ${item['title']}`;
-    return item;
-});
-console.log(lessons);
+console.log(person.map(item => item.name)); // ['万叶', '艾尔海森', '魈']
 ```
 
 ### reduce
@@ -1151,7 +1145,7 @@ console.log(lessons);
 
 统计元素出现的次数
 
-```text
+```js
 function countArrayELem(array, elem) {
   return array.reduce((total, cur) => (total += cur == elem ? 1 : 0), 0);
 }
@@ -1162,7 +1156,7 @@ console.log(countArrayELem(numbers, 1)); //2
 
 取数组中的最大值
 
-```text
+```js
 function arrayMax(array) {
   return array.reduce(
   	(max, elem) => (max > elem ? max : elem), array[0]
@@ -1174,7 +1168,7 @@ console.log(arrayMax([1, 3, 2, 9]));
 
 取价格最高的商品
 
-```text
+```js
 let cart = [
   { name: "iphone", price: 12000 },
   { name: "imac", price: 25000 },
@@ -1192,7 +1186,7 @@ console.log(maxPrice(cart));
 
 计算购物车中的商品总价
 
-```text
+```js
 let cart = [
   { name: "iphone", price: 12000 },
   { name: "imac", price: 25000 },
@@ -1207,7 +1201,7 @@ console.log(total); //40600
 
 获取价格超过 1 万的商品名称
 
-```text
+```js
 let goods = [
   { name: "iphone", price: 12000 },
   { name: "imac", price: 25000 },
@@ -1227,22 +1221,31 @@ console.table(getNameByPrice(goods, 10000));
 
 使用 `reduce` 实现数组去重
 
-```text
-let arr = [1, 2, 6, 2, 1];
-let filterArr = arr.reduce((pre, cur, index, array) => {
-  if (pre.includes(cur) === false) {
-      pre = [...pre, cur];
-  }
-  return pre;
-}, [])
-console.log(filterArr); // [1,2,6]
+```js
+let cart = [
+  {name: "iphone", price: 12000},
+  {name: "iphone", price: 12000},
+  {name: "iphone", price: 12000},
+  {name: "imac", price: 25000},
+  {name: "imac", price: 25000},
+  {name: "imac", price: 25000},
+  {name: "ipad", price: 3600}
+];
+
+function filterGoods(arr) {
+  return arr.reduce((pre, cur) => {
+    let find = pre.find(v => v.name === cur.name)
+    if (!find) pre.push(cur)
+    return pre
+  }, [])
+}
+
+console.log(filterGoods(cart));
 ```
 
 ## 动画案例
 
-![Untitled](https://doc.houdunren.com/assets/img/Untitled-0803682.b8920733.gif)
-
-```text
+```html
 <style>
   body {
     width: 100vw;
@@ -1261,7 +1264,7 @@ console.log(filterArr); // [1,2,6]
     color: #9b59b6;
     font-size: 5em;
     font-weight: bold;
-    text-transform: uppercase;
+    js-transform: uppercase;
     cursor: pointer;
   }
   div > span {
@@ -1288,15 +1291,15 @@ console.log(filterArr); // [1,2,6]
 </style>
 
 <body>
-  <div>houdunren.com</div>
+  <div>daodao.com</div>
 </body>
 
 <script>
   let div = document.querySelector("div");
-  [...div.textContent].reduce((pre, cur, index) => {
+  [...div.jsContent].reduce((pre, cur, index) => {
     pre == index && (div.innerHTML = "");
     let span = document.createElement("span");
-    span.textContent = cur;
+    span.jsContent = cur;
     div.appendChild(span);
     span.addEventListener("mouseover", function() {
       this.classList.add("changeColor");
