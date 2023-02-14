@@ -9,8 +9,8 @@
 在 JS 中函数也是对象函数是`Function`类的创建的实例，下面的例子可以方便理解函数是对象。
 
 ```js
-let hd = new Function("title", "console.log(title)");
-hd('刀刀');
+let hd = new Function("title", "console.log(title)"); // 参数1：函数名称；参数2：函数体
+hd('刀刀'); // 刀刀
 ```
 
 标准语法是使用函数声明来定义函数
@@ -19,7 +19,7 @@ hd('刀刀');
 function hd(num) {
 	return ++num;
 }
-console.log(hd(3));
+console.log(hd(3)); // 4
 ```
 
 对象字面量属性函数简写
@@ -39,22 +39,22 @@ user.setName('刀刀');
 console.log(user.getName()); // 刀刀
 ```
 
-全局函数会声明在 window 对象中，这不正确建议使用后面章节的模块处理
+全局函数会声明在 `window` 对象中，这不正确建议使用后面章节的模块处理
 
 ```js
 console.log(window.screenX); //2200
 ```
 
-当我们定义了 `screenX` 函数后就覆盖了 window.screenX 方法
+当我们定义了 `screenX` 函数后就覆盖了 `window.screenX` 方法
 
 ```js
 function screenX() {
   return "刀刀";
 }
-console.log(screenX()); //刀刀
+console.log(window.screenX); //刀刀
 ```
 
-使用`let/const`时不会压入 window
+使用`let/const`时不会压入 `window`
 
 ```js
 let hd = function() {
@@ -75,7 +75,7 @@ let hd = function(num) {
 console.log(hd instanceof Object); //true
 
 let cms = hd;
-console.log(cms(3));
+console.log(cms(3)); // 4
 ```
 
 标准声明的函数优先级更高，解析器会优先提取函数并放在代码树顶端，所以标准声明函数位置不限制，所以下面的代码可以正常执行。
@@ -96,9 +96,11 @@ function hd(num) {
   return ++num;
 }
 
-var hd = function() {
-  return "hd";
+var hd = function(num) {
+  return "hd" + num;
 };
+// 后面使用会覆盖前一个
+console.log(hd(3)); // hd3
 ```
 
 程序中使用匿名函数的情况非常普遍
@@ -116,22 +118,44 @@ console.log(sum(1, 2, 3));
 
 - 可以用来定义私有作用域防止污染全局作用域
 
-```js
-"use strict";
-(function () {
-    var web = 'duyidao';
-})();
-console.log(web); //web is not defined
-```
+  ```js
+  "use strict";
+  (function () {
+      var web = 'duyidao';
+  })();
+  console.log(web); //web is not defined
+  ```
 
-使用 `let/const` 有块作用域特性，所以使用以下方式也可以产生私有作用域
+  通过 `window` 把参数传递出去。
 
-```js
-{
-	let web = 'duyidao';
-}
-console.log(web);
-```
+  ```js
+  (function (window) {
+      var web = 'duyidao';
+      window.webout = web
+  })(window);
+  console.log(webout); // duyidao
+  ```
+
+- 使用 `let/const` 有块作用域特性，所以使用以下方式也可以产生私有作用域
+
+  ```js
+  {
+  	let web = 'duyidao';
+  }
+  console.log(web); //web is not defined
+  ```
+
+  同理可使用 `window` 。
+
+  ```js
+  {
+  	let web = 'duyidao';
+       window.webout = web
+  }
+  console.log(webout); // duyidao
+  ```
+
+  
 
 ### 函数提升
 
@@ -147,6 +171,12 @@ function hd() {
 变量函数定义不会被提升
 
 ```js
+console.log(fn()); // 报错fn is not a function
+
+var fn = function () {
+	return 'daodao.com';
+}
+
 console.log(hd()); //刀刀
 
 function hd() {
@@ -161,7 +191,7 @@ var hd = function () {
 
 形参是在函数声明时设置的参数，实参指在调用函数时传递的值。
 
-- 形参数量大于实参时，没有传参的形参值为 undefined
+- 形参数量大于实参时，没有传参的形参值为 `undefined`
 - 实参数量大于形参时，多于的实参将忽略并不会报错
 
 ```js
@@ -173,13 +203,13 @@ function sum(n1, n2) {
 console.log(sum(2, 3)); //5
 ```
 
-当没传递参数时值为 undefined
+当没传递参数时值为 `undefined`
 
 ```js
 function sum(n1, n2) {
   return n1 + n2;
 }
-console.log(sum(2)); //NaN
+console.log(sum(2)); // NaN
 ```
 
 ### 默认参数
@@ -227,7 +257,7 @@ console.log(sum(2000, undefined, 0.3));
 
 函数可以做为参数传递，这也是大多数语言都支持的语法规则。
 
-```js
+```html
 <body>
     <button>订阅</button>
 </body>
@@ -246,14 +276,20 @@ function filterFun(item) {
 }
 let hd = [1, 2, 3, 4, 5].filter(filterFun);
 console.log(hd); //[1,2,3]
+
+function times(i = 1) {
+    console.log(i++)
+}
+setTimeInterval(times, 1000)
 ```
 
 ### arguments
 
-arguments 是函数获得到所有参数集合，下面是使用 `arguments` 求和的例子
+`arguments` 是函数获得到所有参数集合，下面是使用 `arguments` 求和的例子
 
 ```js
 function sum() {
+  console.log(arguments) // 2, 3, 4, 2, 6
   return [...arguments].reduce((total, num) => {
     return (total += num);
   }, 0);
@@ -265,10 +301,29 @@ console.log(sum(2, 3, 4, 2, 6)); //17
 
 ```js
 function sum(...args) {
+ console.log(args) // [2, 3, 4, 2, 6]
  return args.reduce((a, b) => a + b);
 }
 console.log(sum(2, 3, 4, 2, 6)); //17
 ```
+
+存储了传递的所有实参，展示形式是一个伪数组。
+
+特性：
+
+1. 具有 `length` 属性
+2. 按照索引的方式进行存储
+3. 没有真正数组的一些方法。如 `pop()` 、`push()` 等
+
+```js
+function getSum() {
+   console.log(arguments);  // Arguments(3) [1, 2, 3, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+   arguments.push(4)
+}
+getSum(1, 2, 3)
+```
+
+![error](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f25f57b0c5fa49f5bf3f1a2a00b9f3d4~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 ### 箭头函数
 
@@ -470,7 +525,7 @@ hd `站点${name}-${url}`;
 
 全局环境下`this`就是 window 对象的引用
 
-```js
+```html
 <script>
   console.log(this == window); //true
 </script>
@@ -568,7 +623,7 @@ let Lesson = {
 
 箭头函数没有`this`, 也可以理解为箭头函数中的`this` 会继承定义函数时的上下文，可以理解为和外层函数指向同一个 this。
 
-- 如果想使用函数定义时的上下文中的 this，那就使用箭头函数
+> 如果想使用函数定义时的上下文中的 `this`，那就使用箭头函数
 
 下例中的匿名函数的执行环境为全局所以 `this` 指向 `window`。
 
@@ -625,7 +680,7 @@ console.log(obj.getName()()); //刀刀
 
 使用普通函数时`this`为当前 DOM 对象
 
-```js
+```html
 <body>
   <button desc="daodao">button</button>
 </body>
@@ -645,7 +700,7 @@ console.log(obj.getName()()); //刀刀
 
 下面是使用箭头函数时 this 指向上下文对象
 
-```js
+```html
 <body>
   <button desc="daodao">button</button>
 </body>
@@ -665,7 +720,11 @@ console.log(obj.getName()()); //刀刀
 
 使用`handleEvent`绑定事件处理器时，`this`指向当前对象而不是 DOM 元素。
 
-```js
+> `handleEvent()` 
+>
+> 当 `EventListener` 所注册的事件发生的时候，该方法会被调用。可以把任意对象注册为事件处理程序，只要它拥有 `handleEvent` 方法
+
+```html
 <body>
   <button desc="daodao">button</button>
 </body>
@@ -684,6 +743,10 @@ console.log(obj.getName()()); //刀刀
 </script>
 ```
 
+## 总结
+
+箭头函数this指向上下级父级的this，普通函数this指向全局。
+
 ## apply/call/bind
 
 改变 this 指针，也可以理解为对象借用方法，就现像生活中向邻居借东西一样的事情。
@@ -697,6 +760,7 @@ function User(name) {
   this.name = name;
 }
 let hd = new User("刀刀");
+console.log(hd) // User {name: '刀刀'}
 ```
 
 可以改变构造函数中的空对象，即让构造函数 this 指向到另一个对象。
@@ -706,18 +770,18 @@ function User(name) {
   this.name = name;
 }
 
-let daodao = {};
+let daodao = {age: 20};
 User.call(daodao, "daodao");
-console.log(daodao.name); //daodao
+console.log(daodao); // User {name: '刀刀', age: 20}
 ```
 
 ### apply/call
 
-call 与 apply 用于显示的设置函数的上下文，两个方法作用一样都是将对象绑定到 this，只是在传递参数上有所不同。
+`call` 与 `apply` 用于显示的设置函数的上下文，两个方法作用一样都是将对象绑定到 this，只是在传递参数上有所不同。
 
-- apply 用数组传参
-- call 需要分别传参
-- 与 bind 不同 call/apply 会立即执行函数
+- `apply` 用数组传参
+- `call` 需要分别传参
+- 与 `bind` 不同 `call`/`apply` 会立即执行函数
 
 语法使用介绍
 
@@ -731,13 +795,13 @@ let lisi = {
 let wangwu = {
     name: '王五'
 };
-show.call(lisi, '刀刀');
-show.apply(wangwu, ['daodao']);
+show.call(lisi, '刀刀'); // 刀刀李四
+show.apply(wangwu, ['daodao']); // daodao王五
 ```
 
 使用 `call` 设置函数上下文
 
-```js
+```html
 <body>
     <button message="刀刀">button</button>
     <button message="daodao">button</button>
@@ -762,50 +826,42 @@ console.log(Math.max.apply(Math, arr)); //8
  console.log(Math.max(...arr)); //8
 ```
 
+#### 练习
+
 实现构造函数属性继承
 
 ```js
-"use strict";
-function Request() {
-  this.get = function(params = {}) {
-    //组合请求参数
-    let option = Object.keys(params)
-      .map(i => i + "=" + params[i])
-      .join("&");
+function Learn(params) {
+  this.url = '/learn/js'
+  Request.call(this)
+}
 
-    return `获取数据 API:${this.url}?${option}`;
-  };
+function Product(params) {
+  this.url = '/product/music'
+  Request.call(this)
 }
-//文章控制器
-function Article() {
-  this.url = "article/index";
-  Request.apply(this, []);
+
+function Request() {
+  this.axios = function(params) {
+    // 获取对象key值并遍历赋值等号
+    let arr = Object.keys(params).map(k => {
+      return `${k}=${params[k]}`
+    })
+    // 此时的this指向各自的构造函数
+    return `${this.url}?${arr.join('&')}`
+  }
 }
-let hd = new Article();
-console.log(
-  hd.get({
-    row: 10,
-    start: 3
-  })
-);
-//课程控制器
-function Lesson() {
-  this.url = "lesson/index";
-  Request.call(this);
-}
-let js = new Lesson();
-console.log(
-  js.get({
-    row: 20
-  })
-);
+
+let learn = new Learn()
+console.log(learn.axios({id: 1, name: 'daodao'})); // /learn/js?id=1&name=daodao
+
+let product = new Product()
+console.log(product.axios({id: 2, name: 'duyidao'})) // /product/music?id=2&name=duyidao
 ```
 
 制作显示隐藏面板
 
-![Untitled](https://doc.duyidao.com/assets/img/Untitled-0706853.88fcc321.gif)
-
-```js
+```html
 <style>
     * {
         padding: 0;
@@ -867,12 +923,12 @@ console.log(
 
 ### bind
 
-bind()是将函数绑定到某个对象，比如 a.bind(hd) 可以理解为将 a 函数绑定到 hd 对象上即 hd.a()。
+`bind()` 是将函数绑定到某个对象，比如 `a.bind(hd)` 可以理解为将 a 函数绑定到 hd 对象上即 `hd.a()` 。
 
-- 与 call/apply 不同 bind 不会立即执行
-- bind 是复制函数形为会返回新函数
+- 与 `call/apply` 不同 `bind` 不会立即执行
+- `bind` 是复制函数形为会返回新函数
 
-bind 是复制函数行为
+`bind` 是复制函数行为，赋值后得到的是新函数的地址
 
 ```js
 let a = function() {};
@@ -883,7 +939,7 @@ let c = a.bind();
 console.log(a == c); //false
 ```
 
-绑定参数注意事项
+由于它不立即执行，返回一个新函数，因此有两次传参的机会，一次在bind，一次在调用新函数。
 
 ```js
 function hd(a, b) {
@@ -899,7 +955,7 @@ console.log(newFunc(2));
 
 在事件中使用`bind`
 
-```js
+```html
 <body>
   <button>刀刀</button>
 </body>
@@ -913,9 +969,9 @@ console.log(newFunc(2));
 </script>
 ```
 
-动态改变元素背景颜色，当然下面的例子也可以使用箭头函数处理
+#### 练习
 
-![Untitled](https://doc.duyidao.com/assets/img/Untitled-0718146.b9a6849c.gif)
+动态改变元素背景颜色，当然下面的例子也可以使用箭头函数处理
 
 ```html
 <style>
@@ -947,6 +1003,7 @@ console.log(newFunc(2));
     this.run = function() {
       setInterval(
         function() {
+          // 不添加bind，this指向window
           let pos = Math.floor(Math.random() * this.colors.length);
           this.elem.style.background = this.colors[pos];
         }.bind(this),
