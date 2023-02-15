@@ -36,7 +36,7 @@
 
 函数被执行后其环境变量将从内存中删除。下面函数在每次执行后将删除函数内部的 total 变量。
 
-```text
+```js
 function count() {
   let total = 0;
 }
@@ -45,14 +45,14 @@ count();
 
 函数每次调用都会创建一个新作用域
 
-```text
-let site = '后盾人';
+```js
+let site = '刀刀';
 
 function a() {
-  let hd = 'houdunren.com';
+  let hd = 'daodao.com';
 
   function b() {
-      let cms = 'hdcms.com';
+      let cms = 'duyidao.com';
       console.log(hd);
       console.log(site);
   }
@@ -63,7 +63,7 @@ a();
 
 如果子函数被使用时父级环境将被保留
 
-```text
+```js
 function hd() {
   let n = 1;
   return function() {
@@ -77,18 +77,25 @@ function hd() {
 let a = hd()();
 a(); //2,2
 a(); //3,3
+let b = hd()();
+b(); //2,2
+b(); //3,3
 ```
 
-构造函数也是很好的环境例子，子函数被外部使用父级环境将被保留
+构造函数也是很好的环境例子，子可以调用父级的变量，把show返回出去之后 因为show函数可能会存在调用a变量的代码所以 a会被保留，子函数被外部使用父级环境将被保留
 
-```text
+```js
 function User() {
   let a = 1;
   this.show = function() {
     console.log(a++);
   };
+  // 相当于下面的写法
+  // return {
+  //   show: show
+  // }
 }
-let a = new User();
+let a = new User(); // 这里的new 相当于 闭包函数里面的return 用了new 就不用手动return了
 a.show(); //1
 a.show(); //2
 let b = new User();
@@ -97,9 +104,9 @@ b.show(); //1
 
 ### let/const
 
-使用 `let/const` 可以将变量声明在块作用域中（放在新的环境中，而不是全局中）
+使用 `let/const` 可以将变量声明在块作用域中（放在新的环境中，而不是全局中）。使用 `var` 会把变量放在全局中。
 
-```text
+```js
 {
 	let a = 9;
 }
@@ -108,42 +115,45 @@ if (true) {
 	var i = 1;
 }
 console.log(i);//1
+console.log(window.i);//1
 ```
 
-也可以通过下面的定时器函数来体验
+也可以通过下面的定时器函数来体验。
 
-```text
-for (let i = 0; i < 10; i++) {
+- 使用 `var` 定义会把变量放在全局中，因此500毫秒后获取到的是全局中最后的 `i` 变量
+- 使用 `let` 定义会把 `i` 存储在块作用中，每一次迭代中重新生成不同的变量，500毫秒后再去获取该块作用域的变量，因此不会被污染。
+
+```js
+for (var i = 0; i <= 3; i++) {
   setTimeout(() => {
-    console.log(i);
+    console.log(i); // 4,4,4
+  }, 500);
+}
+
+// -------------------------------
+
+for (let i = 0; i <= 3; i++) {
+  setTimeout(() => {
+    console.log(i); // 1,2,3
   }, 500);
 }
 ```
 
-在 `for` 循环中使用`let/const` 会在每一次迭代中重新生成不同的变量
-
-```text
-let arr = [];
-for (let i = 0; i < 10; i++) {
-	arr.push((() => i));
-}
-console.log(arr[3]()); //3 如果使用var声明将是10
-```
-
 在没有`let/const` 的历史中使用以下方式产生作用域
 
-```text
+```js
 //自行构建闭包
 var arr = [];
 for (var i = 0; i < 10; i++) {
-  (function (a) {
-      arr.push(()=>a);
+  (function (i) {
+      setTimeout(() => {
+    	console.log(i); // 1,2,3
+  	  }, 500);
   })(i);
 }
-console.log(arr[3]()); //3
 ```
 
-## 闭包使用
+## 闭包
 
 闭包指子函数可以访问外部作用域变量的函数特性，即使在子函数作用域外也可以访问。如果没有闭包那么在处理事件绑定，异步请求时都会变得困难。
 
@@ -154,35 +164,35 @@ console.log(arr[3]()); //3
 
 前面在讲作用域时已经在使用闭包特性了，下面再次重温一下闭包。
 
-```text
+```js
 function hd() {
-  let name = '后盾人';
+  let name = '刀刀';
   return function () {
   	return name;
   }
 }
-let hdcms = hd();
-console.log(hdcms()); //后盾人
+let duyidao = hd();
+console.log(duyidao()); //刀刀
 ```
 
 使用闭包返回数组区间元素
 
-```text
+```js
 let arr = [3, 2, 4, 1, 5, 6];
 function between(a, b) {
   return function(v) {
     return v >= a && v <= b;
   };
 }
-console.log(arr.filter(between(3, 5)));
+console.log(arr.filter(between(3, 5))); // 相当于 arr.filter(gunction(v) { return v>=a && v <= b })
 ```
 
 下面是在回调函数中使用闭包，当点击按钮时显示当前点击的是第几个按钮。
 
-```text
+```html
 <body>
-  <button message="后盾人">button</button>
-  <button message="hdcms">button</button>
+  <button message="刀刀">button</button>
+  <button message="duyidao">button</button>
 </body>
 <script>
   var btns = document.querySelectorAll("button");
@@ -200,15 +210,15 @@ console.log(arr.filter(between(3, 5)));
 
 计时器中使用闭包来获取独有变量
 
-```text
+```html
 <body>
   <style>
     button {
       position: absolute;
     }
   </style>
-  <button message="后盾人">houdunren</button>
-  <!-- <button message="hdcms">hdcms</button> -->
+  <button message="刀刀">daodao</button>
+  <!-- <button message="duyidao">duyidao</button> -->
 </body>
 <script>
   let btns = document.querySelectorAll("button");
@@ -216,6 +226,7 @@ console.log(arr.filter(between(3, 5)));
     let bind = false;
     item.addEventListener("click", function() {
       if (!bind) {
+        // 如果不为假，说明有定时器了，则不开辟新的空间触发新的定时器
         let left = 1;
         bind = setInterval(function() {
           item.style.left = left++ + "px";
@@ -230,7 +241,7 @@ console.log(arr.filter(between(3, 5)));
 
 下例使用闭包按指定字段排序
 
-```text
+```js
 let lessons = [
   {
     title: "媒体查询响应式布局",
@@ -253,8 +264,8 @@ let lessons = [
     price: 300
   }
 ];
-function order(field) {
-  return (a, b) => (a[field] > b[field] ? 1 : -1);
+function order(params, type = 'asc') {
+  return (a,b) => type === 'asc' ? a[params] - b[params] : b[params] - a[params] // 闭包原理，返回一个函数
 }
 console.table(lessons.sort(order("price")));
 ```
@@ -265,10 +276,10 @@ console.table(lessons.sort(order("price")));
 
 闭包特性中上级作用域会为函数保存数据，从而造成的如下所示的内存泄漏问题
 
-```text
+```html
 <body>
-  <div desc="houdunren">在线学习</div>
-  <div desc="hdcms">开源产品</div>
+  <div desc="daodao">在线学习</div>
+  <div desc="duyidao">开源产品</div>
 </body>
 <script>
   let divs = document.querySelectorAll("div");
@@ -282,7 +293,7 @@ console.table(lessons.sort(order("price")));
 
 下面通过清除不需要的数据解决内存泄漏问题
 
-```text
+```js
 let divs = document.querySelectorAll("div");
 divs.forEach(function(item) {
   let desc = item.getAttribute("desc");
@@ -299,9 +310,9 @@ this 总是指向调用该函数的对象，即函数在搜索 this 时只会搜
 
 下面是函数因为是在全局环境下调用的，所以 this 指向 window，这不是我们想要的。
 
-```text
+```js
 let hd = {
-  user: "后盾人",
+  user: "刀刀",
   get: function() {
     return function() {
       return this.user;
@@ -313,9 +324,9 @@ console.log(hd.get()()); //undefined
 
 使用箭头函数解决这个问题
 
-```text
+```js
 let hd = {
-  user: "后盾人",
+  user: "刀刀",
   get: function() {
     return () => this.user;
   }
