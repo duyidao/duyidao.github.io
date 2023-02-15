@@ -5,6 +5,11 @@ export default [
       { text: "HTML & CSS", link: "/learn/HTML/" },
       { text: "JavaScript", link: "/learn/Javascript/" },
       { text: "Node", link: "/learn/Node/" },
+      {
+        items: [
+          {text:'杂技拾谈', link: '/learn/杂技拾谈/if-else冗余.md'}
+        ]
+      }
     ],
   },
   {

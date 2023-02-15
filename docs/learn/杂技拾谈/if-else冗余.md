@@ -71,3 +71,69 @@ swtich(n) {
 }
 ```
 
+`case` 后面一般接一个常量，或者接一个判断表达式，符合要求时则执行对应的语句，直到遇到`break` 或  `return` 。下图为使用 `case` 配合函数，每个功能都独立出来，可读性高，也利于维护。
+
+![case运用](https://s1.ax1x.com/2023/02/15/pS7bEPH.png)
+
+注意：并不是 `switch` 就一定比 `if` 好用，还是要注意使用的场合，如格式化时间时判断当前分秒是否个位，非个位数则补0。
+
+`if` 语句为：
+
+```js
+if(num > 10) { return num } else { return '0' + num }
+```
+
+`switch` 语句为：
+
+```js
+switch(num) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9:
+        return '0' + num;
+    default:
+        return num;
+}
+```
+
+### 模块独立
+
+冗余的代码一般把所有模块都堆积在一起，如下所示：
+
+```js
+if(num > 0) {
+    // ...
+} else if (num < 0) {
+    // ...
+    if (res > num) {
+        // ...
+    } else {}
+} else if (isNaN(num)) {
+    // ...
+} else {
+    ...
+}
+```
+
+可以把整体代码分为4个模块，每一个模块各司其职，如下所示：
+
+```js
+const fn = {
+  x(num) { /* ... */ },
+  y(num) { /* ... */ },
+  z(num) { /* ... */ }
+}
+
+function demo (num) {
+  return fn[action](num)
+}
+```
+
+每个 `else if` 中的逻辑都被改写为一个独立的函数。

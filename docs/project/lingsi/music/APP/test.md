@@ -34,13 +34,7 @@ title 测试页
 		onBackPress,
 		onLoad
 	} from '@dcloudio/uni-app';
-	import {
-		getTestList,
-		getByExamId,
-		saveExam
-	} from '@/service/api/general/myTest';
 
-	const userInfo = JSON.parse(uni.getStorageSync('testResult'))
 	const titleList = ref([]) // 试题数组
 	const initTopic = async (id) => {
 		const res = await getTestList(id)
@@ -52,23 +46,6 @@ title 测试页
 	onLoad((val) => {
 		initTopic(val.id)
 	})
-
-	/* ***************** START 2022/9/16 @Des:点击进入相应试题  @author:CharHua@ls @modifier:Duyidao@ls by 2022/9/24 ***************** */
-	let examId = ref('');
-	let newAnswerOptList = ref([]);
-	// 遍历试题添加是否选中的参数
-	const handleClickChoseTest = async (id) => {
-		examId.value = id
-		const res = await getByExamId(id)
-		const list = res.result
-		newAnswerOptList.value = list.map(item => {
-			const arr = item.itemVos.map(i => {
-				return {...i, isActive: false}
-			})
-			return {...item, itemVos: arr}
-		});
-		viewType.value = 2
-	};
 
 	/*swiper配置*/
 	let swiperCurrent = ref(0);
@@ -96,28 +73,7 @@ title 测试页
 				break;
 			case 2:
 				// 最后一题，提交测试
-				if (swiperCurrent.value >= choseList.value.length) {
-					uni.showToast({
-						title: '本题还没做答哦',
-						icon: 'error'
-					})
-					return
-				}
 				if (swiperCurrent.value == newAnswerOptList.value.length - 1) {
-					let data = {
-						examId: examId.value,
-						itemIds: choseList.value,
-						type: userInfo.type
-					}
-					if (userInfo.testResult.age) data.userInfo = userInfo.testResult
-					const res = await saveExam(data);
-					uni.removeStorageSync('testResult')
-					if (res.code === 200) {
-						uni.setStorageSync('testResult', JSON.stringify(res.result))
-						uni.redirectTo({
-							url: '/pages/examinationResult/ExaminationResult'
-						});
-					}
 				} else {
 					swiperCurrent.value = swiperCurrent.value + 1;
 				}

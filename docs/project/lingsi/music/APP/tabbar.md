@@ -14,7 +14,7 @@ title tabbar页
 更多属性前往官网查看
 
 - 点击轮播图路由跳转
-```vue
+```js
 const swiperToPage = e => {
   // 如果有参数再跳转
 	if (!e) return
@@ -27,7 +27,6 @@ const swiperToPage = e => {
 - 拿到链接参数赋给 src 属性
 ```vue
 <script setup>
-import {onLoad} from '@dcloudio/uni-app';
 import {ref} from 'vue'
 
 const webviewStyles = ref({

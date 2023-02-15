@@ -13,7 +13,7 @@ title 详情页
 
 ## 创建音频上下文
 创建并返回内部 audio 上下文 innerAudioContext 对象。监听父传子的元素，把音频链接赋值给 src 属性。
-```vue
+```js
 const context = ref(uni.createInnerAudioContext())
 
 watch(() => props.audioContent, (newVal, oldVal) => {
@@ -27,7 +27,7 @@ watch(() => props.audioContent, (newVal, oldVal) => {
 
 ## 监听音频加载完毕事件
 回调函数 `onCanplay` 代表音频进入可以播放状态，但不保证后面可以流畅播放。触发事件后取消音频组件 `loading` 效果，并获取音频的总时长。
-```vue
+```js
 context.value.onCanplay(() => {
 	console.log("音频播放控件准备好了", context.value.buffered);
 	duration.value = context.value.duration;
@@ -40,7 +40,7 @@ context.value.onCanplay(() => {
 
 - 判断使用者是否购买
 - 判断当前状态是否为播放状态
-```vue
+```js
 const onPlay = () => {
 	if (props.audioContent.allowAudition === 'Y' || props.audioContent.isFree === '1' || props.audioContent.buy === '1') {
 		if (context.value.paused) {
@@ -64,7 +64,7 @@ const onPlay = () => {
 
 ### 播放
 调用 `play()` 方法播放音频，由于用户需要监听使用者的使用时长，按时间计费，因此调用开始音频接口。
-```vue
+```js
 const onPlayAudio = async () => {
 	context.value.play();
 	playStatus.value = false;
@@ -79,7 +79,7 @@ const onPlayAudio = async () => {
 
 ### 暂停
 调用 `pause()` 方法暂停音频，并调用结束音频接口。
-```vue
+```js
 const onPauseAudio = async () => {
 	context.value.pause();
 	playStatus.value = true;
@@ -96,7 +96,7 @@ const onPauseAudio = async () => {
 
 ### 停止
 调用 `stop()` 方法停止音频，并调用结束音频接口。
-```vue
+```js
 const onStopAudio = async () => {
 	if (!playStatus.value) {
 		if (context.value) context.value.stop();
@@ -120,7 +120,7 @@ const onStopAudio = async () => {
 - 调用 `onTimeUpdate()` 事件
 - 动态保存并显示当前播放的时间
 - 修改进度条状态
-```vue
+```js
 context.value.onTimeUpdate(() => {
 	// 音频进度改变时，此回调有原生BUG，音频停止后会继续执行。加条件限制，音频停止时不执行该逻辑
 	if (context.value.currentTime && !isSeeking.value && !context.value.paused) {

@@ -125,8 +125,7 @@ ctx.fillText(code, canvasW.value - canvasW.value / 2 - 57, 330) // （文
 ctx.draw(true, (ret) => {
 });
 ```
-<a name="M9zkm"></a>
-### 代码示例
+
 ```vue
 <script setup>
 	import {

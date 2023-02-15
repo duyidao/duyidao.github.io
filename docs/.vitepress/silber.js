@@ -3,6 +3,7 @@ export default {
   '/learn/Javascript': getLearnJsSidebar(),
   '/learn/Node': getLearnNodeSidebar(),
   '/knowledgePoint': getKnowledgePointSidebar(),
+  '/learn/杂技拾谈': getTalkSidebar(),
   '/project': [
     {
       text: '项目',
@@ -62,6 +63,8 @@ function getLearnJsSidebar() {
         { text: "数据类型", link: "/learn/Javascript/type" },
         { text: "数组", link: "/learn/Javascript/array" },
         { text: "函数", link: "/learn/Javascript/function" },
+        { text: "对象", link: "/learn/Javascript/object" },
+        { text: "作用域与闭包", link: "/learn/Javascript/scope_closure" },
         { text: "Set", link: "/learn/Javascript/set" },
         { text: "Map", link: "/learn/Javascript/map" },
         { text: "Symbol", link: "/learn/Javascript/symbol" },
@@ -84,6 +87,19 @@ function getLearnNodeSidebar() {
         { text: "module", link: "/learn/Node/module" },
         { text: "express", link: "/learn/Node/express" },
         { text: "npm", link: "/learn/Node/npm" },
+      ]
+    }
+  ]
+}
+
+// 获取杂技拾谈数组
+function getTalkSidebar() {
+  return [
+    {
+      text: '杂技拾谈',
+      collapsible: true,
+      items: [
+        {text:'if-else代码冗余优化', link:'/learn/杂技拾谈/if-else冗余'}
       ]
     }
   ]

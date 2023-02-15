@@ -31,7 +31,7 @@ module.exports = {
     lastUpdated: 'Last Updated', // string | boolean
     siteTitle: "『 刀刀小站 』",
     outlineTitle: '我是一个目录哦~',
-    outline: [1, 4],
+    outline: [0, 6],
     // 启动页面丝滑滚动
     smoothScroll: true,
     // 头部导航栏配置
