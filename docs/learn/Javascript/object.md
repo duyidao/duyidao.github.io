@@ -1118,7 +1118,7 @@ JS 中可以对属性的访问特性进行控制。
 
 ### 查看特征
 
-使用 `Object.getOwnPropertyDescriptor`查看对象属性的描述。
+使用 `Object.getOwnPropertyDescriptor`查看对象单个属性的描述。参数2指定查看哪个属性。
 
 ```js
 "use strict";
@@ -1229,15 +1229,15 @@ console.log(Object.isExtensible(user)); //false
 
 ### 封闭对象
 
-```
-Object.seal()`方法封闭一个对象，阻止添加新属性并将所有现有属性标记为 `configurable: false
+`Object.seal()` 方法封闭一个对象，阻止添加新属性并将所有现有属性标记为 `configurable: false` 。
+
+```js
 "use strict";
 const user = {
   name: "刀刀",
   age: 18
 };
 
-Object.seal(user);
 console.log(
   JSON.stringify(Object.getOwnPropertyDescriptors(user), null, 2)
 );
@@ -1260,8 +1260,9 @@ console.log(Object.isSealed(user)); //true
 
 ### 冻结对象
 
-```
-Object.freeze` 冻结对象后不允许添加、删除、修改属性，writable、configurable 都标记为`false
+`Object.freeze`  冻结对象后不允许添加、删除、修改属性，`writable`、`configurable` 都标记为`false` 。
+
+```js
 "use strict";
 const user = {
   name: "杜一刀"
@@ -1283,7 +1284,7 @@ console.log(Object.isFrozen(user));
 
 ## 属性访问器
 
-getter 方法用于获得属性值，setter 方法用于设置属性，这是 JS 提供的存取器特性即使用函数来管理属性。
+`getter` 方法用于获得属性值，`setter` 方法用于设置属性，这是 JS 提供的存取器特性即使用函数来管理属性。
 
 - 用于避免错误的赋值
 - 需要动态监测值的改变
@@ -1381,7 +1382,7 @@ const user = {
     this._name = value;
   }
 };
-user.name = "刀刀教程";
+user.name = "刀刀";
 console.log(user.name);
 ```
 
@@ -1415,7 +1416,7 @@ function User(name, age) {
 }
 let hd = new User("刀刀", 33);
 console.log(hd.name);
-hd.name = "杜一刀1";
+hd.name = "杜一刀";
 console.log(hd.name);
 ```
 
@@ -1490,6 +1491,12 @@ console.dir(data.name) //刀刀
 
 ### 使用方法
 
+代理对象时get方法有两个参数，set方法有三个参数，前两个参数相同。
+
+- 参数一：代理的对象
+- 参数二：当前使用的属性
+- 参数三：传递过来的值
+
 ```js
 "use strict";
 const hd = { name: "刀刀" };
@@ -1528,7 +1535,12 @@ let proxy = new Proxy(factorial, {
 proxy.apply(this, [1, 2, 3]);
 ```
 
-### 截取字符
+### 代理数组
+
+代理数组有两个参数：
+
+- 参数一：代理的数组元素
+- 参数2：当前选中的索引（如果没有选择索引就没有该打印）
 
 下例中对数组进行代理，用于截取标题操作
 
@@ -1566,7 +1578,7 @@ console.log(stringDotProxy[0]);
 
 ![Untitled](https://doc.daodao.com/assets/img/Untitled-5190245.5087f5bc.gif)
 
-```js
+```html
 <body>
 <input type="js" v-model="title" />
 <input type="js" v-model="title" />
