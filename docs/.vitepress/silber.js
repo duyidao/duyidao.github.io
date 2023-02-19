@@ -99,7 +99,8 @@ function getTalkSidebar() {
       text: '杂技拾谈',
       collapsible: true,
       items: [
-        {text:'if-else代码冗余优化', link:'/learn/杂技拾谈/if-else冗余'}
+        {text:'if-else代码冗余优化', link:'/learn/杂技拾谈/if-else冗余'},
+        {text:'vue3双向绑定proxy原理', link:'/learn/杂技拾谈/vue3双向绑定proxy原理'}
       ]
     }
   ]

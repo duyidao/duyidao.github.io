@@ -1619,7 +1619,7 @@ let view = new View().run();
 
 ### 表单验证
 
-```js
+```html
 <style>
   body {
     padding: 50px;
@@ -1695,7 +1695,7 @@ let hd = {
   "title": "刀刀",
   "url": "daodao.com",
   "teacher": {
-  	"name": "杜一刀大叔",
+  	"name": "杜一刀",
   }
 }
 console.log(hd.teacher.name);
@@ -1727,6 +1727,10 @@ console.log(lessons[0].title);
 
 ### 序列化
 
+- 参数1：要转json的数组对象
+- 参数2：需要保留的属性，可选
+- 参数3：缩进字符
+
 序列化是将 `json` 转换为字符串，一般用来向其他语言传输使用。
 
 ```js
@@ -1734,11 +1738,11 @@ let hd = {
   "title": "刀刀",
   "url": "daodao.com",
   "teacher": {
-  	"name": "杜一刀大叔",
+  	"name": "杜一刀",
   }
 }
 console.log(JSON.stringify(hd));
-//{"title":"刀刀","url":"daodao.com","teacher":{"name":"杜一刀大叔"}}
+//{"title":"刀刀","url":"daodao.com","teacher":{"name":"杜一刀"}}
 ```
 
 根据第二个参数指定保存的属性
@@ -1755,7 +1759,7 @@ let hd = {
   "title": "刀刀",
   "url": "daodao.com",
   "teacher": {
-  	"name": "杜一刀大叔",
+  	"name": "杜一刀",
   }
 }
 console.log(JSON.stringify(hd, null, 4));
@@ -1768,7 +1772,7 @@ let hd = {
     "title": "刀刀",
     "url": "daodao.com",
     "teacher": {
-        "name": "杜一刀大叔",
+        "name": "杜一刀",
     },
     "toJSON": function () {
         return {
@@ -1777,7 +1781,7 @@ let hd = {
         };
     }
 }
-console.log(JSON.stringify(hd)); //{"title":"daodao.com","name":"杜一刀大叔"}
+console.log(JSON.stringify(hd)); //{"title":"daodao.com","name":"杜一刀"}
 ```
 
 ### 反序列化
@@ -1789,7 +1793,7 @@ let hd = {
   "title": "刀刀",
   "url": "daodao.com",
   "teacher": {
-  	"name": "杜一刀大叔",
+  	"name": "杜一刀",
   }
 }
 let jsonStr = JSON.stringify(hd);
@@ -1803,7 +1807,7 @@ let hd = {
   title: "刀刀",
   url: "daodao.com",
   teacher: {
-    name: "杜一刀大叔"
+    name: "杜一刀"
   }
 };
 let jsonStr = JSON.stringify(hd);
