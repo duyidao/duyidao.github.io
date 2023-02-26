@@ -65,6 +65,7 @@ function getLearnJsSidebar() {
         { text: "函数", link: "/learn/Javascript/function" },
         { text: "对象", link: "/learn/Javascript/object" },
         { text: "作用域与闭包", link: "/learn/Javascript/scope_closure" },
+        { text: "原型与原型链", link: "/learn/Javascript/原型与原型链" },
         { text: "Set", link: "/learn/Javascript/set" },
         { text: "Map", link: "/learn/Javascript/map" },
         { text: "Symbol", link: "/learn/Javascript/symbol" },
@@ -100,7 +101,8 @@ function getTalkSidebar() {
       collapsible: true,
       items: [
         {text:'if-else代码冗余优化', link:'/learn/杂技拾谈/if-else冗余'},
-        {text:'vue3双向绑定proxy原理', link:'/learn/杂技拾谈/vue3双向绑定proxy原理'}
+        {text:'vue3双向绑定proxy原理', link:'/learn/杂技拾谈/vue3双向绑定proxy原理'},
+        {text:'数组对象遍历', link:'/learn/杂技拾谈/数组对象遍历'}
       ]
     }
   ]
