@@ -66,6 +66,7 @@ function getLearnJsSidebar() {
         { text: "对象", link: "/learn/Javascript/object" },
         { text: "作用域与闭包", link: "/learn/Javascript/scope_closure" },
         { text: "原型与原型链", link: "/learn/Javascript/原型与原型链" },
+        { text: "类", link: "/learn/Javascript/类" },
         { text: "Set", link: "/learn/Javascript/set" },
         { text: "Map", link: "/learn/Javascript/map" },
         { text: "Symbol", link: "/learn/Javascript/symbol" },
