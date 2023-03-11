@@ -3,7 +3,7 @@ title 音果云音
 ---
 <a name="ZMtCn"></a>
 # 项目
-该项目名称为音果云音，源码在 [音果云音gitee](https://gitee.com/duyidao/yinguo) 。
+该项目名称为音果云音。
 <a name="HnYmR"></a>
 ## 技术栈
 
