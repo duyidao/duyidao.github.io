@@ -4,7 +4,7 @@ import silber from "./silber";
 module.exports = {
   // 网站标题
   title: '🔪 刀刀小站',
-  base: '/daodao/',
+  base: '/blog/',
   // 网站描述
   description: '刀刀小站',
   // 打包目录
@@ -27,6 +27,7 @@ module.exports = {
   ],
   // 主题配置
   themeConfig: {
+    logo: "/favicon.ico",
     // 获取每个文件最后一次 git 提交的 UNIX 时间戳(ms)，同时它将以合适的日期格式显示在每一页的底部
     lastUpdated: 'Last Updated', // string | boolean
     siteTitle: "『 刀刀小站 』",

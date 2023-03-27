@@ -1,6 +1,7 @@
 export default {
   '/learn': getLearnSidebar(),
   '/learn/Javascript': getLearnJsSidebar(),
+  '/learn/TypeScript': getLearnTsSidebar(),
   '/learn/Node': getLearnNodeSidebar(),
   '/knowledgePoint': getKnowledgePointSidebar(),
   '/learn/杂技拾谈': getTalkSidebar(),
@@ -74,6 +75,20 @@ function getLearnJsSidebar() {
         { text: "Set", link: "/learn/Javascript/set" },
         { text: "Map", link: "/learn/Javascript/map" },
         { text: "Symbol", link: "/learn/Javascript/symbol" },
+      ],
+    }
+  ]
+}
+
+// 获取前端ts数组
+function getLearnTsSidebar() {
+  return [
+    {
+      text: "TypeScript",
+      collapsible: true,
+      items: [
+        { text: "环境配置", link: "/learn/TypeScript/环境配置" },
+        { text: "类型", link: "/learn/TypeScript/类型" },
       ],
     }
   ]

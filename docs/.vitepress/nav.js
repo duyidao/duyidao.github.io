@@ -4,6 +4,7 @@ export default [
     items: [
       { text: "HTML & CSS", link: "/learn/HTML/" },
       { text: "JavaScript", link: "/learn/Javascript/" },
+      { text: "TypeScript", link: "/learn/TypeScript/环境配置" },
       { text: "Node", link: "/learn/Node/" },
       {
         items: [
