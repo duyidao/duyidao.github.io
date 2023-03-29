@@ -4,7 +4,7 @@ import silber from "./silber";
 module.exports = {
   // 网站标题
   title: '🔪 刀刀小站',
-  base: '/blog/',
+  base: '/daodao/',
   // 网站描述
   description: '刀刀小站',
   // 打包目录
