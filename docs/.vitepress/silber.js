@@ -92,6 +92,7 @@ function getLearnTsSidebar() {
         { text: "断言与枚举", link: "/learn/TypeScript/断言与枚举" },
         { text: "类与接口", link: "/learn/TypeScript/类与接口" },
         { text: "泛型", link: "/learn/TypeScript/泛型" },
+        { text: "装饰器", link: "/learn/TypeScript/装饰器" },
       ],
     }
   ]
