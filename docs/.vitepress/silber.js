@@ -90,6 +90,8 @@ function getLearnTsSidebar() {
         { text: "环境配置", link: "/learn/TypeScript/环境配置" },
         { text: "类型", link: "/learn/TypeScript/类型" },
         { text: "断言与枚举", link: "/learn/TypeScript/断言与枚举" },
+        { text: "类与接口", link: "/learn/TypeScript/类与接口" },
+        { text: "泛型", link: "/learn/TypeScript/泛型" },
       ],
     }
   ]
