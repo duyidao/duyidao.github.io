@@ -9,7 +9,7 @@ export default {
     {
       text: '项目',
       items: [
-        {text: '灵思', link: '/project/lingsi/'}
+        { text: '灵思', link: '/project/lingsi/' }
       ]
     }
   ],
@@ -17,14 +17,16 @@ export default {
     {
       text: '灵思',
       items: [
-        {text: '🎶 音果云音', link: '/project/lingsi/music/'},
-        {text: '💴 视频分销', link: '/project/lingsi/sale/'},
-        {text: '🔍 CRM', link: '/project/lingsi/crm/'},
-        {text: '🎲 ELK', link: '/project/lingsi/elk/'}
+        { text: '🎶 音果云音', link: '/project/lingsi/music/' },
+        { text: '🔧 职技网', link: '/project/lingsi/职技网/' },
+        { text: '💴 视频分销', link: '/project/lingsi/sale/' },
+        { text: '🔍 CRM', link: '/project/lingsi/crm/' },
+        { text: '🎲 ELK', link: '/project/lingsi/elk/' }
       ]
     }
   ],
   '/project/lingsi/sale': getSaleSidebar(),
+  '/project/lingsi/职技网': getJobSidebar(),
   '/project/lingsi/music': getMusicSidebar(),
   '/project/lingsi/crm': getCRMSidebar(),
   '/project/lingsi/elk': getELKSidebar(),
@@ -124,9 +126,9 @@ function getTalkSidebar() {
       text: '杂技拾谈',
       collapsible: true,
       items: [
-        {text:'if-else代码冗余优化', link:'/learn/杂技拾谈/if-else冗余'},
-        {text:'vue3双向绑定proxy原理', link:'/learn/杂技拾谈/vue3双向绑定proxy原理'},
-        {text:'数组对象遍历', link:'/learn/杂技拾谈/数组对象遍历'}
+        { text: 'if-else代码冗余优化', link: '/learn/杂技拾谈/if-else冗余' },
+        { text: 'vue3双向绑定proxy原理', link: '/learn/杂技拾谈/vue3双向绑定proxy原理' },
+        { text: '数组对象遍历', link: '/learn/杂技拾谈/数组对象遍历' }
       ]
     }
   ]
@@ -161,10 +163,33 @@ function getMusicSidebar() {
               text: 'H5',
               collapsible: true,
               items: [
-                { text: '海报页', link: '/project/lingsi/music/H5/'}
+                { text: '海报页', link: '/project/lingsi/music/H5/' }
               ]
             }
           ],
+        }
+      ],
+    }
+  ]
+}
+
+// 获取职技网的数组
+function getJobSidebar() {
+  return [
+    {
+      text: "🔧 职技网",
+      collapsible: true,
+      items: [
+        {
+          text: "🔧 职技网",
+          // collapsible: true,
+          link: "/project/lingsi/职技网/",
+          items: [
+            { text: '项目创建', link: "/project/lingsi/职技网/项目创建" },
+            { text: 'vant组件二次封装', link: "/project/lingsi/职技网/vant组件二次封装" },
+            { text: '下载附件', link: "/project/lingsi/职技网/下载附件" },
+            { text: '富文本', link: "/project/lingsi/职技网/富文本" },
+          ]
         }
       ],
     }
