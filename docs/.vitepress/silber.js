@@ -1,6 +1,8 @@
 export default {
   '/learn': getLearnSidebar(),
   '/learn/Javascript': getLearnJsSidebar(),
+  '/learn/vue2': getLearnVue2Sidebar(),
+  '/learn/Vue3': getLearnVue3Sidebar(),
   '/learn/TypeScript': getLearnTsSidebar(),
   '/learn/Node': getLearnNodeSidebar(),
   '/knowledgePoint': getKnowledgePointSidebar(),
@@ -20,6 +22,7 @@ export default {
         { text: '🎶 音果云音', link: '/project/lingsi/music/' },
         { text: '🔧 职技网', link: '/project/lingsi/职技网/' },
         { text: '💴 视频分销', link: '/project/lingsi/sale/' },
+        { text: '🧫 华润水泥', link: '/project/lingsi/华润水泥/' },
         { text: '🔍 CRM', link: '/project/lingsi/crm/' },
         { text: '🎲 ELK', link: '/project/lingsi/elk/' }
       ]
@@ -27,6 +30,7 @@ export default {
   ],
   '/project/lingsi/sale': getSaleSidebar(),
   '/project/lingsi/职技网': getJobSidebar(),
+  '/project/lingsi/水泥': getShuiniSidebar(),
   '/project/lingsi/music': getMusicSidebar(),
   '/project/lingsi/crm': getCRMSidebar(),
   '/project/lingsi/elk': getELKSidebar(),
@@ -80,6 +84,33 @@ function getLearnJsSidebar() {
       ],
     }
   ]
+}
+
+// 获取Vue2数组
+function getLearnVue2Sidebar() {
+  return [
+    {
+      text: "Vue2",
+      collapsible: true,
+      items: [
+        { text: "指令", link: "/learn/vue2/指令" },
+        { text: "动态样式、计算属性、过滤器与侦听器", link: "/learn/vue2/动态样式、计算属性、过滤器与侦听器" },
+        { text: "组件通信", link: "/learn/vue2/组件通信" },
+        { text: "动态组件、插槽与自定义指令", link: "/learn/vue2/动态组件、插槽与自定义指令" },
+      ],
+    }
+  ]
+}
+
+function getLearnVue3Sidebar() {
+  return [{
+    text: "Vue3",
+    collapsible: true,
+    items: [
+      { text: "vue3项目创建", link: "/learn/vue3/vue3项目创建" },
+      { text: "vue3的使用", link: "/learn/vue3/vue3的使用" },
+    ],
+  }]
 }
 
 // 获取前端ts数组
@@ -187,11 +218,36 @@ function getJobSidebar() {
           items: [
             { text: '项目创建', link: "/project/lingsi/职技网/项目创建" },
             { text: 'vant组件二次封装', link: "/project/lingsi/职技网/vant组件二次封装" },
+            { text: '微信授权', link: "/project/lingsi/职技网/微信授权" },
             { text: '下载附件', link: "/project/lingsi/职技网/下载附件" },
             { text: '富文本', link: "/project/lingsi/职技网/富文本" },
           ]
         }
       ],
+    }
+  ]
+}
+
+// 获取水泥数组
+function getShuiniSidebar(params) {
+  return [
+    {
+      text: "🎶 音果云音",
+      collapsible: true,
+      items: [
+        { text: '引言', link: "/project/lingsi/水泥" },
+        { text: '图片对比可拖拽轮子', link: "/project/lingsi/水泥/图片对比可拖拽轮子" },
+        { text: 'vue_color', link: "/project/lingsi/水泥/vue_color" },
+        {
+          text: 'jeecg',
+          collapsible: true,
+          items: [
+            { text: '表格行选中', link: '/project/lingsi/水泥/jeecg/表格行选中' },
+            { text: '树组件默认展开', link: '/project/lingsi/水泥/jeecg/树组件默认展开' },
+            { text: 'j-vxe-table搭配其他组件', link: '/project/lingsi/水泥/jeecg/j-vxe-table搭配其他组件' },
+          ]
+        }
+      ]
     }
   ]
 }
@@ -272,7 +328,6 @@ function getKnowledgePointSidebar() {
       collapsible: true,
       items: [
         { text: "🌩️ 引言", link: "/knowledgePoint/" },
-        { text: "🧩 vue-color的使用", link: "/knowledgePoint/vue_color" },
       ]
     }
   ]
