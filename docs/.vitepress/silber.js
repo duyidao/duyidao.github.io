@@ -22,7 +22,7 @@ export default {
         { text: '🎶 音果云音', link: '/project/lingsi/music/' },
         { text: '🔧 职技网', link: '/project/lingsi/职技网/' },
         { text: '💴 视频分销', link: '/project/lingsi/sale/' },
-        { text: '🧫 华润水泥', link: '/project/lingsi/华润水泥/' },
+        { text: '🧫 华润水泥', link: '/project/lingsi/水泥/' },
         { text: '🔍 CRM', link: '/project/lingsi/crm/' },
         { text: '🎲 ELK', link: '/project/lingsi/elk/' }
       ]
@@ -107,8 +107,8 @@ function getLearnVue3Sidebar() {
     text: "Vue3",
     collapsible: true,
     items: [
-      { text: "vue3项目创建", link: "/learn/vue3/vue3项目创建" },
-      { text: "vue3的使用", link: "/learn/vue3/vue3的使用" },
+      { text: "vue3项目创建", link: "/learn/Vue3/vue3项目创建" },
+      { text: "vue3的使用", link: "/learn/Vue3/vue3的使用" },
     ],
   }]
 }
@@ -232,10 +232,10 @@ function getJobSidebar() {
 function getShuiniSidebar(params) {
   return [
     {
-      text: "🎶 音果云音",
+      text: "🧫 华润水泥",
       collapsible: true,
       items: [
-        { text: '引言', link: "/project/lingsi/水泥" },
+        { text: '引言', link: "/project/lingsi/水泥/" },
         { text: '图片对比可拖拽轮子', link: "/project/lingsi/水泥/图片对比可拖拽轮子" },
         { text: 'vue_color', link: "/project/lingsi/水泥/vue_color" },
         {
