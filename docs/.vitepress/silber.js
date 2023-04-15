@@ -11,7 +11,8 @@ export default {
     {
       text: '项目',
       items: [
-        { text: '灵思', link: '/project/lingsi/' }
+        { text: '灵思', link: '/project/lingsi/' },
+        { text: '自主学习', link: '/project/myself/' },
       ]
     }
   ],
@@ -24,9 +25,10 @@ export default {
         { text: '💴 视频分销', link: '/project/lingsi/sale/' },
         { text: '🧫 华润水泥', link: '/project/lingsi/水泥/' },
         { text: '🔍 CRM', link: '/project/lingsi/crm/' },
-        { text: '🎲 ELK', link: '/project/lingsi/elk/' }
+        { text: '🎲 ELK', link: '/project/lingsi/elk/' },
+        { text: '🗑 返回', link: '/project/' },
       ]
-    }
+    },
   ],
   '/project/lingsi/sale': getSaleSidebar(),
   '/project/lingsi/职技网': getJobSidebar(),
@@ -34,6 +36,7 @@ export default {
   '/project/lingsi/music': getMusicSidebar(),
   '/project/lingsi/crm': getCRMSidebar(),
   '/project/lingsi/elk': getELKSidebar(),
+  '/project/myself': getMyselfSidebar(),
   '/vitePress': getVitePressSidebar(),
   '/about': getAboutSidebar(),
 }
@@ -102,6 +105,7 @@ function getLearnVue2Sidebar() {
   ]
 }
 
+// 获取前端vue3数组
 function getLearnVue3Sidebar() {
   return [{
     text: "Vue3",
@@ -109,6 +113,8 @@ function getLearnVue3Sidebar() {
     items: [
       { text: "vue3项目创建", link: "/learn/Vue3/vue3项目创建" },
       { text: "vue3的使用", link: "/learn/Vue3/vue3的使用" },
+      { text: "插槽", link: "/learn/Vue3/插槽" },
+      { text: "动态组件", link: "/learn/Vue3/动态组件" },
     ],
   }]
 }
@@ -178,7 +184,7 @@ function getMusicSidebar() {
           link: "/project/lingsi/music/",
           items: [
             {
-              text: " APP",
+              text: " 📱 APP",
               collapsible: true,
               items: [
                 { text: '登录页', link: "/project/lingsi/music/APP/login" },
@@ -191,12 +197,13 @@ function getMusicSidebar() {
               ]
             },
             {
-              text: 'H5',
+              text: '💻 H5',
               collapsible: true,
               items: [
                 { text: '海报页', link: '/project/lingsi/music/H5/' }
               ]
-            }
+            },
+            { text: '🗑 返回', link: '/project/lingsi/' },
           ],
         }
       ],
@@ -221,9 +228,24 @@ function getJobSidebar() {
             { text: '微信授权', link: "/project/lingsi/职技网/微信授权" },
             { text: '下载附件', link: "/project/lingsi/职技网/下载附件" },
             { text: '富文本', link: "/project/lingsi/职技网/富文本" },
+            { text: '🗑 返回', link: '/project/lingsi/' },
           ]
         }
       ],
+    }
+  ]
+}
+
+// 获取自主学习的数组
+function getMyselfSidebar() {
+  return [
+    {
+      text: "📕 自主学习",
+      collapsible: true,
+      items: [
+        { text: '引言', link: "/project/myself/" },
+        { text: '🗑 返回', link: '/project/' },
+      ]
     }
   ]
 }
@@ -239,14 +261,15 @@ function getShuiniSidebar(params) {
         { text: '图片对比可拖拽轮子', link: "/project/lingsi/水泥/图片对比可拖拽轮子" },
         { text: 'vue_color', link: "/project/lingsi/水泥/vue_color" },
         {
-          text: 'jeecg',
+          text: '🎭 jeecg',
           collapsible: true,
           items: [
             { text: '表格行选中', link: '/project/lingsi/水泥/jeecg/表格行选中' },
             { text: '树组件默认展开', link: '/project/lingsi/水泥/jeecg/树组件默认展开' },
             { text: 'j-vxe-table搭配其他组件', link: '/project/lingsi/水泥/jeecg/j-vxe-table搭配其他组件' },
           ]
-        }
+        },
+        { text: '🗑 返回', link: '/project/lingsi/' },
       ]
     }
   ]
@@ -264,6 +287,7 @@ function getSaleSidebar() {
         { text: 'token刷新', link: '/project/lingsi/sale/token' },
         { text: '视频轮播', link: '/project/lingsi/sale/video' },
         { text: '图片上传组件封装', link: '/project/lingsi/sale/upload' },
+        { text: '🗑 返回', link: '/project/lingsi/' },
       ]
     }
   ]
@@ -283,6 +307,7 @@ function getELKSidebar() {
         { text: 'DIV可编辑文本', link: '/project/lingsi/elk/edit_div' },
         { text: 'JSON编辑器', link: '/project/lingsi/elk/edit_JSON' },
         { text: '导出PDF', link: '/project/lingsi/elk/pdf' },
+        { text: '🗑 返回', link: '/project/lingsi/' },
       ]
     }
   ]
@@ -297,7 +322,8 @@ function getCRMSidebar() {
       items: [
         { text: '简介', link: '/project/lingsi/crm/' },
         { text: '拨打电话', link: '/project/lingsi/crm/call' },
-        { text: 'navigateBack传参', link: '/project/lingsi/crm/navigateBack' }
+        { text: 'navigateBack传参', link: '/project/lingsi/crm/navigateBack' },
+        { text: '🗑 返回', link: '/project/lingsi/' },
       ]
     }
   ]

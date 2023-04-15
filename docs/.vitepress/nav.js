@@ -18,15 +18,15 @@ export default [
   {
     text: "💾 项目",
     items: [
-      { text: "📖 项目总结", link: "/project/lingsi/" },
-      {
-        items: [
-          {
-            text: '🎒 项目学习',
-            link: '/knowledgePoint/'
-          }
-        ]
-      }
+      { text: "📖 项目总结", link: "/project/" },
+      // {
+      //   items: [
+      //     {
+      //       text: '🎒 项目学习',
+      //       link: '/knowledgePoint/'
+      //     }
+      //   ]
+      // }
     ],
   },
   {
