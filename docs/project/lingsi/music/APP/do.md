@@ -1,10 +1,10 @@
 ---
 title 操作页
 ---
-<a name="Q1XU1"></a>
+
 # 蓝牙连接
 用户需要 `app` 连接蓝牙设备进行各自操作的功能，`uniapp` 有对应的 `API` 可以使用，详情请见 [蓝牙](https://uniapp.dcloud.net.cn/api/system/bluetooth.html#openbluetoothadapter) 与 [低功耗蓝牙](https://uniapp.dcloud.net.cn/api/system/ble.html) 。
-<a name="vKPkR"></a>
+
 ## 初始化蓝牙
 > 最开始需要初始化蓝牙模块，初始化成功后才能调用其他蓝牙相关的 API，否则会返回 _未初始化蓝牙适配器_ 的错误。
 
@@ -25,7 +25,7 @@ const openBluetoothAdapter = () => {
 };
 ```
 开启成功后会返回 `{"errMsg":"openBluetoothAdapter:ok"}` 提示。
-<a name="RNwVp"></a>
+
 ## 开启搜寻
 开始搜寻附近的蓝牙外围设备。
 > 此操作比较耗费系统资源，搜索并连接到设备后调用 `uni.stopBluetoothDevicesDiscovery` 方法停止搜索。
@@ -47,7 +47,7 @@ const startBluetoothDevicesDiscovery = () => {
   });
 };
 ```
-<a name="kXrJ8"></a>
+
 ## 获取蓝牙设备
 
 - `uni.getBluetoothDevices` 获取在蓝牙模块生效期间所有已发现的蓝牙设备。本项目的蓝牙设备均以 “TGYY” 开头，过滤出这些需要的设备渲染在页面上。
@@ -93,7 +93,7 @@ const getBluetoothDevices = () => {
     }]
 }
 ```
-<a name="yHcM8"></a>
+
 ## 连接低功耗蓝牙
 `uni.createBLEConnection(OBJECT)` 连接低功耗蓝牙设备。<br />**OBJECT 参数说明**
 
@@ -179,7 +179,7 @@ const handleBLEFn = item => {
     "errMsg": "getBLEDeviceServices:ok"
 }
 ```
-<a name="v4w3d"></a>
+
 ## 获取设备特征值，开启消息监听并接收消息监听传来的数据
 通过获取到的设备ID和蓝牙设备服务数组的第二项元素 `uuid` 去获取蓝牙设备某个服务中所有特征值。
 
@@ -280,9 +280,9 @@ const handleBLEDeviceFn = uuid => {
     "errMsg": "getBLEDeviceCharacteristics:ok"
 }
 ```
-<a name="okZdd"></a>
+
 ## 写入数据
-数据的写入需要蓝牙设备厂商提供对应的十六进制指令，如下图为音果设备的蓝牙厂商提供的部分指令模板。<br />![dd74bdaf3cf8dc1d6258df7bcb8704b.jpg](https://cdn.nlark.com/yuque/0/2023/jpeg/29781801/1675148635689-6108dc66-5df4-43c1-aba5-97e6225165d4.jpeg#averageHue=%23f3f2f2&clientId=u6345a8c1-b136-4&from=paste&height=571&id=ucd0a018f&name=dd74bdaf3cf8dc1d6258df7bcb8704b.jpg&originHeight=1456&originWidth=828&originalType=binary&ratio=1&rotation=0&showTitle=false&size=140098&status=done&style=stroke&taskId=u1536d35e-303a-4767-9586-783814ad32a&title=&width=325)
+数据的写入需要蓝牙设备厂商提供对应的十六进制指令。
 
 1. 声明一个 `ArrayBuffer` 16进制数据
 2. 通过 `DataView` 追加数据
@@ -316,9 +316,9 @@ const handleClick = (str) => {
   });
 };
 ```
-<a name="DLdIB"></a>
+
 ## 拓展
-<a name="vwCfj"></a>
+
 ### ArrayBuffer
 `ArrayBuffer` 对象代表储存二进制数据的一段内存，一经创建就不能再调整大小。
 ```javascript
@@ -331,7 +331,7 @@ const buf = new ArrayBuffer(32);
 const dataView = new DataView(buf);
 dataView.getUint8(0) // 0, 参数表示读取的起始位置
 ```
-<a name="AOy3i"></a>
+
 ### DataView
 `JavaScript` 中的 `DataView` 函数提供了一个接口，可以将多个数字类型读写到 `ArrayBuffer` 中。句法：
 ```javascript
@@ -344,7 +344,7 @@ new DataView(buffer, byteOffset, byteLength)
 - **byteLength (optional)：**它代表字节数组中的元素数。默认情况下，缓冲区的长度被视为视图的长度。
 
 **返回值：**它返回一个新的`DataView`对象，它将代表指定的数据缓冲区。
-<a name="HRf0d"></a>
+
 ## 总体代码
 ```vue
 <!-- 蓝牙连接 -->
@@ -918,7 +918,7 @@ new DataView(buffer, byteOffset, byteLength)
 	}
 </style>
 ```
-<a name="HjbsP"></a>
+
 # 扫一扫
 uniapp 内置事件 [uni.scanCode](https://uniapp.dcloud.net.cn/api/system/barcode.html#scancode) 可调起客户端扫码界面，扫码成功后返回对应的结果。<br />**参数说明**
 

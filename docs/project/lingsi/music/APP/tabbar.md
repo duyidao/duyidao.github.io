@@ -2,7 +2,7 @@
 title tabbar页
 ---
 主页面 `tabBar` 页面根据高保真原型图设计开发即可。
-<a name="gUc3a"></a>
+
 ## 首页轮播图跳转
 用户有一个需求是点击轮播图的图片跳转到指定链接页面，uniapp 有一个内置的组件 [webview](https://uniapp.dcloud.net.cn/component/web-view.html#web-view) 。根据官方文档，为其 `src` 设置指定的网页链接后可跳转到该页面。可能常用属性如下：
 

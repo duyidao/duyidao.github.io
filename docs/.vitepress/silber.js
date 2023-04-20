@@ -285,7 +285,7 @@ function getSaleSidebar() {
         { text: '简介', link: '/project/lingsi/sale/' },
         { text: '请求封装', link: '/project/lingsi/sale/request' },
         { text: 'token刷新', link: '/project/lingsi/sale/token' },
-        { text: '获取手机号', link: '/project/lingsi/sale/获取手机号' },
+        { text: '微信授权快捷登录', link: '/project/lingsi/sale/获取手机号' },
         { text: '视频轮播', link: '/project/lingsi/sale/video' },
         { text: '图片上传组件封装', link: '/project/lingsi/sale/upload' },
         { text: '🗑 返回', link: '/project/lingsi/' },

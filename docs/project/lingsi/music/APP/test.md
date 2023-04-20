@@ -3,10 +3,6 @@ title 测试页
 ---
 # 测试页
 
-测试页效果如下图所示。
-
-![图片](https://cdn.nlark.com/yuque/0/2023/png/29781801/1675154592707-70fb31ab-c916-44c5-8014-b1cf8f92c505.png#averageHue=%23fbf8f6&clientId=u53cdd7a3-5c2f-4&from=paste&height=600&id=u015be58b&name=image.png&originHeight=610&originWidth=294&originalType=binary&ratio=1&rotation=0&showTitle=false&size=28953&status=done&style=stroke&taskId=udef48793-5cf9-4ba6-ba23-70d432d5227&title=&width=289)
-
 点击上一题前往上一题，点击下一题前往下一题，最后一道题提交测试。看到效果第一时间考虑的是该如何布局才能更简便呢？（以下思路以及代码由CharHua同事提供）
 
 `uniapp` 有一个内置组件 `swiper` ，滑块视图容器。一般用于左右滑动或上下滑动，比如`banner`轮播图。注意滑动切换和滚动的区别，滑动切换是一屏一屏的切换。`swiper`下的每个`swiper-item`是一个滑动切换区域，不能停留在2个滑动区域之间。详情可前往官方文档 [swiper](https://uniapp.dcloud.net.cn/component/swiper.html#swiper) 查看。
@@ -26,15 +22,6 @@ title 测试页
 
 ```vue
 <script setup>
-	import {
-		ref
-	} from 'vue';
-	import {
-		onShow,
-		onBackPress,
-		onLoad
-	} from '@dcloudio/uni-app';
-
 	const titleList = ref([]) // 试题数组
 	const initTopic = async (id) => {
 		const res = await getTestList(id)
@@ -92,7 +79,6 @@ title 测试页
 							<view class="topic-question-title">
 								<text>【{{ swiperCurrent + 1 }}/{{ newAnswerOptList.length }}】</text>
 								<text>{{ topicItem.topicTitle }}</text>
-								<text>（单选）</text>
 							</view>
 							<!--选项-->
 							<view class="topic-answer-option">
@@ -108,6 +94,7 @@ title 测试页
 					</swiper-item>
 				</swiper>
 			</view>
+			<!-- 底部按钮 -->
 			<view class="exam-footer-area">
 				<view class="footer-page-main">
 					<view class="footer-prev" @click="handleClickCutTopic(1)">

@@ -1,16 +1,16 @@
 ---
 title 音果云音
 ---
-<a name="ZMtCn"></a>
+
 # 项目
 该项目名称为音果云音。
-<a name="HnYmR"></a>
+
 ## 技术栈
 
 - `uni-app` 框架
 - `vue3` + `pinia`
 - `uview` 组件库
-<a name="npyr7"></a>
+
 ## 重点目录
 
 1. 登录页
@@ -21,8 +21,24 @@ title 音果云音
 6. 个人中心页
 7. 推广中心页
 8. 终端操作页
-9. 其余功能页面······
-<a name="Dm4aH"></a>
+9. 售后页面
+10. 其余功能页面······
+
+## 遇到的问题
+1. 苹果上架
+   该项目有佣金推广模块与虚拟商品购买模块，导致苹果商城上架不成功，经过讨论决定苹果手机上把这些模块隐藏。判断用户使用的设备是否为苹果代码如下：
+
+   ```js
+   export const is_iOS = () => {
+	   if (uni.getSystemInfoSync().platform == 'ios') {
+		   return true
+	   } else {
+		   return false
+	   }
+   }
+   ```
+2. 
+
 ## 项目亮点
 
 - 使用 `uni.createInnerAudioContext()` 音频组件控制播放音频。

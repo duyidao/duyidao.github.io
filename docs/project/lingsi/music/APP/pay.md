@@ -6,15 +6,12 @@ title 支付页
 
 1. 创建订单
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29781801/1675152065701-6b9d7e64-5951-4174-9684-abd913ee051b.png#averageHue=%23fcfcfc&clientId=u5adcdb7a-f3c9-4&from=paste&height=404&id=uaf0671a2&name=image.png&originHeight=404&originWidth=1232&originalType=binary&ratio=1&rotation=0&showTitle=false&size=35350&status=done&style=stroke&taskId=uffa56053-98f6-47a0-8681-b5497f31420&title=&width=1232)
-
 创建成功后会返回相应的订单编号
 
-2. 支付
+1. 支付
 
 拿到订单编号后调用支付接口
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29781801/1675152334364-5a97d59c-12ab-4d44-9b06-a120bf5136cc.png#averageHue=%23fbfbfb&clientId=u5adcdb7a-f3c9-4&from=paste&height=394&id=u766ac62e&name=image.png&originHeight=394&originWidth=1221&originalType=binary&ratio=1&rotation=0&showTitle=false&size=33814&status=done&style=stroke&taskId=udc3eef2c-d26b-4358-89e9-eb6dd950fd2&title=&width=1221)
 ```javascript
 // 点击支付按钮
 const toPayFn = async () => {
@@ -109,10 +106,5 @@ const realPay = (res) => {
 
 1. 在manifest.json - App模块权限选择 中勾选 payment(支付)
 2. 在 manifest.json - App SDK配置 中，勾选需要的支付平台，目前有微信支付、支付宝支付、苹果应用内支付(IAP)，其中微信支付需要填写从微信开放平台获取的AppID
-   
-	![image.png](https://cdn.nlark.com/yuque/0/2023/png/29781801/1675153459411-cbfb222d-a554-4761-bbe6-01e3554e34b7.png#averageHue=%23fbf4e3&clientId=ube96eebc-a010-4&from=paste&id=u283c3e12&name=image.png&originHeight=510&originWidth=823&originalType=url&ratio=1&rotation=0&showTitle=false&size=29552&status=done&style=stroke&taskId=u03c7e62d-253f-47c2-be89-503f84719d1&title=)
 3. 这些配置需要打包生效，真机运行仍然是HBuilder基座的设置，可使用自定义基座调试。离线打包请参考离线打包文档在原生工程中配置。
 4. 配置并打包后，通过 `uni.getProvider` 可以得到配置的结果列表，注意这里返回的是manifest配置的，与手机端是否安装微信、支付宝无关。
-
-
-### orderInfo参数

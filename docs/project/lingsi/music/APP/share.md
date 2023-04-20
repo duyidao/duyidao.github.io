@@ -6,7 +6,7 @@ title 分享页
 - 由于要能够下载整张落地页海报到相册，因此需用到画布组件 [canvas](https://uniapp.dcloud.net.cn/component/canvas.html#canvas) 。
 - 画布内容生成用到 [uni.canvasToTempFilePath](https://uniapp.dcloud.net.cn/api/canvas/canvasToTempFilePath.html#canvastotempfilepath) 方法。
 - 生成的图片通过 [uni.saveImageToPhotosAlbum](https://uniapp.dcloud.net.cn/api/media/image.html#saveimagetophotosalbum) 保存到相册。
-<a name="aA0rC"></a>
+
 ## 画布设置
 | canvas-id | String | canvas 组件的唯一标识符 |
 | --- | --- | --- |
@@ -15,7 +15,7 @@ title 分享页
 ```vue
 <canvas canvas-id="drawing" id="drawing"></canvas>
 ```
-<a name="kYb3Z"></a>
+
 ### 获取设备信息
 由于是整张落地页海报，因此获取用户设备大小是第一步，根据该大小来调整图片宽高。
 ```javascript
@@ -29,7 +29,7 @@ const getSystemInfo = () => {
   })
 }
 ```
-<a name="Qi51e"></a>
+
 ### 获取图片信息
 落地页的背景图片在本地文件夹中，绘制画布时需要等待其绘制背景图片，可以通过 [uni.getImageInfo](https://uniapp.dcloud.net.cn/api/media/image.html#getimageinfo) 获取图片信息，获取成功后再绘制画布，返回值如下所示。
 ```javascript
@@ -53,7 +53,7 @@ const getImageInfo = (image) => {
   })
 }
 ```
-<a name="gBIpV"></a>
+
 ### 渲染上下文
 脚本需要找到渲染上下文，然后在它的上面绘制。<br />`<canvas>` 元素创造了一个固定大小的画布，它公开了一个或多个渲染上下文，其可以用来绘制和处理要展示的内容。具体参数如下所示。
 
@@ -68,13 +68,13 @@ var ctx = uni.createCanvasContext('drawing', this);
 ctx.setFillStyle('#fafafa'); //默认白色
 ```
 注意：2D 上下文的坐标开始于 `<canvas>` 元素的左上角，原点坐标是(0,0)
-<a name="AdPye"></a>
+
 ### 绘制矩形填充模块
 `fillRect()` 方法绘制一个填充了内容的矩形，这个矩形的开始点（左上点）在 (x, y) ，它的宽度和高度分别由 `width` 和 `height` 确定，填充样式由当前的 `fillStyle` 决定。
 ```javascript
 ctx.fillRect(0, 0, canvasW.value, canvasH.value) // fillRect(x起点,y起点,宽度，高度)
 ```
-<a name="HXYtg"></a>
+
 ### 绘制图片
 使用 `drawImage()` 方法把一幅图像绘制到画布上。
 
@@ -102,7 +102,7 @@ ctx.fillRect(0, 0, canvasW.value, canvasH.value) // fillRect(x起点,y起点,�
 ctx.drawImage(goodsImgUrl, 37, 200, canvasW.value - 75, 400) // drawImage(图片路径,x,y,绘制图像的宽度，绘制图像的高度)
 ctx.drawImage(codeImg.value, canvasW.value - canvasW.value / 2 - 70, 370, 140, 140) // drawImage(图片路径,x,y,绘制图像的宽度，绘制图像的高度)
 ```
-<a name="ehkfk"></a>
+
 ### 绘制文字
 绘制文本主要有两个方法： fillText() 绘制文本。<br />可接收 4 个参数：要绘制的文本字符串、x 坐标、y 坐标和可选的最大像素宽度。如果第四个参数提供了最大宽度，文本会进行缩放以适应最大宽度。
 
@@ -119,36 +119,16 @@ ctx.setFillStyle('#f1654d') // 颜色
 ctx.fillText(code, canvasW.value - canvasW.value / 2 - 57, 330) // （文字，x坐标，y坐标）
 ```
 注意：如果要绘制图片和文字，则要把文字绘制的方法写在绘制图片之后。
-<a name="yZf1Q"></a>
+
 ### 画布绘制内容
 ```javascript
 ctx.draw(true, (ret) => {
 });
 ```
 
+### 代码展示
 ```vue
 <script setup>
-	import {
-		ref
-	} from 'vue';
-	import {
-		onHide,
-		onLoad,
-		onShow
-	} from '@dcloudio/uni-app';
-	import {
-		getUserShareCode
-	} from '@/service/api/mine/myInfo'
-
-	const canvasW = ref(0) // 画布宽
-	const canvasH = ref(0) // 画布高
-	const SystemInfo = ref({}) // 设备信息
-	const goodsImg = ref({}) // 海报背景图
-	const codeImg = ref('') // 二维码图片信息
-	const isShow = ref(false)
-	const code = JSON.parse(uni.getStorageSync('userMessage')).inviteCode // 用户邀请码，获取邀请二维码时需要传参给接口
-	let heightVal = ref(0) // 高度
-
 	const init = async () => {
 		const res = await getUserShareCode(code)
 		if (res.code === 200) {
@@ -207,10 +187,6 @@ ctx.draw(true, (ret) => {
 		}
 	}
 
-	onLoad(() => {
-		init()
-	})
-
 	// 获取图片信息
 	const getImageInfo = (image) => {
 		return new Promise((req, rej) => {
@@ -235,7 +211,7 @@ ctx.draw(true, (ret) => {
 	}
 </script>
 ```
-<a name="DDnFG"></a>
+
 ## 生成图片
 `uni.canvasToTempFilePath(object, component)`<br />把当前画布指定区域的内容导出生成指定大小的图片，并返回文件路径。在自定义组件下，第二个参数传入自定义组件实例，以操作组件内 `<canvas>` 组件。<br />**object参数说明：**
 
@@ -265,9 +241,9 @@ uni.canvasToTempFilePath({ // 保存canvas为图片
   },
 })
 ```
-<a name="bxKo4"></a>
+
 ## 保存相册
-`uni.saveImageToPhotosAlbum(OBJECT)`<br />保存图片到系统相册。<br />**OBJECT 参数说明**
+`uni.saveImageToPhotosAlbum(OBJECT)` 保存图片到系统相册。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |

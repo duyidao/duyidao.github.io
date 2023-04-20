@@ -1,0 +1,1 @@
+import{_ as e,c as a,o as t}from"./app.67d6aa47.js";const l=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"learn/Vue/advanced.md"}'),n={name:"learn/Vue/advanced.md"};function r(c,o,s,d,p,_){return t(),a("div")}const m=e(n,[["render",r]]);export{l as __pageData,m as default};

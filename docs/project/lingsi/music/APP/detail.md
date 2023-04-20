@@ -3,9 +3,6 @@ title 详情页
 ---
 
 # 音频详情
-效果图如下所示。
-
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29781801/1675064119900-89a6b09a-9a18-4386-84f7-450d7b6353ba.png#averageHue=%23f3efec&clientId=uf0fc4045-34c5-4&from=paste&height=702&id=ua8a9bf49&name=image.png&originHeight=702&originWidth=336&originalType=binary&ratio=1&rotation=0&showTitle=false&size=115014&status=done&style=none&taskId=u1a969296-9e92-426f-a06b-d6f33fa2332&title=&width=336)
 
 音频详情页需要一个播放音频的控件，在最开始的时候使用的是 `uniapp` 提供的 `audio` 组件，在app上运行无误，但是在h5上运行时报错，发现其组件停止维护。根据项目经理的要求，为了不给后续埋雷，改成使用 API 的形式。
 
