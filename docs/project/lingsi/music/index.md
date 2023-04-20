@@ -37,6 +37,23 @@ title 音果云音
 	   }
    }
    ```
+2. 富文本图片不显示
+   在移动端调试的时候图片能够显示，在手机端运行时发现图片无法显示，但是点击后能够预览，也有宽高占位。百度一阵有人给出了解答：因为图片宽度大于手机屏幕的宽度，导致其宽度为 `null` 。
+
+   解决方案：
+   通过正则表达式匹配图片标签，为其加上 `max-width: 100%` （注意不要破坏原来的样式）
+   ```js
+   changeImgWidth(html) {
+      if (!html) return
+      let newContent = html
+      if (/<img style="/.test(html)) {
+        newContent = html.replace(/<img style="/g, '<img style="max-width: 100%; height: auto;');
+      } else if(/<img/.test(html)) {
+        newContent = html.replace(/<img/gi, '<img style="max-width:100%; height: auto;"');
+      }
+      return newContent
+   }
+   ```
 
 ## 项目亮点
 
