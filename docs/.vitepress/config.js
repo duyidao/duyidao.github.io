@@ -8,7 +8,7 @@ module.exports = {
   // 网站描述
   description: '刀刀小站',
   // 打包目录
-  dest: './blog',
+  dest: './dist',
   head: [
     // 添加图标
     ["link", { rel: "icon", href: "/favicon.ico" }],
