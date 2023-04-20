@@ -10,7 +10,7 @@ export default [
       { text: "Node", link: "/learn/Node/" },
       {
         items: [
-          {text:'杂技拾谈', link: '/learn/杂技拾谈/if-else冗余.md'}
+          {text:'杂技拾谈', link: '/learn/杂技拾谈/vue3双向绑定proxy原理.md'}
         ]
       }
     ],

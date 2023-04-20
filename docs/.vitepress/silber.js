@@ -163,7 +163,7 @@ function getTalkSidebar() {
       text: '杂技拾谈',
       collapsible: true,
       items: [
-        { text: 'if-else代码冗余优化', link: '/learn/杂技拾谈/if-else冗余' },
+        // { text: 'if-else代码冗余优化', link: '/learn/杂技拾谈/if-else冗余' },
         { text: 'vue3双向绑定proxy原理', link: '/learn/杂技拾谈/vue3双向绑定proxy原理' },
         { text: '数组对象遍历', link: '/learn/杂技拾谈/数组对象遍历' }
       ]
@@ -228,9 +228,9 @@ function getJobSidebar() {
             { text: '微信授权', link: "/project/lingsi/职技网/微信授权" },
             { text: '下载附件', link: "/project/lingsi/职技网/下载附件" },
             { text: '富文本', link: "/project/lingsi/职技网/富文本" },
-            { text: '🗑 返回', link: '/project/lingsi/' },
           ]
-        }
+        },
+        { text: '🗑 返回', link: '/project/lingsi/' },
       ],
     }
   ]
@@ -285,6 +285,7 @@ function getSaleSidebar() {
         { text: '简介', link: '/project/lingsi/sale/' },
         { text: '请求封装', link: '/project/lingsi/sale/request' },
         { text: 'token刷新', link: '/project/lingsi/sale/token' },
+        { text: '获取手机号', link: '/project/lingsi/sale/获取手机号' },
         { text: '视频轮播', link: '/project/lingsi/sale/video' },
         { text: '图片上传组件封装', link: '/project/lingsi/sale/upload' },
         { text: '🗑 返回', link: '/project/lingsi/' },
