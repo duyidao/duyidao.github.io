@@ -12,6 +12,6 @@ title 引言
 2. 打包。此阶段目标是 `yarn docs:build` 命令打包生成 `dist` 文件夹后运行 `yarn docs:serve` 命令能够在本地看到效果。
 3. 部署。最后一步了，本阶段目标是部署到 `Gitee Pages` 并且能够正常访问。
 
-我的源码：[刀刀小站源码](https://gitee.com/duyidao/daodao)
+我的源码：[刀刀小站源码](https://gitee.com/duyidao/blog)
 
 下面，开始我们的博客搭建之旅吧~
