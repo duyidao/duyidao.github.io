@@ -163,9 +163,9 @@ function getTalkSidebar() {
       text: '杂技拾谈',
       collapsible: true,
       items: [
-        // { text: 'if-else代码冗余优化', link: '/learn/杂技拾谈/if-else冗余' },
         { text: 'vue3双向绑定proxy原理', link: '/learn/杂技拾谈/vue3双向绑定proxy原理' },
-        { text: '数组对象遍历', link: '/learn/杂技拾谈/数组对象遍历' }
+        { text: '数组对象遍历', link: '/learn/杂技拾谈/数组对象遍历' },
+        { text: 'vue图片动态引入使用require', link: '/learn/杂技拾谈/vue图片动态引入使用require' },
       ]
     }
   ]
