@@ -25,35 +25,70 @@ title 音果云音
 10. 其余功能页面······
 
 ## 遇到的问题
-1. 苹果上架
-   该项目有佣金推广模块与虚拟商品购买模块，导致苹果商城上架不成功，经过讨论决定苹果手机上把这些模块隐藏。判断用户使用的设备是否为苹果代码如下：
+### 苹果上架
 
-   ```js
-   export const is_iOS = () => {
-	   if (uni.getSystemInfoSync().platform == 'ios') {
-		   return true
-	   } else {
-		   return false
-	   }
-   }
-   ```
-2. 富文本图片不显示
-   在移动端调试的时候图片能够显示，在手机端运行时发现图片无法显示，但是点击后能够预览，也有宽高占位。百度一阵有人给出了解答：因为图片宽度大于手机屏幕的宽度，导致其宽度为 `null` 。
+该项目有佣金推广模块与虚拟商品购买模块，导致苹果商城上架不成功，经过讨论决定苹果手机上把这些模块隐藏。判断用户使用的设备是否为苹果代码如下：
 
-   解决方案：
-   通过正则表达式匹配图片标签，为其加上 `max-width: 100%` （注意不要破坏原来的样式）
-   ```js
-   changeImgWidth(html) {
-      if (!html) return
-      let newContent = html
-      if (/<img style="/.test(html)) {
-        newContent = html.replace(/<img style="/g, '<img style="max-width: 100%; height: auto;');
-      } else if(/<img/.test(html)) {
-        newContent = html.replace(/<img/gi, '<img style="max-width:100%; height: auto;"');
-      }
-      return newContent
+```js
+export const is_iOS = () => {
+   if (uni.getSystemInfoSync().platform == 'ios') {
+	   return true
+   } else {
+	   return false
    }
-   ```
+}
+```
+
+### 富文本图片不显示
+
+在移动端调试的时候图片能够显示，在手机端运行时发现图片无法显示，但是点击后能够预览，也有宽高占位。百度一阵有人给出了解答：因为图片宽度大于手机屏幕的宽度，导致获取渲染图片时其宽度为 `null` 。
+
+解决方案：
+通过正则表达式匹配图片标签，为其加上 `max-width: 100%` （注意不要破坏原来的样式）
+```js
+changeImgWidth(html) {
+   if (!html) return
+   let newContent = html
+   if (/<img style="/.test(html)) {
+     newContent = html.replace(/<img style="/g, '<img style="max-width: 100%; height: auto;');
+   } else if(/<img/.test(html)) {
+     newContent = html.replace(/<img/gi, '<img style="max-width:100%; height: auto;"');
+   }
+   return newContent
+}
+```
+
+### 页面跳转失败
+
+场景如下：
+
+- 刚进页面调用接口请求，由于没有携带 `token` 返回 401 未登录，判断到状态后跳转到登录页。
+- 获取用户的粘贴板，根据链接信息跳到对应的商品页
+
+出现的问题：
+
+- 虽然请求发送了，也收到没有登录的提示了，但是没有跳转到登录页，重新再调一次接口后才自动跳转，并且报错
+- 不跳转对应的商品页，并且报错
+
+报错信息如下所示：
+
+```
+Waiting to navigate to xxx, do not operate continuously xxx
+```
+
+百度之后找到这个问答帖子：[这是啥意思？为什么不跳呢](https://ask.dcloud.net.cn/question/145830) ，答案大意就是页面还没渲染好，准备跳到起始页（即 `pages.json` 的第一个页面），然后触发事件，又要跳到设置的对应页面，因此报错。
+
+解决方法：
+
+加一个延迟器，延迟执行跳转的操作即可。
+
+```js
+setTimeout(() => {
+	uni.navigateTo({
+		url: "/pages/login/Login"
+	});
+}, 500);
+```
 
 ## 项目亮点
 
@@ -68,9 +103,8 @@ title 音果云音
    3. 通过 `uni.saveImageToPhotosAlbum` 方法把图片保存到手机相册中。
 - 使用 `uniapp` 内置 `API` 实现蓝牙搜索与低功耗蓝牙连接读写功能；使用 `uniapp` 内置 `API` 实现扫一扫功能。详细信息请见《操作页》内容。
 - 通过 `uni.requestPayment` 方法实现支付功能
-   1. 调用后端接口创建订单获取订单编号
-   2. 调用后端支付接口获取对应sdk
-   3. 使用 `uni.requestPayment` 方法调起支付，其中，属性 `provider` 为支付服务提供商。如支付宝支付参数为 `alipay`，微信支付为 `wxpay`
+   1. 调用后端接口创建订单获取订单编号，成功后即可调用后端支付接口获取对应sdk
+   3. 使用 `uni.requestPayment` 方法调起支付，其中，属性 `provider` 为支付服务提供商。如支付宝支付参数为 `alipay`，微信支付为 `wxpay` ，`orderInfo` 传入第一步获取到的订单编号
 - 动态设置用户剪切板内容，实现商品链接的保存分享
    1. 通过 `uni.setClipboardData` 设置系统剪贴板的内容，其中，`data` 属性的参数为要设置的内容。
    2. 通过 `uni.getClipboardData`获取系统剪贴板的内容。
