@@ -8,8 +8,6 @@
 
 ![i9fztc.png](https://i.328888.xyz/2023/04/27/i9fztc.png)
 
-![image-20230427105920989](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230427105920989.png)
-
 而部署的文件夹根目录没有 `js` 文件，该 `js` 文件夹都在部署好的 `dist` 文件夹内，因此找不到资源文件。
 
 设置为 `./` 则改为 **相对路径** ，以打包好的 `dist` 文件为根路径，选择其根目录下的 `js` 文件，例如：

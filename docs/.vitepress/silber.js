@@ -115,6 +115,7 @@ function getLearnVue3Sidebar() {
       { text: "vue3的使用", link: "/learn/Vue3/vue3的使用" },
       { text: "插槽", link: "/learn/Vue3/插槽" },
       { text: "动态组件", link: "/learn/Vue3/动态组件" },
+      { text: "源码", link: "/learn/Vue3/源码" },
     ],
   }]
 }
@@ -166,6 +167,7 @@ function getTalkSidebar() {
         { text: 'vue3双向绑定proxy原理', link: '/learn/杂技拾谈/vue3双向绑定proxy原理' },
         { text: '数组对象遍历', link: '/learn/杂技拾谈/数组对象遍历' },
         { text: 'vue图片动态引入使用require', link: '/learn/杂技拾谈/vue图片动态引入使用require' },
+        { text: 'vue项目打包后首页白屏总结', link: '/learn/杂技拾谈/vue项目打包后首页白屏总结' },
       ]
     }
   ]
@@ -193,6 +195,7 @@ function getMusicSidebar() {
                 { text: '分享页', link: "/project/lingsi/music/APP/share" },
                 { text: '测试页', link: "/project/lingsi/music/APP/test" },
                 { text: '操作页', link: "/project/lingsi/music/APP/do" },
+                { text: '商品页', link: "/project/lingsi/music/APP/sku" },
                 { text: '支付页', link: "/project/lingsi/music/APP/pay" },
               ]
             },
@@ -286,6 +289,7 @@ function getSaleSidebar() {
         { text: '请求封装', link: '/project/lingsi/sale/request' },
         { text: 'token刷新', link: '/project/lingsi/sale/token' },
         { text: '微信授权快捷登录', link: '/project/lingsi/sale/获取手机号' },
+        { text: '分享', link: '/project/lingsi/sale/分享' },
         { text: '视频轮播', link: '/project/lingsi/sale/video' },
         { text: '图片上传组件封装', link: '/project/lingsi/sale/upload' },
         { text: '🗑 返回', link: '/project/lingsi/' },
@@ -324,6 +328,7 @@ function getCRMSidebar() {
         { text: '简介', link: '/project/lingsi/crm/' },
         { text: '拨打电话', link: '/project/lingsi/crm/call' },
         { text: 'navigateBack传参', link: '/project/lingsi/crm/navigateBack' },
+        { text: '域名配置', link: '/project/lingsi/crm/部署' },
         { text: '🗑 返回', link: '/project/lingsi/' },
       ]
     }
