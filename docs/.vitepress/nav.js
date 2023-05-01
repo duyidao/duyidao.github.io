@@ -12,6 +12,11 @@ export default [
         items: [
           {text:'杂技拾谈', link: '/learn/杂技拾谈/vue3双向绑定proxy原理.md'}
         ]
+      },
+      {
+        items: [
+          {text:'学而时习之', link: '/learn/学而时习之/通过el-select实现多个省略学习如何改造第三方组件满足自己的要求.md'}
+        ]
       }
     ],
   },

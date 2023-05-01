@@ -5,8 +5,9 @@ export default {
   '/learn/Vue3': getLearnVue3Sidebar(),
   '/learn/TypeScript': getLearnTsSidebar(),
   '/learn/Node': getLearnNodeSidebar(),
-  '/knowledgePoint': getKnowledgePointSidebar(),
+  // '/knowledgePoint': getKnowledgePointSidebar(),
   '/learn/杂技拾谈': getTalkSidebar(),
+  '/learn/学而时习之': getLearnTimeSidebar(),
   '/project': [
     {
       text: '项目',
@@ -168,6 +169,19 @@ function getTalkSidebar() {
         { text: '数组对象遍历', link: '/learn/杂技拾谈/数组对象遍历' },
         { text: 'vue图片动态引入使用require', link: '/learn/杂技拾谈/vue图片动态引入使用require' },
         { text: 'vue项目打包后首页白屏总结', link: '/learn/杂技拾谈/vue项目打包后首页白屏总结' },
+      ]
+    }
+  ]
+}
+
+// 获取学而时习之数组
+function getLearnTimeSidebar() {
+  return [
+    {
+      text: '学而时习之',
+      collapsible: true,
+      items: [
+        { text: '通过el-select实现多个省略学习如何改造第三方组件满足自己的要求', link: '/learn/学而时习之/通过el-select实现多个省略学习如何改造第三方组件满足自己的要求' },
       ]
     }
   ]
