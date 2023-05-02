@@ -183,7 +183,7 @@ function getLearnTimeSidebar() {
       items: [
         { text: '通过el-select实现多个省略学习如何改造第三方组件满足自己的要求', link: '/learn/学而时习之/通过el-select实现多个省略学习如何改造第三方组件满足自己的要求' },
         { text: '通过el-table实现多数据完美无限滚动效果', link: '/learn/学而时习之/通过el-table实现多数据完美无限滚动效果' },
-        { text: 'Vue组件设计技巧', link: '/learn/学而时习之/Vue组件设计技巧' },
+        { text: 'Vue组件设计技巧', link: '/learn/学而时习之/vue组件设计技巧' },
         { text: '操作内嵌ifrname与传递消息', link: '/learn/学而时习之/操作内嵌ifrname与传递消息' },
       ]
     }

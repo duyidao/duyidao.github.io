@@ -1,1 +1,0 @@
-import{_ as e,c as a,o as t}from"./app.5c33c8ba.js";const l=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"learn/CSS/advanced.md"}'),n={name:"learn/CSS/advanced.md"};function r(c,o,s,d,p,_){return t(),a("div")}const m=e(n,[["render",r]]);export{l as __pageData,m as default};
