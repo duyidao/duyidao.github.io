@@ -65,6 +65,7 @@ const handleChoseFn = (item, index) => {
 		choseNames.value.splice(index, 1)
 		btnWord.value = '请选择规格'
 	} else {
+        // 未选择的情况下把该索引设为该值
 		choseNames.value[index] = item.name
 		if(choseNames.value.length === props.data.length) {
 			let obj = props.saleList.find(item => {

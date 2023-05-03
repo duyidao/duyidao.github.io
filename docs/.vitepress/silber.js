@@ -1,11 +1,11 @@
 export default {
-  '/learn': getLearnSidebar(),
+  '/learn/HTML': getLearnHTMLSidebar(),
+  '/learn/CSS': getLearnCSSSidebar(),
   '/learn/Javascript': getLearnJsSidebar(),
   '/learn/vue2': getLearnVue2Sidebar(),
   '/learn/Vue3': getLearnVue3Sidebar(),
   '/learn/TypeScript': getLearnTsSidebar(),
   '/learn/Node': getLearnNodeSidebar(),
-  // '/knowledgePoint': getKnowledgePointSidebar(),
   '/learn/杂技拾谈': getTalkSidebar(),
   '/learn/学而时习之': getLearnTimeSidebar(),
   '/project': [
@@ -17,20 +17,7 @@ export default {
       ]
     }
   ],
-  '/project/lingsi': [
-    {
-      text: '灵思',
-      items: [
-        { text: '🎶 音果云音', link: '/project/lingsi/music/' },
-        { text: '🔧 职技网', link: '/project/lingsi/职技网/' },
-        { text: '💴 视频分销', link: '/project/lingsi/sale/' },
-        { text: '🧫 华润水泥', link: '/project/lingsi/水泥/' },
-        { text: '🔍 CRM', link: '/project/lingsi/crm/' },
-        { text: '🎲 ELK', link: '/project/lingsi/elk/' },
-        { text: '🗑 返回', link: '/project/' },
-      ]
-    },
-  ],
+  '/project/lingsi': getLingsiSidebar(),
   '/project/lingsi/sale': getSaleSidebar(),
   '/project/lingsi/职技网': getJobSidebar(),
   '/project/lingsi/水泥': getShuiniSidebar(),
@@ -42,8 +29,8 @@ export default {
   '/about': getAboutSidebar(),
 }
 
-// 获取前端的数组
-function getLearnSidebar() {
+// 获取前端html的数组
+function getLearnHTMLSidebar() {
   return [
     {
       text: "HTML",
@@ -52,6 +39,12 @@ function getLearnSidebar() {
         { text: "HTML", link: "/learn/HTML/" },
       ],
     },
+  ]
+}
+
+// 获取前端css的数组
+function getLearnCSSSidebar() {
+  return [
     {
       text: "CSS",
       collapsible: true,
@@ -183,11 +176,30 @@ function getLearnTimeSidebar() {
       items: [
         { text: '通过el-select实现多个省略学习如何改造第三方组件满足自己的要求', link: '/learn/学而时习之/通过el-select实现多个省略学习如何改造第三方组件满足自己的要求' },
         { text: '通过el-table实现多数据完美无限滚动效果', link: '/learn/学而时习之/通过el-table实现多数据完美无限滚动效果' },
-        { text: 'Vue组件设计技巧', link: '/learn/学而时习之/vue组件设计技巧' },
         { text: '操作内嵌ifrname与传递消息', link: '/learn/学而时习之/操作内嵌ifrname与传递消息' },
+        { text: 'Vue组件设计技巧', link: '/learn/学而时习之/vue组件设计技巧' },
+        { text: '前端下载后端传输的文件', link: '/learn/学而时习之/前端下载后端传输的文件' },
         { text: 'Vue项目权限控制', link: '/learn/学而时习之/Vue项目权限控制' },
       ]
     }
+  ]
+}
+
+// 获取灵思的数组
+function getLingsiSidebar() {
+  return [
+    {
+      text: '灵思',
+      items: [
+        { text: '🎶 音果云音', link: '/project/lingsi/music/' },
+        { text: '🔧 职技网', link: '/project/lingsi/职技网/' },
+        { text: '💴 视频分销', link: '/project/lingsi/sale/' },
+        { text: '🧫 华润水泥', link: '/project/lingsi/水泥/' },
+        { text: '🔍 CRM', link: '/project/lingsi/crm/' },
+        { text: '🎲 ELK', link: '/project/lingsi/elk/' },
+        { text: '🗑 返回', link: '/project/' },
+      ]
+    },
   ]
 }
 
@@ -365,19 +377,6 @@ function getVitePressSidebar() {
         { text: "🎁 打包", link: "/vitePress/Build" },
         { text: "⏳ 部署", link: "/vitePress/Deploy" },
         { text: "✨ 拓展", link: "/vitePress/Know" },
-      ]
-    }
-  ]
-}
-
-// 获取项目学习的数组
-function getKnowledgePointSidebar() {
-  return [
-    {
-      text: '🎒 项目学习',
-      collapsible: true,
-      items: [
-        { text: "🌩️ 引言", link: "/knowledgePoint/" },
       ]
     }
   ]

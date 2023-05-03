@@ -2,7 +2,8 @@ export default [
   {
     text: "💻 前端知识",
     items: [
-      { text: "HTML & CSS", link: "/learn/HTML/" },
+      { text: "HTML", link: "/learn/HTML/" },
+      { text: "CSS", link: "/learn/CSS/" },
       { text: "JavaScript", link: "/learn/Javascript/" },
       { text: "Vue2", link: "/learn/vue2/指令" },
       { text: "Vue3", link: "/learn/Vue3/vue3项目创建" },
@@ -24,14 +25,6 @@ export default [
     text: "💾 项目",
     items: [
       { text: "📖 项目总结", link: "/project/" },
-      // {
-      //   items: [
-      //     {
-      //       text: '🎒 项目学习',
-      //       link: '/knowledgePoint/'
-      //     }
-      //   ]
-      // }
     ],
   },
   {
