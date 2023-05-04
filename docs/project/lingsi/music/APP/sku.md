@@ -32,7 +32,7 @@ title sku商品规格
 
 下部分则根据规格与分类渲染布局。后续点击相应规格后保存其规格内容，根据数组内是否有该规格名称来动态添加类名。
 
-```vue
+```html
 <view class="auto">
 	<view class="dtoList" v-for="(item, index) in props.data" :key="item.id">
 		<view class="name">{{item.name}}</view>
@@ -46,7 +46,7 @@ title sku商品规格
 </view>
 ```
 
-## 点击规格
+## 选择规格
 
 点击规格时做以下步骤：
 
@@ -62,12 +62,14 @@ const choseId = ref('') // 最终选择的商品id
 const handleChoseFn = (item, index) => {
 	// 如果该规格已选,则去除
 	if (choseNames.value[index] && item.name === choseNames.value[index]) {
-		choseNames.value.splice(index, 1)
+		choseNames.value[index] = ''
 		btnWord.value = '请选择规格'
 	} else {
         // 未选择的情况下把该索引设为该值
 		choseNames.value[index] = item.name
 		if(choseNames.value.length === props.data.length) {
+            // 由于存在取消规格的情况，也存在用户从后面选起的可能，因此判断每一项都要有内容
+            if(choseNames.value.includes(undefined) || choseNames.value.includes(null) || choseNames.value.includes('')) return
 			let obj = props.saleList.find(item => {
 				let arr = JSON.parse(item.sku)
 				for(let i = 0; i < arr.length; i++) {
@@ -101,7 +103,9 @@ const handleChoseFn = (item, index) => {
 
 ## 总结
 
-主要思路为获取用户选择的规格与每一项对象的 `sku` 对比，对比每一项是否存在于 `sku` 数组内。都符合要求则返回相对应的数据，不存在则提示库存不足即可。
+主要思路为获取用户选择的规格，首先判断每一项是否有内容，只要有一项没有内容就 `return` 阻止后续操作。
+
+都有内容则与每一项对象的 `sku` 对比，对比每一项是否存在于 `sku` 数组内。都符合要求则返回相对应的数据，不存在则提示库存不足即可。
 
 
 
