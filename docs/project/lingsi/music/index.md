@@ -128,3 +128,4 @@ setTimeout(() => {
 - 动态设置用户剪切板内容，实现商品链接的保存分享
    1. 通过 `uni.setClipboardData` 设置系统剪贴板的内容，其中，`data` 属性的参数为要设置的内容。
    2. 通过 `uni.getClipboardData`获取系统剪贴板的内容。
+- 获取当前 `app` 的版本号，调用接口获取服务器最新版本号，如果当前并非最新版本号，则更新下载最新版本。详情请见 [更新](/project/lingsi/update)
