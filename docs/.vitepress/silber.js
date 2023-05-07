@@ -1,6 +1,8 @@
 export default {
   '/learn/HTML': getLearnHTMLSidebar(),
   '/learn/CSS': getLearnCSSSidebar(),
+  '/learn/CSS/效果提升': getLearnCSSLevelSidebar(),
+  '/learn/CSS/咨询拓展': getLearnCSSThinkSidebar(),
   '/learn/Javascript': getLearnJsSidebar(),
   '/learn/vue2': getLearnVue2Sidebar(),
   '/learn/Vue3': getLearnVue3Sidebar(),
@@ -49,7 +51,36 @@ function getLearnCSSSidebar() {
       text: "CSS",
       collapsible: true,
       items: [
-        { text: "CSS", link: "/learn/CSS/" },
+        { text: "效果提升", link: "/learn/CSS/效果提升/空白节点" },
+        { text: "咨询拓展", link: "/learn/CSS/咨询拓展/BEM" },
+      ],
+    }
+  ]
+}
+
+// 获取前端css效果提升的数组
+function getLearnCSSLevelSidebar() {
+  return [
+    {
+      text: "效果提升",
+      collapsible: true,
+      items: [
+        { text: "空白节点", link: "/learn/CSS/空白节点" },
+        { text: '🗑 返回', link: '/learn/CSS/' },
+      ],
+    }
+  ]
+}
+
+// 获取前端css咨询拓展的数组
+function getLearnCSSThinkSidebar() {
+  return [
+    {
+      text: "咨询拓展",
+      collapsible: true,
+      items: [
+        { text: "BEM", link: "/learn/CSS/BEM" },
+        { text: '🗑 返回', link: '/learn/CSS/' },
       ],
     }
   ]
@@ -180,7 +211,10 @@ function getLearnTimeSidebar() {
         { text: 'Vue组件设计技巧', link: '/learn/学而时习之/vue组件设计技巧' },
         { text: '前端文件上传与相关操作', link: '/learn/学而时习之/前端文件上传与相关操作' },
         { text: '前端下载后端传输的文件', link: '/learn/学而时习之/前端下载后端传输的文件' },
+        { text: '前端操作excel与word', link: '/learn/学而时习之/前端操作excel与word' },
         { text: 'Vue项目权限控制', link: '/learn/学而时习之/Vue项目权限控制' },
+        { text: '前端性能优化方案', link: '/learn/学而时习之/前端性能优化方案' },
+        { text: '🗑 返回', link: '/learn' },
       ]
     }
   ]
@@ -220,14 +254,15 @@ function getMusicSidebar() {
               text: " 📱 APP",
               collapsible: true,
               items: [
-                { text: '登录页', link: "/project/lingsi/music/APP/login" },
-                { text: 'tabbar页', link: "/project/lingsi/music/APP/tabbar" },
-                { text: '详情页', link: "/project/lingsi/music/APP/detail" },
-                { text: '分享页', link: "/project/lingsi/music/APP/share" },
-                { text: '测试页', link: "/project/lingsi/music/APP/test" },
-                { text: '操作页', link: "/project/lingsi/music/APP/do" },
-                { text: '商品页', link: "/project/lingsi/music/APP/sku" },
-                { text: '支付页', link: "/project/lingsi/music/APP/pay" },
+                { text: '登录', link: "/project/lingsi/music/APP/login" },
+                { text: 'tabbar', link: "/project/lingsi/music/APP/tabbar" },
+                { text: '详情', link: "/project/lingsi/music/APP/detail" },
+                { text: '分享', link: "/project/lingsi/music/APP/share" },
+                { text: '测试', link: "/project/lingsi/music/APP/test" },
+                { text: '操作', link: "/project/lingsi/music/APP/do" },
+                { text: '商品', link: "/project/lingsi/music/APP/sku" },
+                { text: '支付', link: "/project/lingsi/music/APP/pay" },
+                { text: '更新', link: "/project/lingsi/music/APP/update" },
               ]
             },
             {
@@ -360,6 +395,7 @@ function getCRMSidebar() {
         { text: '拨打电话', link: '/project/lingsi/crm/call' },
         { text: 'navigateBack传参', link: '/project/lingsi/crm/navigateBack' },
         { text: '域名配置', link: '/project/lingsi/crm/部署' },
+        { text: '微信授权', link: '/project/lingsi/crm/微信授权' },
         { text: '🗑 返回', link: '/project/lingsi/' },
       ]
     }
