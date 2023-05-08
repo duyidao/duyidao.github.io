@@ -214,6 +214,13 @@ function getLearnTimeSidebar() {
         { text: '前端操作excel与word', link: '/learn/学而时习之/前端操作excel与word' },
         { text: 'Vue项目权限控制', link: '/learn/学而时习之/Vue项目权限控制' },
         { text: '前端性能优化方案', link: '/learn/学而时习之/前端性能优化方案' },
+        {
+          text: '🔏 前端组件封装系列',
+          collapsible: true,
+          items: [
+            { text: '对话框弹窗组件', link: '/learn/学而时习之/前端组件封装实例/对话框弹窗组件' },
+          ]
+        },
         { text: '🗑 返回', link: '/learn' },
       ]
     }
@@ -263,6 +270,7 @@ function getMusicSidebar() {
                 { text: '商品', link: "/project/lingsi/music/APP/sku" },
                 { text: '支付', link: "/project/lingsi/music/APP/pay" },
                 { text: '更新', link: "/project/lingsi/music/APP/update" },
+                { text: '个人', link: "/project/lingsi/music/APP/userinfo" },
               ]
             },
             {
