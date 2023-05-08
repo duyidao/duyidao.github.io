@@ -56,6 +56,7 @@ const startBluetoothDevicesDiscovery = () => {
 const getBluetoothDevices = () => {
   setTimeout(() => {
     uni.getBluetoothDevices({
+      // 成功搜索到设备列表，停止搜索
       success: res => {
         uni.stopBluetoothDevicesDiscovery({
           success(res) {

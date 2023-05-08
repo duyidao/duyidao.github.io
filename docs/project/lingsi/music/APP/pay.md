@@ -6,47 +6,40 @@ title 支付页
 
 1. 创建订单
 
-创建成功后会返回相应的订单编号
+   创建成功后会返回相应的订单编号
 
-1. 支付
+2. 支付
 
-拿到订单编号后调用支付接口
+   拿到订单编号后调用支付接口
 
-```javascript
-// 点击支付按钮
-const toPayFn = async () => {
-  if (!checked.value) {
-    uni.showToast({
-      title: '请选择支付方式',
-      icon: 'error'
-    })
-    return
-  }
-  const promotionGoods = uni.getStorageSync('couponGood') ? JSON.parse(uni.getStorageSync('couponGood')) : {}
-  //发起创建订单接口请求
-  shopStore.payFn({
-    goodsId: info.value.id,
-    type: info.value.belongs,
-    promotionGoodsId: promotionGoods.id === info.value.id || isPromote.value === 'true' ? info.value.id : '',
-    code: promotionGoods.code ? promotionGoods.code : '',
-    couponId: couponObj.value.id ? couponObj.value.id : ''
-  }).then(res => {
-    switch (checked.value) {
-      case 'wxpay':
-        uni.showToast({
-          title: '暂未支持微信支付',
-          icon: 'none'
-        })
-        break;
-      case 'alipay':
-        realPay(res)
-        break;
-      default:
-        break;
-    }
-  })
-};
-```
+   ```js
+   // 点击支付按钮
+   const toPayFn = async () => {
+     if (!checked.value) {
+       uni.showToast({
+         title: '请选择支付方式',
+         icon: 'error'
+       })
+       return
+     }
+     //发起创建订单接口请求
+     shopStore.payFn(传参).then(res => {
+       switch (checked.value) {
+         case 'wxpay':
+           uni.showToast({
+             title: '暂未支持微信支付',
+             icon: 'none'
+           })
+           break;
+         case 'alipay':
+           realPay(res)
+           break;
+         default:
+           break;
+       }
+     })
+   };
+   ```
 
 ## 微信支付
 由于项目客户未申请到微信开发者账号，因此暂时无法实现此业务。
@@ -60,7 +53,7 @@ const toPayFn = async () => {
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |
-| `provider` | `String` | 是 | 服务提供商，通过 [uni.getProvider](https://uniapp.dcloud.net.cn/api/plugins/provider)<br /> 获取。 |
+| `provider` | `String` | 是 | 服务提供商，通过 [uni.getProvider](https://uniapp.dcloud.net.cn/api/plugins/provider) 获取。 |
 | `orderInfo` | `String/Object` | 是 | 订单数据，[注意事项](https://uniapp.dcloud.net.cn/api/plugins/payment#orderinfo) |
 | `timeStamp` | `String` | 微信小程序必填 | 时间戳从1970年1月1日至今的秒数，即当前的时间。 |
 | `nonceStr` | `String` | 微信小程序必填 | 随机字符串，长度为32个字符以下。 |
@@ -72,14 +65,14 @@ const toPayFn = async () => {
 ```javascript
 const realPay = (res) => {
   shopStore.orderPayFn({
-    orderNo: res,
+    orderNo: 后端返回的订单编号,
     provider: provider.value
   }).then(resu => {
     //调用uniapp API uni.requestPayment 支付接口
     uni.requestPayment({
       provider: 'alipay',
       //后台返回的订单数据
-      orderInfo: resu.result.body,
+      orderInfo: xxx, // 后端返回的支付宝sdk
       //调用成功的回调
       success(success) {
         uni.showToast({

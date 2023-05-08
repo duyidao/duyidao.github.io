@@ -8,9 +8,6 @@ title 分享页
 - 生成的图片通过 [uni.saveImageToPhotosAlbum](https://uniapp.dcloud.net.cn/api/media/image.html#saveimagetophotosalbum) 保存到相册。
 
 ## 画布设置
-| canvas-id | String | canvas 组件的唯一标识符 |
-| --- | --- | --- |
-
 根据官方文档，在使用画布标签时需要为其添加一个 id 属性，该id必须唯一，不可重复。
 ```vue
 <canvas canvas-id="drawing" id="drawing"></canvas>
