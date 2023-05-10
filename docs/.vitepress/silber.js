@@ -193,6 +193,7 @@ function getTalkSidebar() {
         { text: '数组对象遍历', link: '/learn/杂技拾谈/数组对象遍历' },
         { text: 'vue图片动态引入使用require', link: '/learn/杂技拾谈/vue图片动态引入使用require' },
         { text: 'vue项目打包后首页白屏总结', link: '/learn/杂技拾谈/vue项目打包后首页白屏总结' },
+        { text: '接口请求', link: '/learn/杂技拾谈/多接口请求' },
       ]
     }
   ]
@@ -208,17 +209,23 @@ function getLearnTimeSidebar() {
         { text: '通过el-select实现多个省略学习如何改造第三方组件满足自己的要求', link: '/learn/学而时习之/通过el-select实现多个省略学习如何改造第三方组件满足自己的要求' },
         { text: '通过el-table实现多数据完美无限滚动效果', link: '/learn/学而时习之/通过el-table实现多数据完美无限滚动效果' },
         { text: '操作内嵌ifrname与传递消息', link: '/learn/学而时习之/操作内嵌ifrname与传递消息' },
-        { text: 'Vue组件设计技巧', link: '/learn/学而时习之/vue组件设计技巧' },
-        { text: '前端文件上传与相关操作', link: '/learn/学而时习之/前端文件上传与相关操作' },
-        { text: '前端下载后端传输的文件', link: '/learn/学而时习之/前端下载后端传输的文件' },
-        { text: '前端操作excel与word', link: '/learn/学而时习之/前端操作excel与word' },
         { text: 'Vue项目权限控制', link: '/learn/学而时习之/Vue项目权限控制' },
         { text: '前端性能优化方案', link: '/learn/学而时习之/前端性能优化方案' },
         {
           text: '🔏 前端组件封装系列',
           collapsible: true,
           items: [
-            { text: '对话框弹窗组件', link: '/learn/学而时习之/前端组件封装实例/对话框弹窗组件' },
+        { text: 'Vue组件设计技巧', link: '/learn/学而时习之/前端组件封装实例/vue组件设计技巧' },
+        { text: '对话框弹窗组件', link: '/learn/学而时习之/前端组件封装实例/对话框弹窗组件' },
+          ]
+        },
+        {
+          text: '✨ 前端功能操作模块',
+          collapsible: true,
+          items: [
+            { text: '前端文件上传与相关操作', link: '/learn/学而时习之/前端功能操作模块/前端文件上传与相关操作' },
+            { text: '前端下载后端传输的文件', link: '/learn/学而时习之/前端功能操作模块/前端下载后端传输的文件' },
+            { text: '前端操作excel与word', link: '/learn/学而时习之/前端功能操作模块/前端操作excel与word' },
           ]
         },
         { text: '🗑 返回', link: '/learn' },
