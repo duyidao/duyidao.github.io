@@ -1,1 +1,0 @@
-import{_ as s,c as t,o as a,d as n}from"./app.6e7d5abf.js";const D=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"project/lingsi/crm/call.md"}'),e={name:"project/lingsi/crm/call.md"},o=n("",4),l=[o];function p(c,r,d,i,F,_){return a(),t("div",null,l)}const h=s(e,[["render",p]]);export{D as __pageData,h as default};
