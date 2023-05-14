@@ -112,3 +112,111 @@ let myRequest = (function() {
 })()
 ```
 
+### 缓存
+
+把数据保存在一个对象中（ `Map` 对象更合适），判断该对象有没有对应值，有对应值则说明有缓存，直接返回缓存即可。没有再调接口。
+
+```js
+let myRequest = (function() {
+    let men = {}
+    let hasRequest = []
+    return function(config) {
+        if(men[url]) {
+        	    return Promise.resolve(men[url])
+        } else {
+            if(hasRequest.inculdes(config.url)) {
+        	    return Promise.reject('请求已提交')
+        	}
+        	
+        	hasRequest.push(config.url)
+        	
+        	return request({
+        	    ...config
+        	}).then(() => {
+        	    hasRequest = hasRequest.filter(item => {
+        	        if(item !== config.url) {
+        	            return item
+        	        }
+        	    })
+                men[url] = res.data
+        	    return res.data
+        	})
+        }
+    }
+})()
+```
+
+### 代码优化
+
+如果后面再加功能，就要再加 `if...else if` ，代码冗余且低效，因此需要优化。
+
+优化思路：使用职责链模式，组织成一个个独立函数模块，然后循环按照顺序执行这些模块。执行一个去掉一个，直到全部执行完毕。
+
+但是请求一般都是异步，因此无法保证执行的顺序，需要使用 `Promise` 的 `resolve` 状态返回最后的成功处理结果。
+
+```js
+let myRequest = (function() {
+    let men = {}
+    let hasRequest = []
+    let promise = Promise.resolve()
+    
+    /*
+    data-搭载的数据
+    go-下一步是否需要
+    {data: cache, go: false, type: 'catch / then'}
+    */
+    return function(config) {
+        function cache(result = { go: true }) {
+            if(!result.go) {
+                return Promise.resolve(result)
+            }
+            
+            if(men[url]) {
+                return Promise.resolve({ go: false, type: 'then', data: men[url] })
+            } else {
+                return Promise.resolve({ go: true, type: 'then' })
+            }
+        }
+        
+        function noRepeat(result = { go: true }) {
+            if(!result.go) {
+                return Promise.resolve(result)
+            }
+            	if(hasRequest.inculdes(config.url)) {
+        	    return Promise.reject({go: false, data: '请求已提交', type: 'catch'})
+        	} else {
+                // 发情求
+                hasRequest.push(url)
+                return Promise.resolve({go: true, type: 'then'})
+            }
+        }
+        
+        async function finalRequest() {
+            if(!result.go) {
+                return Promise.resolve(result)
+            }
+            let resData = await request({...config})
+            return Promise.resolve({go: true, type: 'then', data: resData})
+        }
+        
+        function finalHandle() {
+            if(!result.go) {
+                return Promise.resolve(result)
+            }
+            if(result.type==='catch') {
+                return Promise.reject(result.data)
+            }
+            men[config.url] === result.data
+        }
+        
+        let handleArr = [cache, noRepeat, finalRequest, finalHandle]
+        while(handleArr.length > 0) {
+            promise = promise.then(handleArr.shift())
+        }
+        return promise
+    }
+})()
+```
+
+通过这个方法，一环扣一环的形式，不仅代码可阅读性强，可拓展性强，还能够快速定位到对应的方法中。
+

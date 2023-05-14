@@ -214,8 +214,9 @@ function getLearnTimeSidebar() {
           text: '🔏 前端组件封装系列',
           collapsible: true,
           items: [
-        { text: 'Vue组件设计技巧', link: '/learn/学而时习之/前端组件封装实例/vue组件设计技巧' },
-        { text: '对话框弹窗组件', link: '/learn/学而时习之/前端组件封装实例/对话框弹窗组件' },
+            { text: 'Vue组件设计技巧', link: '/learn/学而时习之/前端组件封装实例/vue组件设计技巧' },
+            { text: '对话框弹窗组件', link: '/learn/学而时习之/前端组件封装实例/对话框弹窗组件' },
+            { text: '输入框组件封装', link: '/learn/学而时习之/前端组件封装实例/输入框组件封装' },
           ]
         },
         {
