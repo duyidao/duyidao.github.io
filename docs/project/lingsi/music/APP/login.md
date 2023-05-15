@@ -187,5 +187,3 @@ const wxLoginFn = () => {
 
 - 打正式包，缺点是无法修改，测试麻烦，无法看到 `console.log` 的参数
 - 自定义基座。根据 [文档](https://uniapp.dcloud.net.cn/tutorial/run/run-app.html#customplayground) 步骤操作，打完包后运行时运行自定义基座，即可在手机中真机运行，且能看到控制台打印。
-
-#### 正式版
