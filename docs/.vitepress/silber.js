@@ -204,39 +204,47 @@ function getTalkSidebar() {
 function getLearnTimeSidebar() {
   return [
     {
+      text: '🔏 前端组件封装系列',
+      collapsible: true,
+      items: [
+        { text: 'Vue组件设计技巧', link: '/learn/学而时习之/前端组件封装实例/vue组件设计技巧' },
+        { text: '对话框弹窗组件', link: '/learn/学而时习之/前端组件封装实例/对话框弹窗组件' },
+        { text: '输入框组件封装', link: '/learn/学而时习之/前端组件封装实例/输入框组件封装' },
+      ]
+    },
+    {
+      text: '🎡 前端第三方组件修改案例学习',
+      collapsible: true,
+      items: [
+        { text: '通过el-select实现多个省略学习如何改造第三方组件满足自己的要求', link: '/learn/学而时习之/前端第三方组件修改案例学习/通过el-select实现多个省略学习如何改造第三方组件满足自己的要求' },
+        { text: '通过el-table实现多数据完美无限滚动效果', link: '/learn/学而时习之/前端第三方组件修改案例学习/通过el-table实现多数据完美无限滚动效果' },
+        { text: '通过el-calendar实现业务', link: '/learn/学而时习之/前端第三方组件修改案例学习/通过el-calendar实现业务' },
+      ]
+    },
+    {
+      text: '✨ 前端功能操作模块',
+      collapsible: true,
+      items: [
+        { text: '前端文件上传与相关操作', link: '/learn/学而时习之/前端功能操作模块/前端文件上传与相关操作' },
+        { text: '前端下载后端传输的文件', link: '/learn/学而时习之/前端功能操作模块/前端下载后端传输的文件' },
+        { text: '前端操作excel与word', link: '/learn/学而时习之/前端功能操作模块/前端操作excel与word' },
+      ]
+    },
+    {
+      text: '🎿 更上一层楼',
+      collapsible: true,
+      items: [
+        { text: '前端性能优化方案', link: '/learn/学而时习之/更上一层楼/前端性能优化方案' },
+        { text: 'Axios二次封装', link: '/learn/学而时习之/更上一层楼/Axios二次封装' },
+        { text: 'Vue项目权限控制', link: '/learn/学而时习之/更上一层楼/Vue项目权限控制' },
+      ]
+    },
+    {
       text: '学而时习之',
       collapsible: true,
       items: [
-        { text: '通过el-select实现多个省略学习如何改造第三方组件满足自己的要求', link: '/learn/学而时习之/通过el-select实现多个省略学习如何改造第三方组件满足自己的要求' },
-        { text: '通过el-table实现多数据完美无限滚动效果', link: '/learn/学而时习之/通过el-table实现多数据完美无限滚动效果' },
         { text: '操作内嵌ifrname与传递消息', link: '/learn/学而时习之/操作内嵌ifrname与传递消息' },
-        {
-          text: '🔏 前端组件封装系列',
-          collapsible: true,
-          items: [
-            { text: 'Vue组件设计技巧', link: '/learn/学而时习之/前端组件封装实例/vue组件设计技巧' },
-            { text: '对话框弹窗组件', link: '/learn/学而时习之/前端组件封装实例/对话框弹窗组件' },
-            { text: '输入框组件封装', link: '/learn/学而时习之/前端组件封装实例/输入框组件封装' },
-          ]
-        },
-        {
-          text: '✨ 前端功能操作模块',
-          collapsible: true,
-          items: [
-            { text: '前端文件上传与相关操作', link: '/learn/学而时习之/前端功能操作模块/前端文件上传与相关操作' },
-            { text: '前端下载后端传输的文件', link: '/learn/学而时习之/前端功能操作模块/前端下载后端传输的文件' },
-            { text: '前端操作excel与word', link: '/learn/学而时习之/前端功能操作模块/前端操作excel与word' },
-          ]
-        },
-        {
-          text: '🎿 更上一层楼',
-          collapsible: true,
-          items: [
-            { text: '前端性能优化方案', link: '/learn/学而时习之/更上一层楼/前端性能优化方案' },
-            { text: 'Axios二次封装', link: '/learn/学而时习之/更上一层楼/Axios二次封装' },
-            { text: 'Vue项目权限控制', link: '/learn/学而时习之/更上一层楼/Vue项目权限控制' },
-          ]
-        },
+        
         { text: '🗑 返回', link: '/learn' },
       ]
     }
