@@ -4,9 +4,237 @@ title 详情页
 
 ## 音频详情
 
-音频详情页需要一个播放音频的控件，在最开始的时候使用的是 `uniapp` 提供的 `audio` 组件，在app上运行无误，但是在h5上运行时报错，发现其组件停止维护。根据项目经理的要求，为了不给后续埋雷，改成使用 API 的形式。
+音频详情页需要一个播放音频的控件，在最开始的时候使用的是 `uniapp` 提供的 `audio` 组件，在app上运行无误，但是在h5上运行时报错，发现其组件停止维护。根据项目经理的要求，为了不给后续埋雷，改成使用 API  ` uni.createInnerAudioContext()` 的形式。
 
-音频 API 详情查看 [音频组件控制](https://uniapp.dcloud.net.cn/api/media/audio-context.html#createinneraudiocontext) 官方文档。
+### 音频组件
+
+#### 初步实现
+
+音频 API 详情查看 [音频组件控制](https://uniapp.dcloud.net.cn/api/media/audio-context.html#createinneraudiocontext) 官方文档。该方法用于创建并返回内部 audio 上下文 `innerAudioContext` 对象。
+
+我们需要实现下方的效果：
+
+[![p9fDRij.png](https://s1.ax1x.com/2023/05/18/p9fDRij.png)](https://imgse.com/i/p9fDRij)
+
+我们需要音频的总时长、当前播放的时长、进度条、暂停播放的控制等。
+
+首先查看文档的代码示例，示例代码如下：
+
+```js
+const innerAudioContext = uni.createInnerAudioContext();
+innerAudioContext.autoplay = true;
+innerAudioContext.src = 'https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-hello-uniapp/2cc220e0-c27a-11ea-9dfb-6da8e309e0d8.mp3';
+innerAudioContext.onPlay(() => {
+  console.log('开始播放');
+});
+innerAudioContext.onError((res) => {
+  console.log(res.errMsg);
+  console.log(res.errCode);
+});
+```
+
+从示例代码可以得知，使用 `uni.createInnerAudioContext()` 方法创建一个音频对象，通过 `src` 属性接收音频的路径，`autoplay` 为是否自动播放，`onPlay` 开始播放后触发回调函数的方法，`onError` 音频发生错误触发回调函数的方法······
+
+**实现思路**
+
+查看 `innerAudioContext` 对象属性列表和方法列表，找到了我们需要的几个参数：
+
+- `currentTime` ：当前音频的播放位置（单位：s），只有在当前有合法的 `src` 时返回。在音频播放事件内也要实时获取数据并赋值。
+- `paused` ：当前是是否暂停或停止状态，`true` 表示暂停或停止，`false` 表示正在播放。通过该状态判断按钮的点击事件是触发播放还是暂停。
+- `duration` ：当前音频的长度（单位：s），只有在当前有合法的 `src` 时返回，需要在 `onCanplay` 中获取。该值获取到后不再变动，不需要二次赋值。
+- `play` ：音频播放方法。
+- `pause` ：音频暂停方法。
+- `onCanplay` ：音频加载完可以开始播放后触发的回调函数，在该回调函数中获取音频的总时长。（回调函数是重点，后面要考）
+- `onPlay` ：音频播放事件，传入一个回调函数，开始播放后触发该回调函数。
+- `onPause` ：音频暂停事件，传入一个回调函数，暂停播放后触发该回调函数。
+- `onTimeUpdate` ：音频播放进度更新事件，传入一个回调函数，播放音频时触发该回调函数，此时音频对象的 `currentTime` 属性是最新的音频时间，因此要在这里实时做赋值操作。
+
+总结一下，在页面刚进入时获取音频路径，创建音频上下文对象，把音频路径赋值给其 `src` 属性。在其 `onCanplay` 回调中获取其总时长。由于可以开始播放后会触发 `onCanplay` 事件，因此可以先创建一个变量 `loading` ，初始值为 `true` ，等触发`onCanplay` 回调后再改为 `false` ，表示已加载完毕。
+
+创建一个变量 `playStatus` 用于保存当前音频的播放状态。给音频上下文文件添加回调函数：开始播放、错误、停止、音频进度发生改变。其中音频进度发生改变时实时把值赋值给音频当前时长的变量。
+
+当页面退出后销毁该音频。
+
+**代码**
+
+```vue
+<script setup>
+	import {
+		onBeforeUnmount,
+		ref,
+	} from "vue";
+	import {
+		onHide,
+		onLoad,
+	} from '@dcloudio/uni-app';
+	import Loading from "@/components/audioControl/component/Loading";
+	import useMineStore from '@/stores/modules/mine';
+	import {
+		storeToRefs
+	} from 'pinia'
+
+	const mineStore = useMineStore()
+	const {
+		saveMusic
+	} = storeToRefs(mineStore)
+
+	//音频信息
+	//当前音频时长
+	let duration = ref(-1);
+	//当前播放时间
+	let currentTime = ref(0);
+	//当前停止状态 true为停止 false为播放
+	let playStatus = ref(false);
+
+	//创建音频上下文
+	let context = ref({});
+	let loading = ref(false)
+
+	onLoad((val) => {
+		context.value = uni.createInnerAudioContext()
+		loading.value = true
+		context.value.src = saveMusic.value.playUrl;
+		currentTime.value = saveMusic.value.auditionTime ? Math.round(context.value.currentTime) : context.value.currentTime;
+		playStatus.value = context.value.paused;
+		context.value.onCanplay(() => {
+			duration.value = context.value.duration;
+			console.log("音频播放控件准备好了", context.value.buffered, duration.value);
+			loading.value = false
+		});
+		//音频错误时
+		context.value.onError((res) => {
+			uni.showToast({
+				title: res.errMsg,
+				icon: 'none'
+			})
+			loading.value = false
+		});
+		//音频进度改变结束
+		context.value.onSeeked(() => {
+			isSeeking.value = false
+			if (!prevStatus.value && context.value.paused) {
+				onPlayAudio();
+			}
+		})
+		context.value.onTimeUpdate(() => {
+			timeUpdateFn()
+		});
+		
+		context.value.onEnded(() => {
+			ended()
+		})
+	})
+
+	/*音频控制*/
+	//播放
+	const onPlayAudio = async () => {
+		context.value.play();
+		playStatus.value = false;
+	};
+	//暂停
+	const onPauseAudio = async () => {
+		context.value.pause();
+		playStatus.value = true;
+	};
+	//停止
+	const onStopAudio = async () => {
+		if (context.value) context.value.stop();
+		playStatus.value = true;
+		currentTime.value = 0;
+		context.value.currentTime = 0
+		context.value.seek(0)
+	};
+
+	//点击播放暂停
+	const onPlay = () => {
+		if (context.value.paused) {
+			changeType.value = true
+			//播放
+			onPlayAudio();
+		} else {
+			changeType.value = false
+			//暂停
+			onPauseAudio();
+		}
+	};
+    
+	//拖动进度条时
+	let seekChangeType = ref(false);
+	const changingAudioProgress = (e) => {
+		currentTime.value = e.detail.value;
+		seekChangeType.value = true
+	};
+	//进度条拖动结束
+	const changeAudioProgress = (e) => {
+		// 若拖动前音频呈播放状态，则防抖处理
+		seekChangeType.value = false
+		context.value.startTime = e.detail.value;
+		context.value.seek(e.detail.value);
+	};
+
+	// 音频播放结束后
+	const ended = async () => {
+		onStopAudio()
+	}
+
+	//音频进度改变时，此回调有原生BUG，音频停止后会继续执行
+	const timeUpdateFn = () => {
+		// 加条件限制，音频停止时不执行该逻辑
+		if (context.value.currentTime && !context.value.paused && !seekChangeType.value) {
+			currentTime.value = context.value.currentTime
+		}
+	}
+    
+    onBeforeUnmount(() => {
+        context.value.destroy() // 退出后销毁该音频
+    })
+</script>
+
+<template>
+	<view>
+		<!-- 标题 -->
+		<view class="title">{{saveMusic.title}}</view>
+		
+		<view class="music">
+			<view class="music-box">
+				<!-- 进度条 -->
+				<view class="audio-control-page">
+					<slider :min="0" :max="saveMusic.totalDuration ? saveMusic.totalDuration.toFixed(1) : duration.toFixed(1)" activeColor="#e1a452" backgroundColor="#e2e2e2" block-color="#fff" block-size="12" :value="currentTime.toFixed(1)" :step="0.1" @change="changeAudioProgress" @changing="changingAudioProgress" :disabled='loading' />
+				</view>
+				<!--时间显示-->
+				<view class="audio-time">
+					<template v-if="loading">
+						<text>音频加载中..</text>
+					</template>
+					<template v-else>
+						<text class="">{{ useComputeAudioTime(currentTime) }}</text>
+						<text class="">{{ useComputeAudioTime(saveMusic.totalDuration ? saveMusic.totalDuration : duration) }}</text>
+					</template>
+				</view>
+			</view>
+		
+			<!-- 播放按钮区域 -->
+			<view class="play-btn">
+				<!--  loading  -->
+				<view class="audio-play-btn" v-if="loading">
+					<Loading :loading="true"></Loading>
+				</view>
+				<view class="audio-play-btn" v-else>
+					<!--   暂停   -->
+					<u-icon name="pause" size="50" v-show="!playStatus" @click="onPlay"></u-icon>
+		
+					<!--   开始   -->
+					<u-icon name="play-right-fill" size="50" v-show="playStatus" @click="onPlay"></u-icon>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+```
+
+#### 进度条拖拽
+
+现在基于第一版做功能升级。市面上的音频功能大多都可以通过拖拽进度条的形式改变当前音频播放的
 
 ### 音频下载
 免费音频支持用户下载功能，下载功能的实现依靠 `uniapp` 提供的 [uni.downloadFile](https://uniapp.dcloud.net.cn/api/request/network-file.html#downloadfile) 方法。该方法成功后会触发 `success` 函数，返回下载好的临时路径，如下所示。
