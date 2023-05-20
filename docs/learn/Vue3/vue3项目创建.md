@@ -64,6 +64,22 @@ npm install -g yarn
 yarn create vite daodao --template vue-ts
 ```
 
+或者使用 `@vue/latest` 创建，他会执行 `create vite` 命令
+
+```js
+npm init @vue/latest
+```
+
+## 入口文件详解
+
+```js
+import {createApp} from 'vue' // 类似于vue2的new Vue()
+import App from './App.vue' // 引入根组件
+createApp(App).mount('#app') // 把项目挂载到id为app的标签上
+```
+
+
+
 ## 使用ES模块创建vue3项目
 
 ### 创建html

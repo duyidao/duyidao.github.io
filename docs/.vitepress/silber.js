@@ -27,6 +27,8 @@ export default {
   '/project/lingsi/crm': getCRMSidebar(),
   '/project/lingsi/elk': getELKSidebar(),
   '/project/myself': getMyselfSidebar(),
+  '/project/myself/小兔鲜': getMyRabbitSidebar(),
+  '/project/myself/硅谷甄选': getMyCowSidebar(),
   '/vitePress': getVitePressSidebar(),
   '/about': getAboutSidebar(),
 }
@@ -228,6 +230,7 @@ function getLearnTimeSidebar() {
         { text: '前端文件上传与相关操作', link: '/learn/学而时习之/前端功能操作模块/前端文件上传与相关操作' },
         { text: '前端下载后端传输的文件', link: '/learn/学而时习之/前端功能操作模块/前端下载后端传输的文件' },
         { text: '前端操作excel与word', link: '/learn/学而时习之/前端功能操作模块/前端操作excel与word' },
+        { text: '富文本编辑器', link: '/learn/学而时习之/前端功能操作模块/富文本编辑器' },
       ]
     },
     {
@@ -244,8 +247,6 @@ function getLearnTimeSidebar() {
       collapsible: true,
       items: [
         { text: '操作内嵌ifrname与传递消息', link: '/learn/学而时习之/操作内嵌ifrname与传递消息' },
-        
-        { text: '🗑 返回', link: '/learn' },
       ]
     }
   ]
@@ -345,7 +346,37 @@ function getMyselfSidebar() {
       collapsible: true,
       items: [
         { text: '引言', link: "/project/myself/" },
+        { text: '小兔鲜', link: "/project/myself/小兔鲜/" },
+        { text: '硅谷甄选', link: "/project/myself/硅谷甄选/" },
         { text: '🗑 返回', link: '/project/' },
+      ]
+    }
+  ]
+}
+
+// 获取小兔鲜项目的数组
+function getMyRabbitSidebar(params) {
+  return [
+    {
+      text: "🐇 小兔鲜",
+      collapsible: true,
+      items: [
+        { text: '引言', link: "/project/myself/小兔鲜/" },
+        { text: '🗑 返回', link: '/project/myself/' },
+      ]
+    }
+  ]
+}
+
+// 获取硅谷甄选项目的数组
+function getMyCowSidebar(params) {
+  return [
+    {
+      text: "🐂 硅谷甄选",
+      collapsible: true,
+      items: [
+        { text: '引言', link: "/project/myself/硅谷甄选/" },
+        { text: '🗑 返回', link: '/project/myself/' },
       ]
     }
   ]
