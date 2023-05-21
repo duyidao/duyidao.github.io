@@ -142,6 +142,7 @@ function getLearnVue3Sidebar() {
       { text: "vue3的使用", link: "/learn/Vue3/vue3的使用" },
       { text: "插槽", link: "/learn/Vue3/插槽" },
       { text: "动态组件", link: "/learn/Vue3/动态组件" },
+      { text: "pinia", link: "/learn/Vue3/pinia" },
       { text: "源码", link: "/learn/Vue3/源码" },
     ],
   }]

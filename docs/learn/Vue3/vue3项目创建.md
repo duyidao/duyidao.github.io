@@ -67,8 +67,10 @@ yarn create vite daodao --template vue-ts
 或者使用 `@vue/latest` 创建，他会执行 `create vite` 命令
 
 ```js
-npm init @vue/latest
+npm init vue@latest
 ```
+
+[![p9I9xyD.md.png](https://s1.ax1x.com/2023/05/21/p9I9xyD.md.png)](https://imgse.com/i/p9I9xyD)
 
 ## 入口文件详解
 

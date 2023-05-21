@@ -77,9 +77,9 @@ export default {
 
 ```
 
-总结：
-
-把复杂类型的数据转为响应式数据。必须是复杂类型，普通类型的数据无法被转换。
+>  总结：
+>
+> 把复杂类型的数据转为响应式数据。必须是复杂类型，普通类型的数据无法被转换。
 
 ## `ref`
 
@@ -246,7 +246,7 @@ const theAge = computed({
 
 侦听器有三个参数，分别是：
 
-1. 参数1: 监视的数据源
+1. 参数1: 监视的数据源，该变量不需要加 `.value` ，底层代码已经帮我们自动处理了。
 2. 参数2: 回调函数
 3. 参数3: 额外的配置
 
@@ -291,10 +291,10 @@ const cost = () => {
   return money.value -= 520, love.value += 1
 }
 
-watch([money, love], (newval, oldval)=> {
+watch([money, love], ([newMoney, newLove], [oldMoney, oldLove])=> {
   console.log('花钱了，好感度上升了');
-  console.log(newval);
-  console.log(oldval);
+  console.log(newMoney, newLove);
+  console.log(oldMoney, oldLove);
 })
 </script>
 
@@ -326,7 +326,8 @@ watch(
     console.log('user对象发生变化');
   },
   {
-    deep: true
+    deep: true,
+    immediate: true
   }
 )
 </script>
@@ -364,7 +365,8 @@ watch(
     console.log('user年龄发生变化');
   },
   {
-    deep: true
+    deep: true,
+    immediate: true
   }
 )
 </script>
@@ -388,6 +390,8 @@ watch(
 vue3 中的生命周期函数, 需要在 `setup` 中调用。
 
 ![通讯](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e799f58f8f254c5484964b3b3c61660c~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp)
+
+在 `vue3` 中，生命周期触发时回调函数的执行可以多个，按照代码顺序从上往下依次执行。
 
 ## 组件通讯
 
@@ -509,6 +513,10 @@ vue3 中的生命周期函数, 需要在 `setup` 中调用。
   </template>
   
   ```
+
+### 父组件使用子组件数据
+
+`setup` 语法糖的变量不允许跨组件使用，想要使用子组件的变量需要子组件通过 `defineExpose` 导出允许父组件使用的变量和方法。
 
 ## 依赖注入
 
