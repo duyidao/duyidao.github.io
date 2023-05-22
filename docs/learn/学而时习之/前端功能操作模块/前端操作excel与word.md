@@ -9,7 +9,7 @@
 
 ### 转化示意
 
-![iaa1pw.png](https://i.328888.xyz/2023/05/07/iaa1pw.png)
+![iaa1pw.png](https://i.imgloc.com/2023/05/07/iaa1pw.png)
 
 ### 前端excel转为表格或数据
 
@@ -20,7 +20,7 @@
    - `SheetNames` ：`excel` 表中所有表的表名，逗号隔开的数组
    - `Sheets` ：每一个表格中包含的数据的数组对象
 
-   ![ia1CuQ.png](https://i.328888.xyz/2023/05/07/ia1CuQ.png)
+   ![ia1CuQ.png](https://i.imgloc.com/2023/05/07/ia1CuQ.png)
 
 3. 通过 `utils` 中的 `sheet_to_json` 方法把晦涩难用的数据转为数组格式
 
