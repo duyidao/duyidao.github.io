@@ -275,42 +275,50 @@ function getLingsiSidebar() {
 function getMusicSidebar() {
   return [
     {
-      text: "🎶 音果云音",
+      text: " 📱 APP",
       collapsible: true,
       items: [
-        {
-          text: "🎶 音果云音",
-          // collapsible: true,
-          link: "/project/lingsi/music/",
-          items: [
-            {
-              text: " 📱 APP",
-              collapsible: true,
-              items: [
-                { text: '登录', link: "/project/lingsi/music/APP/login" },
-                { text: 'tabbar', link: "/project/lingsi/music/APP/tabbar" },
-                { text: '详情', link: "/project/lingsi/music/APP/detail" },
-                { text: '分享', link: "/project/lingsi/music/APP/share" },
-                { text: '测试', link: "/project/lingsi/music/APP/test" },
-                { text: '操作', link: "/project/lingsi/music/APP/do" },
-                { text: '商品', link: "/project/lingsi/music/APP/sku" },
-                { text: '支付', link: "/project/lingsi/music/APP/pay" },
-                { text: '更新', link: "/project/lingsi/music/APP/update" },
-                { text: '个人', link: "/project/lingsi/music/APP/userinfo" },
-              ]
-            },
-            {
-              text: '💻 H5',
-              collapsible: true,
-              items: [
-                { text: '海报页', link: '/project/lingsi/music/H5/' }
-              ]
-            },
-            { text: '🗑 返回', link: '/project/lingsi/' },
-          ],
-        }
-      ],
+        { text: '登录', link: "/project/lingsi/music/APP/login" },
+        { text: 'tabbar', link: "/project/lingsi/music/APP/tabbar" },
+        { text: '详情', link: "/project/lingsi/music/APP/detail" },
+        { text: '分享', link: "/project/lingsi/music/APP/share" },
+        { text: '测试', link: "/project/lingsi/music/APP/test" },
+        { text: '操作', link: "/project/lingsi/music/APP/do" },
+        { text: '商品', link: "/project/lingsi/music/APP/sku" },
+        { text: '支付', link: "/project/lingsi/music/APP/pay" },
+        { text: '更新', link: "/project/lingsi/music/APP/update" },
+        { text: '个人', link: "/project/lingsi/music/APP/userinfo" },
+      ]
+    },
+    {
+      text: '💻 H5',
+      collapsible: true,
+      items: [
+        { text: '海报页', link: '/project/lingsi/music/H5/' }
+      ]
+    },
+    {
+      text: '返回',
+      collapsible: true,
+      items: [
+        { text: '🗑 返回', link: '/project/lingsi/' },
+      ]
     }
+    // {
+    //   text: "🎶 音果云音",
+    //   collapsible: true,
+    //   items: [
+    //     {
+    //       text: "🎶 音果云音",
+    //       // collapsible: true,
+    //       link: "/project/lingsi/music/",
+    //       items: [
+
+
+    //       ],
+    //     }
+    //   ],
+    // }
   ]
 }
 
@@ -321,20 +329,13 @@ function getJobSidebar() {
       text: "🔧 职技网",
       collapsible: true,
       items: [
-        {
-          text: "🔧 职技网",
-          // collapsible: true,
-          link: "/project/lingsi/职技网/",
-          items: [
-            { text: '项目创建', link: "/project/lingsi/职技网/项目创建" },
-            { text: 'vant组件二次封装', link: "/project/lingsi/职技网/vant组件二次封装" },
-            { text: '微信授权', link: "/project/lingsi/职技网/微信授权" },
-            { text: '下载附件', link: "/project/lingsi/职技网/下载附件" },
-            { text: '富文本', link: "/project/lingsi/职技网/富文本" },
-          ]
-        },
+        { text: '项目创建', link: "/project/lingsi/职技网/项目创建" },
+        { text: 'vant组件二次封装', link: "/project/lingsi/职技网/vant组件二次封装" },
+        { text: '微信授权', link: "/project/lingsi/职技网/微信授权" },
+        { text: '下载附件', link: "/project/lingsi/职技网/下载附件" },
+        { text: '富文本', link: "/project/lingsi/职技网/富文本" },
         { text: '🗑 返回', link: '/project/lingsi/' },
-      ],
+      ]
     }
   ]
 }
@@ -423,6 +424,7 @@ function getSaleSidebar() {
         { text: '分享', link: '/project/lingsi/sale/分享' },
         { text: '视频轮播', link: '/project/lingsi/sale/video' },
         { text: '图片上传组件封装', link: '/project/lingsi/sale/upload' },
+        { text: '关注公众号', link: '/project/lingsi/sale/关注公众号' },
         { text: '🗑 返回', link: '/project/lingsi/' },
       ]
     }
