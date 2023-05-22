@@ -294,31 +294,10 @@ function getMusicSidebar() {
       text: '💻 H5',
       collapsible: true,
       items: [
-        { text: '海报页', link: '/project/lingsi/music/H5/' }
-      ]
-    },
-    {
-      text: '返回',
-      collapsible: true,
-      items: [
+        { text: '海报页', link: '/project/lingsi/music/H5/' },
         { text: '🗑 返回', link: '/project/lingsi/' },
       ]
-    }
-    // {
-    //   text: "🎶 音果云音",
-    //   collapsible: true,
-    //   items: [
-    //     {
-    //       text: "🎶 音果云音",
-    //       // collapsible: true,
-    //       link: "/project/lingsi/music/",
-    //       items: [
-
-
-    //       ],
-    //     }
-    //   ],
-    // }
+    },
   ]
 }
 

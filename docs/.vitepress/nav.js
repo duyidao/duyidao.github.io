@@ -24,7 +24,12 @@ export default [
   {
     text: "💾 项目",
     items: [
-      { text: "📖 项目总结", link: "/project/" },
+      { text: "灵思", link: "/project/lingsi/" },
+      {
+        items: [
+          {text:'自主学习', link: '/project/myself/'}
+        ]
+      }
     ],
   },
   {
