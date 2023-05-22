@@ -77,9 +77,22 @@ export default {
 
 ```
 
->  总结：
+>  `reactive()` 的局限性
 >
-> 把复杂类型的数据转为响应式数据。必须是复杂类型，普通类型的数据无法被转换。
+>  `reactive()` API 有两条限制：
+>
+>  1. 仅对对象类型有效（对象、数组和 `Map`、`Set` 这样的[集合类型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects#使用键的集合对象)），而对 `string`、`number` 和 `boolean` 这样的 [原始类型](https://developer.mozilla.org/zh-CN/docs/Glossary/Primitive) 无效。
+>
+>  2. 因为 Vue 的响应式系统是通过属性访问进行追踪的，因此我们必须始终保持对该响应式对象的相同引用。这意味着我们不可以随意地“替换”一个响应式对象，因为这将导致对初始引用的响应性连接丢失：
+>
+>     js
+>
+>     ```js
+>     let state = reactive({ count: 0 })
+>     
+>     // 上面的引用 ({ count: 0 }) 将不再被追踪（响应性连接已丢失！）
+>     state = reactive({ count: 1 })
+>     ```
 
 ## `ref`
 
@@ -127,9 +140,7 @@ ref 和 reactive 的最佳使用方式：
 要使用这个语法，需要将 `setup` attribute 添加到 `<script>` 代码块上：
 
 ```vue
-<script setup>
-</script>
-
+<script setup></script>
 ```
 
 顶层的绑定会自动暴露给模板，所以定义的变量，函数和import导入的内容都可以直接在模板中直接使用
@@ -241,6 +252,16 @@ const theAge = computed({
 </style>
 
 ```
+
+> 注意：
+>
+> - Getter 不应有副作用
+>
+>   计算属性的 getter 应只做计算而没有任何其他的副作用，这一点非常重要，请务必牢记。举例来说，**不要在 getter 中做异步请求或者更改 DOM**！一个计算属性的声明中描述的是如何根据其他值派生一个值。因此 getter 的职责应该仅为计算和返回该值。在之后的指引中我们会讨论如何使用[监听器](https://cn.vuejs.org/guide/essentials/watchers.html)根据其他响应式状态的变更来创建副作用。
+>
+> - 避免直接修改计算属性值
+>
+>   从计算属性返回的值是派生状态。可以把它看作是一个“临时快照”，每当源状态发生变化时，就会创建一个新的快照。更改快照是没有意义的，因此计算属性的返回值应该被视为只读的，并且永远不应该被更改——应该更新它所依赖的源状态以触发新的计算。
 
 ## 侦听器
 
