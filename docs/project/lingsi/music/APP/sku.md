@@ -4,7 +4,7 @@ title sku商品规格
 # sku商品规格
 工具类商品提供 `sku` 规格搜索，效果如下图：
 
-![iMS8Xv.png](https://i.328888.xyz/2023/05/03/iMS8Xv.png)
+![iMS8Xv.png](https://i.imgloc.com/2023/05/03/iMS8Xv.png)
 
 每项分类都有几个选项，选择完相应的规格后会显示对应的图片、价格、库存数量等。
 
@@ -14,7 +14,7 @@ title sku商品规格
 
 ### 商品规格
 
-![iMSuxU.png](https://i.328888.xyz/2023/05/03/iMSuxU.png)
+![iMSuxU.png](https://i.imgloc.com/2023/05/03/iMSuxU.png)
 
 后端返回一个数组对象，对象内返回相应的数据：
 

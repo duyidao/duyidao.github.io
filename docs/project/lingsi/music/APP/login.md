@@ -109,7 +109,7 @@ onLoad((val) => {
 
 为了方便测试和调试， `appSecret` 可以直接在源码中设置，如下：
 
-![iPcYZ5.png](https://i.328888.xyz/2023/05/04/iPcYZ5.png)
+![iPcYZ5.png](https://i.imgloc.com/2023/05/04/iPcYZ5.png)
 
 > 注意：
 >
@@ -133,7 +133,7 @@ uni.login({
 
 打印的结果如下图所示：
 
-![iPmfBQ.png](https://i.328888.xyz/2023/05/04/iPmfBQ.png)
+![iPmfBQ.png](https://i.imgloc.com/2023/05/04/iPmfBQ.png)
 
 授权登录成功后可以获取用户信息，通过 `uni.getUserInfo` 方法。该方法可以获取用户的头像、昵称、性别等字段。
 
@@ -177,7 +177,7 @@ const wxLoginFn = () => {
 
 获取到的返回结果如下所示：
 
-![iPmADC.png](https://i.328888.xyz/2023/05/04/iPmADC.png)
+![iPmADC.png](https://i.imgloc.com/2023/05/04/iPmADC.png)
 
 根据所拿到的数据对象与后端沟通，最后讨论出来的解决方案是把该 `openId` 连同手机号密码一起传递给后端接口即可。
 
