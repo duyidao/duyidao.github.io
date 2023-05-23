@@ -64,8 +64,8 @@ const getBluetoothDevices = () => {
           }
         });
         uni.hideLoading();
-        // 过滤出音果的设备
-        list.value = res.devices.filter(item => item.localName.indexOf('TGYY') !== -1);
+        // 根据名称，过滤出音果的设备
+        list.value = res.devices.filter();
         isShow.value = true;
       },
       fail: err => {
@@ -96,13 +96,13 @@ const getBluetoothDevices = () => {
 ```
 
 ## 连接低功耗蓝牙
-`uni.createBLEConnection(OBJECT)` 连接低功耗蓝牙设备。<br />**OBJECT 参数说明**
+`uni.createBLEConnection(OBJECT)` 连接低功耗蓝牙设备。
 
 | 属性 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |
 | deviceId | string | 是 | 用于区分设备的 id |
 
-设备 `id` 在第三步获取蓝牙设备步骤中成功回调里获取。我给每条搜索到的蓝牙结果添加一个 `click` 事件，会向目标设备发送连接请求，连接成功后可获取状态值。<br />流程如下：
+设备 `id` 在第三步获取蓝牙设备步骤中成功回调里获取。我给每条搜索到的蓝牙结果添加一个 `click` 事件，会向目标设备发送连接请求，连接成功后可获取状态值。流程如下：
 
 1. 连接设备：使用设备ID进行连接 `uni.createBLEConnection`
 2. 获取设备所有服务：使用设备ID进行连接 `uni.getBLEDeviceServices`
@@ -193,12 +193,11 @@ const handleBLEDeviceFn = uuid => {
     title: '正在获取特征值',
     duration: 3000
   });
-  uuidStr.value = uuid.uuid;
   uni.getBLEDeviceCharacteristics({
     // 这里的 deviceId 需要已经通过 createBLEConnection 与对应设备建立链接
-    deviceId: deviceId.value,
+    deviceId,
     // 这里的 serviceId 需要在 getBLEDeviceServices 接口中获取
-    serviceId: uuid.uuid,
+    serviceId,
     success(res) {
       console.log('device getBLEDeviceCharacteristics:', res.characteristics);
       uni.hideLoading();
@@ -226,8 +225,8 @@ const handleBLEDeviceFn = uuid => {
         if (item.properties.notify || item.properties.indicate) {
           // 要开启这个才能监听
           uni.notifyBLECharacteristicValueChange({
-            deviceId: deviceId.value,
-            serviceId: uuid.uuid,
+            deviceId,
+            serviceId,
             characteristicId: item.uuid,
             state: true,
             success(res) {
@@ -299,11 +298,11 @@ const handleClick = (str) => {
   }
   uni.writeBLECharacteristicValue({
     // 这里的 deviceId 需要在 getBluetoothDevices 或 onBluetoothDeviceFound 接口中获取
-    deviceId: deviceId.value,
+    deviceId,
     // 这里的 serviceId 需要在 getBLEDeviceServices 接口中获取
-    serviceId: uuidStr.value,
+    serviceId,
     // 这里的 characteristicId 需要在 getBLEDeviceCharacteristics 接口中获取
-    characteristicId: characteristicId.value,
+    characteristicId,
     // 这里的value是ArrayBuffer类型
     value: buffer,
     writeType: 'write',
@@ -921,7 +920,7 @@ new DataView(buffer, byteOffset, byteLength)
 ```
 
 # 扫一扫
-uniapp 内置事件 [uni.scanCode](https://uniapp.dcloud.net.cn/api/system/barcode.html#scancode) 可调起客户端扫码界面，扫码成功后返回对应的结果。<br />**参数说明**
+uniapp 内置事件 [uni.scanCode](https://uniapp.dcloud.net.cn/api/system/barcode.html#scancode) 可调起客户端扫码界面，扫码成功后返回对应的结果。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |

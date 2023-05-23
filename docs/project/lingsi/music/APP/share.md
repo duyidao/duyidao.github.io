@@ -1,7 +1,7 @@
 ---
 title 分享页
 ---
-使用者点击分享按钮后会跳到分享页，生成落地海报，点击保存按钮可将海报保存到相册中。<br />思路整理：
+使用者点击分享按钮后会跳到分享页，生成落地海报，点击保存按钮可将海报保存到相册中。思路整理：
 
 - 由于要能够下载整张落地页海报到相册，因此需用到画布组件 [canvas](https://uniapp.dcloud.net.cn/component/canvas.html#canvas) 。
 - 画布内容生成用到 [uni.canvasToTempFilePath](https://uniapp.dcloud.net.cn/api/canvas/canvasToTempFilePath.html#canvastotempfilepath) 方法。

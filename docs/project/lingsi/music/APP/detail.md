@@ -94,7 +94,7 @@ innerAudioContext.onError((res) => {
 		context.value = uni.createInnerAudioContext()
 		loading.value = true
 		context.value.src = saveMusic.value.playUrl;
-		currentTime.value = saveMusic.value.auditionTime ? Math.round(context.value.currentTime) : context.value.currentTime;
+		currentTime.value = context.value.currentTime;
 		playStatus.value = context.value.paused;
 		context.value.onCanplay(() => {
 			duration.value = context.value.duration;
@@ -128,21 +128,12 @@ innerAudioContext.onError((res) => {
 	/*音频控制*/
 	//播放
 	const onPlayAudio = async () => {
-		context.value.play();
-		playStatus.value = false;
 	};
 	//暂停
 	const onPauseAudio = async () => {
-		context.value.pause();
-		playStatus.value = true;
 	};
 	//停止
 	const onStopAudio = async () => {
-		if (context.value) context.value.stop();
-		playStatus.value = true;
-		currentTime.value = 0;
-		context.value.currentTime = 0
-		context.value.seek(0)
 	};
 
 	//点击播放暂停
@@ -161,15 +152,9 @@ innerAudioContext.onError((res) => {
 	//拖动进度条时
 	let seekChangeType = ref(false);
 	const changingAudioProgress = (e) => {
-		currentTime.value = e.detail.value;
-		seekChangeType.value = true
 	};
 	//进度条拖动结束
 	const changeAudioProgress = (e) => {
-		// 若拖动前音频呈播放状态，则防抖处理
-		seekChangeType.value = false
-		context.value.startTime = e.detail.value;
-		context.value.seek(e.detail.value);
 	};
 
 	// 音频播放结束后
@@ -179,10 +164,7 @@ innerAudioContext.onError((res) => {
 
 	//音频进度改变时，此回调有原生BUG，音频停止后会继续执行
 	const timeUpdateFn = () => {
-		// 加条件限制，音频停止时不执行该逻辑
-		if (context.value.currentTime && !context.value.paused && !seekChangeType.value) {
-			currentTime.value = context.value.currentTime
-		}
+		currentTime.value = context.value.currentTime
 	}
     
     onBeforeUnmount(() => {
@@ -565,7 +547,6 @@ const list = ref([{
 /*音频控制*/
 //播放
 const onPlayAudio = async () => {
-	console.log('start', currentTime.value)
 	context.value.play();
 	saveMusic.value.id = playId.value
 	playStatus.value = false;
