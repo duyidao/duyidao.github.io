@@ -230,11 +230,15 @@ function meal() {
 meal();
 ```
 
+### 总结
+
+当一个请求需要依赖另外一个请求的结果来运行，就会出现嵌套的情况。这种写法不仅效率低，而且代码冗余，不利于排错。
+
 ## 异步状态
 
 `Promise` 可以理解为承诺，就像我们去 KFC 点餐服务员给我们一引取餐票，这就是承诺。如果餐做好了叫我们这就是成功，如果没有办法给我们做出食物这就是拒绝。
 
-- 一个 `promise` 必须有一个 `then` 方法用于处理状态改变
+> 一个 `promise` 必须有一个 `then` 方法用于处理状态改变
 
 ### 状态说明
 
@@ -258,7 +262,7 @@ console.log(
 ); //Promise {<pending>}
 ```
 
-当更改状态后
+当更改状态后不再改变，状态只能改变一次，即从 `pending` 变为 `fulfilled` 或变为 `rejected`  。
 
 ```js
 console.log(
@@ -274,7 +278,7 @@ console.log(
 ); //Promise {<rejected>: "rejected"}
 ```
 
-`promise` 创建时即立即执行即同步任务，`then` 会放在异步微任务中执行，需要等同步任务执行后才执行。
+`promise` 创建时即立即执行即同步任务，`then` 会放在异步微任务中执行，需要等同步任务执行后才执行。`promise` 操作都是在其他代码后执行，下面会先输出 `daodao.com` 再弹出 `success` 。
 
 ```js
 let promise = new Promise((resolve, reject) => {
@@ -285,7 +289,6 @@ promise.then(msg => {
   console.log(msg);
 });
 console.log("daodao.com");
-promise` 操作都是在其他代码后执行，下面会先输出 `daodao.com` 再弹出 `success
 ```
 
 - `promise` 的 then、catch、finally 的方法都是异步任务
@@ -396,7 +399,7 @@ const p2 = new Promise((resolve, reject) => {
 
 ## then
 
-一个 promise 需要提供一个 then 方法访问 promise 结果，`then` 用于定义当 `promise` 状态发生改变时的处理，即`promise`处理异步操作，`then` 用于结果。
+一个 `promise` 需要提供一个 `then` 方法访问 `promise` 结果，`then` 用于定义当 `promise` 状态发生改变时的处理，即`promise`处理异步操作，`then` 用于结果。
 
 `promise` 就像 `kfc` 中的厨房，`then` 就是我们用户，如果餐做好了即 `fulfilled` ，做不了拒绝即`rejected` 状态。那么 then 就要对不同状态处理。
 
@@ -409,12 +412,12 @@ const p2 = new Promise((resolve, reject) => {
 
 ### 语法说明
 
-then 的语法如下，onFulfilled 函数处理 `fulfilled` 状态， onRejected 函数处理 `rejected` 状态
+`then` 的语法如下，`onFulfilled` 函数处理 `fulfilled` 状态， `onRejected` 函数处理 `rejected` 状态。
 
-- onFulfilled 或 onRejected 不是函数将被忽略
+- `onFulfilled` 或 `onRejected` 不是函数将被忽略
 - 两个函数只会被调用一次
-- onFulfilled 在 promise 执行成功时调用
-- onRejected 在 promise 执行拒绝时调用
+- `onFulfilled` 在 `promise` 执行成功时调用
+- `onRejected` 在 `promise` 执行拒绝时调用
 
 ```js
 promise.then(onFulfilled, onRejected)
@@ -488,7 +491,7 @@ let p1 = new Promise((resolve, reject) => {
 );
 ```
 
-如果 onFulfilled 不是函数且 promise 执行成功, p2 执行成功并返回相同值
+如果 `onFulfilled` 不是函数且 `promise` 执行成功, p2 执行成功并返回相同值
 
 ```js
 let promise = new Promise((resolve, reject) => {
@@ -500,7 +503,7 @@ p2.then().then(resolve => {
 });
 ```
 
-如果 onRejected 不是函数且 promise 拒绝执行，p2 拒绝执行并返回相同值
+如果 `onRejected` 不是函数且 `promise` 拒绝执行，p2 拒绝执行并返回相同值
 
 ```js
 let promise = new Promise((resolve, reject) => {
@@ -514,20 +517,20 @@ p2.then(null, null).then(null, reject => {
 
 ### 链式调用
 
-每次的 `then` 都是一个全新的 `promise`，默认 then 返回的 promise 状态是 fulfilled
+每次的 `then` 都是一个全新的 `promise`，默认 `then` 返回的 `promise` 状态是 `fulfilled` 。
 
 ```js
 let promise = new Promise((resolve, reject) => {
   resolve("fulfilled");
 }).then(resolve => {
-  console.log(resolve);
+  console.log(resolve); // fulfilled
 })
 .then(resolve => {
-  console.log(resolve);
+  console.log(resolve); // undefined
 });
 ```
 
-每次的 `then` 都是一个全新的 `promise`，不要认为上一个 promise 状态会影响以后 then 返回的状态
+每次的 `then` 都是一个全新的 `promise`，不要认为上一个 `promise` 状态会影响以后 `then` 返回的状态
 
 ```js
 let p1 = new Promise(resolve => {
@@ -542,7 +545,7 @@ p2.then(() => {
 console.log(p1); // Promise {<resolved>}
 console.log(p2); // Promise {<pending>}
 
-# 再试试把上面两行放在 setTimeout里
+// 再试试把上面两行放在 setTimeout里
 setTimeout(() => {
   console.log(p1); // Promise {<resolved>}
   console.log(p2); // Promise {<resolved>}
@@ -641,11 +644,11 @@ new Promise((resolve, reject) => {
   });
 })
 .then(value => {
-  console.log(value);
+  console.log(value); // 第二个promise
   return value;
 })
 .then(value => {
-  console.log(value);
+  console.log(value); // 第二个promise
 });
 ```
 
@@ -1297,7 +1300,7 @@ new Promise((resolve, reject) => {
 
 ### 链式加载
 
-使用`promise` 链式操作重构前面章节中的文件加载，使用代码会变得更清晰
+使用 `promise` 链式操作重构前面章节中的文件加载，使用代码会变得更清晰
 
 ```js
 function load(file) {
@@ -1457,7 +1460,7 @@ new Promise(resolve => {
   if (v != "daodao.com") return Promise.reject(new Error("fail"));
 })
 .catch(error => {
-  console.log(error);
+  console.log(error); // fail
 });
 ```
 
@@ -1492,7 +1495,7 @@ const fn = Promise.all([dd, daodao])
   });
 ```
 
-根据用户名获取用户，有任何一个用户获取不到时 `promise.all` 状态失败，执行 `catch` 方法
+根据用户名获取用户，有任何一个接口报错时 `promise.all` 状态失败，执行 `catch` 方法
 
 ```js
 function ajax(url) {
@@ -1597,13 +1600,35 @@ Promise.allSettled(promises).then(response => {
 });
 ```
 
+### any
+
+`any` 表示任意，哪一个接口返回成功则使用其返回的数据。
+
+```js
+const p1 = new Promise((resolve, reject) => {
+  resolve("resolved");
+});
+const p2 = new Promise((resolve, reject) => {
+  reject("rejected");
+});
+const p3 = new Promise((resolve, reject) => {
+  resolve("resolve2");
+});
+Promise.any() // resolved
+Promise.any([p2, p3, p1]) // resolve2
+```
+
+- 只要参数中有一个 `Promise` 实例化对象状态为 `fulfilled`，则整体结果为 `fulfilled`
+- 如果所有状态为 `rejected`，那么结果就为 `rejected`
+- 括号内不传默认采用最开始的那条返回结果；括号内传值则根据括号内的先后顺序采用最开始那条
+
 ### race
 
 使用`Promise.race()` 处理容错异步，和`race`单词一样哪个 Promise 快用哪个，哪个先返回用哪个。
 
-- 以最快返回的 promise 为准
-- 如果最快返加的状态为`rejected` 那整个`promise`为`rejected`执行 cache
-- 如果参数不是 promise，内部将自动转为 promise
+- 以最快返回的 `promise` 为准
+- 如果最快返加的状态为`rejected` 那整个`promise`为`rejected`执行 `cache`
+- 如果参数不是 `promise`，内部将自动转为 `promise`
 
 下面将第一次请求的异步时间调整为两秒，这时第二个先返回就用第二人。
 
@@ -1620,7 +1645,7 @@ const daodao = new Promise((resolve, reject) => {
 });
 Promise.race([dd, daodao])
 .then(results => {
-  console.log(results);
+  console.log(results); // 第二个异步
 })
 .catch(msg => {
   console.log(msg);
@@ -1642,7 +1667,7 @@ Promise.race(promises)
   console.log(response);
 })
 .catch(error => {
-  console.log(error);
+  console.log(error); // request fail
 });
 ```
 

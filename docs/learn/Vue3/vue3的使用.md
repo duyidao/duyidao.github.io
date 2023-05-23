@@ -166,6 +166,17 @@ const add = () => {
 
 ## v-model
 
+### 值绑定
+
+- 输入框和多行文本框双向绑定输入的字符串内容
+- 单个多选框绑定布尔值
+- 多个多选框绑定选择的数组
+- 单选框绑定的是选中的单选框的 `value` 
+- 单个下拉选择框绑定的是选中的 `option` 的值
+- 下拉选择框多选绑定的是数组
+
+### 配合组件
+
 vue3中子组件 `v-model` 原理为 `:value` 绑定变量，`@update:value` 修改变量并通过 `$emit` 通知父组件，如下：
 
 父组件：
@@ -203,7 +214,7 @@ change(e) {
 
 ```js
 props: ['modelValue'],
-emit: ['update:value'],
+emit: ['update:modelValue'],
 change(e) {
     this.title = e.target.value,
     this.$emit('update:modelValue', e)
@@ -214,6 +225,116 @@ change(e) {
 
 ```vue
 <input v-model="title" />
+```
+
+### 多个 `v-model` 绑定
+
+可以在单个组件实例上创建多个 `v-model` 双向绑定。组件上的每一个 `v-model` 都会同步不同的 prop，而无需额外的选项：
+
+```vue
+<UserName
+  v-model:first-name="first"
+  v-model:last-name="last"
+/>
+```
+
+```vue
+<script setup>
+defineProps({
+  firstName: String,
+  lastName: String
+})
+
+defineEmits(['update:firstName', 'update:lastName'])
+</script>
+
+<template>
+  <input
+    type="text"
+    :value="firstName"
+    @input="$emit('update:firstName', $event.target.value)"
+  />
+  <input
+    type="text"
+    :value="lastName"
+    @input="$emit('update:lastName', $event.target.value)"
+  />
+</template>
+```
+
+### 处理 `v-model` 修饰符
+
+`v-model` 有一些[内置的修饰符](https://cn.vuejs.org/guide/essentials/forms.html#modifiers)，例如 `.trim`，`.number` 和 `.lazy`。在某些场景可能想要一个自定义组件的 `v-model` 支持自定义的修饰符。
+
+我们来创建一个自定义的修饰符 `capitalize`，它会自动将 `v-model` 绑定输入的字符串值第一个字母转为大写：
+
+```vue
+<MyComponent v-model.capitalize="myText" />
+```
+
+组件的 `v-model` 上所添加的修饰符，可以通过 `modelModifiers` prop 在组件内访问到。在下面的组件中，我们声明了 `modelModifiers` 这个 prop，它的默认值是一个空对象：
+
+```vue
+<script setup>
+const props = defineProps({
+  modelValue: String,
+  modelModifiers: { default: () => ({}) }
+})
+
+defineEmits(['update:modelValue'])
+
+console.log(props.modelModifiers) // { capitalize: true }
+</script>
+
+<template>
+  <input
+    type="text"
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
+  />
+</template>
+```
+
+注意这里组件的 `modelModifiers` prop 包含了 `capitalize` 且其值为 `true`，因为它在模板中的 `v-model` 绑定 `v-model.capitalize="myText"` 上被使用了。
+
+有了这个 prop，我们就可以检查 `modelModifiers` 对象的键，并编写一个处理函数来改变抛出的值。在下面的代码里，我们就是在每次 `<input />` 元素触发 `input` 事件时将值的首字母大写：
+
+```vue
+<script setup>
+const props = defineProps({
+  modelValue: String,
+  modelModifiers: { default: () => ({}) }
+})
+
+const emit = defineEmits(['update:modelValue'])
+
+function emitValue(e) {
+  let value = e.target.value
+  if (props.modelModifiers.capitalize) {
+    value = value.charAt(0).toUpperCase() + value.slice(1)
+  }
+  emit('update:modelValue', value)
+}
+</script>
+
+<template>
+  <input type="text" :value="modelValue" @input="emitValue" />
+</template>
+```
+
+对于又有参数又有修饰符的 `v-model` 绑定，生成的 prop 名将是 `arg + "Modifiers"`。举例来说：
+
+```vue
+<MyComponent v-model:title.capitalize="myText">
+```
+
+相应的声明应该是：
+
+```js
+const props = defineProps(['title', 'titleModifiers'])
+defineEmits(['update:title'])
+
+console.log(props.titleModifiers) // { capitalize: true }
 ```
 
 ## 计算属性
@@ -406,6 +527,118 @@ watch(
 
 ```
 
+### watchEffect()
+
+允许我们自动跟踪回调的响应式依赖。
+
+使用 `watch` 的代码：
+
+```js
+const todoId = ref(1)
+const data = ref(null)
+
+watch(todoId, async () => {
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+  )
+  data.value = await response.json()
+}, { immediate: true })
+```
+
+使用 `watchEffect` 的代码：
+
+```js
+watchEffect(async () => {
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/todos/${todoId.value}?type=${todoType.value}`
+  )
+  data.value = await response.json()
+})
+```
+
+当 `todoType` 变量和 `todoId` 变量其中一个发生改变就会触发这个侦听回调。
+
+> 注意
+>
+> `watchEffect` 仅会在其**同步**执行期间，才追踪依赖。在使用异步回调时，只有在第一个 `await` 正常工作前访问到的属性才会被追踪。
+
+### 区别
+
+`watch` 和 `watchEffect` 都能响应式地执行有副作用的回调。它们之间的主要区别是追踪响应式依赖的方式：
+
+- `watch` 只追踪明确侦听的数据源。它不会追踪任何在回调中访问到的东西。另外，仅在数据源确实改变时才会触发回调。`watch` 会避免在发生副作用时追踪依赖，因此，我们能更加精确地控制回调函数的触发时机。
+- `watchEffect`，则会在副作用发生期间追踪依赖。它会在同步执行过程中，自动追踪所有能访问到的响应式属性。这更方便，而且代码往往更简洁，但有时其响应性依赖关系会不那么明确。
+
+### 回调的触发时机
+
+当你更改了响应式状态，它可能会同时触发 Vue 组件更新和侦听器回调。
+
+默认情况下，用户创建的侦听器回调，都会在 Vue 组件更新**之前**被调用。这意味着你在侦听器回调中访问的 DOM 将是被 Vue 更新之前的状态。
+
+如果想在侦听器回调中能访问被 Vue 更新**之后**的 DOM，你需要指明 `flush: 'post'` 选项：
+
+```js
+watch(source, callback, {
+  flush: 'post'
+})
+
+watchEffect(callback, {
+  flush: 'post'
+})
+```
+
+后置刷新的 `watchEffect()` 有个更方便的别名 `watchPostEffect()`：
+
+```js
+import { watchPostEffect } from 'vue'
+
+watchPostEffect(() => {
+  /* 在 Vue 更新后执行 */
+})
+```
+
+### 停止侦听器
+
+在 `setup()` 或 `<script setup>` 中用同步语句创建的侦听器，会自动绑定到宿主组件实例上，并且会在宿主组件卸载时自动停止。在大多数情况下，还无需太多关心如何停止侦听器。
+
+一个关键点是，侦听器必须用**同步**语句创建：如果用异步回调创建一个侦听器，那么它不会绑定到当前组件上，必须手动停止它，以防内存泄漏。如下方这个例子：
+
+```vue
+<script setup>
+import { watchEffect } from 'vue'
+
+// 它会自动停止
+watchEffect(() => {})
+
+// ...这个则不会！
+setTimeout(() => {
+  watchEffect(() => {})
+}, 100)
+</script>
+```
+
+要手动停止一个侦听器，请调用 `watch` 或 `watchEffect` 返回的函数：
+
+```js
+const unwatch = watchEffect(() => {})
+
+// ...当该侦听器不再需要时
+unwatch()
+```
+
+注意，需要异步创建侦听器的情况很少，请尽可能选择同步创建。如果需要等待一些异步数据，你可以使用条件式的侦听逻辑：
+
+```js
+// 需要异步请求得到的数据
+const data = ref(null)
+
+watchEffect(() => {
+  if (data.value) {
+    // 数据加载后执行某些操作...
+  }
+})
+```
+
 ## 生命周期钩子函数
 
 vue3 中的生命周期函数, 需要在 `setup` 中调用。
@@ -588,25 +821,22 @@ vue3 中的生命周期函数, 需要在 `setup` 中调用。
 
 1. 创建一个空的 `ref`
 
-   ```csharp
-   const h1Ref = ref(null)
-   
+   ```js
+   const dao = ref(null)
    ```
-
+   
 2. 模板中建立关联，模板挂在完毕后，自动把DOM节点的内存地址传给 `ref`
 
-   ```ini
+   ```html
    <div ref="dao">daodao</div>
-   
    ```
-
+   
 3. 组件挂载完毕后，获取 `DOM` 节点了
 
-   ```scss
+   ```js
    onMounted(()=>{
      console.log(dao);
    })
-   
    ```
 
 ```vue
@@ -623,12 +853,41 @@ onMounted(()=>{
 <template>
   <div ref="dao">daodao</div>
 </template>
-
 ```
+
+### v-for多元素
+
+当在 `v-for` 中使用模板引用时，对应的 ref 中包含的值是一个数组，它将在元素被挂载后包含对应整个列表的所有元素：
+
+```vue
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const list = ref([
+  /* ... */
+])
+
+const itemRefs = ref([])
+
+onMounted(() => console.log(itemRefs.value))
+</script>
+
+<template>
+  <ul>
+    <li v-for="item in list" ref="itemRefs">
+      {{ item }}
+    </li>
+  </ul>
+</template>
+```
+
+> 注意
+>
+> ref 数组**并不**保证与源数组相同的顺序。
 
 ### 操作组件
 
-父组件操作子组件，子组件需要先把自己的数据暴露出去。
+使用了 `<script setup>` 的组件是**默认私有**的：一个父组件无法访问到一个使用了 `<script setup>` 的子组件中的任何东西，除非子组件在其中通过 `defineExpose` 宏显式暴露：
 
 - 父组件
 
@@ -647,9 +906,8 @@ onMounted(()=>{
   <template>
     <Son ref="son"></Son>
   </template>
-  
   ```
-
+  
 - 子组件
 
   ```vue
