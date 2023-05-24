@@ -113,3 +113,137 @@ npm init vue@latest
    ```
 
 复制组件运行代码，生效即为成功。
+
+## 配置主题色
+
+### 安装 Sass
+
+```bash
+yarn add sass -D
+```
+
+### 重写主题色
+
+在 `styles/element/index.scss` 路径下的 scss 文件重写主题色
+
+```scss
+/* 只需要重写你需要的即可 */
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'primary': (
+      // 主色
+      'base': #27ba9b,
+    ),
+    'success': (
+      // 成功色
+      'base': #1dc779,
+    ),
+    'warning': (
+      // 警告色
+      'base': #ffb302,
+    ),
+    'danger': (
+      // 危险色
+      'base': #e26237,
+    ),
+    'error': (
+      // 错误色
+      'base': #cf4444,
+    ),
+  )
+)
+```
+
+### 修改配置
+
+前往 `vite.config.js` 修改配置：
+
+- 新增 `css` 模块，用于引入主题色文件模块并使用
+- 配置 element-plus 使用修改后的 scss 文件
+
+```js
+// ...
+export default defineConfig({
+  plugins: [
+    // ...
+    Components({
+      resolvers: [ElementPlusResolver({ importStyle: 'sass' })],
+    }),
+  ],
+  resolve: {
+    // ...
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // 自动导入定制化样式文件进行样式覆盖
+        additionalData: `
+          @use "@/styles/element/index.scss" as *;
+        `,
+      }
+    }
+  }
+})
+```
+
+重启项目后在运行，引入默认的按钮组件，查看其颜色，发生变化则为成功。
+
+## 配置 axios
+
+### 安装
+
+```bash
+yarn add axios
+```
+
+### 配置
+
+- 配置基准路径与超时时间
+- 配置最基础的拦截器
+
+```js
+import axios from "axios";
+
+const http = axios.create({
+  baseURL: 'http://pcapi-xiaotuxian-front-devtest.itheima.net/',
+  timeout: 5000
+})
+
+// axios请求拦截器
+http.interceptors.request.use(config => {
+  return config
+}, e => Promise.reject(e))
+
+// axios响应式拦截器
+http.interceptors.response.use(res => res.data, e => {
+  return Promise.reject(e)
+})
+
+export default http
+```
+
+### 测试使用
+
+1. 导入封装好的封装
+2. 使用封装好的 axios 设置接口函数并导出
+3. 在 main.js 中使用
+
+```js
+// api/index.js
+import http from '@/utils/http'
+
+export const test = () => {
+  return http({
+    url: 'home/category/head'
+  })
+}
+```
+
+```js
+// main.js
+import {test} from '@api/index'
+test().then(res => {
+  console.log(res);
+})
+```
+
