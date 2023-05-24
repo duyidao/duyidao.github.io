@@ -140,8 +140,10 @@ function getLearnVue3Sidebar() {
     items: [
       { text: "vue3项目创建", link: "/learn/Vue3/vue3项目创建" },
       { text: "vue3的使用", link: "/learn/Vue3/vue3的使用" },
+      { text: "组件", link: "/learn/Vue3/组件" },
       { text: "插槽", link: "/learn/Vue3/插槽" },
-      { text: "动态组件", link: "/learn/Vue3/动态组件" },
+      { text: "自定义指令", link: "/learn/Vue3/自定义指令" },
+      { text: "内置组件", link: "/learn/Vue3/内置组件" },
       { text: "pinia", link: "/learn/Vue3/pinia" },
       { text: "源码", link: "/learn/Vue3/源码" },
     ],
@@ -312,7 +314,6 @@ function getJobSidebar() {
         { text: 'vant组件二次封装', link: "/project/lingsi/职技网/vant组件二次封装" },
         { text: '微信授权', link: "/project/lingsi/职技网/微信授权" },
         { text: '下载附件', link: "/project/lingsi/职技网/下载附件" },
-        { text: '富文本', link: "/project/lingsi/职技网/富文本" },
         { text: '🗑 返回', link: '/project/lingsi/' },
       ]
     }
