@@ -198,7 +198,9 @@ function getTalkSidebar() {
         { text: '数组对象遍历', link: '/learn/杂技拾谈/数组对象遍历' },
         { text: 'vue图片动态引入使用require', link: '/learn/杂技拾谈/vue图片动态引入使用require' },
         { text: 'vue项目打包后首页白屏总结', link: '/learn/杂技拾谈/vue项目打包后首页白屏总结' },
+        { text: 'JavaScript『图片压缩』', link: '/learn/杂技拾谈/JavaScript『图片压缩』' },
         { text: '接口请求', link: '/learn/杂技拾谈/多接口请求' },
+        { text: '设计模式', link: '/learn/杂技拾谈/设计模式' },
         { text: 'js执行顺序', link: '/learn/杂技拾谈/js执行顺序' },
       ]
     }
