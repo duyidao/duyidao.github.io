@@ -10,6 +10,7 @@ export default {
   '/learn/Node': getLearnNodeSidebar(),
   '/learn/杂技拾谈': getTalkSidebar(),
   '/learn/学而时习之': getLearnTimeSidebar(),
+  '/learn/面试鸭': getLearnWatchSidebar(),
   '/project': [
     {
       text: '项目',
@@ -257,6 +258,20 @@ function getLearnTimeSidebar() {
   ]
 }
 
+// 获取面试鸭的数组
+function getLearnWatchSidebar() {
+  return [
+    {
+      text: '🦆 面试鸭',
+      collapsible: true,
+      items: [
+        { text: '数组方法手写原理', link: '/learn/面试鸭/数组方法手写原理' },
+        { text: '关于forEach使用break跳出循环', link: '/learn/面试鸭/关于forEach使用break跳出循环' },
+      ]
+    }
+  ]
+}
+
 // 获取灵思的数组
 function getLingsiSidebar() {
   return [
@@ -345,7 +360,7 @@ function getMyRabbitSidebar(params) {
       text: "🐇 小兔鲜",
       collapsible: true,
       items: [
-        { text: '引言', link: "/project/myself/小兔鲜/" },
+        { text: '项目创建', link: "/project/myself/小兔鲜/" },
         { text: '🗑 返回', link: '/project/myself/' },
       ]
     }

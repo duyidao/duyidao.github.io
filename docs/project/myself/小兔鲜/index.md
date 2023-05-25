@@ -247,3 +247,74 @@ test().then(res => {
 })
 ```
 
+## 配置路由
+
+路由设计原则：找页面的切换方式，如果是整体切换，则为一级路由，如果是在一级路由的内部进行的内容切换，则为二级路由
+
+### 一级路由
+
+首页和登录页为一级路由，特征为 `/` 
+
+> 注意
+>
+> 此时新增组件时 `eslint` 会报错，在 `.eslintrc.cjs` 文件添加以下代码取消强制要求重命名即可。
+>
+> ```js
+> module.exports = {
+>     //...
+>     rules: {
+>         'vue/multi-word-component-name': 0
+>     }
+> }
+> ```
+
+### 二级路由
+
+在一级路由内部切换则为二级路由。创建相应模块，并在 `Layout/index.vue` 组件中配置二级路由的入口。
+
+### 整体代码
+
+```js
+// createRouter：创建router实例对象
+// createWebHistory：创建history模式的路由
+import { createRouter, createWebHistory } from 'vue-router'
+import Login from '@/views/Login/index.vue'
+import Layout from '@/views/Layout/index.vue'
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  // path和component对应关系的位置
+  routes: [
+    {
+      path: '/',
+      component: Layout,
+      children: [
+        {
+          path: '',
+          component: () => import('@/views/Home/index.vue')
+        },
+        {
+          path: '/category',
+          component: () => import('@/views/Category/index.vue')
+        }
+      ]
+    },
+    {
+      path: '/login',
+      component: Login,
+    },
+  ],
+})
+
+export default router
+```
+
+### 总结
+
+1. 路由设计的依据是？
+
+   内容切换的方式
+
+2. 默认二级路由如何进行配置
+
+   path 置空即可

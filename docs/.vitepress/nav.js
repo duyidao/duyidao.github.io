@@ -18,6 +18,11 @@ export default [
         items: [
           {text:'学而时习之', link: '/learn/学而时习之/操作内嵌ifrname与传递消息.md'}
         ]
+      },
+      {
+        items: [
+          {text:'面试鸭', link: '/learn/面试鸭/数组方法手写原理.md'}
+        ]
       }
     ],
   },
