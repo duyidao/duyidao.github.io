@@ -6,6 +6,7 @@ export default {
   '/learn/Javascript': getLearnJsSidebar(),
   '/learn/vue2': getLearnVue2Sidebar(),
   '/learn/Vue3': getLearnVue3Sidebar(),
+  '/learn/React': getLearnReactSidebar(),
   '/learn/TypeScript': getLearnTsSidebar(),
   '/learn/Node': getLearnNodeSidebar(),
   '/learn/杂技拾谈': getTalkSidebar(),
@@ -151,6 +152,17 @@ function getLearnVue3Sidebar() {
   }]
 }
 
+// 获取前端vue3数组
+function getLearnReactSidebar() {
+  return [{
+    text: "Vue3",
+    collapsible: true,
+    items: [
+      { text: "react项目创建", link: "/learn/React/react项目创建" },
+    ],
+  }]
+}
+
 // 获取前端ts数组
 function getLearnTsSidebar() {
   return [
@@ -265,6 +277,7 @@ function getLearnWatchSidebar() {
       text: '🦆 面试鸭',
       collapsible: true,
       items: [
+        { text: '(a==1&&a==2&&a==3)', link: '/learn/面试鸭/(a==1&&a==2&&a==3)' },
         { text: '数组方法手写原理', link: '/learn/面试鸭/数组方法手写原理' },
         { text: '关于forEach使用break跳出循环', link: '/learn/面试鸭/关于forEach使用break跳出循环' },
       ]
