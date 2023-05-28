@@ -374,6 +374,8 @@ function getMyRabbitSidebar(params) {
       collapsible: true,
       items: [
         { text: '项目创建', link: "/project/myself/小兔鲜/" },
+        { text: 'Layout', link: "/project/myself/小兔鲜/Layout" },
+        { text: 'Home', link: "/project/myself/小兔鲜/Home" },
         { text: '🗑 返回', link: '/project/myself/' },
       ]
     }

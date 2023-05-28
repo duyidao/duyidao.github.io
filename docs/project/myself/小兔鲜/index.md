@@ -318,3 +318,37 @@ export default router
 2. 默认二级路由如何进行配置
 
    path 置空即可
+
+## 静态资源引入
+
+引入图片资源到 `assets/images` 文件夹内；引入公共初始化样式 `common.scss` 文件到 `styles` 文件夹内。
+
+## 自动导入公共样式
+
+部分公共色值如果多个页面要使用，则都要做以下步骤：
+
+```vue
+<style lang="scss">
+import "~@/var.scss"
+</style>
+```
+
+这样显得步骤很繁琐，因此通过 `vite.config.js` 公共导入会显得很简单，代码如下：
+
+```js
+export default defineConfig({
+  // ...
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // 自动导入定制化样式文件进行样式覆盖
+        additionalData: `
+          @use "@/styles/element/index.scss" as *;
+          @use "@/styles/var.scss" as *;
+        `,
+      }
+    }
+  }
+})
+```
+
