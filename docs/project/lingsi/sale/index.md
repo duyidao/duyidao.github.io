@@ -106,8 +106,43 @@ title 项目简介
 ```js
 const pages = getCurrentPages() //获取加载的页面，数组形式，route是页面栈的路由
 const url = pages[pages.length - 2].route === 'pages/login/Login' ? pages[pages.length - 3].route : pages[pages.length - 2].route; // 上个来登录页的页面，有可能会跳两次登录页，因此判断上一个页面是否为登录页，如果是登录页则再向上上个页面获取
-uni.navigateBack({
+uni.navigateTo({
 	url
 })
 ```
 
+### 字体图标引入
+
+为了减小项目包的体积，部分小图片采取引入字体图标的形式减少图片的存储，减少文件的体积。字体图标引入方式如下：
+
+1. 在 `iconfont` 阿里巴巴矢量库中选择需要的字体图片，新增一个项目并保存
+
+   [![pCSDxD1.png](https://s1.ax1x.com/2023/06/02/pCSDxD1.png)](https://imgse.com/i/pCSDxD1)
+
+2. 下载项目到本地，把其中的 `iconfont.css` 样式文件拖拽到项目中
+
+   [![pCSrXi8.png](https://s1.ax1x.com/2023/06/02/pCSrXi8.png)](https://imgse.com/i/pCSrXi8)
+
+3. 去生成链接并粘贴到 `iconfont.css` 文件中
+
+   [![pCSsVWF.png](https://s1.ax1x.com/2023/06/02/pCSsVWF.png)](https://imgse.com/i/pCSsVWF)
+
+4. 把链接每一个 `url` 内都添加 `https` 。修改后的效果如下：
+
+   ```css
+   @font-face {
+     font-family: 'iconfont';  /* Project id 3839320 */
+     src: url('https://at.alicdn.com/t/c/font_3839320_svujarqdy4e.woff2?t=1685685427701') format('woff2'),
+          url('https://at.alicdn.com/t/c/font_3839320_svujarqdy4e.woff?t=1685685427701') format('woff'),
+          url('https://at.alicdn.com/t/c/font_3839320_svujarqdy4e.ttf?t=1685685427701') format('truetype'),
+          url('https://at.alicdn.com/t/c/font_3839320_svujarqdy4e.svg?t=1685685427701#iconfont') format('svg');
+   }
+   ```
+
+5. 使用。为需要使用的标签添加类名。首先需要添加 `iconfont` 类名，让字体 `font-family` 为 `iconfont` （主要看 `iconfont.css` 文件中设置了啥类名），然后设置对应字体图标类名。
+
+   ```vue
+   <i class="icon-douyin iconfont" style="color: #e85751; font-size: 30rpx;"></i>
+   ```
+
+   [![pCScmQg.png](https://s1.ax1x.com/2023/06/02/pCScmQg.png)](https://imgse.com/i/pCScmQg)

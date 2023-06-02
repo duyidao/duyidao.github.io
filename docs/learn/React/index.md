@@ -793,7 +793,49 @@ this.setState({isHot: !isHot})
 
 ### state简写形式
 
+目前的构造器十分臃肿，既通过 `this` 为 `state` 设置变量，又通过修改 `this` 指向创建新函数，要怎么简写呢？
 
+类可以把值写在类中，不需要写在构造器内，因此 `state` 可以抽取出来。
+
+```js
+constructor(props) {
+  super(props)
+  this.my_clickFn = this.clickFn.bind(this)
+}
+state = {isHot: true}
+```
+
+而函数也可以通过等号赋值的方式在类中创建声明，让其内部 `this` 指向类，先采取下方的代码：
+
+```js
+constructor(props) {
+  super(props)
+}
+state = {isHot: true}
+my_clickFn = function() {
+    console.log(this)
+    // ...
+}
+```
+
+打印出来的 `this` 还是 `undefined` ，这是因为 `function` 创建出来的函数 `this` 指向其调用者，而调用者是 `div` 的点击事件，因此指向了全局 `window` ，又因为局部严格模式，最终打印出来的 `undefined` 。
+
+难道要止步于此了么？别忘了 ES6 新出一个箭头函数，其最大的特点就是没有自己的 `this` 指向，指向外部的环境。如果我们把代码成为以下形式：
+
+```js
+constructor(props) {
+  super(props)
+}
+state = {isHot: true}
+my_clickFn = () => {
+    console.log(this)
+    // ...
+}
+```
+
+此时函数 `my_clickFn` 的 `this` 指向是其外部环境类 `Weather` ，正好可以获取到 `state` 的值。
+
+现在再来看看构造器，此时就剩下一句 `super` ，也不再需要，可以删除了，至此 `state` 简写完成。
 
 ## 新版项目创建
 
