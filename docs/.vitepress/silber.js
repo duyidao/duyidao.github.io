@@ -280,6 +280,8 @@ function getLearnWatchSidebar() {
         { text: '(a==1&&a==2&&a==3)', link: '/learn/面试鸭/(a==1&&a==2&&a==3)' },
         { text: '数组方法手写原理', link: '/learn/面试鸭/数组方法手写原理' },
         { text: '关于forEach使用break跳出循环', link: '/learn/面试鸭/关于forEach使用break跳出循环' },
+        { text: '手写封装AJAX', link: '/learn/面试鸭/手写封装AJAX' },
+        { text: '数组去重', link: '/learn/面试鸭/数组去重' },
       ]
     }
   ]
