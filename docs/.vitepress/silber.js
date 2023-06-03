@@ -359,9 +359,9 @@ function getMyselfSidebar() {
       text: "📕 自主学习",
       collapsible: true,
       items: [
-        { text: '引言', link: "/project/myself/" },
-        { text: '小兔鲜', link: "/project/myself/小兔鲜/" },
-        { text: '硅谷甄选', link: "/project/myself/硅谷甄选/" },
+        { text: '📕 引言', link: "/project/myself/" },
+        { text: '🐇 小兔鲜', link: "/project/myself/小兔鲜/" },
+        { text: '🐂 硅谷甄选', link: "/project/myself/硅谷甄选/" },
         { text: '🗑 返回', link: '/project/' },
       ]
     }
@@ -378,7 +378,8 @@ function getMyRabbitSidebar(params) {
         { text: '项目创建', link: "/project/myself/小兔鲜/" },
         { text: 'Layout', link: "/project/myself/小兔鲜/layout" },
         { text: 'Home', link: "/project/myself/小兔鲜/home" },
-        { text: '一级分类', link: "/project/myself/小兔鲜/一级分类" },
+        { text: '分类', link: "/project/myself/小兔鲜/一级分类" },
+        { text: '详情', link: "/project/myself/小兔鲜/detail" },
         { text: '🗑 返回', link: '/project/myself/' },
       ]
     }
