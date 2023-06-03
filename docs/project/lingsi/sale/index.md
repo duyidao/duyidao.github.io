@@ -146,3 +146,13 @@ uni.navigateTo({
    ```
 
    [![pCScmQg.png](https://s1.ax1x.com/2023/06/02/pCScmQg.png)](https://imgse.com/i/pCScmQg)
+   
+6. 最后在 `App.vue` 文件中引入
+
+   ```vue
+   <style lang="scss">
+   	/* 注意要写在第一行，同时给style标签加入lang="scss"属性 */
+   	@import '/static/iconfont.css';
+   	@import "uview-ui/index.scss";
+   </style>
+   ```
