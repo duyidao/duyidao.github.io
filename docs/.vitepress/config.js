@@ -11,7 +11,7 @@ module.exports = {
   dest: './dist',
   head: [
     // 添加图标
-    ["link", { rel: "icon", href: "/favicon.ico" }],
+    ["link", { rel: "icon", href: "./favicon.ico" }],
     ["meta", { property: "og:title", content: "刀刀博客" }],
     ["meta", { property: "og:site_name", content: "刀刀博客" }],
     ["meta", { property: "og:type", content: "website" }],
