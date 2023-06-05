@@ -531,7 +531,9 @@ class A {
 >
 > 由于类式组件继承了 `React.Component` 组件方法，因此在原型上也能找到组件实例对象。
 
-### state
+## state
+
+### 概念
 
 `state` 是组件对象最重要的属性, 值是对象(可以包含多个 `key-value` 的组合)。
 
@@ -836,6 +838,195 @@ my_clickFn = () => {
 此时函数 `my_clickFn` 的 `this` 指向是其外部环境类 `Weather` ，正好可以获取到 `state` 的值。
 
 现在再来看看构造器，此时就剩下一句 `super` ，也不再需要，可以删除了，至此 `state` 简写完成。
+
+### 总结
+
+1. 组件中 `render` 方法中的 `this` 为组件实例对象
+2. 组件自定义的方法中 `this` 为 `undefined`，如何解决？
+   - 强制绑定 `this` ：通过函数对象的 `bind()`
+   - 箭头函数
+3. 状态数据，不能直接修改或更新，需要通过 `setState()` 
+
+## props
+
+### 含义
+
+通过标签属性从组件外向组件内传递变化的数据
+
+```jsx
+class Person extends React.Component {
+  render() {
+    const {name, age, sex} = this.props
+    return (
+      <ul>
+        <li>{name}</li>
+        <li>{age}</li>
+        <li>{sex}</li>
+      </ul>
+    )
+  }
+}
+
+ReactDOM.render(<Person name="刀刀" age="18" sex="男"/>, document.querySelector('#test1'))
+ReactDOM.render(<Person name="小刀" age="21" sex="男"/>, document.querySelector('#test2'))
+ReactDOM.render(<Person name="杜一刀" age="23" sex="男"/>, document.querySelector('#test3'))
+```
+
+现在可以在组件实例动态传参渲染数据。
+
+> 注意
+>
+> 组件内部不要修改 `props` 数据，如果修改 `props` 的值并且替换原值则会报错。
+>
+> ```js
+> class Person extends React.Component {
+>   render() {
+>     const {name, age, sex} = this.props
+>     this.props.name = 'newName' // 报错
+>     // ...
+>   }
+> }
+> ```
+>
+> [![pCC4x78.png](https://s1.ax1x.com/2023/06/05/pCC4x78.png)](https://imgse.com/i/pCC4x78)
+
+### 批量操作
+
+在之前学习 ES6 新语法时，我们有学习过 `...` 展开运算符，可以展开数组 `...arr` ，但是不能展开对象。展开对象需要使用 `{}` 包裹，如 `{...obj}` 。
+
+在 `react` 中，通过 `react` 和 `babel` 处理，让我们也能在组件上使用该语法批量传参，代码如下所示：
+
+```jsx
+const p = {name: 'daodao', age: 18, sex: '🚹'}
+ReactDOM.render(<Person {...p}/>, document.querySelector('#test1'))
+```
+
+> 注意
+>
+> 1. 该 `{...p}` 中的花括号 `{}` 与 es6 中的花括号不是同一个功能，因此不要把他理解为展开解构语法
+> 2. `react` 与 `babel` 的处理仅能让我们在组件中批量赋值，不可在其他地方使用。如 `console.log({...p})` ，虽然不报错，但是结果为空
+
+### 限制
+
+`react` 中属性限制需要通过以下的方法设置：
+
+```js
+类.propTypes = {
+  // 。。。
+}
+```
+
+其中，`类.propTypes` 表示给该类设置限制，且 `propTypes` 不可修改，`react` 底层会去寻找它，找到它后就说明它有做限制。
+
+#### 类型限制
+
+导入 `prop-types` 包，用于做属性限制。导入后全局会有一个 `PropTypes` 。
+
+```html
+<script src="../js/prop-types.js"></script>
+
+Person.propType = {
+  name: PropTypes.string
+}
+```
+
+> 注意
+>
+> 1. 类型限制中为了不与 `React` 内置的 `String` 、`Number` 等方法冲突，这里采用小写的形式。但是函数类型限制不可使用 `function` ，因为这是声明函数的关键字，因此需要改为 `func` 
+>
+> 2. 旧版本中 `PropTypes` 放在 `React` 上。后续因为太臃肿才分离出来。旧版本写法为：
+>
+>    ```js
+>    Person.propType = {
+>      name: React.PropTypes.string
+>    }
+>    ```
+
+#### 必传限制
+
+必传限制可通过 `isRequired` 字段限制，可以跟在之前做的限制后面。
+
+```js
+Person.propType = {
+  name: PropTypes.string.isRequired
+}
+```
+
+#### 默认值
+
+默认值可通过 `defineProps` 对象内设置对应的键值。
+
+```js
+Person.defineProps = {
+  name: '默认名称'
+}
+```
+
+### 简写形式
+
+既然是类的方法，可以不要把他们放在类外部创建，而是写在类里面，写法如下：
+
+```js
+class Person extends React.Component {
+  static propType = {
+  	name: PropTypes.string.isRequired
+  }
+
+  static defineProps = {
+  	name: 'abc'
+  }
+    
+  render() {
+    // ...
+  }
+}
+```
+
+### 构造器与props
+
+构造器在继承父类时如果需要使用则必须要先在构造器中定义关键字 `super()` ，把参数传过去，如下：
+
+```js
+class A extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+}
+```
+
+在 `React` 中，构造器接收的参数为 `props` 组件实例的传参。那么，有几个问题产生了：
+
+- 问题一：`props` 传给 `super()` 和不传有什么区别
+- 问题二：类中的构造器有什么作用
+
+前往 `react` 官方文档，查询构造器，文档指路：[`constructor()`](https://zh-hans.legacy.reactjs.org/docs/react-component.html#constructor) 。
+
+查看官网文档描述，已经针对两个问题都给出了答复：
+
+问题一的答复：
+
+在 React 组件挂载之前，会调用它的构造函数。在为 React.Component 子类实现构造函数时，应在其他语句之前调用 `super(props)`。否则，`this.props` 在构造函数中可能会出现未定义的 bug。
+
+问题二的答复：
+
+- 通过给 `this.state` 赋值对象来初始化[内部 state](https://zh-hans.legacy.reactjs.org/docs/state-and-lifecycle.html)。
+- 为[事件处理函数](https://zh-hans.legacy.reactjs.org/docs/handling-events.html)绑定实例
+
+### 函数式组件使用props
+
+函数式组件也可以接收 `props` ，接收方法为函数接收参数的方法：通过形参接收参数。代码如下：
+
+```jsx
+function Person(props) {
+    return (
+    	<ul>
+        	<li>{props}</li>
+        </ul>
+    )
+}
+```
+
+但是目前的函数式组件无法使用 `state` 与 `refs` 。
 
 ## 新版项目创建
 
