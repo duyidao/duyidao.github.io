@@ -12,6 +12,10 @@ title 音果云音
 - `uview` 组件库
 - `luch-request` 请求接口
 
+Bug数记录
+
+[![pCC6ufx.png](https://s1.ax1x.com/2023/06/05/pCC6ufx.png)](https://imgse.com/i/pCC6ufx)
+
 ## 主要模块
 
 1. 登录
@@ -114,20 +118,40 @@ setTimeout(() => {
 
 ## 项目亮点
 
-- 使用 `uni.createInnerAudioContext()` 音频组件控制播放音频。
-   1. 通过 `src` 字段添加链接；设置 `startTime` 开始使用
-   2. 通过循环的方式动态次数循环播放音频
-   3. 通过 `play()` 事件播放音频，`pause()` 事件暂停音频，`stop()` 事件停止音频， `seek()` 事件切换音频当前播放位置， `onEnded()` 监听音频停止时间， `onTimeUpdate()` 动态获取音频当前播放位置。
-   4. 根据使用者是否听音频来动态增加减少当前音频在听人数，通过暂定、停止、结束事件调用后端接口传递记录当前使用者听该音频的时长。
-- 使用 `canvas` 画布绘制海报并生成图片保存到手机相册。
-   1. 通过 `canvas` 标签以及 `uni.createCanvasContext` 方法生成海报。
-   2. 通过 `uni.canvasToTempFilePath` 方法把画布转为图片。
-   3. 通过 `uni.saveImageToPhotosAlbum` 方法把图片保存到手机相册中。
-- 使用 `uniapp` 内置 `API` 实现蓝牙搜索与低功耗蓝牙连接读写功能；使用 `uniapp` 内置 `API` 实现扫一扫功能。详细信息请见《操作页》内容。
-- 通过 `uni.requestPayment` 方法实现支付功能
-   1. 调用后端接口创建订单获取订单编号，成功后即可调用后端支付接口获取对应sdk
-   3. 使用 `uni.requestPayment` 方法调起支付，其中，属性 `provider` 为支付服务提供商。如支付宝支付参数为 `alipay`，微信支付为 `wxpay` ，`orderInfo` 传入第一步获取到的订单编号
-- 动态设置用户剪切板内容，实现商品链接的保存分享
-   1. 通过 `uni.setClipboardData` 设置系统剪贴板的内容，其中，`data` 属性的参数为要设置的内容。
-   2. 通过 `uni.getClipboardData`获取系统剪贴板的内容。
-- 获取当前 `app` 的版本号，调用接口获取服务器最新版本号，如果当前并非最新版本号，则更新下载最新版本。详情请见： [更新](/project/lingsi/music/APP/update)
+### 音频播放
+
+使用 `uni.createInnerAudioContext()` 音频组件控制播放音频。
+1. 通过 `src` 字段添加链接；设置 `startTime` 开始使用
+2. 通过循环的方式动态次数循环播放音频
+3. 通过 `play()` 事件播放音频，`pause()` 事件暂停音频，`stop()` 事件停止音频， `seek()` 事件切换音频当前播放位置， `onEnded()` 监听音频停止时间， `onTimeUpdate()` 动态获取音频当前播放位置。
+4. 根据使用者是否听音频来动态增加减少当前音频在听人数，通过暂定、停止、结束事件调用后端接口传递记录当前使用者听该音频的时长。
+
+### 画布绘制
+
+使用 `canvas` 画布绘制海报并生成图片保存到手机相册。
+
+1. 通过 `canvas` 标签以及 `uni.createCanvasContext` 方法生成海报。
+2. 通过 `uni.canvasToTempFilePath` 方法把画布转为图片。
+3. 通过 `uni.saveImageToPhotosAlbum` 方法把图片保存到手机相册中。
+
+### 蓝牙功能
+
+使用 `uniapp` 内置 `API` 实现蓝牙搜索与低功耗蓝牙连接读写功能；使用 `uniapp` 内置 `API` 实现扫一扫功能。详细信息请见《操作页》内容。
+
+### 支付
+
+通过 `uni.requestPayment` 方法实现支付功能
+
+1. 调用后端接口创建订单获取订单编号，成功后即可调用后端支付接口获取对应sdk
+3. 使用 `uni.requestPayment` 方法调起支付，其中，属性 `provider` 为支付服务提供商。如支付宝支付参数为 `alipay`，微信支付为 `wxpay` ，`orderInfo` 传入第一步获取到的订单编号
+
+### 剪切板
+
+动态设置用户剪切板内容，实现商品链接的保存分享
+
+1. 通过 `uni.setClipboardData` 设置系统剪贴板的内容，其中，`data` 属性的参数为要设置的内容。
+2. 通过 `uni.getClipboardData`获取系统剪贴板的内容。
+
+### 检查更新
+
+获取当前 `app` 的版本号，调用接口获取服务器最新版本号，如果当前并非最新版本号，则更新下载最新版本。详情请见： [更新](/project/lingsi/music/APP/update)
