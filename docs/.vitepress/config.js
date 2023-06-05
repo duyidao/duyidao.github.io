@@ -16,7 +16,7 @@ module.exports = {
     ["meta", { property: "og:site_name", content: "刀刀博客" }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:description", content: "前端教程" }],
-    ["meta", { property: "og:url", content: "https://duyidao.gitee.io/daodao/" }],
+    ["meta", { property: "og:url", content: "https://duyidao.gitee.io/blog/" }],
   ],
   // 使用插件
   plugins: [

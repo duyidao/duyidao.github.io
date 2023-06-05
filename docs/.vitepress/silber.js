@@ -152,13 +152,13 @@ function getLearnVue3Sidebar() {
   }]
 }
 
-// 获取前端vue3数组
+// 获取前端react数组
 function getLearnReactSidebar() {
   return [{
     text: "Vue3",
     collapsible: true,
     items: [
-      { text: "react项目创建", link: "/learn/React/react项目创建" },
+      { text: "react项目创建", link: "/learn/React/" },
     ],
   }]
 }
@@ -375,6 +375,7 @@ function getMyRabbitSidebar(params) {
       text: "🐇 小兔鲜",
       collapsible: true,
       items: [
+        { text: '项目介绍', link: "/project/myself/小兔鲜/all" },
         { text: '项目创建', link: "/project/myself/小兔鲜/" },
         { text: 'Layout', link: "/project/myself/小兔鲜/layout" },
         { text: 'Home', link: "/project/myself/小兔鲜/home" },
