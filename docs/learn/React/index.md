@@ -43,16 +43,14 @@ React 是一个用于构建用户界面的 JAVASCRIPT 库。
 ```
 
 > 注意
->
+> 
 > 1. 如果在创建虚拟 DOM 时给标签加上单引号，则不是在创建标签，而是把 `<h1>Hello, React</h1> ` 这个字符串作为内容赋值过去，页面也是显示这个内容。
->
 > 2. 如果想要追加，不能多写一个 `ReactDOM.render` ，代码如下：
->
->    ```js
+>    ```javascript
 >    ReactDOM.render(vDOM, document.querySelector('#test'))
 >    ReactDOM.render(vDOM2, document.querySelector('#test'))
 >    ```
->
+>    
 >    这个操作是在覆盖，而不是追加，后面的内容会覆盖原来的内容。后续讲到组件后再实现追加功能。
 
 ## 虚拟DOM的创建方式
@@ -83,7 +81,7 @@ React 是一个用于构建用户界面的 JAVASCRIPT 库。
 
 但是这个方法并不是一劳永逸替代 jsx 的，jsx 创建之初就是用来做创建虚拟 DOM 的语法糖，自然会有其特点。我们来看下面这个需求：我要那段文本放到一个 `span` 标签内，如果用 js 的方式，写成如下形式：
 
-```js
+```javascript
 const vDOM = React.createElement('h1', {id: 'title'}, '<span>hello, react by js</span>')
 ```
 
@@ -103,7 +101,7 @@ const vDOM = (
 
 他的实质是通过 `babel` 转换为如下代码：
 
-```js
+```javascript
 const vDOM = React.createElement('h1', {id: 'title'}, React.createElement('span', {}, 'hello, react by js'))
 ```
 
@@ -128,17 +126,15 @@ var ele = <h1> Hello JSX!</h1>
 ```
 
 > 注意
->
+> 
 > 1. 它不是字符串, 也不是 `HTML/XML` 标签
 > 2. 它最终产生的就是一个 JS 对象
 
 基本语法规则：
 
 1. 遇到 `<` 开头的代码，jsx 会以标签的语法解析
-
    - 如果标签首字母是小写字母开头，该标签会转为 `html` 同名元素，若无该标签对应的同名元素，则报错。
    - 若大写字母开头，`react` 就去渲染对应的组件。若组件没定义，则报错。
-
    ```jsx
    const vDOM = (
      <h1>
@@ -147,9 +143,7 @@ var ele = <h1> Hello JSX!</h1>
      </h1>
    )
    ```
-
 2. 遇到以 `{` 开头的代码，以 JS 语法解析: 标签中的 `js` 表达式必须用 `{ }` 包含
-
    ```jsx
    const myId = 'DaodaO'
    const myContent = 'helLo,reAcT'
@@ -160,9 +154,7 @@ var ele = <h1> Hello JSX!</h1>
      </h1>
    )
    ```
-
 3. 类名指定不能使用 `class` ，要用 `className` 
-
    ```jsx
    const myId = 'DaodaO'
    const myContent = 'helLo,reAcT'
@@ -173,11 +165,9 @@ var ele = <h1> Hello JSX!</h1>
      </h1>
    )
    ```
-
+   
    如果使用了 `class` 虽然页面上会有效果，但是控制台会报错且给出提醒。
-
 4. 内联样式设置不能写成字符串，需要使用双花括号 `{{}}` 的形式，采取驼峰命名法。
-
    ```jsx
    const myId = 'DaodaO'
    const myContent = 'helLo,reAcT'
@@ -188,29 +178,26 @@ var ele = <h1> Hello JSX!</h1>
      </h1>
    )
    ```
-
 5. 虚拟 DOM 只能有一个根标签
-
    ```jsx
    const myId = 'DaodaO'
    const myContent = 'helLo,reAcT'
    // 1.创建虚拟DOM
    const vDOM = (
      <div>
-     	<h1 className="title" id={myId.toLowerCase()}>
-       	<span style={{color: '#eee', fontSize: '14px'}}>{myContent.toLowerCase()}</span>
-     	</h1>
+         <h1 className="title" id={myId.toLowerCase()}>
+           <span style={{color: '#eee', fontSize: '14px'}}>{myContent.toLowerCase()}</span>
+         </h1>
        <h2 className="title" id={myId.toUpperCase()}>
-       	<span style={{color: '#eee', fontSize: '14px'}}>{myContent.toLowerCase()}</span>
-     	</h2>
+           <span style={{color: '#eee', fontSize: '14px'}}>{myContent.toLowerCase()}</span>
+         </h2>
      </div>
    )
    ```
-
-6. 标签必须闭合。双标签需要 `<></>` ，单标签则是 `< />` 
+6. 标签必须闭合。双标签需要 `<></>` ，单标签则是 `< />`
 
 > babel.js的作用
->
+> 
 > 1. 浏览器不能直接解析 JSX 代码, 需要 `babel` 转译为纯 JS 的代码才能运行
 > 2. 只要用了 JSX，都要加上`type="text/babel"` , 声明需要 `babel` 来处理
 
@@ -382,25 +369,22 @@ ReactDOM.render(<Demo/>, document.querySelector('#test'))
 #### 踩坑日记
 
 1. 直接写 `demo` 
-
    ```jsx
    ReactDOM.render(demo, document.querySelector('#test'))
    ```
-
+   
    报错信息如下：
-
+   
    [![p9vIiuD.png](https://s1.ax1x.com/2023/05/31/p9vIiuD.png)](https://imgse.com/i/p9vIiuD)
-
+   
    不能把函数作为渲染对象，只能使用虚拟 DOM 或 组件。
-
 2. 首字母小写
-
    ```jsx
    ReactDOM.render(<demo/>, document.querySelector('#test'))
    ```
-
+   
    这个错误就很眼熟了，原因上方也说明了。
-
+   
    [![p9vIZ4I.png](https://s1.ax1x.com/2023/05/31/p9vIZ4I.png)](https://imgse.com/i/p9vIZ4I)
 
 #### 拓展
@@ -422,7 +406,7 @@ ReactDOM.render(<Demo/>, document.querySelector('#test'))
 
 类的定义：创建一个 `Person` 类
 
-```js
+```javascript
 class Person {
     
 }
@@ -435,7 +419,7 @@ console.log(p1)
 
 类中的方法放在了原型对象上，供实例对象使用。
 
-```js
+```javascript
 class Person {
     constructor(name) {
         this.name = name
@@ -451,19 +435,19 @@ p1.speak()
 
 但是方法 `speak` 内的 `this` 指向不一定是指向 `Person` 实例，在通过类调用时，指向实例对象。如果调用对象使用 `call` 或 `apply` 等改变 `this` 指向的方法，则 `speak` 的 `this` 指向也会改变。
 
-```js
+```javascript
 p1.speak().call({a: 1, b: 2})
 ```
 
 > 总结：
->
+> 
 > 1. 类中的构造器不是必须写的，要对实例进行一些初始化操作（如添加指定属性时，才写）
 > 2. 如果类A 继承类 B，且类 A 写了构造器，那么类 A 构造器中的 `super` 是必须调用的
 > 3. 类中所定义的方法，都是放在类的原型对象上，供实例去使用
 
 类中可以直接写赋值语句，例如：
 
-```js
+```javascript
 class A {
     constructor(name) {
         this.name = name
@@ -499,7 +483,7 @@ class A {
     // 创建类式组件
     // react中，类式组件要继承内置的一个类
     class ClassFn extends React.Component {
-   	  // render放在 ClassFn 类原型对象上，供实例对象使用
+         // render放在 ClassFn 类原型对象上，供实例对象使用
       render() {
         return (
           <div>
@@ -528,7 +512,7 @@ class A {
 后续我们主要考虑 `props` 、`refs` 、`state` 三个属性。
 
 > 注意
->
+> 
 > 由于类式组件继承了 `React.Component` 组件方法，因此在原型上也能找到组件实例对象。
 
 ## state
@@ -600,13 +584,13 @@ function clickFn(params) {
 
 控制台提示报错，报错信息如下：
 
-```js
+```javascript
 Warning: Invalid event handler property `onclick`. Did you mean `onClick`?
 ```
 
 提示我们要采取驼峰命名法的形式，事件要改为大写，这个是 `react` 的一个规范。修改后运行，发现控制台报了一个新的错误：
 
-```js
+```javascript
 Warning: Expected `onClick` listener to be a function, instead got a value of `string` type.
 ```
 
@@ -684,7 +668,7 @@ class Weather extends React.Component {
 ```
 
 > 注意
->
+> 
 > 函数方法 `clickFn` 是在类 `Weather` 上，因此需要通过 `this.` 来获取调用。
 
 查看控制台的打印，发现打印出来的 `this` 是 `undefined` 。这是为什么？为什么不是类 `Weather` ？
@@ -693,7 +677,7 @@ class Weather extends React.Component {
 
 为了论证这个这个思想，我们新开一个测试页面，声明一个类，包含构造器和一个方法，创建一个实例对象，调用该方法。代码如下：
 
-```js
+```javascript
 class Test {
   constructor() {}
   say() {
@@ -707,7 +691,7 @@ test.say() // Test {}
 
 通过  `new` 创建的实例对象，打印出来的 `this` 确实是类 `Test` 。如果我把 `test.say` 这个函数赋值给一个变量 `a` ，那么 `a()` 调用函数后打印的 `this` 是谁呢？尝试一下：
 
-```js
+```javascript
 class Test {
   constructor() {}
   say() {
@@ -732,7 +716,7 @@ a()
 
 因此 `a()` 实际上只是通过地址找到内存中的这个 `say()` 函数并调用，而不是通过查找原型查找。而函数这么调用函数内的 `this` 指向的是 `window` ，但是类中声明的方法做了局部严格模式，因此最终打印的是 `undefined` 。下面可以做一个例子：
 
-```js
+```javascript
 function demo() {
     console.log(this) // window {}
 }
@@ -799,7 +783,7 @@ this.setState({isHot: !isHot})
 
 类可以把值写在类中，不需要写在构造器内，因此 `state` 可以抽取出来。
 
-```js
+```javascript
 constructor(props) {
   super(props)
   this.my_clickFn = this.clickFn.bind(this)
@@ -809,7 +793,7 @@ state = {isHot: true}
 
 而函数也可以通过等号赋值的方式在类中创建声明，让其内部 `this` 指向类，先采取下方的代码：
 
-```js
+```javascript
 constructor(props) {
   super(props)
 }
@@ -824,7 +808,7 @@ my_clickFn = function() {
 
 难道要止步于此了么？别忘了 ES6 新出一个箭头函数，其最大的特点就是没有自己的 `this` 指向，指向外部的环境。如果我们把代码成为以下形式：
 
-```js
+```javascript
 constructor(props) {
   super(props)
 }
@@ -845,7 +829,7 @@ my_clickFn = () => {
 2. 组件自定义的方法中 `this` 为 `undefined`，如何解决？
    - 强制绑定 `this` ：通过函数对象的 `bind()`
    - 箭头函数
-3. 状态数据，不能直接修改或更新，需要通过 `setState()` 
+3. 状态数据，不能直接修改或更新，需要通过 `setState()`
 
 ## props
 
@@ -875,10 +859,10 @@ ReactDOM.render(<Person name="杜一刀" age="23" sex="男"/>, document.querySel
 现在可以在组件实例动态传参渲染数据。
 
 > 注意
->
+> 
 > 组件内部不要修改 `props` 数据，如果修改 `props` 的值并且替换原值则会报错。
->
-> ```js
+> 
+> ```javascript
 > class Person extends React.Component {
 >   render() {
 >     const {name, age, sex} = this.props
@@ -887,7 +871,7 @@ ReactDOM.render(<Person name="杜一刀" age="23" sex="男"/>, document.querySel
 >   }
 > }
 > ```
->
+> 
 > [![pCC4x78.png](https://s1.ax1x.com/2023/06/05/pCC4x78.png)](https://imgse.com/i/pCC4x78)
 
 ### 批量操作
@@ -902,7 +886,7 @@ ReactDOM.render(<Person {...p}/>, document.querySelector('#test1'))
 ```
 
 > 注意
->
+> 
 > 1. 该 `{...p}` 中的花括号 `{}` 与 es6 中的花括号不是同一个功能，因此不要把他理解为展开解构语法
 > 2. `react` 与 `babel` 的处理仅能让我们在组件中批量赋值，不可在其他地方使用。如 `console.log({...p})` ，虽然不报错，但是结果为空
 
@@ -910,7 +894,7 @@ ReactDOM.render(<Person {...p}/>, document.querySelector('#test1'))
 
 `react` 中属性限制需要通过以下的方法设置：
 
-```js
+```javascript
 类.propTypes = {
   // 。。。
 }
@@ -931,12 +915,10 @@ Person.propType = {
 ```
 
 > 注意
->
+> 
 > 1. 类型限制中为了不与 `React` 内置的 `String` 、`Number` 等方法冲突，这里采用小写的形式。但是函数类型限制不可使用 `function` ，因为这是声明函数的关键字，因此需要改为 `func` 
->
 > 2. 旧版本中 `PropTypes` 放在 `React` 上。后续因为太臃肿才分离出来。旧版本写法为：
->
->    ```js
+>    ```javascript
 >    Person.propType = {
 >      name: React.PropTypes.string
 >    }
@@ -946,7 +928,7 @@ Person.propType = {
 
 必传限制可通过 `isRequired` 字段限制，可以跟在之前做的限制后面。
 
-```js
+```javascript
 Person.propType = {
   name: PropTypes.string.isRequired
 }
@@ -956,7 +938,7 @@ Person.propType = {
 
 默认值可通过 `defineProps` 对象内设置对应的键值。
 
-```js
+```javascript
 Person.defineProps = {
   name: '默认名称'
 }
@@ -966,14 +948,14 @@ Person.defineProps = {
 
 既然是类的方法，可以不要把他们放在类外部创建，而是写在类里面，写法如下：
 
-```js
+```javascript
 class Person extends React.Component {
   static propType = {
-  	name: PropTypes.string.isRequired
+      name: PropTypes.string.isRequired
   }
 
   static defineProps = {
-  	name: 'abc'
+      name: 'abc'
   }
     
   render() {
@@ -986,7 +968,7 @@ class Person extends React.Component {
 
 构造器在继承父类时如果需要使用则必须要先在构造器中定义关键字 `super()` ，把参数传过去，如下：
 
-```js
+```javascript
 class A extends React.Component {
     constructor(props) {
         super(props)
@@ -1019,8 +1001,8 @@ class A extends React.Component {
 ```jsx
 function Person(props) {
     return (
-    	<ul>
-        	<li>{props}</li>
+        <ul>
+            <li>{props}</li>
         </ul>
     )
 }
@@ -1076,7 +1058,7 @@ class A extends React.Component {
 ```
 
 > 注意
->
+> 
 > 这个写法不被官方推荐，且后续可能会被官方删除。因为字符串声明的 `ref` 会有效率问题。如果需要，更推荐使用回调函数或 `createRef()` 声明。
 
 ### 回调写法
@@ -1108,11 +1090,11 @@ class A extends React.Component {
 ```
 
 > 注意
->
+> 
 > 回调 `ref` 函数是以内联的方式定义的，在更新过程中他会被执行两次，一次是传入参数 `null` ，一次是传入参数 DOM 元素。可通过 将回调函数定义在 `class` 类中解决此问题。
->
+> 
 > 修改后的代码如下所示：
->
+> 
 > ```jsx
 > class A extends React.Component {
 >   showFn = () => {
@@ -1161,7 +1143,7 @@ class A extends React.Component {
 ```
 
 > 注意
->
+> 
 > 该容器是专人专用的，也就是说如果有两个 DOM 节点绑定同名的 `ref` ，后设置的 DOM 节点会覆盖前面的。
 
 ### 总结
@@ -1171,13 +1153,10 @@ class A extends React.Component {
 回调形式的 `ref` 可采取内联式与外嵌式，写法如下：
 
 - 内联式
-
   ```jsx
   <input ref={e => console.log(e)}
   ```
-
 - 外嵌式
-
   ```jsx
   setInputRef = e => {
       this.inputRef = e
@@ -1189,19 +1168,14 @@ class A extends React.Component {
 `createRef` 目前是官方最推荐的写法，步骤为：
 
 1. 先声明 `ref` 
-
    ```jsx
    <input ref={this.myRef}
    ```
-
 2. 通过 `React.createRef()` 把 `ref` 放到容器内
-
    ```jsx
    myRef = React.createRef()
    ```
-
 3. 使用则通过其 `current` 获取
-
    ```jsx
    showFn = () => {
        console.log(this.myRef.current.value)
@@ -1209,7 +1183,7 @@ class A extends React.Component {
    ```
 
 > 注意
->
+> 
 > DOM节点与 `createRef` 声明的 `ref` 是一一对应关系。
 
 ## 事件处理
@@ -1217,7 +1191,7 @@ class A extends React.Component {
 1. 通过 `onXxxx` 属性指定事件处理函数
    1. `React` 使用的是自定义事件，目的是为了更好的兼容性
    2. `React` 中的事件是通过事件委托的方式把子元素的事件绑定到父元素上，目的是提高效率
-2. 触发事件的元素刚好是需要操作元素，可以通过 `event` 事件对象获取 DOM 元素对象，避免过度使用 `ref` 
+2. 触发事件的元素刚好是需要操作元素，可以通过 `event` 事件对象获取 DOM 元素对象，避免过度使用 `ref`
 
 ## 表单
 
@@ -1252,7 +1226,7 @@ handleSubmit = e => {
 }
 
 <form onSubmit={this.handleSubmit}>
-	<input ref={e => this.username = e} name="username" />
+    <input ref={e => this.username = e} name="username" />
     <button>登录</button>
 </form>
 ```
@@ -1310,14 +1284,14 @@ changeCarFn = () => {
 }
 
     render() {
-  		return (
-    		<div>
+          return (
+            <div>
                 A
                 <B carName={this.state.carName} />
                 <button onClick={this.changeCarFn}>点我换车</button>
-    		</div>
-  		)
-	}
+            </div>
+          )
+    }
 }
 
 class B extends React.Component {
@@ -1326,13 +1300,218 @@ class B extends React.Component {
     }
     
     render() {
-  		return (
-    		<div>
+          return (
+            <div>
                 B：this.props.carName
-    		</div>
-  		)
-	}
+            </div>
+          )
+    }
 }
 ```
 
  子组件中，`componentWillReceiveProps` 钩子在父组件第一次赋值时不会触发，只有点击换车按钮后更新新值才会触发该钩子函数。
+
+#### 总结
+
+1. 初始化阶段：由`ReactDOM.render()` 触发---初次渲染
+   - `constructor()`
+   - `componentWillMount` 
+   - `render` 
+   - `componentDidMount` （常用于发送请求初始化渲染数据、开启定时器、订阅消息等）
+2. 更新阶段：由组件内部 `this.setState()` 或父组件 `render` 触发
+   - `shouldComponentUpdate` 
+   - `componentWillUpdate` 
+   - `render` 
+   - `componentDidUpdate`
+3. 卸载组件：由 `ReactDOM.unmountComponentAtNode()` 触发
+   - `componentWillUnmount` （常用于关闭定时器、取消订阅等）
+
+### 流程图（新）
+
+[![pCifYND.png](https://s1.ax1x.com/2023/06/07/pCifYND.png)](https://imgse.com/i/pCifYND)
+
+#### 新旧版本对比
+
+在新版中，旧版生命周期中的 `componentWillMount` 、`componentWillUpdate` 、`componentWillReceiveProps` 需要添加 `UNSAFE_` 前缀，不是不安全的意思，而是会出现潜在的 BUG。后期即将废弃。
+
+新生命周期中，提出了两个新的钩子：`getDerivedStateFromProp` 、`getSnapshotBeforeUpdate` 。
+
+#### getDerivedStateFromProp
+
+根据生命周期图，`getDerivedStateFromProp` 会在 `constructor` 构造器后运行，尝试一下：
+
+```jsx
+class A extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    
+    getDerivedStateFromProp() {
+        console.log('getDerivedStateFromProp')
+    }
+    
+    // ...
+}
+```
+
+运行后报错，提示信息如下：
+
+[![pCi4rtS.png](https://s1.ax1x.com/2023/06/07/pCi4rtS.png)](https://imgse.com/i/pCi4rtS)
+
+提示我们需要为其添加 `static` 关键字。
+
+```jsx
+class A extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    
+    static getDerivedStateFromProp() {
+        console.log('getDerivedStateFromProp')
+    }
+    
+    // ...
+}
+```
+
+添加后有打印了，但是还是有报错，报错信息如下：
+
+[![pCi4h7V.png](https://s1.ax1x.com/2023/06/07/pCi4h7V.png)](https://imgse.com/i/pCi4h7V)
+
+类 A 的 `getDerivedStateFromProp` 方法必须要返回一个 `state` 状态对象或者 `null` ，可是你返回的是一个 `undefined` 。其可以接收一个参数 `props` ，把 `props` 返回出去，但是不可更改。
+
+此方法适用于 `state` 的值任何时候都适用于 `props` 。
+
+#### getSnapshotBeforeUpdate
+
+根据生命周期图，`getSnapshotBeforeUpdate` 会在 `render` 后运行，尝试一下：
+
+```jsx
+class A extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    
+    getSnapshotBeforeUpdate() {
+        console.log('getSnapshotBeforeUpdate')
+    }
+    
+    // ...
+}
+```
+
+运行后有一个警告，提示我们需要返回一个快照，但是我们返回的是 `undefined` 。任何元素都可以作为一个快照：字符串、数值、布尔值，这个快照有什么用呢？
+
+返回之前学习的一个钩子：`componentDidUpdate` ，他能接收两个参数：
+
+- 参数一：`preProps` ，旧的 `props` 。
+- 参数二：`preState` ，旧的状态对象 `state` 。
+- 参数三：快照值。
+
+而这个钩子返回的快照，会作为参数传给 `componentDidUpdate` 钩子的第三个参数。一般用于捕获页面滚动条位置，类似于 `Vue` 中的 `beforeUpdate` 生命周期函数，在 DOM 重新渲染更新前执行，获取快照。
+
+#### 案例演示
+
+```html
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible"
+    content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <title>test</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .list {
+      width: 300px;
+      background-color: aqua;
+      height: 180px;
+      overflow: auto;
+    }
+
+    .list .item {
+      height: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="test"></div>
+
+  <script src="../js-new/react.development.js"></script>
+  <script src="../js-new/react-dom.development.js"></script>
+  <script src="../js-new/prop-types.js"></script>
+  <script src="../js-new/babel.min.js"></script>
+
+  <script type="text/babel">
+    class Test extends React.Component {
+      state = {newArr: []}
+
+      getSnapshotBeforeUpdate() {
+        return this.refs.list.scrollHeight
+      }
+
+      // 更新后保持高度，计算公式为：当前的高度减去保存的高度的差累加给其被卷去的高
+      componentDidUpdate(preProps, preState, height) {
+        this.refs.list.scrollTop += this.refs.list.scrollHeight - height
+      }
+
+      // 在这里模拟发送请求获取最新的数据
+      componentDidMount() {
+        setInterval(() => {
+          const {newArr} = this.state
+          const news = '新闻' + (newArr.length + 1)
+          this.setState({newArr: [news, ...newArr]})
+        }, 1000);
+      }
+
+      render() {
+        return (
+          <div className="list" ref="list">
+            {
+              this.state.newArr.map((item, index) => {
+                return <div key={index} className="item">{item}</div>
+              })
+            }
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<Test />, document.querySelector('#test'))
+  </script>
+</body>
+```
+
+#### 总结
+
+1. 初始化阶段: 由ReactDOM.render()触发---初次渲染
+   - constructor()
+   - getDerivedStateFromProps 
+   - render()
+   - componentDidMount()
+2. 更新阶段: 由组件内部this.setSate()或父组件重新render触发
+   - getDerivedStateFromProps
+   - shouldComponentUpdate()
+   - render()
+   - getSnapshotBeforeUpdate()
+   - componentDidUpdate()
+3. 卸载组件: 由ReactDOM.unmountComponentAtNode()触发
+   - componentWillUnmount()
+
+重要的勾子
+
+1. render：初始化渲染或更新渲染调用
+2. componentDidMount：开启监听, 发送ajax请求
+3. componentWillUnmount：做一些收尾工作, 如: 清理定时器
+
+即将废弃的勾子
+
+1. componentWillMount
+2. componentWillReceiveProps
+3. componentWillUpdate
+
+现在使用会出现警告，下一个大版本需要加上UNSAFE_前缀才能使用，以后可能会被彻底废弃，不建议使用。

@@ -4,22 +4,22 @@
 
 1. 首先登录[官网 (opens new window)](https://nodejs.org/en/)下载安装[NODEJS (opens new window)](https://nodejs.org/zh-cn/)最新版本
 
-2. [Yarn (opens new window)](https://yarnpkg.com/)会缓存它下载的每个包所以无需重复下载，安装速度之快前所未有
+2. [Yarn (opens new window)](https://yarnpkg.com/)会缓存它下载的每个包所以无需重复下载
 
    ```text
    npm install -g yarn@berry
    ```
 
-3. 使用 [Create React App (opens new window)](https://create-react-app.dev/)安装 REACT 项目非常方便，下面来创建项目 houdunren
+3. 使用 [Create React App (opens new window)](https://create-react-app.dev/)安装 REACT 项目非常方便，下面来创建项目 daodao
 
    ```text
-   npx create-react-app houdunren
+   npx create-react-app daodao
    ```
 
 4. 进入目录并启动项目
 
    ```text
-   cd houdunren
+   cd daodao
    npm start
    ```
 
@@ -45,7 +45,7 @@
 import React from "react";
 import ReactDom from "react-dom";
 
-ReactDom.render(<div>houdunren</div>, document.querySelector("#root"));
+ReactDom.render(<div>daodao</div>, document.querySelector("#root"));
 ```
 
 在 JSX 中可以使用 JS 的功能，要求使用花扩号包裹
@@ -78,7 +78,7 @@ const App = props => {
   return <div>{props.name}</div>;
 };
 
-ReactDom.render(<App name="houdunren.com" />, document.querySelector("#root"));
+ReactDom.render(<App name="daodao.com" />, document.querySelector("#root"));
 ```
 
 #### 类的声明
@@ -182,7 +182,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Hd name="houdunren.com" />
+        <Hd name="daodao.com" />
         App: {this.props.name}
       </div>
     );
@@ -569,7 +569,7 @@ export default class App extends Component {
 
 以前面讲解的学生模块为例，因为每个组件都有一个顶级标签，最终生成的 HTML 标签结构如下
 
-![image-20200203142326386](https://doc.houdunren.com/assets/img/image-20200203142326386.cb10bc8c.png)
+![image-20200203142326386](https://doc.daodao.com/assets/img/image-20200203142326386.cb10bc8c.png)
 
 但是现在我们发现一个问题，就是文本框不能 100%对齐
 
@@ -605,7 +605,7 @@ export default class Add extends Component {
 function App() {
   return (
     <>
-      houdunren.com
+      daodao.com
     </>
   )
 }
@@ -613,7 +613,7 @@ function App() {
 
 现在将 src/components/User/index.js 与 src/components/Add/index.js 两个组件使用 fragment 或空标签来处理。最终生成的 HTML 结构如下图所示
 
-![image-20200203143122968](https://doc.houdunren.com/assets/img/image-20200203143122968.4d848c40.png)
+![image-20200203143122968](https://doc.daodao.com/assets/img/image-20200203143122968.4d848c40.png)
 
 现在我们来修改相关样式文件
 
@@ -655,7 +655,7 @@ export default class App extends Component {
 
 下面来搜索添加按钮，需要修改两个组件文件和两个样式文件
 
-![image-20200204001746734](https://doc.houdunren.com/assets/img/image-20200204001746734.4d868422.png)
+![image-20200204001746734](https://doc.daodao.com/assets/img/image-20200204001746734.4d868422.png)
 
 src/components/Add/index.js 因为页面结构有变化，所以删除 fragment 改变 div 标签
 
