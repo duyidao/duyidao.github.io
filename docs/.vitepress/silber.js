@@ -158,7 +158,9 @@ function getLearnReactSidebar() {
     text: "Vue3",
     collapsible: true,
     items: [
-      { text: "react项目创建", link: "/learn/React/" },
+      { text: "无脚手架项目创建", link: "/learn/React/" },
+      { text: "Diff算法", link: "/learn/React/react的diff算法" },
+      { text: "脚手架项目创建", link: "/learn/React/index_new" },
     ],
   }]
 }
@@ -381,6 +383,7 @@ function getMyRabbitSidebar(params) {
         { text: 'Home', link: "/project/myself/小兔鲜/home" },
         { text: '分类', link: "/project/myself/小兔鲜/一级分类" },
         { text: '详情', link: "/project/myself/小兔鲜/detail" },
+        { text: '登录', link: "/project/myself/小兔鲜/login" },
         { text: '🗑 返回', link: '/project/myself/' },
       ]
     }
