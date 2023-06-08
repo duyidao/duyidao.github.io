@@ -1,9 +1,15 @@
 ---
+
 title 音果云音
 ---
 
 # 项目
-该项目名称为音果云音。目前已上架百度助手，下载地址：[音果云音](https://mobile.baidu.com/item?pid=5000028289&source=appbaidu) 。
+
+该项目名称为音果云音。目前已上架百度助手，各端下载地址为：
+
+- 安卓-百度助手：[音果云音](https://mobile.baidu.com/item?pid=5000028289&source=appbaidu)
+- h5版： [音果云音](https://app.yinguokongjian.com/h5)
+- IOS AppStore：[音果云音](https://apps.apple.com/cn/app/%E9%9F%B3%E6%9E%9C%E4%BA%91%E9%9F%B3/id6445878897)
 
 ## 技术栈
 
@@ -19,48 +25,42 @@ Bug数记录
 ## 主要模块
 
 1. 登录
-
+   
    允许用户通过手机号验证码、手机号密码、微信授权三种方式登录；登录前需同意用户协议。
-
 2. `tabBar`页（首页、商城、合作、我的）
-
 3. 我要测试
-
+   
    允许用户本人填写，也可帮他人填写，帮助他人填写需要填入对方手机、年龄、性别、体重（均必填），本人填写则直接获取本地存储的数据（需判断用户是否已填写自己的信息，未填写则弹出提示并跳转）。
-
+   
    选择考卷后答题，每份试卷对应一种类别，每一份试卷对应多种分数模版，最后根据所得的分数显示对应的模版结果。
-
 4. 分享
-
 5. 推广中心
-
+   
    用户分享推广商品的链接，其他用户复制后购买，双方建立上下级关系，上级可获取相应的佣金。
-
 6. 终端操作
-
 7. 售后
-
+   
    工具类商品允许申请售后，确认收货与取消订单。
-
+   
    只有在待付款状态下允许取消订单。
-
+   
    只有在待收货状态下允许确认收货。
-
+   
    售后只有在待发货、待收货、已完成、售后四种状态下发起。若该商品的支付方式为钵币支付，也不允许发起售后。
-
 8. 其余功能······
 
 ## 遇到的问题
+
 ### 苹果上架
 
 该项目有佣金推广模块与虚拟商品购买模块，导致苹果商城上架不成功，经过讨论决定苹果手机上把这些模块隐藏。判断用户使用的设备是否为苹果代码如下：
 
-```js
+```javascript
 export const is_iOS = () => {
    if (uni.getSystemInfoSync().platform == 'ios') {
-	   return true
+       return true
    } else {
-	   return false
+       return false
    }
 }
 ```
@@ -71,7 +71,8 @@ export const is_iOS = () => {
 
 解决方案：
 通过正则表达式匹配图片标签，为其加上 `max-width: 100%` （注意不要破坏原来的样式）
-```js
+
+```javascript
 changeImgWidth(html) {
    if (!html) return
    let newContent = html
@@ -108,11 +109,11 @@ Waiting to navigate to xxx, do not operate continuously xxx
 
 加一个延迟器，延迟执行跳转的操作即可。
 
-```js
+```javascript
 setTimeout(() => {
-	uni.navigateTo({
-		url: "/pages/login/Login"
-	});
+    uni.navigateTo({
+        url: "/pages/login/Login"
+    });
 }, 500);
 ```
 
@@ -121,6 +122,7 @@ setTimeout(() => {
 ### 音频播放
 
 使用 `uni.createInnerAudioContext()` 音频组件控制播放音频。
+
 1. 通过 `src` 字段添加链接；设置 `startTime` 开始使用
 2. 通过循环的方式动态次数循环播放音频
 3. 通过 `play()` 事件播放音频，`pause()` 事件暂停音频，`stop()` 事件停止音频， `seek()` 事件切换音频当前播放位置， `onEnded()` 监听音频停止时间， `onTimeUpdate()` 动态获取音频当前播放位置。
@@ -143,7 +145,7 @@ setTimeout(() => {
 通过 `uni.requestPayment` 方法实现支付功能
 
 1. 调用后端接口创建订单获取订单编号，成功后即可调用后端支付接口获取对应sdk
-3. 使用 `uni.requestPayment` 方法调起支付，其中，属性 `provider` 为支付服务提供商。如支付宝支付参数为 `alipay`，微信支付为 `wxpay` ，`orderInfo` 传入第一步获取到的订单编号
+2. 使用 `uni.requestPayment` 方法调起支付，其中，属性 `provider` 为支付服务提供商。如支付宝支付参数为 `alipay`，微信支付为 `wxpay` ，`orderInfo` 传入第一步获取到的订单编号
 
 ### 剪切板
 
