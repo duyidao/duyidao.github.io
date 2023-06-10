@@ -185,6 +185,98 @@ const { bannerList } = useBanner()
 
 这样有利于代码的维护，后续新增功能时只需前往对应的 `useXxxx.js` 文件新添功能即可。
 
+### v-model在组件中的实现
+
+`v-model` 是一个语法糖，在 `vue3` 中父组件通过 `v-model` 绑定变量，实际上子组件是通过 `:modelValue` 绑定数据，`emit` 函数调用 `update:modelValue` 修改数据。
+
+本项目中通过这个特性，在子组件使用 `v-model` 的特性实现功能。代码如下所示：
+
+- 父组件中通过 `v-model` 绑定一个布尔值控制子组件的显示隐藏
+
+  ```vue
+  <AddressDialog
+    v-model="show"
+  />
+  ```
+
+- 子组件通过 `:modelValue` 为 `dialog` 组件绑定变量，并声明 `emit` ，在其关闭函数事件中使用：
+
+  ```vue
+  <script setup>
+  defineProps({
+    show: {
+      type: Boolean,
+      default: false
+    }
+  })
+  
+  
+  const emit = defineEmits(['update:modelValue'])
+  
+  const handleCloseFn = () => {
+    emit('update:modelValue', false)
+  }
+  </script>
+  
+  <template>
+  	<el-dialog :modelValue="show" title="切换收货地址" width="30%" center @close="handleCloseFn"></el-dialog>
+  </template>
+  ```
+
+### 状态存储响应式
+
+购物车模块中购物车数据多个页面需要使用，因此把数据放到 `pinia` 中做状态管理存储，其增删改查函数也声明在 `pinia` 中并对外暴露供外部使用，代码如下：
+
+```js
+import { ref, computed } from 'vue'
+import { defineStore } from 'pinia'
+
+export const useCarttStore = defineStore('cart', () => {
+  const cartList = ref([]) // 购物车列表数据
+
+  // 添加购物车操作
+  const addCart = async (e) => {
+    // ...
+  }
+
+  // 购物车商品总数数据计算
+  const cartCount = computed(() => cartList.value.length ? cartList.value.reduce((pre, next) => pre + next.count, 0) : 0)
+
+  // 删除购物车内容
+  const delCart = async skuId => {
+      // ...
+  }
+
+  // ...
+
+  return { cartList, addCart, delCart, ... }
+}, {
+  persist: true
+})
+
+```
+
+在页面中通过导入该函数方法并解构出对应的函数和变量来使用，代码如下所示：
+
+```js
+import { useCarttStore } from "@/stores/cart";
+
+const { cartList, cartChoseCount, cartChosePrice } = useCarttStore();
+```
+
+但是在使用时发现数据没能做到响应式，在做增加或删除处理时 `vue` 插件和本地存储的数据已经是新的数据了，而页面中还是旧的数据，手动刷新后才能获取到最新的数据。
+
+这是因为通过上方的方法获取到 `pinia` 内的数据不是响应式的，因此不会响应发生变化，使用的 `storeToRefs` 方法后把变量变为响应式，代码如下：
+
+```js
+import { useCarttStore } from "@/stores/cart";
+import { storeToRefs } from "pinia";
+
+const { cartList, cartChoseCount, cartChosePrice } = storeToRefs(useCarttStore());
+```
+
+保存运行后数据能够响应式的变化。更多详细功能可前往 [购物车](/project/myself/小兔鲜/购物车) 模块查看。
+
 ## 遇到的BUG
 
 ### 数据渲染cannot read xx of undefined

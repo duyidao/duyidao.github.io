@@ -161,6 +161,7 @@ function getLearnReactSidebar() {
       { text: "无脚手架项目创建", link: "/learn/React/" },
       { text: "Diff算法", link: "/learn/React/react的diff算法" },
       { text: "脚手架项目创建", link: "/learn/React/index_new" },
+      { text: "路由", link: "/learn/React/react路由" },
     ],
   }]
 }
@@ -362,7 +363,7 @@ function getMyselfSidebar() {
       collapsible: true,
       items: [
         { text: '📕 引言', link: "/project/myself/" },
-        { text: '🐇 小兔鲜', link: "/project/myself/小兔鲜/" },
+        { text: '🐇 小兔鲜', link: "/project/myself/小兔鲜/all" },
         { text: '🐂 硅谷甄选', link: "/project/myself/硅谷甄选/" },
         { text: '🗑 返回', link: '/project/' },
       ]
