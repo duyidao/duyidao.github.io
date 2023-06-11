@@ -385,6 +385,8 @@ function getMyRabbitSidebar(params) {
         { text: '分类', link: "/project/myself/小兔鲜/一级分类" },
         { text: '详情', link: "/project/myself/小兔鲜/detail" },
         { text: '登录', link: "/project/myself/小兔鲜/login" },
+        { text: '购物车', link: "/project/myself/小兔鲜/购物车" },
+        { text: 'Sku思路', link: "/project/myself/小兔鲜/sku" },
         { text: '🗑 返回', link: '/project/myself/' },
       ]
     }

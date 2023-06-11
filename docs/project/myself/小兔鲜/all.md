@@ -12,6 +12,8 @@
 - 登录页
 - 支付页
 
+本项目最终打包部署到 `Gitee Pages` 上代理，线上完整项目以及打包方式指路：[刀刀小兔鲜](https://duyidao.gitee.io/rabit/)
+
 ## 项目亮点
 
 ### 图片懒加载
@@ -185,7 +187,7 @@ const { bannerList } = useBanner()
 
 这样有利于代码的维护，后续新增功能时只需前往对应的 `useXxxx.js` 文件新添功能即可。
 
-### v-model在组件中的实现
+### v-model组件实现
 
 `v-model` 是一个语法糖，在 `vue3` 中父组件通过 `v-model` 绑定变量，实际上子组件是通过 `:modelValue` 绑定数据，`emit` 函数调用 `update:modelValue` 修改数据。
 
@@ -194,11 +196,9 @@ const { bannerList } = useBanner()
 - 父组件中通过 `v-model` 绑定一个布尔值控制子组件的显示隐藏
 
   ```vue
-  <AddressDialog
-    v-model="show"
-  />
+  <AddressDialog v-model="show" />
   ```
-
+  
 - 子组件通过 `:modelValue` 为 `dialog` 组件绑定变量，并声明 `emit` ，在其关闭函数事件中使用：
 
   ```vue
@@ -223,59 +223,62 @@ const { bannerList } = useBanner()
   </template>
   ```
 
-### 状态存储响应式
+### 倒计时封装
 
-购物车模块中购物车数据多个页面需要使用，因此把数据放到 `pinia` 中做状态管理存储，其增删改查函数也声明在 `pinia` 中并对外暴露供外部使用，代码如下：
+通过 `dayjs` 第三方库和原生 `js` 封装一个倒计时功能的方法。
+
+在命名方面遵循 `useXxx()` 的规范。该方法通过导出一个变量 `formatTime` 供组件渲染页面；通过导出一个 `start` 方法执行时间倒计时功能，接收一个倒计时参数。步骤如下：
+
+1. 接收到数据后把数据保存到变量中，开启定时器每秒自减一
+2. 通过计算属性配合 `dayjs` 把数据转为 `xx分xx秒` 的格式
+3. 最后监听页面销毁事件，清除定时器
+
+代码如下所示：
 
 ```js
-import { ref, computed } from 'vue'
-import { defineStore } from 'pinia'
+// 封装倒计时逻辑函数
+import { computed, ref, onUnmounted } from 'vue'
+import dayjs from 'dayjs'
 
-export const useCarttStore = defineStore('cart', () => {
-  const cartList = ref([]) // 购物车列表数据
+export const useCountDown = () => {
+  // 1.响应式数据
+  const time = ref(0)
+  // 格式化为时间xx分xx秒的形式（可用计算属性）
+  const formatTime = computed(() => dayjs.unix(time.value).format('mm分ss秒'))
 
-  // 添加购物车操作
-  const addCart = async (e) => {
-    // ...
+  let timer = null
+
+  // 2.开启倒计时的函数
+  const start = (currentTime) => {
+    // 先赋值
+    time.value = currentTime
+    // 每隔一秒钟就自减一
+    timer = setInterval(() => {
+      time.value -= 1
+    }, 1000);
   }
 
-  // 购物车商品总数数据计算
-  const cartCount = computed(() => cartList.value.length ? cartList.value.reduce((pre, next) => pre + next.count, 0) : 0)
+  // 组件销毁时取消定时器
+  onUnmounted(() => {
+    timer && clearInterval(timer)
+    timer = null
+  })
 
-  // 删除购物车内容
-  const delCart = async skuId => {
-      // ...
-  }
-
-  // ...
-
-  return { cartList, addCart, delCart, ... }
-}, {
-  persist: true
-})
-
+  return { formatTime, start }
+}
 ```
 
-在页面中通过导入该函数方法并解构出对应的函数和变量来使用，代码如下所示：
+使用：
 
-```js
-import { useCarttStore } from "@/stores/cart";
+```vue
+<script setup>
+import {useCountDown} from '@/hooks/useCountDown'
+const {formatTime, start} = useCountDown()
 
-const { cartList, cartChoseCount, cartChosePrice } = useCarttStore();
+start(60)
+
+</script>
 ```
-
-但是在使用时发现数据没能做到响应式，在做增加或删除处理时 `vue` 插件和本地存储的数据已经是新的数据了，而页面中还是旧的数据，手动刷新后才能获取到最新的数据。
-
-这是因为通过上方的方法获取到 `pinia` 内的数据不是响应式的，因此不会响应发生变化，使用的 `storeToRefs` 方法后把变量变为响应式，代码如下：
-
-```js
-import { useCarttStore } from "@/stores/cart";
-import { storeToRefs } from "pinia";
-
-const { cartList, cartChoseCount, cartChosePrice } = storeToRefs(useCarttStore());
-```
-
-保存运行后数据能够响应式的变化。更多详细功能可前往 [购物车](/project/myself/小兔鲜/购物车) 模块查看。
 
 ## 遇到的BUG
 
@@ -326,3 +329,68 @@ const { cartList, cartChoseCount, cartChosePrice } = storeToRefs(useCarttStore()
 > 缺点
 >
 > 当只有一两个元素时代码没有可选链那么简便。
+
+### 状态存储无响应式
+
+购物车模块中购物车数据多个页面需要使用，因此把数据放到 `pinia` 中做状态管理存储，其增删改查函数也声明在 `pinia` 中并对外暴露供外部使用，代码如下：
+
+```js
+import { ref, computed } from 'vue'
+import { defineStore } from 'pinia'
+
+export const useCarttStore = defineStore('cart', () => {
+  const cartList = ref([]) // 购物车列表数据
+
+  // 添加购物车操作
+  const addCart = async (e) => {
+    // ...
+  }
+
+  return { cartList, ... }
+}, {
+  persist: true
+})
+
+```
+
+在页面中通过导入该函数方法并解构出对应的函数和变量来使用，代码如下所示：
+
+```js
+import { useCarttStore } from "@/stores/cart";
+
+const { cartList } = useCarttStore();
+```
+
+但是在使用时发现数据没能做到响应式，在做增加或删除处理时 `vue` 插件和本地存储的数据已经是新的数据了，而页面中还是旧的数据，手动刷新后才能获取到最新的数据。
+
+这是因为通过上方的方法获取到 `pinia` 内的数据不是响应式的，因此不会响应发生变化，使用的 `storeToRefs` 方法后把变量变为响应式，代码如下：
+
+```js
+import { useCarttStore } from "@/stores/cart";
+import { storeToRefs } from "pinia";
+
+const { cartList } = storeToRefs(useCarttStore());
+```
+
+保存运行后数据能够响应式的变化。更多详细功能可前往 [购物车](/project/myself/小兔鲜/购物车) 模块查看。
+
+### 部署
+
+项目完成后需要打包部署，放到 `gitee pages` 上代理。在部署的时候勾选了 “强制使用 HTTPS” 的选项，部署完后接口请求被拦截了，并报了以下的错误：
+
+[![pCZ92wR.png](https://s1.ax1x.com/2023/06/11/pCZ92wR.png)](https://imgse.com/i/pCZ92wR)
+
+原因：
+
+在https中请求http接口或引入http资源都会被直接blocked（阻止），浏览器默认此行为不安全，会拦截。
+
+解决方案：
+
+在 `index.html` 里添加下方代码，强制将http请求转成https(SSL协议)请求。
+
+```html
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+```
+
+最后重新打包部署，能够正常请求数据。
+
