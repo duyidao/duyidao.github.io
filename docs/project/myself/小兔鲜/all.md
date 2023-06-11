@@ -12,7 +12,9 @@
 - 登录页
 - 支付页
 
-本项目最终打包部署到 `Gitee Pages` 上代理，线上完整项目以及打包方式指路：[刀刀小兔鲜](https://duyidao.gitee.io/rabit/)
+线上完整项目：[刀刀小兔鲜](https://duyidao.gitee.io/rabit/)
+
+项目仓库以及打包方式指路：[刀刀小兔鲜仓库](https://gitee.com/duyidao/rabit)
 
 ## 项目亮点
 
