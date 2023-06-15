@@ -276,9 +276,9 @@ ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.querySelector('
   ```
 - state传参
   
-  在 `<Link />` 组件中为 `to` 设置对象，其中 `pathName` 对应路由路径，`state` 对应参数，代码如下所示：
+  在 `<Link />` 组件中为 `to` 设置对象，其中 `pathname` 对应路由路径，`state` 对应参数，代码如下所示：
   ```jsx
-  <Link to={{pathName: '/home/news', state: {id: item.id, title: item.title}}}></Link>
+  <Link to={{pathname: '/home/news', state: {id: item.id, title: item.title}}}></Link>
   ```
   
   组件中通过 `location` 对象下的 `state` 参数获取，前面传了一个对象，这里获取到的就是那个对象。代码如下所示：
@@ -291,8 +291,82 @@ ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.querySelector('
   ```
   
   在地址栏中它不像 `parasm` 和 `search` 传参，该方法传参不会在地址栏中传递参数，有利于参数保密。再刷新也不会参数丢失，因为其传递的参数保存到浏览器的缓存历史记录 `history` 中。当浏览器历史记录被清除后无法找到。
+
+#### push与replace
+
+`push()` 操作是压栈模式，每点击一次路由跳转都会往路由栈中压入一个路由，最先进来的在栈底，最后进来的在栈顶；`replace()` 则是替换掉栈顶，不留下痕迹。
+
+默认开启的是 `push()` 模式，需要替换可以添加 `replace` 关键字修改，代码如下所示：
+
+```jsx
+<Link replace={true} to="/home/news"></Link>
+```
+
+#### 编程式路由导航
+
+如果不借助 `<Link />` 或 `<NavLink />` 这类路由链接点击跳转，而是通过代码处理跳转，这类跳转被称为编程式导航。主要分为 `push()` 跳转和 `replace()` 跳转。
+
+要想实现编程式路由跳转，需要借助路由内置的 `history` 方法对象实现。示例代码如下所示：
+
+```jsx
+class A extends Component {
+  handleReplaceFn = (id, title) => {
+    // replace + params参数传递法
+    this.props.history.replace(`/home/news/${id}/${title}`)
+    
+    // replace + search参数传递法
+    this.props.history.replace(`/home/news?id=${id}&title=${title}`)
+    
+    // replace + state参数传递法
+    this.props.history.replace(`/home/news`, {id, title}})
+  }
   
-  <br/>
+  handlePushFn = (id, title) => {
+    // push + params参数传递法
+    this.props.history.push(`/home/news/${id}/${title}`)
+    
+    // push + search参数传递法
+    this.props.history.push(`/home/news?id=${id}&title=${title}`)
+    
+    // push + state参数传递法
+    this.props.history.push(`/home/news`, {id, title}})
+  }
+  
+  render() {
+    return {
+      <button onClick={() => this.handleReplaceFn(id, title)}>replace</button>
+      <button onClick={() => this.handlePushFn(id, title)}>push</button>
+    }
+  }
+}
+```
+
+前进和后退可通过 `history` 中的 `goBack()` 与 `goForword()` 方法。方法 `go()` 内可以填入数字，正数往前前进，前进的位数是括号内的数字；负数往后退，后退1的位数是括号内的数字。
+
+#### withRouter
+
+在一般组件与路由组件的区别中我们说到，他们最大的区别在于路由组件的 `props` 中有 `history` 方法，一般组件没有。也就是说在一般组件无法通过 `this.props.history` 跳转路由。
+
+解决方法：
+
+1. 引入 `withRouter` 
+   ```jsx
+   import { withRouter } from 'react-router-dom'
+   ```
+2. 暴露一个对象
+   ```jsx
+   class Header extends Component {}
+   
+   export default withRouter(Header)
+   ```
+   
+   这个对象是 `withRouter` 处理加工后的返回值。`withRouter` 能够接收一个一般组件，为一般组件加上路由组件的专属 API 。
+3. 使用
+   ```jsx
+   handleRouteFn = () => {
+     this.props.history.goBack()
+   }
+   ```
 
 #### 总结
 
@@ -439,3 +513,33 @@ ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.querySelector('
   > 备注：
   > 
   > 刷新也可以保留住参数
+
+##### 编程式路程导航
+
+借助 `this.prosp.history` 对象上的 API 对操作路由跳转、前进、后退
+
+- `this.prosp.history.push()`
+- `this.prosp.history.replace()`
+- `this.prosp.history.goBack()`
+- `this.prosp.history.goForward()`
+- `this.prosp.history.go()`
+
+##### withRouter
+
+`withRouter` 可以加工一个一般组件，让一般组件拥有路由组件所特有的 API 。`withRouter` 的返回值是一个新组件。
+
+##### BrowserRouter与HashRouter的区别
+
+1. 底层原理不一样：
+   - `BrowserRouter` 使用的是 H5 的 `history API` ，不兼容 IE9 及以下版本。
+   - `HashRouter` 使用的是 URL 的哈希值。
+2. `path` 表现形式不一样
+   - `BrowserRouter` 的路径中没有#，例如：`localhost:3000/demo/test`
+   - `HashRouter` 的路径包含#，例如：`localhost:3000/#/demo/test`
+3. 刷新后对路由 `state` 参数的影响
+   - `BrowserRouter` 没有任何影响，因为 `state` 保存在 `history` 对象中。
+   - `HashRouter` 刷新后会导致路由 `state` 参数的丢失！！！
+
+> 备注
+> 
+> `HashRouter` 可以用于解决一些路径错误相关的问题。

@@ -2,6 +2,8 @@
 title 详情页
 ---
 
+# 详情
+
 ## 音频详情
 
 音频详情页需要一个播放音频的控件，在最开始的时候使用的是 `uniapp` 提供的 `audio` 组件，在app上运行无误，但是在h5上运行时报错，发现其组件停止维护。根据项目经理的要求，为了不给后续埋雷，改成使用 API  ` uni.createInnerAudioContext()` 的形式。
@@ -534,21 +536,10 @@ onLoad((val) => {
 	})
 })
 
-
-const list = ref([{
-	text: '单次播放',
-	color: '#e9a97e'
-}, {
-	text: '循环3次'
-}, {
-	text: '循环5次'
-}, ])
-
 /*音频控制*/
 //播放
 const onPlayAudio = async () => {
 	context.value.play();
-	saveMusic.value.id = playId.value
 	playStatus.value = false;
 };
 //暂停
@@ -558,13 +549,10 @@ const onPauseAudio = async () => {
 };
 //停止
 const onStopAudio = async () => {
-	if (!playStatus.value) {
-		if (context.value) context.value.stop();
-		playStatus.value = true;
-		currentTime.value = 0;
-		context.value.currentTime = 0
-		context.value.seek(0)
-	}
+	context.value.stop();
+	playStatus.value = true;
+	currentTime.value = 0;
+	context.value.seek(0)
 };
 
 /* 
@@ -659,6 +647,71 @@ const timeUpdateFn = () => {
 1. 背景音频没有 `onSeeked` 事件，因此需要把它删掉，否则报错
 2. 一进入页面默认播放音频，而在 `onCanplay` 中获取其播放状态是 `true` ，未播放，所以此处不获取，直接写死为 `false` 
 3. 背景音频组件没有销毁方法，只有停止方法，需要的时候调用停止方法即可
+
+### 循环播放进度不变
+
+由于该事件方法没有 `loop` 方法，在实现循环播放时我采取在停止事件回调中重新调用音频播放的方法，做到循环播放。
+
+然后今天测试发现一个新 BUG ：当音频播放完后重新播放时进度条不走，但是还是在正常播放。
+
+开始排查问题，首先在音频进度条改变的回调中打印当前音频的时长 `currentTime` ，发现他有一直打印，但是值都是0，所以进度条才不变。
+
+找到问题后就要解决问题，百度一番后在 微信问答社区一个提 BUG 的帖子找到有类似的问题和解决方法，附上链接：[InnerAudioContext.onTimeUpdate再次调用不触发](https://developers.weixin.qq.com/community/develop/doc/00068a72a2c588d3c6c8edeac56800) 。
+
+根据回答，在播放事件中添加下面一句代码即可实现，代码如下：
+
+```js
+//播放
+const onPlayAudio = () => {
+    context.value.pause()
+    context.value.play();
+    playStatus.value = false;
+    // ...
+};
+```
+
+### 代码优化
+
+完成后可以发现代码已经有800行了，因此需要把音频事件方法单独抽离出来，后续也好维护。音频模块有多个页面需要使用，因此放到 `pinia` 中是不错的选择。
+
+在 `pinia` 中创建仓库，导出一个函数，函数中通过 `return` 外部需要使用的方法和变量即可，示例代码如下：
+
+```js
+import {
+	defineStore
+} from "pinia";
+import {
+	ref
+} from 'vue';
+
+//全局可控状态hook
+export const useMusicStore = defineStore("music", () => {
+	const context = ref(uni.getBackgroundAudioManager())
+	// ...
+
+	// 销毁
+	const distoryAudioFn = () => {
+		saveMusic.value = {}
+		context.value.src = ''
+		musicFinishFn()
+	}
+
+	return {
+		context,
+		distoryAudioFn,
+        // ...
+	}
+});
+```
+
+### H5适配
+
+应客户与上头要求，该项目不仅需要出安卓与 IOS 版本，还要出一个 H5 版本，在 H5 中 ` uni.getBackgroundAudioManager()` 方法不可使用。
+
+解决方法：
+
+通过 `#ifdef H5` 与 `#ifndef H5` 对是否是 H5 做处理，非 H5 页面就使用 ` uni.getBackgroundAudioManager()` 方法，如果是 H5 页面使用回之前 `uni.createInnerAudioContext()` 方法。
+
 
 ### 音频下载
 
