@@ -5,17 +5,27 @@
 下面来创建一个 REACT 项目
 
 1. 首先登录[官网 (opens new window)](https://nodejs.org/en/)下载安装[NODEJS (opens new window)](https://nodejs.org/zh-cn/)最新版本
+
 2. [Yarn (opens new window)](https://yarnpkg.com/)会缓存它下载的每个包所以无需重复下载
    ```text
    npm install -g yarn@berry
    ```
+   
 3. 使用 [Create React App (opens new window)](https://create-react-app.dev/)安装 REACT 项目非常方便，下面来创建项目 daodao
    ```text
    npm i -g create-react-app
    ```
-4. 进入目录并启动项目
+   
+4. 创建项目
+   
+   ```
+   npx create-react-app 项目名称
+   ```
+   
+5. 进入目录并启动项目
+
    ```text
-   cd daodao
+   cd 项目名称
    yarn start
    ```
 
@@ -60,7 +70,7 @@
 
 - 渲染后的内容将放在 `public/index.html` 中 ID 为 root 的标签中
 
-```text
+```js
 import React from "react";
 import ReactDom from "react-dom";
 
@@ -69,7 +79,7 @@ ReactDom.render(<div>daodao</div>, document.querySelector("#root"));
 
 在 JSX 中可以使用 JS 的功能，要求使用花扩号包裹
 
-```text
+```js
 const name = "刀刀";
 ReactDom.render(<div>{name}</div>, document.querySelector("#root"));
 ```
@@ -78,19 +88,19 @@ ReactDom.render(<div>{name}</div>, document.querySelector("#root"));
 
 使用函数返回组件，渲染组件时可以传递参数供组件使用
 
-```text
+```js
 const App = props => {
   return <div>{props.name}</div>;
 };
 
-ReactDom.render(App({ name: "后盾人" }), document.querySelector("#root"));
+ReactDom.render(App({ name: "刀刀" }), document.querySelector("#root"));
 ```
 
 调用组件也可以直接使用标签形式，参数以属性形式传递
 
 - 要求首字母大写
 
-```text
+```js
 import React from "react";
 import ReactDom from "react-dom";
 const App = props => {
@@ -104,7 +114,7 @@ ReactDom.render(<App name="daodao.com" />, document.querySelector("#root"));
 
 我们知道 JS 中的类也是函数，REACT 也可以使用类的方式声明组件，但要保证返回 JSX 组件标签
 
-```text
+```js
 import React, { Component } from "react";
 import ReactDom from "react-dom";
 class App {
@@ -117,14 +127,14 @@ class App {
 }
 
 ReactDom.render(
-  new App({ name: "后盾人" }).render(),
+  new App({ name: "刀刀" }).render(),
   document.querySelector("#root")
 );
 ```
 
 如果继承了 Component 基类，会自动绑定参数到 props
 
-```text
+```js
 import React, { Component } from "react";
 import ReactDom from "react-dom";
 class App extends Component {
@@ -134,7 +144,7 @@ class App extends Component {
 }
 
 ReactDom.render(
-  new App({ name: "后盾人" }).render(),
+  new App({ name: "刀刀" }).render(),
   document.querySelector("#root")
 );
 ```
@@ -145,7 +155,7 @@ ReactDom.render(
 - 系统会自动将标签参数绑定到属性 props
 - 注意要求首字母大写
 
-```text
+```js
 import React, { Component } from "react";
 import ReactDom from "react-dom";
 class App extends Component {
@@ -162,12 +172,12 @@ class App extends Component {
   }
 }
 
-ReactDom.render(<App name="后盾人" />, document.querySelector("#root"));
+ReactDom.render(<App name="刀刀" />, document.querySelector("#root"));
 ```
 
 基类会帮助我们绑定数据到 props，所以不写构造函数也可以正常执行
 
-```text
+```js
 import React, { Component } from "react";
 import ReactDom from "react-dom";
 class App extends Component {
@@ -180,14 +190,14 @@ class App extends Component {
   }
 }
 
-ReactDom.render(<App name="后盾人" />, document.querySelector("#root"));
+ReactDom.render(<App name="刀刀" />, document.querySelector("#root"));
 ```
 
 #### 组件嵌套
 
 下面 App 组件内部引入了 Hd 组件
 
-```text
+```js
 import React, { Component } from "react";
 import { render } from "react-dom";
 
@@ -207,7 +217,7 @@ class App extends Component {
     );
   }
 }
-render(<App name="后盾人" />, document.getElementById("root"));
+render(<App name="刀刀" />, document.getElementById("root"));
 ```
 
 #### 根组件
@@ -216,18 +226,18 @@ render(<App name="后盾人" />, document.getElementById("root"));
 
 组件一般都是独立的文件，下面创建 App.js 文件构建根组件
 
-```text
+```js
 import React, { Component } from "react";
 export default class App extends Component {
   render() {
-    return <div>后盾人</div>;
+    return <div>刀刀</div>;
   }
 }
 ```
 
 在入口文件中导入组件并渲染
 
-```text
+```js
 import React, { Component } from "react";
 import { render } from "react-dom";
 import App from "./App";
@@ -238,12 +248,12 @@ render(<App />, document.querySelector("#root"));
 
 组件中的注释使用 JS 注释规范，因为是 JS 所以要使用花扩号包裹。
 
-```text
+```js
 class App extends Component {
   render() {
     return (
       <div>
-        {/* 后盾人 */}
+        {/* 刀刀 */}
         {this.props.name}
       </div>
     );
@@ -259,28 +269,28 @@ class App extends Component {
 
 REACT 中定义样式也非常简单，下面是定义 STYLE 行样式
 
-```text
+```js
 class App extends Component {
   render() {
     return <div style={{ color: "red" }}>App: {this.props.name}</div>;
   }
 }
-render(<App name="后盾人" />, document.getElementById("root"));
+render(<App name="刀刀" />, document.getElementById("root"));
 ```
 
 以对象形式声明样式
 
-```text
+```js
 class App extends Component {
   render() {
     const style = {
       backgroundColor: "red",
       color: "blue"
     };
-    return <div style={style}>后盾人</div>;
+    return <div style={style}>刀刀</div>;
   }
 }
-render(<App name="后盾人" />, document.getElementById("root"));
+render(<App name="刀刀" />, document.getElementById("root"));
 ```
 
 #### 类的声明
@@ -288,13 +298,13 @@ render(<App name="后盾人" />, document.getElementById("root"));
 下面来体验类样式的定义
 
 1. 组件同级目录定义 App.css，内容如下
-   ```text
+   ```css
    .bg-color {
      background: red;
    }
    ```
 2. 在 index.js 中使用 className 属性来声明类
-   ```text
+   ```js
    import React, { Component } from "react";
    import { render } from "react-dom";
    import "./App.css";
@@ -303,12 +313,12 @@ render(<App name="后盾人" />, document.getElementById("root"));
        return <div className="bg-color">App: {this.props.name}</div>;
      }
    }
-   render(<App name="后盾人" />, document.getElementById("root"));
+   render(<App name="刀刀" />, document.getElementById("root"));
    ```
 
 当然也可以使用 JS 程序计算，下面是使用三元表达式的计算
 
-```text
+```js
 class App extends Component {
   render() {
     return (
@@ -332,7 +342,7 @@ npm i classnames
 
 在 index.js 声明的组件中使用
 
-```text
+```js
 import className from "classnames";
 import "./App.css";
 class App extends Component {
@@ -344,7 +354,7 @@ class App extends Component {
     );
   }
 }
-render(<App name="后盾人" />, document.getElementById("root"));
+render(<App name="刀刀" />, document.getElementById("root"));
 ```
 
 **styled-components**
@@ -359,7 +369,7 @@ npm i styled-components
 
 下面在组件中使用
 
-```text
+```js
 ...
 
 //声明样式组件Wrapper 最终渲染成section
@@ -377,7 +387,7 @@ class App extends Component {
     );
   }
 }
-render(<App name="后盾人" />, document.getElementById("root"))
+render(<App name="刀刀" />, document.getElementById("root"))
 ```
 
 #### 样式模块化
