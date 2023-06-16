@@ -162,6 +162,7 @@ function getLearnReactSidebar() {
       { text: "Diff算法", link: "/learn/React/react的diff算法" },
       { text: "脚手架项目创建", link: "/learn/React/index_new" },
       { text: "路由", link: "/learn/React/react路由" },
+      { text: "redux", link: "/learn/React/redux" },
     ],
   }]
 }
