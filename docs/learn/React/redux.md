@@ -124,7 +124,7 @@ export default reduxer
 
 ### createstore()
 
-作用：创建包含指定reducer的store对象
+作用：创建包含指定 `reducer` 的 `store` 对象
 
 ### store对象
 
@@ -143,8 +143,118 @@ export default reduxer
 
 ### applyMiddleware()
 
-作用：应用上基于redux的中间件(插件库)
+作用：应用上基于 `redux` 的中间件(插件库)
+
+使用：
+
+- 引入插件
+  ```
+  yarn add redux-thunk
+  ```
+- 引入 `applyMiddleware` 方法与 `redux-thunk` 方法
+  ```jsx
+  import { applyMiddleware } from 'react'
+  import thunk from 'redux-thunk'
+  ```
+- 注册方法
+  ```diff
+  - export default createStore(redux)
+  + export default createStore(redux, applyMiddleware(thunk))
+  ```
+- 创建异步的方法
+  ```jsx
+  export const createAction = (data, time) => {
+    return (dispatch) => {
+      setTimeout(() => {
+        dispatch({type: 'xxx', data})
+      }, time)
+    }
+  }
+  ```
+  
+  官方文档说了，开启了中间件后，`dispatch()` 如果发现 `action` 是一个函数，会帮你封装。上方的代码中，刚好 `return` 返回一个函数，因此无需手动调用 `store` 。
+  
+  异步 `action` 不是必须要用的。
+- 使用
+  ```jsx
+  useActionFn = () => {
+    store.dispatch(createAction(1, 500))
+  }
+  ```
 
 ### combineReducers()
 
 作用：合并多个reducer函数
+
+## react-redux
+
+### 理解
+
+1. 一个 `react` 插件库
+2. 专门用来简化react应用中使用 `redux`
+
+### 模型图
+
+1. 所有的 UI 组件都应该被一个容器组件包裹，他们是父子关系
+2. 容器组件真正和 `redux` 打交道，里面可以使用 `redux` 的 API
+3. UI 组件中不能使用 `redux` 的 API
+4. 容器组件会传给 UI 组件以下数据：
+   - `redux` 中保存的状态
+   - 用于操作的状态
+5. 容器给 UI 传递状态、操作状态的方法，均通过 `props` 传递
+
+### 分类
+
+`react-Redux` 将所有组件分成两大类
+
+1. UI组件
+   1. 只负责 UI 的呈现，不带有任何业务逻辑
+   2. 通过 `props` 接收数据(一般数据和函数)
+   3. 不使用任何 Redux 的 API
+   4. 一般保存在 `components` 文件夹下
+2. 容器组件
+   1. 负责管理数据和业务逻辑，不负责UI的呈现
+   2. 使用 Redux 的 API
+   3. 一般保存在 `containers` 文件夹下
+
+### 相关API
+
+- Provider：让所有组件都可以得到state数据
+- connect：用于包装 UI 组件生成容器组件
+- mapStateToprops：将外部的数据（即state对象）转换为UI组件的标签属性
+- mapDispatchToProps：将分发action的函数转换为UI组件的标签属性
+
+### 容器组件的创建
+
+1. 安装 `react-redux` 
+   ```
+   yarn add react-redux
+   ```
+2. 引入之前的组件（现在是作为 UI 组件）
+   ```jsx
+   import CountUI from '../../components/Count'
+   ```
+3. 引入 `store` 
+   ```jsx
+   import store from '../../redux/store'
+   ```
+4. 引入 `connect` 方法，连接 UI 组件与 `redux` 
+   ```jsx
+   import { connect } from 'react-redux'
+   ```
+5. 使用
+   ```jsx
+   const CountContainer = connect()(CountUI)
+   ```
+   
+   上方代码看出两个信息：
+   1. `connect` 是一个函数
+   2. 其返回值也是一个函数
+   
+   建立联系固定写法是在返回的函数中传参需要连接的 UI 组件。
+6. 导出
+   ```jsx
+   export default CountContainer
+   ```
+
+## redux调试工具
