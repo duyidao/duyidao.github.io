@@ -2,4 +2,12 @@
 title 项目模块
 ---
 
-该模块记录自主学习时做的小demo或小项目，每天都要更努力！
+主要收录网络上学习的项目。
+
+- 小兔鲜
+
+  Vue3 + element-plus + axios + pinia
+
+- 硅谷甄选
+
+  Vue3 + ts + element-plus + axios + pinia

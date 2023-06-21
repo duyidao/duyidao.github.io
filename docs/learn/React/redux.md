@@ -128,18 +128,18 @@ export default reduxer
 
 ### store对象
 
-1.作用: redux库最核心的管理对象
-2.它内部维护着:
-1)state
-2)reducer
-3.核心方法:
-1)getState()
-2)dispatch(action)
-3)subscribe(listener)
-4.具体编码:
-1)store.getState()
-2)store.dispatch({type:'INCREMENT', number})
-3)store.subscribe(render)
+1. 作用: redux库最核心的管理对象
+2. 它内部维护着:
+   - state
+   - reducer
+3. 核心方法:
+   - getState()
+   - dispatch(action)
+   - subscribe(listener)
+4. 具体编码:
+   - store.getState()
+   - store.dispatch({type:'INCREMENT', number})
+   - store.subscribe(render)
 
 ### applyMiddleware()
 
@@ -234,15 +234,11 @@ export default reduxer
    ```jsx
    import CountUI from '../../components/Count'
    ```
-3. 引入 `store` 
-   ```jsx
-   import store from '../../redux/store'
-   ```
-4. 引入 `connect` 方法，连接 UI 组件与 `redux` 
+3. 引入 `connect` 方法，连接 UI 组件与 `redux` 
    ```jsx
    import { connect } from 'react-redux'
    ```
-5. 使用
+4. 使用
    ```jsx
    const CountContainer = connect()(CountUI)
    ```
@@ -252,9 +248,222 @@ export default reduxer
    2. 其返回值也是一个函数
    
    建立联系固定写法是在返回的函数中传参需要连接的 UI 组件。
-6. 导出
+5. 导出
    ```jsx
    export default CountContainer
    ```
+
+总体代码：
+
+```jsx
+import CountUI from '../../components/Count'
+import { connect } from 'react-redux'
+
+const CountContainer = connect()(CountUI)
+export default CountContainer
+```
+
+### 容器组件的连接
+
+容器组件需要使用 `store` ，但是不能自己直接引入，而是要在父组件传入来，代码如下：
+
+```jsx
+import React, { Component } from 'react'
+import Count from '../comtainers/Count'
+import store from '../redux/store'
+
+export default class App extends Component {
+  render() {
+    return {
+      <div>
+        // 给容器组件传递store
+        <Count store={store} />
+      </div>
+    }
+  }
+}
+```
+
+容器组件传递的 `store` 给 UI 组件使用，该如何实现呢？前面组件传值都是 `<A a="1" />` 的 `key` 和 `value` 形式传参，但是 UI 组件这里不适用，需要通过函数的返回值作为状态传递给 UI 组件，代码如下：
+
+```jsx
+import CountUI from '../../components/Count'
+import { connect } from 'react-redux'
+
+function mapStateToProps() {
+  return {key: 'value'}
+}
+function mapDispatchToProps() {
+  return {
+    fn: () => console.log(1),
+    func: () => console.log(2)
+  }
+}
+
+const CountContainer = connect(mapStateToProps, mapDispatchToProps)(CountUI)
+export default CountContainer
+```
+
+> 1. 返回的 `key` 作为传递给 UI 组件 `props` 的 `key` ，`value` 作为 UI 组件 `props` 的 `value` ——状态。
+> 2. 返回的 `key： fn` 作为传递给 UI 组件的 `key` ，作为 UI 组件 `props` 的 `value` ——操作状态的方法。
+
+此时去往 UI 组件打印 `this.props` ，能够接收到一个对象，其中包含 APP 组件传递的 `store` 、`connect` 连接时接收的对象 `key` 和方法 `fn` 。
+
+在函数中如果想要使用 `store` 内的变量，只需要通过形参的方式接收状态 `state` 即可。代码如下所示：
+
+```jsx
+function mapStateProps(state) {
+  return {key: state}
+}
+```
+
+UI 组件调用函数方法时，就触发传过去的函数的回调。因此 UI 组件调用方法传参，在 `return` 的回调函数中通过形参接收。函数中可以直接获取操作状态 `dispatch` ，代码如下：
+
+```jsx
+mapDispatchToPropsfunction mapDispatchToProps(dispatch) {
+  return {
+    fn: (number) => dispatch({type: 'add', data: number}),
+    func: (number) => dispatch({type: 'lose', data: number}),
+  }
+}
+```
+
+### 坑
+
+- 如果状态不传对象而传其他类型，会报错，提示你需要返回一个对象
+- 如果父组件不通过 `store={store}` 传递 `store` ，运行后会报错没有 `store` 
+
+### 代码优化
+
+#### 简写mapDispatchToProps
+
+`connect` 方法中可以直接传函数，代码如下：
+
+```jsx
+export default  connect(
+  state => ({count: state}), 
+  dispatch => ({
+    fn: num => dispatch({type: 'add', data: num})
+  })
+)(CountUI)
+```
+
+其中，第二个参数又可以省略，不用传一个函数，直接传一个对象，代码如下：
+
+```jsx
+export default  connect(
+  state => ({count: state}), 
+  {
+    fn: data => ({type: 'add', data})
+  }
+)(CountUI)
+```
+
+**原理：**
+
+对象这个写法，相当于为 UI 组件的 `props` 传递一个名为 `fn` 的 `action` 函数，UI 组件调用 `fn` 后实际上就是调用 `data => ({type: 'add', data})` 这个箭头函数。
+
+然后好像在这里就停住了，他无法调用 `dispatch` 。这里我们只需要做到这里就好了，`react-redux` 在底层帮我们处理了，我们只需要给他一个 `action` 函数，他底部会帮我们调用 `dispatch` 。
+
+#### Provider组件的使用
+
+在使用 `redux` 时，需要使用 `store.subscribe()` 监测变化更新视图，代码如下：
+
+```jsx
+ store.subscribe(() => {
+   ReactDOM.render(<App/>, document.getElementById('root'))
+ })
+```
+
+使用了 `react-redux` 后，我们不再需要 `store.subscribe()` 监测也能实现效果了。原理是容器组件是通过 `connect()()` 创建建立连接的，因此底部已经检测了，不需要我们再监测了。
+
+前面使用一个容器组件时，通过为标签添加 `store={store}` 实现传递 `store` 。但是如果多个容器组件时，一个一个写显然不太合理，可以直接使用 `Provider` 方法统一传递 `store` 对象，代码如下：
+
+```jsx
+<Provider store={store}>
+  <App />
+</Provider>
+```
+
+#### 整合组件
+
+UI 组件和容器组件分开两个文件后期容易文件冗余不好维护，把两个组件整合到一起作为一个组件。UI 组件无需暴露，容器组件与 UI 组件建立连接后暴露容器组件即可。代码如下所示：
+
+```jsx
+import React, { Component } from 'react'
+import { connect } from "react-redux";
+
+class Count extends Component {
+  handleAddFn = () => {
+    this.props.add(5)
+  }
+  render() {
+    return (
+      <>
+        <div>当前求和为：{this.props.count}</div>
+        <button onClick={this.handleAddFn}>加一</button>
+      </>
+    )
+  }
+}
+
+export default connect(
+  (state) => ({count: state}),
+  {
+    add: data => ({type: 'add', data})
+  }
+)(Count)
+```
+
+### 总结
+
+- 概念
+  1. UI组件：不能使用任何 `redux` 组件，只负责页面呈现、交互
+  2. 容器组件：负责和 `redux` 通信，把结果给 UI 组件呈现
+- 创建
+  
+  `connect(mapStateToProps, mapDispatchToProps)(UI组件)` 。其中：
+  - mapStateToProps：映射状态，返回是一个对象  
+  - mapDispatchToProps：映射操作状态的方法，返回值是一个对象函数
+- 注意事项
+  1. 容器组件中的 `store` 是拿 `props` 传递去的，而不是容器组件中直接引入
+  2. `mapDispatchToProps` 可以是一个函数，也可以是一个对象
+
+### 数据共享
+
+如果有多个 `reducer` 需要共享数据，上面的方法显然不合适，他只能挂载一个 `reducer` 。要如何挂载多个状态呢？我们都知道，js 中能挂载多个变量的方法只有数组和对象，而相对而言，对象是更优于数组的。
+
+这个时候需要使用到 `combineReducers` ，`combine` 翻译成中文就是合并，其是一个函数，往里面传一个对象，代码如下：
+
+```
+import { createStore, applyMiddleware, combineReducers } from "redux";
+import count_redux from './reduxer'
+import person_reduxer from './reduxerperson'
+
+const a = combineReducers({
+  pre: person_reduxer,
+  count: count_redux
+})
+const store = createStore(a)
+
+export default store
+```
+
+现在，`store` 的状态就有了两个属性可以使用，运行一下看看效果，发现报错，报错信息如下所示：
+
+[![pCGf6W8.png](https://s1.ax1x.com/2023/06/21/pCGf6W8.png)](https://imgse.com/i/pCGf6W8)
+
+在 `Count` 组件中，我们写了这么一段代码 `(state) => ({count: state})` 。在之前没有做数据共享状态合并前他只是一个普通的变量，因此可以直接使用。而现在做了共享合并后，`state` 已经是合并状态了，即是 `{pre: person_reduxer, count: count_redux}` 。因此在容器组件中需要通过对象点语法来获取。代码如下：
+
+```jsx
+export default connect(
+  (state) => ({count: state.count}),
+  {
+    add: data => ({type: 'add', data})
+  }
+)(Count)
+```
+
+如果想要使用其他 `reducer` 内的变量可以在 `state` 中获取，直接在 `state` 箭头函数中返回的对象内添加即可。
 
 ## redux调试工具
