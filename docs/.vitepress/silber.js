@@ -401,7 +401,8 @@ function getMyCowSidebar(params) {
       text: "🐂 硅谷甄选",
       collapsible: true,
       items: [
-        { text: '引言', link: "/project/myself/硅谷甄选/" },
+        { text: '项目初始化', link: "/project/myself/硅谷甄选/" },
+        { text: '路由模块', link: "/project/myself/硅谷甄选/路由" },
         { text: '🗑 返回', link: '/project/myself/' },
       ]
     }

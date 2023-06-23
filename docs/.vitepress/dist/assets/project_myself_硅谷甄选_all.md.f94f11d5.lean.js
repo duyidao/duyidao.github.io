@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./app.a880a64f.js";const d=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"project/myself/\u7845\u8C37\u7504\u9009/all.md"}'),r={name:"project/myself/\u7845\u8C37\u7504\u9009/all.md"};function o(s,c,n,l,p,_){return a(),t("div")}const f=e(r,[["render",o]]);export{d as __pageData,f as default};
