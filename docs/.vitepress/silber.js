@@ -405,6 +405,7 @@ function getMyCowSidebar(params) {
         { text: '路由模块', link: "/project/myself/硅谷甄选/路由" },
         { text: '状态管理', link: "/project/myself/硅谷甄选/状态管理" },
         { text: '属性管理', link: "/project/myself/硅谷甄选/属性管理" },
+        { text: 'SPU管理', link: "/project/myself/硅谷甄选/SPU管理" },
         { text: '🗑 返回', link: '/project/myself/' },
       ]
     }
