@@ -415,20 +415,6 @@ export default connect(
 )(Count)
 ```
 
-### 总结
-
-- 概念
-  1. UI组件：不能使用任何 `redux` 组件，只负责页面呈现、交互
-  2. 容器组件：负责和 `redux` 通信，把结果给 UI 组件呈现
-- 创建
-  
-  `connect(mapStateToProps, mapDispatchToProps)(UI组件)` 。其中：
-  - mapStateToProps：映射状态，返回是一个对象  
-  - mapDispatchToProps：映射操作状态的方法，返回值是一个对象函数
-- 注意事项
-  1. 容器组件中的 `store` 是拿 `props` 传递去的，而不是容器组件中直接引入
-  2. `mapDispatchToProps` 可以是一个函数，也可以是一个对象
-
 ### 数据共享
 
 如果有多个 `reducer` 需要共享数据，上面的方法显然不合适，他只能挂载一个 `reducer` 。要如何挂载多个状态呢？我们都知道，js 中能挂载多个变量的方法只有数组和对象，而相对而言，对象是更优于数组的。
@@ -466,4 +452,56 @@ export default connect(
 
 如果想要使用其他 `reducer` 内的变量可以在 `state` 中获取，直接在 `state` 箭头函数中返回的对象内添加即可。
 
+### 纯函数
+
+1. 不得改写参数的数据，如 `arr.unshift()` 
+2. 不会产生任何副作用，例如网络请求、输入和输出设备
+3. 不能调用 `Date.now()` 或 `Math.random()` 这种可以得到不同输出的方法
+
+redux 内的 `reducer` 必须是要纯函数。实际业务中，不纯的业务只能放到 `action` 中。
+
+### 总结
+
+- 概念
+  1. UI组件：不能使用任何 `redux` 组件，只负责页面呈现、交互
+  2. 容器组件：负责和 `redux` 通信，把结果给 UI 组件呈现
+- 创建
+  
+  `connect(mapStateToProps, mapDispatchToProps)(UI组件)` 。其中：
+  1. mapStateToProps：映射状态，返回是一个对象  
+  2. mapDispatchToProps：映射操作状态的方法，返回值是一个对象函数
+- 数据共享
+  1. 数据共享后的 `reducer` 要使用 `combineReducers` 进行合并，合并后是一个对象
+  2. 交给 `store` 的是总 `reducer` ，在组件内使用状态时要通过点语法获取对象内的值
+- 注意事项
+  1. 容器组件中的 `store` 是拿 `props` 传递去的，而不是容器组件中直接引入
+  2. `mapDispatchToProps` 可以是一个函数，也可以是一个对象
+  3. 数据共享时如果发现数据地址相同，则不会更新视图（如数组的 `push` 、`unshift` 等方法）。因此需要改变地址来达到视图更新的效果
+
 ## redux调试工具
+
+通过下载 `redux-devtools` 工具进行调试（谷歌需要使用梯子去谷歌商店下载）
+
+新版 import { configureStore } from '@reduxjs/toolkit'
+
+## 打包
+
+通过 `npm run build` 打包，打包后的文件不可直接打开预览，需要放到服务器中。可下载第三方库 `serve` 创建静态服务器。
+
+- 下载
+  ```
+  npm i serve -g
+  ```
+-  使用
+  
+  在需要开启的根目录文件夹的终端下输入命令 `serve` 即可
+  ```
+  serve
+  ```
+  
+  如果在该文件夹下创建一个 `a` 文件夹，并以该 `a` 文件夹作为服务器开启，则通过以下的方式开启即可
+  ```
+  serve a
+  # 或
+  serve ./a
+  ```
