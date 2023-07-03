@@ -346,6 +346,7 @@ function getJobSidebar() {
       text: "🔧 职技网",
       collapsible: true,
       items: [
+        { text: '介绍', link: "/project/lingsi/职技网/" },
         { text: '项目创建', link: "/project/lingsi/职技网/项目创建" },
         { text: 'vant组件二次封装', link: "/project/lingsi/职技网/vant组件二次封装" },
         { text: '微信授权', link: "/project/lingsi/职技网/微信授权" },
