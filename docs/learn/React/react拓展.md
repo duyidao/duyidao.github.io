@@ -48,11 +48,39 @@
    ```
 2. 把引入的组件变为懒加载组件
    ```javascript
-   const Home = lazy(() => {})
+   const Home = lazy(() => import('./Home.vue'))
    ```
-3. 
+3. 使用
+   ```jsx
+   <Suspense fallback={<h1>loading...</h1>}>
+     <Route path='/home' component={Home}></Route>
+   </Suspense>
+   ```
+   
+   通过 `Suspense` 标签包裹，`fallback` 表示在等待组件加载时显示的内容，可以是 DOM 标签，也可以是一个引入的组件。
+   > 注意：
+   > 
+   > 如果使用组件展示 `loading` 该组件不可使用懒加载！
 
 ## stateHook
+
+`State Hook` 让函数组件也可以有 `state` 状态, 并进行状态数据的读写操作
+
+语法如下所示：
+
+```javascript
+const [xxx, setXxx] = React.useState(initValue) 
+```
+
+其中：
+
+- 第一次初始化指定的值在内部作缓存
+- 返回包含2个元素的数组，第1个为内部当前状态值, 第2个为更新状态值的函数，可通过解构获取
+
+`setXxx()` 拥有2种写法：
+
+1. `setXxx(newValue)` ：参数为非函数值, 直接指定新的状态值, 内部用其覆盖原来的状态值
+2. `setXxx(value => newValue)` ：参数为函数, 接收原本的状态值, 返回新的状态值, 内部用其覆盖原来的状态值
 
 ## EffectHook
 
