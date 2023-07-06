@@ -161,8 +161,10 @@ function getLearnReactSidebar() {
       { text: "无脚手架项目创建", link: "/learn/React/" },
       { text: "Diff算法", link: "/learn/React/react的diff算法" },
       { text: "脚手架项目创建", link: "/learn/React/index_new" },
-      { text: "路由", link: "/learn/React/react路由" },
+      { text: "ReactRouter5", link: "/learn/React/react路由" },
       { text: "redux", link: "/learn/React/redux" },
+      { text: "react拓展", link: "/learn/React/react拓展" },
+      { text: "ReactRouter6", link: "/learn/React/ReactRouter6" },
     ],
   }]
 }
@@ -451,6 +453,7 @@ function getSaleSidebar() {
         { text: '微信授权快捷登录', link: '/project/lingsi/sale/获取手机号' },
         { text: '附件下载', link: '/project/lingsi/sale/preview' },
         { text: '分享', link: '/project/lingsi/sale/分享' },
+        { text: '商城', link: '/project/lingsi/sale/商城' },
         { text: '视频轮播', link: '/project/lingsi/sale/video' },
         { text: '图片上传组件封装', link: '/project/lingsi/sale/upload' },
         { text: '关注公众号', link: '/project/lingsi/sale/关注公众号' },
