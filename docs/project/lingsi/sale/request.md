@@ -36,7 +36,6 @@ module.exports = (vm) => {
 
 		// 设置token，正常请求，把得到的token带过去
 		config.header['X-Access-Token'] = uni.getStorageSync('token');
-		// config.header['X-Access-Token'] = 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxNjA1Mzg0Mjc4NDUyMTQ2MTc3IiwiaWF0IjoxNjcxNjEyMzEwLCJzdWIiOiJBUFAifQ.-jSyMmWqlvl6GBX2EfH78P-ESMePFnkxqXc42HEHTkU'
 
 		// 可以对某个url进行特别处理
 		if (config.url.indexOf('user/login') !== -1) config.header['X-Access-Token'] = '1';
@@ -48,7 +47,48 @@ module.exports = (vm) => {
 	})
 }
 ```
+在打印 `config` 参数的时候，打印出来的效果如下所示：
+
+![Vmo2xv.png](https://i.imgloc.com/2023/07/06/Vmo2xv.png)
+
+其中有一个 `custom` 对象属性，该属性是由 `uni.$u.http` 第三个参数获取，因此代码可以改为如下形式：
+
+```js
+uni.$u.http.interceptors.request.use((config) => {
+	uni.showLoading()
+	if (config.custom.type) {
+		config.header['Content-Type'] = 'application/json'
+	} else {
+		config.header['Content-Type'] = 'application/x-www-form-urlencoded'
+	}
+
+	// 设置token，正常请求，把得到的token带过去
+	config.header['X-Access-Token'] = uni.getStorageSync('token');
+
+	// 可以对某个url进行特别处理
+	if (config.url.indexOf('user/login') !== -1) config.header['X-Access-Token'] = '1';
+
+	return config
+}, config => { // 可使用async await 做异步操作
+	uni.hideLoading()
+	return Promise.reject(config)
+})
+```
+
+使用的时候可以通过如下方法设置：
+
+```js
+export const createOrderAPI = (data) => http.post('/order/create', data, {
+	custom: {
+		type: 'json'
+	}
+})
+```
+
+现在该接口就是 POST 请求的 JSON 格式。
+
 ### 拓展
+
 ES6发布了新语法 “反射”`Reflect.deleteProperty`。
 `JavaScript` 中的 `Reflect.deleteProperty()` 方法用于删除对象上的属性。它返回一个布尔值，指示该属性是否已成功删除。
 用法:
