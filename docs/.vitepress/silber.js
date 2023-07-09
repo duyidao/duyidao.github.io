@@ -409,6 +409,8 @@ function getMyCowSidebar(params) {
         { text: '状态管理', link: "/project/myself/硅谷甄选/状态管理" },
         { text: '属性管理', link: "/project/myself/硅谷甄选/属性管理" },
         { text: 'SPU管理', link: "/project/myself/硅谷甄选/SPU管理" },
+        { text: '设置', link: "/project/myself/硅谷甄选/设置" },
+        { text: '数据大屏', link: "/project/myself/硅谷甄选/数据大屏" },
         { text: '🗑 返回', link: '/project/myself/' },
       ]
     }
