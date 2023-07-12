@@ -147,6 +147,7 @@ function getLearnVue3Sidebar() {
       { text: "自定义指令", link: "/learn/Vue3/自定义指令" },
       { text: "内置组件", link: "/learn/Vue3/内置组件" },
       { text: "pinia", link: "/learn/Vue3/pinia" },
+      { text: "Vue3新特性", link: "/learn/Vue3/Vue3新特性" },
       { text: "源码", link: "/learn/Vue3/源码" },
     ],
   }]
