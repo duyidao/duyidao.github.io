@@ -2,9 +2,11 @@
 
 Vue3 新特性官方指路：[新特性](https://blog.vuejs.org/posts/vue-3-3#script-setup-typescript-dx-improvements) 。
 
-## defineProps
+## setup与Typescrupt
 
-### 更好的TS提示
+### defineProps
+
+#### 更好的TS提示
 
 在 Vue3 中，defineProps 能够更好的支持 TypeScript  类型提示，父组件引用子组件时能够有更好的 TypeScript 类型提示。代码示例如下：
 
@@ -58,7 +60,7 @@ defineProps<Props & { age: number }>()
 >
 > ![VBoPEN.png](https://i.imgloc.com/2023/07/10/VBoPEN.png)
 
-### 更好的泛型支持
+#### 更好的泛型支持
 
 现在能够支持泛型设置，通过 `generic` 关键字来设置。步骤代码如下所示：
 
@@ -127,7 +129,7 @@ defineProps<Props & { age: number }>()
 
    此时子组件也能拥有 ts 类型提示。
 
-## defineEmits
+### defineEmits
 
 子组件通过 defineEmit 设置自定义事件现在也可以设置 ts 类型了，设置完类型后子组件如果没有传对应类型的参数会有报错；父组件没有接收对应类型的自定义事件也会报错。
 
@@ -179,7 +181,7 @@ defineProps<Props & { age: number }>()
 >
 > 写法可根据自己的项目选择。
 
-## defineSlot
+### defineSlot
 
 纯粹的 ts 支持，专门用于设置类型。写法如下：
 
@@ -215,4 +217,131 @@ defineProps<Props & { age: number }>()
        </template>
    </Sloter>
    ```
+
+> 注意
+>
+> `defineSlots()` 只接受类型参数，不接受运行时参数。类型参数应为类型文本，其中属性键是槽名称，值是槽函数。函数的第一个参数是插槽期望接收的道具，其类型将用于模板中的槽道具。 `defineSlots` 的返回值与从 `useSlots` 返回的插槽对象相同。
+
+## 实验性功能
+
+### Props 响应式解构
+
+之前在解构 defineProps 的值时是没有响应式的，现在允许解构出来的值是响应式的。代码如下所示：
+
+```js
+const { msg } = defineProps()
+
+watchEffect(() => {
+    console.log(msg)
+})
+```
+
+> 注意
+>
+> 1. 上方代码变量 `msg` 实际上是 `props.msg` ，所以能够监听获取到
+>
+> 2. 如果他传参给一个函数使用，则传参后的数据丢失了响应式，如下：
+>
+>    ```js
+>    const { msg } = defineProps()
+>    
+>    useXxx(msg)
+>    
+>    const useXxx = (msg) => {
+>        console.log(msg)
+>    }
+>    ```
+
+### defineModel 语法糖
+
+以前，对于支持与 `v-model` 的双向绑定的组件，它需要：
+
+1. 声明一个 prop
+2. 在打算更新 prop 时发出相应的  `update:propName` 事件
+
+代码如下：
+
+```vue
+<script setup>
+const props = defineProps(['modelValue'])
+const emit = defineEmits(['update:modelValue'])
+console.log(props.modelValue)
+
+function onInput(e) {
+  emit('update:modelValue', e.target.value)
+}
+</script>
+
+<template>
+  <input :value="modelValue" @input="onInput" />
+</template>
+```
+
+Vue3.3 通过新的 `defineModel` 宏简化了用法。宏会自动注册一个 prop，并返回一个可以直接变异的 ref：
+
+```vue
+<script setup>
+const bar = defineModel()
+console.log(bar.value)
+</script>
+
+<template>
+  <input v-model="bar" />
+</template>
+```
+
+父组件使用：
+
+```vue
+<script setup>
+const bar = ref('daodao')
+</script>
+
+<template>
+  <DefineModel v-model:bar="bar" />
+</template>
+```
+
+此功能是实验性的，需要在 `vite.config.js` 文件中明确选择加入。
+
+```js
+export default defineConfig({
+    plugins: [
+        vue({
+            script: {
+                propsDestructure: true,
+                defineModel: true
+            }
+        })
+    ]
+})
+```
+
+## 其他功能
+
+### defineOptions
+
+新的 `defineOptions` 宏允许直接在 `<script setup>` 中声明组件选项，而无需单独的 `<script>` 块：
+
+```vue
+<script setup>
+defineOptions({ 
+    inheritAttrs: false,
+    name: 'daodao'
+})
+</script>
+```
+
+在之前想要给组件添加 `name` 属性不能写在 `setup` 中，只能另起一个 `script` ，如下：
+
+```vue
+<script setup></script>
+<script>
+export default {
+    name: 'daodao'
+}
+</script>
+```
+
+
 
