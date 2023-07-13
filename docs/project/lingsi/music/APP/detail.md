@@ -111,13 +111,6 @@ innerAudioContext.onError((res) => {
 			})
 			loading.value = false
 		});
-		//音频进度改变结束
-		context.value.onSeeked(() => {
-			isSeeking.value = false
-			if (!prevStatus.value && context.value.paused) {
-				onPlayAudio();
-			}
-		})
 		context.value.onTimeUpdate(() => {
 			timeUpdateFn()
 		});
@@ -127,27 +120,16 @@ innerAudioContext.onError((res) => {
 		})
 	})
 
-	/*音频控制*/
-	//播放
-	const onPlayAudio = async () => {
-	};
-	//暂停
-	const onPauseAudio = async () => {
-	};
-	//停止
-	const onStopAudio = async () => {
-	};
-
 	//点击播放暂停
 	const onPlay = () => {
 		if (context.value.paused) {
 			changeType.value = true
 			//播放
-			onPlayAudio();
+			context.value.play()
 		} else {
 			changeType.value = false
 			//暂停
-			onPauseAudio();
+			context.value.pause()
 		}
 	};
     
@@ -161,7 +143,7 @@ innerAudioContext.onError((res) => {
 
 	// 音频播放结束后
 	const ended = async () => {
-		onStopAudio()
+		context.value.stop()
 	}
 
 	//音频进度改变时，此回调有原生BUG，音频停止后会继续执行
@@ -388,7 +370,7 @@ const handleSheetFn = index => {
 		default:
 			break;
 	}
-	onPlayAudio()
+	if(context.value.paused context.value.play()
 }
 
 // 音频播放结束后
@@ -397,10 +379,10 @@ const ended = async () => {
 	if (loopNum.value < loopNumAll.value) {
 		loopType.value = false
 		loopNum.value += 1
-		onPlayAudio()
+		context.value.play()
 	} else {
 		loopNum.value = 0
-		onStopAudio()
+		context.value.stop()
 		loopType.value = true
 	}
 }
@@ -706,11 +688,23 @@ export const useMusicStore = defineStore("music", () => {
 
 ### H5适配
 
+#### API选择
+
 应客户与上头要求，该项目不仅需要出安卓与 IOS 版本，还要出一个 H5 版本，在 H5 中 ` uni.getBackgroundAudioManager()` 方法不可使用。
 
 解决方法：
 
 通过 `#ifdef H5` 与 `#ifndef H5` 对是否是 H5 做处理，非 H5 页面就使用 ` uni.getBackgroundAudioManager()` 方法，如果是 H5 页面使用回之前 `uni.createInnerAudioContext()` 方法。
+
+需要注意的是，这两个 API 有部分功能不一致，需要做额外的处理。比如， ` uni.getBackgroundAudioManager()` API 没有 `onSeeked` 事件回调等。
+
+#### 加载顺序
+
+测试在使用 IOS 系统的手机测试 H5 端时，发现一直处于 `loading` 效果。查看代码，代码处理逻辑没问题，一开始开启 `loading` 状态，在 `onCanplay` 回调中关闭。
+
+为了检查是什么问题，我把 `loading` 去掉，发现点击播放按钮触发 `play()` 方法后才触发 `onCanplay` 回调，官方文档也有这么一句话：
+
+播放（H5端部分浏览器需在用户交互时进行）
 
 
 ### 音频下载
@@ -752,7 +746,35 @@ const downloadMusicFn = () => {
 }
 ```
 
+### 其他功能
+
+用户还提出了其他的需求，比如每一个音频售卖的是该音频的播放时长，需要在用户音频暂停、停止时把用户听的时长传过去给后端。
+
+目前整理下来，需要用到的地方有：
+
+1. 用户点击暂停
+2. 音频播放完毕
+3. 循环播放每一次的结束
+4. 用户点击叉号关闭音频
+
+而用户听的时长我一开始通过音频播放的当前时间作为参数传递过去，但是这样出现了一个问题：用户听到30秒，点暂停，传了30过去；用户继续听，听到50点暂停，传了50过去。用户实际上听了50秒，但是传给后端的是80。
+
+我的解决方法是，在音频播放回调函数中开启定时器，当音频播放时让变量自增1，代码如下：
+
+```js
+context.value.onPlay(() => {
+    if(!timer.value) {
+        timer.value = setInterval(() => {
+            listerenTime.value += 1
+        }, 1000)
+    }
+})
+```
+
+当触发暂停或停止调用接口传完参数后再把参数清0，定时器关闭。只不过这个方法并不优雅，且有一定的秒数误差，暂时没有更好的优化方法。
+
 ## 课程详情
+
 效果如下图所示，需要实现视频播放功能。
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/29781801/1675128593536-76f63781-1c2c-4af0-a47a-68cad3c68308.png#averageHue=%23c9d4c8&clientId=u4be0b9f7-2df9-4&from=paste&height=710&id=u5d2b547a&name=image.png&originHeight=710&originWidth=337&originalType=binary&ratio=1&rotation=0&showTitle=false&size=157961&status=done&style=none&taskId=ueb8bcdc8-1b7e-4deb-b5c2-3aad519f911&title=&width=337)

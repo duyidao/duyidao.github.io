@@ -115,7 +115,21 @@ defineProps<Props & { age: number }>()
 
    > 注意
    >
-   > 泛型 T 后面的逗号可能是开发者留下来的小 BUG，不然会报错。等待其后续的修复
+   > 1. 泛型 T 后面的逗号可能是开发者留下来的小 BUG，不然会报错。等待其后续的修复
+   >
+   > 2. 想要使用，需要提前在设置中打开
+   >
+   >    ```js
+   >    export default defineConfig({
+   >        plugins: [
+   >            vue({
+   >                script: {
+   >                    propsDestructure: true
+   >                }
+   >            })
+   >        ]
+   >    })
+   >    ```
 
 2. 父组件引入
 
@@ -309,7 +323,7 @@ export default defineConfig({
     plugins: [
         vue({
             script: {
-                propsDestructure: true,
+                //...
                 defineModel: true
             }
         })
@@ -343,5 +357,51 @@ export default {
 </script>
 ```
 
+### toRef
 
+```js
+import { ref, toRef } from 'vue'
 
+const himeSelf = ref(2)
+
+const mySelfRef = toRef(1)
+const himSelfRef = toRef(himeSelf)
+const getterRef = toRef(() => 3)
+```
+
+前两者都是 `ref` 类型，没有区别，而最后一个是 `getterRef` 类型，只支持读不支持写操作。
+
+使用 getter 调用 `toRef` 类似于 `computed` ，但当 getter 只是执行属性访问而没有昂贵的计算时，效率会更高。
+
+> 使用场景：
+>
+> 之前在给函数传递解构出来的 `props` 参数会造成响应式丢失，现在通过 `toRef` 可以继续保留响应式。
+>
+> ```js
+> const props = defineProps<{ msg: string; foo: { bar: string }}>()
+> 
+> const userXxxx = (e) => {}
+> userXxxx(toRef(props.msg))
+> ```
+
+### toValue
+
+新的 `toValue` 实用程序方法提供了相反的方法，将值/getter/refs规范化为值：
+
+`toValue` 可以在可组合项中使用，代替 `unref` ，以便可组合项可以接受 getter 作为反应式数据源：
+
+```js
+import { ref, toValue } from 'vue'
+
+const value1 = toValue(ref(1))
+const value2 = toValue(2)
+const value3 = toValue(() => 3)
+```
+
+### JSX 导入源支持
+
+目前，Vue 的类型会自动注册全局 JSX 类型。这可能会导致与其他需要 JSX 类型推理的库（特别是 React）一起使用的冲突。
+
+从 3.3 开始，Vue 支持通过 TypeScript 的 jsxImportSource 选项指定 JSX 命名空间。这允许用户根据其用例选择全局或每个文件选择加入。
+
+为了向后兼容，3.3 仍然全局注册 JSX 命名空间。我们计划在 3.4 中删除默认的全局注册。如果你在 Vue 中使用 TSX，你应该在升级到 3.3 后在你的 `tsconfig.json` 中添加显式 `jsxImportSource` ，以避免在 3.4 中出现中断。
