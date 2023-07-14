@@ -686,67 +686,9 @@ export const useMusicStore = defineStore("music", () => {
 });
 ```
 
-### H5适配
-
-#### API选择
-
-应客户与上头要求，该项目不仅需要出安卓与 IOS 版本，还要出一个 H5 版本，在 H5 中 ` uni.getBackgroundAudioManager()` 方法不可使用。
-
-解决方法：
-
-通过 `#ifdef H5` 与 `#ifndef H5` 对是否是 H5 做处理，非 H5 页面就使用 ` uni.getBackgroundAudioManager()` 方法，如果是 H5 页面使用回之前 `uni.createInnerAudioContext()` 方法。
-
-需要注意的是，这两个 API 有部分功能不一致，需要做额外的处理。比如， ` uni.getBackgroundAudioManager()` API 没有 `onSeeked` 事件回调等。
-
-#### 加载顺序
-
-测试在使用 IOS 系统的手机测试 H5 端时，发现一直处于 `loading` 效果。查看代码，代码处理逻辑没问题，一开始开启 `loading` 状态，在 `onCanplay` 回调中关闭。
-
-为了检查是什么问题，我把 `loading` 去掉，发现点击播放按钮触发 `play()` 方法后才触发 `onCanplay` 回调，官方文档也有这么一句话：
-
-播放（H5端部分浏览器需在用户交互时进行）
-
-
-### 音频下载
-
-免费音频支持用户下载功能，下载功能的实现依靠 `uniapp` 提供的 [uni.downloadFile](https://uniapp.dcloud.net.cn/api/request/network-file.html#downloadfile) 方法。该方法成功后会触发 `success` 函数，返回下载好的临时路径，如下所示。
-```js
-{
-    "tempFilePath": "_doc/uniapp_temp_1672380474492/download/WeChat_0002_1672367513721.mp4",
-    "statusCode": 200,
-    "errMsg": "downloadFile:ok"
-}
-```
-关闭项目后地址不存在，因此需要搭配 [uni.saveFile](https://uniapp.dcloud.net.cn/api/file/file#savefile) 缓存到本地中。下载成功后文件会保存在 `\Android\data\com.yinguo.....\apps\doc\uniapp_save` 路径的文件夹下。
-
-思路整理：
-
-- `uni.downloadFile` 把文件缓存到临时地址
-- `uni.saveFile` 把文件下载到手机内
-```js
-const downloadMusicFn = () => {
-	uni.showLoading({
-		title: '下载中，请稍等'
-	})
-	// 下载临时文件事件
-	uni.downloadFile({
-		url: 音频地址,
-		success: (res) => {
-			if (res.statusCode === 200) {
-				// 临时文件下载到本地
-				uni.saveFile({
-					tempFilePath: res.tempFilePath,
-					success: function(result) {
-						uni.hideLoading()
-					}
-				});
-			}
-		}
-	});
-}
-```
-
 ### 其他功能
+
+#### 播放时长
 
 用户还提出了其他的需求，比如每一个音频售卖的是该音频的播放时长，需要在用户音频暂停、停止时把用户听的时长传过去给后端。
 
@@ -772,6 +714,166 @@ context.value.onPlay(() => {
 ```
 
 当触发暂停或停止调用接口传完参数后再把参数清0，定时器关闭。只不过这个方法并不优雅，且有一定的秒数误差，暂时没有更好的优化方法。
+
+#### 断网停止
+
+由于要记录用户听的时长，并调用接口传参给后端，因此当用户断网时前端无法调接口。故加了一个断网后停止播放的功能。
+
+思路如下所示：
+
+1. 在音频持续播放时检测当前网络
+2. 如果网络中断则停止音频并本地存储音频的时长
+3. 下一次联网播放音频时把本地存储的时长加上去
+
+思路分析完毕，接下来着手如何实现。
+
+当音频在播放时，会持续触发 `onTimeUpdate` 回调函数，因此在这上面添加判断。 `uniapp` 提供了 `uni.getNetworkType()` 方法，其中成功回调函数返回 `networkType` 网络类型，有效值如下所示：
+
+|          |                            |              |
+| :------- | :------------------------- | :----------- |
+| 值       | 说明                       | 平台差异说明 |
+| wifi     | wifi 网络                  |              |
+| 2g       | 2g 网络                    |              |
+| 3g       | 3g 网络                    |              |
+| 4g       | 4g 网络                    |              |
+| 5g       | 5g 网络                    |              |
+| ethernet | 有线网络                   | App          |
+| unknown  | Android 下不常见的网络类型 |              |
+| none     | 无网络                     |              |
+
+因此只需要判断其是否是 `none` 类型即可。代码如下所示：
+
+```js
+// 检测当前是否有网络
+const checkNetworkStatus = () => {
+	uni.getNetworkType({
+		success: function(res) {
+			const networkType = res.networkType;
+			if (networkType === 'none') {
+				// 用户无网络连接
+				uni.showToast({
+					title: '检测到你的网络未连接，请先连接网络',
+					icon: 'none'
+				})
+				context.value.pause()
+			}
+		}
+	});
+}
+
+// 音频进度改变事件回调
+context.value.onTimeUpdate(() => {
+	checkNetworkStatus()
+    //...
+});
+```
+
+#### 音频下载
+
+免费音频支持用户下载功能，下载功能的实现依靠 `uniapp` 提供的 [uni.downloadFile](https://uniapp.dcloud.net.cn/api/request/network-file.html#downloadfile) 方法。该方法成功后会触发 `success` 函数，返回下载好的临时路径，如下所示。
+
+```js
+{
+    "tempFilePath": "_doc/uniapp_temp_1672380474492/download/WeChat_0002_1672367513721.mp4",
+    "statusCode": 200,
+    "errMsg": "downloadFile:ok"
+}
+```
+
+关闭项目后地址不存在，因此需要搭配 [uni.saveFile](https://uniapp.dcloud.net.cn/api/file/file#savefile) 缓存到本地中。下载成功后文件会保存在 `\Android\data\com.yinguo.....\apps\doc\uniapp_save` 路径的文件夹下。
+
+思路整理：
+
+- `uni.downloadFile` 把文件缓存到临时地址
+- `uni.saveFile` 把文件下载到手机内
+
+```js
+const downloadMusicFn = () => {
+	uni.showLoading({
+		title: '下载中，请稍等'
+	})
+	// 下载临时文件事件
+	uni.downloadFile({
+		url: 音频地址,
+		success: (res) => {
+			if (res.statusCode === 200) {
+				// 临时文件下载到本地
+				uni.saveFile({
+					tempFilePath: res.tempFilePath,
+					success: function(result) {
+						uni.hideLoading()
+					}
+				});
+			}
+		}
+	});
+}
+```
+
+### H5适配
+
+#### API选择
+
+应客户与上头要求，该项目不仅需要出安卓与 IOS 版本，还要出一个 H5 版本，在 H5 中 ` uni.getBackgroundAudioManager()` 方法不可使用。
+
+解决方法：
+
+通过 `#ifdef H5` 与 `#ifndef H5` 对是否是 H5 做处理，非 H5 页面就使用 ` uni.getBackgroundAudioManager()` 方法，如果是 H5 页面使用回之前 `uni.createInnerAudioContext()` 方法。
+
+需要注意的是，这两个 API 有部分功能不一致，需要做额外的处理。比如， ` uni.getBackgroundAudioManager()` API 没有 `onSeeked` 事件回调等。
+
+#### 加载顺序
+
+测试在使用 IOS 系统的手机测试 H5 端时，发现一直处于 `loading` 效果。查看代码，代码处理逻辑没问题，一开始开启 `loading` 状态，在 `onCanplay` 回调中关闭。
+
+为了检查是什么问题，我把 `loading` 去掉，发现点击播放按钮触发 `play()` 方法后才触发 `onCanplay` 回调，官方文档也有这么一句话：
+
+播放（H5端部分浏览器需在用户交互时进行）
+
+#### 断网停止
+
+测试在测试的时候发现 IOS 上的 H5 端断网逻辑没有触发，于是开始排查。
+
+打印网络类型时发现，其返回的不是 `none` ，而是 `unknown` ，无论当前是否有连接到网络，因此这个判断无效了（这里我要恶狠狠吐槽一波）
+
+[![pC4cTcq.png](https://s1.ax1x.com/2023/07/14/pC4cTcq.png)](https://imgse.com/i/pC4cTcq)
+
+既然这个方法不能走，那就换一个方法。通过 ChatGPT 发现有 `navigator` 方法可以使用， ChatGPT 是这么介绍它的：
+
+> `navigator` 是 Web 浏览器提供的一个内置对象，它包含了很多有关浏览器环境和用户设备的信息，可以通过它来获取和操作这些信息。
+>
+> 以下是一些常见的 `navigator` 对象的属性和方法：
+>
+> - `navigator.userAgent`：返回浏览器的用户代理字符串，它可以用来确定用户使用的浏览器和操作系统。
+> - `navigator.platform`：返回当前操作系统的平台信息，如 "Win32"、"MacIntel" 等。
+> - `navigator.language`：返回用户的首选语言，根据浏览器设置的语言偏好进行确定。
+> - `navigator.cookieEnabled`：返回一个布尔值，表示浏览器是否启用了 cookie。
+> - `navigator.geolocation`：提供了获取用户地理位置信息的方法和属性。
+> - `navigator.onLine`：返回一个布尔值，表示当前是否处于联网状态。
+> - `navigator.sendBeacon(url, data)`：用于异步向服务器发送数据，适用于在页面卸载、关闭或导航发生时发送异步请求。
+> - `navigator.clipboard`：提供了读取和写入剪贴板内容的方法和属性。
+> - `navigator.vibrate(pattern or time)`：用于控制设备的震动功能。
+>
+> 需要注意的是，`navigator` 对象中的属性和方法在不同的浏览器中可能会有所差异，所以在使用之前最好检查其兼容性或使用相关的 polyfill 库来保证代码的正确运行。
+>
+> 希望以上信息可以帮助到你。如果还有其他问题，请随时提问。
+
+根据介绍可以通过 `online` 来判断是否有联网，实现逻辑。代码如下：
+
+```js
+const checkNetworkStatus = () => {
+    if (!navigator.onLine) {
+		uni.showToast({
+			title: '检测到你的网络未连接，请先连接网络',
+			icon: 'none'
+		})
+		context.value.pause()
+    }
+}
+context.value.onTimeUpdate(() => {
+	checkNetworkStatus()
+});
+```
 
 ## 课程详情
 
