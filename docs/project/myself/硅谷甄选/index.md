@@ -1,5 +1,7 @@
 # 项目初始化
 
+项目在线地址：[甄选](http://duyidao.gitee.io/selection/#/login?redirect=/home) 。
+
 ## 项目创建
 
 本项目通过 `pnpm` 创建项目，如果电脑没有 `pnpm` ，需要先全局下载：
