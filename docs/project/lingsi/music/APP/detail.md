@@ -18,7 +18,7 @@ title 详情页
 
 我们需要实现下方的效果：
 
-[![p9fDRij.png](https://s1.ax1x.com/2023/05/18/p9fDRij.png)](https://imgse.com/i/p9fDRij)
+[![pCoPrRS.png](https://s1.ax1x.com/2023/07/17/pCoPrRS.png)](https://imgse.com/i/pCoPrRS)
 
 我们需要音频的总时长、当前播放的时长、进度条、暂停播放的控制等。
 
@@ -630,7 +630,7 @@ const timeUpdateFn = () => {
 2. 一进入页面默认播放音频，而在 `onCanplay` 中获取其播放状态是 `true` ，未播放，所以此处不获取，直接写死为 `false` 
 3. 背景音频组件没有销毁方法，只有停止方法，需要的时候调用停止方法即可
 
-### 循环播放进度不变
+### 循环播放进度条进度不变
 
 由于该事件方法没有 `loop` 方法，在实现循环播放时我采取在停止事件回调中重新调用音频播放的方法，做到循环播放。
 
@@ -875,11 +875,129 @@ context.value.onTimeUpdate(() => {
 });
 ```
 
+#### 刷新关闭
+
+测试又和我反应 H5 端用户通过关闭浏览器或者刷新浏览器时，用户听的时长不会记录在内。第一时间就判断出来他因为没有触发音频的停止暂停时间因此没有触发接口，因此剩余时长没变。
+
+在复现的时候，发现在刷新浏览器的时候，会触发 `App.vue` 根组件中的 `onHide()` 生命周期函数，因此我的处理方法为：
+
+1. 用户播放时实时记录并本地存储
+2. 在根组件的 `onHide()` 生命钩子函数获取本地存储的数据，调用接口发送数据获取最新的剩余时长，并且删除对应的本地存储
+
+刷新实现了，关闭浏览器该方法不可使用，因此转换一个思路：
+
+1. 把音频的时长和id都保存到本地了，在播放的时候获取本地存储的数据
+2. 判断是否有相应的id，如果有，则把对应的时长加到播放时长中
+
+最后打包运行项目，能够成功实现。
+
+#### 音频下载
+
+在 APP 端音频下载是通过 `uni.saveFile()` API 实现，但是该 API 不支持 H5端，因此需要对 H5 端做特殊处理。
+
+在 H5 端，一般的下载方法都是创建 `a` 标签并利用其 `download` 属性实现下载，修改代码：
+
+```js
+const downloadMusicFn = () => {
+	uni.showLoading({
+		title: '下载中，请稍等'
+	})
+	// #ifdef APP-PLUS
+	uni.downloadFile({
+        // ...
+	});
+	// #endif
+	// #ifdef H5
+	const downloadLink = document.createElement('a');
+	downloadLink.href = '文件路径';
+	downloadLink.download = '文件名称';
+	downloadLink.style.display = 'none';
+	document.body.appendChild(downloadLink);
+	downloadLink.click();
+	downloadLink.remove();
+	uni.hideLoading()
+	document.body.removeChild(downloadLink);
+	// #endif
+}
+```
+
+运行后发现点击按钮后页面跳转，地址为音频路径，这显然不是我们想要的，故询问 ChatGPT 如何解决。以下为 ChatGPT 提供的解决方案：
+
+> 如果你希望在前端实现点击后不跳转直接下载音频文件的功能，可以使用 JavaScript 的 XMLHttpRequest 或 Fetch API 来获取音频文件，并利用 Blob 对象创建下载链接。
+>
+> 以下是一个示例代码：
+>
+> ```javascript
+> const audioUrl = 'https://your-aliyun-server.com/audio.mp3'; // 音频文件的 URL
+> const filename = 'audio.mp3'; // 音频文件的文件名
+> 
+> fetch(audioUrl)
+>   .then(response => response.blob())
+>   .then(blob => {
+>     const downloadLink = document.createElement('a');
+>     downloadLink.href = URL.createObjectURL(blob);
+>     downloadLink.download = filename;
+>     downloadLink.style.display = 'none';
+>     document.body.appendChild(downloadLink);
+>     downloadLink.click();
+>     document.body.removeChild(downloadLink);
+>   });
+> ```
+>
+> 在这个示例中，我们使用 Fetch API 来获取音频文件的响应对象，并使用 `blob()` 方法将响应内容转换为 Blob 对象。然后，我们创建一个 `<a>` 元素，设置其 `href` 属性为 Blob 对象的 URL，将文件名设置为 `download` 属性，并将其添加到页面上。最后，我们模拟用户点击操作，实现直接下载功能，并在下载完成后将 `<a>` 元素从页面上移除。
+>
+> 这种方法可以在前端直接下载音频文件，并且无需后端参与。
+>
+> 请注意，部分旧版浏览器可能不支持 Fetch API，你可以使用 XMLHttpRequest 来替代。
+>
+> 希望这个解决方案对你有帮助。如果你有其他问题，请随时提问。
+
+没用过 `fetch` ，而 XML 是我们熟悉的 AJAX，因此试一下原生 AJAX 的方法可不可行，代码修改如下形式：
+
+```js
+const downloadMusicFn = () => {
+	uni.showLoading({
+		title: '下载中，请稍等'
+	})
+	// #ifdef APP-PLUS
+	uni.downloadFile({
+		// ...
+	});
+	// #endif
+	// #ifdef H5
+	const xhr = new XMLHttpRequest();
+	xhr.open('GET', props.detail.playUrl, true);
+	xhr.responseType = 'blob';
+	xhr.setRequestHeader('Accept', 'audio/mpeg'); // 设置 MIME 类型为 audio/mpeg
+	
+	xhr.onload = function() {
+	  if (xhr.status === 200) {
+	    const blob = xhr.response;
+	    const downloadLink = document.createElement('a');
+	    downloadLink.href = URL.createObjectURL(blob);
+	    downloadLink.download = props.detail.title;
+	    downloadLink.style.display = 'none';
+	    document.body.appendChild(downloadLink);
+	    downloadLink.click();
+		downloadLink.remove();
+		dowmLoadArr.push(props.detail.id)
+		uni.setStorageSync('download', JSON.stringify(dowmLoadArr))
+		downloadType.value = true
+		uni.hideLoading()
+	    document.body.removeChild(downloadLink);
+	  }
+	};
+	
+	xhr.send();
+	// #endif
+}
+```
+
+最后运行，效果实现。
+
 ## 课程详情
 
-效果如下图所示，需要实现视频播放功能。
-
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29781801/1675128593536-76f63781-1c2c-4af0-a47a-68cad3c68308.png#averageHue=%23c9d4c8&clientId=u4be0b9f7-2df9-4&from=paste&height=710&id=u5d2b547a&name=image.png&originHeight=710&originWidth=337&originalType=binary&ratio=1&rotation=0&showTitle=false&size=157961&status=done&style=none&taskId=ueb8bcdc8-1b7e-4deb-b5c2-3aad519f911&title=&width=337)
+需要实现视频播放功能。
 
 ### 阿里云播放器SDK
 课程视频用户统一上传到阿里云服务器上，播放视频考虑使用阿里云sdk。详情可前往官方文档 [阿里云播放器sdk](https://help.aliyun.com/document_detail/125570.html) 查看。
