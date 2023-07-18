@@ -31,6 +31,7 @@ export default {
   '/project/myself': getMyselfSidebar(),
   '/project/myself/小兔鲜': getMyRabbitSidebar(),
   '/project/myself/硅谷甄选': getMyCowSidebar(),
+  '/project/myself/尚医通': getMyDoctorSidebar(),
   '/vitePress': getVitePressSidebar(),
   '/about': getAboutSidebar(),
 }
@@ -370,6 +371,7 @@ function getMyselfSidebar() {
         { text: '📕 引言', link: "/project/myself/" },
         { text: '🐇 小兔鲜', link: "/project/myself/小兔鲜/all" },
         { text: '🐂 硅谷甄选', link: "/project/myself/硅谷甄选/" },
+        { text: '⛑ 尚医通', link: "/project/myself/尚医通/" },
         { text: '🗑 返回', link: '/project/' },
       ]
     }
@@ -412,6 +414,20 @@ function getMyCowSidebar(params) {
         { text: 'SPU管理', link: "/project/myself/硅谷甄选/SPU管理" },
         { text: '设置', link: "/project/myself/硅谷甄选/设置" },
         { text: '数据大屏', link: "/project/myself/硅谷甄选/数据大屏" },
+        { text: '🗑 返回', link: '/project/myself/' },
+      ]
+    }
+  ]
+}
+
+// 获取尚医通项目的数组
+function getMyDoctorSidebar(params) {
+  return [
+    {
+      text: "⛑ 尚医通",
+      collapsible: true,
+      items: [
+        { text: '项目初始化', link: "/project/myself/尚医通/" },
         { text: '🗑 返回', link: '/project/myself/' },
       ]
     }
