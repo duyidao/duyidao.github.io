@@ -222,6 +222,8 @@ function getTalkSidebar() {
         { text: 'JavaScript『图片压缩』', link: '/learn/杂技拾谈/JavaScript『图片压缩』' },
         { text: '接口请求', link: '/learn/杂技拾谈/多接口请求' },
         { text: '设计模式', link: '/learn/杂技拾谈/设计模式' },
+        { text: 'HBuilder使用模拟器调试', link: '/learn/杂技拾谈/HBuilder使用模拟器调试' },
+        { text: 'H5移动端调试', link: '/learn/杂技拾谈/H5移动端调试' },
         { text: 'js执行顺序', link: '/learn/杂技拾谈/js执行顺序' },
       ]
     }
