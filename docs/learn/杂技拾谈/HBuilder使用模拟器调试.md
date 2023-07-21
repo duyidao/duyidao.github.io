@@ -16,10 +16,6 @@
 
 下载后直接安装即可。
 
-## 开启电脑VT
-
-VT(Virtualization Technology)是Intel为了在硬件层面上辅助[虚拟化](https://so.csdn.net/so/search?q=虚拟化&spm=1001.2101.3001.7020)技术实现，而在其用户平台上开发的虚拟化支持系统。
-
 ## 配置环境变量
 
 1）复制adb.exe所在文件夹目录

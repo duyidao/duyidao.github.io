@@ -249,6 +249,7 @@ function getLearnTimeSidebar() {
         { text: '通过el-select实现多个省略学习如何改造第三方组件满足自己的要求', link: '/learn/学而时习之/前端第三方组件修改案例学习/通过el-select实现多个省略学习如何改造第三方组件满足自己的要求' },
         { text: '通过el-table实现多数据完美无限滚动效果', link: '/learn/学而时习之/前端第三方组件修改案例学习/通过el-table实现多数据完美无限滚动效果' },
         { text: '通过el-calendar实现业务', link: '/learn/学而时习之/前端第三方组件修改案例学习/通过el-calendar实现业务' },
+        { text: '页码列表组件封装思路', link: '/learn/学而时习之/前端第三方组件修改案例学习/页码列表组件封装思路' },
       ]
     },
     {
@@ -266,8 +267,10 @@ function getLearnTimeSidebar() {
       collapsible: true,
       items: [
         { text: '前端性能优化方案', link: '/learn/学而时习之/更上一层楼/前端性能优化方案' },
+        { text: 'Canvas操作', link: '/learn/学而时习之/更上一层楼/Canvas操作' },
         { text: 'Axios二次封装', link: '/learn/学而时习之/更上一层楼/Axios二次封装' },
         { text: 'Vue项目权限控制', link: '/learn/学而时习之/更上一层楼/Vue项目权限控制' },
+        { text: 'Vue项目对render和jsx的妙用', link: '/learn/学而时习之/更上一层楼/Vue项目对render和jsx的妙用' },
       ]
     },
     {

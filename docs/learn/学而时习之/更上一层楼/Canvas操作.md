@@ -97,7 +97,7 @@ canvas.toBlob(function(blob) {
 
 ### 获取图片
 
-首先先获取用户选择上传的图片，前端文件上传与相关操作方法复习可点击 [前端文件上传与相关操作]() 。代码如下所示：
+首先先获取用户选择上传的图片，前端文件上传与相关操作方法复习可点击 [前端文件上传与相关操作](/learn/学而时习之/前端功能操作模块/前端文件上传与相关操作) 。代码如下所示：
 
 ```vue
 <script setup>
@@ -177,7 +177,7 @@ const onChangeFn = e => {
 
 但是如果想对 `div` 、`document.body` 等元素做截图操作，上述方法将不再适用。需要用到 `html2canvas` 第三方库。
 
-[html2canvas]([www.npmjs.com](https://www.npmjs.com/package/html2canvas)) 是一个 JavaScript 库，用于将 HTML 元素转换为 `<canvas>` 元素。它可以捕捉指定的 HTML 元素（或整个页面）的视觉呈现，并生成一个跨域的 `canvas` 对象，可以用于在网页中展示、下载或上传。
+[html2canvas](https://www.npmjs.com/package/html2canvas) 是一个 JavaScript 库，用于将 HTML 元素转换为 `<canvas>` 元素。它可以捕捉指定的 HTML 元素（或整个页面）的视觉呈现，并生成一个跨域的 `canvas` 对象，可以用于在网页中展示、下载或上传。
 
 以下是使用 `html2canvas` 的基本步骤：
 
