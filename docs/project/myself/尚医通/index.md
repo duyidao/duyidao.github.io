@@ -1,5 +1,7 @@
 # 项目创建
 
+项目正式地址：[尚医通]([刀刀医院 (gitee.io)](http://duyidao.gitee.io/doctor/)) 。
+
 ## 前置工作
 
 ### SVG转换
@@ -8,7 +10,7 @@
 
 ### 默认样式清除文件
 
-前往 NPM 官网搜索 [reset.scss]([reset.scss - npm (npmjs.com)](https://www.npmjs.com/package/reset.scss)) 清除默认样式文件，复制代码保存在 `style` 文件夹下。
+前往 NPM 官网搜索 [reset.scss](https://www.npmjs.com/package/reset.scss) 清除默认样式文件，复制代码保存在 `style` 文件夹下。
 
 ## 项目配置
 
