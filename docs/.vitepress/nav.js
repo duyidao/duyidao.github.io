@@ -43,6 +43,10 @@ export default [
     items: [{ text: "🌩️ VitePress", link: "/vitePress/" }],
   },
   {
+    text: "📴 有用的帮助",
+    items: [{ text: "🎃 开发帮助", link: "/help/" },{ text: "📕 官方文档", link: "/help/官方文档" }],
+  },
+  {
     text: "⭐ 关于",
     items: [
       { text: "⭐ 关于我", link: "/about/" },

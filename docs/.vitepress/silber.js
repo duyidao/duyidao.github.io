@@ -12,6 +12,7 @@ export default {
   '/learn/杂技拾谈': getTalkSidebar(),
   '/learn/学而时习之': getLearnTimeSidebar(),
   '/learn/面试鸭': getLearnWatchSidebar(),
+  '/help': getHelpSidebar(),
   '/project': [
     {
       text: '项目',
@@ -223,7 +224,6 @@ function getTalkSidebar() {
         { text: '接口请求', link: '/learn/杂技拾谈/多接口请求' },
         { text: '设计模式', link: '/learn/杂技拾谈/设计模式' },
         { text: 'HBuilder使用模拟器调试', link: '/learn/杂技拾谈/HBuilder使用模拟器调试' },
-        { text: 'H5移动端调试', link: '/learn/杂技拾谈/H5移动端调试' },
         { text: 'js执行顺序', link: '/learn/杂技拾谈/js执行顺序' },
       ]
     }
@@ -537,6 +537,20 @@ function getVitePressSidebar() {
         { text: "🎁 打包", link: "/vitePress/Build" },
         { text: "⏳ 部署", link: "/vitePress/Deploy" },
         { text: "✨ 拓展", link: "/vitePress/Know" },
+      ]
+    }
+  ]
+}
+
+// 获取帮助的数组
+function getHelpSidebar() {
+  return [
+    {
+      text: '📴 有用的帮助',
+      collapsible: true,
+      items: [
+        { text: "🎃 开发帮助", link: "/help/" },
+        { text: "📕 官方文档", link: "/help/官方文档" },
       ]
     }
   ]
