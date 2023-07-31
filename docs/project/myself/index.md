@@ -11,3 +11,7 @@ title 项目模块
 - 硅谷甄选
 
   Vue3 + ts + element-plus + axios + pinia
+  
+- 尚医通
+
+  Vue3 + ts + element-plus + axios + pinia
