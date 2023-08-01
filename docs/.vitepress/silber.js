@@ -33,6 +33,7 @@ export default {
   '/project/myself/小兔鲜': getMyRabbitSidebar(),
   '/project/myself/硅谷甄选': getMyCowSidebar(),
   '/project/myself/尚医通': getMyDoctorSidebar(),
+  '/project/myself/react后台': getMyReactBackSidebar(),
   '/vitePress': getVitePressSidebar(),
   '/about': getAboutSidebar(),
 }
@@ -377,6 +378,7 @@ function getMyselfSidebar() {
         { text: '🐇 小兔鲜', link: "/project/myself/小兔鲜/all" },
         { text: '🐂 硅谷甄选', link: "/project/myself/硅谷甄选/" },
         { text: '⛑ 尚医通', link: "/project/myself/尚医通/" },
+        { text: '🎎 react后台', link: "/project/myself/react后台/" },
         { text: '🗑 返回', link: '/project/' },
       ]
     }
@@ -426,13 +428,27 @@ function getMyCowSidebar(params) {
 }
 
 // 获取尚医通项目的数组
-function getMyDoctorSidebar(params) {
+function getMyDoctorSidebar() {
   return [
     {
       text: "⛑ 尚医通",
       collapsible: true,
       items: [
         { text: '项目初始化', link: "/project/myself/尚医通/" },
+        { text: '🗑 返回', link: '/project/myself/' },
+      ]
+    }
+  ]
+}
+
+// 获取react后台项目的数组
+function getMyReactBackSidebar() {
+  return [
+    {
+      text: "🎎 react后台",
+      collapsible: true,
+      items: [
+        { text: '项目初始化', link: "/project/myself/react后台/" },
         { text: '🗑 返回', link: '/project/myself/' },
       ]
     }

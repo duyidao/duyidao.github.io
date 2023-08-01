@@ -1,0 +1,1 @@
+import{_ as s,c as n,o as a,d as l}from"./app.c587bba4.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"project/lingsi/elk/blob.md"}'),p={name:"project/lingsi/elk/blob.md"},o=l("",5),e=[o];function c(t,r,F,y,D,A){return a(),n("div",null,e)}const d=s(p,[["render",c]]);export{i as __pageData,d as default};
