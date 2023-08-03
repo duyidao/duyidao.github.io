@@ -455,11 +455,83 @@ const About = lazy(() => import("../views/About.jsx"));
 
 const routes = [
   // ...
+  // 懒加载需要配合Suspense属性使用
   {
     path: "/about",
     element: <React.Suspense fallback={<div>Loading...</div>}>
     <About />
     </React.Suspense>,
+  },
+];
+```
+
+#### 懒加载组件抽离
+
+把懒加载的组件抽离出来方便复用，代码如下：
+
+```jsx
+const withLoadingComponent = (comp) => (
+  <React.Suspense fallback={<div>Loading...</div>}>{comp}</React.Suspense>
+);
+
+const routes = [
+  // ...
+  {
+    path: "/about",
+    element: withLoadingComponent(<About />),
+  },
+];
+```
+
+使用时只需要传对应组件即可。
+
+> 注意
+>
+> 在 TypeScript 中，需要设置组件类型为 `JSX.element`
+
+### 路由嵌套
+
+以路由表写法为例：做二级路由的步骤为：
+
+1. 设置路由重定向到二级路由的默认路由
+2. 在一级路由下的 `children` 属性设置二级路由
+
+代码如下所属：
+
+```jsx
+import Home from "../views/Home.jsx";
+import { Navigate } from "react-router-dom";
+import React, { lazy } from "react";
+
+const Vue = lazy(() => import("../views/Vue/index.jsx"));
+const ReactJSX = lazy(() => import("../views/React/index.jsx"));
+
+// 懒加载组件
+const withLoadingComponent = (comp) => (
+  <React.Suspense fallback={<div>Loading...</div>}>{comp}</React.Suspense>
+);
+
+const routes = [
+  // 这里是重定向到二级路由 /vue，即页面打开默认显示 /vue 的内容
+  {
+    path: "/",
+    element: <Navigate to="/Vue" />,
+  },
+  // 一级路由
+  {
+    path: "/",
+    element: <Home />,
+    // 二级路由
+    children: [
+      {
+        path: "/vue",
+        element: withLoadingComponent(<Vue />),
+      },
+      {
+        path: "/react",
+        element: withLoadingComponent(<ReactJSX />),
+      },
+    ],
   },
 ];
 ```
