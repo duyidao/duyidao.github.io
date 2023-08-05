@@ -34,4 +34,16 @@ window.addEventListener('load', () => {
 
 ## 缓存清除
 
-现在项目成功上架安卓和苹果商店后，需要通过接口动态获取
+现在项目成功上架安卓和苹果商店后，需要通过接口动态获取最新版本下载数据。但是由于有缓存，导致每次获取的版本都不是最新的。因此需要添加以下的代码到 `index.html` 文件中，禁止从缓存获取数据，通过服务器获取数据。代码如下：
+
+```html
+//不允许从缓存中读取加载页面，意味着只能从服务器加载
+<meta http-equiv="Pragma" content="no-cache">
+//和上一句类似
+<meta http-equiv="no-cache">
+//页面直接过期，过期了也就意味着只能重新加载
+<meta http-equiv="Expires" content="-1">
+//向服务器请求加载时不要求缓存
+<meta http-equiv="Cache-Control" content="no-cache">
+```
+

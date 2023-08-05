@@ -534,6 +534,7 @@ function getMyReactBackSidebar() {
         { text: "项目初始化", link: "/project/myself/react后台/" },
         { text: "菜单栏配置", link: "/project/myself/react后台/menu" },
         { text: "仓库配置", link: "/project/myself/react后台/redux" },
+        { text: "路由守卫", link: "/project/myself/react后台/守卫" },
         { text: "🗑 返回", link: "/project/myself/" },
       ],
     },

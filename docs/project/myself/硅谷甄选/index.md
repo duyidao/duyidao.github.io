@@ -1,3 +1,7 @@
+---
+title 甄选项目初始化
+---
+
 # 项目初始化
 
 项目在线地址：[甄选](http://duyidao.gitee.io/selection/#/login?redirect=/home) 。

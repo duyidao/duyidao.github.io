@@ -1,3 +1,7 @@
+---
+title 尚义通项目创建
+---
+
 # 项目创建
 
 项目正式地址：[尚医通]([刀刀医院 (gitee.io)](http://duyidao.gitee.io/doctor/)) 。
