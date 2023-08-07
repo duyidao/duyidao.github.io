@@ -34,6 +34,7 @@ export default {
   "/project/myself/硅谷甄选": getMyCowSidebar(),
   "/project/myself/尚医通": getMyDoctorSidebar(),
   "/project/myself/react后台": getMyReactBackSidebar(),
+  "/project/myself/知乎日报": getMyNewsSidebar(),
   "/vitePress": getVitePressSidebar(),
   "/about": getAboutSidebar(),
 };
@@ -462,6 +463,7 @@ function getMyselfSidebar() {
         { text: "🐂 硅谷甄选", link: "/project/myself/硅谷甄选/" },
         { text: "⛑ 尚医通", link: "/project/myself/尚医通/" },
         { text: "🎎 react后台", link: "/project/myself/react后台/" },
+        { text: "📰 知乎日报", link: "/project/myself/知乎日报/react版/" },
         { text: "🗑 返回", link: "/project/" },
       ],
     },
@@ -535,6 +537,47 @@ function getMyReactBackSidebar() {
         { text: "菜单栏配置", link: "/project/myself/react后台/menu" },
         { text: "仓库配置", link: "/project/myself/react后台/redux" },
         { text: "路由守卫", link: "/project/myself/react后台/守卫" },
+        { text: "🗑 返回", link: "/project/myself/" },
+      ],
+    },
+  ];
+}
+
+// 获取react后台项目的数组
+function getMyNewsSidebar() {
+  return [
+    {
+      text: "📰 知乎日报",
+      collapsible: true,
+      items: [
+        {
+          text: "React版",
+          collapsible: true,
+          items: [
+            { text: "项目初始化", link: "/project/myself/知乎日报/react版/" },
+            {
+              text: "路由配置",
+              link: "/project/myself/知乎日报/react版/router",
+            },
+            {
+              text: "仓库配置",
+              link: "/project/myself/知乎日报/react版/redux",
+            },
+            { text: "接口配置", link: "/project/myself/知乎日报/react版/api" },
+            { text: "组件配置", link: "/project/myself/知乎日报/react版/组件" },
+          ],
+        },
+        {
+          text: "Vue3+TS版",
+          collapsible: true,
+          items: [
+            { text: "项目初始化", link: "/project/myself/知乎日报/" },
+            { text: "路由配置", link: "/project/myself/知乎日报/router" },
+            { text: "仓库配置", link: "/project/myself/知乎日报/redux" },
+            { text: "接口配置", link: "/project/myself/知乎日报/api" },
+            { text: "组件配置", link: "/project/myself/知乎日报/组件" },
+          ],
+        },
         { text: "🗑 返回", link: "/project/myself/" },
       ],
     },

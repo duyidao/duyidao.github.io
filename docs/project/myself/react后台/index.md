@@ -52,7 +52,7 @@ title react后台项目初始化
    在 `main.jsx` 入口文件引入使用
 
    ```jsx
-   import "reset-css";
+   import "reset.css";
    ```
 
 > 注意
