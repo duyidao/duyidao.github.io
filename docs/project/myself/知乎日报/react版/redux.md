@@ -142,3 +142,129 @@ root.render(
 ```
 
 ## 使用
+
+在 `action-types.js` 文件中设置需要使用的方法字典：
+
+```js
+export const BASE_INFO = "BASE_INFO";
+```
+
+在 `reducer` 文件夹下对应模块的文件中设置相应的 `action` 判断以及对应的数据操作：
+
+```js
+import * as TYPES from "../action-types";
+
+let initial = {
+  info: null
+};
+
+export default function baseReducer(state = initial, action) {
+  let newState = JSON.parse(JSON.stringify(state));
+
+  switch (action.type) {
+    case TYPES.BASE_INFO:
+      newState.info = action.info
+      break;
+    default:
+      break;
+  }
+
+  return newState;
+}
+```
+
+在 `action` 文件夹下对应模块的文件中设置相应的 `action` 方法：
+
+```js
+import * as TYPES from "../action-types";
+import Api from '@/api/index.js'
+
+const baseAction = {
+  // 异步方法
+  async infoAsync(phone, code) {
+    let info = null;
+    try {
+      let res = await Api.getUserInfoApi(phone, code);
+      if (res.code === 200) {
+        info = res.data;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    return {
+      type: TYPES.BASE_INFO,
+      info,
+    };
+  },
+  // 同步方法
+  clearInfo() {
+    return {
+      type: TYPES.BASE_INFO,
+      info: null,
+    };
+  },
+};
+
+export default baseAction;
+```
+
+在需要使用的函数式组件中引入 `action` 文件夹下的 `index.js` ，引入 `react-redux` 提供的 `connect` API ，把组件和 `redux` 组合起来。代码如下：
+
+```jsx
+import { connect } from "react-redux";
+import action from "@/store/action";
+
+// ...
+
+function Login() {
+  // ...
+}
+
+export default connect(
+  null,
+  action.base
+)(Login);
+```
+
+链接成功后函数式组件的 `props` 形参能够获取到之前设置的 `action` 方法，代码如下：
+
+```jsx
+import { connect } from "react-redux";
+import action from "@/store/action";
+
+// ...
+
+function Login(props) {
+  const { infoAsync, navigate } = props
+  
+  // 表单提交
+  const submit = async () => {
+    // 此时表单校验已经成功。values：Form表单组件自动收集的每个表单中的信息
+    try {
+      await formIns.validateFields(); // 表单校验
+      let { phone, code } = formIns.getFieldsValue();
+      const res = await Api.login(phone, code);
+      infoAsync() // redux也同步调用接口保存数据
+      if (+res.code !== 0) {
+        Toast.show({
+          icon: "fail",
+          content: "登陆失败",
+        });
+        formIns.resetFields(["code"]); // 重置验证码
+      } else {
+        // 登录成功
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  // ...
+}
+
+export default connect(
+  null,
+  action.base
+)(Login);
+```
+
