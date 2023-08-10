@@ -16,12 +16,6 @@ npx create-react-app news
    yarn add reset.css
    ```
 
-2. 引入 `lib-flexible` ，使得项目在任意尺寸手机都能完整铺开
-
-   ```
-   yarn add lib-flexible
-   ```
-
 3. 引入 CSS 预处理器
 
    ```
@@ -43,6 +37,37 @@ npx create-react-app news
      handleMax();
    })();
    ```
+
+## 单位换算
+
+引入依赖实现响应式布局：
+
+```
+yarn add lib-flexible
+yarn add postcss-pxtorem
+```
+
+在src目录下index.js里引入[lib-flexible](https://so.csdn.net/so/search?q=lib-flexible&spm=1001.2101.3001.7020)
+
+```javascript
+import "lib-flexible";
+```
+
+修改[webpack](https://so.csdn.net/so/search?q=webpack&spm=1001.2101.3001.7020).config.js（这个文件在node_modules文件夹下的react-scripts文件夹下的config文件夹中）
+
+先引入：
+
+```javascript
+const pxtorem = require('postcss-pxtorem');
+```
+
+然后找到下图位置添加如下代码（因为这里是三元运算符，所以要加两次）
+
+```javascript
+pxtorem({ rootValue: 75, unitPrecision: 5, propList: ['*'] })
+```
+
+![效果](https://pic.imgdb.cn/item/64d1ad9b1ddac507cc11a7cb.jpg)
 
 ## 路径别名
 

@@ -109,7 +109,7 @@ onLoad((val) => {
 
 为了方便测试和调试， `appSecret` 可以直接在源码中设置，如下：
 
-![iPcYZ5.png](https://i.imgloc.com/2023/05/04/iPcYZ5.png)
+![源码配置](https://pic.imgdb.cn/item/64d49f9c1ddac507cc948536.jpg)
 
 > 注意：
 >
