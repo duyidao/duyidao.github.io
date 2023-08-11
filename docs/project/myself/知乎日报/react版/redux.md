@@ -143,6 +143,8 @@ root.render(
 
 ## 使用
 
+### 单使用
+
 在 `action-types.js` 文件中设置需要使用的方法字典：
 
 ```js
@@ -266,5 +268,28 @@ export default connect(
   null,
   action.base
 )(Login);
+```
+
+### 多使用
+
+如果想使用多个 `state` 数据与多个 `action` 方法，可写为以下形式：
+
+```js
+export default connect(
+  state => ({
+    base: state.base,
+    store: state.store
+  }),
+  { ...action.base, ...action.store }
+)(Login);
+```
+
+上面代码会把 `base` 模块和 `store` 模块的 `reducer` 作为对象形式在形参 `props` 中获取；而两个模块的 `action` 方法则因为展开点语法可以直接使用。代码如下：
+
+```jsx
+function Test(props) {
+  const { base: {info}, infoAsync } = props
+  // ...
+}
 ```
 
