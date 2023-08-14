@@ -11,7 +11,15 @@ title 项目模块
 - 硅谷甄选
 
   Vue3 + ts + element-plus + axios + pinia
-  
+
 - 尚医通
 
   Vue3 + ts + element-plus + axios + pinia
+
+- react 后台
+
+  React + React-redux + React-router-dom + redux + antd
+
+- 知乎日报
+
+  React + React-redux + React-router-dom + redux + antd-mobile
