@@ -459,7 +459,7 @@ function getMyselfSidebar() {
       collapsible: true,
       items: [
         { text: "📕 引言", link: "/project/myself/" },
-        { text: "🐇 小兔鲜", link: "/project/myself/小兔鲜/all" },
+        { text: "🐇 小兔鲜", link: "/project/myself/小兔鲜/inweb/all" },
         { text: "🐂 硅谷甄选", link: "/project/myself/硅谷甄选/" },
         { text: "⛑ 尚医通", link: "/project/myself/尚医通/" },
         { text: "🎎 react后台", link: "/project/myself/react后台/" },
@@ -477,15 +477,28 @@ function getMyRabbitSidebar(params) {
       text: "🐇 小兔鲜",
       collapsible: true,
       items: [
-        { text: "项目介绍", link: "/project/myself/小兔鲜/all" },
-        { text: "项目创建", link: "/project/myself/小兔鲜/" },
-        { text: "Layout", link: "/project/myself/小兔鲜/layout" },
-        { text: "Home", link: "/project/myself/小兔鲜/home" },
-        { text: "分类", link: "/project/myself/小兔鲜/一级分类" },
-        { text: "详情", link: "/project/myself/小兔鲜/detail" },
-        { text: "登录", link: "/project/myself/小兔鲜/login" },
-        { text: "购物车", link: "/project/myself/小兔鲜/购物车" },
-        { text: "Sku思路", link: "/project/myself/小兔鲜/sku" },
+        {
+          text: "Web 端",
+          collapsible: true,
+          items: [
+            { text: "项目介绍", link: "/project/myself/小兔鲜/inweb/all" },
+            { text: "项目创建", link: "/project/myself/小兔鲜/inweb/" },
+            { text: "Layout", link: "/project/myself/小兔鲜/inweb/layout" },
+            { text: "Home", link: "/project/myself/小兔鲜/inweb/home" },
+            { text: "分类", link: "/project/myself/小兔鲜/inweb/一级分类" },
+            { text: "详情", link: "/project/myself/小兔鲜/inweb/detail" },
+            { text: "登录", link: "/project/myself/小兔鲜/inweb/login" },
+            { text: "购物车", link: "/project/myself/小兔鲜/inweb/购物车" },
+            { text: "Sku思路", link: "/project/myself/小兔鲜/inweb/sku" },
+          ],
+        },
+        {
+          text: "uniapp 跨端",
+          collapsible: true,
+          items: [
+            { text: "项目初始化", link: "/project/myself/小兔鲜/inuni/" },
+          ],
+        },
         { text: "🗑 返回", link: "/project/myself/" },
       ],
     },
@@ -543,7 +556,7 @@ function getMyReactBackSidebar() {
   ];
 }
 
-// 获取react后台项目的数组
+// 获取知乎日报项目的数组
 function getMyNewsSidebar() {
   return [
     {
@@ -570,13 +583,7 @@ function getMyNewsSidebar() {
         {
           text: "Vue3+TS版",
           collapsible: true,
-          items: [
-            { text: "项目初始化", link: "/project/myself/知乎日报/" },
-            { text: "路由配置", link: "/project/myself/知乎日报/router" },
-            { text: "仓库配置", link: "/project/myself/知乎日报/redux" },
-            { text: "接口配置", link: "/project/myself/知乎日报/api" },
-            { text: "组件配置", link: "/project/myself/知乎日报/组件" },
-          ],
+          items: [],
         },
         { text: "🗑 返回", link: "/project/myself/" },
       ],
