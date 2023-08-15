@@ -497,6 +497,7 @@ function getMyRabbitSidebar(params) {
           collapsible: true,
           items: [
             { text: "项目初始化", link: "/project/myself/小兔鲜/inuni/" },
+            { text: "首页", link: "/project/myself/小兔鲜/inuni/home" },
           ],
         },
         { text: "🗑 返回", link: "/project/myself/" },
