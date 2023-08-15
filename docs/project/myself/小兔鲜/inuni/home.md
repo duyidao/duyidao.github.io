@@ -26,3 +26,38 @@ const { safeAreaInsets } = uni.getSystemInfoSync()
 </template>
 ```
 
+## 自定义组件导入
+
+`uni-ui` 的组件在 `pages.json` 文件中通过 `easycom` 对象设置配置规则，因此使用时可直接使用而无需导入。在 `components` 中配置的自定义组件也可以设置自动导入。
+
+首先需要规定这些自定义组件的统一开头，本项目以 `Xtx + 组件名` 的格式。在 `pages.json` 文件中配置规则，代码如下：
+
+```json
+{
+  // 组件自动引入规则
+  "easycom": {
+    // ...
+    "custom": {
+      // ...
+      // 自己封装的组件规则配置，以Xtx开头，在components文件查找引入
+      "^Xtx(.*)": "@/components/Xtx$1.vue"
+    }
+  },
+}
+```
+
+配置完需要先重启项目，然后才能生效。配置完后发现这个自定义组件 `ts` 类型为 `unknown` ，因此要做额外的配置。
+
+在 `src/components` 文件夹下新建一个 `components.d.ts` 文件，用于配置组件类型。代码如下：
+
+```tsx
+import XtxSwiper from './XtxSwiper.vue'
+
+declare module '@vue/runtime-core' {
+  export interface GlobalComponents {
+    XtxSwiper: typeof XtxSwiper
+  }
+}
+```
+
+现在组件拥有 `ts` 类型了。

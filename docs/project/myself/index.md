@@ -6,7 +6,9 @@ title 项目模块
 
 - 小兔鲜
 
-  Vue3 + element-plus + axios + pinia
+  Web端：Vue3 + element-plus + axios + pinia
+
+  Uniapp端：Vue3 + uni-ui + uniapp + pinia
 
 - 硅谷甄选
 
