@@ -315,3 +315,9 @@ pageParams.value.page++ // 出现报错
 现在鼠标悬停在该变量上，组件实例变量已经设置好类型了。
 
 ## 骨架屏设置
+
+微信小程序可以自动生成骨架屏代码，生成成功后代码在微信开发工具中，位置如下图：
+
+![骨架屏位置](https://megasu.gitee.io/uni-app-shop-note/assets/home_picture_8.90926ae4.png)
+
+首页引入骨架屏，放到对应的位置，并通过 `v-if` 判断与真实内容取反即可。
