@@ -498,6 +498,9 @@ function getMyRabbitSidebar(params) {
           items: [
             { text: "项目初始化", link: "/project/myself/小兔鲜/inuni/" },
             { text: "首页", link: "/project/myself/小兔鲜/inuni/home" },
+            { text: "猜你喜欢", link: "/project/myself/小兔鲜/inuni/guess" },
+            { text: "登录", link: "/project/myself/小兔鲜/inuni/login" },
+            { text: "分包", link: "/project/myself/小兔鲜/inuni/pagesmember" },
           ],
         },
         { text: "🗑 返回", link: "/project/myself/" },
