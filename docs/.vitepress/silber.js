@@ -501,6 +501,8 @@ function getMyRabbitSidebar(params) {
             { text: "猜你喜欢", link: "/project/myself/小兔鲜/inuni/guess" },
             { text: "登录", link: "/project/myself/小兔鲜/inuni/login" },
             { text: "分包", link: "/project/myself/小兔鲜/inuni/pagesmember" },
+            { text: "订单详情", link: "/project/myself/小兔鲜/inuni/detail" },
+            { text: "打包", link: "/project/myself/小兔鲜/inuni/build" },
           ],
         },
         { text: "🗑 返回", link: "/project/myself/" },
