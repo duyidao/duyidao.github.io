@@ -140,6 +140,18 @@ function getLearnVue2Sidebar() {
           text: "动态组件、插槽与自定义指令",
           link: "/learn/vue2/动态组件、插槽与自定义指令",
         },
+        {
+          text: "vue2核心源码及设计思想",
+          link: "/learn/vue2/vue2核心源码及设计思想",
+        },
+        {
+          text: "从零手写VueRouter及Vuex",
+          link: "/learn/vue2/从零手写VueRouter及Vuex",
+        },
+        {
+          text: "阅读框架源码方法",
+          link: "/learn/vue2/阅读框架源码方法",
+        },
       ],
     },
   ];
@@ -170,7 +182,7 @@ function getLearnVue3Sidebar() {
 function getLearnReactSidebar() {
   return [
     {
-      text: "Vue3",
+      text: "React",
       collapsible: true,
       items: [
         { text: "无脚手架项目创建", link: "/learn/React/" },
@@ -252,7 +264,10 @@ function getTalkSidebar() {
           text: "HBuilder使用模拟器调试",
           link: "/learn/杂技拾谈/HBuilder使用模拟器调试",
         },
-        { text: "js执行顺序", link: "/learn/杂技拾谈/js执行顺序" },
+        {
+          text: "Vue2 VS Vue3",
+          link: "/learn/杂技拾谈/Vue2 VS Vue3",
+        },
       ],
     },
   ];
@@ -344,6 +359,10 @@ function getLearnTimeSidebar() {
           text: "Vue项目对render和jsx的妙用",
           link: "/learn/学而时习之/更上一层楼/Vue项目对render和jsx的妙用",
         },
+        {
+          text: "时间切片优化项目速度",
+          link: "/learn/学而时习之/更上一层楼/时间切片优化项目速度",
+        },
       ],
     },
     {
@@ -353,6 +372,10 @@ function getLearnTimeSidebar() {
         {
           text: "操作内嵌ifrname与传递消息",
           link: "/learn/学而时习之/操作内嵌ifrname与传递消息",
+        },
+        {
+          text: "Sass加Css变量实现现代前端换肤",
+          link: "/learn/学而时习之/Sass加Css变量实现现代前端换肤",
         },
       ],
     },
@@ -377,6 +400,7 @@ function getLearnWatchSidebar() {
         },
         { text: "手写封装AJAX", link: "/learn/面试鸭/手写封装AJAX" },
         { text: "数组去重", link: "/learn/面试鸭/数组去重" },
+        { text: "js执行顺序", link: "/learn/面试鸭/js执行顺序" },
       ],
     },
   ];
