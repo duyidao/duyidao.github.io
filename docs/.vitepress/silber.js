@@ -142,15 +142,15 @@ function getLearnVue2Sidebar() {
         },
         {
           text: "vue2核心源码及设计思想",
-          link: "/learn/vue2/vue2核心源码及设计思想",
+          link: "/learn/vue2/源码—vue2核心源码及设计思想",
         },
         {
           text: "从零手写VueRouter及Vuex",
-          link: "/learn/vue2/从零手写VueRouter及Vuex",
+          link: "/learn/vue2/源码—从零手写VueRouter及Vuex",
         },
         {
           text: "阅读框架源码方法",
-          link: "/learn/vue2/阅读框架源码方法",
+          link: "/learn/vue2/源码—阅读框架源码方法",
         },
       ],
     },
@@ -267,6 +267,10 @@ function getTalkSidebar() {
         {
           text: "Vue2 VS Vue3",
           link: "/learn/杂技拾谈/Vue2 VS Vue3",
+        },
+        {
+          text: "$nexttick",
+          link: "/learn/杂技拾谈/$nexttick",
         },
       ],
     },
