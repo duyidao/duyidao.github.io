@@ -12,19 +12,23 @@ export default [
       { text: "Node", link: "/learn/Node/" },
       {
         items: [
-          {text:'杂技拾谈', link: '/learn/杂技拾谈/vue3双向绑定proxy原理.md'}
-        ]
+          {
+            text: "杂技拾谈",
+            link: "/learn/杂技拾谈/Vue/vue3双向绑定proxy原理.md",
+          },
+        ],
       },
       {
         items: [
-          {text:'学而时习之', link: '/learn/学而时习之/操作内嵌ifrname与传递消息.md'}
-        ]
+          {
+            text: "学而时习之",
+            link: "/learn/学而时习之/操作内嵌ifrname与传递消息.md",
+          },
+        ],
       },
       {
-        items: [
-          {text:'面试鸭', link: '/learn/面试鸭/数组方法手写原理.md'}
-        ]
-      }
+        items: [{ text: "面试鸭", link: "/learn/面试鸭/数组方法手写原理.md" }],
+      },
     ],
   },
   {
@@ -32,10 +36,8 @@ export default [
     items: [
       { text: "灵思", link: "/project/lingsi/" },
       {
-        items: [
-          {text:'自主学习', link: '/project/myself/'}
-        ]
-      }
+        items: [{ text: "自主学习", link: "/project/myself/" }],
+      },
     ],
   },
   {
@@ -44,13 +46,16 @@ export default [
   },
   {
     text: "📴 有用的帮助",
-    items: [{ text: "🎃 开发帮助", link: "/help/" },{ text: "📕 官方文档", link: "/help/官方文档" }],
+    items: [
+      { text: "🎃 开发帮助", link: "/help/" },
+      { text: "📕 官方文档", link: "/help/官方文档" },
+    ],
   },
   {
     text: "⭐ 关于",
     items: [
       { text: "⭐ 关于我", link: "/about/" },
-      { text: "🔪 关于刀刀小站", link: "/about/blog" }
+      { text: "🔪 关于刀刀小站", link: "/about/blog" },
     ],
-  }
-]
+  },
+];

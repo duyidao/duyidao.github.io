@@ -220,9 +220,316 @@ function initData(vm) {
 
 ## 对象属性劫持
 
+### 数据劫持
+
+劫持数据，在 `src` 文件夹下新建一个 `observe/index.js` 文件，声明一个 `observe` 函数，用于劫持数据。`state.js` 中引入， `initData` 调用该函数。代码如下：
+
+```js
+export function initState(vm) {
+  // 获取所有选项
+  const opts = vm.$options;
+
+  // 如果有data数据，则初始化data数据
+  if (opts.data) {
+    initData(vm);
+  }
+}
+
+function initData(vm) {
+  // 获取所有data数据
+  let data = vm.$options.data;
+
+  // Vue2中data可以是对象也可以是函数（Vue3统一函数），因此需要先判断
+  data = typeof data === "function" ? data.call(vm) : data;
+  
+  // 劫持数据 defindProperty
+  observe(data);
+}
+```
+
+`observe/index.js` 内声明一个 `observe` 函数并按需导出供外部使用，该函数需要先判断数据类型是否为对象，对象才能劫持。然后添加一个类实例，用来判断该对象是否被劫持过，劫持过则不需要再劫持了。代码如下：
+
+```js
+export function observe(data) {
+  // 判断是否为对象，是则劫持该对象数据
+  if (typeof data !== "object" || data == null) {
+    return; // 只能对对象进行劫持
+  }
+
+  // 如果对象被劫持过了，那就不需要再被劫持了（要判断一个对象是否被劫持过，可以添加一个实例，用实例来判断是否被劫持过）
+  // todo...
+  
+  return new Observe(data);
+}
+```
+
+定义一个类方法 `Observe` ，构造器中获取传参，并在 `walk` 方法中 **重新定义** 对象的属性。这也是为什么 Vue2 性能比 Vue3 差的原因。
+
+循环遍历对象，调用 `defineReactive` 函数，传递三个参数：整个 `data` 数据对象、键名、键值。代码如下：
+
+```js
+class Observe {
+  constructor(data) {
+    // Object.defineProperty只能劫持已经存在的属性（vue里会为此单独写一些api，如$set、$delete)
+    this.walk(data);
+  }
+
+  // 循环对象 对属性依次劫持
+  walk(data) {
+    // “重新定义” 属性（性能比vue3差的原因）
+    Object.keys(data).forEach((key) => defineReactive(data, key, data[key]));
+  }
+}
+```
+
+`defineReactive()` 函数主要运用 `Object.defineProperty` 方法定义劫持属性。在劫持之前，重新调用 `observe` 方法，对值判断，看值是否为对象。代码如下：
+
+```js
+export function defineReactive(target, key, value) {
+  // 递归思想，如果value值的类型不是对象，则return；如果是对象，则继续劫持
+  observe(value);
+
+  // 此处value存放在闭包中，不会销毁
+  Object.defineProperty(target, key, {
+    // 取值执行get
+    get() {
+      return value;
+    },
+    // 修改值执行set
+    set(newValue) {
+      if (newValue === value) return;
+      value = newValue;
+    },
+  });
+}
+```
+
+### 数据获取
+
+劫持成功后的数据对象并没有在全局 `vm` 变量上，因此我们要返回 `state.js` 文件，把劫持后的数据挂载到 `vm` 上。代码如下：
+
+```js
+// ...
+
+function initData(vm) {
+  // 获取所有data数据
+  let data = vm.$options.data;
+
+  // Vue2中data可以是对象也可以是函数（Vue3统一函数），因此需要先判断。这里的data是用户的数据
+  data = typeof data === "function" ? data.call(vm) : data;
+
+  // 此时vm只有用户的数据，没有我们劫持后的数据。把劫持后的数据放到原型上供用户使用。这里的_data是劫持后的对象
+  vm._data = data;
+
+  // 劫持数据 defindProperty
+  observe(data);
+}
+```
+
+此时控制台输出能看到数据，通过 `vm._data.xxx` 可以获取到数据。但是想要的效果是通过 `vm.xxx` 就能获取到数据，解决方案为把 `vm._data` 用 `vm` 代理即可。代码如下：
+
+```js
+// ...
+
+// 代理。这里的target就是_data，key是每个对象的键
+function proxy(vm, target, key) {
+  Object.defineProperty(vm, key, {
+    get() {
+      return vm[target][key]; // vm._data.xxx
+    },
+    set(newValue) {
+      vm[target][key] = newValue;
+    },
+  });
+}
+
+function initData(vm) {
+  // 获取所有data数据
+  let data = vm.$options.data;
+
+  // Vue2中data可以是对象也可以是函数（Vue3统一函数），因此需要先判断。这里的data是用户的数据
+  data = typeof data === "function" ? data.call(vm) : data;
+
+  // 此时vm只有用户的数据，没有我们劫持后的数据。把劫持后的数据放到原型上供用户使用。这里的_data是劫持后的对象
+  vm._data = data;
+
+  // 劫持数据 defindProperty
+  observe(data);
+
+  // 此时用户想要获取或者修改数据，必须通过 vm._data.xxx 的写法，不够人性化。把 vm._data 用 vm 来代理
+  for (const key in data) {
+    proxy(vm, "_data", key);
+  }
+}
+```
+
+现在对象数据能够没劫持到了。
+
 ## 数组方法劫持
 
+接下来劫持数组的数据，此时不能直接调用 `walk` 方法，而是需要先判断数据的格式，对象格式的数据才走 `walk` 方法。如果是数组格式的数据，则走新的方法 `observeArray` 。
+
+该方法遍历数组后，每一项数据都调用一次 `observe` 方法劫持数据。代码如下所示：
+
+```js
+import { newArrayProto } from "./array";
+
+class Observe {
+  constructor(data) {
+    // Object.defineProperty只能劫持已经存在的属性（vue里会为此单独写一些api，如$set、$delete)
+    if (Array.isArray(data)) {
+      // 重写数组7个变异方法方法，但也要保留数组原有的特性
+      data.__proto__ = newArrayProto;
+
+      this.observeArray(data);
+    } else {
+      this.walk(data);
+    }
+  }
+
+  walk(data) {
+    // ...
+  }
+
+  observeArray(data) {
+    // 如果数组中放了对象，对象可以被监控到
+    data.forEach((item) => observe(item));
+  }
+}
+
+// ...
+```
+
+在 `src/observe` 文件夹下新建一个 `array.js` 文件，用于重写数组部分方法。步骤如下：
+
+1. 获取数组的原型
+2. 把数组原型赋值给新的变量，后续修改新变量即可，不会影响旧的数组原型
+3. 找到数组变异方法 API 数组
+4. 遍历变异方法 API 数组，先调用旧原型的方法，在获取新增的数据（新增的数组通过方法获取必定是数组格式）。新增的数据调用上面 `observeArray` 劫持。
+
+代码如下：
+
+```js
+// 重写数组部分方法
+
+// 获取数组原型
+let oldArrayProto = Array.prototype;
+
+// 先拷贝一份，不影响之前的。newArrayProto.__proto__ = oldArrayProto
+export let newArrayProto = Object.create(oldArrayProto);
+
+// 找到数组变异方法
+let methods = ["push", "pop", "shift", "unshift", "reverse", "sort", "splice"]; // concat、slice都不会改变原数组
+
+methods.forEach((method) => {
+  newArrayProto[method] = function (...args) {
+    // 内部调用原来的方法，函数的劫持，切片编程
+    // 这里的this谁调用指向谁。如一个数组arr.push()，则this指向arr
+    const result = oldArrayProto[method].call(this, ...args);
+
+    // 新增的数据也需要劫持
+    let inserted;
+    let ob = this.__ob__;
+
+    switch (method) {
+      case "push":
+      case "unshift":
+        // 新增数据，获取全部新增的数据
+        inserted = args;
+        break;
+      case "splice":
+        // 数据替换，splice第三个参数（索引为2）为新增的数据
+        inserted = args.slice(2);
+        break;
+      default:
+        break;
+    }
+
+    if (inserted) {
+      // 对新增的内容再次观测
+      ob.observeArray(inserted);
+    }
+
+    return result;
+  };
+});
+```
+
+由于需要调用 `observeArray` 方法，而该方法在同级目录下的 `index.js` 中。因此需要把它当前的 `this` 指向挂载到数据 `__ob__` 上，该文件通过 `this.__ob__` 获取。
+
+而数据上存在 `__ob__` 时，说明该数据被劫持过了，不需再劫持了，刚好可以用于做判断处理。
+
+函数 `defineReactive` 则需要对 `set` 方法做处理，新增的值也需要再次调用 `observe` 方法，让其做数据劫持。
+
+`index.js` 代码如下：
+
+```js
+class Observe {
+  constructor(data) {
+    data.__ob__ = this;
+
+    // ...
+}
+  
+export function defineReactive(target, key, value) {
+  // 递归思想，如果value值的类型不是对象，则return；如果是对象，则继续劫持
+  observe(value);
+
+  // 此处value存放在闭包中，不会销毁
+  Object.defineProperty(target, key, {
+    // 取值执行get
+    get() {
+      return value;
+    },
+    // 修改值执行set
+    set(newValue) {
+      if (newValue === value) return;
+      observe(newValue);
+      value = newValue;
+    },
+  });
+}
+  
+export function observe(data) {
+  // ...
+
+  if (data.__ob__ instanceof Observe) {
+    // 已经被劫持过了
+    return data.__ob__;
+  }
+
+  // 如果对象被劫持过了，那就不需要再被劫持了（要判断一个对象是否被劫持过，可以添加一个实例，用实例来判断是否被劫持过）
+  return new Observe(data);
+}
+```
+
+但是这么写会有一个 BUG，我们可以看到上方代码中，类 `Observe` 会接收一个对象格式的数据，然后为该对象添加一个 `__ob__` 的 `this` 指向的属性，接着对该属性做判断，符合对象的要求，没有 `__ob__` ，就在其身上绑定一个 `__ob__` 。接着在遍历 `__ob__` 内的 `__ob__` ......直到造成死循环。
+
+解决方法为把 `__ob__` 这个属性设置为不可枚举的。代码如下：
+
+```js
+class Observe {
+  constructor(data) {
+    // 把this放到data对象中。如果数据对象上有__ob__，说明他被观测过了
+    Object.defineProperty(data, "__ob__", {
+      value: this,
+      enumerable: false, // 把__ob__ 变得不可枚举，无法监测
+    });
+    // data.__ob__ = this;
+
+    // ...
+  }
+  // ...
+}
+```
+
+现在可以对数组进行劫持。
+
 ## 模板编译原理，转化ast语法树
+
+### 解析模板参数
+
+### 模板转ast语法树
 
 ## 代码生成虚拟DOM
 
