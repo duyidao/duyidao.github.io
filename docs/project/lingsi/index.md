@@ -1,15 +1,17 @@
 ---
 title 灵思项目引言
 ---
+
 # 引言
-广州灵思科技有限股份公司中担任前端开发一职，接手或从0到1开发了如下项目，分别为：
+
+广州灵思科技有限股份公司中担任前端开发一职，接手或从 0 到 1 开发了如下项目，分别为：
 
 - [音果云音](/project/lingsi/music/)
 
   已上线，各端下载地址为：
 
   - 安卓-百度助手：[音果云音](https://mobile.baidu.com/item?pid=5000028289&source=appbaidu)
-  - h5版： [音果云音](https://app.yinguokongjian.com/h5)
+  - h5 版： [音果云音](https://app.yinguokongjian.com/h5)
   - IOS AppStore：[音果云音](https://apps.apple.com/cn/app/%E9%9F%B3%E6%9E%9C%E4%BA%91%E9%9F%B3/id6445878897)
 
 - [职技网](/project/lingsi/职技网/)
@@ -27,8 +29,3 @@ title 灵思项目引言
 - [CRM](/project/lingsi/crm/)
 
   内部使用的小程序项目
-
-- [ELK](/project/lingsi/elk/)
-
-  内部使用的管理系统项目
-

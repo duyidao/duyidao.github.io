@@ -35,6 +35,7 @@ export default [
     text: "💾 项目",
     items: [
       { text: "灵思", link: "/project/lingsi/" },
+      { text: "彩讯", link: "/project/caixun/elk/" },
       {
         items: [{ text: "自主学习", link: "/project/myself/" }],
       },
