@@ -220,9 +220,177 @@ ob、dep、watch
 
 ### 响应式原理
 
-### hooks
+Vue3 响应式原理主要是通过 Proxy 和 Reflect 方法实现。
 
+Proxy 是 ES6 提出的新语法，他直接代理对象，而无需像 Object.definePropetry 方法那样重新代理，因此性能方面会更佳。
 
+Reflect 方法可以对源对象的属性进行操作
+
+简单的方法如下所示：
+
+```js
+let person = {
+  name: "张三",
+  age: 18,
+};
+const p = new Proxy(person, {
+  //有人读取p的某个属性时调用
+  get(target, prop, receiver) {
+    console.log(target, prop);
+    //return target[p]
+    return Reflect.get(target, prop);
+  },
+  //有人修改、增加p的某个属性时调用
+  set(target, p, value, receiver) {
+    console.log(`有人修改了p身上的${p}，我要去更新界面了`);
+    //target[p] = value
+    Reflect.set(target, p, value);
+  },
+  //有人删除p的某个属性时调用
+  deleteProperty(target, p) {
+    console.log(`有人删除了p身上的${p}，我要去更新界面了`);
+    //return delete target[p]
+    return Reflect.deleteProperty(target, p);
+  }, 
+});
+
+console.log((p.age = 23));
+console.log(person);
+```
+
+### hook
+
+`Vue3`中的`hook`通常被称为`Composition API`，是Vue.js框架中的一个重要特性。它们的本质是一些可以在**组件内部使用的函数**，这些函数能够让你在不影响组件逻辑的情况下，增强和扩展组件的功能。
+
+`Hook`的主要作用是**允许在组件之间重用状态逻辑**。举个例子，如果你有一个处理[异步请求](https://so.csdn.net/so/search?q=异步请求&spm=1001.2101.3001.7020)和管理请求状态的功能，那么你可能会在多个组件中需要这个功能。在`Vue2.x`中，你可能需要使用`mixins`或者`HOC`（高阶组件）来抽象和重用这些逻辑，但这通常会导致命名冲突和逻辑混乱。
+
+而使用`Vue3`中的或者说`Composition API`，就无需担心上述问题。你可以通过调用`useFetch`这样的自定义`hook`，来在任何组件中很容易地重用异步请求逻辑。例如：
+
+```javascript
+import { reactive, onMounted } from 'vue';
+
+function useFetch(url) {
+  const state = reactive({
+    data: null,
+    loading: true,
+    error: null
+  });
+  
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      state.data = data;
+      state.loading = false;
+    } catch (error) {
+      state.error = error;
+      state.loading = false;
+    }
+  };
+  
+  onMounted(fetchData);
+  
+  return state;
+}
+
+export default useFetch;
+```
+
+这样，在其他组件中，我们可以很简单地使用这个状态：
+
+```javascript
+import useFetch from './useFetch';
+
+export default {
+  setup() {
+    const posts = useFetch('/api/posts');
+    
+    return {
+      posts
+    };
+  }
+};
+```
+
+这里的`useFetch`就是一个自定义的`hook`（或者说是`Composition API`），它可以在各个组件之间重用。
+
+#### Vue3中的hook和mixin的对比
+
+`Vue3`中的`hook`（复用性函数）和`mixin`（混入）都是`Vue.js`中为实现逻辑复用和代码组织提供的机制。不过，这两种方式有一些不同之处。以下是部分对比：
+
+1.**复用性**：``mixin`允许多个`Vue`组件共享`JavaScript`功能，但`mixin`内的生命周期函数不易理解，容易导致命名冲突。`Vue3`的`hook`则是以函数形式将可复用性内容提取出来，可解决命名冲突的问题。
+
+2.**逻辑相关性**：，由于`mixin`混入方法、生命周期函数中的逻辑可能散落在一整块的代码中，不方便管理与维护；而在`Vue3`中，`hook`更容易形成一块独立的、能够根据功能集中管理的代码。
+
+3.**类型支持**：通过`mixin`混入的属性或方法，在类型系统中很难得到良好的支持。`Vue3`通过`Composition API`的`hook`，因其都是通过函数返回值主动暴露出来的，因此在`TypeScript`环境下有更好的类型推导支持。
+
+4.**逻辑组织**：`mixin`无法将一个大的组件拆分为使用`mixin`的更小函数单元，而`Vue3`中的`hook`能够轻松实现这一点。
+
+|                | Hooks                                                        | Mixins                                                       |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 定义           | hook是通过Composition API引入的一种新特性，类似于React的hook。 | mixin是一种对Vue组件进行扩展的方式。                         |
+| 功能           | 它可以组织和重用逻辑。在组件中，我们可以创建和重用复杂的逻辑代码，使得组件的逻辑更加清晰和可维护。 | 它可以将组件の代码封装到一个可复用的模块。常用于将公用的代码片段进行抽离，实现复用，使得组件的逻辑更加清晰和可维护。 |
+| 使用           | 使用setup方法，可以组织和复用各类逻辑.                       | 使用mixin属性，加载公用的代码片段。                          |
+| 组织代码效果   | 使用Hooks，我们可以让组件的逻辑函数按功能组织，使得组件的逻辑结构更加清晰。 | 使用Mixins，我们可以将组件的各个生命周期的相关函数统一放在一起，但这样做可能会使得组件的逻辑函数分散在各个生命周期中。 |
+| 冲突问题       | Hooks允许我们命名冲突的功能，从而避免了各种命名冲突。        | Mixins可能会导致函数名冲突。如果两个mixin中包含相同的函数，会导致后一个mixin的函数覆盖先前的函数。 |
+| 难以追踪的来源 | Hooks使用的是函数，所以如果不加注释，可能不太容易找到其来源。 | 在Mixin中，我们可以在每个使用了公用代码片段的地方都用注释表明这段代码の来源，有助于我们更好地追踪和维护代码。 |
+| Debug困难度    | Hooks有更好的Stack Trace，可以提供更优秀的debug体验。        | 对mixins的支持可能会出现在运行时错误的情况下，无法找到那块代码が出错的问题，从而导致调试困难。 |
+
+举个例子说明这两者的区别：
+
+使用mixin的部分：
+
+```javascript
+//定义一个mixin
+let myMixin = {
+  created: function () {
+    this.hello()
+  },
+  methods: {
+    hello: function () {
+      console.log('hello from mixin!')
+    }
+  }
+}
+
+//在组件中使用mixin
+var Component = Vue.extend({
+  mixins: [myMixin]
+})
+```
+
+这里"hello"方法是被添加到该组件的methods属性中的，并且在组件的created生命周期钩子被调用后，也调用了mixin中的created。
+
+使用hook的部分：
+
+```javascript
+//定义一个hook
+function useHello() {
+  const hello = () => {
+    console.log('hello from hook!');
+  }
+  
+  onMounted(hello);
+  
+  return {
+    hello
+  };
+}
+
+//在组件中使用hook
+const Component = {
+  setup() {
+    const { hello } = useHello();
+    return {
+      hello
+    }
+  }
+}
+```
+
+在这里，使用"`onMounted`"函数代替了"`created`"生命周期钩子，并且"`hello`"函数是从`hook`中解构出来的。相比之下，`Vue3`的`hook`将逻辑保持在一个独立的函数中，使得组件代码保持清晰。
+
+注意 ：`vue3`中可以继续使用`mixin`,但是，`Vue 3`推荐使用`Composition API`来组合和重用逻辑，这使得逻辑组合和重用变得更加方便和灵活，而且可读性和可维护性也更好。根据`Vue 3` 的官方文档，`Mixin`在`Vue 3`已经被认为是一种过时的`API`，而将来可能会被`Composition API`完全取代
 
 ## Vue2与Vue3区别
 
@@ -331,3 +499,5 @@ Vue3 发生了改变，使用 proxy 替换 Object.defineProperty，使用 Proxy 
 4. 可直接实现对象属性的新增/删除
 
 ## Vite VS Webpack
+
+这里推荐一个文章 [Vite VS Webpack](https://zhuanlan.zhihu.com/p/568721196) 。

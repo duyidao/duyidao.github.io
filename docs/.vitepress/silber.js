@@ -73,6 +73,7 @@ function getLearnCSSLevelSidebar() {
       collapsible: true,
       items: [
         { text: "空白节点", link: "/learn/CSS/空白节点" },
+        { text: "巧用伪类", link: "/learn/CSS/巧用伪类" },
         { text: "🗑 返回", link: "/learn/CSS/" },
       ],
     },
@@ -252,6 +253,14 @@ function getTalkSidebar() {
               link: "/learn/杂技拾谈/JS/JavaScript『图片压缩』",
             },
             { text: "设计模式", link: "/learn/杂技拾谈/JS/设计模式" },
+            {
+              text: "LocalStorage封装",
+              link: "/learn/杂技拾谈/JS/LocalStorage封装",
+            },
+            {
+              text: "取色器封装",
+              link: "/learn/杂技拾谈/JS/取色器封装",
+            },
           ],
         },
         {
