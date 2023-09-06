@@ -220,6 +220,10 @@ function initData(vm) {
 
 ## 对象属性劫持
 
+修改数组很少用索引来操作数组，因为[9999]数据要被劫持很多次，有很大的性能浪费。
+
+但是数组内有对象时，索引点语法也应该被劫持。如 `arr[0].a` 是允许修改的
+
 ### 数据劫持
 
 劫持数据，在 `src` 文件夹下新建一个 `observe/index.js` 文件，声明一个 `observe` 函数，用于劫持数据。`state.js` 中引入， `initData` 调用该函数。代码如下：
@@ -529,7 +533,409 @@ class Observe {
 
 ### 解析模板参数
 
+将数据解析到el元素上，有以下方式：
+
+1. 模板引擎，性能差，需要正则匹配替换，Vue1.0 版本没有引入虚拟 DOM
+2. 虚拟 DOM，数据变化后比较虚拟 DOM 的差异，最后更新需要更新的地方
+3. 核心是需要将模板变成 JS 语法，通过 JS 语法生成虚拟 DOM
+
+转换为语法树需要重新组装代码为新语法，将 `template` 语法转换为 `render()` 函数。
+
+修改 `init.js` 文件解析模板参数，步骤如下：
+
+1. 判断传递的参数是否有 `render()` 函数返回 JSX，如果有该函数，无需做任何处理
+2. 没有 `render()` 函数则需要判断是否有 `template` 模板标签，有的话通过函数转化为ast树
+3. 没有 `template` 模板，则把获取到的 el 的外部标签赋值给 `template` 变量
+
+代码如下：
+
+```js
+import { compileToFunction } from "./compiler/index";
+import { initState } from "./state";
+
+// 给Vue增加init方法
+export function initMixin(Vue) {
+  // 初始化操作
+  Vue.prototype._init = function (options) {
+    // ...
+
+    if (options.el) {
+      vm.$mount(options.el);
+    }
+  };
+
+  // 由于把$mount方法挂载到原型上，因此除了传el外，可直接new Vue().$mount也可以
+  Vue.prototype.$mount = function (el) {
+    const vm = this;
+    el = document.querySelector(el);
+    let ops = vm.$options;
+
+    // 查看是否写render函数
+    if (ops.render) {
+      ops.render;
+    } else {
+      // 没有render看一下是否写template，没写采用外部的template
+      let template;
+      // 如果没有写模板但是写了el
+      if (!ops.template && el) {
+        template = el.outerHTML;
+      } else {
+        if (el) {
+          // 如果有el，采用模板的内容
+          template = ops.template;
+        }
+      }
+
+      // 写了template，就采用写了的template
+      if (template) {
+        const render = compileToFunction(template);
+        ops.render = render;
+      }
+    }
+  };
+}
+```
+
+> 注意
+>
+> `script` 标签引用的是 `vue.glogal.js` 这个编译过程是在浏览器中运行的。
+>
+> `runtime` 是不包括模板编译的，整个编译是打包的时候通过 loader来编译 `.vue` 文件的，用 `runtime` 不可使用 `template` .
+
 ### 模板转ast语法树
+
+HTML 主要解析标签、文本、属性、表达式，首先在 `src` 文件夹下新建一个 `compiler/index.js` 文件，用于解析语法转为 ast 树。
+
+接着创建正则，通过正则匹配开始标签、属性、闭合标签和表达式或文本内容，代码如下：
+
+```js
+const ncname = `[a-zA-Z_][\\-\\.0-9_a-zA-Z]*`;
+const qnameCapture = `((?:${ncname}\\:)?${ncname})`;
+
+// 匹配到的是<xxx 或 <div:xxx 自定义标签名 即匹配到开始标签
+const startTagOpen = new RegExp(`^<${qnameCapture}`);
+
+// 匹配的是 </xxx> 即匹配到结束标签
+const endTag = new RegExp(`^<\\/${qnameCapture}[^>]*>`);
+
+// 匹配的是属性，如 xxx = "xxx" 或 xxx = 'xxx'
+const attribute =
+  /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
+
+// 匹配的是开始闭合标签，如<div> 或 <br />
+const startTagClose = /^\s*(\/?)>/;
+
+// 匹配到是表达式变量，如{{name}}
+const defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g;
+```
+
+然后声明 `compileToFunction` 函数并导出供上方 解析模板参数 步骤代码时使用，该函数主要做以下两个操作：
+
+1. 将template转为ast语法树
+2. 将template转为ast语法树
+
+代码如下：
+
+```js
+export const compileToFunction = (template) => {
+  // 1.将template转为ast语法树
+  const ast = parseHTML(template);
+
+  // 2.
+};
+```
+
+紧接着创建 `parseHTML` 函数，用于通过正则 `.match()` 方法解析 html，文本解析规则如下：
+
+1. 先匹配开始标签，如 `<div`
+2. 然后匹配属性，如 `id="xxx" class="xxx"`
+3. 接着匹配文本内容
+4. 最后匹配结束标签，如 `</div>`
+5. 由于标签层层嵌套，因此通过 `while` 循环，循环到一个则通过 `continue` 中止当前循环，减少后续代码执行的性能消耗
+6. 解析匹配完后获取到相对应的索引下标，截取字符串的形式截取匹配过的内容。这样匹配完后也截取完了， `while` 循环自动终止
+
+代码如下：
+
+```js
+// 解析html
+function parseHTML(html) {
+  // 处理开始标签
+  function start(tag, attrs) {
+    console.log(tag, attrs, "开始");
+  }
+  // 处理文本内容标签
+  function chars(text) {
+    console.log(text, "文本");
+  }
+  // 处理结束标签
+  function end(tag) {
+    console.log(tag, "结束");
+  }
+
+  // 裁剪html
+  function advance(n) {
+    html = html.substring(n);
+  }
+
+  // 寻找开启标签
+  function parseStartTag() {
+    const start = html.match(startTagOpen);
+    if (start) {
+      const match = {
+        tagName: start[1], // 标签名
+        attrs: [], // 属性数组对象，保存id、class等
+      };
+      // 先把 <div 开始标签截取掉
+      advance(start[0].length);
+
+      // 如果不是开始标签的结束，则一直匹配
+      let attr, end;
+      while (
+        !(end = html.match(startTagClose)) &&
+        (attr = html.match(attribute))
+      ) {
+        // 此时 id="xxx" class="xxx" 都被删除，只剩 >
+        advance(attr[0].length);
+        match.attrs.push({
+          name: attr[1],
+          value: attr[3] || attr[4] || attr[5],
+        });
+      }
+      // 此时把 > 删除
+      if (end) {
+        advance(end[0].length);
+      }
+      return match;
+    }
+
+    // 不是开始标签，返回假
+    return false;
+  }
+
+  // 每解析一段，就删除一段，直到最后解析完毕。因此可以写一个while循环
+  while (html) {
+    // html最开始肯定是一个 < (vue2要求单个根目录的原因)
+    let textEnd = html.indexOf("<");
+
+    // 如果索引是0，则说明是个开始标签；不为0则说明是结束标签
+    if (textEnd === 0) {
+      const startTagMatch = parseStartTag();
+
+      if (startTagMatch) {
+        // startTagMatch :{
+        //   attrs: [{name: 'id', value: 'app'}]
+        //   tagName: "div"
+        // }
+        // 解析到开始标签
+        start(startTagMatch.tagName, startTagMatch.attrs);
+        continue;
+      }
+
+      let endTagMatch = html.match(endTag);
+      if (endTagMatch) {
+        end(endTagMatch[0]);
+        advance(endTagMatch[0].length);
+        continue;
+      }
+    }
+
+    // 截取文本内容
+    if (textEnd > 0) {
+      let text = html.substring(0, textEnd);
+      if (text) {
+        // 解析到文本
+        chars(text);
+        advance(text.length);
+      }
+    }
+  }
+}
+```
+
+打印如下所示：
+
+![打印](https://pic.imgdb.cn/item/64f6fcf8661c6c8e54ac3ded.jpg)
+
+匹配解析完毕之后，需要根据解析好的数据构建 ast树对象，而如何得知标签与标签之间的嵌套关系呢？
+
+通过栈的方式，依次往里面放入节点，直到匹配到结束标签，才把该节点从栈中剔除。
+
+AST 树结构为一个对象，包含以下属性：
+
+```js
+{
+  tag,
+  type: 1,
+  children: [],
+  attrs,
+  parent: null,
+}
+```
+
+其中：
+
+- tag 为标签名，在开始标签匹配时能获取
+- type 为标签类型，是标签节点函数文本内容节点
+- children 为子节点数组
+- attes 为当前标签的属性，在开始标签匹配时能获取
+- parent 为当前节点的父节点判断父节点通过栈来获取，栈最后一个即其父节点
+
+分析结束，贴上代码。代码如下：
+
+```js
+// 解析html
+function parseHTML(html) {
+  const ELEMENT_TYPE = 1;
+  const TEXT_TYPE = 3;
+  const stack = []; // 存放元素的数组
+  let currentParent; // 指向栈中的最后一个
+  let root; // 是否是根节点
+
+  // 转为抽象语法树
+  function createASTElement(tag, attrs) {
+    return {
+      tag,
+      type: ELEMENT_TYPE,
+      children: [],
+      attrs,
+      parent: null,
+    };
+  }
+
+  // 处理开始标签
+  function start(tag, attrs) {
+    let node = createASTElement(tag, attrs); // 创建一个ast树节点
+    // 判断是否是空树
+    if (!root) {
+      root = node; // 空树则是当前树的根节点
+    }
+    // 如果栈中最后一个有内容，则把当前节点的父亲节点赋值为栈的最后一个
+    if (currentParent) {
+      node.parent = currentParent; // 子节点记住了父节点
+      currentParent.children.push(node); // 父节点的子节点数组也需要保存值
+    }
+    // currentParent为栈中最后一个
+    stack.push(node);
+    currentParent = node;
+  }
+  // 处理文本内容标签
+  function chars(text) {
+    // 去除空
+    text = text.replace(/\s/g, "");
+    // 文本直接放到当前指向节点中
+    text &&
+      currentParent.children.push({
+        type: TEXT_TYPE,
+        text,
+        parent: currentParent,
+      });
+  }
+  // 处理结束标签
+  function end(tag) {
+    // 弹出最后一个节点，该节点已结束，不能作为父节点的判断
+    let node = stack.pop();
+    currentParent = stack[stack.length - 1];
+  }
+
+  // ...
+
+  console.log("currentParent", currentParent);
+  console.log("rot", root);
+}
+```
+
+### 图解
+
+如果还是无法理解接下来用图解的方式来说明，先看一段 HTML 代码：
+
+```html
+<div id="app">
+  <div>
+    hello
+  </div>
+  <span>{{name}}</span>
+</div>
+```
+
+初始化栈 `stack` ，此时栈还是空的。
+
+此时开始循环匹配，匹配第一个是 `<div id="app"` 开始标签，往栈中追加该 `div` ，创建 AST 树，并把它设为根节点 `root` 。然后截取掉该 `div` ，HTML 代码变为了：
+
+```html
+>
+  <div>
+    hello
+  </div>
+  <span>{{name}}</span>
+</div>
+```
+
+而栈为：
+
+```
+[div#app]
+```
+
+然后继续循环，匹配到开始标签 `<div` ，其父节点则为栈中最后一项，即根节点的 `div#app` ，再往内追加标签，生成 AST 树，最后截取 HTML，代码更新如下：
+
+```html
+	>
+    hello
+  </div>
+  <span>{{name}}</span>
+</div>
+```
+
+而栈更新为：
+
+```
+[div#app div]
+```
+
+AST 树图解如下：
+
+![AST 树图解](https://pic.imgdb.cn/item/64f712c8661c6c8e54b293ab.jpg)
+
+接着继续循环，匹配到文本内容，赋值给当前节点的 `text` 属性，即当前栈最后一项。然后再截取 HTML。更新后的代码如下：
+
+```html
+	</div>
+  <span>{{name}}</span>
+</div>
+```
+
+此时栈不变，而 AST 树更新如下：
+
+![AST 树更新](https://pic.imgdb.cn/item/64f713a1661c6c8e54b2af08.jpg)
+
+继续匹配，匹配到结束标签，则把 `div` 剔除，此时该 `div` 标签的 AST 树生成完毕，栈更新为：
+
+```
+[div#app]
+```
+
+接着循环，此时匹配到 `span` 标签，获取栈最后一项，是根节点 `div#app` ，则其为 `span` 标签的父节点，再往栈中追加 `span` 标签。代码更新为：
+
+```html
+	>{{name}}</span>
+</div>
+```
+
+栈更新为：
+
+```
+[div#app span]
+```
+
+此时 AST 更新为：
+
+![AST 更新](https://pic.imgdb.cn/item/64f714f8661c6c8e54b2e82f.jpg)
+
+然后继续匹配，匹配到了文本内容，赋值给当前节点也就是栈最后一项 `span` ，更新 AST 树：
+
+![更新](https://pic.imgdb.cn/item/64f715a1661c6c8e54b3083e.jpg)
+
+截取去除相应 HTML 代码后接着循环，匹配到结束标签，剔除 `span` ，最后匹配到 `div#app` 的结束标签，把该节点也从栈中剔除，最后 AST 树创建完毕。
 
 ## 代码生成虚拟DOM
 
