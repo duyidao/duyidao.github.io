@@ -16,9 +16,9 @@ fs 模块是 Node.js 官方提供的、用来操作文件的模块。它提供�
 fs.readFile(path[, options], callback)
 ```
 
-- 参数1：必选参数，字符串，表示文件的路径。
-- 参数2：可选参数，表示以什么编码格式来读取文件。
-- 参数3：必选参数，文件读取完成后，通过回调函数拿到读取的结果
+- 参数 1：必选参数，字符串，表示文件的路径。
+- 参数 2：可选参数，表示以什么编码格式来读取文件。
+- 参数 3：必选参数，文件读取完成后，通过回调函数拿到读取的结果
 
 #### 示例代码
 
@@ -33,27 +33,27 @@ hello
 - 成功情况
 
   ```js
-  const fs = require('fs')
-  fs.readFile('./1.txt', 'utf8', function(err, dataStr) {
-  	console.log(err) // null
-  	console.log(dataStr) // hello
-  })
+  const fs = require("fs");
+  fs.readFile("./1.txt", "utf8", function (err, dataStr) {
+    console.log(err); // null
+    console.log(dataStr); // hello
+  });
   ```
 
 - 失败情况
 
   ```js
-  const fs = require('fs')
-  fs.readFile('./11.txt', 'utf8', function(err, dataStr) {
-  	console.log(err) 
-      // {
-    	//	errno: -4058,
-    	//	code: 'ENOENT',
-    	//	syscall: 'open',
-    	//	path: 'C:\\Users\\Administrator\\Desktop\\blog\\node\\11.txt'
-  	// }
-  	console.log(dataStr) // undefined
-  })
+  const fs = require("fs");
+  fs.readFile("./11.txt", "utf8", function (err, dataStr) {
+    console.log(err);
+    // {
+    //	errno: -4058,
+    //	code: 'ENOENT',
+    //	syscall: 'open',
+    //	path: 'C:\\Users\\Administrator\\Desktop\\blog\\node\\11.txt'
+    // }
+    console.log(dataStr); // undefined
+  });
   ```
 
 ### 写入文件
@@ -64,29 +64,29 @@ hello
 fs.writeFile(file, data[, options], callback)
 ```
 
-- 参数1：必选参数，需要指定一个文件路径的字符串，表示文件的存放路径。
-- 参数2：必选参数，表示要写入的内容。
-- 参数3：可选参数，表示以什么格式写入文件内容，默认值是 utf8。
-- 参数4：必选参数，文件写入完成后的回调函数
+- 参数 1：必选参数，需要指定一个文件路径的字符串，表示文件的存放路径。
+- 参数 2：必选参数，表示要写入的内容。
+- 参数 3：可选参数，表示以什么格式写入文件内容，默认值是 utf8。
+- 参数 4：必选参数，文件写入完成后的回调函数
 
 #### 示例代码
 
 - 成功状态
 
   ```js
-  const fs = require('fs')
-  
-  fs.writeFile('./1.txt', 'add', 'utf8', function(err) {
+  const fs = require("fs");
+
+  fs.writeFile("./1.txt", "add", "utf8", function (err) {
     console.log(err); // null
-  })
+  });
   ```
 
 - 失败状态
 
   ```js
-  const fs = require('fs')
-  
-  fs.writeFile('./11.txt', 'add', 'utf8', function(err) {
+  const fs = require("fs");
+
+  fs.writeFile("./11.txt", "add", "utf8", function (err) {
     console.log(err);
     // {
     //  errno: -4058,
@@ -94,7 +94,7 @@ fs.writeFile(file, data[, options], callback)
     //  syscall: 'open',
     //  path: 'C:\\Users\\Administrator\\Desktop\\blog\\abc\\1.txt'
     // }
-  })
+  });
   ```
 
 ### 案例
@@ -119,26 +119,26 @@ fs.writeFile(file, data[, options], callback)
 代码：
 
 ```js
-const fs = require('fs')
+const fs = require("fs");
 
-fs.readFile('./1.txt', 'utf8', function (err, dataStr) {
+fs.readFile("./1.txt", "utf8", function (err, dataStr) {
   // 判断读取是否成功
   if (err) {
-    return console.log('读取文件失败，', err);
+    return console.log("读取文件失败，", err);
   }
 
   // 把获取到的字符串中的 = 正则替换为：，空格替换为换行
-  const arr = dataStr.replace(/\=/g, '：').replace(/ /g, '\r\n')
+  const arr = dataStr.replace(/\=/g, "：").replace(/ /g, "\r\n");
 
-  fs.writeFile('./2.txt', arr, 'utf8', function (err) {
+  fs.writeFile("./2.txt", arr, "utf8", function (err) {
     // 判断写入是否成功
     if (err) {
-      console.log('成绩写入失败');
+      console.log("成绩写入失败");
     } else {
-      console.log('成绩写入成功');
+      console.log("成绩写入成功");
     }
-  })
-})
+  });
+});
 ```
 
 ## 同步操作
@@ -150,9 +150,9 @@ fs.readFile('./1.txt', 'utf8', function (err, dataStr) {
 
 使用 **readFile** 与 **writeFile** 可以对文件进行异步操作，不阻塞进程拥有更好的性能。
 
-- Node.js以错误优先为思想，所以回调函数第一个参数为错误信息，没有错误时值为null
+- Node.js 以错误优先为思想，所以回调函数第一个参数为错误信息，没有错误时值为 null
 
-```text
+```txt
 import { readFile, writeFile } from 'fs'
 
 readFile('hd.txt', 'utf8', (error, content) => {
@@ -174,7 +174,7 @@ console.log('后盾人提示，因为是异步，所以这行较readFile的回�
 
 下面使用 Promise 对文件的操作方法进行封装
 
-```text
+```txt
 import { readFile, writeFile } from 'fs'
 
 //获取文件
@@ -214,7 +214,7 @@ console.log('先输出...')
 
 **fs/promises** 提供了 Promise 操作机制
 
-```text
+```txt
 import { readFile } from 'fs/promises'
 
 readFile('hd.txt', 'utf-8').then((content) => {
@@ -236,7 +236,7 @@ readFile('hd.txt', 'utf-8').then((content) => {
 
 使用 **existsSync** 判断文件或目录是否存在，返回值是 **boolean**
 
-```text
+```txt
 import { existsSync } from 'fs'
 
 if (existsSync('hd.txt')) {
@@ -244,11 +244,11 @@ if (existsSync('hd.txt')) {
 }
 ```
 
-### [#](https://doc.houdunren.com/系统课程/node/8 FS模块.html#stat)stat
+### [#](https://doc.houdunren.com/系统课程/node/8 FS 模块.html#stat)stat
 
 使用 **stat** 可以获取文件或目录详细信息，比如可用来判断是否是文件或目录。
 
-```text
+```txt
 import { stat } from 'fs'
 
 stat('hda', (error, stats) => {
@@ -264,7 +264,7 @@ stat('hda', (error, stats) => {
 
 **fs/promises** 提供了 Promise 的操作方法
 
-```text
+```txt
 import { stat } from 'fs/promises'
 
 //是否是目录
@@ -282,11 +282,11 @@ fileType('hd').then((type) => {
 })
 ```
 
-### [#](https://doc.houdunren.com/系统课程/node/8 FS模块.html#unlink)unlink
+### [#](https://doc.houdunren.com/系统课程/node/8 FS 模块.html#unlink)unlink
 
 使用 **unlink** 执行异步删除文件
 
-```text
+```txt
 import { unlink, writeFileSync } from 'fs'
 writeFileSync('hd.txt', 'houdunren')
 setTimeout(() => {
@@ -300,7 +300,7 @@ setTimeout(() => {
 
 **fs/promises** 中封装了 Promise 删除文件方法
 
-```text
+```txt
 import { writeFileSync } from 'fs'
 import { unlink } from 'fs/promises'
 
@@ -314,15 +314,15 @@ setTimeout(() => {
 }, 3000)
 ```
 
-## [#](https://doc.houdunren.com/系统课程/node/8 FS模块.html#目录管理)目录管理
+## [#](https://doc.houdunren.com/系统课程/node/8 FS 模块.html#目录管理)目录管理
 
 下面向军大叔教大家使用 Node 操作目录
 
-### [#](https://doc.houdunren.com/系统课程/node/8 FS模块.html#创建目录)创建目录
+### [#](https://doc.houdunren.com/系统课程/node/8 FS 模块.html#创建目录)创建目录
 
 下面是使用 **mkdirSync** 以同步的方式创建多级目录
 
-```text
+```txt
 import { mkdirSync } from 'fs'
 
 const state = mkdirSync('a/b/c/d', { recursive: true })
@@ -333,7 +333,7 @@ if (state) {
 
 使用 **mkdir** 可以创建目录，如果目录已经存在将报错
 
-```text
+```txt
 import { mkdir } from 'fs'
 
 mkdir('hd', (error) => {
@@ -344,7 +344,7 @@ mkdir('hd', (error) => {
 
 **fs/promises** 提供了 Promise 操作方法
 
-```text
+```txt
 import { mkdir } from 'fs/promises'
 
 async function hd() {
@@ -354,11 +354,11 @@ async function hd() {
 hd()
 ```
 
-### [#](https://doc.houdunren.com/系统课程/node/8 FS模块.html#删除目录)删除目录
+### [#](https://doc.houdunren.com/系统课程/node/8 FS 模块.html#删除目录)删除目录
 
 使用 **rmdirSync** 以同步的方式删除多级目录，同步删除会阻塞代码，建议尽可能使用异步操作。
 
-```text
+```txt
 import { rmdirSync } from 'fs'
 
 rmdirSync('a', { recursive: true })
@@ -366,7 +366,7 @@ rmdirSync('a', { recursive: true })
 
 使用 **rmdir** 异步删除目录，默认只能删除空目录
 
-```text
+```txt
 import { rmdir } from 'fs'
 
 rmdir('hd', (error) => {
@@ -377,7 +377,7 @@ rmdir('hd', (error) => {
 
 递归删除目录，即删除目录中的所有内容，可以删除非空目录
 
-```text
+```txt
 import { rmdir } from 'fs'
 
 rmdir('hd', { recursive: true }, (error) => {
@@ -388,7 +388,7 @@ rmdir('hd', { recursive: true }, (error) => {
 
 **fs/promises** 提供了 Promise 操作方法，用于异步删除目录
 
-```text
+```txt
 import { rmdir } from 'fs/promises'
 
 rmdir('hd')
@@ -399,10 +399,10 @@ rmdir('hd')
 下面是递归删除目录，非空目录也可以一次删除
 
 ```js
-import { rmdir } from 'fs'
+import { rmdir } from "fs";
 
-rmdir('hd', { recursive: true }, (error) => {
-  if (error) throw error
-  console.log('目录删除成功')
-})
+rmdir("hd", { recursive: true }, (error) => {
+  if (error) throw error;
+  console.log("目录删除成功");
+});
 ```

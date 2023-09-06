@@ -72,8 +72,8 @@ function getLearnCSSLevelSidebar() {
       text: "效果提升",
       collapsible: true,
       items: [
-        { text: "空白节点", link: "/learn/CSS/空白节点" },
-        { text: "巧用伪类", link: "/learn/CSS/巧用伪类" },
+        { text: "空白节点", link: "/learn/CSS/效果提升/空白节点" },
+        { text: "巧用伪类", link: "/learn/CSS/效果提升/巧用伪类" },
         { text: "🗑 返回", link: "/learn/CSS/" },
       ],
     },
@@ -87,7 +87,7 @@ function getLearnCSSThinkSidebar() {
       text: "咨询拓展",
       collapsible: true,
       items: [
-        { text: "BEM", link: "/learn/CSS/BEM" },
+        { text: "BEM", link: "/learn/CSS/咨询拓展/BEM" },
         { text: "🗑 返回", link: "/learn/CSS/" },
       ],
     },

@@ -1,8 +1,8 @@
 # Node
 
-## Node简介
+## Node 简介
 
-### 什么是node
+### 什么是 node
 
 `Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.`
 
@@ -10,27 +10,27 @@
 
 各个浏览器厂商会开发解析 `Javascript` 的引擎如 `google chrome` 、`Apple safari`。因为不同厂商的引擎对 `ecmascript` 的解析程序不同，所以有些功能可能在有的浏览器有效，但在其他的浏览器无效。
 
-比较著名的引擎是 `chrome` 的 `v8`，它是由 `c++` 编写的，而且它有个特点可以内置到其他`C++` 程序中，这就为 `node.js` 的实现提供的基础。所以可以把 `nodejs` 简单来理解为使用v8引擎可以解析 `javascript` 语法，同时也可以调用 `c++` 功能进行文件操作，网络通信等功能。
+比较著名的引擎是 `chrome` 的 `v8`，它是由 `c++` 编写的，而且它有个特点可以内置到其他`C++` 程序中，这就为 `node.js` 的实现提供的基础。所以可以把 `nodejs` 简单来理解为使用 v8 引擎可以解析 `javascript` 语法，同时也可以调用 `c++` 功能进行文件操作，网络通信等功能。
 
 **Nodejs vs Browser**
 
-- nodejs是开源、跨平台的javascript运行时环境，它是运行时，不时语言或框架，是在浏览器之外的Javascript使用
-- nodejs可以使用javascript调用c++，实现计算底层操作
-- nodejs运行时包含 [v8引擎 (opens new window)](https://github.com/nodejs/node/tree/main/deps/v8)（解析javascript）、[libuv (opens new window)](https://github.com/nodejs/node/tree/main/deps/uv)(进行计算机文件、网络等底层操作) 等等。通过查看[nodejs源码 (opens new window)](https://github.com/nodejs/node/tree/main/src)，我们会知道nodejs使用c++进行文件或网络操作
-- nodejs使用libuv库，让开发者使用[javascript (opens new window)](https://github.com/nodejs/node/tree/main/lib)调用c++程序
-- nodejs 没有基于浏览器的javascript的DOM、BOM等概念这与但是拥有文件系统操作功能
-- nodejs 我们可以随意选择版本，但浏览器的javascript运行在众多用户电脑中，所以版本不是由我们决定的
+- nodejs 是开源、跨平台的 javascript 运行时环境，它是运行时，不时语言或框架，是在浏览器之外的 Javascript 使用
+- nodejs 可以使用 javascript 调用 c++，实现计算底层操作
+- nodejs 运行时包含 [v8 引擎 (opens new window)](https://github.com/nodejs/node/tree/main/deps/v8)（解析 javascript）、[libuv (opens new window)](https://github.com/nodejs/node/tree/main/deps/uv)(进行计算机文件、网络等底层操作) 等等。通过查看[nodejs 源码 (opens new window)](https://github.com/nodejs/node/tree/main/src)，我们会知道 nodejs 使用 c++进行文件或网络操作
+- nodejs 使用 libuv 库，让开发者使用[javascript (opens new window)](https://github.com/nodejs/node/tree/main/lib)调用 c++程序
+- nodejs 没有基于浏览器的 javascript 的 DOM、BOM 等概念这与但是拥有文件系统操作功能
+- nodejs 我们可以随意选择版本，但浏览器的 javascript 运行在众多用户电脑中，所以版本不是由我们决定的
 
 ### 运行环境
 
-- v8引擎
-- 内置API：fs、path、http、js内置对象、querystring、etc...
+- v8 引擎
+- 内置 API：fs、path、http、js 内置对象、querystring、etc...
 
 > **注意：**
 >
 > 1. 浏览器是 JavaScript 的前端运行环境
-> 2. node.js是 JavaScript 的后端运行环境
-> 3. node.js 无法使用DOM和BOM等浏览器的内置API
+> 2. node.js 是 JavaScript 的后端运行环境
+> 3. node.js 无法使用 DOM 和 BOM 等浏览器的内置 API
 
 ### 可实现效果
 
@@ -41,11 +41,11 @@
 
 ## 安装运行
 
-下面我们来安装开发用到的软件，访问 [https://nodejs.org/zh-cn/ (opens new window)](https://nodejs.org/zh-cn/)网站下载LTS版本，因为nodejs是开源的你也可以访问 [github (opens new window)](https://github.com/nodejs/node)了解源码。
+下面我们来安装开发用到的软件，访问 [https://nodejs.org/zh-cn/ (opens new window)](https://nodejs.org/zh-cn/)网站下载 LTS 版本，因为 nodejs 是开源的你也可以访问 [github (opens new window)](https://github.com/nodejs/node)了解源码。
 
 ![image-20230109014001481](https://doc.houdunren.com/assets/img/image-20230109014001481.1acc938d.png)
 
-安装后执行以下命令，查看安装的nodejs版本
+安装后执行以下命令，查看安装的 nodejs 版本
 
 ```sh
 node -v
@@ -54,10 +54,10 @@ node -v
 下面编写 `index.js` 内容如下
 
 ```js
-console.log('hello node.js')
+console.log("hello node.js");
 ```
 
-然后在命令行执行该文件，好可以查看到当前目录的node.js执行结果
+然后在命令行执行该文件，好可以查看到当前目录的 node.js 执行结果
 
 ```sh
 node index.js
@@ -78,13 +78,13 @@ node index.js
 
 首先安装 Ts 环境需要的软件
 
-- [ts-node (opens new window)](https://github.com/TypeStrong/ts-node#overview)使您能够直接在 Node 上执行 TypeScript.js而无需预编译
+- [ts-node (opens new window)](https://github.com/TypeStrong/ts-node#overview)使您能够直接在 Node 上执行 TypeScript.js 而无需预编译
 - [nodemon (opens new window)](https://github.com/remy/nodemon)nodemon 监视源中的任何更改并自动重新启动服务器，非常适合开发。
-- [typescript (opens new window)](https://www.tslang.cn/index.html#download-links)安装typescript
+- [typescript (opens new window)](https://www.tslang.cn/index.html#download-links)安装 typescript
 
 执行以下命令进行安装
 
-```text
+```txt
 pnpm add -g add ts-node nodemon typescript @types/node
 ```
 
@@ -92,7 +92,7 @@ pnpm add -g add ts-node nodemon typescript @types/node
 
 最终的项目文件结构如下
 
-```text
+```txt
 ├── package.json
 ├── pnpm-lock.yaml
 └── src
@@ -104,16 +104,16 @@ pnpm add -g add ts-node nodemon typescript @types/node
 
 创建 package.json 文件
 
-```text
+```txt
 pnpm init
 ```
 
-package.json文件内容为
+package.json 文件内容为
 
 - 将主文件修改为 **index.ts**
-- 因为会自动调用 **ts-node** 命令，所以dev 命令可以简写为 **dev:nodemon**
+- 因为会自动调用 **ts-node** 命令，所以 dev 命令可以简写为 **dev:nodemon**
 
-```text
+```txt
 {
   "name": "node",
   "version": "1.0.0",
@@ -137,13 +137,13 @@ package.json文件内容为
 
 然后创建 tsconfig.json 文件
 
-```text
+```txt
 tsc --init
 ```
 
 配置项内容如下
 
-```text
+```txt
 {
   "compilerOptions": {
     //ts编译为的ES的版本
@@ -166,7 +166,7 @@ tsc --init
 
 下面我们来运行项目，项目的主文件是 **src/index.ts**，文件内容如下
 
-```text
+```txt
 import os from 'os'
 
 console.log(os.version())
@@ -174,6 +174,6 @@ console.log(os.version())
 
 接着执行命令来运行项目
 
-```text
+```txt
 pnpm run dev
 ```

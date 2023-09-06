@@ -7,29 +7,27 @@
 1. 首先登录[官网 (opens new window)](https://nodejs.org/en/)下载安装[NODEJS (opens new window)](https://nodejs.org/zh-cn/)最新版本
 
 2. [Yarn (opens new window)](https://yarnpkg.com/)会缓存它下载的每个包所以无需重复下载
-   ```text
+   ```txt
    npm install -g yarn@berry
    ```
-   
 3. 使用 [Create React App (opens new window)](https://create-react-app.dev/)安装 REACT 项目非常方便，下面来创建项目 daodao
-   ```text
+   ```txt
    npm i -g create-react-app
    ```
-   
 4. 创建项目
-   
+
    ```
    npx create-react-app 项目名称
    ```
-   
+
 5. 进入目录并启动项目
 
-   ```text
+   ```txt
    cd 项目名称
    yarn start
    ```
 
-### public文件介绍
+### public 文件介绍
 
 - `favicon.ico` ：网站图标
 - `index.html` ：单文件项目的主文件，其中：
@@ -41,16 +39,16 @@
   - `<link rel="manifest"` ：应用加壳技术，加壳之后前端 H5 页面改后缀为 `.apk` 可下载到手机上使用（适用于简单的项目）
 - `manifest.josn` ：应用加壳的配置
 
-### src文件介绍
+### src 文件介绍
 
-- App.css -------- App组件的样式
-- App.js --------- App组件
-- App.test.js ---- 用于给App做测试
+- App.css -------- App 组件的样式
+- App.js --------- App 组件
+- App.test.js ---- 用于给 App 做测试
 - index.css ------ 样式
 - index.js ------- 入口文件
-- logo.svg ------- logo图
-- reportWebVitals.js  --- 页面性能分析文件(需要web-vitals库的支持)
-- setupTests.js  ---- 组件单元测试的文件(需要jest-dom库的支持)
+- logo.svg ------- logo 图
+- reportWebVitals.js --- 页面性能分析文件(需要 web-vitals 库的支持)
+- setupTests.js ---- 组件单元测试的文件(需要 jest-dom 库的支持)
 
 ### 开发工具
 
@@ -60,7 +58,7 @@
 
 1. [Reactjs code snippets](https://marketplace.visualstudio.com/items?itemName=xabikos.ReactSnippets)
 2. [React Extension Pack](https://marketplace.visualstudio.com/items?itemName=jawandarajbir.react-vscode-extension-pack)
-3. [ES7 React/Redux/GraphQL/React-Native snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets) react代码片段插件
+3. [ES7 React/Redux/GraphQL/React-Native snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets) react 代码片段插件
 
 ### 声明组件
 
@@ -89,7 +87,7 @@ ReactDom.render(<div>{name}</div>, document.querySelector("#root"));
 使用函数返回组件，渲染组件时可以传递参数供组件使用
 
 ```js
-const App = props => {
+const App = (props) => {
   return <div>{props.name}</div>;
 };
 
@@ -103,7 +101,7 @@ ReactDom.render(App({ name: "刀刀" }), document.querySelector("#root"));
 ```js
 import React from "react";
 import ReactDom from "react-dom";
-const App = props => {
+const App = (props) => {
   return <div>{props.name}</div>;
 };
 
@@ -164,11 +162,7 @@ class App extends Component {
     this.props = props;
   }
   render() {
-    return (
-      <div>
-        {this.props.name}
-      </div>
-    );
+    return <div>{this.props.name}</div>;
   }
 }
 
@@ -182,11 +176,7 @@ import React, { Component } from "react";
 import ReactDom from "react-dom";
 class App extends Component {
   render() {
-    return (
-      <div>
-        {this.props.name}
-      </div>
-    );
+    return <div>{this.props.name}</div>;
   }
 }
 
@@ -285,7 +275,7 @@ class App extends Component {
   render() {
     const style = {
       backgroundColor: "red",
-      color: "blue"
+      color: "blue",
     };
     return <div style={style}>刀刀</div>;
   }
@@ -336,7 +326,7 @@ class App extends Component {
 
 首先来安装库
 
-```text
+```txt
 npm i classnames
 ```
 
@@ -363,7 +353,7 @@ render(<App name="刀刀" />, document.getElementById("root"));
 
 安装扩展包
 
-```text
+```txt
 npm i styled-components
 ```
 
@@ -407,7 +397,7 @@ render(<App name="刀刀" />, document.getElementById("root"))
      ```
    - 引入的时候使用关键字接收
      ```javascript
-     import hello from './index.module.css'
+     import hello from "./index.module.css";
      ```
    - 使用的时候通过 `关键字.类名` 的方式使用
      ```jsx
@@ -416,54 +406,62 @@ render(<App name="刀刀" />, document.getElementById("root"))
 
 ### 实例操作
 
-### axiox请求
+### axiox 请求
 
 #### 跨域处理
 
 1. 配置 `proxy` 代理
-   
+
    在 `package.json` 文件中配置代理，通过服务器没有同源策略的特性避免跨域的问题，其参数是自己需要请求的服务器 IP 与端口
+
    ```json
    {
      // ...
      "proxy": "http://localhost:5000/"
    }
    ```
-   
+
    说明：
+
    1. 优点：配置简单，前端请求资源时可以不加任何前缀。
    2. 缺点：不能配置多个代理。
-   3. 工作方式：上述方式配置代理，当请求了3000不存在的资源时，那么该请求会转发给5000 （优先匹配前端资源）
+   3. 工作方式：上述方式配置代理，当请求了 3000 不存在的资源时，那么该请求会转发给 5000 （优先匹配前端资源）
+
 2. 配置代理文件
+
    1. 第一步：创建代理配置文件
-      
-      在src下创建配置文件：`src/setupProxy.js`
-   2. 编写setupProxy.js配置具体代理规则：
+
+      在 src 下创建配置文件：`src/setupProxy.js`
+
+   2. 编写 setupProxy.js 配置具体代理规则：
+
       ```javascript
-      const proxy = require('http-proxy-middleware') // react18之前
-      const { createProxyMiddleware } = require('http-proxy-middleware') // react18之后
-      
-      module.exports = function(app) {
+      const proxy = require("http-proxy-middleware"); // react18之前
+      const { createProxyMiddleware } = require("http-proxy-middleware"); // react18之后
+
+      module.exports = function (app) {
         app.use(
-          proxy('/api1', {  //api1是需要转发的请求(所有带有/api1前缀的请求都会转发给5000)
-            target: 'http://localhost:5000', //配置转发目标地址(能返回数据的服务器地址)
+          proxy("/api1", {
+            //api1是需要转发的请求(所有带有/api1前缀的请求都会转发给5000)
+            target: "http://localhost:5000", //配置转发目标地址(能返回数据的服务器地址)
             changeOrigin: true, //控制服务器接收到的请求头中host字段的值
             /*
                 changeOrigin设置为true时，服务器收到的请求头中的host为：localhost:5000
                 changeOrigin设置为false时，服务器收到的请求头中的host为：localhost:3000
                 changeOrigin默认值为false，但我们一般将changeOrigin值设为true
             */
-            pathRewrite: {'^/api1': ''} //去除请求前缀，保证交给后台服务器的是正常请求地址(必须配置)
+            pathRewrite: { "^/api1": "" }, //去除请求前缀，保证交给后台服务器的是正常请求地址(必须配置)
           }),
-          proxy('/api2', { 
-            target: 'http://localhost:5001',
+          proxy("/api2", {
+            target: "http://localhost:5001",
             changeOrigin: true,
-            pathRewrite: {'^/api2': ''}
+            pathRewrite: { "^/api2": "" },
           })
-        )
-      }
+        );
+      };
       ```
-   
+
    说明：
+
    1. 优点：可以配置多个代理，可以灵活的控制请求是否走代理。
    2. 缺点：配置繁琐，前端请求资源时必须加前缀。
