@@ -632,7 +632,7 @@ const defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g;
 然后声明 `compileToFunction` 函数并导出供上方 解析模板参数 步骤代码时使用，该函数主要做以下两个操作：
 
 1. 将template转为ast语法树
-2. 将template转为ast语法树
+2. 生成render方法（render方法执行后返回的结果就是虚拟 DOM）
 
 代码如下：
 
@@ -641,7 +641,7 @@ export const compileToFunction = (template) => {
   // 1.将template转为ast语法树
   const ast = parseHTML(template);
 
-  // 2.
+  // 2.生成render方法（render方法执行后返回的结果就是虚拟 DOM）
 };
 ```
 
@@ -939,4 +939,118 @@ AST 树图解如下：
 
 ## 代码生成虚拟DOM
 
+接下来转为虚拟 DOM 元素，虚拟 DOM 包含三个方法：
+
+- `_v` ：创建文本
+- `_c` ：创建元素
+- `_s` ：创建变量
+
+最终生成的虚拟 DOM 如下所示：
+
+```html
+_v(_s(name)+'hello'+_s(age))
+
+# 对应以下的 HTML 标签节点：
+
+<div id="app">
+      <div>{{name}} hello {{age}}</div>
+</div>
+```
+
+处理 `gen` 函数中为文本的判断逻辑，首先创建一个数组 `tokens` ，创建好一个虚拟 DOM 后追加到数组内，后续数组转字符串拼接的形式输出出去。
+
+接着循环文本内容，通过前面写的正则匹配到模板字符串 `{{xxx}}` 的形式，`.match()` 方法匹配到后用 `_s()` 拼接起来。由于不确定其前后是否会有空格，最好用 `.trim()` 方法去除前后空格。
+
+然后开始做判断，总共有以下几种情况：
+
+1. 该标签只有模板字符串，没有其他内容，正常循环完毕即可，无需做额外处理
+
+2. 文本内容在模板字符串前，如下方代码所示：
+
+   ```html
+   <span>hello {{name}}</span>
+   ```
+
+   因此在循环前先做判断，判断正则匹配到的内容索引是否在当前文本索引后面，如果在后面，说明前面有文本内容，需要先截取这段内容放到 `tokens` 数组内
+
+3. 文本内容在模板字符串后，如下方代码所示：
+
+   ```html
+   <span>{{name}} hello</span>
+   ```
+
+   此时当前匹配的模板字符串索引比整体文本内容小，需要把后面的内容截取追加到 `tokens` 数组内。
+
+最后通过 `.join()` 方法把数组转为字符串的形式返回出去。代码如下所示：
+
+```js
+function gen(child) {
+  if (child.type === 1) {
+    // 节点
+    return codegen(child);
+  } else {
+    // 文本
+    let text = child.text;
+    if (!defaultTagRE.test(text)) {
+      return `_v(${JSON.stringify(text)})`;
+    } else {
+      // c创建元素
+      // v创建文本
+      // s创建变量
+      // _v(_s(name)+'hello+_s(name))
+      let tokens = [];
+      let match;
+      let lastIndex = 0;
+      defaultTagRE.lastIndex = 0; // 每次捕获后先把索引重置
+      while ((match = defaultTagRE.exec(text))) {
+        let index = match.index;
+
+        // 不能单纯放 {{xxx}} 的结果，也要放文本。如{{name}} hello {{age}}，第一次匹配到{{name}}，第二次匹配到{{age}}。则hello的索引位置是最后一次匹配到的内容长度（即{{age}}）加上其索引，即为整个文本长度
+        // 注意要添加 JSON.stringify 转为字符串的形式
+        if (index > lastIndex) {
+          tokens.push(JSON.stringify(text.slice(lastIndex, index)));
+        }
+        tokens.push(`_s(${match[1].trim()})`);
+        lastIndex = index + match[0].length;
+      }
+
+      // 如果匹配结束索引比整体长度要小，说明模板字符串在前内容在后，如{{name}} hello，此时把后面所有文本放进去即可
+      if (lastIndex < text.length) {
+        tokens.push(JSON.stringify(text.slice(lastIndex)));
+      }
+      return `_v(${tokens.join("+")})`;
+    }
+  }
+}
+```
+
+> 注意
+>
+> `index` 是当前匹配到哪个位置的索引，初始为0，匹配完毕之后把当前索引加上匹配的模板字符串内容长度即为下一次开始匹配时第一个字符串的索引位置。
+>
+> 其次是文本内容添加到数组 `tokens` 内时需要搭配 `JSON.stringify()` 方法转为字符串的形式，否则后续会把该文本识别为变量
+
+返回 `compileToFunction` 函数，此时已经能获取到虚拟 DOM 了，返回一个 `with` 函数。代码如下：
+
+```js
+export const compileToFunction = (template) => {
+  // 1.将template转为ast语法树
+  const ast = parseHTML(template);
+
+  // 2.生成render方法（render方法执行后返回的结果就是虚拟 DOM）
+  // render() {
+  //   return _c('div', {id: 'app'}, _c('div', {style: {color: 'red'}}, _v(_s(name)+'hello'))), _c('span', undefined, _v(_s(age)))
+  // }
+  let code = codegen(ast);
+  code = `with(this){return ${code}}`;
+  let render = new Function(code);
+
+  return render;
+};
+```
+
 ## 虚拟DOM生成真实DOM
+
+### 准备执行 render 函数
+
+此时原型上是没有这些 `_c` 、`_v` 的方法的，因此运行刷新后会报错
