@@ -1053,4 +1053,265 @@ export const compileToFunction = (template) => {
 
 ### 准备执行 render 函数
 
-此时原型上是没有这些 `_c` 、`_v` 的方法的，因此运行刷新后会报错
+此时原型上是没有这些 `_c` 、`_v` 的方法的，因此运行刷新后会报错。现在给 Vue 原型绑定这些方法。
+
+前面已经介绍过每个方法的功能与作用，这里不做过多赘述，新建一个 `lifecycle.js` 文件，主要做以下流程：
+
+1. 创造响应式数据
+2. 模板转换成ast语法树
+3. 将ast语法树转换了render函数
+4. 后续每次数据更新可以只执行render函数（无需再执行ast转化过程
+
+render会产生虚拟节点（响应式数据）。根据生成的虚拟节点创造真实dom
+
+代码如下：
+
+```js
+import { createElementVNode, createTextVNode } from "./vdom/index";
+
+export const initLifeCycle = (Vue) => {
+  Vue.prototype._update = function (vnode) {};
+
+  Vue.prototype._c = function () {
+    return createElementVNode(this, ...arguments);
+  };
+  Vue.prototype._v = function () {
+    return createTextVNode(this, ...arguments);
+  };
+
+  Vue.prototype._s = function (value) {
+    if (typeof value === "object") return;
+    return JSON.stringify(value);
+  };
+
+  Vue.prototype._render = function () {
+    const vm = this;
+
+    // 让with中的this指向vm
+    return vm.$options.render.call(vm); // 通过ast语法转义后的render方法
+  };
+};
+
+export const mountComponent = (vm, el) => {
+  // 1.调用render方法产生虚拟节点 虚拟dom
+  vm._update(vm._render());
+
+  // 2.根据虚拟DOM产生真实dom
+
+  // 3.插入到el元素中
+};
+```
+
+返回 `src/index.js` 文件扩展方法，代码如下：
+
+```js
+import { initMixin } from "./init";
+import { initLifeCycle } from "./lifecycle";
+
+// ...
+initLifeCycle(Vue);
+
+export default Vue;
+```
+
+新建 `ndom/index.js` 文件，用于创建虚拟DOM 节点，代码如下：
+
+```js
+// h() _c()
+export function createElementVNode(vm, tag, data, ...children) {
+  // 避免data为null报错
+  if (data == null) data = {};
+
+  let key = data.key;
+  if (key) {
+    delete data.key;
+  }
+
+  return vnode(vm, tag, key, data, children);
+}
+
+// _v()
+export function createTextVNode(vm, text) {
+  return vnode(vm, undefined, undefined, undefined, undefined, text);
+}
+
+// ast做的是语法层面的转换，描述的是语法本身（可以描述js、css、html）
+// vnode虚拟dom描述的是dom元素，可以增加一些自定义属性
+function vnode(vm, tag, key, data, children, text) {
+  return {
+    vm,
+    tag,
+    key,
+    data,
+    children,
+    text,
+  };
+}
+```
+
+最后返回 `src/init.js` 文件，挂载 `mountComponent ` 方法。
+
+```js
+import { mountComponent } from "./lifecycle.js";
+// ...
+
+// 给Vue增加init方法
+export function initMixin(Vue) {
+  // ...
+
+  // 由于把$mount方法挂载到原型上，因此除了传el外，可直接new Vue().$mount也可以
+  Vue.prototype.$mount = function (el) {
+    // ...
+
+    mountComponent(vm, el); // 组件挂载到实例上
+
+    // 获取到render方法
+  };
+}
+```
+
+> 题外话
+>
+> AST 树与 vnode 虚拟 DOM 节点是不同的含义，AST 树做的是语法层面的转换，描述的是语法本身（可以描述js、css、html）。而 vnode  虚拟dom描述的是dom元素，可以增加一些自定义属性
+
+### 实现转换
+
+接下来修改原型上的 `_update()` 方法实现转换。首先获取到旧 DOM 节点和新的虚拟 DOM，代码如下：
+
+```js
+Vue.prototype._update = function (vnode) {
+  // 将vnode转换为真实dom
+  const vm = this;
+  const el = vm.$el;
+
+  // patch既有初始化功能，又有更新的功能
+  vm.$el = patch(el, vnode);
+};
+```
+
+`patch` 方法主要用于判断是真实 DOM 还是虚拟 DOM，真实 DOM 则创建新的 DOM，替换掉旧的 DOM。
+
+```js
+function patch(oldVnode, vnode) {
+  // 写的是初渲染流程
+  const isRealElement = oldVnode.nodeType;
+
+  if (isRealElement) {
+    // 是真实dom节点
+    const elm = oldVnode; // 获取真实元素
+    const parentElm = elm.parentNode; // 拿到父元素
+
+    let newElm = createElm(vnode);
+    console.log(newElm);
+
+    // 先把新的放到老旧节点下面，然后再删除老旧节点
+    parentElm.insertBefore(newElm, elm.nextSibling);
+    parentElm.removeChild(elm);
+    
+    // 返回新的dom节点
+    return newElm;
+  } else {
+    // 是虚拟dom元素
+  }
+}
+```
+
+`createElm` 方法通过当前的类型判断是标签还是文本，而样式则单独处理。
+
+```js
+function createElm(vnode) {
+  let { tag, data, children, text } = vnode;
+
+  if (typeof tag === "string") {
+    // 是字符串，创建的是标签。将真实节点和虚拟节点对应起来，后续如果修改属性了，可通过虚拟节点找到真实节点
+    vnode.el = document.createElement(tag);
+
+    // 处理元素的属性
+    patchProps(vnode.el, data);
+
+    // 处理儿子，通过递归的方式；递归创建完后要把它塞到该元素内部
+    children.forEach((element) => {
+      vnode.el.appendChild(createElm(element));
+    });
+  } else {
+    // 不是字符串，创建的是文本
+    vnode.el = document.createTextNode(text);
+  }
+
+  return vnode.el;
+}
+
+function patchProps(el, props) {
+  for (const key in props) {
+    if (key === "style") {
+      for (const styleName in props.style) {
+        el.style[styleName] = props.style[styleName];
+      }
+    } else {
+      el.setAttribute(key, props[key]);
+    }
+  }
+}
+```
+
+### 测试
+
+设置一个定时器，一段时间后修改变量内容，代码如下：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="app" style="color: red; font-size: 14px">
+      <div>{{name}} hello {{age}}</div>
+      <span>world</span>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app", // 将数据解析到el元素上
+        data: {
+          name: "daodao",
+          age: 23,
+          list: ["eat", { a: 1 }],
+        },
+      });
+
+      vm.$mount("#app");
+      setTimeout(() => {
+        vm.name = "刀刀";
+        vm.age = 24;
+        vm._update(vm._render());
+        // console.log(vm);
+      }, 1500);
+    </script>
+  </body>
+</html>
+```
+
+页面效果能够实现，说明已经成功。
+
+总结一下：
+
+1. 将数据先处理成响应式 `initState()` （针对对象来说主要是增加 `defineProperty` ，针对数组就是重写方法）
+2. 模板编译：将模板先转换为 AST 树，将 AST 语法树生成 `render` 方法
+3. 调用 `render` 方法函数，进行取值操作，产生对应的虚拟 DOM `render() {_c('div', null, _v(name))}` ，触发 `get` 方法
+4. 将虚拟 DOM 渲染成真实 DOM
+
+## 实时更新
+
+### 依赖收集
+
+依赖收集主要是以下操作：
+
+1. 给模板的属性增加一个 Dep
+2. 页面渲染的时候，将渲染逻辑封装到 Watcher 中
+3. 让 Dep 记住这个 Watcher，属性变化后可以找到对应 Dep 中存放的 Watcher 进行重新渲染
+4. 观察者模式
+
+首先我们要梳理 `Dep` 和 `Watcher` 的关系，给每个属性添加一个dep，目的就是收集watcher。
+
+一个视图有多个属性，也就是n个dep对应1个watcher。同样的，一个属性在多个视图都有，因此1个dep对应多个watcher
+
+在 `observe` 文件夹下新建一个 `watcher.js` 文件，该文件用于设置侦听器
+
