@@ -1298,7 +1298,7 @@ function patchProps(el, props) {
 3. 调用 `render` 方法函数，进行取值操作，产生对应的虚拟 DOM `render() {_c('div', null, _v(name))}` ，触发 `get` 方法
 4. 将虚拟 DOM 渲染成真实 DOM
 
-## 实时更新
+## 更新
 
 ### 依赖收集
 
@@ -1315,3 +1315,430 @@ function patchProps(el, props) {
 
 在 `observe` 文件夹下新建一个 `watcher.js` 文件，该文件用于设置侦听器
 
+```js
+import Dep from "./dep";
+
+let id = 0;
+
+// 当创建渲染watcher的时候，会把当前渲染的watcher放到 Dep。target上
+// 调用_render() 会取值，走到get上
+
+class Watcher {
+  // 不同组件有不同的watcher 目前只有一个 渲染根实例的
+  constructor(vm, fn, options) {
+    this.id = id++;
+
+    // 渲染一个watcher
+    this.renderWatcher = options;
+
+    // getter意味着调用这个函数可以发生取值操作
+    this.getter = fn;
+
+    // 后续实现计算属性，和一些清理工作需要用到
+    this.deps = [];
+
+    this.depsId = new Set();
+
+    this.get();
+  }
+
+  get() {
+    // 静态属性只有一份
+    Dep.target = this;
+    // 会去vm上取值
+    this.getter();
+    // 渲染完毕后清空
+    Dep.target = null;
+  }
+
+  addDep(dep) {
+    let id = dep.id;
+
+    if (!this.depsId.has(id)) {
+      this.deps.push(dep);
+      this.depsId.add(id);
+      dep.addSub(this); // watcher已经记住dep而且去重了，此时让dep也记住watcher
+    }
+  }
+
+  update() {
+    console.log("update");
+    // 重新渲染
+    this.get();
+  }
+}
+
+// 需要给每个属性添加一个dep，目的就是收集watcher
+// 一个视图有多个属性，也就是n个dep对应一个watcher。同样的，一个属性在多个视图都有，因此1个dep对应多个watcher
+
+export default Watcher;
+```
+
+回到 `lifecycle.js` 文件中引入该类方法，在调用 `render` 方法产生虚拟 DOM 之前调用该类方法，配置监听器。
+
+```js
+import Watcher from "./observe/watcher";
+
+// ...
+
+export const mountComponent = (vm, el) => {
+  // 这里的el是通过 querySelector处理过的
+  vm.$el = el;
+
+  const updateComponent = () => {
+    vm._update(vm._render());
+  };
+  const a = new Watcher(vm, updateComponent, true);
+  console.log(a);
+
+  // 1.调用render方法产生虚拟节点 虚拟dom
+  vm._update(vm._render());
+};
+```
+
+在 `src/observe` 文件夹下新建 `dep.js` 文件，用于为每一个属性绑定，且要与监听器建立联系，代码如下：
+
+```js
+let id = 0;
+
+class Dep {
+  constructor() {
+    // 属性的dep要收集watcher
+    this.id = id++;
+
+    // 存放当前属性对应的watcher
+    this.subs = [];
+  }
+
+  depend() {
+    // this.subs.push(Dep.target); 这样写会重复
+    // 让watcher记住dep。既要watcher不重复，又要单向关系dep->watcher
+    Dep.target.addDep(this);
+
+    // dep和watcher是一个多对多的关系（一个属性可以在多个组件中的加入，一个组件中由多个属性组成）
+  }
+
+  addSub(watcher) {
+    this.subs.push(watcher);
+  }
+
+  notify() {
+    // 告诉watcher要更新了
+    this.subs.forEach((watcher) => watcher.update());
+  }
+}
+
+Dep.target = null;
+
+export default Dep;
+```
+
+在 `observe/index.js` 文件的 `defineReactive` 函数方法代理对象时先调用 `Dep` 类中的 `depend` 方法记住当前 `watcher` ，在修改完毕后触发更新。代码如下：
+
+```js
+import { newArrayProto } from "./array";
+import Dep from "./dep";
+
+// ...
+
+export function defineReactive(target, key, value) {
+  // 递归思想，如果value值的类型不是对象，则return；如果是对象，则继续劫持
+  observe(value);
+
+  let dep = new Dep();
+
+  // 此处value存放在闭包中，不会销毁
+  Object.defineProperty(target, key, {
+    // 取值执行get
+    get() {
+      if (Dep.target) {
+        dep.depend(); // 让这个属性收集器记住当前的watcher
+      }
+      return value;
+    },
+    // ...
+  });
+}
+```
+
+现在运行代码，可以发现依赖已成功收集。
+
+### 异步更新
+
+现在每次代码走到 `observe/index.js` 文件中的 `set` 方法时调用 `dep.notify()` 方法实现更新。但是这是每更新一个属性她都会调用，如果更新多个属性他就会调用多次。
+
+希望等待所有更新事件都执行完毕之后，再去走一个方法，减轻性能消耗。也就是把更新变为异步。
+
+回到 `observe/watcher.js` 文件中修改 `update()` 方法，现在不是直接调用 `get()` 方法更新，而是写一个方法 `queueWatcher()` ，把当前的 `watcher` 暂存放到队列中，并且记录该 `watcher` 。如果更新同一个属性，`watcher` 相同，则不会多次更新。代码如下：
+
+```js
+// ...
+
+class Watcher {
+  // ...
+
+  update() {
+    queueWatcher(this);
+    // 重新渲染
+    // this.get();
+  }
+}
+
+let queue = [];
+let has = {};
+function queueWatcher(watcher) {
+  const id = watcher.id;
+  if (!has[id]) {
+    queue.push(watcher);
+    has[id] = true;
+    console.log(queue, has);
+  }
+}
+
+export default Watcher;
+```
+
+现在有效果了。但是如果多个组件更新，则 `update()` 操作也会多次调用。
+
+希望的效果是无论 `uopdate` 执行多少次，但是最终只执行一轮刷新操作。也就是防抖操作。设置一个定时器，执行完同步任务后再去把栈和队列清空，执行更新操作。代码如下：
+
+```js
+// ...
+
+class Watcher {
+  // ...
+
+  update() {
+    queueWatcher(this);
+    // 重新渲染
+    // this.get();
+  }
+
+  run() {
+    this.get();
+  }
+}
+
+let queue = [];
+let has = {};
+let pending = false;
+
+function flushSchedulerQueue() {
+  let flushQueue = queue.slice(0);
+  queue = [];
+  has = {};
+  pending = false;
+  flushQueue.forEach((q) => q.run());
+}
+
+function queueWatcher(watcher) {
+  const id = watcher.id;
+  if (!has[id]) {
+    queue.push(watcher);
+    has[id] = true;
+    console.log(queue, has);
+
+    if (!pending) {
+      setTimeout(flushSchedulerQueue, 0);
+      pending = true;
+    }
+  }
+}
+
+export default Watcher;
+```
+
+现在效果能够实现在所有属性都更新完毕后再统一更新的操作了。接下来通过 `debugger` 来帮助加深理解。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app", // 将数据解析到el元素上
+        data: {
+          name: "daodao",
+          age: 23,
+          list: ["eat", { a: 1 }],
+        },
+      });
+
+      vm.$mount("#app");
+      setTimeout(() => {
+        debugger;
+        vm.name = "刀刀";
+        vm.name = "小刀";
+        vm.name = "杜一刀";
+        vm.age = 24;
+        vm._update(vm._render());
+      }, 1500);
+    </script>
+  </body>
+</html>
+```
+
+首先代码走到 `vm.name='刀刀'` ，然后走到 `state.js` 文件中 `proxy` 函数的 `set()` 方法修改值，接着进入到 `observe/index.js` 中 `defineReactive` 函数的 `set()` 方法，触发 `notify()` 方法更新。
+
+去到 `dep.js` 文件，调用其 `notify()` 方法，调用 `watcher` 类中的 `update()` 方法，继续调用刚刚写好的 `queueWatcher` 方法函数，把该 `watcher` 放到队列中。第一次 `pending`  为假，则调用定时器。
+
+同步任务还没做完，因此定时器不会执行，而是在队列中等待，继续修改 `name` 属性，走刚刚的操作，但是该属性 `id` 已经有了，因此不再往队列中加入 `watcher` 。
+
+等待所有同步任务执行完毕，最后执行定时器，的内容，清空队列和栈，再调用 `run()` 方法更新数据。
+
+由于是异步更新，因此修改完值后 DOM 元素的数据有时并未能及时获取到最新值，而直接用定时器 `setTimeout` 又不够优雅，Vue2 提出的 `$nextTick` 方法则采用了优雅降级的方法：
+
+1. nextTick中不是直接使用定时器API，而是采用优雅降级的方法，放到队列中是同步，单独开是异步
+2. 内部先采用的是promise（ie不兼容） MutationObserver（H5的API） 都不兼容再采用 setImmediate（ie专享），最后都不兼容就采用 定时器
+
+代码如下：
+
+```js
+function queueWatcher(watcher) {
+  const id = watcher.id;
+  if (!has[id]) {
+    queue.push(watcher);
+    has[id] = true;
+    console.log(queue, has);
+
+    if (!pending) {
+      nextTick(flushSchedulerQueue, 0);
+      pending = true;
+    }
+  }
+}
+
+let callbacks = [];
+let waiting = false;
+
+function flushCallbacks() {
+  waiting = false;
+  let cbs = callbacks.slice(0);
+  callbacks = [];
+  // 按照顺序执行nextTick内容方法函数
+  cbs.forEach((cb) => cb());
+}
+
+let timeFn;
+if (Promise) {
+  timeFn = () => {
+    Promise.resolve().then(flushCallbacks);
+  };
+} else if (MutationObserver) {
+  // 这里传入的回调是异步执行的
+  let observe = new MutationObserver(flushCallbacks);
+  let textNode = document.createTextNode(1);
+  observe.observe(textNode, {
+    characterData: true,
+  });
+  timeFn = () => {
+    textNode.textContent = 2;
+  };
+} else if (setImmediate) {
+  timeFn = () => {
+    setImmediate(flushCallbacks);
+  };
+} else {
+  timeFn = () => {
+    setTimeout(flushCallbacks);
+  };
+}
+
+export function nextTick(cb) {
+  // 先内部还是先用户？先用户。维护nextTick中的callback方法
+  callbacks.push(cb);
+  if (!waiting) {
+    timeFn();
+    waiting = true;
+  }
+}
+```
+
+再 `src/index.js` 文件中挂载该方法到原型上：
+
+```js
+import { nextTick } from "./observe/watcher";
+
+// ...
+
+Vue.prototype.$nextTick = nextTick;
+
+
+export default Vue;
+```
+
+最后测试一下，效果实现：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="app" style="color: red; font-size: 14px">
+      <div>{{name}} hello {{age}}</div>
+      <span>world</span>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app", // 将数据解析到el元素上
+        data: {
+          name: "daodao",
+          age: 23,
+          list: ["eat", { a: 1 }],
+        },
+      });
+
+      vm.$mount("#app");
+      vm.name = "刀刀";
+      vm.age = 24;
+
+      // $nextTick并不是创建一个异步任务，而是将这个任务维护到队列中而已
+      vm.$nextTick(() => {
+        let app = document.querySelector("#app");
+        console.log(app.innerHTML);
+      });
+    </script>
+  </body>
+</html>
+```
+
+### 计算属性
+
+计算属性 依赖的值发生变化才重新执行 计算属性中要维护一个 `dirty` 属性，默认计算属性不会立即执行。
+
+计算属性就是一个 `definePropety` 。计算属性也是一个 watcher，默认渲染会创造一个渲染 watcher 。
+
+在 Vue2 ，计算属性有两种写法：
+
+```js
+computed: {
+  full() {
+    return this.name
+  },
+  // 或者
+  full: {
+    get() {
+      return this.name
+    },
+    set(newVal) {
+      console.log(newVal)
+    }
+  }
+}
+```
+
+因此后续需要做判断。
+
+首先来到 `state.js` 文件。这里曾初始化 `data` 内的数据，因此在下方添加计算属性 `computed` 的初始化方法，步骤如下：
+
+1. 循环遍历 `computed` 对象，获取其每一个
+
+### 数组更新
+
+在此之前，需要先明确几点：
+
+1. `vm.arr[0] = 1` 这种方法不能监控到，因为只重写数组方法
+2. `vm.arr.length = 100` 没有监控数组长度变化，因此也不能监控到
+
+这里要注意的是，改变的不是 `arr` 属性，而是 `arr` 对象的数组对象。给数组本身添加 dep，如果数组更新某一项，可以触发 dep 更新；给对象也添加 dep，如果后续用户增添属性，可以触发 dep 更新。
