@@ -261,6 +261,10 @@ function getTalkSidebar() {
               text: "取色器封装",
               link: "/learn/杂技拾谈/JS/取色器封装",
             },
+            {
+              text: "网站访问用户文件夹",
+              link: "/learn/杂技拾谈/JS/网站访问用户文件夹",
+            },
           ],
         },
         {
