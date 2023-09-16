@@ -1709,6 +1709,45 @@ export default Vue;
 
 计算属性就是一个 `definePropety` 。计算属性也是一个 watcher，默认渲染会创造一个渲染 watcher 。
 
+去到 `observe/dep.js` 文件，之前 `dep` 是直接把 `watcher` 赋值上去，现在要把其作为一个队列，然后依次放入栈中；取出则把栈最后一个去除。代码如下：
+
+```js
+let stack = [];
+// 渲染时入栈
+export function pushTarget(watcher) {
+  stack.push(watcher);
+  Dep.target = watcher;
+}
+// 渲染完后出栈
+export function popTarget() {
+  stack.pop();
+  Dep.target = stack[stack.length - 1];
+}
+```
+
+`observe/watcher.js` 文件引入使用：
+
+```js
+import Dep, { popTarget, pushTarget } from "./dep";
+
+class Watcher {
+  // ...
+
+  get() {
+    // 静态属性只有一份
+    pushTarget(this);
+    // 会去vm上取值
+    this.getter();
+    // 渲染完毕后清空
+    popTarget();
+  }
+}
+
+// ...
+
+export default Watcher;
+```
+
 在 Vue2 ，计算属性有两种写法：
 
 ```js
@@ -1732,7 +1771,69 @@ computed: {
 
 首先来到 `state.js` 文件。这里曾初始化 `data` 内的数据，因此在下方添加计算属性 `computed` 的初始化方法，步骤如下：
 
-1. 循环遍历 `computed` 对象，获取其每一个
+1. 循环遍历 `computed` 对象，获取其每一个属性
+2. 判断当前的属性是函数写法还是对象写法，如果是函数写法，直接获取该属性为 `get` ；如果是对象写法，则获取其 `get` 属性
+3. 通过 `Object.defineProperty` 代理
+
+代码如下：
+
+```js
+export function initState(vm) {
+  // 获取所有选项
+  const opts = vm.$options;
+
+  // 如果有data数据，则初始化data数据
+  if (opts.data) {
+    initData(vm);
+  }
+
+  // 如果有计算属性，则初始化计算属性
+  if (opts.computed) {
+    initComputed(vm);
+  }
+}
+
+function initComputed(vm) {
+  const computed = vm.$options.computed;
+
+  // 循环computed对象，拿到每一个计算属性
+  for (const key in computed) {
+    let userDef = computed[key];
+
+    defineComputed(vm, key, userDef);
+  }
+}
+
+function defineComputed(target, key, userDef) {
+  const getter = typeof userDef === "function" ? userDef : userDef.get;
+  const setter = userDef.set || (() => {});
+
+  // 通过实例拿到对应的属性
+  Object.defineProperty(target, key, {
+    get: getter,
+    set: setter,
+  });
+}
+```
+
+现在能够实现计算属性的页面渲染了，但是有一个问题：
+
+```js
+computed: {
+  full() {
+    console.log("run");
+    return this.name + this.age;
+  },
+},
+```
+
+在计算属性内添加一个 `console.log` ，查看控制台，他会在初始化渲染、值变动多次调用，不符合计算属性 “缓存” 的特性，因此接下来需要实现缓存的操作。
+
+
+
+**图解**
+
+首先渲染 `watcher` ，并推入到队列中，然后创造计算属性 `watcher` ，再放入队列中
 
 ### 数组更新
 
