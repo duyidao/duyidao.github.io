@@ -1829,11 +1829,301 @@ computed: {
 
 在计算属性内添加一个 `console.log` ，查看控制台，他会在初始化渲染、值变动多次调用，不符合计算属性 “缓存” 的特性，因此接下来需要实现缓存的操作。
 
+让自己的依赖属性通过侦听器去收集依赖，在类中声明一个变量 `dirty` ，如果未发生变化，则为 `false` 表示没有污染，可以使用旧值；如果发生改变则变为 `true` ，使用新值。
+
+首先去到 `state.js` 文件，修改新增三个函数方法：
+
+```js
+function initComputed(vm) {
+  const computed = vm.$options.computed;
+  // 吧计算属性watcher保存到vm上
+  const watchers = (vm._computedWatchers = {});
+
+  // 循环computed对象，拿到每一个计算属性
+  for (const key in computed) {
+    let userDef = computed[key];
+
+    // 监控计算属性get的变化
+    let fn = typeof userDef === "function" ? userDef : userDef.get;
+
+    // 如果直接 new Watcher，就会直接执行fn，但是我们不希望他立即执行，而是懒执行
+    watchers[key] = new Watcher(vm, fn, { lazy: true });
+
+    defineComputed(vm, key, userDef);
+  }
+}
+
+function defineComputed(target, key, userDef) {
+  // const getter = typeof userDef === "function" ? userDef : userDef.get;
+  const setter = userDef.set || (() => {});
+
+  // 通过实例拿到对应的属性
+  Object.defineProperty(target, key, {
+    get: createComputedGetter(key),
+    set: setter,
+  });
+}
+
+// 计算属性根本不会收集依赖，只会让自己的依赖属性去收集依赖
+function createComputedGetter(key) {
+  // 检测是否要执行这个getter
+  return function () {
+    // 获取到对应属性的watcher
+    const watcher = this._computedWatchers[key];
+    if (watcher.dirty) {
+      // 如果是脏的就去执行用户传入的函数。求值后dirty变为false，下次就不求值了
+      watcher.evaluate();
+    }
+    if (Dep.target) {
+      // 计算属性出栈后 还要渲染watcher 应该让计算属性watcher里的属性也收集上一层watcher
+      watcher.depend();
+    }
+    return watcher.value;
+  };
+}
+```
+
+去到 `observe/watcher.js` 文件，为 `watcher` 类添加以下属性或方法：
+
+1. 添加 `lazy` 属性，表示是否需要懒执行函数
+
+   因为直接 `new Watcher` 调用类，其 `fn` 函数会立即执行。如果不想他立即执行，就需要变量来做三元表达式。
+
+2. 添加 `dirty` 属性，表示当前的计算属性是否被污染了
+
+3. 添加 `evaluate()` 方法，该方法实际上也是调用了 `get()` 方法，只不过还处理 `dirty` 变量
+
+4. 添加 `depend()` 方法，让计算属性也收集渲染 `watcher`  
+
+代码如下：
+
+```js
+class Watcher {
+  // 不同组件有不同的watcher 目前只有一个 渲染根实例的
+  constructor(vm, fn, options) {
+    this.id = id++;
+
+    // 渲染一个watcher
+    this.renderWatcher = options;
+
+    // getter意味着调用这个函数可以发生取值操作
+    this.getter = fn;
+
+    // 后续实现计算属性，和一些清理工作需要用到
+    this.deps = [];
+
+    this.depsId = new Set();
+
+    // 获取是否需要懒加载的布尔值
+    this.lazy = options.lazy;
+    this.dirty = this.lazy;
+    this.vm = vm;
+    // 如果为真则不执行，为假才执行
+    this.lazy ? undefined : this.get();
+  }
+
+  evaluate() {
+    // 获取用户的返回值，并且标识为脏
+    this.value = this.get();
+    this.dirty = false;
+  }
+
+  get() {
+    // 静态属性只有一份
+    pushTarget(this);
+    // 会去vm上取值
+    let value = this.getter.call(this.vm);
+    // 渲染完毕后清空
+    popTarget();
+    // 返回给evaluate函数使用
+    return value;
+  }
+
+  depend() {
+    let i = this.deps.length;
+
+    while (i--) {
+      // 让计算属性watcher也收集渲染watcher
+      this.deps[i].depend();
+    }
+  }
+}
+```
+
+### 侦听器
+
+侦听器有三种写法：
+
+- 字符串
+
+  ```js
+  watch: {
+    name: 'listerenName'
+  },
+  methods: {
+    listerenName(newVal, oldVal) {
+      // ...
+    }
+  }
+  ```
+
+- 数组
+
+  ```js
+  watch: {
+    listerenName: [
+      (newVal, oldVal) => {
+        // ...
+      }
+    ]
+  }
+  ```
+
+- 函数
+
+  ```js
+  watch: {
+    listerenName(newVal, oldVal) {
+      // ...
+    }
+  }
+  ```
+
+- 直接调用
+
+  ```js
+  vm.$watch((newVal, oldVal) => {
+    //...
+  })
+  ```
+
+因此写法可以给 Vue 函数的原型上添加 `$watch` 的方法，所有写法最终都调用该方法。
+
+首先前往 `index.js` 给原型挂载方法：
+
+```js
+// 侦听器最终调用的都是这个方法
+Vue.prototype.$watch = function (exprOrFn, cb) {
+};
+```
+
+`exprOrFn` 可能是一个函数，如 `()=>vm.nam` ；也可能是字符串，如 `name` 。
+
+`cb` 为对应的侦听函数。
+
+接着去到 `state.js` 文件添加侦听器的判断，并对侦听器做处理，处理内容如下：
+
+1. 循环 `watch` 对象，得到每一个属性
+2. 判断该属性是哪种写法，如果是数组，则再次循环，获取其中每一项函数方法；字符串或函数则无需额外操作
+3. 创建并调用 `createWatcher` 新方法，接收三个参数：当前实例 `vm` 、当前属性的键名、当前属性的键值
+4. 判断键值是什么类型，如果是字符串，则说明其函数方法在 `methods` 内，需要获取。最后调用实例原型上的 `$watch` 方法
+
+代码如下：
+
+```js
+export function initState(vm) {
+  // 获取所有选项
+  const opts = vm.$options;
+
+  // ...
+
+  // 如果有侦听器，则初始化侦听器
+  if (opts.watch) {
+    initWatch(vm);
+  }
+}
+
+function initWatch(vm) {
+  let watch = vm.$options.watch;
+
+  for (const key in watch) {
+    // 拿到值来判断是哪种情况：字符串、数组、函数
+    const handler = watch[key];
+
+    if (Array.isArray(handler)) {
+      for (let i = 0; i < handler.length; i++) {
+        createWatcher(vm, key, handler[i]);
+      }
+    } else {
+      createWatcher(vm, key, handler);
+    }
+  }
+}
+
+// 侦听器处理
+function createWatcher(vm, key, handler) {
+  if (typeof handler === "string") {
+    // 如果是字符串，写法为 watch: {name: 'fn'} 此时函数在methods内，直接拿过来用
+    handler = vm[handler];
+  }
+
+  // 最后都是走$watch方法
+  return vm.$watch(key, handler);
+}
+```
+
+回到 `index.js` 修改原型上的 `$watch` 方法，经过处理后传了侦听器的名称和对应函数方法，只需要调用 `Watcher` 类去侦听做处理。代码如下：
+
+```js
+// 侦听器最终调用的都是这个方法
+Vue.prototype.$watch = function (exprOrFn, cb) {
+  console.log(exprOrFn, cb);
+  // exprOrFn可能是一个函数，如()=>vm.nam；也可能是字符串，如name
+
+  // {user：true} 表示这是用户写的
+
+  // 调用Watcher类表示值发生了变化，调用cb函数即可
+  new Watcher(this, exprOrFn, { user: true }, cb);
+};
+```
+
+`Watcher` 类现在需要修改调整。第二个参数之前传的必定是函数，因此直接使用。现在可能是字符串，就需要做额外的处理。
+
+在 `this` 上保存函数 `cb` 与是否是用户自己的 `watcher` 。
+
+`Watcher` 类执行的方法是 `run()` ，之前是直接调用 `get()` 方法，现在则需要判断，如果是用户的，则需要调用 `cb` 函数，返回新值与旧值。
+
+代码如下：
+
+```js
+class Watcher {
+  // 不同组件有不同的watcher 目前只有一个 渲染根实例的
+  constructor(vm, exprOrFn, options, cb) {
+    this.id = id++;
+
+    // 渲染一个watcher
+    this.renderWatcher = options;
+
+    // getter意味着调用这个函数可以发生取值操作
+    if (typeof exprOrFn === "string") {
+      // 去实例上取相对应的函数
+      this.getter = function () {
+        return vm[exprOrFn];
+      };
+    } else {
+      this.getter = exprOrFn;
+    }
+
+    // ...
+
+    this.cb = cb;
+    this.user = options.user; // 标识是否是用户自己的watcher
+  }
+
+  // ...
+
+  run() {
+    let oldValue = this.value;
+    let newValue = this.get();
+    if (this.user) {
+      // 用户自己的watcher
+      this.cb.call(this.vm, newValue, oldValue);
+    }
+  }
+}
+```
 
 
-**图解**
-
-首先渲染 `watcher` ，并推入到队列中，然后创造计算属性 `watcher` ，再放入队列中
 
 ### 数组更新
 
