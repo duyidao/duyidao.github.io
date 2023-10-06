@@ -2,7 +2,8 @@ export default {
   "/learn/HTML": getLearnHTMLSidebar(),
   "/learn/CSS": getLearnCSSSidebar(),
   "/learn/CSS/效果提升": getLearnCSSLevelSidebar(),
-  "/learn/CSS/咨询拓展": getLearnCSSThinkSidebar(),
+  "/learn/CSS/知识拓展": getLearnCSSThinkSidebar(),
+  "/learn/CSS/新的功能": getLearnCSSNewSidebar(),
   "/learn/Javascript": getLearnJsSidebar(),
   "/learn/vue2": getLearnVue2Sidebar(),
   "/learn/Vue3": getLearnVue3Sidebar(),
@@ -58,8 +59,9 @@ function getLearnCSSSidebar() {
       text: "CSS",
       collapsible: true,
       items: [
-        { text: "效果提升", link: "/learn/CSS/效果提升/空白节点" },
-        { text: "咨询拓展", link: "/learn/CSS/咨询拓展/BEM" },
+        { text: "效果提升", link: "/learn/CSS/效果提升/巧用伪类" },
+        { text: "知识拓展", link: "/learn/CSS/知识拓展/BEM" },
+        { text: "新的功能", link: "/learn/CSS/新的功能/vmin与vmax" },
       ],
     },
   ];
@@ -72,7 +74,7 @@ function getLearnCSSLevelSidebar() {
       text: "效果提升",
       collapsible: true,
       items: [
-        { text: "空白节点", link: "/learn/CSS/效果提升/空白节点" },
+        
         { text: "巧用伪类", link: "/learn/CSS/效果提升/巧用伪类" },
         { text: "🗑 返回", link: "/learn/CSS/" },
       ],
@@ -80,14 +82,29 @@ function getLearnCSSLevelSidebar() {
   ];
 }
 
-// 获取前端css咨询拓展的数组
+// 获取前端css知识拓展的数组
 function getLearnCSSThinkSidebar() {
   return [
     {
-      text: "咨询拓展",
+      text: "知识拓展",
       collapsible: true,
       items: [
-        { text: "BEM", link: "/learn/CSS/咨询拓展/BEM" },
+        { text: "BEM", link: "/learn/CSS/知识拓展/BEM" },
+        { text: "空白节点", link: "/learn/CSS/知识拓展/空白节点" },
+        { text: "🗑 返回", link: "/learn/CSS/" },
+      ],
+    },
+  ];
+}
+
+// 获取前端css新的功能的数组
+function getLearnCSSNewSidebar() {
+  return [
+    {
+      text: "新的功能",
+      collapsible: true,
+      items: [
+        { text: "vmin与vmax", link: "/learn/CSS/新的功能/vmin与vmax" },
         { text: "🗑 返回", link: "/learn/CSS/" },
       ],
     },
@@ -264,6 +281,22 @@ function getTalkSidebar() {
             {
               text: "网站访问用户文件夹",
               link: "/learn/杂技拾谈/JS/网站访问用户文件夹",
+            },
+            {
+              text: "并发任务控制",
+              link: "/learn/杂技拾谈/JS/并发任务控制",
+            },
+            {
+              text: "变量",
+              link: "/learn/杂技拾谈/JS/变量",
+            },
+            {
+              text: "文字转语音播放",
+              link: "/learn/杂技拾谈/JS/文字转语音播放",
+            },
+            {
+              text: "地图数据展示",
+              link: "/learn/杂技拾谈/JS/地图数据展示",
             },
           ],
         },
