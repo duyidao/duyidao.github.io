@@ -10,6 +10,8 @@ export default [
       { text: "React", link: "/learn/React/" },
       { text: "TypeScript", link: "/learn/TypeScript/环境配置" },
       { text: "Node", link: "/learn/Node/" },
+      { text: "Git", link: "/learn/Git/潜在的BUG/大小写规则" },
+      { text: "正则表达式", link: "/learn/Reg/" },
       {
         items: [
           {

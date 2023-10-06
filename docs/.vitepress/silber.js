@@ -5,11 +5,13 @@ export default {
   "/learn/CSS/知识拓展": getLearnCSSThinkSidebar(),
   "/learn/CSS/新的功能": getLearnCSSNewSidebar(),
   "/learn/Javascript": getLearnJsSidebar(),
+  "/learn/Reg": getLearnRegSidebar(),
   "/learn/vue2": getLearnVue2Sidebar(),
   "/learn/Vue3": getLearnVue3Sidebar(),
   "/learn/React": getLearnReactSidebar(),
   "/learn/TypeScript": getLearnTsSidebar(),
   "/learn/Node": getLearnNodeSidebar(),
+  "/learn/Git": getLearnGitSidebar(),
   "/learn/杂技拾谈": getTalkSidebar(),
   "/learn/学而时习之": getLearnTimeSidebar(),
   "/learn/面试鸭": getLearnWatchSidebar(),
@@ -52,6 +54,24 @@ function getLearnHTMLSidebar() {
   ];
 }
 
+// 获取前端git的数组
+function getLearnGitSidebar() {
+  return [
+    {
+      text: "Git",
+      collapsible: true,
+      items: [
+        {
+          text: "潜在的BUG",
+          collapsible: true,
+          items: [
+            { text: "大小写规则检测", link: "/learn/Git/潜在的BUG/大小写规则" }
+          ]},
+        ],
+    },
+  ];
+}
+
 // 获取前端css的数组
 function getLearnCSSSidebar() {
   return [
@@ -76,6 +96,14 @@ function getLearnCSSLevelSidebar() {
       items: [
         
         { text: "巧用伪类", link: "/learn/CSS/效果提升/巧用伪类" },
+        {
+          text: "宽度适配内容",
+          link: "/learn/CSS/效果提升/宽度适配内容",
+        },
+        {
+          text: "变量",
+          link: "/learn/CSS/效果提升/变量",
+        },
         { text: "🗑 返回", link: "/learn/CSS/" },
       ],
     },
@@ -139,6 +167,30 @@ function getLearnJsSidebar() {
         { text: "Symbol", link: "/learn/Javascript/symbol" },
       ],
     },
+  ];
+}
+
+// 获取前端正则表达式数组
+function getLearnRegSidebar() {
+  return [
+    {
+      text: "正则",
+      collapsible: true,
+      items: [
+        {
+          text: "知识点",
+          collapsible: true,
+          items: [
+            { text: "正则表达式", link: "/learn/Reg/" }
+          ]},
+          {
+            text: "潜在BUG",
+            collapsible: true,
+            items: [
+              { text: "正则中的lastIndex", link: "/learn/Reg/BUG/lastIndex" }
+            ]},
+      ]
+    }
   ];
 }
 
@@ -285,10 +337,6 @@ function getTalkSidebar() {
             {
               text: "并发任务控制",
               link: "/learn/杂技拾谈/JS/并发任务控制",
-            },
-            {
-              text: "变量",
-              link: "/learn/杂技拾谈/JS/变量",
             },
             {
               text: "文字转语音播放",
