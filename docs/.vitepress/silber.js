@@ -23,6 +23,7 @@ export default {
         { text: "灵思", link: "/project/lingsi/" },
         { text: "彩讯", link: "/project/caixun/elk/" },
         { text: "自主学习", link: "/project/myself/" },
+        { text: "功能模块", link: "/project/demo/JavaScript『图片压缩』" },
       ],
     },
   ],
@@ -33,6 +34,7 @@ export default {
   "/project/lingsi/水泥": getShuiniSidebar(),
   "/project/lingsi/music": getMusicSidebar(),
   "/project/lingsi/crm": getCRMSidebar(),
+  "/project/demo": getDemoSidebar(),
   "/project/myself": getMyselfSidebar(),
   "/project/myself/小兔鲜": getMyRabbitSidebar(),
   "/project/myself/硅谷甄选": getMyCowSidebar(),
@@ -65,9 +67,10 @@ function getLearnGitSidebar() {
           text: "潜在的BUG",
           collapsible: true,
           items: [
-            { text: "大小写规则检测", link: "/learn/Git/潜在的BUG/大小写规则" }
-          ]},
-        ],
+            { text: "大小写规则检测", link: "/learn/Git/潜在的BUG/大小写规则" },
+          ],
+        },
+      ],
     },
   ];
 }
@@ -94,11 +97,14 @@ function getLearnCSSLevelSidebar() {
       text: "效果提升",
       collapsible: true,
       items: [
-        
         { text: "巧用伪类", link: "/learn/CSS/效果提升/巧用伪类" },
         {
           text: "宽度适配内容",
           link: "/learn/CSS/效果提升/宽度适配内容",
+        },
+        {
+          text: "文字适配背景",
+          link: "/learn/CSS/效果提升/文字适配背景",
         },
         {
           text: "变量",
@@ -180,17 +186,27 @@ function getLearnRegSidebar() {
         {
           text: "知识点",
           collapsible: true,
+          items: [{ text: "正则表达式", link: "/learn/Reg/" }],
+        },
+        {
+          text: "实操演练",
+          collapsible: true,
           items: [
-            { text: "正则表达式", link: "/learn/Reg/" }
-          ]},
-          {
-            text: "潜在BUG",
-            collapsible: true,
-            items: [
-              { text: "正则中的lastIndex", link: "/learn/Reg/BUG/lastIndex" }
-            ]},
-      ]
-    }
+            {
+              text: "运用前瞻实现密码强度检测",
+              link: "/learn/Reg/do/运用前瞻实现密码强度检测",
+            },
+          ],
+        },
+        {
+          text: "潜在BUG",
+          collapsible: true,
+          items: [
+            { text: "正则中的lastIndex", link: "/learn/Reg/BUG/lastIndex" },
+          ],
+        },
+      ],
+    },
   ];
 }
 
@@ -317,34 +333,16 @@ function getTalkSidebar() {
           collapsible: true,
           items: [
             { text: "数组对象遍历", link: "/learn/杂技拾谈/JS/数组对象遍历" },
-            {
-              text: "JavaScript『图片压缩』",
-              link: "/learn/杂技拾谈/JS/JavaScript『图片压缩』",
-            },
+
             { text: "设计模式", link: "/learn/杂技拾谈/JS/设计模式" },
             {
               text: "LocalStorage封装",
               link: "/learn/杂技拾谈/JS/LocalStorage封装",
             },
-            {
-              text: "取色器封装",
-              link: "/learn/杂技拾谈/JS/取色器封装",
-            },
-            {
-              text: "网站访问用户文件夹",
-              link: "/learn/杂技拾谈/JS/网站访问用户文件夹",
-            },
+
             {
               text: "并发任务控制",
               link: "/learn/杂技拾谈/JS/并发任务控制",
-            },
-            {
-              text: "文字转语音播放",
-              link: "/learn/杂技拾谈/JS/文字转语音播放",
-            },
-            {
-              text: "地图数据展示",
-              link: "/learn/杂技拾谈/JS/地图数据展示",
             },
           ],
         },
@@ -605,6 +603,43 @@ function getMyselfSidebar() {
         { text: "⛑ 尚医通", link: "/project/myself/尚医通/" },
         { text: "🎎 react后台", link: "/project/myself/react后台/" },
         { text: "📰 知乎日报", link: "/project/myself/知乎日报/react版/" },
+        { text: "🗑 返回", link: "/project/" },
+      ],
+    },
+  ];
+}
+
+// 获取功能模块的数组
+function getDemoSidebar() {
+  return [
+    {
+      text: "⚙ 功能模块",
+      collapsible: true,
+      items: [
+        {
+          text: "JavaScript『图片压缩』",
+          link: "/project/demo/JavaScript『图片压缩』",
+        },
+        {
+          text: "取色器封装",
+          link: "/project/demo/取色器封装",
+        },
+        {
+          text: "网站访问用户文件夹",
+          link: "/project/demo/网站访问用户文件夹",
+        },
+        {
+          text: "迅雷下载触发",
+          link: "/project/demo/迅雷下载触发",
+        },
+        {
+          text: "文字转语音播放",
+          link: "/project/demo/文字转语音播放",
+        },
+        {
+          text: "地图数据展示",
+          link: "/project/demo/地图数据展示",
+        },
         { text: "🗑 返回", link: "/project/" },
       ],
     },

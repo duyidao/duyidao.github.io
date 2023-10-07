@@ -17,6 +17,8 @@ title 有用的帮助
 ## 其他
 
 - ast语法：[ast语法](https://astexplorer.net/)
+- gif录制：[ScreenToGif](https://www.screentogif.com/)
+- 文字生成拼音：[pinyin](https://pinyin.js.org/)
 
 ## 调试
 
