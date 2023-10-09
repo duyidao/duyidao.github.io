@@ -633,6 +633,10 @@ function getDemoSidebar() {
           link: "/project/demo/迅雷下载触发",
         },
         {
+          text: "拼音标注",
+          link: "/project/demo/拼音标注",
+        },
+        {
           text: "文字转语音播放",
           link: "/project/demo/文字转语音播放",
         },
