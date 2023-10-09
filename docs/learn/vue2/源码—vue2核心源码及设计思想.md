@@ -2123,8 +2123,6 @@ class Watcher {
 }
 ```
 
-
-
 ### 数组更新
 
 在此之前，需要先明确几点：
@@ -2132,4 +2130,236 @@ class Watcher {
 1. `vm.arr[0] = 1` 这种方法不能监控到，因为只重写数组方法
 2. `vm.arr.length = 100` 没有监控数组长度变化，因此也不能监控到
 
-这里要注意的是，改变的不是 `arr` 属性，而是 `arr` 对象的数组对象。给数组本身添加 dep，如果数组更新某一项，可以触发 dep 更新；给对象也添加 dep，如果后续用户增添属性，可以触发 dep 更新。
+在 `template` 取值的时候，会调用 `JSON.stringfy()` 对数组中的对象取值，所以对象会收集依赖。
+
+这里要注意的是，改变的不是 `arr` 属性，而是 `arr` 对象的数组对象。
+
+给数组本身添加 dep，如果数组更新某一项，可以触发 dep 更新；给对象也添加 dep，如果后续用户增添属性，可以触发 dep 更新。
+
+## Diff 算法
+
+在之前更新中每次更新，都会产生新的虚拟节点，通过新的虚拟节点生成真实节点，生成后替换掉老的节点。
+
+第一次渲染的时候会产生虚拟节点，第二次更新我们也会调用 render 方法产生新的虚拟节点。比对出需要更新的内容后再更新部分。
+
+diff 算法是一个平级比较的过程，父亲和父亲对比，儿子和儿子对比。比对思路如下：
+
+1. 两个节点不是同一个节点，直接删除老的换上新的（没有比对）
+2. 同一个节点（判断节点的tag和key）比较两个几点是否有差异（复用老节点）
+3. 节点比较完毕后比较两人的孩子
+
+在 `lifecycle.js` 文件的 `patch` 函数方法中比对虚拟节点，首先比对新旧节点的 `tag` 和 `key` 是否相等，相等说明没有更新，复用旧节点；然后比对文本内容是否有更新，有更新则覆盖；最后调用 `patchProps` 来比对标签属性。代码如下：
+
+```js
+export function isSameVnode(vnode1, vnode2) {
+  return vnode1.tag === vnode2.tag && vnode1.key === vnode2.key;
+}
+
+function patch(oldVnode, vnode) {
+  if (isRealElement) {
+    // ...
+  } else {
+    // 是虚拟dom元素，考虑几种情况
+    // 1.两个节点不是同一个节点，直接删除老的换上新的（没有比对）
+    // 2.同一个节点（判断节点的tag和key）比较两个几点是否有差异（复用老节点）
+    // 3.节点比较完毕后比较两人的孩子
+    if (isSameVnode(oldVnode, vnode)) {
+      // 用老父亲的节点进行替换
+      let el = createElm(vnode);
+      oldVnode.el.parentNode.replaceChild(el, oldVnode.el);
+      return el;
+    }
+
+    // 文本的情况，文本我们期望比较一下内容
+    let el = (vnode.el = oldVnode.el); // 复用老节点的元素
+    if (!oldVnode.tag) {
+      if (oldVnode.text !== vnode.text) {
+        el.textContent = vnode.text; // 新文本覆盖老文本
+      }
+    }
+
+    // 标签的情况，比对标签属性
+    patchProps(el, oldVnode.data, vnode.data);
+  }
+
+  return el;
+}
+```
+
+修改 `patchProps` 方法函数，对比标签属性，思路如下：
+
+1. 老属性有新属性没有的，要删除对应老属性
+2. 老样式有新样式没有的，要删除对应老样式
+3. 用新的覆盖老的（即之前的代码）
+
+修改后代码如下：
+
+```js
+function patchProps(el, oldProps, props) {
+  // 老的属性中有新的没有，要删除老的
+  let oldStyles = oldProps.style || {};
+  let newStyles = props.style || {};
+  // 老的样式中有新的吗？没有则删除
+  for (const key in oldStyles) {
+    if (!newStyles[key]) {
+      el.style[key] = "";
+    }
+  }
+
+  // 老的属性中有新的吗？没有则删除
+  for (const key in oldProps) {
+    if (!props[key]) {
+      el.removeAttribute(key);
+    }
+  }
+
+  // 用新的覆盖老的
+  // ...
+}
+```
+
+然后在 `patch` 函数后面继续比对子节点，在比较前需要判断双方是否有子节点，没有则赋值空数组。共有以下几种可能：
+
+1. 双方都有子节点（数组长度大于0）则完整diff 算法比较，比较二者的儿子
+2. 旧节点没有子节点，新节点有，把新节点添加
+3. 旧节点有子节点，新节点没有，直接删除
+
+代码如下：
+
+```js
+function patch(oldVnode, vnode) {
+  // ...
+
+  // 比较儿子节点，比较的时候需要判断双方是否有儿子
+  let oldChildren = oldVnode.children || [];
+  let newChildren = vnode.children || [];
+  if (oldChildren.length > 0 && newChildren.length > 0) {
+    // 完整的diff算法，需要比较二个人的儿子
+    updateChildren(el, oldChildren, newChildren);
+  } else if (newChildren.length > 0) {
+    // 没有老的，有新的
+    mountChildren(el, newChildren);
+  } else if (oldChildren.length > 0) {
+    // 没有新的，有老的，直接删除即可
+    el.innerHTML = "";
+  }
+
+  return el;
+}
+
+// 把新的儿子节点给老的父节点
+function mountChildren(el, newChildren) {
+  for (let i = 0; i < newChildren.length; i++) {
+    const child = newChildren[i];
+    el.appendChild(createElm(child));
+  }
+}
+
+function updateChildren(el, oldChildren, newChildren) {
+  // 针对数组的方法（push、pop、sort、unshift、shift）做优化。Vue2采取双指针，比较两个节点
+  let oldStartIndex = 0;
+  let newStartIndex = 0;
+  let oldEndIndex = oldChildren.length - 1;
+  let newEndIndex = newChildren.length - 1;
+
+  let oldStartVnode = oldChildren[0];
+  let newStartVnode = newChildren[0];
+
+  let oldEndVnode = oldChildren[oldEndIndex];
+  let newEndVnode = newChildren[newEndIndex];
+
+  while (oldStartIndex <= oldEndIndex && newStartIndex <= newEndIndex) {
+    // 双方有一方头指针大于尾部指针，则停止循环（有一方不满足则停止，|| 有一方满足则为true，继续执行）
+  }
+}
+```
+
+接下来判断它们子节点 diff 算法的索引位置，有开始索引和结束索引。
+
+判断新节点的开始索引和新节点的结束索引匹配，旧节点的开始索引和旧节点的结束索引匹配。从两边往中间缩小。
+
+然后判断旧节点开始索引和新节点结束索引，旧节点结束索引和新节点开始索引。
+
+如果新节点的开始索引到最后小于等于新节点的结束索引说明新节点有多的虚拟 DOM，多余的追加进去。
+
+如果旧节点的开始索引到最后小于等于旧节点的结束索引说明旧节点有多的虚拟 DOM，多余的删除。
+
+代码如下：
+
+```js
+function updateChildren(el, oldChildren, newChildren) {
+  // 针对数组的方法（push、pop、sort、unshift、shift）做优化。Vue2采取双指针，比较两个节点
+  let oldStartIndex = 0;
+  let newStartIndex = 0;
+  let oldEndIndex = oldChildren.length - 1;
+  let newEndIndex = newChildren.length - 1;
+
+  let oldStartVnode = oldChildren[0];
+  let newStartVnode = newChildren[0];
+
+  let oldEndVnode = oldChildren[oldEndIndex];
+  let newEndVnode = newChildren[newEndIndex];
+
+  while (oldStartIndex <= oldEndIndex && newStartIndex <= newEndIndex) {
+    // 双方有一方头指针大于尾部指针，则停止循环（有一方不满足则停止，|| 有一方满足则为true，继续执行）
+    if (isSameVnode(oldStartVnode, newStartVnode)) {
+      // 相同节点，递归比较子节点
+      patchVnode(oldStartVnode, newStartVnode);
+      oldStartVnode = oldChildren[++oldStartIndex];
+      newStartVnode = newChildren[++newStartIndex];
+
+      // 比较开头节点
+    } else if (isSameVnode(oldEndVnode, newEndVnode)) {
+      // 相同节点，递归比较子节点
+      patchVnode(oldEndVnode, newEndVnode);
+      oldEndVnode = oldChildren[--oldEndIndex];
+      newEndVnode = newChildren[--newEndIndex];
+
+      // 比较开头节点
+    } else if (isSameVnode(oldEndVnode, newStartVnode)) {
+      // 交叉对比 abcd -> dabc
+      patchVnode(oldEndVnode, newStartVnode);
+      // 将旧的尾部节点移动到旧的头部去。insertBefore具有移动性，会将原来的元素移动走
+      el.insertBefore(oldEndVnode.el, oldStartVnode.el);
+
+      oldEndVnode = oldChildren[--oldEndIndex];
+      newStartVnode = newChildren[++newStartIndex];
+    } else if (isSameVnode(oldStartVnode, newEndVnode)) {
+      // 交叉对比 abcd -> dabc
+      patchVnode(oldStartVnode, newEndVnode);
+      // 将旧的尾部节点移动到旧的头部去。insertBefore具有移动性，会将原来的元素移动走
+      // nextSibling如果没写，则会插入错误，如 abcd -> dcba 时，a会插到d前面
+      el.insertBefore(oldStartVnode.el, oldEndVnode.el.nextSibling);
+
+      oldStartVnode = oldChildren[++oldStartIndex];
+      newEndVnode = newChildren[--newEndIndex];
+    }
+  }
+
+  if (newStartIndex <= newEndIndex) {
+    // 新的多了，多余的插入进去
+    for (let i = newStartIndex; i < newEndIndex; i++) {
+      let childEl = createElm(newChildren[i]);
+
+      // 这里可能向后追加，也有可能是向前添加
+      let anchor = newChildren[newEndIndex + 1]
+        ? newChildren[newEndIndex + 1].el
+        : null;
+      // el.appendChild(childEl);
+      anchor为null是会被认为是appendChild;
+      el.insertBefore(childEl, anchor);
+    }
+  }
+
+  if (oldStartIndex <= oldEndIndex) {
+    // 老的多了，需要删除老的
+    for (let i = oldStartIndex; i < oldEndIndex; i++) {
+      let childEl = oldChildren[i].el;
+      el.removeChild(childEl);
+    }
+  }
+}
+```
+
+
+
