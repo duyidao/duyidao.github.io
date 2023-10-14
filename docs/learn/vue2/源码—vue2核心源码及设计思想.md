@@ -2361,5 +2361,72 @@ function updateChildren(el, oldChildren, newChildren) {
 }
 ```
 
+最后才考虑乱序更新 Diff 算法流程，乱序更新无非三种情况，根据老的列表做映射关系，用新的去寻找。找得到则移动，找不到则添加，多余的就删除。
 
+## 组件
 
+在 Vue2 中，提供了一个 [extend](https://v2.cn.vuejs.org/v2/api/) 方法手动挂载组件，官方文档Demo使用示例代码如下：
+
+```js
+// 创建构造器
+var Profile = Vue.extend({
+  template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
+  data: function () {
+    return {
+      firstName: 'Walter',
+      lastName: 'White',
+      alias: 'Heisenberg'
+    }
+  }
+})
+// 创建 Profile 实例，并挂载到一个元素上。
+new Profile().$mount('#mount-point')
+```
+
+可以看出步骤为：创建组件，`new` 组件实例，最后挂载。
+
+因此需要为 Vue 全局挂载一个 `extend` 方法，该方法是一个函数。示例代码中 `new` 调用了组件实例后调用 `$mount()` 方法挂载，而这个方法在 Vue 原型上，因此可以把 Vue 的原型挂载到 `extend` 下的子类原型上。
+
+代码如下：
+
+```js
+export function initGloablAPI(Vue) {
+  Vue.options = {};
+  Vue.extend = function (options) {
+    function Sub(options = {}) {
+      // 最终使用一个组件 就是new一个实例
+      this._init(options)
+    }
+
+    // 原型复用，方法独立 Sub.prototype.__proto__ === Vue.prototype
+    Sub.prototype = Object.create(Vue.prototype);
+    Sub.prototype.constructor = Sub;
+    Sub.options = options; // 保存用户传递的选项
+
+    return Sub;
+  };
+}
+```
+
+本质上就是创造了一个子类，继承了 Vue 内的原型方法。每一次创建实例，都会 `new Sub` ，初始化子组件，把子组件的选项赋值给 `Sub.options` 上。如果 `data` 是一个对象形式，则会相互影响。
+
+> 注意
+>
+> 第 10 行代码必须要有，因为 `Object.create` 方法会造成一个潜在的 BUG ，继承后方法 `Sub` 原型上的构造器就不是自己的了，因此要指向自己。
+
+在 Vue 中有一个全局 `component` 方法，用于创建组件，因此收集对应的 `id` 和 `definition` ，代码如下：
+
+```js
+Vue.options.components = {}; // 全局指令 Vue.options.directives
+Vue.component = function (id, definition) {
+  // 如果definition是一个函数，说明用户调用了 Vue.extend
+  definition = typeof definition === 'function' ? definition : Vue.extend(definition)
+  Vue.options.components[id] = definition;
+};
+```
+
+接着创建子类的构造函数时，会将全局的组件和自己身上定义的组件进行合并（组件的合并，会先查找自己在查找全局）
+
+然后渲染组件，编译组件的模板变成 `render` 函数，调用 `render` 方法。会根据标签类型来区分是否是组件，如果是组件会创造组件的虚拟节点（组件增加初始化钩子，增加 `componentOption` 选项，稍后创在组件的真实节点。
+
+最后创建真实节点。

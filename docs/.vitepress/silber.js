@@ -339,7 +339,10 @@ function getTalkSidebar() {
               text: "LocalStorage封装",
               link: "/learn/杂技拾谈/JS/LocalStorage封装",
             },
-
+            {
+              text: "windoe.onstorage标签页通信",
+              link: "/learn/杂技拾谈/JS/windoe.onstorage标签页通信",
+            },
             {
               text: "并发任务控制",
               link: "/learn/杂技拾谈/JS/并发任务控制",
@@ -631,6 +634,14 @@ function getDemoSidebar() {
         {
           text: "迅雷下载触发",
           link: "/project/demo/迅雷下载触发",
+        },
+        {
+          text: "resize函数封装",
+          link: "/project/demo/resize函数封装",
+        },
+        {
+          text: "数字转中文",
+          link: "/project/demo/数字转中文",
         },
         {
           text: "拼音标注",
