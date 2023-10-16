@@ -110,6 +110,14 @@ function getLearnCSSLevelSidebar() {
           text: "变量",
           link: "/learn/CSS/效果提升/变量",
         },
+        {
+          text: "文字连续光影特效",
+          link: "/learn/CSS/效果提升/文字连续光影特效",
+        },
+        {
+          text: "filter",
+          link: "/learn/CSS/效果提升/filter",
+        },
         { text: "🗑 返回", link: "/learn/CSS/" },
       ],
     },
