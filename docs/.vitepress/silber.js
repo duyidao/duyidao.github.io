@@ -489,6 +489,10 @@ function getLearnTimeSidebar() {
           text: "时间切片优化项目速度",
           link: "/learn/学而时习之/更上一层楼/时间切片优化项目速度",
         },
+        {
+          text: "页面加载慢排查与解决方案",
+          link: "/learn/学而时习之/更上一层楼/页面加载慢排查与解决方案",
+        },
       ],
     },
     {
