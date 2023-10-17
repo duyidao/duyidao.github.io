@@ -73,23 +73,80 @@ vue最终是通过webpack打包，并且会在 `webpack` 配置文件中编写�
 
 因此编译过后的文件地址和被编译过后的资源文件地址不一致，从而无法正确引入资源。而使用 `require`，返回的就是资源文件被编译后的文件地址，从而可以正确的引入资源。
 
-### 拓展
-静态的引入一张图片，没有使用 `require` ，为什么返回的依然是编译过后的文件地址？
+## 题外话
 
-在 `webpack` 编译的 `vue` 文件的时候，遇见src等属性会默认的使用 `require` 引入资源路径。引用 `vue-cli` 官方的一段原话
+1. 静态的引入一张图片，没有使用 `require` ，为什么返回的依然是编译过后的文件地址？
 
-> 当你在 `JavaScript`、`CSS` 或 `*.vue` 文件中使用相对路径 (必须以 . 开头) 引用一个静态资源时，该资源将会被包含进入 `webpack` 的依赖图中。在其编译过程中，所有诸如 `<img src="...">`、`background: url(...)` 和 `CSS @import` 的资源 `URL` 都会被解析为一个模块依赖。
->
-> 例如，`url(./image.png)` 会被翻译为 `require('./image.png')`，而：
->
-> ```html
-> <img src="./image.png">
-> ```
-> 将会被编译到：
->
-> ```js
-> h('img', { attrs: { src: require('./image.png') }})
-> ```
->
-> 态引入一张图片的时候，src后面的属性值，实际上是一个变量。`webpack` 会根据 `v-bind` 指令去解析src后面的属性值。并不会通过 `reuqire` 引入资源路径。因此需要手动的添加 `require` 。
+   在 `webpack` 编译的 `vue` 文件的时候，遇见src等属性会默认的使用 `require` 引入资源路径。引用 `vue-cli` 官方的一段原话
 
+   > 当你在 `JavaScript`、`CSS` 或 `*.vue` 文件中使用相对路径 (必须以 . 开头) 引用一个静态资源时，该资源将会被包含进入 `webpack` 的依赖图中。在其编译过程中，所有诸如 `<img src="...">`、`background: url(...)` 和 `CSS @import` 的资源 `URL` 都会被解析为一个模块依赖。
+   >
+   > 例如，`url(./image.png)` 会被翻译为 `require('./image.png')`，而：
+   >
+   > ```html
+   > <img src="./image.png">
+   > ```
+   >
+   > 将会被编译到：
+   >
+   > ```js
+   > h('img', { attrs: { src: require('./image.png') }})
+   > ```
+   >
+   > 态引入一张图片的时候，src后面的属性值，实际上是一个变量。`webpack` 会根据 `v-bind` 指令去解析src后面的属性值。并不会通过 `reuqire` 引入资源路径。因此需要手动的添加 `require` 。
+
+2. 如果是 `vite` 创建的项目，以下几种情况可满足自动转换路径：
+
+   1. `css` 的静态路径
+   2. `img` 的 `src` 
+   3. `import()` 语句
+   4. `URL` 
+
+## 业务复现
+
+如何实现鼠标切换图片的显示（图片放在 `src/assets` 文件夹下）？
+
+根据前面的知识积累，可以很快得出直接修改路径是没有效果的，如下：
+
+```js
+const path = ref('')
+const changeImgFn = (e) => {
+    path.value = `./assets/${e}.jpg`
+}
+```
+
+由于打包后的图片路径与其不相符，最终图片无法渲染。
+
+方法一：可以采用 `import()` 方法，代码如下：
+
+```js
+const path = ref('')
+const changeImgFn = (e) => {
+    import(`./assets/${e}.jpg`).then(res => {
+        console.log(res)
+    	path.value = res.default
+    })
+}
+```
+
+该方法回调参数拿到的数据如下图所示：
+
+![打印结果](https://pic.imgdb.cn/item/652e9cfbc458853aef0d1417.jpg)
+
+但是这个方法有一个缺点，它会生成一些 `js` 文件，如果不希望这些文件生成，这个方法不可用。
+
+![生成的js文件](https://pic.imgdb.cn/item/652e9c60c458853aef0bb8b8.jpg)
+
+方法二：通过 JavaScript 内置对象 URL 生成地址，需要传入两个参数，参数一为图片相等路径，参数二是相对的对象。代码如下：
+
+```js
+const path = ref('')
+const changeImgFn = (e) => {
+    const url = new URL(`./assets/${e}.jpg`, import.meta.url)
+    console.log(url)
+}
+```
+
+打印结果如下所示：
+
+![打印结果](https://pic.imgdb.cn/item/652e9eb2c458853aef10f254.jpg)
