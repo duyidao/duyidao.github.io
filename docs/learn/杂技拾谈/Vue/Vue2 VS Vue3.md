@@ -457,6 +457,8 @@ const Component = {
   </script>
   ```
 
+因为改成了组合式 API ，因此没有 `this` 。
+
 ### Diff 算法
 
 Vue2:
@@ -493,6 +495,12 @@ Vue3 发生了改变，使用 proxy 替换 Object.defineProperty，使用 Proxy 
 2. 性能的提升
 3. 监听的目标为对象本身，不需要像 Object.defineProperty 一样遍历每个属性，有一定的性能提升
 4. 可直接实现对象属性的新增/删除
+
+### 组件v-model
+
+在 Vue2 中，组件使用 `v-model` 实际上是为组件动态绑定 `value` ，监听 `chang` 或 `input` 事件。
+
+在 Vue3 中，组件使用 `v-model` 实际上是为组件动态绑定 `modelValue` ，监听 `update:modelValue` 事件。
 
 ## Vite VS Webpack
 
