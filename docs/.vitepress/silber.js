@@ -118,6 +118,10 @@ function getLearnCSSLevelSidebar() {
           text: "filter",
           link: "/learn/CSS/效果提升/filter",
         },
+        {
+          text: "clip-path",
+          link: "/learn/CSS/效果提升/clip-path",
+        },
         { text: "🗑 返回", link: "/learn/CSS/" },
       ],
     },
@@ -650,6 +654,18 @@ function getDemoSidebar() {
         {
           text: "resize函数封装",
           link: "/project/demo/resize函数封装",
+        },
+        {
+          text: "声音的分析和处理",
+          link: "/project/demo/声音的分析和处理",
+        },
+        {
+          text: "网络状态监控",
+          link: "/project/demo/网络状态监控",
+        },
+        {
+          text: "页面自动检测更新",
+          link: "/project/demo/页面自动检测更新",
         },
         {
           text: "数字转中文",
