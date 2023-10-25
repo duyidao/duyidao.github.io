@@ -385,6 +385,14 @@ function getTalkSidebar() {
               text: "$nexttick",
               link: "/learn/杂技拾谈/Vue/$nexttick",
             },
+            {
+              text: "灵活使用冻结对象提升代码效率",
+              link: "/learn/杂技拾谈/Vue/灵活使用冻结对象提升代码效率",
+            },
+            {
+              text: "Vue3组件使用v-model",
+              link: "/learn/杂技拾谈/Vue/Vue3组件使用v-model",
+            },
           ],
         },
         {
