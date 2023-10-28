@@ -23,7 +23,6 @@ export default {
         { text: "灵思", link: "/project/lingsi/" },
         { text: "彩讯", link: "/project/caixun/elk/" },
         { text: "自主学习", link: "/project/myself/" },
-        { text: "功能模块", link: "/project/demo/JavaScript『图片压缩』" },
       ],
     },
   ],
@@ -34,7 +33,6 @@ export default {
   "/project/lingsi/水泥": getShuiniSidebar(),
   "/project/lingsi/music": getMusicSidebar(),
   "/project/lingsi/crm": getCRMSidebar(),
-  "/project/demo": getDemoSidebar(),
   "/project/myself": getMyselfSidebar(),
   "/project/myself/小兔鲜": getMyRabbitSidebar(),
   "/project/myself/硅谷甄选": getMyCowSidebar(),
@@ -84,7 +82,7 @@ function getLearnCSSSidebar() {
       items: [
         { text: "效果提升", link: "/learn/CSS/效果提升/巧用伪类" },
         { text: "知识拓展", link: "/learn/CSS/知识拓展/BEM" },
-        { text: "新的功能", link: "/learn/CSS/新的功能/vmin与vmax" },
+        { text: "你没用过的 CSS API", link: "/learn/CSS/新的功能/vmin与vmax" },
       ],
     },
   ];
@@ -114,14 +112,7 @@ function getLearnCSSLevelSidebar() {
           text: "文字连续光影特效",
           link: "/learn/CSS/效果提升/文字连续光影特效",
         },
-        {
-          text: "filter",
-          link: "/learn/CSS/效果提升/filter",
-        },
-        {
-          text: "clip-path",
-          link: "/learn/CSS/效果提升/clip-path",
-        },
+        
         { text: "🗑 返回", link: "/learn/CSS/" },
       ],
     },
@@ -147,10 +138,19 @@ function getLearnCSSThinkSidebar() {
 function getLearnCSSNewSidebar() {
   return [
     {
-      text: "新的功能",
+      text: "你没用过的 CSS API",
       collapsible: true,
       items: [
+        {
+          text: "filter",
+          link: "/learn/CSS/新的功能/filter",
+        },
+        {
+          text: "clip-path",
+          link: "/learn/CSS/新的功能/clip-path",
+        },
         { text: "vmin与vmax", link: "/learn/CSS/新的功能/vmin与vmax" },
+        { text: "scroll-snap", link: "/learn/CSS/新的功能/scroll-snap" },
         { text: "🗑 返回", link: "/learn/CSS/" },
       ],
     },
@@ -161,7 +161,7 @@ function getLearnCSSNewSidebar() {
 function getLearnJsSidebar() {
   return [
     {
-      text: "Javascript",
+      text: "🖇Javascript 基础知识",
       collapsible: true,
       items: [
         { text: "Javascript", link: "/learn/Javascript/" },
@@ -183,6 +183,65 @@ function getLearnJsSidebar() {
         { text: "Set", link: "/learn/Javascript/set" },
         { text: "Map", link: "/learn/Javascript/map" },
         { text: "Symbol", link: "/learn/Javascript/symbol" },
+      ],
+    },
+    {
+      text: "⚙ Web API",
+      collapsible: true,
+      items: [
+        {
+          text: "JavaScript『图片压缩』",
+          link: "/learn/Javascript/webapi/JavaScript『图片压缩』",
+        },
+        {
+          text: "取色器封装 EyeDropper",
+          link: "/learn/Javascript/webapi/取色器封装",
+        },
+        {
+          text: "网站访问用户文件夹 ShowDirectoryPicker",
+          link: "/learn/Javascript/webapi/网站访问用户文件夹",
+        },
+        {
+          text: "迅雷下载触发",
+          link: "/learn/Javascript/webapi/迅雷下载触发",
+        },
+        {
+          text: "resize函数封装 ResizeObserve",
+          link: "/learn/Javascript/webapi/resize函数封装",
+        },
+        {
+          text: "声音的分析和处理 Audio",
+          link: "/learn/Javascript/webapi/声音的分析和处理",
+        },
+        {
+          text: "网络状态监控 Navigator.connection",
+          link: "/learn/Javascript/webapi/网络状态监控",
+        },
+        {
+          text: "复制粘贴与内容设置 Clipboard",
+          link: "/learn/Javascript/webapi/复制粘贴与内容设置",
+        },
+        {
+          text: "页面自动检测更新",
+          link: "/learn/Javascript/webapi/页面自动检测更新",
+        },
+        {
+          text: "数字转中文",
+          link: "/learn/Javascript/webapi/数字转中文",
+        },
+        {
+          text: "拼音标注",
+          link: "/learn/Javascript/webapi/拼音标注",
+        },
+        {
+          text: "文字转语音播放",
+          link: "/learn/Javascript/webapi/文字转语音播放",
+        },
+        {
+          text: "地图数据展示",
+          link: "/learn/Javascript/webapi/地图数据展示",
+        },
+        { text: "🗑 返回", link: "/project/" },
       ],
     },
   ];
@@ -630,67 +689,6 @@ function getMyselfSidebar() {
         { text: "⛑ 尚医通", link: "/project/myself/尚医通/" },
         { text: "🎎 react后台", link: "/project/myself/react后台/" },
         { text: "📰 知乎日报", link: "/project/myself/知乎日报/react版/" },
-        { text: "🗑 返回", link: "/project/" },
-      ],
-    },
-  ];
-}
-
-// 获取功能模块的数组
-function getDemoSidebar() {
-  return [
-    {
-      text: "⚙ 功能模块",
-      collapsible: true,
-      items: [
-        {
-          text: "JavaScript『图片压缩』",
-          link: "/project/demo/JavaScript『图片压缩』",
-        },
-        {
-          text: "取色器封装",
-          link: "/project/demo/取色器封装",
-        },
-        {
-          text: "网站访问用户文件夹",
-          link: "/project/demo/网站访问用户文件夹",
-        },
-        {
-          text: "迅雷下载触发",
-          link: "/project/demo/迅雷下载触发",
-        },
-        {
-          text: "resize函数封装",
-          link: "/project/demo/resize函数封装",
-        },
-        {
-          text: "声音的分析和处理",
-          link: "/project/demo/声音的分析和处理",
-        },
-        {
-          text: "网络状态监控",
-          link: "/project/demo/网络状态监控",
-        },
-        {
-          text: "页面自动检测更新",
-          link: "/project/demo/页面自动检测更新",
-        },
-        {
-          text: "数字转中文",
-          link: "/project/demo/数字转中文",
-        },
-        {
-          text: "拼音标注",
-          link: "/project/demo/拼音标注",
-        },
-        {
-          text: "文字转语音播放",
-          link: "/project/demo/文字转语音播放",
-        },
-        {
-          text: "地图数据展示",
-          link: "/project/demo/地图数据展示",
-        },
         { text: "🗑 返回", link: "/project/" },
       ],
     },

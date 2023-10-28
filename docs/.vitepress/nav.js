@@ -41,11 +41,6 @@ export default [
       {
         items: [{ text: "自主学习", link: "/project/myself/" }],
       },
-      {
-        items: [
-          { text: "功能模块", link: "/project/demo/JavaScript『图片压缩』" },
-        ],
-      },
     ],
   },
   {
