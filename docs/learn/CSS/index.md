@@ -13,8 +13,8 @@ title CSS
 
   对 `CSS` 模块大牛与技术知识的咨询记录，不断进步。
 
-- [新的功能](/learn/CSS/新的功能/vmin与vmax)
+- [你没用过的 CSS API](/learn/CSS/新的功能/vmin与vmax)
 
-  用 `CSS` 实现各种功能。
+  由于不需要再适配 IE 等原因重现江湖的 CSS 方法，满足特定场景使用。
 
 - 未完待续......

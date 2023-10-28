@@ -152,4 +152,66 @@ clip-path =
 
    实际上就是把四个点的横纵坐标移动一下。这里推荐一下多边形 `clip-path` 的在线样式裁剪网址：[CSS3剪贴路径（Clip-path）在线生成器工具](http://tools.jb51.net/code/css3path) 。
 
-2. 
+2. 眨眼效果，效果如下：
+
+   ![眨眼](https://pic.imgdb.cn/item/653c9736c458853aefb511ee.gif)
+
+   该效果主要实现的原理是动画搭配椭圆裁剪实现。设置动画，在不同的关键帧定义不同的椭圆半径，代码如下：
+
+   ```css
+   @keyframes wink {
+       15% {
+           clip-path: ellipse(50% 1% at 50% 50%);
+       }
+       30% {
+           clip-path: ellipse(50% 19% at 50% 50%);
+       }
+       45% {
+           clip-path: ellipse(50% 1% at 50% 50%);
+       }
+       70% {
+           clip-path: ellipse(50% 40% at 50% 50%);
+       }
+   }
+   ```
+
+3. 文字下落，效果如下：
+
+   ![文字下落](https://pic.imgdb.cn/item/653c9888c458853aefbb0b30.gif)
+
+   该效果的本质是通过矩形的裁剪实现，原理如下：
+
+   一个矩形动画开始时其上方裁剪 100% 的区域，此时它是一条线，无法显示内容；然后动画结束时把上方裁剪的区域恢复为 0% ，这样文字就能从下往上显示。
+
+   想要实现从下往上只需要给起始动画设置 Y 轴的偏移量为 100% 即可。代码如下：
+
+   ```css
+   @keyframes fall {
+       0% {
+           clip-path: inset(100% 0% 0% 0%);
+           transform: translateY(-100%);
+       }
+       100% {
+           clip-path: inset(0% 0% 0% 0%);
+       }
+   }
+   ```
+
+4. 水平位移，效果如下：
+
+   ![位移](https://pic.imgdb.cn/item/653c9bdec458853aefccf485.gif)
+
+   该效果实际上是通过多边形裁剪实现，鼠标移出时不渲染该部分内容，鼠标移入时再显示。代码如下：
+
+   ```html
+   <style>
+       .img-box img:nth-child(2) {
+           clip-path: polygon(-30% 0, -30% 0, 0% 50%, -30% 100%, -30% 100%);
+       }
+       .img-box:hover img:nth-child(2) {
+           clip-path: polygon(-30% 0, 100% 0, 110% 50%, 100% 100%, -30% 100%);
+       }
+   </style>
+   ```
+
+   
