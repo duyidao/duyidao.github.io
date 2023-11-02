@@ -14,7 +14,8 @@ export default {
   "/learn/Git": getLearnGitSidebar(),
   "/learn/杂技拾谈": getTalkSidebar(),
   "/learn/学而时习之": getLearnTimeSidebar(),
-  "/learn/面试鸭": getLearnWatchSidebar(),
+  "/面试鸭/面试典": getDianSidebar(),
+  "/面试鸭/面试问": getAskSidebar(),
   "/help": getHelpSidebar(),
   "/project": [
     {
@@ -112,7 +113,7 @@ function getLearnCSSLevelSidebar() {
           text: "文字连续光影特效",
           link: "/learn/CSS/效果提升/文字连续光影特效",
         },
-        
+
         { text: "🗑 返回", link: "/learn/CSS/" },
       ],
     },
@@ -584,24 +585,47 @@ function getLearnTimeSidebar() {
 }
 
 // 获取面试鸭的数组
-function getLearnWatchSidebar() {
+function getDianSidebar() {
   return [
     {
-      text: "🦆 面试鸭",
+      text: "📔 面试典",
       collapsible: true,
       items: [
         {
           text: "(a==1&&a==2&&a==3)",
-          link: "/learn/面试鸭/(a==1&&a==2&&a==3)",
+          link: "/面试鸭/面试典/(a==1&&a==2&&a==3)",
         },
-        { text: "数组方法手写原理", link: "/learn/面试鸭/数组方法手写原理" },
+        {
+          text: "数组方法手写原理",
+          link: "/面试鸭/面试典/数组方法手写原理",
+        },
         {
           text: "关于forEach使用break跳出循环",
-          link: "/learn/面试鸭/关于forEach使用break跳出循环",
+          link: "/面试鸭/面试典/关于forEach使用break跳出循环",
         },
-        { text: "手写封装AJAX", link: "/learn/面试鸭/手写封装AJAX" },
-        { text: "数组去重", link: "/learn/面试鸭/数组去重" },
-        { text: "js执行顺序", link: "/learn/面试鸭/js执行顺序" },
+        { text: "手写封装AJAX", link: "/面试鸭/面试典/手写封装AJAX" },
+        { text: "数组去重", link: "/面试鸭/面试典/数组去重" },
+        { text: "js执行顺序", link: "/面试鸭/面试典/js执行顺序" },
+      ],
+    },
+  ];
+}
+
+// 获取面试鸭的数组
+function getAskSidebar() {
+  return [
+    {
+      text: "👨‍⚖️ 面试问",
+      collapsible: true,
+      items: [
+        {
+          text: "面试历程",
+          link: "/面试鸭/面试问/index",
+        },
+        {
+          text: "印萌",
+          link: "/面试鸭/面试问/印萌",
+        },
       ],
     },
   ];
