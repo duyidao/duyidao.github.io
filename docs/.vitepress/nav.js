@@ -34,7 +34,7 @@ export default [
     text: "💾 项目或功能模块",
     items: [
       { text: "灵思", link: "/project/lingsi/" },
-      { text: "彩讯", link: "/project/caixun/elk/" },
+      { text: "百度外包", link: "/project/baidu/" },
       {
         items: [{ text: "自主学习", link: "/project/myself/" }],
       },
