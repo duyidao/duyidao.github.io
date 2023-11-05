@@ -7,7 +7,7 @@ title 项目或功能模块
 ## 真实项目
 
 - [灵思](/project/lingsi/)
-- [彩讯](/project/caixun/elk/)
+- [百度外包](/project/baidu/)
 
 ## 网上学习
 
