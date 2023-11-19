@@ -139,33 +139,8 @@ import{_ as s,o as n,c as a,Q as l}from"./chunks/framework.2ee92742.js";const u=
 <span class="line"><span style="color:#E1E4E8;">        items: [</span></span>
 <span class="line"><span style="color:#E1E4E8;">          { text: </span><span style="color:#9ECBFF;">&quot;🟧 HTML&quot;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&quot;/learn/HTML/&quot;</span><span style="color:#E1E4E8;"> },</span></span>
 <span class="line"><span style="color:#E1E4E8;">          { text: </span><span style="color:#9ECBFF;">&quot;🟥 CSS&quot;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&quot;/learn/CSS/&quot;</span><span style="color:#E1E4E8;"> },</span></span>
-<span class="line"><span style="color:#E1E4E8;">          { text: </span><span style="color:#9ECBFF;">&quot;🟨 JavaScript&quot;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&quot;/learn/JavaScript/&quot;</span><span style="color:#E1E4E8;"> },</span></span>
-<span class="line"><span style="color:#E1E4E8;">          { text: </span><span style="color:#9ECBFF;">&quot;🟦 TypeScript&quot;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&quot;/learn/TypeScript/&quot;</span><span style="color:#E1E4E8;"> },</span></span>
-<span class="line"><span style="color:#E1E4E8;">          { text: </span><span style="color:#9ECBFF;">&quot;🟩 Vue&quot;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&quot;/learn/Vue/&quot;</span><span style="color:#E1E4E8;"> }</span></span>
 <span class="line"><span style="color:#E1E4E8;">        ],</span></span>
 <span class="line"><span style="color:#E1E4E8;">      },</span></span>
-<span class="line"><span style="color:#E1E4E8;">      {</span></span>
-<span class="line"><span style="color:#E1E4E8;">        text: </span><span style="color:#9ECBFF;">&quot;📖 项目总结&quot;</span><span style="color:#E1E4E8;">,</span></span>
-<span class="line"><span style="color:#E1E4E8;">        items: [</span></span>
-<span class="line"><span style="color:#E1E4E8;">          { text: </span><span style="color:#9ECBFF;">&quot;🎶 音果云音&quot;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&quot;/project/Music/&quot;</span><span style="color:#E1E4E8;"> },</span></span>
-<span class="line"><span style="color:#E1E4E8;">          { text: </span><span style="color:#9ECBFF;">&quot;🛒 视频分销&quot;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&quot;/project/Sale/&quot;</span><span style="color:#E1E4E8;"> },</span></span>
-<span class="line"><span style="color:#E1E4E8;">          {</span></span>
-<span class="line"><span style="color:#E1E4E8;">            text: </span><span style="color:#9ECBFF;">&quot;🔎 CRM&quot;</span><span style="color:#E1E4E8;">,</span></span>
-<span class="line"><span style="color:#E1E4E8;">            link: </span><span style="color:#9ECBFF;">&quot;/project/CRM/&quot;</span><span style="color:#E1E4E8;">,</span></span>
-<span class="line"><span style="color:#E1E4E8;">          },</span></span>
-<span class="line"><span style="color:#E1E4E8;">        ],</span></span>
-<span class="line"><span style="color:#E1E4E8;">      },</span></span>
-<span class="line"><span style="color:#E1E4E8;">      {</span></span>
-<span class="line"><span style="color:#E1E4E8;">        text: </span><span style="color:#9ECBFF;">&quot;🧊 部署&quot;</span><span style="color:#E1E4E8;">,</span></span>
-<span class="line"><span style="color:#E1E4E8;">        items: [{ text: </span><span style="color:#9ECBFF;">&quot;🌩️ VitePress&quot;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&quot;/vitePress/&quot;</span><span style="color:#E1E4E8;"> }],</span></span>
-<span class="line"><span style="color:#E1E4E8;">      },</span></span>
-<span class="line"><span style="color:#E1E4E8;">      {</span></span>
-<span class="line"><span style="color:#E1E4E8;">        text: </span><span style="color:#9ECBFF;">&quot;⭐ 关于&quot;</span><span style="color:#E1E4E8;">,</span></span>
-<span class="line"><span style="color:#E1E4E8;">        items: [</span></span>
-<span class="line"><span style="color:#E1E4E8;">          { text: </span><span style="color:#9ECBFF;">&quot;⭐ 关于我&quot;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&quot;/about/&quot;</span><span style="color:#E1E4E8;"> },</span></span>
-<span class="line"><span style="color:#E1E4E8;">          { text: </span><span style="color:#9ECBFF;">&quot;🔪 关于刀刀小站&quot;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&quot;/about/blog&quot;</span><span style="color:#E1E4E8;"> }</span></span>
-<span class="line"><span style="color:#E1E4E8;">        ],</span></span>
-<span class="line"><span style="color:#E1E4E8;">      }</span></span>
 <span class="line"><span style="color:#E1E4E8;">    ],</span></span>
 <span class="line"><span style="color:#E1E4E8;">    </span><span style="color:#6A737D;">// 左侧导航栏</span></span>
 <span class="line"><span style="color:#E1E4E8;">    sidebar: {</span></span>
@@ -203,56 +178,6 @@ import{_ as s,o as n,c as a,Q as l}from"./chunks/framework.2ee92742.js";const u=
 <span class="line"><span style="color:#E1E4E8;">        { text: </span><span style="color:#9ECBFF;">&#39;进阶&#39;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&#39;/learn/CSS/advanced&#39;</span><span style="color:#E1E4E8;"> },</span></span>
 <span class="line"><span style="color:#E1E4E8;">      ]</span></span>
 <span class="line"><span style="color:#E1E4E8;">    },</span></span>
-<span class="line"><span style="color:#E1E4E8;">    {</span></span>
-<span class="line"><span style="color:#E1E4E8;">      text: </span><span style="color:#9ECBFF;">&#39;Javascript&#39;</span><span style="color:#E1E4E8;">,</span></span>
-<span class="line"><span style="color:#E1E4E8;">      collapsible: </span><span style="color:#79B8FF;">true</span><span style="color:#E1E4E8;">,</span></span>
-<span class="line"><span style="color:#E1E4E8;">      items: [</span></span>
-<span class="line"><span style="color:#E1E4E8;">        { text: </span><span style="color:#9ECBFF;">&#39;基础&#39;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&#39;/learn/Javascript/&#39;</span><span style="color:#E1E4E8;"> },</span></span>
-<span class="line"><span style="color:#E1E4E8;">        { text: </span><span style="color:#9ECBFF;">&#39;进阶&#39;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&#39;/learn/Javascript/advanced&#39;</span><span style="color:#E1E4E8;"> },</span></span>
-<span class="line"><span style="color:#E1E4E8;">      ]</span></span>
-<span class="line"><span style="color:#E1E4E8;">    },</span></span>
-<span class="line"><span style="color:#E1E4E8;">    {</span></span>
-<span class="line"><span style="color:#E1E4E8;">      text: </span><span style="color:#9ECBFF;">&#39;Vue&#39;</span><span style="color:#E1E4E8;">,</span></span>
-<span class="line"><span style="color:#E1E4E8;">      collapsible: </span><span style="color:#79B8FF;">true</span><span style="color:#E1E4E8;">,</span></span>
-<span class="line"><span style="color:#E1E4E8;">      items: [</span></span>
-<span class="line"><span style="color:#E1E4E8;">        { text: </span><span style="color:#9ECBFF;">&#39;基础&#39;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&#39;/learn/Vue/&#39;</span><span style="color:#E1E4E8;"> },</span></span>
-<span class="line"><span style="color:#E1E4E8;">        { text: </span><span style="color:#9ECBFF;">&#39;进阶&#39;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&#39;/learn/Vue/advanced&#39;</span><span style="color:#E1E4E8;"> },</span></span>
-<span class="line"><span style="color:#E1E4E8;">      ]</span></span>
-<span class="line"><span style="color:#E1E4E8;">    }</span></span>
-<span class="line"><span style="color:#E1E4E8;">  ]</span></span>
-<span class="line"><span style="color:#E1E4E8;">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#6A737D;">// 获取项目的数组</span></span>
-<span class="line"><span style="color:#F97583;">function</span><span style="color:#E1E4E8;"> </span><span style="color:#B392F0;">getProjectSidebar</span><span style="color:#E1E4E8;">() {</span></span>
-<span class="line"><span style="color:#E1E4E8;">  </span><span style="color:#F97583;">return</span><span style="color:#E1E4E8;"> [</span></span>
-<span class="line"><span style="color:#E1E4E8;">    {</span></span>
-<span class="line"><span style="color:#E1E4E8;">      text: </span><span style="color:#9ECBFF;">&quot;📖 项目笔记&quot;</span><span style="color:#E1E4E8;">,</span></span>
-<span class="line"><span style="color:#E1E4E8;">      collapsible: </span><span style="color:#79B8FF;">true</span><span style="color:#E1E4E8;">,</span></span>
-<span class="line"><span style="color:#E1E4E8;">      items: [</span></span>
-<span class="line"><span style="color:#E1E4E8;">        { text: </span><span style="color:#9ECBFF;">&quot;🎶 音果云音&quot;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&quot;/project/Music/&quot;</span><span style="color:#E1E4E8;"> },</span></span>
-<span class="line"><span style="color:#E1E4E8;">        { text: </span><span style="color:#9ECBFF;">&quot;🛒 视频分销&quot;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&quot;/project/Sale/&quot;</span><span style="color:#E1E4E8;"> },</span></span>
-<span class="line"><span style="color:#E1E4E8;">        {</span></span>
-<span class="line"><span style="color:#E1E4E8;">          text: </span><span style="color:#9ECBFF;">&quot;🔎 CRM&quot;</span><span style="color:#E1E4E8;">,</span></span>
-<span class="line"><span style="color:#E1E4E8;">          link: </span><span style="color:#9ECBFF;">&quot;/project/CRM/&quot;</span><span style="color:#E1E4E8;">,</span></span>
-<span class="line"><span style="color:#E1E4E8;">        },</span></span>
-<span class="line"><span style="color:#E1E4E8;">      ],</span></span>
-<span class="line"><span style="color:#E1E4E8;">    }</span></span>
-<span class="line"><span style="color:#E1E4E8;">  ]</span></span>
-<span class="line"><span style="color:#E1E4E8;">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#6A737D;">// 获取vitePress部署的数组</span></span>
-<span class="line"><span style="color:#F97583;">function</span><span style="color:#E1E4E8;"> </span><span style="color:#B392F0;">getVitePressSidebar</span><span style="color:#E1E4E8;">() {</span></span>
-<span class="line"><span style="color:#E1E4E8;">  </span><span style="color:#F97583;">return</span><span style="color:#E1E4E8;"> [</span></span>
-<span class="line"><span style="color:#E1E4E8;">    {</span></span>
-<span class="line"><span style="color:#E1E4E8;">      text: </span><span style="color:#9ECBFF;">&#39;🧊 部署&#39;</span><span style="color:#E1E4E8;">,</span></span>
-<span class="line"><span style="color:#E1E4E8;">      collapsible: </span><span style="color:#79B8FF;">true</span><span style="color:#E1E4E8;">,</span></span>
-<span class="line"><span style="color:#E1E4E8;">      items: [</span></span>
-<span class="line"><span style="color:#E1E4E8;">        { text: </span><span style="color:#9ECBFF;">&quot;🌩️ 引言&quot;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&quot;/vitePress/&quot;</span><span style="color:#E1E4E8;"> },</span></span>
-<span class="line"><span style="color:#E1E4E8;">        { text: </span><span style="color:#9ECBFF;">&quot;🧩 搭建&quot;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&quot;/vitePress/Dev&quot;</span><span style="color:#E1E4E8;"> },</span></span>
-<span class="line"><span style="color:#E1E4E8;">        { text: </span><span style="color:#9ECBFF;">&quot;🎁 打包&quot;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&quot;/vitePress/Build&quot;</span><span style="color:#E1E4E8;"> },</span></span>
-<span class="line"><span style="color:#E1E4E8;">        { text: </span><span style="color:#9ECBFF;">&quot;⏳ 部署&quot;</span><span style="color:#E1E4E8;">, link: </span><span style="color:#9ECBFF;">&quot;/vitePress/Deploy&quot;</span><span style="color:#E1E4E8;"> },</span></span>
-<span class="line"><span style="color:#E1E4E8;">      ]</span></span>
-<span class="line"><span style="color:#E1E4E8;">    }</span></span>
 <span class="line"><span style="color:#E1E4E8;">  ]</span></span>
 <span class="line"><span style="color:#E1E4E8;">}</span></span></code></pre><pre class="shiki github-light vp-code-light"><code><span class="line"><span style="color:#005CC5;">module</span><span style="color:#24292E;">.</span><span style="color:#005CC5;">exports</span><span style="color:#24292E;"> </span><span style="color:#D73A49;">=</span><span style="color:#24292E;"> {</span></span>
 <span class="line"><span style="color:#24292E;">  </span><span style="color:#6A737D;">// 网站标题</span></span>
@@ -291,33 +216,8 @@ import{_ as s,o as n,c as a,Q as l}from"./chunks/framework.2ee92742.js";const u=
 <span class="line"><span style="color:#24292E;">        items: [</span></span>
 <span class="line"><span style="color:#24292E;">          { text: </span><span style="color:#032F62;">&quot;🟧 HTML&quot;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&quot;/learn/HTML/&quot;</span><span style="color:#24292E;"> },</span></span>
 <span class="line"><span style="color:#24292E;">          { text: </span><span style="color:#032F62;">&quot;🟥 CSS&quot;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&quot;/learn/CSS/&quot;</span><span style="color:#24292E;"> },</span></span>
-<span class="line"><span style="color:#24292E;">          { text: </span><span style="color:#032F62;">&quot;🟨 JavaScript&quot;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&quot;/learn/JavaScript/&quot;</span><span style="color:#24292E;"> },</span></span>
-<span class="line"><span style="color:#24292E;">          { text: </span><span style="color:#032F62;">&quot;🟦 TypeScript&quot;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&quot;/learn/TypeScript/&quot;</span><span style="color:#24292E;"> },</span></span>
-<span class="line"><span style="color:#24292E;">          { text: </span><span style="color:#032F62;">&quot;🟩 Vue&quot;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&quot;/learn/Vue/&quot;</span><span style="color:#24292E;"> }</span></span>
 <span class="line"><span style="color:#24292E;">        ],</span></span>
 <span class="line"><span style="color:#24292E;">      },</span></span>
-<span class="line"><span style="color:#24292E;">      {</span></span>
-<span class="line"><span style="color:#24292E;">        text: </span><span style="color:#032F62;">&quot;📖 项目总结&quot;</span><span style="color:#24292E;">,</span></span>
-<span class="line"><span style="color:#24292E;">        items: [</span></span>
-<span class="line"><span style="color:#24292E;">          { text: </span><span style="color:#032F62;">&quot;🎶 音果云音&quot;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&quot;/project/Music/&quot;</span><span style="color:#24292E;"> },</span></span>
-<span class="line"><span style="color:#24292E;">          { text: </span><span style="color:#032F62;">&quot;🛒 视频分销&quot;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&quot;/project/Sale/&quot;</span><span style="color:#24292E;"> },</span></span>
-<span class="line"><span style="color:#24292E;">          {</span></span>
-<span class="line"><span style="color:#24292E;">            text: </span><span style="color:#032F62;">&quot;🔎 CRM&quot;</span><span style="color:#24292E;">,</span></span>
-<span class="line"><span style="color:#24292E;">            link: </span><span style="color:#032F62;">&quot;/project/CRM/&quot;</span><span style="color:#24292E;">,</span></span>
-<span class="line"><span style="color:#24292E;">          },</span></span>
-<span class="line"><span style="color:#24292E;">        ],</span></span>
-<span class="line"><span style="color:#24292E;">      },</span></span>
-<span class="line"><span style="color:#24292E;">      {</span></span>
-<span class="line"><span style="color:#24292E;">        text: </span><span style="color:#032F62;">&quot;🧊 部署&quot;</span><span style="color:#24292E;">,</span></span>
-<span class="line"><span style="color:#24292E;">        items: [{ text: </span><span style="color:#032F62;">&quot;🌩️ VitePress&quot;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&quot;/vitePress/&quot;</span><span style="color:#24292E;"> }],</span></span>
-<span class="line"><span style="color:#24292E;">      },</span></span>
-<span class="line"><span style="color:#24292E;">      {</span></span>
-<span class="line"><span style="color:#24292E;">        text: </span><span style="color:#032F62;">&quot;⭐ 关于&quot;</span><span style="color:#24292E;">,</span></span>
-<span class="line"><span style="color:#24292E;">        items: [</span></span>
-<span class="line"><span style="color:#24292E;">          { text: </span><span style="color:#032F62;">&quot;⭐ 关于我&quot;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&quot;/about/&quot;</span><span style="color:#24292E;"> },</span></span>
-<span class="line"><span style="color:#24292E;">          { text: </span><span style="color:#032F62;">&quot;🔪 关于刀刀小站&quot;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&quot;/about/blog&quot;</span><span style="color:#24292E;"> }</span></span>
-<span class="line"><span style="color:#24292E;">        ],</span></span>
-<span class="line"><span style="color:#24292E;">      }</span></span>
 <span class="line"><span style="color:#24292E;">    ],</span></span>
 <span class="line"><span style="color:#24292E;">    </span><span style="color:#6A737D;">// 左侧导航栏</span></span>
 <span class="line"><span style="color:#24292E;">    sidebar: {</span></span>
@@ -355,56 +255,6 @@ import{_ as s,o as n,c as a,Q as l}from"./chunks/framework.2ee92742.js";const u=
 <span class="line"><span style="color:#24292E;">        { text: </span><span style="color:#032F62;">&#39;进阶&#39;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&#39;/learn/CSS/advanced&#39;</span><span style="color:#24292E;"> },</span></span>
 <span class="line"><span style="color:#24292E;">      ]</span></span>
 <span class="line"><span style="color:#24292E;">    },</span></span>
-<span class="line"><span style="color:#24292E;">    {</span></span>
-<span class="line"><span style="color:#24292E;">      text: </span><span style="color:#032F62;">&#39;Javascript&#39;</span><span style="color:#24292E;">,</span></span>
-<span class="line"><span style="color:#24292E;">      collapsible: </span><span style="color:#005CC5;">true</span><span style="color:#24292E;">,</span></span>
-<span class="line"><span style="color:#24292E;">      items: [</span></span>
-<span class="line"><span style="color:#24292E;">        { text: </span><span style="color:#032F62;">&#39;基础&#39;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&#39;/learn/Javascript/&#39;</span><span style="color:#24292E;"> },</span></span>
-<span class="line"><span style="color:#24292E;">        { text: </span><span style="color:#032F62;">&#39;进阶&#39;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&#39;/learn/Javascript/advanced&#39;</span><span style="color:#24292E;"> },</span></span>
-<span class="line"><span style="color:#24292E;">      ]</span></span>
-<span class="line"><span style="color:#24292E;">    },</span></span>
-<span class="line"><span style="color:#24292E;">    {</span></span>
-<span class="line"><span style="color:#24292E;">      text: </span><span style="color:#032F62;">&#39;Vue&#39;</span><span style="color:#24292E;">,</span></span>
-<span class="line"><span style="color:#24292E;">      collapsible: </span><span style="color:#005CC5;">true</span><span style="color:#24292E;">,</span></span>
-<span class="line"><span style="color:#24292E;">      items: [</span></span>
-<span class="line"><span style="color:#24292E;">        { text: </span><span style="color:#032F62;">&#39;基础&#39;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&#39;/learn/Vue/&#39;</span><span style="color:#24292E;"> },</span></span>
-<span class="line"><span style="color:#24292E;">        { text: </span><span style="color:#032F62;">&#39;进阶&#39;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&#39;/learn/Vue/advanced&#39;</span><span style="color:#24292E;"> },</span></span>
-<span class="line"><span style="color:#24292E;">      ]</span></span>
-<span class="line"><span style="color:#24292E;">    }</span></span>
-<span class="line"><span style="color:#24292E;">  ]</span></span>
-<span class="line"><span style="color:#24292E;">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#6A737D;">// 获取项目的数组</span></span>
-<span class="line"><span style="color:#D73A49;">function</span><span style="color:#24292E;"> </span><span style="color:#6F42C1;">getProjectSidebar</span><span style="color:#24292E;">() {</span></span>
-<span class="line"><span style="color:#24292E;">  </span><span style="color:#D73A49;">return</span><span style="color:#24292E;"> [</span></span>
-<span class="line"><span style="color:#24292E;">    {</span></span>
-<span class="line"><span style="color:#24292E;">      text: </span><span style="color:#032F62;">&quot;📖 项目笔记&quot;</span><span style="color:#24292E;">,</span></span>
-<span class="line"><span style="color:#24292E;">      collapsible: </span><span style="color:#005CC5;">true</span><span style="color:#24292E;">,</span></span>
-<span class="line"><span style="color:#24292E;">      items: [</span></span>
-<span class="line"><span style="color:#24292E;">        { text: </span><span style="color:#032F62;">&quot;🎶 音果云音&quot;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&quot;/project/Music/&quot;</span><span style="color:#24292E;"> },</span></span>
-<span class="line"><span style="color:#24292E;">        { text: </span><span style="color:#032F62;">&quot;🛒 视频分销&quot;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&quot;/project/Sale/&quot;</span><span style="color:#24292E;"> },</span></span>
-<span class="line"><span style="color:#24292E;">        {</span></span>
-<span class="line"><span style="color:#24292E;">          text: </span><span style="color:#032F62;">&quot;🔎 CRM&quot;</span><span style="color:#24292E;">,</span></span>
-<span class="line"><span style="color:#24292E;">          link: </span><span style="color:#032F62;">&quot;/project/CRM/&quot;</span><span style="color:#24292E;">,</span></span>
-<span class="line"><span style="color:#24292E;">        },</span></span>
-<span class="line"><span style="color:#24292E;">      ],</span></span>
-<span class="line"><span style="color:#24292E;">    }</span></span>
-<span class="line"><span style="color:#24292E;">  ]</span></span>
-<span class="line"><span style="color:#24292E;">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#6A737D;">// 获取vitePress部署的数组</span></span>
-<span class="line"><span style="color:#D73A49;">function</span><span style="color:#24292E;"> </span><span style="color:#6F42C1;">getVitePressSidebar</span><span style="color:#24292E;">() {</span></span>
-<span class="line"><span style="color:#24292E;">  </span><span style="color:#D73A49;">return</span><span style="color:#24292E;"> [</span></span>
-<span class="line"><span style="color:#24292E;">    {</span></span>
-<span class="line"><span style="color:#24292E;">      text: </span><span style="color:#032F62;">&#39;🧊 部署&#39;</span><span style="color:#24292E;">,</span></span>
-<span class="line"><span style="color:#24292E;">      collapsible: </span><span style="color:#005CC5;">true</span><span style="color:#24292E;">,</span></span>
-<span class="line"><span style="color:#24292E;">      items: [</span></span>
-<span class="line"><span style="color:#24292E;">        { text: </span><span style="color:#032F62;">&quot;🌩️ 引言&quot;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&quot;/vitePress/&quot;</span><span style="color:#24292E;"> },</span></span>
-<span class="line"><span style="color:#24292E;">        { text: </span><span style="color:#032F62;">&quot;🧩 搭建&quot;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&quot;/vitePress/Dev&quot;</span><span style="color:#24292E;"> },</span></span>
-<span class="line"><span style="color:#24292E;">        { text: </span><span style="color:#032F62;">&quot;🎁 打包&quot;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&quot;/vitePress/Build&quot;</span><span style="color:#24292E;"> },</span></span>
-<span class="line"><span style="color:#24292E;">        { text: </span><span style="color:#032F62;">&quot;⏳ 部署&quot;</span><span style="color:#24292E;">, link: </span><span style="color:#032F62;">&quot;/vitePress/Deploy&quot;</span><span style="color:#24292E;"> },</span></span>
-<span class="line"><span style="color:#24292E;">      ]</span></span>
-<span class="line"><span style="color:#24292E;">    }</span></span>
 <span class="line"><span style="color:#24292E;">  ]</span></span>
 <span class="line"><span style="color:#24292E;">}</span></span></code></pre></div><h3 id="基础建设" tabindex="-1">基础建设 <a class="header-anchor" href="#基础建设" aria-label="Permalink to &quot;基础建设&quot;">​</a></h3><p><code>config.js</code> 是博客的配置文件，需要导出一个对象。</p><p>其中：</p><ul><li><p><code>title</code>：博客网址标题。</p></li><li><p><code>base</code>：项目打包的根路径。这点会在 『部署』 章节详细介绍。</p></li><li><p><code>description</code>：博客网址描述。</p></li><li><p><code>titleTemplate</code>：标题的模板。</p></li><li><p><code>dest</code>：打包的位置，下方代码表示打包在 <code>config.js</code> 文件同级目录的 <code>dist</code> 文件夹下。</p></li><li><p><code>head</code>：网站的头部信息，包括网站ico图标和其他信息。</p><p>下图为打包后的 <code>index.html</code> 文件。 <img src="https://s1.ax1x.com/2023/02/01/pSBM7WR.png" alt="打包后"></p></li></ul><div class="language-js vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">js</span><pre class="shiki github-dark vp-code-dark"><code><span class="line"><span style="color:#79B8FF;">module</span><span style="color:#E1E4E8;">.</span><span style="color:#79B8FF;">exports</span><span style="color:#E1E4E8;"> </span><span style="color:#F97583;">=</span><span style="color:#E1E4E8;"> {</span></span>
 <span class="line"><span style="color:#E1E4E8;">  </span><span style="color:#6A737D;">// 网站标题</span></span>
@@ -730,4 +580,4 @@ import{_ as s,o as n,c as a,Q as l}from"./chunks/framework.2ee92742.js";const u=
 <span class="line"><span style="color:#24292e;">│   ├── HTML </span></span>
 <span class="line"><span style="color:#24292e;">│   │   ├── index.md     /HTML/</span></span>
 <span class="line"><span style="color:#24292e;">│   └── └── advanced.md     /HTML/advanced/</span></span>
-<span class="line"><span style="color:#24292e;">└──</span></span></code></pre></div><h2 id="总结" tabindex="-1">总结 <a class="header-anchor" href="#总结" aria-label="Permalink to &quot;总结&quot;">​</a></h2><p>到目前为止，博客初步搭建工作完成了，总结一下做了哪些内容：</p><ol><li>在 <code>docs/index.md</code> 首页文件中编写博客的首页，包括标题、简介、小言、按钮、专栏等。</li><li>在 <code>docs/.vitepress/config.js</code> 文件中配置博客的标题、介绍、顶部导航、左侧导航等。</li><li>在 <code>docs/.vitepress/theme</code> 文件夹中设置博客样式并导出使用。</li></ol>`,66),e=[o];function t(c,E,r,y,i,F){return n(),a("div",null,e)}const q=s(p,[["render",t]]);export{u as __pageData,q as default};
+<span class="line"><span style="color:#24292e;">└──</span></span></code></pre></div><h2 id="总结" tabindex="-1">总结 <a class="header-anchor" href="#总结" aria-label="Permalink to &quot;总结&quot;">​</a></h2><p>到目前为止，博客初步搭建工作完成了，总结一下做了哪些内容：</p><ol><li>在 <code>docs/index.md</code> 首页文件中编写博客的首页，包括标题、简介、小言、按钮、专栏等。</li><li>在 <code>docs/.vitepress/config.js</code> 文件中配置博客的标题、介绍、顶部导航、左侧导航等。</li><li>在 <code>docs/.vitepress/theme</code> 文件夹中设置博客样式并导出使用。</li></ol>`,66),e=[o];function c(t,r,E,y,i,d){return n(),a("div",null,e)}const C=s(p,[["render",c]]);export{u as __pageData,C as default};
