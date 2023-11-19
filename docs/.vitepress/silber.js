@@ -456,6 +456,17 @@ function getTalkSidebar() {
           ],
         },
         {
+          text: "Echart",
+          collapsible: true,
+          items: [
+            { text: "饼图中间内容自定义", link: "/learn/杂技拾谈/Echart/饼图中间内容自定义" },
+            {
+              text: "图表菜单项自定义",
+              link: "/learn/杂技拾谈/Echart/图表菜单项自定义",
+            },
+          ],
+        },
+        {
           text: "其他分类",
           collapsible: true,
           items: [
