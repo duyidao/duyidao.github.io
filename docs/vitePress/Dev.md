@@ -170,33 +170,8 @@ module.exports = {
         items: [
           { text: "🟧 HTML", link: "/learn/HTML/" },
           { text: "🟥 CSS", link: "/learn/CSS/" },
-          { text: "🟨 JavaScript", link: "/learn/JavaScript/" },
-          { text: "🟦 TypeScript", link: "/learn/TypeScript/" },
-          { text: "🟩 Vue", link: "/learn/Vue/" }
         ],
       },
-      {
-        text: "📖 项目总结",
-        items: [
-          { text: "🎶 音果云音", link: "/project/Music/" },
-          { text: "🛒 视频分销", link: "/project/Sale/" },
-          {
-            text: "🔎 CRM",
-            link: "/project/CRM/",
-          },
-        ],
-      },
-      {
-        text: "🧊 部署",
-        items: [{ text: "🌩️ VitePress", link: "/vitePress/" }],
-      },
-      {
-        text: "⭐ 关于",
-        items: [
-          { text: "⭐ 关于我", link: "/about/" },
-          { text: "🔪 关于刀刀小站", link: "/about/blog" }
-        ],
-      }
     ],
     // 左侧导航栏
     sidebar: {
@@ -234,56 +209,6 @@ function getLearnSidebar() {
         { text: '进阶', link: '/learn/CSS/advanced' },
       ]
     },
-    {
-      text: 'Javascript',
-      collapsible: true,
-      items: [
-        { text: '基础', link: '/learn/Javascript/' },
-        { text: '进阶', link: '/learn/Javascript/advanced' },
-      ]
-    },
-    {
-      text: 'Vue',
-      collapsible: true,
-      items: [
-        { text: '基础', link: '/learn/Vue/' },
-        { text: '进阶', link: '/learn/Vue/advanced' },
-      ]
-    }
-  ]
-}
-
-// 获取项目的数组
-function getProjectSidebar() {
-  return [
-    {
-      text: "📖 项目笔记",
-      collapsible: true,
-      items: [
-        { text: "🎶 音果云音", link: "/project/Music/" },
-        { text: "🛒 视频分销", link: "/project/Sale/" },
-        {
-          text: "🔎 CRM",
-          link: "/project/CRM/",
-        },
-      ],
-    }
-  ]
-}
-
-// 获取vitePress部署的数组
-function getVitePressSidebar() {
-  return [
-    {
-      text: '🧊 部署',
-      collapsible: true,
-      items: [
-        { text: "🌩️ 引言", link: "/vitePress/" },
-        { text: "🧩 搭建", link: "/vitePress/Dev" },
-        { text: "🎁 打包", link: "/vitePress/Build" },
-        { text: "⏳ 部署", link: "/vitePress/Deploy" },
-      ]
-    }
   ]
 }
 ```
