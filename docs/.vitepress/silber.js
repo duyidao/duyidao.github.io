@@ -35,6 +35,7 @@ export default {
   "/project/lingsi/elk": getELKSidebar(),
   "/project/lingsi/crm": getCRMSidebar(),
   "/project/myself": getMyselfSidebar(),
+  "/project/baidu": getBaiduSidebar(),
   "/project/myself/小兔鲜": getMyRabbitSidebar(),
   "/project/myself/硅谷甄选": getMyCowSidebar(),
   "/project/myself/尚医通": getMyDoctorSidebar(),
@@ -464,6 +465,10 @@ function getTalkSidebar() {
               text: "图表菜单项自定义",
               link: "/learn/杂技拾谈/Echart/图表菜单项自定义",
             },
+            {
+              text: "柱状图悬停文本自定义",
+              link: "/learn/杂技拾谈/Echart/柱状图悬停文本自定义",
+            },
           ],
         },
         {
@@ -706,6 +711,20 @@ function getJobSidebar() {
         { text: "微信授权", link: "/project/lingsi/职技网/微信授权" },
         { text: "下载附件", link: "/project/lingsi/职技网/下载附件" },
         { text: "🗑 返回", link: "/project/lingsi/" },
+      ],
+    },
+  ];
+}
+
+// 获取百度的数组
+function getBaiduSidebar() {
+  return [
+    {
+      text: "📕 百度",
+      collapsible: true,
+      items: [
+        { text: "📕 引言", link: "/project/baidu/" },
+        { text: "结构物健康监测图层", link: "/project/baidu/layer/structure" },
       ],
     },
   ];
@@ -998,6 +1017,8 @@ function getAboutSidebar() {
       items: [
         { text: "🧑 关于我", link: "/about/" },
         { text: "🔪 关于刀刀小站", link: "/about/blog" },
+        { text: "关于灵思", link: "/about/lingsi" },
+        { text: "关于百度", link: "/about/baidu" },
       ],
     },
   ];
