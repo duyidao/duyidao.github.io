@@ -41,6 +41,7 @@ export default {
   "/project/myself/尚医通": getMyDoctorSidebar(),
   "/project/myself/react后台": getMyReactBackSidebar(),
   "/project/myself/知乎日报": getMyNewsSidebar(),
+  "/project/myself/优医问诊": getMyDocorAskSidebar(),
   "/vitePress": getVitePressSidebar(),
   "/about": getAboutSidebar(),
 };
@@ -743,6 +744,7 @@ function getMyselfSidebar() {
         { text: "⛑ 尚医通", link: "/project/myself/尚医通/" },
         { text: "🎎 react后台", link: "/project/myself/react后台/" },
         { text: "📰 知乎日报", link: "/project/myself/知乎日报/react版/" },
+        { text: "👨‍⚕️ 优医问诊", link: "/project/myself/优医问诊/" },
         { text: "🗑 返回", link: "/project/" },
       ],
     },
@@ -875,6 +877,22 @@ function getMyNewsSidebar() {
     },
   ];
 }
+
+// 获取知乎日报项目的数组
+function getMyDocorAskSidebar() {
+  return [
+    {
+      text: "👨‍⚕️ 优医问诊",
+      collapsible: true,
+      items: [
+        { text: "项目初始化", link: "/project/myself/优医问诊/" },
+        { text: "登录模块", link: "/project/myself/优医问诊/login" },
+        { text: "🗑 返回", link: "/project/myself/" },
+      ],
+    },
+  ];
+}
+
 
 // 获取水泥数组
 function getShuiniSidebar(params) {
