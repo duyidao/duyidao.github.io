@@ -25,3 +25,7 @@ title 项目模块
 - 知乎日报
 
   React + React-redux + React-router-dom + redux + antd-mobile
+
+- 优医问诊
+  
+  Vue3 + ts + vant + axios + pinia
