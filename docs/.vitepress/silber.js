@@ -878,7 +878,7 @@ function getMyNewsSidebar() {
   ];
 }
 
-// 获取知乎日报项目的数组
+// 获取优医问诊项目的数组
 function getMyDocorAskSidebar() {
   return [
     {
@@ -887,6 +887,7 @@ function getMyDocorAskSidebar() {
       items: [
         { text: "项目初始化", link: "/project/myself/优医问诊/" },
         { text: "登录模块", link: "/project/myself/优医问诊/login" },
+        { text: "用户模块", link: "/project/myself/优医问诊/user" },
         { text: "🗑 返回", link: "/project/myself/" },
       ],
     },
