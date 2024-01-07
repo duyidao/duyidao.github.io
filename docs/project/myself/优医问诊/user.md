@@ -57,3 +57,35 @@ router.afterEach((to) => {
 > 在 Vue3 中，不返回，或者 `return true` 就是放行，可以不是 `next` 函数了
 
 ## TS类型合并与取出、排出
+
+在 typescript 中，会遇到前面声明好了一个类型，和现在需要声明的类型有一部分相同，此时会遇到两种情况：
+
+- 有一部分是需要的。此时需要用到 `Pick` 关键字取出这些属性。代码示例如下：
+
+  ```js
+  type Person = {
+    name: string
+    age: number
+  }
+  type PickPerson = Pick<Person, 'age'>
+  // PickPerson === { age: string }
+  ```
+
+- 有一部分是不需要的。此时需要用到 `Omit` 关键字取出这些属性。代码示例如下：
+
+  ```js
+  type Person = {
+    name: string
+    age: number
+  }
+  type OmitPerson = Omit<Person, 'age'>
+  // OmitPerson === { name: string }
+  ```
+
+## 身份证脱敏处理
+
+身份证脱敏处理：`/^(.{6}).+(.{4})$/`
+
+- 匹配第一个$1 `^(.{6})`
+- `.+` 匹配中间字符
+- 匹配第二个$2 `(.{4})$`
