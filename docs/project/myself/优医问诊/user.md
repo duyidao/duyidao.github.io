@@ -89,3 +89,63 @@ router.afterEach((to) => {
 - 匹配第一个$1 `^(.{6})`
 - `.+` 匹配中间字符
 - 匹配第二个$2 `(.{4})$`
+
+## 公共组件父子数据同步
+
+在 Vue2 中，想要实现父子组件数据同步，无外乎使用以下两种方法：
+
+- `v-model` 语法糖。本质上是子组件通过 `:value="data"` 绑定变量，再通过 `@input="data = $event"` 修改变量
+- `.sync` 修饰符。通过 `v-bind:xxx="msg"` 绑定变量，通过 `$emit('update:xxx', 'newval')` 修改变量
+
+而在 Vue3 中，想要实现父子组件数据同步就轻松很多了，Vue3 舍弃了 `.sync` 修饰符，优化了 `v-model` 语法糖，现在：一个 v-model 指令搞定，不需要记忆两种语法
+
+- vue3 中 `v-model` 语法糖
+
+```vue
+<com-a v-model="count"></com-a>
+<!-- 等价 -->
+<com-a :modelValue="count" @update:modelValue="count=$event"></com-a>
+```
+
+```vue
+<com-a v-model:msg="str"></com-a>
+<!-- 等价 -->
+<com-a :msg="str" @update:msg="str=$event"></com-a>
+```
+
+在子组件中定义好相关方法，如下：
+
+```js
+const emit = defineEmits<{
+  	(e: 'update:modelValue', value: string | number): void
+}>()
+const toggleItem = (value: string | number) => {
+  	// 触发自定义事件把数据给父组件
+  	emit('update:modelValue', value)
+}
+```
+
+总结：
+
+`v-model` 语法糖，拆分写法？
+
+- `:modelValue="count"` 和 `@update:modelValue="count=$event"`
+
+## 计算属性数据绑定
+
+在业务中，是否默认勾选传参给后端的是数值型 0 和 1，而复选框组件绑定的值类型是需要布尔值，因此通过计算属性获取值。
+
+这里使用的是计算属性的 `get` 和 `set` 写法，代码如下：
+
+```js
+// 默认值需要转换
+const defaultFlag = computed({
+  get() {
+    return patient.value.defaultFlag === 1 ? true : false
+  },
+  set(value) {
+    patient.value.defaultFlag = value ? 1 : 0
+  }
+})
+```
+
