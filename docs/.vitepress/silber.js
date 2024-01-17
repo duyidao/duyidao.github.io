@@ -729,7 +729,8 @@ function getBaiduSidebar() {
       collapsible: true,
       items: [
         { text: "📕 引言", link: "/project/baidu/" },
-        { text: "结构物健康监测图层", link: "/project/baidu/layer/structure" },
+        { text: "🗺 图层", link: "/project/baidu/layer" },
+        { text: "🕶️ BUG", link: "/project/baidu/bug" },
       ],
     },
   ];
