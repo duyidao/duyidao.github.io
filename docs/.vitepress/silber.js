@@ -470,6 +470,10 @@ function getTalkSidebar() {
               text: "柱状图悬停文本自定义",
               link: "/learn/杂技拾谈/Echart/柱状图悬停文本自定义",
             },
+            {
+              text: "横向柱状图参数数量设置",
+              link: "/learn/杂技拾谈/Echart/横向柱状图参数数量设置",
+            },
           ],
         },
         {
