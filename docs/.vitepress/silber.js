@@ -131,6 +131,7 @@ function getLearnCSSThinkSidebar() {
       items: [
         { text: "BEM", link: "/learn/CSS/知识拓展/BEM" },
         { text: "空白节点", link: "/learn/CSS/知识拓展/空白节点" },
+        { text: "粘性定位", link: "/learn/CSS/知识拓展/粘性定位" },
         { text: "🗑 返回", link: "/learn/CSS/" },
       ],
     },
