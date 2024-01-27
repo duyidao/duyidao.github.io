@@ -36,6 +36,7 @@ export default {
   "/project/lingsi/crm": getCRMSidebar(),
   "/project/myself": getMyselfSidebar(),
   "/project/baidu": getBaiduSidebar(),
+  "/project/baidu/layer": getLayerSidebar(),
   "/project/myself/小兔鲜": getMyRabbitSidebar(),
   "/project/myself/硅谷甄选": getMyCowSidebar(),
   "/project/myself/尚医通": getMyDoctorSidebar(),
@@ -730,8 +731,26 @@ function getBaiduSidebar() {
       collapsible: true,
       items: [
         { text: "📕 引言", link: "/project/baidu/" },
-        { text: "🗺 图层", link: "/project/baidu/layer" },
-        { text: "🕶️ BUG", link: "/project/baidu/bug" },
+        { text: "🗺 图层", link: "/project/baidu/layer/index" },
+      ],
+    },
+  ];
+}
+
+// 获取图层的数组
+function getLayerSidebar() {
+  return [
+    {
+      text: "🗺 图层",
+      collapsible: true,
+      items: [
+        { text: "💡 介绍", link: "/project/baidu/layer/index" },
+        { text: "📦 封装", link: "/project/baidu/layer/封装" },
+        { text: "⛑️ 规范", link: "/project/baidu/layer/规范" },
+        { text: "🌊 样式", link: "/project/baidu/layer/样式" },
+        { text: "MapVThree", link: "/project/baidu/layer/MapVThree" },
+        { text: "🪜 优化", link: "/project/baidu/layer/优化" },
+        { text: "🕶️ BUG", link: "/project/baidu/layer/bug" },
       ],
     },
   ];
