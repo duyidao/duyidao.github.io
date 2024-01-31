@@ -228,7 +228,7 @@ export const removePathTracker = (name, _engine = engine.value) => {
 
 下面从地图的扎点和视野漫游动画方法入手。
 
-#### 扎点
+### 扎点
 
 根据 UI 图，先来看看扎点的效果，如下图所示：
 
@@ -322,9 +322,6 @@ class LayerManager {
             iconUrl,
             customData,
             bubbleColor,
-            text = '',
-            circleColor = '#fff',
-            circleBorderColor,
             clickCallback,
             size = 'normal',
             status = 'normal',

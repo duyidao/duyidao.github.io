@@ -479,10 +479,17 @@ function getTalkSidebar() {
           ],
         },
         {
+          text: "Promise",
+          collapsible: true,
+          items: [
+            { text: "接口请求", link: "/learn/杂技拾谈/Promise/多接口请求" },
+            { text: "消除异步传染性", link: "/learn/杂技拾谈/Promise/消除异步传染性" },
+          ],
+        },
+        {
           text: "其他分类",
           collapsible: true,
           items: [
-            { text: "接口请求", link: "/learn/杂技拾谈/多接口请求" },
             {
               text: "HBuilder使用模拟器调试",
               link: "/learn/杂技拾谈/HBuilder使用模拟器调试",
@@ -648,6 +655,10 @@ function getAskSidebar() {
         {
           text: "印萌",
           link: "/面试鸭/面试问/印萌",
+        },
+        {
+          text: "百度",
+          link: "/面试鸭/面试问/百度",
         },
       ],
     },
