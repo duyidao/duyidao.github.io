@@ -36,7 +36,7 @@ changeDirection(Direction.Up)
 
 用户输入信息是一步步输入的，因此需要信息全部修改为可选状态。typescript 中 `Required` 转换为全部必须；`Partial` 转换为全部可选  两个内置的泛型类型。
 
-Vue3 hook 变量存储
+## Vue3 hook 变量存储
 
 Vue3 状态管理仓库比起使用 `vuex` ，更推荐使用 `pinia` 。通过 hook 的思想导出变量和方法供外部使用。示例代码如下：
 
@@ -96,7 +96,61 @@ export const useConsultStore = defineStore(
 )
 ```
 
+## websocket
 
+如何使用客户端js库?
+
+```bash
+pnpm add socket.io-client
+```
+
+如何建立连接？
+
+```js
+import io from 'socket.io-client'
+// 参数1：不传默认是当前服务域名，开发中传入服务器地址
+// 参数2：配置参数，根据需要再来介绍
+const socket = io()
+```
+
+如何确定连接成功？
+
+```js
+socket.on('connect', () => {
+  // 建立连接成功
+})
+```
+
+如何发送消息？
+
+```js
+// chat message 发送消息事件，由后台约定，可变
+socket.emit('chat message', '消息内容')
+```
+
+如何接收消息？
+
+```js
+// chat message 接收消息事件，由后台约定，可变
+socket.on('chat message', (ev) => {
+  // ev 是服务器发送的消息
+})
+```
+
+如何关闭连接？
+
+```js
+// 离开组件需要使用
+socket.close()
+```
+
+小结：`sockt.io` 在前端使用的js库需要知道哪些内容？
+
+- 如何建立链接 `io('地址')`
+- 连接成功的事件 `connect`
+- 如何发消息 `emit` + 事件
+- 如何收消息 `on` + 事件
+- 如果关闭连接 `close()`
 
 
 

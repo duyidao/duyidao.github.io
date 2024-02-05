@@ -52,6 +52,10 @@ export default [
     items: [{ text: "🌩️ VitePress", link: "/vitePress/" }],
   },
   {
+    text: "📖 阅读",
+    items: [{ text: "🔒 索引", link: "/read/" }],
+  },
+  {
     text: "📴 有用的帮助",
     items: [
       { text: "🎃 开发帮助", link: "/help/" },
