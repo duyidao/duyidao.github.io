@@ -1,0 +1,165 @@
+# ES6标准入门 第3版(阮一峰)
+
+《ES6 标准入门 第3版(阮一峰)》这本书主要讲述了 ECMAScript 6（ES6）新的语法特性和功能。以下是这本书涵盖的一些主要内容：
+
+1. **let 和 const**: 介绍了 `let` 和 `const` 关键字用于声明变量的特性，以及它们与 `var` 的区别。
+2. **解构赋值**: 讲解了解构赋值语法，可以方便地从数组和对象中提取数据并赋值给变量。
+3. **箭头函数**: 引入了箭头函数语法，简化了函数的定义方式，并改变了函数内部 `this` 的指向。
+4. **模板字符串**: 介绍了模板字符串，可以方便地拼接字符串和嵌入变量。
+5. **扩展运算符和剩余参数**: 讲解了扩展运算符 `...` 和剩余参数的使用，可以方便地操作数组和函数参数。
+6. **Promise**: 详细介绍了 Promise 对象，用于处理异步操作，解决了回调地狱的问题。
+7. **Generator 函数**: 探讨了 Generator 函数的概念和用法，以及如何通过迭代器控制函数的执行流程。
+8. **模块化**: 介绍了 ES6 模块化的语法，包括 `export` 和 `import`，帮助管理和组织代码。
+9. **Class**: 讲解了 ES6 中引入的类（class）语法糖，更加直观地实现面向对象编程。
+10. **其他新增特性**: 还包括对数组方法、对象属性简写、Symbol、Set 和 Map 等新特性的介绍。
+
+感谢阮一峰老师的著作，下面开始拜读，并且每一个模块都附上总结。
+
+## ECMAScript6简介
+
+### 由来
+
+第一章第一节讲述了 ES6 这个名称的由来，首先需要理清 ECMAScript 和 Javascript 的关系。在最开始 Javascript 不叫 Javascript，而是叫 ECMAScript。因此，**ECMAScript 是 Javascript 的规格，Javascript 是 ECMAScript 的一种实现**。
+
+### 含义
+
+2011年， ECMAScript 5.1 版本发布后，6.0 版本开始制定，这个版本改动较大，制定者希望能够6.1、6.2、6.3持续推进，最终决定每年6月更新发布一次标准版本。2016年6月，发布了 ECMAScript 6.0 版本。
+
+> 因此，ES6 既是一个历史名词，也是一个泛指，含义是 5.1 版本以后的 JavaScript 的下一代 标准，涵盖了 ES2015、 ES2016、 ES2017 等，而 ES2015 则是正式名称，特指当年发布的正式 版本的语言标准 。
+
+### 提案批准流程
+
+- Stage 0: Strawman (展示阶段)
+- Stage I : Proposal (征求意见阶段)
+- Stage 2: Draft (草案阶段)
+- Stage 3: Candidate (候选阶段)
+- Stage 4: Finished (定案阶段)
+
+### 历史
+
+ES6从开始制定到最后发布用了整整15年。1997年发布的ES1.0是第一个版本，随后连续发布了ES2.0和ES3.0。ES3.0成为通行标准，奠定了JavaScript语言的基本语法。在2000年，ES4.0开始酝酿，但最后没有通过。ES6制定的起点其实可以追溯到2000年。ES4.0没有通过是因为该版本对ES3.0做了彻底升级，导致标准委员会的一些成员不愿意接受。2008年，ECMA决定中止ES4.0的开发，并将其中涉及现有功能改善的部分发布为ES3.1，其他激进设想放入以后的版本。2009年，ES5.0发布，而ES Harmony继续发展成为ES6。2015年，ES6正式通过成为国际标准。整个过程历时15年。
+
+### Babel
+
+`babel.js` 是 ES6 转码器，在浏览器不支持 ES6 语法时转码为 ES5 ，这样就能执行了，下面是一个简单的例子：
+
+- 转码前：
+
+  ```js
+  let arr = []
+  arr.map(item => item.id + 1)
+  ```
+
+- 转码后：
+
+  ```js
+  var arr = []
+  arr.map(function (item) {
+    return item.id + 1
+  })
+  ```
+
+其中阮一峰老师从以下几个方面介绍讲解起了 `babel` ：
+
+- 配置文件 `.babelrc` 
+
+  这是放置在项目根目录中，用于设置转码规则和插件，其基本格式为：
+
+  ```js
+  {
+    "presets": [],
+    "plugins": []
+  }
+  ```
+
+  `presets` 用于设定转码规则，通过 `npm` 下载依赖，下载后在 `presets` 数组中添加对应的规则。例子如下：
+
+  ```js
+  {
+    "presets": [
+      "latest",
+      "react",
+      "stage-2",
+    ],
+    "plugins": []
+  }
+  ```
+
+  > 注意
+  >
+  > 要想使用以下所有 Babel 工具和模块，都必须先写好 .babelrc。
+
+- 命令行转码 `babel-cli` 
+
+  Babel 提供 `babel-cli` 工具，用于命令行转码 。使用方式如下：
+
+  1. 下载依赖
+
+     ```bash
+     npm i --save-dev babel-cli
+     ```
+
+  2. 改写 `package.json` 文件
+
+     ```json
+     {
+       // ...
+       "devDependencies": {
+         "babel-cli": "^6.0.0"
+       },
+       "scripts": {
+         "build": "babel src -d lib"
+       }
+     }
+     ```
+
+  3. 打包转码
+
+     ```bash
+     npm run build
+     ```
+
+- babel-node
+
+  这是 `babel-cli` 自带的命令，用于提供支持 ES6 的 REPL 环境，直接运行 ES6 代码。
+
+- babel-register
+
+  修改 `require` 命令，后续使用 `require` 加载 `.js` 、`jsx` 、`.es` 和 `.es6` 文件时，会优先使用 `babel` 转码。
+
+  > 注意!
+  >
+  > `babel-register` 只会对 `require` 命令加载的文件进行转码，而不会对当前文件进行转码 。 另外，由于它是实时转码，所以只适合在开发环境中使用 。
+
+- babel-core
+
+  对需要的某模块代码转码。
+
+  下载依赖：
+
+  ```bash
+  npm install babel- core --save
+  ```
+
+  使用示例：
+
+  ```js
+  var es6Code = 'let x = n => n + 1' 
+  var esSCode = require('babel-core').transform (es6Code, { presets: [' latest']}).code;
+  ```
+
+- babel-polyfill
+
+  Babel 默认只转换新的 JavaScript 句法( syntax)，而不转换新的 API，如 Iterator、 Generator、 Set、 Maps 、 Proxy、 Reflect、 Symbol、 Promise 等全局对象，以及一些 定义在全局对象上的方法(如 Object . assign)都不会转码。
+
+  想让上述的方法运行，必须使用 babel-polyfill 为当前环境提供一个垫片。
+
+### Traceur
+
+`Traceur` 是Google 公司的转码器 也可 以将 ES6 代码转为 ES5 代码。具体使用此处不做过多描述。
+
+## Let 和 const 命令
+
+### let 命令
+
+### const 命令
