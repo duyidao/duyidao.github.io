@@ -176,8 +176,6 @@ module.exports = {
     // 左侧导航栏
     sidebar: {
       '/learn': getLearnSidebar(),
-      '/project': getProjectSidebar(),
-      '/vitePress': getVitePressSidebar()
     },
     //社交链接
     socialLinks: [

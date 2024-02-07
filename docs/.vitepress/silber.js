@@ -910,7 +910,8 @@ const ReadSidebar = [
     text: "📖 阅读",
     collapsible: true,
     items: [
-      { text: "🔒 索引", link: "/read/" },
+      { text: "✨ 索引", link: "/read/" },
+      { text: "ES6标准入门", link: "/read/ES6标准入门.md" },
     ],
   },
 ]

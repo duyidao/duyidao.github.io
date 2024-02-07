@@ -93,8 +93,6 @@ import{_ as s,c as i,o as a,U as n}from"./chunks/framework.pP-Hyzfo.js";const o=
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    // 左侧导航栏</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    sidebar: {</span></span>
 <span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">      &#39;/learn&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">getLearnSidebar</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(),</span></span>
-<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">      &#39;/project&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">getProjectSidebar</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(),</span></span>
-<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">      &#39;/vitePress&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">getVitePressSidebar</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">()</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    },</span></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    //社交链接</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    socialLinks: [</span></span>
