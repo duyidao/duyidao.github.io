@@ -53,7 +53,7 @@ export default [
   },
   {
     text: "📖 阅读",
-    items: [{ text: "🔒 索引", link: "/read/" }],
+    items: [{ text: "✨ 索引", link: "/read/" }],
   },
   {
     text: "📴 有用的帮助",

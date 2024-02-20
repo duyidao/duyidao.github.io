@@ -1,3 +1,8 @@
+---
+title 图层
+
+---
+
 # 图层
 
 ## 概括
@@ -9,6 +14,7 @@
 - [封装](/project/baidu/layer/封装.md)
 - [MapVThree](/project/baidu/layer/MapVThree.md)
 - [优化](/project/baidu/layer/优化.md)
+- [功能](/project/baidu/layer/功能.md)
 
 ## 项目结构
 
