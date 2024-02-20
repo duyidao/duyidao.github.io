@@ -746,6 +746,7 @@ const LayerSidebar = [
       { text: "🌊 样式", link: "/project/baidu/layer/样式" },
       { text: "MapVThree", link: "/project/baidu/layer/MapVThree" },
       { text: "🪜 优化", link: "/project/baidu/layer/优化" },
+      { text: "⚙️ 功能", link: "/project/baidu/layer/功能" },
       { text: "🕶️ BUG", link: "/project/baidu/layer/bug" },
     ],
   },
