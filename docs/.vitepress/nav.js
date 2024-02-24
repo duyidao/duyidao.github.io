@@ -55,7 +55,7 @@ export default [
     text: "📖 阅读",
     items: [
       { text: "✨ 索引", link: "/read/" },
-      { text: "ES6标准入门", link: "/read/ES6标准入门.md" },
+      { text: "ES6标准入门", link: "/read/javascript/ES6标准入门.md" },
     ],
   },
   {

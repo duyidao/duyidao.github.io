@@ -33,7 +33,7 @@ title 书籍是人类进步的阶梯
 - [React 项目开发实战](https://book.douban.com/subject/30323555/)
 
 ## JavaScript
-- [ES6标准入门 第3版(阮一峰)](/read/ES6标准入门.md)
+- [ES6标准入门 第3版(阮一峰)](/read/javascript/ES6标准入门.md)
 - [JavaScript 高级程序设计（第 3 版）](https://book.douban.com/subject/10546925/)
 - [JavaScript 语言精粹](https://book.douban.com/subject/3590768/)
 - [JavaScript 设计模式与开发实践](https://book.douban.com/subject/26382780/)

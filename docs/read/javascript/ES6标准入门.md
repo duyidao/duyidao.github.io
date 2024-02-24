@@ -1305,16 +1305,407 @@ new RegExp(/abc/g, 'i');
 
 ### y 修饰符
 
+ES6引入的粘连修饰符"y"要求匹配必须从剩余的第一个位置开始，并且遵守lastIndex属性的指定，只有在lastIndex指定的位置发现匹配时才会成功，否则返回null。
 
+粘连修饰符隐含了头部匹配的标志，只有紧跟前面的分隔符才会被识别。单独使用粘连修饰符对match方法只能返回第一个匹配，必须与全局修饰符"g"联用才能返回所有匹配。
+
+粘连修饰符在从字符串中提取词元时很有用。
+
+示例代码：
+
+```javascript
+const REGEX = /a/y ; 
+// 指定从 号位直开始匹配
+REGEX.lastindex = 2 ; 
+// 不是粘连， 匹配失败
+REGEX.exec('xaya') // null 
+// 指定从3号位置开始 匹配
+REGEX.lastindex = 3 ; 
+// 3号位置是粘连，匹配成功
+const match= REGEX.exec('xaxa'); 
+match.index // 3 
+REGEX.lastindex // 4
+
+// 后续的分隔符只有紧跟前面的分隔符才会被识别
+const REGEX = /a/gy;
+console.log('aaxa'.replace(REGEX, '-')); // 输出：'--xa'
+
+// 单独 修饰符对 match 方法只能返回第 个匹配，必须与 修饰符联用才能返回所有匹配
+const str = 'a1a2a3';
+console.log(str.match(/a\d/y)); // 输出：['a1']
+console.log(str.match(/a\d/gy)); // 输出：["a1", "a2", "a3"]
+
+// y修饰符确保了匹配之间不会有漏掉的字符
+const TOKEN_Y = /\s*(\+\d+)\s*ly;
+const TOKEN_G = /\s*(\+\d+)\s*lg;
+console.log(tokenize(TOKEN_Y, '3 + 4 ')); // 输出：['3', '+', '4']
+console.log(tokenize(TOKEN_G, '3 + 4 ')); // 输出：['3', '+', '4']
+
+function tokenize(TOKEN_REGEX, str) {
+    let result = [];
+    let match;
+    while (match = TOKEN_REGEX.exec(str)) {
+        result.push(match[1]);
+    }
+    return result;
+}
+```
+
+在示例代码中展示了粘连修饰符"y"的作用，包括替换字符串中的内容、匹配数字等操作，以及在提取词元时的应用。
 
 ### sticky 属性
 
+与 `y` 修饰符相匹配，用于表示正则表达式是否设置了 `y` 修饰符，返回一个布尔值。
+
+```js
+let reg = /a/y
+
+console.log(reg.sticky) // true
+```
+
 ### flags 属性
+
+ES5 中正则表达式有 `source` 属性，用于获取正则表达式的正文；ES6 新增了 `flags` 属性，用于获取正则表达式的修饰符。
+
+```js
+let reg = /abc/gi
+
+reg.source // 'abc'
+reg.flags // 'gi'
+```
 
 ### s 修饰符：dotAll 模式
 
+ES5 正则表达式 点符号无法识别以下4种 “行终止符”：
+
+- U+000A 换行符 (\n)
+- U+000D 回车符 (\r)
+- U+2028 行分隔符 (line separator)
+- U+2029 段分隔符 (paragraph separator) 
+
+ES6 有一个提案用于解决该问题。通常情况下，点（.）可以匹配任意单个字符，但不包括行终止符。为了解决这个问题，提案引入了 `dotAll` 修饰符（s），使得点（.）可以匹配任何单个字符，包括行终止符。
+
+使用 `dotAll` 模式和 `dotAll` 属性，可以让正则表达式处于 `dotAll` 模式下，使点（.）代表任意单个字符。示例代码如下：
+
+```javascript
+const re = /foo.bar/s;
+// 或者另一种写法
+// const re = new RegExp('foo.bar', 's');
+
+console.log(re.test('foo\nbar')); // 输出 true
+console.log(re.dotAll); // 输出 true
+console.log(re.flags); // 输出 's'
+```
+
+同时，`dotAll` 修饰符（s）和多行修饰符（m）不会有冲突，两者可以同时使用。在这种情况下，“.”将匹配所有字符，而"^"和"$"将匹配每一行的行首和行尾。
+
 ### 后行断言
+
+后行断言是 JavaScript 中正则表达式的一种特性，用于匹配字符串中某个位置的左侧内容。它的写法为 `/(?<=y)x/`，其中 `x` 表示要匹配的内容，`y` 表示后行断言的条件。
+
+下面是一些使用后行断言的具体示例代码：
+
+```javascript
+// 匹配美元符号后面的数字
+const regex = /(?<=\$)\d+/;
+const result = regex.exec('The price is $50');
+console.log(result); // 输出 ["50"]
+
+// 匹配不在美元符号后面的数字
+const regex2 = /(?<!\$)\d+/;
+const result2 = regex2.exec('The price is $50');
+console.log(result2); // 输出 null
+
+// 使用后行断言进行字符串替换
+const text = '$foo foo foo';
+const regex3 = /(?<=\$)foo/g;
+const replacedText = text.replace(regex3, 'bar');
+console.log(replacedText); // 输出 "$bar foo foo"
+```
+
+需要注意的是，后行断言的执行顺序与其他正则操作相反。同时，在后行断言中，组匹配和反斜杠引用的使用方式与通常的顺序相反，需要将反斜杠引用放在对应的括号之前。
+
+```js
+/(?<=(o)d\1)r/.exec('hodor') // null 表示只有在字母 "o" 后面跟着一个重复的字母 "d" 时才匹配字母 "r"。由于字符串 "hodor" 中没有符合这个条件的位置，所以匹配结果为 null。
+
+/(?<=\1d(o))r/.exec('hodor'）// ['r', 'o'] 表示只有在字母 "o" 前面是一个重复的字母 "d" 时才匹配字母 "r"。在字符串 "hodor" 中，字母 "o" 前面确实是一个重复的字母 "d"，所以匹配结果为 ['r', 'o']，其中第一个元素是匹配到的字符 "r"，第二个元素是后行断言中的子表达式 \1d(o) 匹配到的内容 "o"。
+```
 
 ### Unicode 属性类
 
+有一个提案 引入了 Unicode 属性类（`\p{...}`）和反向 Unicode 属性类（`\P{...}`）写法，来匹配符合特定 Unicode 属性的字符，以及一些例子来展示不同属性类的用法。
+
+1. 匹配希腊文字母：
+
+   ```js
+   const regexGreekSymbol = /\p{Script=Greek}/u;
+   console.log(regexGreekSymbol.test('pai')); // true
+   ```
+
+2. 匹配所有十进制字符：
+
+   ```js
+   const regexDecimalNumber = /<\p{Decimal Number}+/u;
+   console.log(regexDecimalNumber.test('12341-$~7890123456')); // true
+   ```
+
+3. 匹配所有数字，包括罗马数字：
+
+   ```js
+   const regexNumber = /<\p{Number}+/u;
+   console.log(regexNumber.test('231')); // true
+   console.log(regexNumber.test('I II III IV V VI VII VIII IX')); // true
+   ```
+
+4. 匹配各种文字的所有字母：
+
+   ```js
+   const regexAlphabetic = /[<\p{Alphabetic}\p{Mark}\p{Decimal Number}.-]\p{Connector_Punctuation}\p{Join_Control}/;
+   ```
+
+5. 匹配所有的箭头字符：
+
+   ```js
+   const regexArrows = /<\p{Block=Arrows}+$/u;
+   console.log(regexArrows.test('⬅️➡️⬆️⬇️')); // true
+   ```
+
+> 注意
+>
+> `\p{...}` 和 `\P{...}` 这两种类只对 Unicode 有效，所以使用的时候一定要加上 修饰符 如果不加 修饰符， 正则表达式使用＼ 和＼ 便会报错， ECMAScript 预留了这两个类。
+
 ### 具名组匹配
+
+正则表达式有一个组匹配的功能，使用方法如下：
+
+```js
+const matchObj = RE_DATE.exec('1999-12-31');
+const year = matchObj[1]; //1999
+const month = matchObj[2]; // 12
+const day = match0bj[3]; // 31
+```
+
+但是有一个缺点，组的匹配含义不容易看出来 而且只能用数字序号引用，要是 **组的顺序** 变了，引用的时候就必须修改序号。
+
+具名组匹配（Named Capture Groups）来为正则表达式中的组匹配添加ID，使得在处理匹配结果时更加清晰和方便。具名组匹配可以让我们使用组的名称而不是数字序号来引用匹配结果。
+
+“具名组匹配” 在圆括号内部，在模式的头部添加 “问号＋尖括号＋组名” 如 `(<year>)` ，然后就可以在 exec 方法返回结果的 groups 属性上引用该组名。同时 字序号 `matchObj[1]` 依然有效。
+
+定义具名组匹配的正则表达式：
+
+```js
+const RE_DATE = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/;
+
+const matchObj = RE_DATE.exec('1999-12-31'); 
+const year = matchObj.groups.year; // 1999 
+const month = matchObj.groups.month; // 12 
+const day = matchObj.groups.day; // 31 
+```
+
+通过给组匹配添加名称，我们可以更清晰地描述每个组匹配的含义，并且在处理匹配结果时可以直接通过组名来引用，而不需要关心组的顺序是否改变。
+
+另外，如果具名组没有找到匹配，对应的 groups 对象属性会是 undefined，但是组名仍然会存在于 groups 对象中。
+
+示例代码演示了具名组匹配未找到匹配时的情况：
+
+```js
+const RE_OPT_A = /^(?<as>a+)?$/
+const matchObj = RE_OPT_A.exec('');
+console.log(matchObj.groups.as); // undefined
+console.log('as' in matchObj.groups); // true
+```
+
+在这个例子中，具名组 `as` 没有找到匹配，因此 `matchObj.groups.as` 的值是 `undefined`，但是 `as` 这个键名仍然存在于 `groups` 对象中。
+
+具名组匹配的优势之一是可以通过解构赋值直接从匹配结果中为变量赋值。下面是一些关于具名组匹配和字符串替换的示例代码：
+
+1. 使用解构赋值从匹配结果中为变量赋值：
+
+   ```js
+   let {groups: {one, two}} = /(?<one>foo):(?<two>bar)/.exec('foo:bar');
+   console.log(one); // foo
+   console.log(two); // bar
+   ```
+
+2. 字符串替换时使用具名组引用：
+
+   ```js
+   let re = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/;
+   console.log('2015-01-02'.replace(re, '$<day>/$<month>/$<year>')); // '02/01/2015'
+   ```
+
+   在这个例子中，replace 方法的第二个参数是一个字符串，其中使用了具名组的引用来进行字符串替换。
+
+3. replace 方法的第二个参数也可以是一个函数，该函数的参数序列包括整个匹配、各个捕获组的值以及具名组构成的对象。下面是一个示例代码：
+
+   ```js
+   '2015-01-02'.replace(re, (
+     matched, capture1, capture2, capture3, position, wholeString, groups
+   ) => {
+     let {day, month, year} = groups;
+     return `${day}/${month}/${year}`;
+   });
+   ```
+
+   在这个例子中，我们可以直接对传入的 `groups` 对象进行解构赋值，从而方便地获取具名组的值进行处理。
+
+通过具名组匹配和字符串替换，可以做到更加灵活和方便地处理正则表达式的匹配结果和字符串替换操作。
+
+在正则表达式中，可以使用具名组匹配来给子表达式命名，并且可以在正则表达式内部通过 `\k<groupName>` 的方式引用这些具名组匹配。同时，也可以使用传统的数字引用（如`\1`、`\2`）来引用捕获到的子表达式。这些引用语法可以单独或者结合使用，从而实现复杂的匹配逻辑，包括要求字符串以重复的单词结尾或者包含多次重复的单词等。这些灵活的引用方式使得正则表达式能够更加强大和灵活地进行匹配操作。
+
+```js
+// 组名写法
+const RE_TWICE= /"(?<word>[a-z]+)!\k<word>$/ ; 
+RE_TWICE.test('abc!abc') // true
+RE_TWICE.test('abc!ab') // false 
+
+// 数字引用 (\1)
+const RE_TWICE = /^(?<word>[a-z]+)!\1$/; 
+RE_TWICE.test('abc!abc') // true
+RE_TWICE.test('abc!ab') // false
+
+// 同时使用
+RE_TWICE.test('abc!abc!abc') // true 
+RE_TWICE.test('abc!abc!ab') // false
+```
+
+### 总结
+
+ES6 在正则表达式方面确实做了很多扩展和改进，让正则表达式的使用变得更加方便和强大。主要的改进包括：
+
+1. RegExp 构造函数的参数改进：ES6 允许在使用正则对象作为第一个参数时，通过第二个参数来指定新的修饰符，并忽略原有正则对象的修饰符。
+2. 字符串的正则方法改进：ES6 中字符串对象的方法 `match()`, `replace()`, `search()` 和 `split()` 全部调用了 RegExp 对象的实例方法，使得所有与正则表达式相关的方法都定义在 RegExp 对象上，提高了代码的一致性和可读性。
+3. 添加 "u" 修饰符：用于正确处理大于 `\uFFFF` 的 Unicode 字符，使得正则表达式能够正确识别超过两个字节的 UTF-16 编码字符。
+4. 添加 "y" 修饰符（粘连修饰符）：要求匹配必须从剩余的第一个位置开始，并且遵守 lastIndex 属性的指定，只有在 lastIndex 指定的位置发现匹配时才会成功，否则返回 null。
+5. 添加 sticky 属性：用于表示正则表达式是否设置了 "y" 修饰符，返回一个布尔值。
+6. 添加 flags 属性：用于获取正则表达式的修饰符。
+7. 添加 "s" 修饰符（dotAll 模式）：使得点（.）可以匹配任意单个字符，包括行终止符。
+8. 添加后行断言：用于匹配字符串中某个位置的左侧内容，可以更清晰地描述每个组匹配的含义，并且在处理匹配结果时可以直接通过组名来引用。
+9. 添加 Unicode 属性类：用于匹配符合特定 Unicode 属性的字符，提高了对 Unicode 字符的处理能力。
+
+以上这些改进和扩展使得 ES6 中的正则表达式更加强大和灵活，可以更好地满足开发者在处理复杂字符串匹配和处理方面的需求。
+
+## 第六章 数值的扩展
+
+本章节阮一峰老师从二进制与八进制、数值实例的方法、Math 对象的扩展、运算符、Integer 数据类型五个方面着手讨论。
+
+### 二进制与八进制表示法
+
+ES6 引入了新的进制表示法，可以使用前缀 "0b" 或 "0B" 表示二进制数值，以及使用前缀 "0o" 或 "0O" 表示八进制数值。例如，"0b111110111" 和 "0o767" 都表示十进制数值 503。
+
+在 ES5 中，在严格模式中已经不再允许使用前缀 `0` 表示八进制数值。而在 ES6 中，对这一点进行了进一步的明确，要使用前缀 `0o` 来表示八进制数值。
+
+在非严格模式下，可以使用前缀表示八进制数值，例如：
+
+```js
+(function() {
+  console.log(0o11 === 011);
+})(); // true
+```
+
+而在严格模式下，使用前缀表示八进制数值会导致语法错误，例如：
+
+```js
+(function () {
+  'use strict';
+  console.log(011 === 011); // "Uncaught SyntaxError: Octal literals are not allowed in strict mode."
+})();
+```
+
+如果要将使用 "0b" 或 "0o" 前缀的字符串数值转为十进制数值，可以使用 `Number` 方法进行转换，例如 `Number('0b111')` 的结果是 7，`Number('0o10')` 的结果是 8。
+
+总结，ES6 提供了更方便的进制表示法，但在严格模式下不再允许直接使用前缀表示八进制数值，需要使用 Number 方法进行转换。
+
+### Number.isFinite()、Number.isNaN()
+
+这两个是 ES6 给 Numer 对象提供的新方法。`Number.isFinite()` 用于判断一个数值是否有限；`Number.isNaN()` 判断一个数值是否是 `NaN` 。
+
+```js
+// Number.isFinite()
+Number.isFinite(15) // true
+Number.isFinite(0.8) // true
+Number.isFinite(NaN) // false
+Number.isFinite(Infinity) // false
+Number.isFinite(-Infinity) // false
+Number.isFinite('foo') // false
+Number.isFinite('15') // false
+Number.isFinite(true) // false
+
+// Number.isNaN()
+Number.isNaN(NaN) // true
+Number.isNaN(8) // false
+Number.isNaN('8') // false
+Number.isNaN(true) // false
+Number.isNaN('daodao'/'daodao') // true
+Number.isNaN(NaN/9) // true
+```
+
+下面来部署这两个方法。
+
+```js
+// isNaN
+(function(global) {
+  var global_isNaN = global.isNaN
+  
+  Object.defineProperty(Number, 'isNaN', {
+    value: function isNaN(value) {
+      return typeof value === 'number' && global_isNaN(value) // 判断是否是数字，调用方法获取值
+    },
+    configurable: true, 
+		enumerable : false, 
+		writable: true
+  })
+})(this)
+
+// isFinite
+(function(global) {
+  var global_isFinite = global.isFinite
+  
+  Object.defineProperty(Number, 'isFinite', {
+    value: function isFinite(value) {
+      return typeof value === 'number' && global_isFinite(value) // 判断是否是数字，调用方法获取值
+    },
+    configurable: true, 
+		enumerable : false, 
+		writable: true
+  })
+})(this)
+```
+
+由上可看出，这两个方法只能判断数值型，非数值型直接返回 `false` 。`isNaN()` 方法在只有 `isNaN` 值才会返回 `true` ，其他值都会返回 `false` 。
+
+### Number.parselnt()、Number.parseFloat()
+
+### Number.islnteger()
+
+### Number.EPSILON
+
+### 安全整数和 Number. isSafelnteger()
+
+### Math 对象扩展
+
+#### Math.trunc()
+
+#### Math.sign()
+
+#### Math.cbrt()
+
+#### Math.clz32()
+
+#### Math.imul()
+
+#### Math.fround()
+
+#### Math.hypot()
+
+#### 对数方法
+
+#### 双曲函数方法
+
+#### Math.signbit()
+
+### 指数运算符
+
+### Integer 数据类型
+
+## 第七章 函数的扩展

@@ -730,6 +730,7 @@ const BaiduSidebar = [
     items: [
       { text: "📕 引言", link: "/project/baidu/" },
       { text: "🗺 图层", link: "/project/baidu/layer/index" },
+      { text: "🗑 返回", link: "/project/" },
     ],
   },
 ]
@@ -748,6 +749,7 @@ const LayerSidebar = [
       { text: "🪜 优化", link: "/project/baidu/layer/优化" },
       { text: "⚙️ 功能", link: "/project/baidu/layer/功能" },
       { text: "🕶️ BUG", link: "/project/baidu/layer/bug" },
+      { text: "🗑 返回", link: "/project/baidu/" },
     ],
   },
 ]
@@ -912,7 +914,13 @@ const ReadSidebar = [
     collapsible: true,
     items: [
       { text: "✨ 索引", link: "/read/" },
-      { text: "ES6标准入门", link: "/read/ES6标准入门.md" },
+      {
+        text: "Javascript",
+        collapsible: true,
+        items: [
+          { text: "ES6标准入门", link: "/read/javascript/ES6标准入门.md" },
+        ],
+      },
     ],
   },
 ]
