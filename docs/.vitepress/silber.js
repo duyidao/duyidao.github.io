@@ -341,7 +341,7 @@ const NodeSidebar = [
 // 杂技拾谈数组
 const TalkSidebar = [
   {
-    text: "杂技拾谈",
+    text: "🚴 杂技拾谈",
     collapsible: true,
     items: [
       {
@@ -483,7 +483,7 @@ const LearnSidebar = [
     ],
   },
   {
-    text: "✨ 前端功能操作模块",
+    text: "☸️ 前端功能操作模块",
     collapsible: true,
     items: [
       {
@@ -505,7 +505,7 @@ const LearnSidebar = [
     ],
   },
   {
-    text: "🎿 更上一层楼",
+    text: "📈 更上一层楼",
     collapsible: true,
     items: [
       {
@@ -536,7 +536,7 @@ const LearnSidebar = [
     ],
   },
   {
-    text: "学而时习之",
+    text: "📝 学而时习之",
     collapsible: true,
     items: [
       {
@@ -559,9 +559,9 @@ const ProjectSidebar = [
   {
     text: "项目",
     items: [
-      { text: "灵思", link: "/project/lingsi/" },
-      { text: "百度外包", link: "/project/baidu/" },
-      { text: "自主学习", link: "/project/myself/" },
+      { text: "🧟 灵思", link: "/project/lingsi/" },
+      { text: "⛷️百度外包", link: "/project/baidu/" },
+      { text: "🧑‍🎓 自主学习", link: "/project/myself/" },
     ],
   },
 ]
@@ -569,7 +569,7 @@ const ProjectSidebar = [
 // 灵思的数组
 const LingsiSidebar = [
   {
-    text: "灵思",
+    text: "🧟 灵思",
     items: [
       { text: "🎶 音果云音", link: "/project/lingsi/music/" },
       { text: "🔧 职技网", link: "/project/lingsi/职技网/" },
@@ -585,7 +585,7 @@ const LingsiSidebar = [
 // 音果云音的数组
 const MusicSidebar = [
   {
-    text: " 📱 APP",
+    text: "📱 APP",
     collapsible: true,
     items: [
       { text: "登录", link: "/project/lingsi/music/APP/login" },
@@ -725,10 +725,10 @@ const CRMSidebar = [
 // 百度的数组
 const BaiduSidebar = [
   {
-    text: "📕 百度",
+    text: "⛷️ 百度",
     collapsible: true,
     items: [
-      { text: "📕 引言", link: "/project/baidu/" },
+      { text: "⛷️ 引言", link: "/project/baidu/" },
       { text: "🗺 图层", link: "/project/baidu/layer/index" },
       { text: "🗑 返回", link: "/project/" },
     ],
@@ -745,7 +745,7 @@ const LayerSidebar = [
       { text: "📦 封装", link: "/project/baidu/layer/封装" },
       { text: "⛑️ 规范", link: "/project/baidu/layer/规范" },
       { text: "🌊 样式", link: "/project/baidu/layer/样式" },
-      { text: "MapVThree", link: "/project/baidu/layer/MapVThree" },
+      { text: "🗺 MapVThree", link: "/project/baidu/layer/MapVThree" },
       { text: "🪜 优化", link: "/project/baidu/layer/优化" },
       { text: "⚙️ 功能", link: "/project/baidu/layer/功能" },
       { text: "🕶️ BUG", link: "/project/baidu/layer/bug" },
@@ -971,8 +971,8 @@ const AboutSidebar = [
     items: [
       { text: "🧑 关于我", link: "/about/" },
       { text: "🔪 关于刀刀小站", link: "/about/blog" },
-      { text: "关于灵思", link: "/about/lingsi" },
-      { text: "关于百度", link: "/about/baidu" },
+      { text: "🧟 关于灵思", link: "/about/lingsi" },
+      { text: "⛷️ 关于百度", link: "/about/baidu" },
     ],
   },
 ]

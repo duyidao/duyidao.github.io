@@ -33,10 +33,10 @@ export default [
   {
     text: "💾 项目或功能模块",
     items: [
-      { text: "灵思", link: "/project/lingsi/" },
-      { text: "百度外包", link: "/project/baidu/" },
+      { text: "🧟 灵思", link: "/project/lingsi/" },
+      { text: "⛷️ 百度", link: "/project/baidu/" },
       {
-        items: [{ text: "自主学习", link: "/project/myself/" }],
+        items: [{ text: "🧑‍🎓 自主学习", link: "/project/myself/" }],
       },
     ],
   },
@@ -49,7 +49,13 @@ export default [
   },
   {
     text: "🧊 部署",
-    items: [{ text: "🌩️ VitePress", link: "/vitePress/" }],
+    items: [
+      { text: "🌩️ 引言", link: "/vitePress/" },
+      { text: "🧩 搭建", link: "/vitePress/Dev" },
+      { text: "🎁 打包", link: "/vitePress/Build" },
+      { text: "⏳ 部署", link: "/vitePress/Deploy" },
+      { text: "✨ 拓展", link: "/vitePress/Know" },
+    ],
   },
   {
     text: "📖 阅读",
@@ -70,6 +76,8 @@ export default [
     items: [
       { text: "⭐ 关于我", link: "/about/" },
       { text: "🔪 关于刀刀小站", link: "/about/blog" },
+      { text: "🧟 关于灵思", link: "/about/lingsi" },
+      { text: "⛷️ 关于百度", link: "/about/baidu" },
     ],
   },
 ];
