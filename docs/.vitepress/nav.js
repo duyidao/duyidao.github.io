@@ -61,7 +61,8 @@ export default [
     text: "📖 阅读",
     items: [
       { text: "✨ 索引", link: "/read/" },
-      { text: "ES6标准入门", link: "/read/javascript/ES6标准入门.md" },
+      { text: "Javascript", link: "/read/javascript/ES6标准入门.md" },
+      { text: "Vue", link: "/read/Vue/Vue.js设计与实现.md" },
     ],
   },
   {

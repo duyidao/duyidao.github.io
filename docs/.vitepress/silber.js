@@ -779,7 +779,7 @@ const RabitSidebar = [
     collapsible: true,
     items: [
       {
-        text: "Web 端",
+        text: "💻 Web 端",
         collapsible: true,
         items: [
           { text: "项目介绍", link: "/project/myself/小兔鲜/inweb/all" },
@@ -794,7 +794,7 @@ const RabitSidebar = [
         ],
       },
       {
-        text: "uniapp 跨端",
+        text: "📱 uniapp 跨端",
         collapsible: true,
         items: [
           { text: "项目初始化", link: "/project/myself/小兔鲜/inuni/" },
@@ -919,6 +919,13 @@ const ReadSidebar = [
         collapsible: true,
         items: [
           { text: "ES6标准入门", link: "/read/javascript/ES6标准入门.md" },
+        ],
+      },
+      {
+        text: "Vue",
+        collapsible: true,
+        items: [
+          { text: "Vue.js设计与实现", link: "/read/Vue/Vue.js设计与实现.md" },
         ],
       },
     ],
