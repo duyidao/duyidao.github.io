@@ -1640,7 +1640,7 @@ Number.isNaN('daodao'/'daodao') // true
 Number.isNaN(NaN/9) // true
 ```
 
-下面来部署这两个方法。
+手写这两个方法的底层逻辑原理。
 
 ```js
 // isNaN
@@ -1676,19 +1676,163 @@ Number.isNaN(NaN/9) // true
 
 ### Number.parselnt()、Number.parseFloat()
 
+这两个方法在 ES5 是放在全局 `window` 上；在 ES6  则是放到 Number 上。这么做的好处是逐步减少全局性方法，使得语言逐步模块化。本质没有任何区别。
+
+```js
+// ES5
+parseInt('32.1') // 32
+parseFloat('32.1') // 32.1
+
+// ES6
+Number.parseInt('32.1') // 32
+Number.parseFloat('32.1') // 32.1
+```
+
 ### Number.islnteger()
 
-### Number.EPSILON
+Number.islnteger() 方法用于判断该值是否是整数。在 javascript 中，由于整数和浮点数是同样的存储方式，因此 2 和 2.0 会视为同一个值。
+
+```js
+Number.isInteger(3) // true
+Number.isInteger(3.0) // true
+Number.isInteger('3') // false
+Number.isInteger(1.1) // false
+Number.isInteger(false) // false
+```
+
+手写这个方法的底层逻辑原理。
+
+```js
+(function (global) {
+  var floor = Math.floor, isFinite = global.isFinite
+  
+  Object.defineProperty(Number, 'isInteger', {
+    value: function(value) {
+      return typeof value === 'number' && isFinite(value) && floor(value) === value
+    },
+    configurable: true, 
+		enumerable : false,
+		writable: true 
+  })
+})(this)
+```
+
+由上可以看出该方法只能检测数值型，非数值型的值直接返回 `false` ；且只能检测有限的数值，无限数值也会返回 `false` 。其判断原理是该数值向下取整是否等于其本身。
+
+###  Number.EPSILON
+
+ES6 Number 对象上面新增一个极小的常量——Number.EPSILON。
+
+这个常量的作用在于控制误差的可接受范围。众所周知浮点数的计算一直存在误差，如果这个误差小于 Number.EPSILON，则这个误差是可以接受的误差。
+
+```js
+Number.EPSILON // 2.220446049250313e-16
+
+0.1 + 0.2 // 0.30000000000000004
+
+0.1 + 0.2 - 0.3 // 5.551115123125783e-17
+
+5.551115123125783e-17 < Number.EPSILON // true
+```
 
 ### 安全整数和 Number. isSafelnteger()
 
+JavaScript能够精确表示的整数范围在 `-2^53` 到 `2^53` 之间（不含两个端点），超出这个范围就无法精确表示。ES6引入了 `Number.MAX_SAFE_INTEGER` 和 `Number.MIN_SAFE_INTEGER` 两个常量来表示这个范围的上下限。同时，使用 `Number.isSafeInteger()` 函数可以判断一个整数是否落在这个范围之内。
+
+需要注意的是，超出安全整数范围的整数在计算过程中可能会导致不准确的结果，因此在处理整数运算时需要谨慎验证每个参与运算的值是否是安全整数。
+
+```js
+// 判断一个整数是否为安全整数
+console.log(Number.isSafeInteger(9007199254740993)); // false
+console.log(Number.isSafeInteger(990)); // true
+console.log(Number.isSafeInteger(9007199254740993 - 990)); // true
+
+// 使用trusty函数验证整数运算结果
+function trusty(left, right, result) {
+  if (
+    Number.isSafeInteger(left) &&
+    Number.isSafeInteger(right) &&
+    Number.isSafeInteger(result)
+  ) {
+    return result;
+  } else {
+    throw new RangeError('Operation cannot be trusted!');
+  }
+}
+
+// 示例使用trusty函数验证整数运算
+try {
+  console.log(trusty(9007199254740993, 990, 9007199254740993 - 990)); // 抛出 RangeError
+} catch (e) {
+  console.log(e.message);
+}
+```
+
 ### Math 对象扩展
+
+Math 对象上新增了 17 个与数学相关的方法。所有这些方法都是静态方法，只能在 Math 对象上调用。
 
 #### Math.trunc()
 
+`Math.trunc()` 方法用于获取一个数值的整数部分，去除小数部分。若传入一个非数值型的值，该函数会先转为数值型。若无法转为数值型，则返回 `NaN` 。
+
+```js
+Math.trunc(1.1) // 1
+Math.trunc(1.9) // 1
+Math.trunc(-1.1) // -1
+Math.trunc(-1.9) // -1
+Math.trunc('1.1') // 1
+Math.trunc(true) // NaN
+Math.trunc('abc') // NaN
+```
+
+下面来对于无该方法的环境部署该方法。
+
+```js
+Math.trunc = Math.trunc || function(num) {
+  return x < 0 ? Math.ceil(x) : Math.floor(x)
+}
+```
+
+可以看到，其原理是大于0的正数，向下取整；小于0的负数，向上取整。
+
 #### Math.sign()
 
+`Math.sign()` 用于判断一个数值是正数、负数还是零。对于非数值型的值，会先转为数值。其中会有以下五种情况：
+
+- 正数，返回 +1
+- 负数，返回 -1
+- 0，返回 0
+- -0，返回 -0
+- 其他值，返回 NaN
+
+```js
+Math.sign(1.1) // +1
+Math.sign(-2.9) // -1
+Math.sign(-0) // -0
+Math.sign(0) // 0
+Math.sign('500') // 1
+Math.sign('foo') // NaN
+Math.sign(NaN) // NaN
+```
+
+下面来对于无该方法的环境部署该方法。
+
+```js
+Math.sign = Math.sign || function(num) {
+  x = +x
+  if (x === 0 || isNaN(x)) {
+    return x
+  }
+  return x > 0 ? +1 : -1
+}
+```
+
+可以看到，其原理是先把值转为数值型，遇到 0 或 `NaN` ，直接返回；再判断数值是否大于0。
+
 #### Math.cbrt()
+
+`Math.cbrt()` 方法用于计算一个数的立方根，在处理非数值参数时会先将其转为数值。
 
 #### Math.clz32()
 
