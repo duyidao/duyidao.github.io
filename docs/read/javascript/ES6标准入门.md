@@ -1834,11 +1834,64 @@ Math.sign = Math.sign || function(num) {
 
 `Math.cbrt()` 方法用于计算一个数的立方根，在处理非数值参数时会先将其转为数值。
 
+```js
+Math.cbrt(1) // 1
+Math.cbrt(-1) // -1
+Math.cbrt(0) // 0
+Math.cbrt('8') // 2
+Math.cbrt('foo') // NaN
+```
+
+下面来给没有该方法的环境配置该方法。
+
+```js
+Math.cbrt = Math.cbrt || function(num) {
+  var y = Math.pow(Math.abs(num), 1/3); // 取绝对值后，计算其立方根
+  return num < 0 ? -y : y;
+}
+```
+
 #### Math.clz32()
+
+JavaScript 中的 `Math.clz32` 方法用于返回一个32位无符号整数的二进制表示中前导的零的个数。即从左边开始连续的零的个数。
+
+对于小数，`Math.clz32` 方法只考虑整数部分；对于空值或其他类型的值，会先将它们转为数值再进行计算。此外，还提到了 `Math.clz32` 方法与左移运算符（<<）的直接关联。
+
+```javascript
+console.log(Math.clz32(0)); // 32
+console.log(Math.clz32(1)); // 31
+console.log(Math.clz32(1000)); // 22
+console.log(Math.clz32(0b01000000000000000000000000000000)); // 1
+console.log(Math.clz32(0b00100000000000000000000000000000)); // 2
+console.log(Math.clz32(3.2)); // 30
+console.log(Math.clz32(1 << 29)); // 2
+
+console.log(Math.clz32(null)); // 32
+console.log(Math.clz32('foo')); // 32
+console.log(Math.clz32(NaN)); // 32
+console.log(Math.clz32([])); // 32
+console.log(Math.clz32({})); // 32
+console.log(Math.clz32()); // 32
+```
 
 #### Math.imul()
 
+JavaScript 中的 `Math.imul` 方法用于返回两个数以32位带符号整数形式相乘的结果，同样返回一个32位的带符号整数。
+
+`Math.imul` 在数值处于 2的 35次方区间内与 x*y 的值相等，主要用于解决超过53位精度限制的问题，能够正确返回乘法运算的低位数值。
+
+```js
+console.log(Math.imul(2, 4)); // 8
+console.log(Math.imul(-1, 8)); // -8
+console.log(Math.imul(-2, -2)); // 4
+console.log(Math.imul(0x7fffffff, 0x7fffffff)); // 1
+```
+
+总结起来，`Math.imul` 方法用于执行两个数的32位带符号整数形式的乘法运算，返回结果也是一个32位带符号整数。对于超过53位精度限制的乘法运算，`Math.imul` 方法可以返回正确的低位数值，解决了 JavaScript 精度限制导致的计算错误。
+
 #### Math.fround()
+
+
 
 #### Math.hypot()
 
