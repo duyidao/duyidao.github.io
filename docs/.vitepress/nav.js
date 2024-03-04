@@ -31,7 +31,7 @@ export default [
     ],
   },
   {
-    text: "💾 项目或功能模块",
+    text: "💾 项目模块",
     items: [
       { text: "🧟 灵思", link: "/project/lingsi/" },
       { text: "⛷️ 百度", link: "/project/baidu/" },
