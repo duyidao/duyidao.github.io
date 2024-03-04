@@ -214,7 +214,14 @@ const RegSidebar = [
       {
         text: "知识点",
         collapsible: true,
-        items: [{ text: "正则表达式", link: "/learn/Reg/" }],
+        items: [
+          { text: "正则表达式", link: "/learn/Reg/knowledge/index" },
+          { text: "元子字符", link: "/learn/Reg/knowledge/元子字符" },
+          { text: "模式修饰", link: "/learn/Reg/knowledge/模式修饰" },
+          { text: "原子", link: "/learn/Reg/knowledge/原子" },
+          { text: "匹配", link: "/learn/Reg/knowledge/匹配" },
+          { text: "方法", link: "/learn/Reg/knowledge/方法" },
+        ],
       },
       {
         text: "实操演练",

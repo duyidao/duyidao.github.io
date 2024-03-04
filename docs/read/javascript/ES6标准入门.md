@@ -1891,7 +1891,26 @@ console.log(Math.imul(0x7fffffff, 0x7fffffff)); // 1
 
 #### Math.fround()
 
+JavaScript 中的 `Math.fround` 方法用于将一个数转换为单精度浮点数形式。对于整数，`Math.fround` 方法的返回结果与原数相同；而对于无法精确表示的小数，`Math.fround` 方法会返回最接近该小数的单精度浮点数。 
 
+```javascript
+console.log(Math.fround(0)); // 0
+console.log(Math.fround(1)); // 1
+console.log(Math.fround(1.337)); // 1.3370000123977661
+console.log(Math.fround(1.5)); // 1.5
+console.log(Math.fround(NaN)); // NaN
+
+// 模拟实现Math.fround方法
+Math.fround = Math.fround || function(x) { return new Float32Array([x])[0]; };
+```
+
+下面在没有该方法的环境模拟部署该方法。
+
+```js
+Math.fround = Math.fround || function(num) {
+  return new Float32Array([x])[0]
+}
+```
 
 #### Math.hypot()
 
