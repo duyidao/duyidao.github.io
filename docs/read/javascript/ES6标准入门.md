@@ -1914,14 +1914,174 @@ Math.fround = Math.fround || function(num) {
 
 #### Math.hypot()
 
+`Math.hypot` 方法返回所有参数的平方和的平方根。同样的，如果参数不是数值型，则会先转为数值型。若有一个参数无法转为数值型，则返回 `NaN` 。
+
+```js
+Math.hypot(3, 4) // 5。根号(3^2 + 4^2) = 根号(9 + 16) = 根号(25) = 5
+Math.hypot(3, 4, 5) // 7.0710678118654755
+Math.hypot() // 0
+Math.hypot(3, '4') // 5
+Math.hypot(NaN) // NaN
+Math.hypot(3, 4, 'foo') // NaN
+```
+
 #### 对数方法
+
+ES6 新增了四个对数方法。
+
+- `Math.expm1()` 
+
+  `Math.expm1(x)` 返回一个 e^x - 1 的结果，相当于 `Math.exp(x) - 1` 。在无该方法的环境中可以部署该方法。
+
+  ```js
+  Math.expm1 = Math.expm1 || function(num) {
+    return Math.exp(x) - 1
+  }
+  ```
+
+- `Math.log1p()` 
+
+  `Math.log1p(x)` 方法返回 `ln(x + 1)` ，即 `Math.log(x + 1)` 。若 `x` 小于 -1 则返回 `NaN` 。在无该方法的环境中可以部署该方法。
+
+  ```js
+  Math.log1p = Math.log1p || function(num) {
+    return Math.log(x + 1)
+  }
+  ```
+
+- `Math.log10()` 
+
+  `Math.log10(x)` 方法返回以10为底的 `x` 的对数。若 `x` 小于 0 则返回 `NaN` 。在无该方法的环境中可以部署该方法。
+
+  ```js
+  Math.log10 = Math.log10 || function(num) {
+    return Math.log(x) / Math.LN10
+  }
+  ```
+
+- `Math.log2()` 
+
+  `Math.log2(x)` 方法返回以2为底的 `x` 的对数。若 `x` 小于 0 则返回 `NaN` 。在无该方法的环境中可以部署该方法。
+
+  ```js
+  Math.log2 = Math.log2 || function(num) {
+    return Math.log(x) / Math.LN2
+  }
+  ```
 
 #### 双曲函数方法
 
+ES6 新增了六个双曲线函数方法（了解即可）
+
+- `Math.sinh(x)` 返回 的双曲正弦 (hyperbolic sine)
+- `Math cosh(x)` 返回 的双曲余弦 (hyperbolic cosine)  
+- `Math tanh(x)` 返回 的双曲正切 (hyperbolic tangent)  
+- `Math.asinh(x)` 返回 的反双曲正弦 (inverse hyperbolic sine)
+- `Math acosh(x)` 返回 的反双曲余弦 (inverse hyperbolic cosine)
+- `Math.atanh(x)` 返回 的反双曲正切 (inverse hyperbolic tangent) 
+
 #### Math.signbit()
+
+`Math.sign` 方法用于判断一个数的正负，但在参数为 -0 时会返回 -0，这种情况下不太有用。由于 JavaScript 内部使用64位浮点数表示数值，IEEE 754标准规定第一位是符号位，表示正数或负数，因此存在+0和-0两种零。
+
+针对这种情况，提案中引入了 `Math.signbit` 方法，用来判断一个数的符号位是否已经设置。该方法的算法如下：
+
+- 如果参数是 `NaN` ，返回 `false` 
+- 如果参数是 -0，返回 `true` 
+- 如果参数是负值，返回 `true` 
+- 其他情况返回 `false` 
+
+```javascript
+console.log(Math.signbit(2)); // false
+console.log(Math.signbit(-2)); // true
+console.log(Math.signbit(0)); // false
+console.log(Math.signbit(-0)); // true
+```
 
 ### 指数运算符
 
+指数运算符可以直接计算幂运算，还可以与等号结合形成新的赋值运算符 `**=` ，用于对变量进行幂运算赋值操作。
+
+在V8引擎中，指数运算符与`Math.pow` 方法的实现存在细微差异，特别是在处理特别大的运算结果时。举例来说，当使用 `Math.pow(99, 99)` 和 `99 ** 99` 进行运算时，由于计算精度的不同，两者得到的最后一位有效数字可能会有差异。
+
+```javascript
+// 使用指数运算符和赋值运算符的示例
+let a = 1.5;
+a **= 2; // 等同于 a = a * a;
+console.log(a); // 输出 2.25
+
+let b = 4;
+b **= 3; // 等同于 b = b * b * b;
+console.log(b); // 输出 64
+
+// 比较指数运算符和Math.pow在处理大数值时的差异
+console.log(Math.pow(99, 99)); // 输出 1.1369729637649726e+197
+console.log(99 ** 99); // 输出 1.1369729637649727e+197
+```
+
 ### Integer 数据类型
+
+JavaScript中数字都以64位浮点数形式保存，导致整数精确度仅限于53位。为了解决这一问题，一个提案引入了新的数据类型Integer（整数），用于精确表示任意位数的整数，不受位数限制。
+
+为了区别于Number类型，Integer类型的数据需要使用后缀 `"n"` 来表示。二进制 八进 、十六进制的表示法都要加上后缀 `"n"` 。
+
+```js
+// 使用Integer类型的示例
+let a = 1n + 2n; // 3n
+console.log(a);
+
+// 不同进制下的Integer表示
+console.log(0b11n); // 3n (二进制)
+console.log(0o777n); // 511n (八进制)
+console.log(0xFFn); // 255n (十六进制)
+
+// 使用Integer对象生成Integer类型的数值
+console.log(Integer(123)); // 123n
+console.log(Integer('123')); // 123n
+console.log(Integer(false)); // 0n
+console.log(Integer(true)); // 1n
+
+// 以下用法会报错
+// new Integer() // TypeError
+// Integer(undefined) // TypeError
+// Integer(null) // TypeError
+// Integer('123n') // SyntaxError
+// Integer('abc') // SyntaxError
+```
+
+在数学运算方面，Integer类型的加、减、乘和幂运算符与Number类型的行为相似。但是除法运算符 `/` 将舍去小数部分，返回一个整数。
+
+```js
+let a = 9n + 5n; // 14n (加法)
+let b = 11n - 6n; // 5n (减法)
+
+// 乘法运算符
+let c = 6n * 7n; // 42n
+
+// 指数运算符
+let d = 2n ** 3n; // 8n
+
+// 除法运算符
+let e = 10n / 3n; // 3n (舍去小数部分)
+
+// 不允许的操作
+// let f = 7n >> 1; // 报错，不允许使用右移位运算符
+// let g = +9n; // 报错，不允许一元求正运算符
+
+// 不允许Integer类型与Number类型进行混合运算
+// let h = 5n + 1; // 报错
+
+// 相等运算符
+// let i = 0n == 0; // 报错，不允许混合使用
+// let j = 0n === 0; // true (精确相等运算符)
+```
+
+### 总结
+
+本章节的内容主要涵盖了ES6中关于数值表示法、Math对象扩展、整数数据类型等方面的知识点。
+
+其中，介绍了二进制与八进制表示法、Number.isFinite()、Number.isNaN()、Number.parseInt()、Number.parseFloat()、Number.isInteger()、Number.EPSILON、安全整数与Number.isSafeInteger()、Math对象扩展方法、指数运算符以及Integer数据类型的使用方法。
+
+整个文本内容较为详细地介绍了这些知识点，并包含了示例和方法的手写实现，能够帮助读者更好地理解和掌握这些内容。
 
 ## 第七章 函数的扩展
