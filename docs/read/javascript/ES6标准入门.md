@@ -2085,3 +2085,361 @@ let e = 10n / 3n; // 3n (舍去小数部分)
 整个文本内容较为详细地介绍了这些知识点，并包含了示例和方法的手写实现，能够帮助读者更好地理解和掌握这些内容。
 
 ## 第七章 函数的扩展
+
+本章节为函数的相关扩展，包括参数默认值、`rest` 参数、严格模式、`name` 属性、箭头函数、`this` 绑定、尾调用优化等七个方面。
+
+### 函数参数默认值
+
+在ES6之前，为函数参数指定默认值需要采用变通的方法，例如通过判断参数是否赋值来设定默认值。但是这也会有一个问题，如果用户传了 `false` 或 0等 ，则也会短路运算赋值后半部分。而在ES6标准中，允许直接在参数定义的后面设置默认值，使得代码更加简洁和自然。
+
+```js
+// ES6之前
+function fn(x) {
+  x = x || 1
+  return x
+}
+fn() // 1
+fn(2) // 2
+fn(0) // 1
+
+// ES6之后
+function fn(x = 1) {
+  return x
+}
+fn() // 1
+fn(2) // 2
+fn(0) // 0
+```
+
+ES6写法比ES5写法简洁许多，而且非常自然。除了简洁外，ES6写法还有两个好处：
+
+1. 阅读代码的人可以立刻意识到哪些参数是可以省略的，不用查看函数体或文档
+2. 有利于将来的代码优化，即使未来的版本彻底拿掉这个参数，也不会导致以前的代码无法运行。
+
+另外，需要注意的是，参数是默认声明的，在函数中无法使用 `let` 或 `const` 再次声明；参数默认值不是传值的，而是每次都重新计算默认值表达式的值。也就是说，参数默认值是惰性求值的。这意味着每次调用函数时都会重新计算默认值表达式的值，而不是默认值被固定为定义时的值。
+
+```js
+// 不可重复声明
+function (x, y) {
+  let x = 1 // error
+  const y = 2 // error
+}
+
+// 惰性求值
+function lazy(p = x + 1) {
+  return p
+}
+lazy(99) // 100
+lazy(1) // 2
+```
+
+参数默认值可以与解构赋值的默认值的结合使用。首先，通过对象的解构赋值默认值，可以为函数参数中的对象属性设置默认值。如果函数参数不是一个对象，解构赋值将无法进行，会报错。只有在参数对象没有对应属性时，才会使用默认值。
+
+```js
+function fn({x, y = 5}) {
+  return [x, y]
+}
+
+fn({x: 1, y: 2}) // [1, 2]
+fn({x: 1}) // [1, 5]
+fn({}) // [undefined, 5]
+fn() // TypeError: Cannot read property ’ x ’ of undefined 
+```
+
+对比一下下面两种写法：
+
+```js
+// 写法1
+function fn({x = 0, y = 0} = {}) {
+  console.log(x, y)
+}
+fn() // 0, 0
+fn({x: 1}) // 1, 0
+fn({x: 1, y: 3}) // 1, 3
+fn({}) // 0, 0
+
+// 写法2
+function fn({x, y} = {x: 0, y: 0}) {
+  console.log(x, y)
+}
+fn() // 0, 0
+fn({x: 1}) // 1, undefined
+fn({x: 1, y: 3}) // 1, 3
+fn({}) // undefined, undefined
+```
+
+写法一将函数参数的默认值设为空对象，并设置了解构赋值的默认值；写法二将函数参数的默认值设为一个具有具体属性的对象，并未设置解构赋值的默认值。
+
+在函数中设置默认值时，通常应该将具有默认值的参数放在函数的尾部。这样做有助于更清楚地识别哪些参数是被省略的。如果非尾部的参数设置了默认值，那么这些参数实际上是无法被省略的。
+
+当传入 `undefined` 时，会触发参数默认值，而传入 `null` 则不会触发默认值。
+
+```js
+function fn (x = 1, y) {
+  console.log(x, y)
+}
+fn(2) // 2, undefined
+fn(undefined, 2) // 1, 2
+fn(null, 2) // null, 2
+fn(, 2) // erro
+```
+
+总结而言，通过将具有默认值的参数放在函数的尾部可以更清晰地处理参数的省略情况，而非尾部的参数无法被省略，除非显式输入 `undefined` 。
+
+在函数指定了默认值后，函数的 `length` 属性将失真。`length` 属性返回的是函数预期传入的参数个数，而指定了默认值的参数不再计入该个数。
+
+```js
+(function fn (a, b, c = 1) {}).length // 2
+(function fn (a, b, c) {}).length // 3
+(function fn (a = 1) {}).length // 0
+```
+
+另外，如果函数使用了剩余参数（`rest parameters`），即使用了 `...args` 语法来接收可变数量的参数，那么 `length` 属性将返回0，因为剩余参数不计入预期传入的参数个数。
+
+```js
+(function fn (...args) {}).length // 0
+```
+
+最后，如果设置了默认值的参数不是尾参数，那么 `length` 属性也不再计入后面的参数。
+
+```js
+(function fn (a = 1, b, c) {}).length // 0
+(function fn (a, b = 2, c) {}).length // 1
+```
+
+总而言之，指定了默认值后，`length` 属性返回的是函数预期传入的参数个数，而指定了默认值的参数不再计入该个数。剩余参数也不会计入 `length` 属性。
+
+在函数参数设置默认值时，会形成一个单独的作用域（`scope`），函数内部默认值变量指向该作用域的第一个参数，而不是全局变量。如果在该作用域中变量未定义，那么默认值变量将指向外层的全局变量。此外，参数的默认值也可以是一个函数，遵循相同的作用域规则。
+
+总结概括如下：
+
+- 在函数声明初始化时，参数设置默认值会形成一个单独的作用域。
+- 默认值变量指向该作用域的第一个参数，而不是全局变量。
+- 如果作用域内部未定义变量，则默认值变量指向外层的全局变量。
+- 参数的默认值也可以是一个函数，遵循相同的作用域规则。
+
+```js
+// 独立作用域，取形参的x
+var x = 1;
+function f(x, y = x) {
+    console.log(y);
+}
+f(2); // 输出为 2
+
+// 取作用域内最近的x，内部的x无关
+let x = 1;
+function f(y = x) {
+    let x = 2;
+    console.log(y);
+}
+f(); // 输出为 1
+
+// 作用域内无x，报错
+function f(y = x) {
+    let x = 2;
+    console.log(y);
+}
+f() // ReferenceError: x is not defined
+
+// 参数可以是函数
+let foo = 'abc'
+function f(y = () => foo) {
+  let foo = 'def'
+  console.log(y)
+}
+f() // abc，函数内返回的值根据作用域取到的
+```
+
+利用参数默认值来指定某个参数不得省略，如果省略则抛出一个错误。通过在函数定义时使用默认值为参数赋予一个函数，可以在调用函数时实现对参数的必填检查。
+
+总结概括如下：
+
+- 可以利用参数默认值来指定某个参数不得省略，如果省略就抛出一个错误。
+- 在函数定义时，将参数的默认值设置为一个函数，当调用函数且未提供该参数时，函数会执行默认值函数从而抛出错误。
+- 参数的默认值是在运行时执行的，如果参数已经被传递，则默认值中的函数不会执行。
+- 参数的默认值也可以设为 undefined，表示这个参数是可省略的。
+
+以下是附带代码说明：
+
+```js
+// 如果不传参数则报错
+function throwIfMissing() {
+    throw new Error('Missing parameter');
+}
+
+function foo(mustBeProvided = throwIfMissing()) {
+    return mustBeProvided;
+}
+
+try {
+    foo(); // 调用时没有提供参数，会触发错误
+} catch (error) {
+    console.error(error); // 输出 Error: Missing parameter
+}
+
+// 可以将参数的默认值设为 undefined，表示参数是可省略的
+function bar(optional = undefined) {
+    console.log(optional);
+}
+
+bar(); // 不提供参数，optional 的值为 undefined
+```
+
+### rest参数
+
+ES6 中引入了 `rest` 参数，它用于获取函数的多余参数，取代了之前使用 `arguments` 对象的方式。`rest` 参数的形式是 `"…变量名"` ，它会将多余的参数放入一个数组中。
+
+可以使用 `rest` 参数来传入任意数目的参数，进行处理。`rest` 参数的写法更自然、简洁，并且可以直接使用数组的方法。可以利用 `rest` 参数改写一些原本需要使用 `arguments` 对象的函数。
+
+> 注意
+>
+> `rest` 参数必须是最后一个参数，不能在其后再有其他参数，否则会报错。
+
+函数的 `length` 属性不包括 `rest` 参数。
+
+```js
+// 使用rest参数实现求和函数
+function add(...values) {
+  let sum = 0;
+  for (let val of values) {
+    sum += val;
+  }
+  return sum;
+}
+
+console.log(add(2, 5, 3)); // 输出 10
+
+// 使用rest参数代替arguments变量
+function sortNumbers() {
+  return Array.prototype.slice.call(arguments).sort();
+}
+
+// 使用rest参数的写法
+const sortNumbers = (...numbers) => numbers.sort();
+
+// 利用rest参数改写数组push方法
+function push(array, ...items) {
+  items.forEach(function(item) {
+    array.push(item);
+    console.log(item);
+  });
+}
+
+var a = [];
+push(a, 1, 2, 3);
+
+// 注意rest参数必须是最后一个参数
+// 下面的写法会报错
+function f(a, ...b, c) {
+  // ...
+}
+
+// 函数的length属性不包括rest参数
+(function(a) {}).length; // 输出 1
+(function(...a) {}).length; // 输出 0
+(function(a, ...b) {}).length; // 输出 1
+```
+
+> 总结
+>
+> 使用rest参数能够获取函数的多余参数，可配合循环实现求和、排序以及改写数组 `push` 方法等。但也需注意 `rest` 参数的限制和函数的 `length` 属性不包括 `rest` 参数。
+
+### 严格模式
+
+在ES5中，函数内部可以设定为严格模式。但是，从ES2016开始，规定只要函数参数使用了默认值、解构赋值或者扩展运算符，那么函数内部就不能显式设定为严格模式，否则会报错。
+
+函数内部的严格模式同时适用于函数体和函数参数，但是函数执行时先执行函数参数，再执行函数体，导致参数是否应该以严格模式执行不确定。
+
+JavaScript引擎会先成功执行带有默认值的参数，然后在函数体内部发现需要严格模式执行时才会报错。为了避免这种限制，可以全局性设定严格模式或将函数包裹在一个无参数的立即执行函数中。
+
+```js
+// 报错示例：函数参数使用默认值但内部显式设定严格模式
+function doSomething(a, b = a) { 
+  'use strict'; 
+  // code
+}
+
+// 报错示例：函数参数使用解构赋值但内部显式设定严格模式
+const doSomething = function ({a, b}) { 
+  'use strict'; 
+  // code
+}
+
+// 报错示例：箭头函数参数使用扩展运算符但内部显式设定严格模式
+const doSomething = (...a) => { 
+  'use strict'; 
+  // code
+}
+
+// 报错示例：对象方法参数使用默认值但内部显式设定严格模式
+const obj = {
+  doSomething({a, b}) { 
+    'use strict'; 
+    // code
+  }
+}
+
+// 参数使用默认值但会在严格模式下报错的示例
+function doSomething(value = 070) { 
+  'use strict'; 
+  return value; 
+}
+
+// 解决方法1：全局性设定严格模式
+'use strict';
+function doSomething(a, b = a) { 
+  // code
+}
+
+// 解决方法2：将函数包裹在无参数的立即执行函数里面
+const doSomething = (function () { 
+  'use strict'; 
+  return function (value = 42) { 
+    return value; 
+  };
+})();
+```
+
+### name属性
+
+在 ES5 中，将匿名函数赋值给变量时，`name` 属性会返回空字符串；而在 ES6 中，`name` 属性会返回实际的函数名。
+
+如果将具名函数赋值给一个变量，无论是在 ES5 还是 ES6 中，`name` 属性都会返回这个具名函数的原本名字。
+
+使用 Function 构造函数创建的函数实例，name 属性的值为 `"anonymous"`。
+
+使用 `bind` 方法创建的函数，`name` 属性的值会加上 `"bound"` 前缀。
+
+```js
+// ES5 vs ES6 示例
+var f = function () {}; 
+// ES5
+console.log(f.name); // 输出：空字符串
+// ES6
+console.log(f.name); // 输出：f
+
+// 具名函数示例
+const bar = function baz() {}; 
+// ES5 & ES6
+console.log(bar.name); // 输出：baz
+
+// 函数构造函数示例
+console.log((new Function).name); // 输出：anonymous
+
+// 使用 bind 方法示例
+function foo() {};
+console.log(foo.bind({}).name); // 输出：bound foo
+
+// 更复杂的 bind 示例
+console.log((function() {}).bind({}).name); // 输出：bound
+```
+
+### 箭头函数
+
+### this绑定
+
+### 尾调用优化
+
+### 总结
+
+## 数组的扩展
