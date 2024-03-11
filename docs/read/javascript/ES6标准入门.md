@@ -2436,10 +2436,425 @@ console.log((function() {}).bind({}).name); // 输出：bound
 
 ### 箭头函数
 
+箭头函数使用简洁的语法定义函数，可以省略 `function` 关键字和大括号。当箭头函数不需要参数或需要多个参数时，使用圆括号表示参数部分。
+
+如果箭头函数包含多于一条语句的代码块，需要使用大括号并显式地使用 `return` 返回结果。在箭头函数直接返回对象时，需要在对象外面加上括号以避免解析错误。
+
+箭头函数可以与变量解构结合使用，使代码更加简洁。且特别适合简化回调函数的书写，可以用更紧凑的语法表达同样的功能。
+
+```js
+// 示例1：箭头函数简化函数定义
+var f = v => v;
+// 相当于
+var f = function(v) {
+  return v;
+};
+
+// 示例2：箭头函数与变量解构结合使用
+const full = ({ first, last }) => first + ' ' + last;
+// 相当于
+function full(person) {
+  return person.first + ' ' + person.last;
+}
+
+// 示例3：箭头函数简化回调函数
+// 正常函数写法
+[1, 2, 3].map(function(x) {
+  return x * x;
+});
+// 箭头函数写法
+[1, 2, 3].map(x => x * x);
+
+// 示例4：箭头函数简化排序函数
+// 正常函数写法
+var result = values.sort(function(a, b) {
+  return a - b;
+});
+// 箭头函数写法
+var result = values.sort((a, b) => a - b);
+
+// 示例5：箭头函数与 rest 参数结合
+const numbers = (...nums) => nums;
+numbers(1, 2, 3, 4, 5); // 输出：[1, 2, 3, 4, 5]
+
+const headAndTail = (head, ...tail) => [head, tail];
+headAndTail(1, 2, 3, 4, 5); // 输出：[1, [2, 3, 4, 5]]
+```
+
+箭头函数有以下几个使用注意事项：
+
+1. 箭头函数的 `this` 对象是固定的，它继承自外层函数的 `this`，而不是根据使用时所在的对象决定。
+2. 箭头函数不能被当作构造函数使用，即不能使用 `new` 命令创建实例，否则会抛出错误。
+3. 箭头函数内部不存在 `arguments` 对象，如果需要使用参数，可以使用 `rest` 参数代替。
+4. 箭头函数不能被用作 `generator` 函数，即不能使用 `yield` 命令。
+
+箭头函数的固定化的 `this` 指向特性非常有利于封装回调函数。例如，在 `DOM` 事件的回调函数中，可以使用箭头函数来确保 `this` 指向定义时的对象。
+
+代码说明：
+
+```js
+// 示例1：箭头函数的 this 绑定定义时所在的作用域
+function foo() {
+  setTimeout(() => {
+    console.log('id:', this.id);
+  }, 100);
+  var id = 21;
+  foo.call({ id: 42 });
+}
+foo() // 输出: id: 42
+
+// 示例2：箭头函数和普通函数在定时器中的对比
+function Timer() {
+  this.sl = 0;
+  this.s2 = 0;
+  
+  // 箭头函数
+  setInterval(() => this.sl++, 1000);
+  
+  // 普通函数
+  setInterval(function() {
+    this.s2++;
+  }, 1000);
+}
+var timer = new Timer();
+setTimeout(() => console.log('sl:', timer.sl), 3100); // 输出: sl: 3
+setTimeout(() => console.log('s2:', timer.s2), 3100); // 输出: s2: 0
+
+// 示例3：箭头函数内部没有自己的 this，只有外层函数的 this
+function foo() {
+  return () => {
+    return () => {
+      return () => {
+        console.log('id:', this.id);
+      };
+    };
+  };
+}
+var f = foo.call({ id: 1 });
+var t1 = f.call({ id: 2 })(); // 输出: id: 1
+var t2 = f().call({ id: 3 })(); // 输出: id: 1
+var t3 = f()().call({ id: 4 })(); // 输出: id: 1
+```
+
+箭头函数可以嵌套使用，提供了简洁的函数定义方式。下面是一些使用箭头函数的示例代码：
+
+1. 多重嵌套函数的箭头函数写法:
+
+   ```js
+   function insert(value) { 
+     return {into: function(array) { 
+       return {after: function(afterValue) { 
+         array.splice(array.indexOf(afterValue) + 1, 0, value); 
+         return array; 
+       }};
+     }};
+   }
+   
+   // 箭头函数写法
+   let insert = (value) => ({into: (array) => ({after: (afterValue) => { 
+     array.splice(array.indexOf(afterValue) + 1, 0, value); 
+     return array; 
+   }})});
+   ```
+
+2. 部署管道机制的箭头函数写法：
+
+   ```js
+   const pipeline = (...funcs) => (val) => funcs.reduce((a, b) => b(a), val);
+   const plus1 = a => a + 1;
+   const mult2 = a => a * 2;
+   const addThenMult = pipeline(plus1, mult2);
+   addThenMult(5); // 输出: 12
+   ```
+
+3. 箭头函数改写演算：
+
+   ```js
+   // 演算的写法
+   fix λf.(λx.f(λv.x(x)(v))) (λx.f(λv.x(x)(v)))
+   
+   // ES6 的写法
+   var fix = f => (x => f(v => x(x)(v)))(x => f(v => x(x)(v)));
+   
+   // 这两种写法几乎是一一对应的
+   ```
+
+总而言之，箭头函数提供了更简洁的函数声明方式，并且可以嵌套使用。
+
 ### this绑定
+
+ES7提出了“函数绑定”（ `function bind` ）运算符，用双冒号 `(::)` 来取代显式绑定（`call`、`apply`、`bind`）的调用方式。这个语法虽然是ES7的提案，但 `Babel` 转码器已经支持。
+
+函数绑定运算符的语法为：`foo :: bar;`，它会自动将左边的对象作为上下文环境（即 `this` 对象）绑定到右边的函数上，相当于 `bar.bind(foo);`。
+
+```js
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+
+// 使用函数绑定运算符来简化方法调用
+function hasOwn(obj, key) {
+  return obj::hasOwnProperty(key);
+}
+
+foo::bar -> foo.bind(foo)
+foo::bar(...arguments) -> foo.apply(foo, arguments)
+
+// 如果双冒号左边为空，右边是一个对象的方法，则等同于将该方法绑定在该对象上
+var method = obj::obj.foo;
+// 等同于
+var method = ::obj.foo;
+
+// 链式写法示例
+import { map, takeWhile, forEach } from 'iterlib';
+
+getPlayers()
+::map(x => x.character())
+::takeWhile(x => x.strength > 100)
+::forEach(x => console.log(x));
+
+// 链式写法示例二
+let { find, html } = jake;
+
+document.querySelectorAll("div.myClass")
+::find("p")
+::html("hahaha");
+```
 
 ### 尾调用优化
 
+尾调用是函数式编程中的重要概念，它指的是某个函数的最后一步是调用另一个函数。
+
+以下情况不属于尾调用：
+
+1. 最后一步调用函数之前还有其他操作；
+2. 最后一步调用函数的返回值还经过了其他操作；
+3. 最后一步调用函数后并无返回值或返回了 `undefined` 。
+
+尾调用可以出现在函数的尾部，只要是最后一步操作即可。
+
+```js
+// 尾调用的示例（最后一句代码）
+function f(x) {
+  return g(x);
+}
+
+// 非尾调用的情况一
+function f(x) {
+  let y = g(x);
+  return y;
+}
+
+// 非尾调用的情况二
+function f(x) {
+  return g(x) + 1;
+}
+
+// 非尾调用的情况三
+function f(x) {
+  g(x);
+  // 执行其他操作
+}
+
+// 尾调用的示例（非最后一句代码）
+function f(x) {
+  if (x > 0) {
+    return m(x);
+  }
+  return n(x);
+}
+```
+
+尾调用在函数调用过程中具有特殊的调用位置，它不需要保留外层函数的调用帧，因为在最后一步操作完成后，外层函数的调用帧可以被内层函数的调用帧直接取代，从而节省内存空间。
+
+尾调用优化（Tail Call Optimization）指的是只保留内层函数的调用帧，如果所有函数都是尾调用，就可以做到每次执行时调用帧只有一项，大大节省内存。但要注意，只有当不再需要外层函数的内部变量时，内层函数的调用帧才能取代外层函数的调用帧，否则无法进行尾调用优化。
+
+```js
+// 尾调用优化的示例
+function f() {
+  let m = 1;
+  let n = 2;
+  return g(m + n);
+}
+f(); // 等同于直接调用 g(3);
+
+// 尾调用优化的示例
+function addOne(a) {
+  var one = 1;
+  function inner(b) {
+    return b + one;
+  }
+  return inner(a);
+}
+// 上面的函数不会进行尾调用优化，因为内层函数 inner 使用了外层函数 addOne 的内部变量 one。
+```
+
+递归是指函数调用自身的过程，而尾递归是指尾调用自身的递归形式。尾递归优化是一种编译器或解释器的优化技术，通过只保留一个调用帧，避免保存大量的调用记录，从而提高递归函数的性能并防止栈溢出错误。
+
+尾递归的特点是，递归调用发生在函数的最后一条语句，并且递归调用的返回值直接作为当前函数的返回值，不再进行其他操作。这样可以避免每次递归调用都需要保存调用帧的开销。
+
+```javascript
+// 阶乘函数的尾递归实现
+function factorial(n, total = 1) {
+  if (n === 1) return total;
+  return factorial(n - 1, n * total);
+}
+factorial(5); // 120
+
+// Fibonacci 数列的尾递归实现
+function Fibonacci2(n, ac1 = 1, ac2 = 1) {
+  if (n <= 1) return ac2;
+  return Fibonacci2(n - 1, ac2, ac1 + ac2);
+}
+Fibonacci2(10); // 89
+```
+
+将递归调用放在函数的最后一条语句，并直接返回递归调用的结果，可以减少调用帧的开销，提高性能并避免栈溢出错误。在ES6规范中，尾调用优化被明确要求部署，使得使用尾递归的函数不会发生栈溢出错误，并节省内存空间。
+
+在尾递归中，将所有用到的内部变量改写成函数的参数，以确保最后一步只调用自身。为了让代码更直观和易读，提出了两种解决方案：
+
+1. 提供一个正常形式的函数来调用尾递归函数，使代码结构更清晰：
+
+   ```js
+   function tailFactorial(n, total) {
+     if (n === 1) return total;
+     return tailFactorial(n - 1, n * total);
+   }
+   
+   function factorial(n) {
+     return tailFactorial(n, 1);
+   }
+   
+   factorial(5); // 120
+   ```
+
+2. 使用柯里化（currying）将多参数的函数转换成单参数形式，使代码更简洁：
+
+   ```js
+   function currying(fn, n) {
+     return function(m) {
+       return fn.call(this, m, n);
+     };
+   }
+   
+   function tailFactorial(n, total) {
+     if (n === 1) return total;
+     return tailFactorial(n - 1, n * total);
+   }
+   
+   const factorial = currying(tailFactorial, 1);
+   factorial(5); // 120
+   ```
+
+另外，ES6 的函数默认值也是一种简洁的解决方案，可以避免在调用时提供额外的参数：
+
+```javascript
+function factorial(n, total = 1) {
+  if (n === 1) return total;
+  return factorial(n - 1, n * total);
+}
+
+factorial(5); // 120
+```
+
+ES6的尾调用优化只在严格模式下开启的原因。在正常模式下，函数内部的两个变量 `func.arguments` 和 `func.caller` 可以追踪函数的调用栈，但是当尾调用优化发生时，函数的调用栈会被改写，导致这两个变量失效。因此，为了保证尾调用优化的有效性，ES6规定尾调用优化仅在严格模式下生效。
+
+```javascript
+function restricted() {
+  'use strict';
+  restricted.caller; // 报错
+  restricted.arguments; // 报错
+  restricted();
+}
+```
+
+在上面的代码中，`restricted.caller`和`restricted.arguments`在严格模式下会导致报错，因为严格模式禁用了这两个变量，这样可以确保在尾调用优化发生时不会出现调用栈跟踪失真的情况，从而保证尾调用优化的有效性。
+
+在不能依赖JavaScript引擎进行尾调用优化的情况下，通过自己实现尾递归优化来避免调用栈溢出的方法。具体来说，通过使用"蹦床函数"（trampoline function）或者"尾调用优化"（Tail Call Optimization，TCO）来将递归执行转换为循环执行，从而避免调用栈溢出的问题。
+
+1. **蹦床函数方法**：
+
+   - 创建一个蹦床函数，接受一个函数作为参数。
+   - 在蹦床函数内部，循环执行传入的函数，直到最终返回一个非函数值为止，从而避免递归调用造成的调用栈溢出。
+   - 通过每一步返回一个新的函数，来避免递归执行，实现了递归转换为循环执行的效果。
+
+   ```js
+   function trampoline(f) {
+       while (f && f instanceof Function) {
+           f = f();
+       }
+       return f;
+   }
+   
+   function sum(x, y) {
+       if (y > 0) {
+           return function() {
+               return sum(x + 1, y - 1);
+           };
+       } else {
+           return x;
+       }
+   }
+   
+   console.log(trampoline(() => sum(1, 100000))); // 输出：100001
+   ```
+
+2. **尾调用优化方法**：
+
+   - 创建一个尾调用优化函数（tco），内部使用状态变量来模拟递归执行过程。
+   - 在函数内部，通过判断是否处于激活状态来控制递归执行，同时使用一个数组来存储每次函数执行的参数。
+   - 每次函数执行都返回undefined，避免真正的递归执行，同时通过循环将参数替换实现了类似于递归的效果，但是调用栈只有一层。
+
+   ```js
+   function tco(f) {
+       let value;
+       let active = false;
+       let accumulated = [];
+   
+       function accumulator() {
+           accumulated.push(arguments);
+           if (!active) {
+               active = true;
+               while (accumulated.length) {
+                   value = f.apply(this, accumulated.shift());
+               }
+               active = false;
+               return value;
+           }
+       }
+   
+       return accumulator;
+   }
+   
+   const sum = tco(function(x, y) {
+       if (y > 0) {
+           return sum(x + 1, y - 1);
+       } else {
+           return x;
+       }
+   });
+   
+   console.log(sum(1, 100000)); // 输出：100001
+   ```
+
+> 总结
+>
+> 1. 尾调用只要满足最后一步是调用另一个函数的条件即可，不一定要出现在函数的尾部。
+> 2. 只有当不再需要外层函数的内部变量时，才能实现尾调用优化，从而节省内存空间。
+> 3. 递归本质上是一种循环操作，在纯函数式编程语言中循环都通过递归实现。尾递归对于这些语言非常重要，因为它能够避免栈溢出并提高性能。对于支持“尾调用优化”的语言，推荐使用尾递归。
+
 ### 总结
+
+在本章中，阮一峰老师带领我们深入探讨了函数的扩展特性。首先介绍了参数默认值的概念，它允许在定义函数时为参数指定默认值，简化了函数调用时的语法，同时也提高了代码的可读性。
+
+接着讨论了 `rest` 参数的作用，它可以将一个不定数量的参数表示为一个数组，使得函数能够处理不固定长度的参数列表，这对于编写灵活的函数非常有用。
+
+还提及了严格模式，它是在 ES6 中引入的一种模式，可以确保代码更加健壮和安全，避免一些常见的错误。
+
+另外介绍了函数的 `name` 属性，它可以获取函数的名称，这对于调试和日志记录非常有帮助。
+
+再然后讨论了箭头函数的特点，它是一种更简洁的函数定义方式，尤其适合于简单的函数和回调函数的书写，同时固定了函数内部的this指向，避免了传统函数中this指向不确定的问题。
+
+最后介绍了尾调用优化，这是一种优化技术，可以使得尾调用时不会新增额外的调用帧，从而提高递归函数的性能并减少内存占用。
+
+这些函数的扩展特性丰富了 JavaScript 的函数语法和功能，使得编程变得更加便利、高效和安全。
 
 ## 数组的扩展
