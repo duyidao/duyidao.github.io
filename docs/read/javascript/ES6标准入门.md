@@ -3314,3 +3314,5 @@ javascript复制代码// forEach 方法
 9. includes()：判断数组是否包含某个特定元素。
 
 ## 对象的扩展
+
+本章节阮一峰老师从 属性的简洁表示法、属性名表达式、方法name属性、`Object.is()`、`Object.assign()`、属性可枚举性、属性遍历、`__proto__` & 属性
