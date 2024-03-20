@@ -374,6 +374,10 @@ const TalkSidebar = [
             text: "console.log导致内存泄漏",
             link: "/learn/杂技拾谈/JS/console.log导致内存泄漏",
           },
+          {
+            text: "toFixed结果因精确度产生bug",
+            link: "/learn/杂技拾谈/JS/toFixed结果因精确度产生bug",
+          },
         ],
       },
       {
@@ -742,6 +746,7 @@ const BaiduSidebar = [
       { text: "⛷️ 引言", link: "/project/baidu/" },
       { text: "🗺 图层", link: "/project/baidu/layer/index" },
       { text: "🎞️ 佛开LED", link: "/project/baidu/fokai/index" },
+      { text: "💻 Ws", link: "/project/baidu/fokai/Ws" },
       { text: "🗑 返回", link: "/project/" },
     ],
   },
