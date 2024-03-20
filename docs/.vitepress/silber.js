@@ -370,6 +370,10 @@ const TalkSidebar = [
             text: "并发任务控制",
             link: "/learn/杂技拾谈/JS/并发任务控制",
           },
+          {
+            text: "console.log导致内存泄漏",
+            link: "/learn/杂技拾谈/JS/console.log导致内存泄漏",
+          },
         ],
       },
       {
@@ -737,6 +741,7 @@ const BaiduSidebar = [
     items: [
       { text: "⛷️ 引言", link: "/project/baidu/" },
       { text: "🗺 图层", link: "/project/baidu/layer/index" },
+      { text: "🎞️ 佛开LED", link: "/project/baidu/fokai/index" },
       { text: "🗑 返回", link: "/project/" },
     ],
   },
@@ -756,6 +761,20 @@ const LayerSidebar = [
       { text: "🪜 优化", link: "/project/baidu/layer/优化" },
       { text: "⚙️ 功能", link: "/project/baidu/layer/功能" },
       { text: "🕶️ BUG", link: "/project/baidu/layer/bug" },
+      { text: "🗑 返回", link: "/project/baidu/" },
+    ],
+  },
+]
+
+// 佛开的数组
+const FokaiSidebar = [
+  {
+    text: "🎞️ 佛开LED",
+    collapsible: true,
+    items: [
+      { text: "💡 介绍", link: "/project/baidu/fokai/index" },
+      { text: "🟥 样式", link: "/project/baidu/fokai/style" },
+      { text: "🛑 覆盖物", link: "/project/baidu/fokai/overlay" },
       { text: "🗑 返回", link: "/project/baidu/" },
     ],
   },
@@ -1074,6 +1093,7 @@ export default {
   "/project/lingsi/crm": generateSidebarItems(CRMSidebar),
   "/project/baidu": generateSidebarItems(BaiduSidebar),
   "/project/baidu/layer": generateSidebarItems(LayerSidebar),
+  "/project/baidu/fokai": generateSidebarItems(FokaiSidebar),
   "/project/myself": generateSidebarItems(SelfstudySidebar),
   "/project/myself/小兔鲜": generateSidebarItems(RabitSidebar),
   "/project/myself/硅谷甄选": generateSidebarItems(SelectSidebar),

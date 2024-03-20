@@ -1,7 +1,6 @@
 <template>
     <div>
-        <h1>{{ title }}</h1>
-        <p>{{ description }}</p>
+        <h1 @click="clickFn">click me</h1>
     </div>
 </template>
 
@@ -9,9 +8,14 @@
 export default {
     data() {
         return {
-            title: 'Hello, VuePress',
-            description: 'This is a Vue component in VitePress.'
         };
-    }
+    },
+    methods: {
+        clickFn() {
+           const arr = new Array(10000000).fill(0);
+           console.log(arr)
+           return arr;
+        }
+    },
 };
 </script>

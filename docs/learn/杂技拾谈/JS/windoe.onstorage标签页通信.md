@@ -1,10 +1,10 @@
-# windoe.onstorage标签页通信
+# window.onstorage标签页通信
 
 标签页通信的常见方案有如下几点：
 
 - BroadCast Channel
 - Service Worker
-- LocalStorage 通过 windoe.onstorage 监听
+- LocalStorage 通过 window.onstorage 监听
 - Shared Worker 定时器轮询（setInterval）
 - IndexedDB 定时器轮询（setInterval）
 - cookie定时器轮询（setInterval）
