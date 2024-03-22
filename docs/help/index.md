@@ -64,4 +64,3 @@ title 有用的帮助
   项目启动后，在手机右下角就会出现灰色的控制台。效果如下所示：
 
   [![pC7kF8x.png](https://s1.ax1x.com/2023/07/19/pC7kF8x.png)](https://imgse.com/i/pC7kF8x)
-

@@ -24,7 +24,7 @@ export default [
         items: [
           {
             text: "学而时习之",
-            link: "/learn/学而时习之/操作内嵌ifrname与传递消息.md",
+            link: "/learn/学而时习之/前端组件封装实例/vue组件设计技巧",
           },
         ],
       },
