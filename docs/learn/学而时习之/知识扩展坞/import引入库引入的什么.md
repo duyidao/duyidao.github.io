@@ -41,7 +41,7 @@ export default {
 ```json
 {
   // ...
-  "mmain": "index.js",
+  "main": "index.js",
   "module": "index.module.js",
   "broswer": "index.broswer.js",
 }
