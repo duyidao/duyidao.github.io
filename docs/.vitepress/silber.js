@@ -439,6 +439,14 @@ const TalkSidebar = [
         items: [
           { text: "接口请求", link: "/learn/杂技拾谈/Promise/多接口请求" },
           { text: "消除异步传染性", link: "/learn/杂技拾谈/Promise/消除异步传染性" },
+          {
+            text: "Axios二次封装",
+            link: "/learn/杂技拾谈/Promise/Axios二次封装",
+          },
+          {
+            text: "Axios二次封装",
+            link: "/learn/杂技拾谈/Promise/并发请求封装",
+          },
         ],
       },
       {
@@ -546,10 +554,6 @@ const LearnSidebar = [
         ]
       },
       { text: "Canvas操作", link: "/learn/学而时习之/更上一层楼/Canvas操作" },
-      {
-        text: "Axios二次封装",
-        link: "/learn/学而时习之/更上一层楼/Axios二次封装",
-      },
       {
         text: "Vue项目权限控制",
         link: "/learn/学而时习之/更上一层楼/Vue项目权限控制",
