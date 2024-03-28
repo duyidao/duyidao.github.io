@@ -444,7 +444,7 @@ const TalkSidebar = [
             link: "/learn/杂技拾谈/Promise/Axios二次封装",
           },
           {
-            text: "Axios二次封装",
+            text: "并发请求封装",
             link: "/learn/杂技拾谈/Promise/并发请求封装",
           },
         ],
