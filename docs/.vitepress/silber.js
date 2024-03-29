@@ -447,6 +447,10 @@ const TalkSidebar = [
             text: "并发请求封装",
             link: "/learn/杂技拾谈/Promise/并发请求封装",
           },
+          {
+            text: "高量级任务执行优化",
+            link: "/learn/杂技拾谈/Promise/高量级任务执行优化",
+          },
         ],
       },
       {
