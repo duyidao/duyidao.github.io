@@ -59,7 +59,10 @@ const CssLevelSidebar = [
         text: "文字连续光影特效",
         link: "/learn/CSS/效果提升/文字连续光影特效",
       },
-
+      {
+        text: "B站banner鼠标移动效果揭秘",
+        link: "/learn/CSS/效果提升/B站banner鼠标移动效果揭秘",
+      },
       { text: "🗑 返回", link: "/learn/CSS/" },
     ],
   },
@@ -1052,6 +1055,7 @@ const AboutSidebar = [
     items: [
       { text: "🧑 关于我", link: "/about/" },
       { text: "🔪 关于刀刀小站", link: "/about/blog" },
+      { text: "📑 关于学习准则", link: "/about/furtrue" },
       { text: "🧟 关于灵思", link: "/about/lingsi" },
       { text: "⛷️ 关于百度", link: "/about/baidu" },
     ],

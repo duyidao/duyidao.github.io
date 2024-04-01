@@ -77,6 +77,7 @@ export default [
     items: [
       { text: "⭐ 关于我", link: "/about/" },
       { text: "🔪 关于刀刀小站", link: "/about/blog" },
+      { text: "📑 关于学习准则", link: "/about/furtrue" },
       { text: "🧟 关于灵思", link: "/about/lingsi" },
       { text: "⛷️ 关于百度", link: "/about/baidu" },
     ],
