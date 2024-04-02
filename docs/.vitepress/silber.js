@@ -481,6 +481,10 @@ const LearnSidebar = [
         link: "/learn/学而时习之/前端组件封装实例/vue组件设计技巧",
       },
       {
+        text: "Vue重复小组件处理经验",
+        link: "/learn/学而时习之/前端组件封装实例/vue重复小组件处理经验",
+      },
+      {
         text: "对话框弹窗组件",
         link: "/learn/学而时习之/前端组件封装实例/对话框弹窗组件",
       },
