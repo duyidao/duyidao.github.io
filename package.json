@@ -1,7 +1,5 @@
 {
   "devDependencies": {
-    "stylus": "^0.59.0",
-    "stylus-loader": "^7.1.0",
     "vitepress": "^1.0.0-alpha.29"
   },
   "scripts": {
@@ -10,6 +8,8 @@
     "serve": "vitepress serve docs"
   },
   "dependencies": {
+    "less": "^4.2.0",
+    "less-loader": "^12.2.0",
     "typescript": "^5.0.2"
   }
 }

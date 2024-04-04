@@ -11,7 +11,7 @@ title CSS
 
 - [知识拓展](/learn/CSS/知识拓展/BEM)
 
-  对 `CSS` 模块大牛与技术知识的咨询记录，不断进步。
+  对 `CSS` 相关大牛与技术原理知识的学习，不断进步。
 
 - [你没用过的 CSS API](/learn/CSS/新的功能/vmin与vmax)
 
