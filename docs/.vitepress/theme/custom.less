@@ -29,30 +29,38 @@
 
 // 示例div样式
 .ifrname-box {
-  margin-bottom: 30px;
+  margin-bottom: 1.875rem;
   background-color: rgb(246, 246, 247);
-  padding: 20px 30px;
-  border-radius: 10px;
+  padding: 1.25rem 1.875rem;
+  border-radius: .625rem;
 
-  h3#title {
+  input {
+    border: 1px solid var(--color-border);
+    padding-left: 5px;
+  }
+
+  p#title {
     display: inline-block;
     position: relative;
-    min-width: 150px;
-    height: 32px;
-    line-height: 32px;
-    padding: 0 0 0 15px;
+    min-width: 6rem;
+    height: 2rem;
+    line-height: 2rem;
+    padding: 0 0 0 .9375rem;
     background: #50BFFF;
-    left: -8px;
+    left: -.5rem;
     color: #FFF;
+    border-radius: 0 !important;
+    font-size: 1rem;
+    border-top: none;
 
     &:before {
       content: "";
       position: absolute;
       height: 0;
       width: 0;
-      border-bottom: 8px solid #4396c5;
-      border-left: 8px solid transparent;
-      top: -8px;
+      border-bottom: .5rem solid #4396c5;
+      border-left: .5rem solid transparent;
+      top: -.5rem !important;
       left: 0;
     }
 
@@ -61,19 +69,23 @@
       position: absolute;
       height: 0;
       width: 0;
-      border-top: 15px solid transparent;
-      border-bottom: 15px solid transparent;
-      border-left: 8px solid #50BFFF;
-      right: -8px;
+      border-top: .9375rem solid transparent;
+      border-bottom: .9375rem solid transparent;
+      border-left: .5rem solid #50BFFF;
+      right: -.5rem;
     }
-
-    // border-top: none;
-    // padding: 0;
-    // margin: 0 0 10px !important;
   }
 
-  ul {
+  p.info {
+    color: #777;
+    font-size: 14px;
+    text-shadow: 0 5px 5px rgba(0, 0, 0, 0.35);
+  }
+
+  > ul {
     margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
   }
 }
 
@@ -84,13 +96,13 @@
 
     .text {
       font-size: 25px;
-      line-height: 30px;
+      line-height: 1.875rem;
       color: #888;
       max-width: 620px;
     }
 
     .tagline {
-      font-size: 20px;
+      font-size: 1.25rem;
     }
   }
 
@@ -131,7 +143,7 @@
     // 一级目录样式
     &.level-1 {
       &:not(.is-link) {
-        margin: 10px 0 10px;
+        margin: .625rem 0 .625rem;
       }
 
       &.has-active>.item {
@@ -190,7 +202,7 @@ h3:not(h2 + h3) {
   font-size: 12px !important;
 
   img {
-    max-width: calc(100% - 10px) !important;
+    max-width: calc(100% - .625rem) !important;
     padding: 4px;
     border: 1px solid #eeeeee !important;
     cursor: zoom-in;
@@ -224,7 +236,7 @@ h3:not(h2 + h3) {
   line-height: 1.5;
   color: #24292e;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.5;
   word-wrap: break-word;
   box-sizing: border-box;
@@ -250,16 +262,15 @@ h3:not(h2 + h3) {
   // 代码文章模块
   pre {
     color: #545454;
-    line-height: 15px;
-    box-shadow: 0 0 8px hsla(0, 0%, 43.1%, .45);
+    line-height: .9375rem;
     border-radius: 4px;
-    padding: 16px;
+    padding: 1rem 1.25rem;
     overflow: auto;
-    font-size: 18px;
+    font-size: 1.125rem;
     letter-spacing: 1px;
     background-color: #ffffff;
     margin-top: 0;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
     word-wrap: normal;
     background-color: var(--code-bg-color);
 
@@ -326,7 +337,7 @@ h3:not(h2 + h3) {
     display: inline-block;
     padding: 3px 5px;
     font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-    line-height: 10px;
+    line-height: .625rem;
     color: #444d56;
     vertical-align: middle;
     background-color: #fafbfc;
@@ -339,7 +350,7 @@ h3:not(h2 + h3) {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    margin-left: -20px;
+    margin-left: -1.25rem;
     padding-right: 4px;
 
     &:focus {
@@ -348,7 +359,7 @@ h3:not(h2 + h3) {
   }
 
   blockquote {
-    margin: 0 0 16px 0;
+    margin: 0 0 1rem 0;
     border-left: 4px solid var(--color-border-left);
     color: var(--color-block);
     background: var(--color-block-bg);
@@ -366,7 +377,7 @@ h3:not(h2 + h3) {
   details {
     display: block;
     margin-top: 0;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
 
     summary {
       cursor: pointer;
@@ -395,7 +406,7 @@ h3:not(h2 + h3) {
 
   p {
     margin-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: .625rem;
     color: #2b2b2b;
   }
 
@@ -425,8 +436,8 @@ h3:not(h2 + h3) {
           visibility: visible;
 
           &:before {
-            width: 16px;
-            height: 16px;
+            width: 1rem;
+            height: 1rem;
             content: ' ';
             display: inline-block;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' width='16' height='16' aria-hidden='true'%3E%3Cpath fill-rule='evenodd' d='M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z'%3E%3C/path%3E%3C/svg%3E");
@@ -454,24 +465,24 @@ h3:not(h2 + h3) {
   }
 
   h3 {
-    font-size: 20px;
-    margin: 18px 0;
+    font-size: 1.25rem;
+    margin: 1.125rem 0;
 
     @media (max-width: 768px) {
-      font-size: 16px
+      font-size: 1rem
     }
   }
 
   h4 {
-    font-size: 16px;
+    font-size: 1rem;
 
     @media (max-width: 768px) {
-      font-size: 14px
+      font-size: .875rem;
     }
   }
 
   h5 {
-    font-size: 14px;
+    font-size: .875rem;
 
     @media (max-width: 768px) {
       font-size: 12px
@@ -491,8 +502,8 @@ h3:not(h2 + h3) {
       border: 2px solid #000;
       border-radius: 3px;
       color: #fff;
-      padding: 15px;
-      margin: 0 auto 30px;
+      padding: .9375rem;
+      margin: 0 auto 1.875rem;
 
       &::before {
         content: '';
@@ -528,87 +539,59 @@ h3:not(h2 + h3) {
       }
     }
 
-    h2 {
-      font-family: "Microsoft YaHei";
-      text-align: center;
-      background: -webkit-linear-gradient(left, #4dd0e1, rgb(0, 255, 136)) 0 0 no-repeat;
-      /*设置线性渐变*/
-      background-size: 160px;
-      /*设置背景大小*/
-      background-clip: text;
-      /*背景被裁剪到文字*/
-      -webkit-text-fill-color: rgba(0, 0, 0, 0.3);
-      /*设置文字的填充颜色*/
-      animation: shine 5s linear infinite;
-      padding: 10px 0;
-      margin: 20px 0;
+    h3 {
+      position: relative;
+      display: inline-block;
+      min-width: 160px;
+      padding: .3125rem .625rem .3125rem .625rem;
+      background: #00B3ED;
+      box-shadow: -1px 2px 4px rgba(0, 0, 0, 0.5);
+      color: #FFF;
       border-top: none;
-      font-size: 24px;
 
-      &::before {
+      &:before {
         position: absolute;
-        bottom: -1px;
-        left: 0px;
-        content: '';
-        width: 16px;
-        height: 3px;
-        transform: skewX(-45deg);
-        background-color: var(--color-block);
-        z-index: 2;
+        content: "";
+        display: block;
+        width: 7px;
+        height: 100%;
+        padding: 0 0 7px;
+        top: 0;
+        left: -7px;
+        background: inherit;
+        border-radius: 5px 0 0 5px;
       }
 
-      &::after {
+      &:before {
         position: absolute;
-        bottom: 0;
-        left: 0;
-        content: '';
-        width: 100%;
-        height: 1px;
-        background-image: linear-gradient(90deg, var(--c-brand) 1%, rgba(255, 255, 255, .29) 100%);
+        content: "";
+        display: block;
+        width: 5px;
+        height: 5px;
+        background: rgba(0, 0, 0, 0.35);
+        bottom: -5px;
+        left: -5px;
+        border-radius: 5px 0 0 5px;
       }
     }
 
-    h3 {
-      border-radius: 16px;
-      border: 1px solid #e8e9fb;
-      box-shadow: 0 0 10px #e8e9fb;
-      text-align: center;
-      max-width: 50%;
-      color: var(--color-code);
-      padding: 4px 10px;
-      margin-top: 25px;
+    h2 {
+      background: #ECF8FF;
+      border-top-left-radius: .3125rem;
+      padding: .625rem 0 .625rem 1.25rem;
+      border-top: none;
 
       &:before {
         content: "";
-        width: 100%;
-        height: 2px;
-        background: #e8e9fb;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        width: 4px;
+        height: 100%;
+        background: var(--c-brand);
         position: absolute;
-        top: 50%;
-        left: 100%;
-        transform: translateY(-50%);
-        background: linear-gradient(to right, #e8e9fb 80%, rgba(255, 255, 255, 0));
+        top: 0;
+        left: 0;
       }
-
-      &:not(h2 + h3) {
-        border-top: none;
-      }
-    }
-  }
-
-  @keyframes shine {
-
-    /*创建动画*/
-    0% {
-      background-position: 0 0;
-    }
-
-    50% {
-      background-position: 100% 100%;
-    }
-
-    100% {
-      background-position: 0 0;
     }
   }
 
@@ -619,11 +602,11 @@ h3:not(h2 + h3) {
     background-color: #fff;
 
     &[align=right] {
-      padding-left: 20px;
+      padding-left: 1.25rem;
     }
 
     &[align=left] {
-      padding-right: 20px;
+      padding-right: 1.25rem;
     }
   }
 
@@ -695,7 +678,7 @@ h3:not(h2 + h3) {
     border-spacing: 0;
     border-collapse: collapse;
     margin-top: 0;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
     display: block;
     width: 100%;
     overflow: auto;
@@ -724,8 +707,8 @@ h3:not(h2 + h3) {
   .blob-num {
     width: 1%;
     min-width: 50px;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-right: .625rem;
+    padding-left: .625rem;
     font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
     font-size: 12px;
     line-height: 24px;
@@ -749,12 +732,12 @@ h3:not(h2 + h3) {
   }
 
   .highlight {
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
 
     pre {
       margin-bottom: 0;
       word-break: normal;
-      padding: 16px;
+      padding: 1rem;
       overflow: auto;
       font-size: 85%;
       line-height: 1.45;
@@ -787,8 +770,8 @@ h3:not(h2 + h3) {
 
   .blob-code {
     position: relative;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-right: .625rem;
+    padding-left: .625rem;
     line-height: 24px;
     vertical-align: top;
   }
@@ -887,7 +870,7 @@ h3:not(h2 + h3) {
   ol,
   ul {
     margin-top: 0;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
     padding-left: 2em;
 
     ol,
@@ -911,7 +894,7 @@ h3:not(h2 + h3) {
     word-wrap: break-all;
 
     &>p {
-      margin-top: 16px;
+      margin-top: 1rem;
     }
 
     &+li {
@@ -921,12 +904,12 @@ h3:not(h2 + h3) {
 
   dl {
     margin-top: 0;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
     padding: 0;
 
     dt {
       padding: 0;
-      margin-top: 16px;
+      margin-top: 1rem;
       font-size: 1em;
       font-style: italic;
       font-weight: 600;
@@ -935,8 +918,8 @@ h3:not(h2 + h3) {
 
     dd {
       margin-left: 0;
-      padding: 0 16px;
-      margin-bottom: 16px;
+      padding: 0 1rem;
+      margin-bottom: 1rem;
     }
   }
 
@@ -974,8 +957,8 @@ h3:not(h2 + h3) {
   }
 
   .my-2 {
-    margin-top: 8px !important;
-    margin-bottom: 8px !important;
+    margin-top: .5rem !important;
+    margin-bottom: .5rem !important;
   }
 
   .pl-0 {
@@ -992,17 +975,17 @@ h3:not(h2 + h3) {
   }
 
   .pl-2 {
-    padding-left: 8px !important;
+    padding-left: .5rem !important;
   }
 
   .py-2 {
-    padding-top: 8px !important;
-    padding-bottom: 8px !important;
+    padding-top: .5rem !important;
+    padding-bottom: .5rem !important;
   }
 
   .pl-3,
   .px-3 {
-    padding-left: 16px !important;
+    padding-left: 1rem !important;
   }
 
   .pl-4 {
@@ -1010,7 +993,7 @@ h3:not(h2 + h3) {
   }
 
   .pl-5 {
-    padding-left: 32px !important;
+    padding-left: 2rem !important;
   }
 
   .pl-6 {

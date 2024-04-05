@@ -3,7 +3,7 @@
 
 <template>
   <div class="ifrname-box">
-    <h3 id="title">效果展示：</h3>
+    <p id="title">效果展示：</p>
     <ul>
       <li><a href="javascript:;">无操作链接</a></li>
       <li><a href="javascript:;">鼠标悬停链接</a></li>

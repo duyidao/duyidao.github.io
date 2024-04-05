@@ -3,7 +3,7 @@
 
 <template>
   <div class="ifrname-box">
-    <h3 id="title">效果展示：</h3>
+    <p id="title">效果展示：</p>
     <div class="box">
       <p>第一个元素</p>
       <div>第二个元素：div</div>
