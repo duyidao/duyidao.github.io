@@ -70,7 +70,7 @@ input:placeholder-shown {
 }
 
 li{
-  margin-bottom: 30px;
+  margin-bottom: 3.125rem;
 
   &:first-letter {
     font-weight: bold;

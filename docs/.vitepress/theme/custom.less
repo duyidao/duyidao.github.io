@@ -27,16 +27,16 @@
   box-sizing: border-box;
 }
 
-// 示例div样式
+// 效果展示组件的div样式
 .ifrname-box {
-  margin-bottom: 1.875rem;
+  margin: .0625rem 0 1.875rem;
   background-color: rgb(246, 246, 247);
   padding: 1.25rem 1.875rem;
   border-radius: .625rem;
 
   input {
-    border: 1px solid var(--color-border);
-    padding-left: 5px;
+    border: .0625rem solid var(--color-border);
+    padding-left: .3125rem;
   }
 
   p#title {
@@ -79,7 +79,7 @@
   p.info {
     color: #777;
     font-size: 14px;
-    text-shadow: 0 5px 5px rgba(0, 0, 0, 0.35);
+    text-shadow: 0 .3125rem .3125rem rgba(0, 0, 0, 0.35);
   }
 
   > ul {
@@ -89,13 +89,56 @@
   }
 }
 
+// 暗黑模式
+.dark {
+  .container {
+    div:not(.ifrname-box) p, div {
+      color: #aaa;
+    }
+
+    .ifrname-box {
+      background-color: rgba(255, 255, 255, .1);
+
+      p#title {
+        color: #ccc !important;
+        background-color: rgba(80, 191, 255, .5);
+
+        &::after {
+          border-left: .5rem solid rgba(80, 191, 255, .5);
+        }
+      }
+    }
+
+    .vp-doc {
+      h1 {
+        &::after {
+          color: #eee;
+        }
+      }
+
+      h2 {
+        color: #fff;
+        background-color: rgba(35, 208, 208, .5);
+      }
+
+      h3 {
+        background-color: rgba(0, 179, 237, .5);
+
+        &:before {
+          background-color: rgba(255, 255, 255, .5);
+        }
+      }
+    }
+  }
+}
+
 // 首页导航样式
 .VPHomeHero {
   .container {
     color: #555555 !important;
 
     .text {
-      font-size: 25px;
+      font-size: 2.3125rem;
       line-height: 1.875rem;
       color: #888;
       max-width: 620px;
@@ -135,7 +178,7 @@
       .text {
         color: var(--color-border) !important;
         transform: translateY(-2px);
-        text-shadow: 0 0 1px var(--color-border);
+        text-shadow: 0 0 .0625rem var(--color-border);
         transition: all .3s;
       }
     }
@@ -204,7 +247,7 @@ h3:not(h2 + h3) {
   img {
     max-width: calc(100% - .625rem) !important;
     padding: 4px;
-    border: 1px solid #eeeeee !important;
+    border: .0625rem solid #eeeeee !important;
     cursor: zoom-in;
   }
 
@@ -267,7 +310,7 @@ h3:not(h2 + h3) {
     padding: 1rem 1.25rem;
     overflow: auto;
     font-size: 1.125rem;
-    letter-spacing: 1px;
+    letter-spacing: .0625rem;
     background-color: #ffffff;
     margin-top: 0;
     margin-bottom: 1rem;
@@ -304,7 +347,7 @@ h3:not(h2 + h3) {
     &:before {
       content: "";
       display: block;
-      height: 25px;
+      height: 2.3125rem;
       width: 100%;
       margin-bottom: -7px;
       background-size: 40px;
@@ -335,15 +378,15 @@ h3:not(h2 + h3) {
 
   kbd {
     display: inline-block;
-    padding: 3px 5px;
-    font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    padding: 3px .3125rem;
+    font: 1.0625rem SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
     line-height: .625rem;
     color: #444d56;
     vertical-align: middle;
     background-color: #fafbfc;
-    border: 1px solid #d1d5da;
+    border: .0625rem solid #d1d5da;
     border-radius: 3px;
-    box-shadow: inset 0 -1px 0 #d1d5da;
+    box-shadow: inset 0 -.0625rem 0 #d1d5da;
   }
 
   .header-anchor {
@@ -526,7 +569,7 @@ h3:not(h2 + h3) {
         color: #000;
         top: 50%;
         transform: translateY(-50%);
-        left: -2.1875rem;
+        left: -2.6875rem;
         z-index: -2;
         width: 115%;
         height: 1.875rem;
@@ -545,7 +588,7 @@ h3:not(h2 + h3) {
       min-width: 160px;
       padding: .3125rem .625rem .3125rem .625rem;
       background: #00B3ED;
-      box-shadow: -1px 2px 4px rgba(0, 0, 0, 0.5);
+      box-shadow: -.0625rem 2px 4px rgba(0, 0, 0, 0.5);
       color: #FFF;
       border-top: none;
 
@@ -553,25 +596,14 @@ h3:not(h2 + h3) {
         position: absolute;
         content: "";
         display: block;
-        width: 7px;
-        height: 100%;
-        padding: 0 0 7px;
-        top: 0;
-        left: -7px;
-        background: inherit;
-        border-radius: 5px 0 0 5px;
-      }
-
-      &:before {
-        position: absolute;
-        content: "";
-        display: block;
-        width: 5px;
-        height: 5px;
+        width: .3125rem;
+        height: .3125rem;
         background: rgba(0, 0, 0, 0.35);
-        bottom: -5px;
-        left: -5px;
-        border-radius: 5px 0 0 5px;
+        bottom: -.3125rem;
+        left: -.3125rem;
+        top: 0;
+        border-radius: .3125rem 0 0 .3125rem;
+        padding: 0 0 7px;
       }
     }
 
@@ -583,8 +615,8 @@ h3:not(h2 + h3) {
 
       &:before {
         content: "";
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
+        border-top-left-radius: .3125rem;
+        border-bottom-left-radius: .3125rem;
         width: 4px;
         height: 100%;
         background: var(--c-brand);
@@ -614,7 +646,7 @@ h3:not(h2 + h3) {
     box-sizing: initial;
     overflow: hidden;
     border: 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: .0625rem solid #eee;
     height: .25em;
     padding: 0;
     margin: 24px 0;
@@ -691,12 +723,12 @@ h3:not(h2 + h3) {
     th {
       padding: 0;
       padding: 6px 13px;
-      border: 1px solid #dfe2e5;
+      border: .0625rem solid #dfe2e5;
     }
 
     tr {
       background-color: #fff;
-      border-top: 1px solid #c6cbd1;
+      border-top: .0625rem solid #c6cbd1;
 
       &:nth-child(2n) {
         background-color: #f6f8fa;
@@ -925,7 +957,7 @@ h3:not(h2 + h3) {
 
   // 边框、背景色类名样式设置
   .border {
-    border: 1px solid #e1e4e8 !important;
+    border: .0625rem solid #e1e4e8 !important;
   }
 
   .border-0 {
@@ -933,7 +965,7 @@ h3:not(h2 + h3) {
   }
 
   .border-bottom {
-    border-bottom: 1px solid #e1e4e8 !important;
+    border-bottom: .0625rem solid #e1e4e8 !important;
   }
 
   .rounded-1 {

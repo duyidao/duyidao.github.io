@@ -3,6 +3,7 @@ import MyComponent from '../components/MyComponent.vue';
 import Link from '../components/pseudo/link.vue';
 import Element from '../components/pseudo/element.vue';
 import Input from '../components/pseudo/input.vue';
+import Fucntion from '../components/pseudo/function.vue';
 import './custom.less'
 
 export default {
@@ -12,5 +13,6 @@ export default {
         app.component('Link', Link);
         app.component('Element', Element);
         app.component('Input', Input);
+        app.component('Fucntion', Fucntion);
     }
 }
