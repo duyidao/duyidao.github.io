@@ -31,7 +31,6 @@ const CssSidebar = [
     items: [
       { text: "效果提升", link: "/learn/CSS/效果提升/巧用伪类" },
       { text: "知识拓展", link: "/learn/CSS/知识拓展/BEM" },
-      { text: "你没用过的 CSS API", link: "/learn/CSS/新的功能/vmin与vmax" },
     ],
   }
 ]

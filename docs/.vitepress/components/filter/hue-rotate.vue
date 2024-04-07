@@ -12,15 +12,20 @@ const addDeg = () => {
     if (deg.value >= 360) deg.value = 0
     deg.value += 30
 }
+
+const reset = () => {
+    deg.value = 0
+}
 </script>
 
 <template>
     <div class="ifrname-box">
-        <p id="title">效果展示：</p>
+        <p id="title">效果展示：当前度数：{{ deg }}deg</p>
         <div class="box">
             <div class="btns">
                 <button @click="loseDeg">- 30度</button>
                 <button @click="addDeg">+ 30度</button>
+                <button @click="reset">恢复</button>
             </div>
             <img src="./firefox-logo.svg"
                 :style="{'--deg': deg + 'deg'}"
@@ -44,10 +49,7 @@ const addDeg = () => {
                 height: 40px;
                 background-color: #aaa;
                 color: #fff;
-
-                &:first-child {
-                    margin-right: 15px;
-                }
+                margin-right: 15px;
             }
         }
 

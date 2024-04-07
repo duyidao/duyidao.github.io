@@ -18,7 +18,7 @@ const reset = () => {
 
 <template>
     <div class="ifrname-box">
-        <p id="title">效果展示：</p>
+        <p id="title">效果展示：当前对比度：{{ contrast }}%</p>
         <div class="box">
             <div class="btns">
                 <button @click="loseDeg">- 20对比度</button>
