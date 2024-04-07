@@ -63,6 +63,16 @@ const CssLevelSidebar = [
         text: "B站banner鼠标移动效果揭秘",
         link: "/learn/CSS/效果提升/B站banner鼠标移动效果揭秘",
       },
+      {
+        text: "filter",
+        link: "/learn/CSS/效果提升/filter",
+      },
+      {
+        text: "clip-path",
+        link: "/learn/CSS/效果提升/clip-path",
+      },
+      { text: "vmin与vmax", link: "/learn/CSS/效果提升/vmin与vmax" },
+      { text: "scroll-snap", link: "/learn/CSS/效果提升/scroll-snap" },
       { text: "🗑 返回", link: "/learn/CSS/" },
     ],
   },
@@ -77,27 +87,6 @@ const CssKnowladgeSidebar = [
       { text: "BEM", link: "/learn/CSS/知识拓展/BEM" },
       { text: "空白节点", link: "/learn/CSS/知识拓展/空白节点" },
       { text: "粘性定位", link: "/learn/CSS/知识拓展/粘性定位" },
-      { text: "🗑 返回", link: "/learn/CSS/" },
-    ],
-  },
-]
-
-// 前端css新的功能的数组
-const CssNewSidebar = [
-  {
-    text: "你没用过的 CSS API",
-    collapsible: true,
-    items: [
-      {
-        text: "filter",
-        link: "/learn/CSS/新的功能/filter",
-      },
-      {
-        text: "clip-path",
-        link: "/learn/CSS/新的功能/clip-path",
-      },
-      { text: "vmin与vmax", link: "/learn/CSS/新的功能/vmin与vmax" },
-      { text: "scroll-snap", link: "/learn/CSS/新的功能/scroll-snap" },
       { text: "🗑 返回", link: "/learn/CSS/" },
     ],
   },
@@ -1142,7 +1131,6 @@ export default {
   "/learn/CSS": generateSidebarItems(CssSidebar),
   "/learn/CSS/效果提升": generateSidebarItems(CssLevelSidebar),
   "/learn/CSS/知识拓展": generateSidebarItems(CssKnowladgeSidebar),
-  "/learn/CSS/新的功能": generateSidebarItems(CssNewSidebar),
   "/learn/Javascript": generateSidebarItems(JsSidebar),
   "/learn/Reg": generateSidebarItems(RegSidebar),
   "/learn/vue2": generateSidebarItems(Vue2Sidebar),

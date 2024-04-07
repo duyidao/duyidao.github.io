@@ -7,6 +7,11 @@ import Width from '../components/width/index.vue';
 import Fit from '../components/fit/index.vue';
 import Variable from '../components/variable/index.vue';
 import LightEffect from '../components/lightEffect/index.vue';
+import DropShadow from '../components/filter/drop-shadow.vue';
+import Blur from '../components/filter/blur.vue';
+import HueRotate from '../components/filter/hue-rotate.vue';
+import Contrast from '../components/filter/contrast.vue';
+import Grayscale from '../components/filter/grayscale.vue';
 import './custom.less'
 
 const list = [
@@ -41,6 +46,26 @@ const list = [
     {
         name: 'LightEffect',
         compoment: LightEffect
+    },
+    {
+        name: 'DropShadow',
+        compoment: DropShadow
+    },
+    {
+        name: 'Blur',
+        compoment: Blur
+    },
+    {
+        name: 'HueRotate',
+        compoment: HueRotate
+    },
+    {
+        name: 'Grayscale',
+        compoment: Grayscale
+    },
+    {
+        name: 'Contrast',
+        compoment: Contrast
     },
 ]
 
