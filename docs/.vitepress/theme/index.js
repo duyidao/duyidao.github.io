@@ -12,6 +12,10 @@ import Blur from '../components/filter/blur.vue';
 import HueRotate from '../components/filter/hue-rotate.vue';
 import Contrast from '../components/filter/contrast.vue';
 import Grayscale from '../components/filter/grayscale.vue';
+import Polygon from '../components/clipPath/polygon.vue';
+import Polygons from '../components/clipPath/polygons.vue';
+import Ellipse from '../components/clipPath/ellipse.vue';
+import Inset from '../components/clipPath/inset.vue';
 import './custom.less'
 
 const list = [
@@ -66,6 +70,22 @@ const list = [
     {
         name: 'Contrast',
         compoment: Contrast
+    },
+    {
+        name: 'Polygon',
+        compoment: Polygon
+    },
+    {
+        name: 'Polygons',
+        compoment: Polygons
+    },
+    {
+        name: 'Ellipse',
+        compoment: Ellipse
+    },
+    {
+        name: 'Inset',
+        compoment: Inset
     },
 ]
 
