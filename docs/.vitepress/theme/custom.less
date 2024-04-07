@@ -68,12 +68,13 @@
     &:after {
       content: "";
       position: absolute;
+      top: 0;
+      right: -.5rem;
       height: 0;
       width: 0;
       border-top: .9375rem solid transparent;
       border-bottom: .9375rem solid transparent;
       border-left: .5rem solid #50BFFF;
-      right: -.5rem;
     }
   }
 
@@ -284,16 +285,20 @@ h3:not(h2 + h3) {
     }
   }
 
-  .vp-doc {
-    h1 {
-      &::after {
-        left: -1.125rem !important;
-      }
-    }
+  #VPContent {
+    overflow-x: hidden !important;
 
-    div[class*='language-'] {
-      width: 100% !important;
-      margin: 0 auto;
+    .vp-doc {
+      h1 {
+        &::after {
+          left: -1.125rem !important;
+        }
+      }
+  
+      div[class*='language-'] {
+        width: 100% !important;
+        margin: 0 auto;
+      }
     }
   }
 }

@@ -4,11 +4,11 @@
 
 1. 轮播图
 
-   ![轮播图](https://pic.imgdb.cn/item/653a78fdc458853aefb9e36b.gif)
+   <Swiper />
 
 2. 滑动吸附
 
-   ![滑动吸附](https://pic.imgdb.cn/item/653cbbcec458853aef89ec92.gif)
+   <Slide />
 
 想要实现这两个效果，都使用到了 `scroll-snap` 的方法吸附效果实现，先看看 MDN 是怎么描述它的。
 
@@ -89,18 +89,18 @@ scroll-snap-type: unset;
 
 光有这个属性还不够，需要给被吸附的元素绑定两个样式：
 
-1. 被吸附时对齐的方式
+1. 被吸附时对齐的方式，有 `start` 和 `center` 、`end` 三种，由于本案例宽高与父盒子一致，因此三个方式没有差异
 2. 被吸附时是否停止，如果不设置它可以从1滑动到3，设置了之后它一次性滑动只能从1滑动到2
 
 代码如下：
 
 ```css
-.container {
+.box {
     scroll-snap-type: x mandatory;
 }
 
 .item {
-    scroll-snap-align: center;
+    scroll-snap-align: start;
     scroll-snap-stop: always;
 }
 ```
@@ -108,7 +108,11 @@ scroll-snap-type: unset;
 案例二的效果可以举一反三，吸附方向是在 Y 轴，吸附的方式是在接近的时候才吸附，因此代码如下所示：
 
 ```css
-.container {
+.box {
     scroll-snap-type: y proximity;
+}
+
+.item {
+    scroll-snap-align: start;
 }
 ```

@@ -14,9 +14,10 @@
 <style lang="less" scoped>
     .box {
         position: relative;
-        width: 300px;
-        height: 300px;
-        line-height: 300px;
+        width: 100%;
+        height: 16rem;
+        // height: 18.75rem;
+        // line-height: 18.75rem;
         background: url(./cat.png) no-repeat center 100%/100%;
 
         p.word {
@@ -26,8 +27,8 @@
             width: 100%;
             color: #fff !important;
             font-size: 30px;
+            line-height: 16rem;
             animation: fall 3s infinite;
-            line-height: 300px;
         }
     }
 
