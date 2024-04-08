@@ -12,10 +12,10 @@ module.exports = {
   head: [
     // 添加图标
     ["link", { rel: "icon", href: "./favicon.ico" }],
-    ["meta", { property: "og:title", content: "刀刀博客" }],
-    ["meta", { property: "og:site_name", content: "刀刀博客" }],
+    ["meta", { property: "og:title", content: "刀刀小站" }],
+    ["meta", { property: "og:site_name", content: "刀刀小站" }],
     ["meta", { property: "og:type", content: "website" }],
-    ["meta", { property: "og:description", content: "前端教程" }],
+    ["meta", { property: "og:description", content: "刀刀小站" }],
     ["meta", { property: "og:url", content: "https://duyidao.gitee.io/blog/" }],
   ],
   // 使用插件
@@ -47,5 +47,8 @@ module.exports = {
     footer: {
       copyright: "Copyright © 2023-present 杜一刀",
     },
+  },
+  rewrites: {
+    '/learn/Javascript/webapi/取色器封装.md': '/webapi/取色器封装.md',
   }
 }

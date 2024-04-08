@@ -1,11 +1,11 @@
 import DefaultTheme from 'vitepress/theme'
 import './custom.less'
-import CssList from '../components/index'
+import compList from '../components/index'
 
 export default {
     ...DefaultTheme,
     enhanceApp({ app }) {
-        CssList.forEach(value => {
+        compList.forEach(value => {
             app.component(value.name, value.compoment);
         });
     }
