@@ -48,7 +48,4 @@ module.exports = {
       copyright: "Copyright © 2023-present 杜一刀",
     },
   },
-  rewrites: {
-    '/learn/Javascript/webapi/取色器封装.md': '/webapi/取色器封装.md',
-  }
 }
