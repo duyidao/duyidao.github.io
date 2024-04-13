@@ -1,7 +1,3 @@
-import Link from './pseudo/link.vue';
-import Element from './pseudo/element.vue';
-import Input from './pseudo/input.vue';
-import Fucntion from './pseudo/function.vue';
 import Width from './width/index.vue';
 import Fit from './fit/index.vue';
 import Variable from './variable/index.vue';
@@ -20,22 +16,6 @@ import Swiper from './scrollSnap/swiper.vue';
 import Slide from './scrollSnap/slide.vue';
 
 const list = [
-    {
-        name: 'Link',
-        compoment: Link
-    },
-    {
-        name: 'Input',
-        compoment: Input
-    },
-    {
-        name: 'Element',
-        compoment: Element
-    },
-    {
-        name: 'Fucntion',
-        compoment: Fucntion
-    },
     {
         name: 'Width',
         compoment: Width
