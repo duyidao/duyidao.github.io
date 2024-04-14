@@ -55,8 +55,6 @@ filter: drop-shadow(10px 10px 10px orange);
 
 其原理是把原来的像素点颜色通过算法来计算，计算完后返回新的像素点。
 
-<DropShadow />
-
 ### blur
 
 将高斯模糊应用于输入图像。括号内输入像素单位的值，该值表示需要做模糊处理时的参考半径范围，值越大处理的结果越模糊。
@@ -66,8 +64,6 @@ filter: drop-shadow(10px 10px 10px orange);
 ```css
 filter: blur(5px);
 ```
-
-<Blur />
 
 ### hue-rotate
 
@@ -79,8 +75,6 @@ filter: blur(5px);
 filter: hue-rotate(90deg);
 ```
 
-<HueRotate />
-
 ### contrast
 
 调整输入图像的对比度。值是 `0%` 将使图像变灰（即对比度越小）；值是 `100%`，则无影响；若值超过 `100%` 将增强对比度。
@@ -90,8 +84,6 @@ filter: hue-rotate(90deg);
 ```css
 filter: contrast(200%);
 ```
-
-<Contrast />
 
 ### grayscale
 
@@ -103,4 +95,5 @@ filter: contrast(200%);
 filter: grayscale(1);
 ```
 
-<Grayscale />
+## 总体效果
+<Iframe url="https://duyidao.gitee.io/blogweb/catalogue/css/filter" />

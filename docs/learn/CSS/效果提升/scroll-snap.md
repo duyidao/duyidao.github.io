@@ -1,17 +1,5 @@
 # scroll-snap
 
-下面来看两个效果：
-
-1. 轮播图
-
-   <Swiper />
-
-2. 滑动吸附
-
-   <Slide />
-
-想要实现这两个效果，都使用到了 `scroll-snap` 的方法吸附效果实现，先看看 MDN 是怎么描述它的。
-
 ## 前置知识
 
 [CSS](https://developer.mozilla.org/zh-CN/docs/Web/CSS) 属性 **`scroll-snap-type`** 设置了在有滚动容器的情形下吸附至吸附点的严格程度。
@@ -116,3 +104,6 @@ scroll-snap-type: unset;
     scroll-snap-align: start;
 }
 ```
+
+## 总体效果
+<Iframe url="https://duyidao.gitee.io/blogweb/catalogue/css/scrollSnap" />
