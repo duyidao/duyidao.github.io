@@ -1,10 +1,6 @@
 # JavaScript『图片压缩』
 
-图片压缩像素质量也是前端一个常用技能。
-
-<Img />
-
-下面来模拟学习一下该怎么做。
+图片压缩像素质量也是前端一个常用技能。下面来模拟学习一下该怎么做。
 
 ## 页面创建
 
@@ -450,3 +446,5 @@ const doCompress = (canvas, imgSrc, type) => {
 </html>
 ```
 
+## 总体效果
+<Iframe url="https://duyidao.gitee.io/blogweb/catalogue/js/showDirectoryPicker" />
