@@ -106,4 +106,4 @@ scroll-snap-type: unset;
 ```
 
 ## 总体效果
-<Iframe url="https://duyidao.gitee.io/blogweb/catalogue/css/scrollSnap" />
+<Iframe url="https://duyidao.gitee.io/blogweb/detail/css/scrollSnap" />

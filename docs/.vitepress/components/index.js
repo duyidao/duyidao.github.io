@@ -1,4 +1,3 @@
-import LearnList from './learn/index.js';
 import Iframe from './Iframe.vue'
 
 const list = [
@@ -8,9 +7,4 @@ const list = [
     }
 ]
 
-const allList = [
-    ...LearnList,
-    ...list,
-]
-
-export default allList
+export default list
