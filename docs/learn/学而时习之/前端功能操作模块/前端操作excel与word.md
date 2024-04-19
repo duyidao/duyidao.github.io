@@ -7,10 +7,6 @@
 | 解析内容操作 | xlsx | xlsx              | xlsx              |
 | 预览         | xlsx | @vue-office/excel | react-file-viewer |
 
-### 转化示意
-
-![iaa1pw.png](https://i.imgloc.com/2023/05/07/iaa1pw.png)
-
 ### 前端excel转为表格或数据
 
 1. 通过 `arrayBuffer` 方法把 `blob` 转为二进制
@@ -19,8 +15,6 @@
 
    - `SheetNames` ：`excel` 表中所有表的表名，逗号隔开的数组
    - `Sheets` ：每一个表格中包含的数据的数组对象
-
-   ![ia1CuQ.png](https://i.imgloc.com/2023/05/07/ia1CuQ.png)
 
 3. 通过 `utils` 中的 `sheet_to_json` 方法把晦涩难用的数据转为数组格式
 
@@ -36,7 +30,7 @@
 </template>
 
 <script>
-import { read, wirteFile, utils } from "xlsx";
+import { read, utils } from "xlsx";
 export default {
   data() {
     return {
@@ -68,9 +62,9 @@ export default {
 
 ### 前端对象或表格dom转为excel
 
-- 通过 `utils` 中的 `json_to_sheet` 方法转为 `sheet` 对象
+- 通过 `utils` 中的 `xx_to_sheet` 方法转为 `sheet` 对象
 
-  转为 `sheet` 对象可以用 `xx_to_sheet` 方法，如把 `table` 的 `dom` 元素转换可以使用 `table_to_sheet` 方法
+  数组变量数据转为 `sheet` 对象可以用 `json_to_sheet` 方法；`table` 的 `dom` 元素转换可以使用 `table_to_sheet` 方法
 
 - 通过 `xx_to_sheet()` 方法转为 `workBook` 对象，括号内传入对应的表格
 
@@ -88,7 +82,7 @@ export default {
 </template>
 
 <script>
-import { read, wirteFile, utils } from "xlsx";
+import { writeFile, utils } from "xlsx";
 export default {
   data() {
     return {
@@ -120,7 +114,12 @@ export default {
 </script>
 ```
 
-### 第三方库
+### 第三方库实现在线预览
+
+- 下载依赖
+  ```
+  npm i @vue-office/excel
+  ```
 
 - 引入第三方库
 
@@ -128,22 +127,27 @@ export default {
   import vueofficeExcel from '@vue-office/excel'
   ```
 
-- 把后端返回的 `excel` 路径传给他的 `src` 
+- 为组件的 `src` 属性赋值
+  
+  允许接收以下三种情况：
+  
+  1. 把后端返回的 `excel` 路径传给他的 `src` 
 
-  ```vue
-  <vueofficeExcel :src="excelSrc" />
-  ```
+    ```vue
+    <vueofficeExcel :src="excelSrc" />
+    ```
 
-- 如果没有路径，后端返回的是一个 `blob` 流，则转为 `base64` 
+  2. 后端返回的是一个 `blob` 流，则转为 `base64` 
 
-  ```js
-  const file = res.data.file
-  const fr = file.FileReader()
-  fr.readAsDataURL(file)
-  fr.onload = (e) => {
-      this.excelSrc = e.target.result
-  }
-  ```
+    ```js
+    const file = res.data.file
+    const fr = file.FileReader()
+    fr.readAsDataURL(file)
+    fr.onload = (e) => {
+        this.excelSrc = e.target.result
+    }
+    ```
+  3. 本地资源，放在public内直接通过路径传递即可
 
 ### 总结
 
@@ -151,7 +155,10 @@ export default {
 
 ### 拓展
 
-`react` 的第三方库 `fileviews` 可支持阅读多种文件格式，因此通过 `filePath` 指定要读的文件地址， `fileType` 指定要读的文件类型。
+`react` 的第三方库 `fileviews` 可支持阅读多种文件格式，接收两个参数字段：
+
+- `filePath` ：指定要读的文件地址
+- `fileType` ：指定要读的文件类型
 
 ## Word
 
@@ -162,20 +169,26 @@ export default {
 
 ### 组件预览
 
+- 下载依赖
+  ```
+  npm i @vue-office/docx
+  ```
 - 引入第三方组件
 
   ```js
-  import vueofficedocx from '@/vue-office/docx'
+  import vueofficedocx from '@vue-office/docx'
   ```
 
 - 获取 `input` 框上传的文件，转为 `dataurl` 格式即可
 
   ```js
-  const file = res.data.file
-  const fr = file.FileReader()
-  fr.readAsDataURL(file)
-  fr.onload = (e) => {
-      this.wordSrc = e.target.result
+  const changeFn = e => {
+    const file = e.data.files[0]
+    const fr = new FileReader()
+    fr.readAsDataURL(file)
+    fr.onload = (e) => {
+        this.wordSrc = e.target.result
+    }
   }
   ```
 
@@ -187,15 +200,21 @@ export default {
 
 ### mammon预览
 
-1. 获取文件二进制流
-2. 通过 `renderAsync` 方法读取
+- 下载依赖
+  ```
+  npm i docx-preview
+  ```
+- 功能实现
+  1. 获取文件二进制流
+  2. 通过 `renderAsync` 方法读取
 
-```js
-change(e) {
-  let file = e.target.files[0] // 读取文件数据
-  renderAsync(file, this.$refs.docxPreview)
-}
-```
+  ```js
+  import {renderAsync} from 'docx-preview'
+  change(e) {
+    let file = e.target.files[0] // 读取文件数据
+    renderAsync(file, this.$refs.docxPreview)
+  }
+  ```
 
 ### docxtemplater预览
 
@@ -222,7 +241,5 @@ change(e) {
 }
 ```
 
-
-
-
-
+## 总体效果
+<Iframe url="https://duyidao.gitee.io/blogweb/detail/learn/xlsxAndWord" />
