@@ -6,7 +6,7 @@
 
 #### 第三方库
 
-`file-save` ，其 `saveAs` 方法用于获取并保存 `blob` 等格式的图片。
+`file-saver` ，其 `saveAs` 方法用于获取并保存 `blob` 等格式的图片。
 
 #### Canvas
 
@@ -133,11 +133,11 @@ canvas.toBlob(function(blob) {
 2. 通过 `canvas` 的 `getContext('2d')` 方法法创建获取 2D  渲染上下文
 3. 通过 `drawImage()` 在 `<canvas>` 元素上绘制图像
 4. 使用 `toBlob()` 方法把 `canvas` DOM 节点转换为一个 Blob 对象
-5. 把转换好的 blob 对象通过第三方库 `file-save` 的 `saveAs` 方法转为图片格式
+5. 把转换好的 blob 对象通过第三方库 `file-saver` 的 `saveAs` 方法转为图片格式
 6. 做其他业务处理（如发请求）
 
 ```js
-import { saveAs } from 'file-save'
+import { saveAs } from 'file-saver'
 
 const onChangeFn = e => {
     const imgRef = ref(null) // img DOM 节点
@@ -149,18 +149,20 @@ const onChangeFn = e => {
         let canvas = document.createElement('canvas')
         canvas.height = imgRef.value.height
         canvas.width = imgRef.value.width
-        
+            
         // 创建2d上下文
         let ctx = canvas.getContext('2d')
-        ctx.drawImage(imgRef.value, 0, 0, imgRef.value.width, imgRef.value.height)
-        
-        // 把canvas转为blob格式
-        canvas.toBlob((blob) => {
-            // saveAs(blob, 'img.jpeg')
-            let form = new FormData()
-            form.append('file', blob)
-            axios.post('xxx', form)
-        }, 'image/jpeg', 0.4)
+        setTimeout(() => {
+            ctx.drawImage(imgRef.value, 0, 0, imgRef.value.width, imgRef.value.height)
+            
+            // 把canvas转为blob格式
+            canvas.toBlob((blob) => {
+                // saveAs(blob, 'img.jpeg')
+                let form = new FormData()
+                form.append('file', blob)
+                axios.post('xxx', form)
+            }, 'image/jpeg', 0.4)
+        }, 1000)
     }
 }
 ```
@@ -222,7 +224,7 @@ const onChangeFn = e => {
 <script setup>
     import html2canvas from 'html2canvas'
     import { ref } from 'vue'
-    import { saveAs } from 'file-save'
+    import { saveAs } from 'file-saver'
     
     let div1 = ref(null)
     
@@ -377,11 +379,13 @@ ctx.putImageData(imageData, 50, 50);
 </script>
 
 <template>
-	<input type="file" @change="onChangeFn" />
-	<img :src="imgUrl" ref="imgRef" />
-	<button @click="addFn">
-        点我添加滤镜
-    </button>
+    <div ref="filterRef">
+        <input type="file" @change="onChangeFn" />
+        <img :src="imgUrl" ref="imgRef" />
+        <button @click="addFn">
+            点我添加滤镜
+        </button>
+    </div>
 </template>
 ```
 
@@ -397,12 +401,14 @@ ctx.putImageData(imageData, 50, 50);
 
 ```js
 // ....
+const filterRef = ref(null)
 const addFn = () => {
     const filterCanvas = document.createElement('canvas')
     filterCanvas.height = imgRef.value.height
     filterCanvas.width = imgRef.value.width
     
     let ctx = filterCanvas.getContext('2d')
+    filterRef.value.appendChild(filterCanvas)
     ctx.drawImage(imgRef.value, 0, 0, imgRef.value.width, imgRef.value.height)
     
     // 获取像素值
@@ -433,6 +439,8 @@ const addFn = () => {
     import { ref } from 'vue'
     
     const imgUrl = ref('')
+    const canvasRef = ref(null)
+    const imgRef = ref(null)
     const onChangeFn = e => {
         // 获取用户上传的文件
         const file = e.target.files[0]
@@ -474,3 +482,5 @@ fr.onload = () => {
 }
 ```
 
+## 总体效果
+<Iframe url="https://duyidao.gitee.io/blogweb/detail/learn/canvas" />
