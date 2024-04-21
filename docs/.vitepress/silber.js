@@ -613,7 +613,8 @@ const ProjectSidebar = [
     items: [
       { text: "🧟 灵思", link: "/project/lingsi/" },
       { text: "⛷️百度外包", link: "/project/baidu/" },
-      { text: "🧑‍🎓 自主学习", link: "/project/myself/" },
+      { text: "🔪 刀刀小站", link: "/project/daodao/" },
+      { text: "📜 自主学习", link: "/project/myself/" },
     ],
   },
 ]
@@ -770,6 +771,19 @@ const CRMSidebar = [
       { text: "域名配置", link: "/project/lingsi/crm/部署" },
       { text: "微信授权", link: "/project/lingsi/crm/微信授权" },
       { text: "🗑 返回", link: "/project/lingsi/" },
+    ],
+  },
+]
+
+// 刀刀小站的数组
+const DaodaoSidebar = [
+  {
+    text: "🔪 刀刀小站",
+    collapsible: true,
+    items: [
+      { text: "🔪 引言", link: "/project/daodao/" },
+      { text: "🦌 自动路由", link: "/project/daodao/router" },
+      { text: "🗑 返回", link: "/project/" },
     ],
   },
 ]
@@ -1150,6 +1164,7 @@ export default {
   "/project/lingsi/music": generateSidebarItems(MusicSidebar),
   "/project/lingsi/elk": generateSidebarItems(ELKSidebar),
   "/project/lingsi/crm": generateSidebarItems(CRMSidebar),
+  "/project/daodao": generateSidebarItems(DaodaoSidebar),
   "/project/baidu": generateSidebarItems(BaiduSidebar),
   "/project/baidu/layer": generateSidebarItems(LayerSidebar),
   "/project/baidu/fokai": generateSidebarItems(FokaiSidebar),

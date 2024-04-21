@@ -36,7 +36,10 @@ export default [
       { text: "🧟 灵思", link: "/project/lingsi/" },
       { text: "⛷️ 百度", link: "/project/baidu/" },
       {
-        items: [{ text: "🧑‍🎓 自主学习", link: "/project/myself/" }],
+        items: [{ text: "🔪 刀刀小站", link: "/project/daodao/" }],
+      },
+      {
+        items: [{ text: "📜 自主学习", link: "/project/myself/" }],
       },
     ],
   },

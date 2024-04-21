@@ -84,7 +84,7 @@
     text-shadow: 0 .3125rem .3125rem rgba(0, 0, 0, 0.35);
   }
 
-  > ul {
+  >ul {
     margin: 0 !important;
     padding: 0 !important;
     list-style: none !important;
@@ -94,7 +94,9 @@
 // 暗黑模式
 .dark {
   .container {
-    div:not(.ifrname-box) p, div {
+
+    div:not(.ifrname-box) p,
+    div {
       color: #aaa;
     }
 
@@ -294,7 +296,7 @@ h3:not(h2 + h3) {
           left: -1.125rem !important;
         }
       }
-  
+
       div[class*='language-'] {
         width: 100% !important;
         margin: 0 auto;
@@ -660,6 +662,23 @@ h3:not(h2 + h3) {
         position: absolute;
         top: 0;
         left: 0;
+      }
+    }
+
+    h4 {
+      position: relative;
+      padding-left: 15px;
+
+      &:after {
+        content: " ";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--color-main);
       }
     }
   }
