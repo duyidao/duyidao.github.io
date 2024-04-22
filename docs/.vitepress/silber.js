@@ -783,6 +783,9 @@ const DaodaoSidebar = [
     items: [
       { text: "🔪 引言", link: "/project/daodao/" },
       { text: "🦌 自动路由", link: "/project/daodao/router" },
+      { text: "🌺 自动导入", link: "/project/daodao/自动导入" },
+      { text: "📈 svg封装", link: "/project/daodao/svg" },
+      { text: "🦩 适应性布局", link: "/project/daodao/适应性布局" },
       { text: "🗑 返回", link: "/project/" },
     ],
   },

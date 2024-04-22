@@ -72,6 +72,10 @@ const routes = Object.entries(pages).map([path, meta]) => {
 
 而上面这个做法是把一个变量赋值过去，打包时它不知道这个变量的值是多少，无法得知当前模块依赖了哪些其他的模块。因此需要生成依赖关系。
 
+### 建立依赖
+
+获取所有路由 `.vue` 组件路径：
+
 ```js
 const comps = import.meta.glob('../views/**/index.vue')
 ```
