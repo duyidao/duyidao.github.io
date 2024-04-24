@@ -4,7 +4,7 @@
 
 为了后续开发和打包方便，把路由定义在 `.env.production` 中。
 
-```ejs
+```txt
 VITE_BASE_URL = /output
 ```
 
