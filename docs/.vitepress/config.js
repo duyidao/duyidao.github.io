@@ -11,11 +11,12 @@ module.exports = {
   dest: './dist',
   head: [
     // 添加图标
-    ["link", { rel: "icon", href: "./favicon.ico" }],
+    ["link", { rel: "icon", href: "/favicon.ico" }],
     ["meta", { property: "og:title", content: "刀刀小站" }],
     ["meta", { property: "og:site_name", content: "刀刀小站" }],
     ["meta", { property: "og:type", content: "website" }],
-    ["meta", { property: "og:description", content: "刀刀小站" }],
+    ["meta", { property: "og:description", content: "杜一刀技术博客刀刀小站，记录着所学所思所想" }],
+    ["meta", { property: "og:image", content: "https://gitee.com/duyidao/blog/raw/master/docs/public/favicon.png" }],
     ["meta", { property: "og:url", content: "https://duyidao.gitee.io/blog/" }],
   ],
   // 使用插件
