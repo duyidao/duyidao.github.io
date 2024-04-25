@@ -607,6 +607,10 @@ const LearnSidebar = [
         text: "Vue项目中TS意义与麻烦",
         link: "/learn/学而时习之/知识扩展坞/Vue项目中TS意义与麻烦",
       },
+      {
+        text: "ref和reactive在使用上的区别",
+        link: "/learn/学而时习之/知识扩展坞/ref和reactive在使用上的区别",
+      },
     ],
   },
 ]

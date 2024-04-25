@@ -85,7 +85,7 @@ const newObj = new Proxy(obj, {
     set(target, k, val) {
         let v = target[k]
         if(target[k] !== val) {
-            (target[k] = val
+            target[k] = val
         }
     }
 })
@@ -111,7 +111,7 @@ function observe(obj) {
         set(target, k, val) {
             let v = target[k]
             if(target[k] !== val) {
-                (target[k] = val
+                target[k] = val
             }
         }
     })
