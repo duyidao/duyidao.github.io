@@ -15,16 +15,8 @@ export default [
       {
         items: [
           {
-            text: "杂技拾谈",
-            link: "/learn/杂技拾谈/Vue/vue3双向绑定proxy原理.md",
-          },
-        ],
-      },
-      {
-        items: [
-          {
             text: "学而时习之",
-            link: "/learn/学而时习之/前端组件封装实例/vue组件设计技巧",
+            link: "/learn/study/",
           },
         ],
       },
