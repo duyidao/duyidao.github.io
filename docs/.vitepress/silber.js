@@ -363,8 +363,8 @@ const StudyKnowledgeSidebar = [
     collapsible: true,
     items: [
       {
-        text: "console.log导致内存泄漏",
-        link: "/learn/study/knowledge/JS相关/console.log导致内存泄漏",
+        text: "垃圾回收与console.log内存泄漏.md",
+        link: "/learn/study/knowledge/JS相关/垃圾回收与console.log内存泄漏.md",
       },
       {
         text: "windoe.onstorage标签页通信",
@@ -383,8 +383,12 @@ const StudyKnowledgeSidebar = [
         link: "/learn/study/knowledge/JS相关/设计模式",
       },
       {
-        text: "Proxy比defineProperty好在哪",
-        link: "/learn/study/knowledge/JS相关/Proxy比defineProperty好在哪",
+        text: "Proxy与defineProperty",
+        link: "/learn/study/knowledge/JS相关/Proxy与defineProperty",
+      },
+      {
+        text: "LocalStorage封装",
+        link: "/learn/study/knowledge/JS相关/LocalStorage封装",
       },
     ],
   },
@@ -547,10 +551,6 @@ const StudyItemSidebar = [
     text: "👔 Js",
     collapsible: true,
     items: [
-      {
-        text: "LocalStorage封装",
-        link: "/learn/study/item/Js/LocalStorage封装",
-      },
       {
         text: "数组对象遍历",
         link: "/learn/study/item/Js/数组对象遍历",
