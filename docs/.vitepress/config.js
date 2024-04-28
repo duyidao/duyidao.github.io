@@ -18,6 +18,9 @@ module.exports = {
     ["meta", { property: "og:description", content: "杜一刀技术博客刀刀小站，记录着所学所思所想" }],
     ["meta", { property: "og:image", content: "https://gitee.com/duyidao/blog/raw/master/docs/public/favicon.png" }],
     ["meta", { property: "og:url", content: "https://duyidao.gitee.io/blog/" }],
+    ["meta", { httpEquiv: "Cache-Control", content: "no-cache, no-store, must-revalidate" }],
+    ["meta", { httpEquiv: "Pragma", content: "no-cache" }],
+    ["meta", { httpEquiv: "Expires", content: "0" }],
   ],
   // 使用插件
   plugins: [
