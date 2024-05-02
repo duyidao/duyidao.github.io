@@ -1,7 +1,7 @@
 import nav from "./nav";
 import silber from "./silber";
 
-const BASE_URL = '/vite-press/'
+const BASE_URL = '/blog/'
 const joinPath = (base, path) => `${ base }${ path }`.replace(/\/+/g, '/')
 const withBase = (path) => joinPath(BASE_URL, path)
 
