@@ -48,16 +48,16 @@ export const signProp = (content) => {
 ### jsx方案
 
 ```jsx
-import {createVNode, render} from 'vue'
+import {render} from 'vue'
 
 export const signProp = (content) => {
   let pop = <div class="cover">
   	<div class="covercontent">
         <div>{content}</div>
       	<div>
-      		<button onClick=(() => {
+      		<button onClick={() => {
               document.body.removeChild(pop.el) // 这里需要真实dom，虚拟dom会报错
-            })>不同意</button>
+            }}>不同意</button>
           <button>确认签署</button>
       	</div>
     </div>
@@ -73,25 +73,25 @@ export const signProp = (content) => {
 参考一下 `element-ui` 的方法修改一下。
 
 ```jsx
-import {createVNode, render} from 'vue'
+import {render} from 'vue'
 
 export const signProp = (content, handler) => {
-  let div = document.createElement('div')
-  let pop = <div class="cover">
-  	<div class="covercontent">
-        <div>{content}</div>
-      	<div>
-      		<button onClick=(() => {
-              document.body.removeChild(pop.el) // 这里需要真实dom，虚拟dom会报错
-              handler.cancel && handler.cancel()
-            })>不同意</button>
-          <button onClick=(() => {
-              document.body.removeChild(pop.el) // 这里需要真实dom，虚拟dom会报错
-              handler.confirm && handler.confirm()
-            })>确认签署</button>
-      	</div>
+    let div = document.createElement('div')
+    let pop = <div class="dialog-cover">
+  	    <div class="dialog-cover-content">
+            <div class="content">{content}</div>
+            <div class="btns">
+      		    <button onClick={() => {
+                    document.body.removeChild(div) // 这里需要真实dom，虚拟dom会报错
+                    handler.cancel && handler.cancel()
+                }}>不同意</button>
+                <button onClick={() => {
+                    document.body.removeChild(div) // 这里需要真实dom，虚拟dom会报错
+                    handler.confirm && handler.confirm()
+                }}>确认签署</button>
+      	    </div>
+        </div>
     </div>
-  </div>
   
   // 参数一：要渲染的虚拟dom；参数二，要渲染到那个真实dom上
   render(pop, div)
@@ -110,11 +110,14 @@ import {signProp} from './signProp.jsx'
 
 <template>
 	<button @click="signProp('我是内容文本', {
-                  confirm: () => {},
-                  cancel: () => {}
-                  })"
+    confirm: () => {},
+    cancel: () => {}
+    })"
    >click me</button>
 </template>
 ```
 
 注意的是，有一些场景可能用不到 `cancel` 之类的按钮点击事件，没有传对应的函数方法，需要有良好的代码健壮性意识，添加非空判断，避免代码报错。
+
+## 总体效果
+<Iframe url="https://duyidao.github.io/blogweb/#/detail/learn/repeat" />

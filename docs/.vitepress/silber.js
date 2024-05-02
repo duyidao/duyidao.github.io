@@ -343,7 +343,7 @@ const StudySidebar = [
     collapsible: true,
     items: [
       { text: "引言", link: "/learn/study/" },
-      { text: "学无止境", link: "/learn/study/knowledge/JS相关/console.log导致内存泄漏" },
+      { text: "学无止境", link: "/learn/study/knowledge/JS相关/垃圾回收与console.log内存泄漏.md" },
       {
         text: "实操训练",
         link: "/learn/study/operate/功能操作与实现/Canvas操作",
