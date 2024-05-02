@@ -1,6 +1,10 @@
 import nav from "./nav";
 import silber from "./silber";
 
+const BASE_URL = '/vite-press/'
+const joinPath = (base, path) => `${ base }${ path }`.replace(/\/+/g, '/')
+const withBase = (path) => joinPath(BASE_URL, path)
+
 module.exports = {
   // 网站标题
   title: '🔪 刀刀小站',
@@ -11,7 +15,7 @@ module.exports = {
   dest: './dist',
   head: [
     // 添加图标
-    ["link", { rel: "icon", href: "/favicon.ico" }],
+    ["link", { rel: "icon", href: withBase("/favicon.ico") }],
     ["meta", { property: "og:title", content: "刀刀小站" }],
     ["meta", { property: "og:site_name", content: "刀刀小站" }],
     ["meta", { property: "og:type", content: "website" }],
@@ -31,7 +35,7 @@ module.exports = {
   ],
   // 主题配置
   themeConfig: {
-    logo: "/favicon.ico",
+    logo: withBase("/favicon.ico"),
     // 获取每个文件最后一次 git 提交的 UNIX 时间戳(ms)，同时它将以合适的日期格式显示在每一页的底部
     lastUpdated: 'Last Updated', // string | boolean
     siteTitle: "『 刀刀小站 』",
