@@ -363,7 +363,7 @@ const StudyKnowledgeSidebar = [
     collapsible: true,
     items: [
       {
-        text: "垃圾回收与console.log内存泄漏.md",
+        text: "垃圾回收与内存泄漏.md",
         link: "/learn/study/knowledge/JS相关/垃圾回收与console.log内存泄漏.md",
       },
       {
@@ -431,20 +431,12 @@ const StudyKnowledgeSidebar = [
         link: "/learn/study/knowledge/Vue相关/ref和reactive在使用上的区别",
       },
       {
-        text: "v-model带来的性能问题",
-        link: "/learn/study/knowledge/Vue相关/v-model带来的性能问题",
-      },
-      {
         text: "Vue2 VS Vue3",
         link: "/learn/study/knowledge/Vue相关/Vue2 VS Vue3",
       },
       {
-        text: "vue3双向绑定proxy原理",
-        link: "/learn/study/knowledge/Vue相关/vue3双向绑定proxy原理",
-      },
-      {
-        text: "Vue3组件使用v-model",
-        link: "/learn/study/knowledge/Vue相关/Vue3组件使用v-model",
+        text: "v-model双向绑定",
+        link: "/learn/study/knowledge/Vue相关/v-model双向绑定",
       },
       {
         text: "vue图片动态引入使用require",
@@ -608,6 +600,10 @@ const StudyOperateeSidebar = [
       {
         text: "移动端大屏端布局适配",
         link: "/learn/study/operate/功能操作与实现/移动端大屏端布局适配",
+      },
+      {
+        text: "视频提取画面帧",
+        link: "/learn/study/operate/功能操作与实现/视频提取画面帧",
       },
     ],
   },
