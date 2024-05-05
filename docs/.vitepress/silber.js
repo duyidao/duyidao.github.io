@@ -390,6 +390,10 @@ const StudyKnowledgeSidebar = [
         text: "LocalStorage封装",
         link: "/learn/study/knowledge/JS相关/LocalStorage封装",
       },
+      {
+        text: "判断是否是数组",
+        link: "/learn/study/knowledge/JS相关/判断是否是数组",
+      },
     ],
   },
   {
