@@ -483,4 +483,4 @@ fr.onload = () => {
 ```
 
 ## 总体效果
-<Iframe url="https://duyidao.gitee.io/blogweb/detail/learn/canvas" />
+<Iframe url="https://duyidao.github.io/blogweb/#/detail/learn/canvas" />
