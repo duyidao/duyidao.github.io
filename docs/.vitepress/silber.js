@@ -541,6 +541,10 @@ const StudyItemSidebar = [
         text: "柱状图悬停文本自定义",
         link: "/learn/study/item/Echart/柱状图悬停文本自定义",
       },
+      {
+        text: "饼图点击图例中间内容修改",
+        link: "/learn/study/item/Echart/饼图点击图例中间内容修改",
+      },
     ],
   },
   {
