@@ -55,6 +55,10 @@ const CssLevelSidebar = [
         link: "/learn/CSS/效果提升/变量",
       },
       {
+        text: "渐变",
+        link: "/learn/CSS/效果提升/渐变",
+      },
+      {
         text: "文字连续光影特效",
         link: "/learn/CSS/效果提升/文字连续光影特效",
       },
@@ -893,7 +897,7 @@ const FokaiSidebar = [
       { text: "💡 介绍", link: "/project/baidu/fokai/index" },
       { text: "🟥 样式", link: "/project/baidu/fokai/style" },
       { text: "🛑 覆盖物", link: "/project/baidu/fokai/overlay" },
-      { text: "💻 Ws", link: "/project/baidu/fokai/Ws" },
+      { text: "💻 Ws", link: "/project/baidu/fokai/ws" },
       { text: "📦 打包", link: "/project/baidu/fokai/build" },
       { text: "🗑 返回", link: "/project/baidu/" },
     ],
