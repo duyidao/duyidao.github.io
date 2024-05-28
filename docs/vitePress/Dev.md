@@ -170,15 +170,15 @@ module.exports = {
     // 头部导航栏配置
     nav: [
       {
-        text: "💻 前端知识",
+        text: "前端知识",
         items: [
-          { text: "🟧 HTML", link: "/learn/HTML/" },
+          { text: "CSS", link: "/learn/CSS/" },
         ],
       },
       {
-        text: "💻 前端项目",
+        text: "前端项目",
         items: [
-          { text: "🟧 Music", link: "/project/Music/" },
+          { text: "Music", link: "/project/Music/" },
         ],
       },
     ],
@@ -201,10 +201,10 @@ module.exports = {
 function getLearnSidebar() {
   return [
     {
-      text: 'HTML',
+      text: 'CSS',
       collapsible: true,
       items: [
-        { text: '基础', link: '/learn/HTML/' },
+        { text: '基础', link: '/learn/CSS/' },
       ]
     },
   ]

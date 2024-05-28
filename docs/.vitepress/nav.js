@@ -2,7 +2,6 @@ export default [
   {
     text: "💻 前端知识",
     items: [
-      { text: "HTML", link: "/learn/HTML/" },
       { text: "CSS", link: "/learn/CSS/" },
       { text: "JavaScript", link: "/learn/Javascript/" },
       { text: "Vue2", link: "/learn/vue2/指令" },

@@ -14,15 +14,6 @@ function generateSidebarItems(arr) {
 /**
  * 学习模块 ************************************************************
  */
-// 前端html的数组
-const HTMLSidebar = [
-  {
-    text: "HTML",
-    collapsible: true,
-    items: [{ text: "HTML", link: "/learn/HTML/" }],
-  }
-]
-
 // 前端css的数组
 const CssSidebar = [
   {
@@ -76,6 +67,7 @@ const CssLevelSidebar = [
       },
       { text: "vmin与vmax", link: "/learn/CSS/效果提升/vmin与vmax" },
       { text: "scroll-snap", link: "/learn/CSS/效果提升/scroll-snap" },
+      { text: "下划线动画", link: "/learn/CSS/效果提升/下划线动画" },
       { text: "🗑 返回", link: "/learn/CSS/" },
     ],
   },
@@ -548,6 +540,10 @@ const StudyItemSidebar = [
       {
         text: "饼图点击图例中间内容修改",
         link: "/learn/study/item/Echart/饼图点击图例中间内容修改",
+      },
+      {
+        text: "柱状图封装",
+        link: "/learn/study/item/Echart/柱状图封装",
       },
     ],
   },
@@ -1207,7 +1203,6 @@ const AskSidebar = [
  * 最终导出 ************************************************************
  */
 export default {
-  "/learn/HTML": generateSidebarItems(HTMLSidebar),
   "/learn/CSS": generateSidebarItems(CssSidebar),
   "/learn/CSS/效果提升": generateSidebarItems(CssLevelSidebar),
   "/learn/CSS/知识拓展": generateSidebarItems(CssKnowladgeSidebar),
