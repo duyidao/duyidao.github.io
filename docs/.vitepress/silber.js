@@ -42,6 +42,10 @@ const CssLevelSidebar = [
         link: "/learn/CSS/效果提升/文字适配背景",
       },
       {
+        text: "文字适应纹理",
+        link: "/learn/CSS/效果提升/文字适应纹理",
+      },
+      {
         text: "变量",
         link: "/learn/CSS/效果提升/变量",
       },
