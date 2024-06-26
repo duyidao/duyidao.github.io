@@ -3,8 +3,8 @@
  */
 function generateSidebarItems(arr) {
   return arr.map(item => ({
+    ...item,
     text: item.text,
-    collapsible: true,
     ...(item.link ? { link: item.link } : {}),
     ...(item.items ? { items: generateSidebarItems(item.items) } : {}),
   }));
@@ -46,16 +46,16 @@ const CssLevelSidebar = [
         link: "/learn/CSS/效果提升/文字适应纹理",
       },
       {
+        text: "文字连续光影特效",
+        link: "/learn/CSS/效果提升/文字连续光影特效",
+      },
+      {
         text: "变量",
         link: "/learn/CSS/效果提升/变量",
       },
       {
         text: "渐变",
         link: "/learn/CSS/效果提升/渐变",
-      },
-      {
-        text: "文字连续光影特效",
-        link: "/learn/CSS/效果提升/文字连续光影特效",
       },
       {
         text: "B站banner鼠标移动效果揭秘",
@@ -350,7 +350,7 @@ const StudySidebar = [
       },
       {
         text: "项目实战",
-        link: "/learn/study/item/Echart/饼图中间内容自定义  ",
+        link: "/learn/study/item/Echart/饼图中部内容自定义，支持轮播、点击图例中间内容修改",
       },
     ],
   },
@@ -361,6 +361,7 @@ const StudyKnowledgeSidebar = [
   {
     text: "🔏 JS相关",
     collapsible: true,
+    collapsed: true,
     items: [
       {
         text: "垃圾回收与内存泄漏.md",
@@ -399,6 +400,7 @@ const StudyKnowledgeSidebar = [
   {
     text: "🎡 Promise相关",
     collapsible: true,
+    collapsed: true,
     items: [
       {
         text: "Axios二次封装",
@@ -425,6 +427,7 @@ const StudyKnowledgeSidebar = [
   {
     text: "☸️ Vue相关",
     collapsible: true,
+    collapsed: true,
     items: [
       {
         text: "$nexttick",
@@ -467,6 +470,7 @@ const StudyKnowledgeSidebar = [
   {
     text: "📈 项目相关",
     collapsible: true,
+    collapsed: true,
     items: [
       { text: "HBuilder使用模拟器调试", link: "/learn/study/knowledge/项目相关/HBuilder使用模拟器调试" },
       {
@@ -490,6 +494,7 @@ const StudyKnowledgeSidebar = [
   {
     text: "🚢 优化相关",
     collapsible: true,
+    collapsed: true,
     items: [
       {
         text: "打包优化",
@@ -524,10 +529,11 @@ const StudyItemSidebar = [
   {
     text: "🎰 Echart",
     collapsible: true,
+    collapsed: true,
     items: [
       {
-        text: "饼图中间内容自定义",
-        link: "/learn/study/item/Echart/饼图中间内容自定义",
+        text: "饼图中部内容自定义，支持轮播、点击图例修改中间内容",
+        link: "/learn/study/item/Echart/饼图中部内容自定义，支持轮播、点击图例中间内容修改",
       },
       {
         text: "横向柱状图参数数量设置",
@@ -540,10 +546,6 @@ const StudyItemSidebar = [
       {
         text: "柱状图悬停文本自定义",
         link: "/learn/study/item/Echart/柱状图悬停文本自定义",
-      },
-      {
-        text: "饼图点击图例中间内容修改",
-        link: "/learn/study/item/Echart/饼图点击图例中间内容修改",
       },
       {
         text: "柱状图封装",
@@ -572,6 +574,7 @@ const StudyOperateeSidebar = [
   {
     text: "⚙ 功能操作与实现",
     collapsible: true,
+    collapsed: true,
     items: [
       {
         text: "Canvas操作",
@@ -622,6 +625,7 @@ const StudyOperateeSidebar = [
   {
     text: "🎁 组件封装与二开",
     collapsible: true,
+    collapsed: true,
     items: [
       {
         text: "vue重复小组件处理经验",
