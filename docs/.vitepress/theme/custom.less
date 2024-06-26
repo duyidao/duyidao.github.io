@@ -224,25 +224,26 @@
         }
       }
     }
-
-
-
-    // 二级目录样式
-    &.level-2 {
-
-      &.has-active,
-      .is-active {
-        .indicator {
-          background-color: var(--color-border) !important;
-        }
-
-        .text {
-          color: var(--color-border) !important;
-        }
-      }
-    }
   }
 }
+
+.VPSidebarItem.level-1.is-active > .item > .indicator,
+.VPSidebarItem.level-2.is-active > .item > .indicator,
+.VPSidebarItem.level-3.is-active > .item > .indicator,
+.VPSidebarItem.level-4.is-active > .item > .indicator,
+.VPSidebarItem.level-5.is-active > .item > .indicator {
+  background-color: var(--color-border) !important;
+}
+
+.VPSidebarItem.level-0.is-active > .item .link > .text,
+.VPSidebarItem.level-1.is-active > .item .link > .text,
+.VPSidebarItem.level-2.is-active > .item .link > .text,
+.VPSidebarItem.level-3.is-active > .item .link > .text,
+.VPSidebarItem.level-4.is-active > .item .link > .text,
+.VPSidebarItem.level-5.is-active > .item .link > .text {
+  color: var(--color-border) !important;
+}
+
 
 // 右侧文章目录样式
 .VPDocAside {
