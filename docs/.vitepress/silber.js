@@ -1088,6 +1088,7 @@ const ReadSidebar = [
               { text: "第八章 数组的扩展", link: "/read/javascript/ES6标准入门/8" },
               { text: "第九章 对象的扩展", link: "/read/javascript/ES6标准入门/9" },
               { text: "第十章 Symbol的扩展", link: "/read/javascript/ES6标准入门/10" },
+              { text: "第十一章 Set和Map数据结构", link: "/read/javascript/ES6标准入门/11" },
             ],
           },
         ],
