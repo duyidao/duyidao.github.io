@@ -11,13 +11,13 @@ module.exports = {
   dest: './dist',
   head: [
     // 添加图标
-    ["link", { rel: "icon", href: "https://gitee.com/duyidao/blog/raw/master/docs/public/favicon.png" }],
+    ["link", { rel: "icon", href: "./favicon.ico" }],
     ["meta", { property: "og:title", content: "刀刀小站" }],
     ["meta", { property: "og:site_name", content: "刀刀小站" }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:description", content: "杜一刀技术博客刀刀小站，记录着所学所思所想" }],
-    ["meta", { property: "og:image", content: "https://gitee.com/duyidao/blog/raw/master/docs/public/favicon.png" }],
-    ["meta", { property: "og:url", content: "https://duyidao.gitee.io/blog/" }],
+    ["meta", { property: "og:image", content: "./favicon.ico" }],
+    ["meta", { property: "og:url", content: "https://duyidao.github.io/" }],
     ["meta", { httpEquiv: "Cache-Control", content: "no-cache, no-store, must-revalidate" }],
     ["meta", { httpEquiv: "Pragma", content: "no-cache" }],
     ["meta", { httpEquiv: "Expires", content: "0" }],
@@ -45,7 +45,10 @@ module.exports = {
     sidebar: silber,
     //社交链接
     socialLinks: [
-      { icon: "github", link: "https://gitee.com/duyidao" }
+      { icon: "github", link: "https://github.com/duyidao" },
+      { icon: {
+        svg: '<svg t="1721045386818" class="icon" viewBox="0 0 1092 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1980" width="200" height="200"><path d="M514.133293 1024c-282.76611 0-512-229.23389-512-512S231.367183 0 514.133293 0 1026.133293 229.23389 1026.133293 512 796.899403 1024 514.133293 1024z m259.157033-568.88941l-290.75924 0.014063c-13.965946 0-25.287203 11.321257-25.287203 25.27314l-0.028125 63.218476c0 13.965946 11.306257 25.287203 25.273141 25.287203h177.024483c13.965946 0 25.287203 11.306257 25.287203 25.272203v12.64407a75.846609 75.846609 0 0 1-75.847547 75.847547H368.739142a25.287203 25.287203 0 0 1-25.287203-25.273141V417.194317a75.846609 75.846609 0 0 1 75.847546-75.846609l353.919591-0.015c13.965946 0 25.27314-11.306257 25.287203-25.27314l0.07125-63.188476c0-13.965946-11.306257-25.287203-25.272203-25.301266l-353.991778 0.014063c-104.718814-0.014063-189.624491 84.891614-189.624491 189.609491v353.963653c0 13.966884 11.320319 25.287203 25.287203 25.287203h372.934915c94.265683 0 170.666354-76.400672 170.666354-170.666354V480.397793c0-13.951884-11.320319-25.27314-25.287203-25.27314z" p-id="1981"></path></svg>'
+      }, link: "https://gitee.com/duyidao"  },
     ],
     //页脚
     footer: {
