@@ -71,5 +71,9 @@ module.exports = {
     'learn/TypeScript/(.*)': 'TypeScript/(.*)',
     'learn/Node/(.*)': 'TypeScript/(.*)',
     'learn/study/(.*)': 'study/(.*)',
+    'project/lingsi/(.*)': 'lingsi/(.*)',
+    'project/daodao/(.*)': 'daodao/(.*)',
+    'project/baidu/(.*)': 'baidu/(.*)',
+    'project/myself/(.*)': 'myself/(.*)',
   }
 }
