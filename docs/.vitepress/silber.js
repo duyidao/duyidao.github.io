@@ -20,8 +20,8 @@ const CssSidebar = [
     text: "CSS",
     collapsible: true,
     items: [
-      { text: "效果提升", link: "/learn/CSS/效果提升/巧用伪类" },
-      { text: "知识拓展", link: "/learn/CSS/知识拓展/BEM" },
+      { text: "效果提升", link: "/CSS/效果提升/巧用伪类" },
+      { text: "知识拓展", link: "/CSS/知识拓展/BEM" },
     ],
   }
 ]
@@ -32,47 +32,47 @@ const CssLevelSidebar = [
     text: "效果提升",
     collapsible: true,
     items: [
-      { text: "巧用伪类", link: "/learn/CSS/效果提升/巧用伪类" },
+      { text: "巧用伪类", link: "/CSS/效果提升/巧用伪类" },
       {
         text: "宽度适配内容",
-        link: "/learn/CSS/效果提升/宽度适配内容",
+        link: "/CSS/效果提升/宽度适配内容",
       },
       {
         text: "文字适配背景",
-        link: "/learn/CSS/效果提升/文字适配背景",
+        link: "/CSS/效果提升/文字适配背景",
       },
       {
         text: "文字适应纹理",
-        link: "/learn/CSS/效果提升/文字适应纹理",
+        link: "/CSS/效果提升/文字适应纹理",
       },
       {
         text: "文字连续光影特效",
-        link: "/learn/CSS/效果提升/文字连续光影特效",
+        link: "/CSS/效果提升/文字连续光影特效",
       },
       {
         text: "变量",
-        link: "/learn/CSS/效果提升/变量",
+        link: "/CSS/效果提升/变量",
       },
       {
         text: "渐变",
-        link: "/learn/CSS/效果提升/渐变",
+        link: "/CSS/效果提升/渐变",
       },
       {
         text: "B站banner鼠标移动效果揭秘",
-        link: "/learn/CSS/效果提升/B站banner鼠标移动效果揭秘",
+        link: "/CSS/效果提升/B站banner鼠标移动效果揭秘",
       },
       {
         text: "filter",
-        link: "/learn/CSS/效果提升/filter",
+        link: "/CSS/效果提升/filter",
       },
       {
         text: "clip-path",
-        link: "/learn/CSS/效果提升/clip-path",
+        link: "/CSS/效果提升/clip-path",
       },
-      { text: "vmin与vmax", link: "/learn/CSS/效果提升/vmin与vmax" },
-      { text: "scroll-snap", link: "/learn/CSS/效果提升/scroll-snap" },
-      { text: "下划线动画", link: "/learn/CSS/效果提升/下划线动画" },
-      { text: "🗑 返回", link: "/learn/CSS/" },
+      { text: "vmin与vmax", link: "/CSS/效果提升/vmin与vmax" },
+      { text: "scroll-snap", link: "/CSS/效果提升/scroll-snap" },
+      { text: "下划线动画", link: "/CSS/效果提升/下划线动画" },
+      { text: "🗑 返回", link: "/CSS/" },
     ],
   },
 ]
@@ -83,10 +83,10 @@ const CssKnowladgeSidebar = [
     text: "知识拓展",
     collapsible: true,
     items: [
-      { text: "BEM", link: "/learn/CSS/知识拓展/BEM" },
-      { text: "空白节点", link: "/learn/CSS/知识拓展/空白节点" },
-      { text: "粘性定位", link: "/learn/CSS/知识拓展/粘性定位" },
-      { text: "🗑 返回", link: "/learn/CSS/" },
+      { text: "BEM", link: "/CSS/知识拓展/BEM" },
+      { text: "空白节点", link: "/CSS/知识拓展/空白节点" },
+      { text: "粘性定位", link: "/CSS/知识拓展/粘性定位" },
+      { text: "🗑 返回", link: "/CSS/" },
     ],
   },
 ]
@@ -98,24 +98,24 @@ const JsSidebar = [
     collapsible: true,
     collapsed: true,
     items: [
-      { text: "Javascript", link: "/learn/Javascript/" },
-      { text: "运算符", link: "/learn/Javascript/sort" },
-      { text: "数据类型", link: "/learn/Javascript/type" },
-      { text: "数组", link: "/learn/Javascript/array" },
-      { text: "函数", link: "/learn/Javascript/function" },
-      { text: "对象", link: "/learn/Javascript/object" },
-      { text: "作用域与闭包", link: "/learn/Javascript/scope_closure" },
-      { text: "原型与原型链", link: "/learn/Javascript/原型与原型链" },
-      { text: "类", link: "/learn/Javascript/类" },
-      { text: "模块化", link: "/learn/Javascript/模块化" },
-      { text: "Promise", link: "/learn/Javascript/Promise" },
+      { text: "Javascript", link: "/Javascript/" },
+      { text: "运算符", link: "/Javascript/sort" },
+      { text: "数据类型", link: "/Javascript/type" },
+      { text: "数组", link: "/Javascript/array" },
+      { text: "函数", link: "/Javascript/function" },
+      { text: "对象", link: "/Javascript/object" },
+      { text: "作用域与闭包", link: "/Javascript/scope_closure" },
+      { text: "原型与原型链", link: "/Javascript/原型与原型链" },
+      { text: "类", link: "/Javascript/类" },
+      { text: "模块化", link: "/Javascript/模块化" },
+      { text: "Promise", link: "/Javascript/Promise" },
       {
         text: "任务管理与Promise核心",
-        link: "/learn/Javascript/Promise核心",
+        link: "/Javascript/Promise核心",
       },
-      { text: "Set", link: "/learn/Javascript/set" },
-      { text: "Map", link: "/learn/Javascript/map" },
-      { text: "Symbol", link: "/learn/Javascript/symbol" },
+      { text: "Set", link: "/Javascript/set" },
+      { text: "Map", link: "/Javascript/map" },
+      { text: "Symbol", link: "/Javascript/symbol" },
     ],
   },
   {
@@ -125,55 +125,55 @@ const JsSidebar = [
     items: [
       {
         text: "JavaScript『图片压缩』",
-        link: "/learn/Javascript/webapi/JavaScript『图片压缩』",
+        link: "/Javascript_webapi/JavaScript『图片压缩』",
       },
       {
         text: "取色器封装 EyeDropper",
-        link: "/learn/Javascript/webapi/取色器封装",
+        link: "/Javascript_webapi/取色器封装",
       },
       {
         text: "网站访问用户文件夹 ShowDirectoryPicker",
-        link: "/learn/Javascript/webapi/网站访问用户文件夹",
+        link: "/Javascript_webapi/网站访问用户文件夹",
       },
       {
         text: "迅雷下载触发",
-        link: "/learn/Javascript/webapi/迅雷下载触发",
+        link: "/Javascript_webapi/迅雷下载触发",
       },
       {
         text: "resize函数封装 ResizeObserve",
-        link: "/learn/Javascript/webapi/resize函数封装",
+        link: "/Javascript_webapi/resize函数封装",
       },
       {
         text: "声音的分析和处理 Audio",
-        link: "/learn/Javascript/webapi/声音的分析和处理",
+        link: "/Javascript_webapi/声音的分析和处理",
       },
       {
         text: "网络状态监控 Navigator.connection",
-        link: "/learn/Javascript/webapi/网络状态监控",
+        link: "/Javascript_webapi/网络状态监控",
       },
       {
         text: "复制粘贴与内容设置 Clipboard",
-        link: "/learn/Javascript/webapi/复制粘贴与内容设置",
+        link: "/Javascript_webapi/复制粘贴与内容设置",
       },
       {
         text: "页面自动检测更新",
-        link: "/learn/Javascript/webapi/页面自动检测更新",
+        link: "/Javascript_webapi/页面自动检测更新",
       },
       {
         text: "数字转中文",
-        link: "/learn/Javascript/webapi/数字转中文",
+        link: "/Javascript_webapi/数字转中文",
       },
       {
         text: "拼音标注",
-        link: "/learn/Javascript/webapi/拼音标注",
+        link: "/Javascript_webapi/拼音标注",
       },
       {
         text: "文字转语音播放",
-        link: "/learn/Javascript/webapi/文字转语音播放",
+        link: "/Javascript_webapi/文字转语音播放",
       },
       {
         text: "地图数据展示",
-        link: "/learn/Javascript/webapi/地图数据展示",
+        link: "/Javascript_webapi/地图数据展示",
       },
     ],
   },
@@ -189,7 +189,7 @@ const GitSidebar = [
         text: "潜在的BUG",
         collapsible: true,
         items: [
-          { text: "大小写规则检测", link: "/learn/Git/潜在的BUG/大小写规则" },
+          { text: "大小写规则检测", link: "/Git/潜在的BUG/大小写规则" },
         ],
       },
     ],
@@ -206,12 +206,12 @@ const RegSidebar = [
         text: "知识点",
         collapsible: true,
         items: [
-          { text: "正则表达式", link: "/learn/Reg/knowledge/index" },
-          { text: "元子字符", link: "/learn/Reg/knowledge/元子字符" },
-          { text: "模式修饰", link: "/learn/Reg/knowledge/模式修饰" },
-          { text: "原子", link: "/learn/Reg/knowledge/原子" },
-          { text: "匹配", link: "/learn/Reg/knowledge/匹配" },
-          { text: "方法", link: "/learn/Reg/knowledge/方法" },
+          { text: "正则表达式", link: "/Reg/knowledge/index" },
+          { text: "元子字符", link: "/Reg/knowledge/元子字符" },
+          { text: "模式修饰", link: "/Reg/knowledge/模式修饰" },
+          { text: "原子", link: "/Reg/knowledge/原子" },
+          { text: "匹配", link: "/Reg/knowledge/匹配" },
+          { text: "方法", link: "/Reg/knowledge/方法" },
         ],
       },
       {
@@ -220,7 +220,7 @@ const RegSidebar = [
         items: [
           {
             text: "运用前瞻实现密码强度检测",
-            link: "/learn/Reg/do/运用前瞻实现密码强度检测",
+            link: "/Reg/do/运用前瞻实现密码强度检测",
           },
         ],
       },
@@ -228,7 +228,7 @@ const RegSidebar = [
         text: "潜在BUG",
         collapsible: true,
         items: [
-          { text: "正则中的lastIndex", link: "/learn/Reg/BUG/lastIndex" },
+          { text: "正则中的lastIndex", link: "/Reg/BUG/lastIndex" },
         ],
       },
     ],
@@ -241,27 +241,27 @@ const Vue2Sidebar = [
     text: "Vue2",
     collapsible: true,
     items: [
-      { text: "指令", link: "/learn/vue2/指令" },
+      { text: "指令", link: "/vue2/指令" },
       {
         text: "动态样式、计算属性、过滤器与侦听器",
-        link: "/learn/vue2/动态样式、计算属性、过滤器与侦听器",
+        link: "/vue2/动态样式、计算属性、过滤器与侦听器",
       },
-      { text: "组件通信", link: "/learn/vue2/组件通信" },
+      { text: "组件通信", link: "/vue2/组件通信" },
       {
         text: "动态组件、插槽与自定义指令",
-        link: "/learn/vue2/动态组件、插槽与自定义指令",
+        link: "/vue2/动态组件、插槽与自定义指令",
       },
       {
         text: "vue2核心源码及设计思想",
-        link: "/learn/vue2/源码—vue2核心源码及设计思想",
+        link: "/vue2/源码—vue2核心源码及设计思想",
       },
       {
         text: "从零手写VueRouter及Vuex",
-        link: "/learn/vue2/源码—从零手写VueRouter及Vuex",
+        link: "/vue2/源码—从零手写VueRouter及Vuex",
       },
       {
         text: "阅读框架源码方法",
-        link: "/learn/vue2/源码—阅读框架源码方法",
+        link: "/vue2/源码—阅读框架源码方法",
       },
     ],
   },
@@ -273,15 +273,15 @@ const Vue3Sidebar = [
     text: "Vue3",
     collapsible: true,
     items: [
-      { text: "vue3项目创建", link: "/learn/Vue3/vue3项目创建" },
-      { text: "vue3的使用", link: "/learn/Vue3/vue3的使用" },
-      { text: "组件", link: "/learn/Vue3/组件" },
-      { text: "插槽", link: "/learn/Vue3/插槽" },
-      { text: "自定义指令", link: "/learn/Vue3/自定义指令" },
-      { text: "内置组件", link: "/learn/Vue3/内置组件" },
-      { text: "pinia", link: "/learn/Vue3/pinia" },
-      { text: "Vue3新特性", link: "/learn/Vue3/Vue3新特性" },
-      { text: "源码", link: "/learn/Vue3/源码" },
+      { text: "vue3项目创建", link: "/Vue3/vue3项目创建" },
+      { text: "vue3的使用", link: "/Vue3/vue3的使用" },
+      { text: "组件", link: "/Vue3/组件" },
+      { text: "插槽", link: "/Vue3/插槽" },
+      { text: "自定义指令", link: "/Vue3/自定义指令" },
+      { text: "内置组件", link: "/Vue3/内置组件" },
+      { text: "pinia", link: "/Vue3/pinia" },
+      { text: "Vue3新特性", link: "/Vue3/Vue3新特性" },
+      { text: "源码", link: "/Vue3/源码" },
     ],
   },
 ]
@@ -292,13 +292,13 @@ const ReactSidebar = [
     text: "React",
     collapsible: true,
     items: [
-      { text: "无脚手架项目创建", link: "/learn/React/" },
-      { text: "Diff算法", link: "/learn/React/react的diff算法" },
-      { text: "脚手架项目创建", link: "/learn/React/index_new" },
-      { text: "ReactRouter5", link: "/learn/React/react路由" },
-      { text: "redux", link: "/learn/React/redux" },
-      { text: "react拓展", link: "/learn/React/react拓展" },
-      { text: "ReactRouter6", link: "/learn/React/ReactRouter6" },
+      { text: "无脚手架项目创建", link: "/React/" },
+      { text: "Diff算法", link: "/React/react的diff算法" },
+      { text: "脚手架项目创建", link: "/React/index_new" },
+      { text: "ReactRouter5", link: "/React/react路由" },
+      { text: "redux", link: "/React/redux" },
+      { text: "react拓展", link: "/React/react拓展" },
+      { text: "ReactRouter6", link: "/React/ReactRouter6" },
     ],
   },
 ]
@@ -309,12 +309,12 @@ const TsSidebar = [
     text: "TypeScript",
     collapsible: true,
     items: [
-      { text: "环境配置", link: "/learn/TypeScript/环境配置" },
-      { text: "类型", link: "/learn/TypeScript/类型" },
-      { text: "断言与枚举", link: "/learn/TypeScript/断言与枚举" },
-      { text: "类与接口", link: "/learn/TypeScript/类与接口" },
-      { text: "泛型", link: "/learn/TypeScript/泛型" },
-      { text: "装饰器", link: "/learn/TypeScript/装饰器" },
+      { text: "环境配置", link: "/TypeScript/环境配置" },
+      { text: "类型", link: "/TypeScript/类型" },
+      { text: "断言与枚举", link: "/TypeScript/断言与枚举" },
+      { text: "类与接口", link: "/TypeScript/类与接口" },
+      { text: "泛型", link: "/TypeScript/泛型" },
+      { text: "装饰器", link: "/TypeScript/装饰器" },
     ],
   },
 ]
@@ -322,16 +322,16 @@ const TsSidebar = [
 // 前端node数组
 const NodeSidebar = [
   {
-    text: "node",
+    text: "Node",
     collapsible: true,
     items: [
-      { text: "node", link: "/learn/Node/" },
-      { text: "fs", link: "/learn/Node/fs" },
-      { text: "path", link: "/learn/Node/path" },
-      { text: "http", link: "/learn/Node/http" },
-      { text: "module", link: "/learn/Node/module" },
-      { text: "express", link: "/learn/Node/express" },
-      { text: "npm", link: "/learn/Node/npm" },
+      { text: "node", link: "/Node/" },
+      { text: "fs", link: "/Node/fs" },
+      { text: "path", link: "/Node/path" },
+      { text: "http", link: "/Node/http" },
+      { text: "module", link: "/Node/module" },
+      { text: "express", link: "/Node/express" },
+      { text: "npm", link: "/Node/npm" },
     ],
   },
 ]
@@ -342,15 +342,15 @@ const StudySidebar = [
     text: "🚴 学而时习之",
     collapsible: true,
     items: [
-      { text: "引言", link: "/learn/study/" },
-      { text: "学无止境", link: "/learn/study/knowledge/JS相关/垃圾回收与console.log内存泄漏.md" },
+      { text: "引言", link: "/study/" },
+      { text: "学无止境", link: "/study/knowledge/JS相关/垃圾回收与console.log内存泄漏.md" },
       {
         text: "实操训练",
-        link: "/learn/study/operate/功能操作与实现/Canvas操作",
+        link: "/study/operate/功能操作与实现/Canvas操作",
       },
       {
         text: "项目实战",
-        link: "/learn/study/item/Echart/饼图中部内容自定义，支持轮播、点击图例中间内容修改",
+        link: "/study/item/Echart/饼图中部内容自定义，支持轮播、点击图例中间内容修改",
       },
     ],
   },
@@ -365,35 +365,35 @@ const StudyKnowledgeSidebar = [
     items: [
       {
         text: "垃圾回收与内存泄漏.md",
-        link: "/learn/study/knowledge/JS相关/垃圾回收与console.log内存泄漏.md",
+        link: "/study/knowledge/JS相关/垃圾回收与console.log内存泄漏.md",
       },
       {
         text: "windoe.onstorage标签页通信",
-        link: "/learn/study/knowledge/JS相关/windoe.onstorage标签页通信",
+        link: "/study/knowledge/JS相关/windoe.onstorage标签页通信",
       },
       {
         text: "toFixed结果因精确度产生bug",
-        link: "/learn/study/knowledge/JS相关/toFixed结果因精确度产生bug",
+        link: "/study/knowledge/JS相关/toFixed结果因精确度产生bug",
       },
       {
         text: "并发任务控制",
-        link: "/learn/study/knowledge/JS相关/并发任务控制",
+        link: "/study/knowledge/JS相关/并发任务控制",
       },
       {
         text: "设计模式",
-        link: "/learn/study/knowledge/JS相关/设计模式",
+        link: "/study/knowledge/JS相关/设计模式",
       },
       {
         text: "Proxy与defineProperty",
-        link: "/learn/study/knowledge/JS相关/Proxy与defineProperty",
+        link: "/study/knowledge/JS相关/Proxy与defineProperty",
       },
       {
         text: "LocalStorage封装",
-        link: "/learn/study/knowledge/JS相关/LocalStorage封装",
+        link: "/study/knowledge/JS相关/LocalStorage封装",
       },
       {
         text: "判断是否是数组",
-        link: "/learn/study/knowledge/JS相关/判断是否是数组",
+        link: "/study/knowledge/JS相关/判断是否是数组",
       },
     ],
   },
@@ -404,23 +404,23 @@ const StudyKnowledgeSidebar = [
     items: [
       {
         text: "Axios二次封装",
-        link: "/learn/study/knowledge/Promise相关/Axios二次封装",
+        link: "/study/knowledge/Promise相关/Axios二次封装",
       },
       {
         text: "并发请求封装",
-        link: "/learn/study/knowledge/Promise相关/并发请求封装",
+        link: "/study/knowledge/Promise相关/并发请求封装",
       },
       {
         text: "多接口请求",
-        link: "/learn/study/knowledge/Promise相关/多接口请求",
+        link: "/study/knowledge/Promise相关/多接口请求",
       },
       {
         text: "高量级任务执行优化",
-        link: "/learn/study/knowledge/Promise相关/高量级任务执行优化",
+        link: "/study/knowledge/Promise相关/高量级任务执行优化",
       },
       {
         text: "消除异步传染性",
-        link: "/learn/study/knowledge/Promise相关/消除异步传染性",
+        link: "/study/knowledge/Promise相关/消除异步传染性",
       },
     ],
   },
@@ -431,39 +431,39 @@ const StudyKnowledgeSidebar = [
     items: [
       {
         text: "$nexttick",
-        link: "/learn/study/knowledge/Vue相关/$nexttick",
+        link: "/study/knowledge/Vue相关/$nexttick",
       },
       {
         text: "ref和reactive在使用上的区别",
-        link: "/learn/study/knowledge/Vue相关/ref和reactive在使用上的区别",
+        link: "/study/knowledge/Vue相关/ref和reactive在使用上的区别",
       },
       {
         text: "Vue2 VS Vue3",
-        link: "/learn/study/knowledge/Vue相关/Vue2 VS Vue3",
+        link: "/study/knowledge/Vue相关/Vue2 VS Vue3",
       },
       {
         text: "v-model双向绑定",
-        link: "/learn/study/knowledge/Vue相关/v-model双向绑定",
+        link: "/study/knowledge/Vue相关/v-model双向绑定",
       },
       {
         text: "vue图片动态引入使用require",
-        link: "/learn/study/knowledge/Vue相关/vue图片动态引入使用require",
+        link: "/study/knowledge/Vue相关/vue图片动态引入使用require",
       },
       {
         text: "vue项目打包后首页白屏总结",
-        link: "/learn/study/knowledge/Vue相关/vue项目打包后首页白屏总结",
+        link: "/study/knowledge/Vue相关/vue项目打包后首页白屏总结",
       },
       {
         text: "Vue项目对render和jsx的妙用",
-        link: "/learn/study/knowledge/Vue相关/Vue项目对render和jsx的妙用",
+        link: "/study/knowledge/Vue相关/Vue项目对render和jsx的妙用",
       },
       {
         text: "Vue项目中TS意义与麻烦",
-        link: "/learn/study/knowledge/Vue相关/Vue项目中TS意义与麻烦",
+        link: "/study/knowledge/Vue相关/Vue项目中TS意义与麻烦",
       },
       {
         text: "灵活使用冻结对象提升代码效率",
-        link: "/learn/study/knowledge/Vue相关/灵活使用冻结对象提升代码效率",
+        link: "/study/knowledge/Vue相关/灵活使用冻结对象提升代码效率",
       },
     ],
   },
@@ -472,22 +472,22 @@ const StudyKnowledgeSidebar = [
     collapsible: true,
     collapsed: true,
     items: [
-      { text: "HBuilder使用模拟器调试", link: "/learn/study/knowledge/项目相关/HBuilder使用模拟器调试" },
+      { text: "HBuilder使用模拟器调试", link: "/study/knowledge/项目相关/HBuilder使用模拟器调试" },
       {
         text: "import引入库引入的什么",
-        link: "/learn/study/knowledge/项目相关/import引入库引入的什么",
+        link: "/study/knowledge/项目相关/import引入库引入的什么",
       },
       {
         text: "sass加css变量实现现代前端换肤",
-        link: "/learn/study/knowledge/项目相关/sass加css变量实现现代前端换肤",
+        link: "/study/knowledge/项目相关/sass加css变量实现现代前端换肤",
       },
       {
         text: "绝对路径与相对路径",
-        link: "/learn/study/knowledge/项目相关/绝对路径与相对路径",
+        link: "/study/knowledge/项目相关/绝对路径与相对路径",
       },
       {
         text: "前端环境变量使用和原理",
-        link: "/learn/study/knowledge/项目相关/前端环境变量使用和原理",
+        link: "/study/knowledge/项目相关/前端环境变量使用和原理",
       },
     ],
   },
@@ -498,29 +498,29 @@ const StudyKnowledgeSidebar = [
     items: [
       {
         text: "打包优化",
-        link: "/learn/study/knowledge/优化相关/打包优化",
+        link: "/study/knowledge/优化相关/打包优化",
       },
       {
         text: "项目速度优化",
-        link: "/learn/study/knowledge/优化相关/项目速度优化",
+        link: "/study/knowledge/优化相关/项目速度优化",
       },
       {
         text: "性能优化",
-        link: "/learn/study/knowledge/优化相关/性能优化",
+        link: "/study/knowledge/优化相关/性能优化",
       },
       {
         text: "页面加载慢排查与解决方案",
-        link: "/learn/study/knowledge/优化相关/页面加载慢排查与解决方案",
+        link: "/study/knowledge/优化相关/页面加载慢排查与解决方案",
       },
       {
         text: "资源加载优化",
-        link: "/learn/study/knowledge/优化相关/资源加载优化",
+        link: "/study/knowledge/优化相关/资源加载优化",
       },
     ],
   },
   {
     text: "🗑 返回",
-    link: "/learn/study/",
+    link: "/study/",
   },
 ]
 
@@ -533,23 +533,23 @@ const StudyItemSidebar = [
     items: [
       {
         text: "饼图中部内容自定义，支持轮播、点击图例修改中间内容",
-        link: "/learn/study/item/Echart/饼图中部内容自定义，支持轮播、点击图例中间内容修改",
+        link: "/study/item/Echart/饼图中部内容自定义，支持轮播、点击图例中间内容修改",
       },
       {
         text: "横向柱状图参数数量设置",
-        link: "/learn/study/item/Echart/横向柱状图参数数量设置",
+        link: "/study/item/Echart/横向柱状图参数数量设置",
       },
       {
         text: "图表菜单项自定义",
-        link: "/learn/study/item/Echart/图表菜单项自定义",
+        link: "/study/item/Echart/图表菜单项自定义",
       },
       {
         text: "柱状图悬停文本自定义",
-        link: "/learn/study/item/Echart/柱状图悬停文本自定义",
+        link: "/study/item/Echart/柱状图悬停文本自定义",
       },
       {
         text: "柱状图封装",
-        link: "/learn/study/item/Echart/柱状图封装",
+        link: "/study/item/Echart/柱状图封装",
       },
     ],
   },
@@ -559,13 +559,13 @@ const StudyItemSidebar = [
     items: [
       {
         text: "数组对象遍历",
-        link: "/learn/study/item/Js/数组对象遍历",
+        link: "/study/item/Js/数组对象遍历",
       },
     ],
   },
   {
     text: "🗑 返回",
-    link: "/learn/study/",
+    link: "/study/",
   },
 ]
 
@@ -578,47 +578,47 @@ const StudyOperateeSidebar = [
     items: [
       {
         text: "Canvas操作",
-        link: "/learn/study/operate/功能操作与实现/Canvas操作",
+        link: "/study/operate/功能操作与实现/Canvas操作",
       },
       {
         text: "Vue项目权限控制",
-        link: "/learn/study/operate/功能操作与实现/Vue项目权限控制",
+        link: "/study/operate/功能操作与实现/Vue项目权限控制",
       },
       {
         text: "摆脱手动依赖引入，自动引入依赖",
-        link: "/learn/study/operate/功能操作与实现/摆脱手动依赖引入，自动引入依赖",
+        link: "/study/operate/功能操作与实现/摆脱手动依赖引入，自动引入依赖",
       },
       {
         text: "操作内嵌ifrname与传递消息",
-        link: "/learn/study/operate/功能操作与实现/操作内嵌ifrname与传递消息",
+        link: "/study/operate/功能操作与实现/操作内嵌ifrname与传递消息",
       },
       {
         text: "从一个需求出发如何更优雅写代码",
-        link: "/learn/study/operate/功能操作与实现/从一个需求出发如何更优雅写代码",
+        link: "/study/operate/功能操作与实现/从一个需求出发如何更优雅写代码",
       },
       {
         text: "富文本编辑器",
-        link: "/learn/study/operate/功能操作与实现/富文本编辑器",
+        link: "/study/operate/功能操作与实现/富文本编辑器",
       },
       {
         text: "前端操作excel与word",
-        link: "/learn/study/operate/功能操作与实现/前端操作excel与word",
+        link: "/study/operate/功能操作与实现/前端操作excel与word",
       },
       {
         text: "前端文件上传与相关操作",
-        link: "/learn/study/operate/功能操作与实现/前端文件上传与相关操作",
+        link: "/study/operate/功能操作与实现/前端文件上传与相关操作",
       },
       {
         text: "前端下载后端传输的文件",
-        link: "/learn/study/operate/功能操作与实现/前端下载后端传输的文件",
+        link: "/study/operate/功能操作与实现/前端下载后端传输的文件",
       },
       {
         text: "移动端大屏端布局适配",
-        link: "/learn/study/operate/功能操作与实现/移动端大屏端布局适配",
+        link: "/study/operate/功能操作与实现/移动端大屏端布局适配",
       },
       {
         text: "视频提取画面帧",
-        link: "/learn/study/operate/功能操作与实现/视频提取画面帧",
+        link: "/study/operate/功能操作与实现/视频提取画面帧",
       },
     ],
   },
@@ -629,45 +629,45 @@ const StudyOperateeSidebar = [
     items: [
       {
         text: "vue重复小组件处理经验",
-        link: "/learn/study/operate/组件封装与二开/vue重复小组件处理经验",
+        link: "/study/operate/组件封装与二开/vue重复小组件处理经验",
       },
       {
         text: "vue组件设计技巧",
-        link: "/learn/study/operate/组件封装与二开/vue组件设计技巧",
+        link: "/study/operate/组件封装与二开/vue组件设计技巧",
       },
       {
         text: "对话框弹窗组件",
-        link: "/learn/study/operate/组件封装与二开/对话框弹窗组件",
+        link: "/study/operate/组件封装与二开/对话框弹窗组件",
       },
       {
         text: "输入框组件封装",
-        link: "/learn/study/operate/组件封装与二开/输入框组件封装",
+        link: "/study/operate/组件封装与二开/输入框组件封装",
       },
       {
         text: "通过el-calendar实现业务",
-        link: "/learn/study/operate/组件封装与二开/通过el-calendar实现业务",
+        link: "/study/operate/组件封装与二开/通过el-calendar实现业务",
       },
       {
         text: "通过el-select实现多个省略学习如何改造第三方组件满足自己的要求",
-        link: "/learn/study/operate/组件封装与二开/通过el-select实现多个省略学习如何改造第三方组件满足自己的要求",
+        link: "/study/operate/组件封装与二开/通过el-select实现多个省略学习如何改造第三方组件满足自己的要求",
       },
       {
         text: "通过el-table实现多数据完美无限滚动效果",
-        link: "/learn/study/operate/组件封装与二开/通过el-table实现多数据完美无限滚动效果",
+        link: "/study/operate/组件封装与二开/通过el-table实现多数据完美无限滚动效果",
       },
       {
         text: "页码列表组件封装思路",
-        link: "/learn/study/operate/组件封装与二开/页码列表组件封装思路",
+        link: "/study/operate/组件封装与二开/页码列表组件封装思路",
       },
       {
         text: "组件库搭建",
-        link: "/learn/study/operate/组件封装与二开/组件库搭建",
+        link: "/study/operate/组件封装与二开/组件库搭建",
       },
     ],
   },
   {
     text: "🗑 返回",
-    link: "/learn/study/",
+    link: "/study/",
   },
 ]
 
@@ -1230,21 +1230,21 @@ const AskSidebar = [
  * 最终导出 ************************************************************
  */
 export default {
-  "/learn/CSS": generateSidebarItems(CssSidebar),
-  "/learn/CSS/效果提升": generateSidebarItems(CssLevelSidebar),
-  "/learn/CSS/知识拓展": generateSidebarItems(CssKnowladgeSidebar),
-  "/learn/Javascript": generateSidebarItems(JsSidebar),
-  "/learn/Reg": generateSidebarItems(RegSidebar),
-  "/learn/vue2": generateSidebarItems(Vue2Sidebar),
-  "/learn/Vue3": generateSidebarItems(Vue3Sidebar),
-  "/learn/React": generateSidebarItems(ReactSidebar),
-  "/learn/TypeScript": generateSidebarItems(TsSidebar),
-  "/learn/Node": generateSidebarItems(NodeSidebar),
-  "/learn/Git": generateSidebarItems(GitSidebar),
-  "/learn/study": generateSidebarItems(StudySidebar),
-  "/learn/study/knowledge": generateSidebarItems(StudyKnowledgeSidebar),
-  "/learn/study/item": generateSidebarItems(StudyItemSidebar),
-  "/learn/study/operate": generateSidebarItems(StudyOperateeSidebar),
+  "/CSS": generateSidebarItems(CssSidebar),
+  "/CSS/效果提升": generateSidebarItems(CssLevelSidebar),
+  "/CSS/知识拓展": generateSidebarItems(CssKnowladgeSidebar),
+  "/Javascript": generateSidebarItems(JsSidebar),
+  "/Reg": generateSidebarItems(RegSidebar),
+  "/vue2": generateSidebarItems(Vue2Sidebar),
+  "/Vue3": generateSidebarItems(Vue3Sidebar),
+  "/React": generateSidebarItems(ReactSidebar),
+  "/TypeScript": generateSidebarItems(TsSidebar),
+  "/Node": generateSidebarItems(NodeSidebar),
+  "/Git": generateSidebarItems(GitSidebar),
+  "/study": generateSidebarItems(StudySidebar),
+  "/study/knowledge": generateSidebarItems(StudyKnowledgeSidebar),
+  "/study/item": generateSidebarItems(StudyItemSidebar),
+  "/study/operate": generateSidebarItems(StudyOperateeSidebar),
   "/面试鸭/面试典": generateSidebarItems(DictionarySidebar),
   "/面试鸭/面试问": generateSidebarItems(AskSidebar),
   "/project": generateSidebarItems(ProjectSidebar),
