@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: 前端知识
-      link: /learn/CSS/
+      link: /CSS/
     - theme: alt
       text: 项目总结
       link: /project/
@@ -20,7 +20,7 @@ features:
   - icon: 📕
     title: 学习之旅
     details: 自学成果
-    link: /learn/CSS/index
+    link: /CSS/
   - icon: ⚡
     title: 项目之旅
     details: 项目总结

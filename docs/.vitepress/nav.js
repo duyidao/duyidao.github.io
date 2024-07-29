@@ -24,13 +24,13 @@ export default [
   {
     text: "💾 项目模块",
     items: [
-      { text: "🧟 灵思", link: "/project/lingsi/" },
-      { text: "⛷️ 百度", link: "/project/baidu/" },
+      { text: "🧟 灵思", link: "/lingsi/" },
+      { text: "⛷️ 百度", link: "/baidu/" },
       {
-        items: [{ text: "🔪 刀刀小站", link: "/project/daodao/" }],
+        items: [{ text: "🔪 刀刀小站", link: "/daodao/" }],
       },
       {
-        items: [{ text: "📜 自主学习", link: "/project/myself/" }],
+        items: [{ text: "📜 自主学习", link: "/myself/" }],
       },
     ],
   },
