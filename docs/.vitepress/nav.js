@@ -22,15 +22,21 @@ export default [
     ],
   },
   {
-    text: "💾 项目模块",
+    text: "💾 项目经验",
     items: [
-      { text: "🧟 灵思", link: "/lingsi/" },
-      { text: "⛷️ 百度", link: "/baidu/" },
       {
-        items: [{ text: "🔪 刀刀小站", link: "/daodao/" }],
+        text: "💼 工作项目",
+        items: [
+          { text: "🧟 灵思", link: "/lingsi/" },
+          { text: "⛷️ 百度", link: "/baidu/" },
+        ],
       },
       {
-        items: [{ text: "📜 自主学习", link: "/myself/" }],
+        text: "📜 自主学习",
+        items: [
+          { text: "🔪 刀刀小站", link: "/daodao/" },
+          { text: "🛜 网上学习", link: "/myself/" },
+        ],
       },
     ],
   },
