@@ -350,7 +350,7 @@ const StudySidebar = [
       },
       {
         text: "项目实战",
-        link: "/study/item/Echart/饼图中部内容自定义，支持轮播、点击图例中间内容修改",
+        link: "/study/item/Echart/饼图中部内容自定义，点击图例中间内容修改",
       },
     ],
   },
@@ -532,8 +532,8 @@ const StudyItemSidebar = [
     collapsed: true,
     items: [
       {
-        text: "饼图中部内容自定义，支持轮播、点击图例修改中间内容",
-        link: "/study/item/Echart/饼图中部内容自定义，支持轮播、点击图例中间内容修改",
+        text: "饼图中部内容自定义，点击图例中间内容修改",
+        link: "/study/item/Echart/饼图中部内容自定义，点击图例中间内容修改",
       },
       {
         text: "横向柱状图参数数量设置",
@@ -550,6 +550,10 @@ const StudyItemSidebar = [
       {
         text: "柱状图封装",
         link: "/study/item/Echart/柱状图封装",
+      },
+      {
+        text: "饼图轮播，hover图例后修改中间内容",
+        link: "/study/item/Echart/饼图轮播，hover图例后修改中间内容",
       },
     ],
   },
