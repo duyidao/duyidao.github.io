@@ -859,7 +859,7 @@ const DaodaoSidebar = [
       { text: "📈 svg封装", link: "/daodao/svg" },
       { text: "🦩 适应性布局", link: "/daodao/适应性布局" },
       { text: "☁️ 天气获取", link: "/daodao/天气获取" },
-      { text: "🦭 代码编辑器", link: "/daodao/代码编辑器" },
+      { text: "💻 代码编辑器", link: "/daodao/代码编辑器" },
       { text: "🗑 返回", link: "/project/" },
     ],
   },

@@ -35,7 +35,7 @@ export default [
         text: "📜 自主学习",
         items: [
           { text: "🔪 刀刀小站", link: "/daodao/" },
-          { text: "🛜 网上学习", link: "/myself/" },
+          { text: "📢 网上学习", link: "/myself/" },
         ],
       },
     ],
