@@ -2,16 +2,32 @@ export default [
   {
     text: "💻 前端知识",
     items: [
-      { text: "CSS", link: "/CSS/" },
-      { text: "JavaScript", link: "/Javascript/" },
-      { text: "Vue2", link: "/vue2/指令" },
-      { text: "Vue3", link: "/Vue3/vue3项目创建" },
-      { text: "React", link: "/React/" },
-      { text: "TypeScript", link: "/TypeScript/环境配置" },
-      { text: "Node", link: "/Node/" },
-      { text: "Git", link: "/Git/潜在的BUG/大小写规则" },
-      { text: "正则表达式", link: "/Reg/knowledge/index" },
       {
+        text: "🗡️ 前端三剑客",
+        items: [
+          { text: "CSS", link: "/CSS/" },
+          { text: "JavaScript", link: "/Javascript/" },
+        ],
+      },
+      {
+        text: "🧺 框架",
+        items: [
+          { text: "Vue2", link: "/vue2/指令" },
+          { text: "Vue3", link: "/Vue3/vue3项目创建" },
+          { text: "React", link: "/React/" },
+        ],
+      },
+      {
+        text: "⬆️ 进阶",
+        items: [
+          { text: "TypeScript", link: "/TypeScript/环境配置" },
+          { text: "Node", link: "/Node/" },
+          { text: "Git", link: "/Git/潜在的BUG/大小写规则" },
+          { text: "正则表达式", link: "/Reg/knowledge/index" },
+        ],
+      },
+      {
+        text: "🌹 拓展",
         items: [
           {
             text: "学而时习之",
@@ -43,12 +59,12 @@ export default [
   {
     text: "🦆 面试鸭",
     items: [
-      { text: "📔 面试典", link: "/面试鸭/面试典/js/数组方法手写原理.md" },
-      { text: "👨‍⚖️ 面试问", link: "/面试鸭/面试问/index.md" },
+      { text: "📔 面试八股", link: "/面试鸭/面试典/js/数组方法手写原理.md" },
+      { text: "👨‍⚖️ 面试经历", link: "/面试鸭/面试问/index.md" },
     ],
   },
   {
-    text: "🧊 部署",
+    text: "🧊 博客部署",
     items: [
       { text: "🌩️ 引言", link: "/vitePress/" },
       { text: "🧩 搭建", link: "/vitePress/Dev" },
