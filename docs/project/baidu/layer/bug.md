@@ -40,3 +40,81 @@ title BUG
 经过排查发现该组件默认是设置在 `body` 下，而非组件内。组件样式做了 `scoped` 防污染后样式只在该组件内生效。因此无论怎么调试都不生效。
 
 其官方文档也写明，通过设置 `append-to-body` 为 `false` ，让其在组件内挂载，这样就能生效了。
+
+## 与Vue相关
+
+### 变量修改导致的组件更新导致了扎点重新渲染
+
+有一个场景，一个父组件引用了公共扎点子组件，在地图上渲染扎点，其代码如下所示：
+
+```vue
+<template>
+	<marker-dom
+    v-for="(item, index) in list" :key="item.id"
+    :info="{
+      ...item,
+      :position="[item.lng, item.lat]"
+      :name="item.name"
+      :onClickCallback="() => clickCallbackFn(item)"
+      :onMouseenterCallback="() => mouseenterCallbackFn(index)"
+      :onMouseleaveCallback="() => mouseleaveCallbackFn(index)"
+    }"
+  >
+    <div v-show="showList[index]"> ... </div>
+  </marker-dom>
+</template>
+  
+<script>
+  export default {
+    setup() {
+      const showList = ref([])
+      
+      const mouseenterCallbackFn = index => {
+        set(showList.value, index, true)
+      }
+      
+      const mouseleaveCallbackFn = index => {
+        set(showList.value, index, false)
+      }
+      
+      return {
+        showList,
+        mouseleaveCallbackFn, mouseenterCallbackFn
+      }
+    }
+  }
+</script>
+```
+
+根据上述代码不难看出它主要做了循环数据，把每一项的数据和经纬度、点击、鼠标移入移出回调函数等放到对象中传递给子组件。鼠标移入把数组对应索引改为 `true` 展示对应的卡片；鼠标移出后隐藏。
+
+查看效果发现虽然鼠标移入展示了，但是页面上的扎点全部都重新渲染了一遍，且不触发鼠标移出方法。
+
+然后开始排查问题，既然重新渲染，那么就去看哪里触发了子组件的渲染函数。在子组件中有两个地方用到了该方法，一个在 `onMounted` ，一个在 `watch` 。前者可以排出，生命周期只触发一次，`watch` 代码如下所示：
+
+```js
+watch(() => props.info, (_, {name}) => {
+  removeIcon(name); // 删除旧扎点
+  addIcon(); // 新建新扎点
+}, {deep: true})
+```
+
+打印 `props.info` ，控制台有相关打印，可以判断是子组件侦听到数据发生改变，因此重新渲染扎点图标。但是父组件并没有修改到 `list` 数组，`info` 内的数据不会被变动到。
+
+后面想起在学习组件封装时听到的一个知识点：修改了组件内的变量会让 `template` 重新加载一次。由于 `info` 变量是 `template` 内直接设置，因此每次重新加载，都会赋一个新的对象过去，子组件侦听到是新对象就会触发。
+
+找到问题所在后就好办了，通过计算属性格式化一下数据，这样数据不变动就不会触发子组件的侦听器了。代码如下：
+
+```js
+const markerList = computed(() => {
+  return list.value.map(item => ({
+    ...item,
+    position="[item.lng, item.lat]"
+    name="item.name"
+    onClickCallback="() => clickCallbackFn(item)"
+    onMouseenterCallback="() => mouseenterCallbackFn(index)"
+    onMouseleaveCallback="() => mouseleaveCallbackFn(index)"
+  }))
+})
+```
+
