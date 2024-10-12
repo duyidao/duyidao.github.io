@@ -1,7 +1,5 @@
 ---
 title BUG
-
-
 ---
 
 # 抓虫记录
@@ -40,6 +38,28 @@ title BUG
 经过排查发现该组件默认是设置在 `body` 下，而非组件内。组件样式做了 `scoped` 防污染后样式只在该组件内生效。因此无论怎么调试都不生效。
 
 其官方文档也写明，通过设置 `append-to-body` 为 `false` ，让其在组件内挂载，这样就能生效了。
+
+### vite-plugin-vue2导致el-table等组件不生效
+在开发的时候发现表格位置空白，无表格 DOM 组件。主要依赖为 vite + vue2.7 + elementui2.15.10 + vite-plugin-vue2。
+
+查看 [vite 官网](https://cn.vitejs.dev/guide/features#vue) 发现 vue2.7 有单独的支持包，更换成该包。
+
+![更换包](https://pic.imgdb.cn/item/670a1b93d29ded1a8c8848fe.png)
+
+现在开发模式有效果了，但是打包后还是空白。查看 vite-plugin-vue2 的 `issuess` 发现有相关问题，有人给出相关解答和问题原因，感兴趣可前往 [vite-plugin-vue2 does not support some components of ElementUI](https://github.com/vitejs/vite-plugin-vue2/issues/16) 。
+
+解决方法如下：
+```js
+export default defineConfig({
+  // ...
+  resolve: {
+    alias: {
+      // ...
+      vue: 'vue/dist/vue.esm.js',
+    }
+  }
+});
+```
 
 ## 与Vue相关
 
@@ -90,7 +110,7 @@ title BUG
 
 查看效果发现虽然鼠标移入展示了，但是页面上的扎点全部都重新渲染了一遍，且不触发鼠标移出方法。
 
-然后开始排查问题，既然重新渲染，那么就去看哪里触发了子组件的渲染函数。在子组件中有两个地方用到了该方法，一个在 `onMounted` ，一个在 `watch` 。前者可以排出，生命周期只触发一次，`watch` 代码如下所示：
+然后开始排查问题，既然重新渲染，那么就去看哪里触发了子组件的渲染函数。在子组件中有两个地方用到了该方法，一个在 `onMounted` ，一个在 `watch` 。前者可以排除，生命周期只触发一次，`watch` 代码如下所示：
 
 ```js
 watch(() => props.info, (_, {name}) => {
@@ -105,16 +125,35 @@ watch(() => props.info, (_, {name}) => {
 
 找到问题所在后就好办了，通过计算属性格式化一下数据，这样数据不变动就不会触发子组件的侦听器了。代码如下：
 
-```js
-const markerList = computed(() => {
-  return list.value.map(item => ({
-    ...item,
-    position="[item.lng, item.lat]"
-    name="item.name"
-    onClickCallback="() => clickCallbackFn(item)"
-    onMouseenterCallback="() => mouseenterCallbackFn(index)"
-    onMouseleaveCallback="() => mouseleaveCallbackFn(index)"
-  }))
-})
+```vue
+<template>
+	<marker-dom
+    v-for="(item, index) in markerList" :key="item.id"
+    :info="item"
+  >
+    <div v-show="showList[index]"> ... </div>
+  </marker-dom>
+</template>
+
+<script>
+  export default {
+    setup() {
+      const markerList = computed(() => {
+        return list.value.map(item => ({
+          ...item,
+          position="[item.lng, item.lat]"
+          name="item.name"
+          onClickCallback="() => clickCallbackFn(item)"
+          onMouseenterCallback="() => mouseenterCallbackFn(index)"
+          onMouseleaveCallback="() => mouseleaveCallbackFn(index)"
+        }))
+      })
+
+      return {
+        markerList
+      }
+    }
+  }
+</script>
 ```
 

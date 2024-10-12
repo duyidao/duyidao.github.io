@@ -880,7 +880,7 @@ const BaiduSidebar = [
     items: [
       { text: "⛷️ 引言", link: "/baidu/" },
       { text: "🗺 图层", link: "/baidu/layer/index" },
-      { text: "🎞️ 佛开LED", link: "/baidu/fokai/index" },
+      { text: "🎞️ 佛开", link: "/baidu/fokai/LED/index" },
       { text: "🗑 返回", link: "/project/" },
     ],
   },
@@ -899,6 +899,7 @@ const LayerSidebar = [
       { text: "🗺 MapVThree", link: "/baidu/layer/MapVThree" },
       { text: "🏓 优化", link: "/baidu/layer/优化" },
       { text: "⚙️ 功能", link: "/baidu/layer/功能" },
+      { text: "🇺🇳 POC", link: "/baidu/layer/Poc" },
       { text: "🕶️ BUG", link: "/baidu/layer/bug" },
       { text: "🗑 返回", link: "/baidu/" },
     ],
@@ -908,14 +909,28 @@ const LayerSidebar = [
 // 佛开的数组
 const FokaiSidebar = [
   {
-    text: "🎞️ 佛开LED",
+    text: "🎞️ 佛开",
     collapsible: true,
     items: [
-      { text: "💡 介绍", link: "/baidu/fokai/index" },
-      { text: "🟥 样式", link: "/baidu/fokai/style" },
-      { text: "🛑 覆盖物", link: "/baidu/fokai/overlay" },
-      { text: "💻 Ws", link: "/baidu/fokai/ws" },
-      { text: "📦 打包", link: "/baidu/fokai/build" },
+      {
+        text: "🖥 平台",
+        collapsible: true,
+        items: [
+          { text: "💡 介绍", link: "/baidu/fokai/platform/index" },
+          { text: "👣 组件", link: "/baidu/fokai/platform/component" },
+        ]
+      },
+      {
+        text: "💡 LED大屏",
+        collapsible: true,
+        items: [
+          { text: "💡 介绍", link: "/baidu/fokai/LED/index" },
+          { text: "🟥 样式", link: "/baidu/fokai/LED/style" },
+          { text: "🛑 覆盖物", link: "/baidu/fokai/LED/overlay" },
+          { text: "💻 Ws", link: "/baidu/fokai/LED/ws" },
+          { text: "📦 打包", link: "/baidu/fokai/LED/build" },
+        ]
+      },
       { text: "🗑 返回", link: "/baidu/" },
     ],
   },
