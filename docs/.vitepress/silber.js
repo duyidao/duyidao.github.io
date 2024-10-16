@@ -918,6 +918,7 @@ const FokaiSidebar = [
         items: [
           { text: "💡 介绍", link: "/baidu/fokai/platform/index" },
           { text: "👣 组件", link: "/baidu/fokai/platform/component" },
+          { text: "⏭️ 3d跳转", link: "/baidu/fokai/platform/3d跳转" },
         ]
       },
       {
