@@ -17,78 +17,45 @@ function generateSidebarItems(arr) {
 // 前端css的数组
 const CssSidebar = [
   {
-    text: "CSS",
+    text: "属性详解",
     collapsible: true,
+    collapsed: true,
     items: [
-      { text: "效果提升", link: "/CSS/效果提升/巧用伪类" },
-      { text: "知识拓展", link: "/CSS/知识拓展/BEM" },
+      { text: "-webkit-box-reflect 实现倒影", link: "/CSS/属性详解/-webkit-box-reflect" },
+      { text: "clip-path 实现裁剪", link: "/CSS/属性详解/clip-path" },
+      { text: "filter 实现滤镜", link: "/CSS/属性详解/filter" },
+      { text: "渐变", link: "/CSS/属性详解/gradient" },
+      { text: "mix-blend-mode 实现文字适配背景", link: "/CSS/属性详解/mix-blend-mode" },
+      { text: "scroll-snap 实现吸附", link: "/CSS/属性详解/scroll-snap" },
+      { text: "vmin与vmax", link: "/CSS/属性详解/vmin与vmax" },
     ],
-  }
-]
-
-// 前端css效果提升的数组
-const CssLevelSidebar = [
+  },
   {
     text: "效果提升",
     collapsible: true,
+    collapsed: true,
     items: [
+      { text: "变量", link: "/CSS/效果提升/变量" },
+      { text: "宽度适配内容", link: "/CSS/效果提升/宽度适配内容" },
+      { text: "瀑布流", link: "/CSS/效果提升/瀑布流" },
       { text: "巧用伪类", link: "/CSS/效果提升/巧用伪类" },
-      {
-        text: "宽度适配内容",
-        link: "/CSS/效果提升/宽度适配内容",
-      },
-      {
-        text: "文字适配背景",
-        link: "/CSS/效果提升/文字适配背景",
-      },
-      {
-        text: "文字适应纹理",
-        link: "/CSS/效果提升/文字适应纹理",
-      },
-      {
-        text: "文字连续光影特效",
-        link: "/CSS/效果提升/文字连续光影特效",
-      },
-      {
-        text: "变量",
-        link: "/CSS/效果提升/变量",
-      },
-      {
-        text: "渐变",
-        link: "/CSS/效果提升/渐变",
-      },
-      {
-        text: "B站banner鼠标移动效果揭秘",
-        link: "/CSS/效果提升/B站banner鼠标移动效果揭秘",
-      },
-      {
-        text: "filter",
-        link: "/CSS/效果提升/filter",
-      },
-      {
-        text: "clip-path",
-        link: "/CSS/效果提升/clip-path",
-      },
-      { text: "vmin与vmax", link: "/CSS/效果提升/vmin与vmax" },
-      { text: "scroll-snap", link: "/CSS/效果提升/scroll-snap" },
+      { text: "图片边框", link: "/CSS/效果提升/图片边框" },
+      { text: "文字连续光影特效", link: "/CSS/效果提升/文字连续光影特效" },
+      { text: "文字适应纹理", link: "/CSS/效果提升/文字适应纹理" },
       { text: "下划线动画", link: "/CSS/效果提升/下划线动画" },
-      { text: "🗑 返回", link: "/CSS/" },
+      { text: "B站banner鼠标移动效果揭秘", link: "/CSS/效果提升/B站banner鼠标移动效果揭秘" },
     ],
   },
-]
-
-// 前端css知识拓展的数组
-const CssKnowladgeSidebar = [
   {
     text: "知识拓展",
     collapsible: true,
+    collapsed: true,
     items: [
-      { text: "BEM", link: "/CSS/知识拓展/BEM" },
       { text: "空白节点", link: "/CSS/知识拓展/空白节点" },
       { text: "粘性定位", link: "/CSS/知识拓展/粘性定位" },
-      { text: "🗑 返回", link: "/CSS/" },
+      { text: "BEM", link: "/CSS/知识拓展/BEM" },
     ],
-  },
+  }
 ]
 
 // 前端js数组
@@ -1260,8 +1227,6 @@ const AskSidebar = [
  */
 export default {
   "/CSS": generateSidebarItems(CssSidebar),
-  "/CSS/效果提升": generateSidebarItems(CssLevelSidebar),
-  "/CSS/知识拓展": generateSidebarItems(CssKnowladgeSidebar),
   "/Javascript": generateSidebarItems(JsSidebar),
   "/Reg": generateSidebarItems(RegSidebar),
   "/vue2": generateSidebarItems(Vue2Sidebar),

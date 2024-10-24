@@ -5,7 +5,7 @@ export default [
       {
         text: "🗡️ 前端三剑客",
         items: [
-          { text: "CSS", link: "/CSS/" },
+          { text: "CSS", link: "/CSS/属性详解/-webkit-box-reflect" },
           { text: "JavaScript", link: "/Javascript/" },
         ],
       },

@@ -1,4 +1,4 @@
-# scroll-snap
+# scroll-snap 实现吸附
 
 ## 前置知识
 
@@ -71,7 +71,7 @@ scroll-snap-type: unset;
 >
 > 若吸附口中的内容发生变动（如被添加、移动、删除或改变尺寸）或者与滚动吸附相关的任意属性（如 `scroll-snap-type` 或 `scroll-margin`）的值发生变化，则滚动容器将按照 `scroll-snap-type` 最新的值[重新吸附](https://drafts.csswg.org/css-scroll-snap/#re-snap)。
 
-## 效果实现
+## 实现
 
 案例一的效果通过吸附实现，首先设置 `scroll-snap-type` ，给他两个属性，一个是在哪个轴，一个是如何吸附，根据效果来看可以看出它不允许出现两个元素各展示一部分，强制吸附，因此使用 `mandatory` 。
 

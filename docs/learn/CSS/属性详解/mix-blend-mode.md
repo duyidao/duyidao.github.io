@@ -1,47 +1,6 @@
-# 文字适配背景
+# mix-blend-mode 实现文字适配背景
 
-其代码如下：
-
-```html
-<style>
-  .banner {
-    width: 500px;
-    height: 250px;
-    text-align: center;
-    line-height: 250px;
-    background-image: linear-gradient(
-      45deg,
-      #fff 0%,
-      #fff 50%,
-      #000 50%,
-      #000 100%
-    );
-  }
-
-  .title {
-    color: #fff;
-  }
-</style>
-    
-<div class="banner">
-  <div class="title">前端搬砖人 每天都努力</div>
-</div>
-```
-
-从代码不难看出一个父级 `div` 渐变背景色，下方包含一个文本标签，其颜色设置为白色，但是却能实现根据不同的背景色实现不同的文字颜色。
-
-这里其实只需要给他设置一个 CSS 属性就能实现了，代码如下：
-
-```css
-.title {
-  color: #fff;
-  mix-blend-mode: difference;
-}
-```
-
-下面来介绍一下这个 `mix-blend-mode` 。
-
-## mix-blend-mode
+## 前置知识
 
 根据 [MDN相关文档](https://developer.mozilla.org/zh-CN/docs/Web/CSS/mix-blend-mode) 的描述，该属性是用于定义了一个元素的颜色如何与其父元素的颜色以及兄弟元素的颜色混合。它允许您创建令人惊艳的视觉效果，可以用于创建半透明效果、添加阴影、制作图片蒙版和很多其他效果。
 
@@ -78,6 +37,34 @@
 >
 > 混合模式中的算法涉及到了数学计算，不同的算法使用不同的计算公式。以 multiply 算法为例，它的计算公式是将两个颜色值的每个通道（即红、绿、蓝、透明度四个通道）分别相乘，得到新的颜色值的每个通道。
 
+## 实现
+
+```html
+<style>
+  .banner {
+    width: 500px;
+    height: 250px;
+    text-align: center;
+    line-height: 250px;
+    background-image: linear-gradient(
+      45deg,
+      #fff 0%,
+      #fff 50%,
+      #000 50%,
+      #000 100%
+    );
+  }
+
+  .title {
+    color: #fff;
+    mix-blend-mode: difference;
+  }
+</style>
+    
+<div class="banner">
+  <div class="title">前端搬砖人 每天都努力</div>
+</div>
+```
 
 ## 总体效果
 <Iframe url="https://duyidao.github.io/blogweb/#/detail/css/fit" />
