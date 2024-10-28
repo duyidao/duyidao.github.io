@@ -6,8 +6,6 @@
 
 此属性不为吸附至吸附点指定任何确切的动画或运动规律，留待用户代理处理。
 
-CSSCopy to Clipboard
-
 ```css
 /* 不吸附 */
 scroll-snap-type: none;
