@@ -7,12 +7,10 @@ title 有用的帮助
 ## Vue
 
 - 源码架构翻译：[Vue Template Explorer (vuejs.org)](https://template-explorer.vuejs.org/#eyJzcmMiOiI8ZGl2PkhlbGxvIFdvcmxkPC9kaXY+XHJcbjxkaXY+e3thfX08L2Rpdj5cclxuPGRpdj57e2J9fTwvZGl2PlxyXG48ZGl2IDpjbGFzcz1cImNsYXNzTmFtZVwiPmI8L2Rpdj5cclxuPGRpdiA6Y2xhc3M9XCJjbGFzc05hbWVcIj57e2J9fTwvZGl2PiIsIm9wdGlvbnMiOnt9fQ==)
-- 
 
 ## TypeScript
 
 - 在线 JSON 转 TS：[JSON to TypeScript (transform.tools)](https://transform.tools/json-to-typescript)
-- 
 
 ## 正则
 
@@ -24,6 +22,8 @@ title 有用的帮助
 - ast语法：[ast语法](https://astexplorer.net/)
 - gif录制：[ScreenToGif](https://www.screentogif.com/)
 - 文字生成拼音：[pinyin](https://pinyin.js.org/)
+- clip-path在线生成工具：[clip-path](https://www.jiangweishan.com/tool/clippy/)
+- svg滤镜：[svg-filter](https://yoksel.github.io/svg-filters/#/)
 
 ## 调试
 

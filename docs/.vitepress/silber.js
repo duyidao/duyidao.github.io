@@ -99,6 +99,10 @@ const JsSidebar = [
         link: "/Javascript_webapi/取色器封装",
       },
       {
+        text: "色彩提取",
+        link: "/Javascript_webapi/色彩提取",
+      },
+      {
         text: "网站访问用户文件夹 ShowDirectoryPicker",
         link: "/Javascript_webapi/网站访问用户文件夹",
       },
