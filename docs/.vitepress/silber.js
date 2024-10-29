@@ -43,6 +43,7 @@ const CssSidebar = [
       { text: "文字连续光影特效", link: "/CSS/效果提升/文字连续光影特效" },
       { text: "文字适应纹理", link: "/CSS/效果提升/文字适应纹理" },
       { text: "下划线动画", link: "/CSS/效果提升/下划线动画" },
+      { text: "svg滤镜", link: "/CSS/效果提升/svg滤镜" },
       { text: "B站banner鼠标移动效果揭秘", link: "/CSS/效果提升/B站banner鼠标移动效果揭秘" },
     ],
   },
