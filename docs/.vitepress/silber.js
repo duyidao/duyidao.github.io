@@ -22,6 +22,7 @@ const CssSidebar = [
     collapsed: true,
     items: [
       { text: "-webkit-box-reflect 实现倒影", link: "/CSS/属性详解/-webkit-box-reflect" },
+      { text: "border-image 实现边框图片", link: "/CSS/属性详解/border-image" },
       { text: "clip-path 实现裁剪", link: "/CSS/属性详解/clip-path" },
       { text: "filter 实现滤镜", link: "/CSS/属性详解/filter" },
       { text: "渐变", link: "/CSS/属性详解/gradient" },
@@ -39,7 +40,7 @@ const CssSidebar = [
       { text: "宽度适配内容", link: "/CSS/效果提升/宽度适配内容" },
       { text: "瀑布流", link: "/CSS/效果提升/瀑布流" },
       { text: "巧用伪类", link: "/CSS/效果提升/巧用伪类" },
-      { text: "图片边框", link: "/CSS/效果提升/图片边框" },
+      { text: "文字立起效果", link: "/CSS/效果提升/文字立起效果" },
       { text: "文字连续光影特效", link: "/CSS/效果提升/文字连续光影特效" },
       { text: "文字适应纹理", link: "/CSS/效果提升/文字适应纹理" },
       { text: "下划线动画", link: "/CSS/效果提升/下划线动画" },
@@ -543,6 +544,16 @@ const StudyItemSidebar = [
       {
         text: "数组对象遍历",
         link: "/study/item/Js/数组对象遍历",
+      },
+    ],
+  },
+  {
+    text: "🧺 Vue",
+    collapsible: true,
+    items: [
+      {
+        text: "自定义事件封装",
+        link: "/study/item/Vue/自定义事件封装",
       },
     ],
   },
@@ -1166,7 +1177,7 @@ const AboutSidebar = [
 // 面试典数组
 const DictionarySidebar = [
   {
-    text: "📔 面试典",
+    text: "📔 面试题典",
     collapsible: true,
     items: [
       {
@@ -1207,7 +1218,7 @@ const DictionarySidebar = [
 // 面试问数组
 const AskSidebar = [
   {
-    text: "👨‍⚖️ 面试问",
+    text: "👨‍⚖️ 面试问答",
     collapsible: true,
     items: [
       {
