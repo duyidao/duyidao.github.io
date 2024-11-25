@@ -675,7 +675,7 @@ const ProjectSidebar = [
     items: [
       { text: "🧟 灵思", link: "/lingsi/" },
       { text: "⛷️百度外包", link: "/baidu/" },
-      { text: "🔪 刀刀小站", link: "/daodao/" },
+      { text: "🔪 刀刀博客", link: "/daodao/" },
       { text: "📜 自主学习", link: "/myself/" },
     ],
   },
@@ -837,10 +837,10 @@ const CRMSidebar = [
   },
 ]
 
-// 刀刀小站的数组
+// 刀刀博客的数组
 const DaodaoSidebar = [
   {
-    text: "🔪 刀刀小站",
+    text: "🔪 刀刀博客",
     collapsible: true,
     items: [
       { text: "🔪 引言", link: "/daodao/" },
@@ -850,6 +850,8 @@ const DaodaoSidebar = [
       { text: "🦩 适应性布局", link: "/daodao/适应性布局" },
       { text: "☁️ 天气获取", link: "/daodao/天气获取" },
       { text: "💻 代码编辑器", link: "/daodao/代码编辑器" },
+      { text: "🐛 捉虫记录", link: "/daodao/bug" },
+      { text: "🖼️ 优化", link: "/daodao/prod" },
       { text: "🗑 返回", link: "/project/" },
     ],
   },
@@ -1162,7 +1164,7 @@ const AboutSidebar = [
     collapsible: true,
     items: [
       { text: "🧑 关于我", link: "/about/" },
-      { text: "🔪 关于刀刀小站", link: "/about/blog" },
+      { text: "🔪 关于刀刀博客", link: "/about/blog" },
       { text: "📑 关于学习准则", link: "/about/furtrue" },
       { text: "🧟 关于灵思", link: "/about/lingsi" },
       { text: "⛷️ 关于百度", link: "/about/baidu" },

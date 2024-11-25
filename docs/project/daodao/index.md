@@ -1,16 +1,16 @@
 ---
-title 刀刀小站的制作
+title 刀刀博客的制作
 date 2023-03-03
-tags 刀刀小站的制作
-categories 刀刀小站的制作
-description 刀刀小站的制作
+tags 刀刀博客的制作
+categories 刀刀博客的制作
+description 刀刀博客的制作
 ---
 
-# 刀刀小站博客效果
+# 刀刀小站
 
 ## 网址
 
-[刀刀小站博客效果](https://duyidao.gitee.io/blogweb/)
+[刀刀小站](https://duyidao.gitee.io/blogweb/)
 
 ## 项目搭建
 
