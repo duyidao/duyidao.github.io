@@ -3,8 +3,9 @@ export default [
     text: "💻 前端知识",
     items: [
       {
-        text: "🗡️ 前端三剑客",
+        text: "🗡️ 基础",
         items: [
+          { text: "Canvas", link: "/Canvas/index" },
           { text: "CSS", link: "/CSS/属性详解/-webkit-box-reflect" },
           { text: "JavaScript", link: "/Javascript/markdown/" },
         ],
@@ -21,9 +22,9 @@ export default [
         text: "⬆️ 进阶",
         items: [
           { text: "TypeScript", link: "/TypeScript/环境配置" },
-          { text: "Node", link: "/Node/" },
           { text: "Git", link: "/Git/潜在的BUG/大小写规则" },
           { text: "正则表达式", link: "/Reg/knowledge/index" },
+          { text: "Node", link: "/Node/" },
         ],
       },
       {

@@ -14,6 +14,23 @@ function generateSidebarItems(arr) {
 /**
  * 学习模块 ************************************************************
  */
+// 前端canvas的数组
+const CanvasSidebar = [
+  {
+    text: "Canvas",
+    collapsible: true,
+    // collapsed: true,
+    items: [
+      { text: "canvas", link: "/Canvas/index" },
+      { text: "图片压缩", link: "/Canvas/compress" },
+      { text: "图片滤镜", link: "/Canvas/filter" },
+      { text: "调色盘", link: "/Canvas/palette" },
+      { text: "页面截图", link: "/Canvas/screenshot" },
+      { text: "图片裁剪", link: "/Canvas/tailor" },
+    ],
+  },
+]
+
 // 前端css的数组
 const CssSidebar = [
   {
@@ -25,6 +42,7 @@ const CssSidebar = [
       { text: "border-image 实现边框图片", link: "/CSS/属性详解/border-image" },
       { text: "clip-path 实现裁剪", link: "/CSS/属性详解/clip-path" },
       { text: "filter 实现滤镜", link: "/CSS/属性详解/filter" },
+      { text: "backdrop-filter 实现背景滤镜", link: "/CSS/属性详解/backdrop-filter" },
       { text: "渐变", link: "/CSS/属性详解/gradient" },
       { text: "mix-blend-mode 实现文字适配背景", link: "/CSS/属性详解/mix-blend-mode" },
       { text: "scroll-snap 实现吸附", link: "/CSS/属性详解/scroll-snap" },
@@ -99,10 +117,6 @@ const JsSidebar = [
       {
         text: "取色器封装 EyeDropper",
         link: "/Javascript_webapi/取色器封装",
-      },
-      {
-        text: "色彩提取",
-        link: "/Javascript_webapi/色彩提取",
       },
       {
         text: "网站访问用户文件夹 ShowDirectoryPicker",
@@ -469,6 +483,10 @@ const StudyKnowledgeSidebar = [
         text: "前端环境变量使用和原理",
         link: "/study/knowledge/项目相关/前端环境变量使用和原理",
       },
+      {
+        text: "资源提示符",
+        link: "/study/knowledge/项目相关/资源提示符",
+      },
     ],
   },
   {
@@ -570,10 +588,6 @@ const StudyOperateeSidebar = [
     collapsible: true,
     collapsed: true,
     items: [
-      {
-        text: "Canvas操作",
-        link: "/study/operate/功能操作与实现/Canvas操作",
-      },
       {
         text: "Vue项目权限控制",
         link: "/study/operate/功能操作与实现/Vue项目权限控制",
@@ -1244,6 +1258,7 @@ const AskSidebar = [
  * 最终导出 ************************************************************
  */
 export default {
+  "/Canvas": generateSidebarItems(CanvasSidebar),
   "/CSS": generateSidebarItems(CssSidebar),
   "/Javascript": generateSidebarItems(JsSidebar),
   "/Reg": generateSidebarItems(RegSidebar),

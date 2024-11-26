@@ -1,4 +1,5 @@
 export default {
+    'learn/Canvas/(.*)': 'Canvas/(.*)',
     'learn/CSS/(.*)': 'CSS/(.*)',
     'learn/CSS/效果提升/(.*)': 'CSS/效果提升/(.*)',
     'learn/CSS/知识拓展/(.*)': 'CSS/知识拓展/(.*)',
