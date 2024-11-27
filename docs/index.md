@@ -15,6 +15,9 @@ hero:
     - theme: alt
       text: 关于
       link: /about/
+    - theme: brand
+      text: 刀刀小站
+      link: https://duyidao.github.io/blogweb/#/
 
 features:
   - icon: 📕
@@ -42,8 +45,9 @@ features:
     details: 面经
     link: /面试鸭/面试典/js/(a==1&&a==2&&a==3)
   - icon:  📘
-    title: 等待扩展
-    details: 后续补充
+    title: 刀刀小站
+    details: 刀刀博客效果展示，功能实现，不容错过
+    link: https://duyidao.github.io/blogweb/#/
   - icon:  🎈️
     title: 未完待续
     details: 尽情期待
