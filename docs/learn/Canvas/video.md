@@ -86,4 +86,4 @@ const onChangeFn = async e => {
 之所以使用 `URL.createObjectURL` 而不是转为 `base64` ，是因为如果视频文件过大，要全部转为 `base64` 的话，会很耗时。
 
 ## 总体效果
-<Iframe url="https://duyidao.github.io/blogweb/#/detail/learn/frame" />
+<Iframe url="https://duyidao.github.io/blogweb/#/info/canvas/video" />

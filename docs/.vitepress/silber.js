@@ -27,6 +27,7 @@ const CanvasSidebar = [
       { text: "调色盘", link: "/Canvas/palette" },
       { text: "页面截图", link: "/Canvas/screenshot" },
       { text: "图片裁剪", link: "/Canvas/tailor" },
+      { text: "视频提取画面帧", link: "/Canvas/video" },
     ],
   },
 ]
@@ -340,7 +341,7 @@ const StudySidebar = [
       { text: "学无止境", link: "/study/knowledge/JS相关/垃圾回收与console.log内存泄漏.md" },
       {
         text: "实操训练",
-        link: "/study/operate/功能操作与实现/Canvas操作",
+        link: "/study/operate/功能操作与实现/Vue项目权限控制",
       },
       {
         text: "项目实战",
@@ -623,10 +624,6 @@ const StudyOperateeSidebar = [
       {
         text: "移动端大屏端布局适配",
         link: "/study/operate/功能操作与实现/移动端大屏端布局适配",
-      },
-      {
-        text: "视频提取画面帧",
-        link: "/study/operate/功能操作与实现/视频提取画面帧",
       },
     ],
   },
@@ -1253,6 +1250,31 @@ const AskSidebar = [
   },
 ]
 
+// 面试算法数组
+const LeedCodeSidebar = [
+  {
+    text: "简单题",
+    collapsible: true,
+    items: [
+      { text: "罗马转数字", link: "/面试鸭/面试算法/简单题/罗马转数字.md" },
+      { text: "合并两个有序数组", link: "/面试鸭/面试算法/简单题/合并两个有序数组.md" },
+      { text: "最长公共前缀", link: "/面试鸭/面试算法/简单题/最长公共前缀.md" },
+    ],
+  },
+  {
+    text: "中等题",
+    collapsible: true,
+    items: [
+    ],
+  },
+  {
+    text: "困难题",
+    collapsible: true,
+    items: [
+    ],
+  },
+]
+
 
 /**
  * 最终导出 ************************************************************
@@ -1274,6 +1296,7 @@ export default {
   "/study/operate": generateSidebarItems(StudyOperateeSidebar),
   "/面试鸭/面试典": generateSidebarItems(DictionarySidebar),
   "/面试鸭/面试问": generateSidebarItems(AskSidebar),
+  "/面试鸭/面试算法": generateSidebarItems(LeedCodeSidebar),
   "/project": generateSidebarItems(ProjectSidebar),
   "/lingsi": generateSidebarItems(LingsiSidebar),
   "/lingsi/sale": generateSidebarItems(SaleSidebar),
