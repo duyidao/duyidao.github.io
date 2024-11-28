@@ -390,6 +390,10 @@ const StudyKnowledgeSidebar = [
         text: "判断是否是数组",
         link: "/study/knowledge/JS相关/判断是否是数组",
       },
+      {
+        text: "js深度克隆",
+        link: "/study/knowledge/JS相关/js深度克隆",
+      },
     ],
   },
   {
