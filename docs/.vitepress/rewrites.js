@@ -20,4 +20,9 @@ export default {
     'project/daodao/(.*)': 'daodao/(.*)',
     'project/baidu/(.*)': 'baidu/(.*)',
     'project/myself/(.*)': 'myself/(.*)',
+    '面试鸭/面试算法/medium/(.*)': 'arithmetic/medium/(.*)',
+    '面试鸭/面试算法/easy/(.*)': 'arithmetic/easy/(.*)',
+    '面试鸭/面试算法/hard/(.*)': 'arithmetic/hard/(.*)',
+    '面试鸭/面试典/(.*)': 'dict/(.*)',
+    '面试鸭/面试问/(.*)': 'interview/(.*)',
 }

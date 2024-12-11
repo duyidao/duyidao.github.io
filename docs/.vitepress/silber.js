@@ -1218,19 +1218,19 @@ const DictionarySidebar = [
         items: [
           {
             text: "(a==1&&a==2&&a==3)",
-            link: "/面试鸭/面试典/js/(a==1&&a==2&&a==3)",
+            link: "/dict/js/(a==1&&a==2&&a==3)",
           },
           {
             text: "数组方法手写原理",
-            link: "/面试鸭/面试典/js/数组方法手写原理",
+            link: "/dict/js/数组方法手写原理",
           },
           {
             text: "关于forEach使用break跳出循环",
-            link: "/面试鸭/面试典/js/关于forEach使用break跳出循环",
+            link: "/dict/js/关于forEach使用break跳出循环",
           },
-          { text: "手写封装AJAX", link: "/面试鸭/面试典/js/手写封装AJAX" },
-          { text: "数组去重", link: "/面试鸭/面试典/js/数组去重" },
-          { text: "js执行顺序", link: "/面试鸭/面试典/js/js执行顺序" },
+          { text: "手写封装AJAX", link: "/dict/js/手写封装AJAX" },
+          { text: "数组去重", link: "/dict/js/数组去重" },
+          { text: "js执行顺序", link: "/dict/js/js执行顺序" },
         ]
       },
       {
@@ -1255,15 +1255,15 @@ const AskSidebar = [
     items: [
       {
         text: "面试历程",
-        link: "/面试鸭/面试问/index",
+        link: "/interview/index",
       },
       {
         text: "印萌",
-        link: "/面试鸭/面试问/印萌",
+        link: "/interview/印萌",
       },
       {
         text: "百度",
-        link: "/面试鸭/面试问/百度",
+        link: "/interview/百度",
       },
     ],
   },
@@ -1275,17 +1275,19 @@ const LeedCodeSidebar = [
     text: "简单题",
     collapsible: true,
     items: [
-      { text: "罗马转数字", link: "/面试鸭/面试算法/简单题/罗马转数字.md" },
-      { text: "合并两个有序数组", link: "/面试鸭/面试算法/简单题/合并两个有序数组.md" },
-      { text: "最长公共前缀", link: "/面试鸭/面试算法/简单题/最长公共前缀.md" },
-      { text: "移除元素", link: "/面试鸭/面试算法/简单题/移除元素.md" },
-      { text: "删除有序数组中的重复项", link: "/面试鸭/面试算法/简单题/删除有序数组中的重复项.md" },
+      { text: "罗马转数字", link: "/arithmetic/easy/罗马转数字.md" },
+      { text: "合并两个有序数组", link: "/arithmetic/easy/合并两个有序数组.md" },
+      { text: "最长公共前缀", link: "/arithmetic/easy/最长公共前缀.md" },
+      { text: "移除元素", link: "/arithmetic/easy/移除元素.md" },
+      { text: "删除有序数组中的重复项", link: "/arithmetic/easy/删除有序数组中的重复项.md" },
+      { text: "多数元素", link: "/arithmetic/easy/多数元素.md" },
     ],
   },
   {
     text: "中等题",
     collapsible: true,
     items: [
+      { text: "删除有序数组中的重复项 II", link: "/arithmetic/medium/删除有序数组中的重复项 II.md" },
     ],
   },
   {
@@ -1315,9 +1317,9 @@ export default {
   "/study/knowledge": generateSidebarItems(StudyKnowledgeSidebar),
   "/study/item": generateSidebarItems(StudyItemSidebar),
   "/study/operate": generateSidebarItems(StudyOperateeSidebar),
-  "/面试鸭/面试典": generateSidebarItems(DictionarySidebar),
-  "/面试鸭/面试问": generateSidebarItems(AskSidebar),
-  "/面试鸭/面试算法": generateSidebarItems(LeedCodeSidebar),
+  "/dict": generateSidebarItems(DictionarySidebar),
+  "/interview": generateSidebarItems(AskSidebar),
+  "/arithmetic": generateSidebarItems(LeedCodeSidebar),
   "/project": generateSidebarItems(ProjectSidebar),
   "/lingsi": generateSidebarItems(LingsiSidebar),
   "/lingsi/sale": generateSidebarItems(SaleSidebar),
