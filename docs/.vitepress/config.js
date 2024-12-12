@@ -44,6 +44,9 @@ module.exports = {
     outline: [0, 6],
     // 启动页面丝滑滚动
     smoothScroll: true,
+    search: {
+      provider: 'local'
+    },
     // 头部导航栏配置
     nav,
     // 左侧导航栏
