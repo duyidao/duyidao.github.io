@@ -84,7 +84,7 @@ jobs:
           node-version: 20
           cache: npm
       - name: Build with VitePress
-        run: npm run docs:build
+        run: npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
