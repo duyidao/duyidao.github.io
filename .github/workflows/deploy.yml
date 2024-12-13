@@ -1,3 +1,55 @@
+# name: Deploy VitePress site to Pages
+
+# on:
+#   push:
+#     branches: [main]
+#   workflow_dispatch:
+
+# permissions:
+#   contents: read
+#   pages: write
+#   id-token: write
+
+# concurrency:
+#   group: pages
+#   cancel-in-progress: false
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 0
+#       - name: Clean node_modules and package-lock.json
+#         run: rm -rf node_modules package-lock.json
+#       - name: Setup Node
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+#           cache: pnpm
+#       - name: Install dependencies
+#         run: pnpm install
+#       - name: Build with VitePress
+#         run: pnpm run build
+#       - name: Upload artifact
+#         uses: actions/upload-pages-artifact@v3
+#         with:
+#           path: docs/.vitepress/dist
+
+#   deploy:
+#     environment:
+#       name: github-pages
+#     needs: build
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Download artifact
+#         uses: actions/download-pages-artifact@v3
+#       - name: Deploy to GitHub Pages
+#         id: deployment
+#         uses: actions/deploy-pages@v4
+
 name: Deploy VitePress site to Pages
 
 on:
@@ -24,15 +76,15 @@ jobs:
           fetch-depth: 0
       - name: Clean node_modules and package-lock.json
         run: rm -rf node_modules package-lock.json
+      - name: Install dependencies
+        run: npm install
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
-      - name: Install dependencies
-        run: pnpm install
+          cache: npm
       - name: Build with VitePress
-        run: pnpm run build
+        run: npm run docs:build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -41,11 +93,10 @@ jobs:
   deploy:
     environment:
       name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Download artifact
-        uses: actions/download-pages-artifact@v3
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
