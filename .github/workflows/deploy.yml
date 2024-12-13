@@ -77,14 +77,14 @@ jobs:
       - name: Clean node_modules and package-lock.json
         run: rm -rf node_modules package-lock.json
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
+          cache: npm
       - name: Build with VitePress
-        run: pnpm run build
+        run: npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
