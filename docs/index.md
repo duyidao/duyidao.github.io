@@ -23,7 +23,7 @@ features:
   - icon: 📕
     title: 学习之旅
     details: 自学成果
-    link: /CSS/
+    link: /CSS/属性详解/-webkit-box-reflect
   - icon: ⚡
     title: 项目之旅
     details: 项目总结
