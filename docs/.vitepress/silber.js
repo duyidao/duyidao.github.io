@@ -1288,12 +1288,29 @@ const LeedCodeSidebar = [
     collapsible: true,
     items: [
       { text: "删除有序数组中的重复项 II", link: "/arithmetic/medium/删除有序数组中的重复项 II.md" },
+      { text: "轮转数组", link: "/arithmetic/medium/轮转数组.md" },
     ],
   },
   {
-    text: "困难题",
+    text: "系列题",
     collapsible: true,
     items: [
+      {
+        text: "买卖股票的最佳时机",
+        collapsible: true,
+        items: [
+          { text: "买卖股票的最佳时机", link: "/arithmetic/series/buySellStock/买卖股票的最佳时机.md" },
+          { text: "买卖股票的最佳时机 II", link: "/arithmetic/series/buySellStock/买卖股票的最佳时机 II.md" },
+        ],
+      },
+      {
+        text: "删除有序数组中的重复项",
+        collapsible: true,
+        items: [
+          { text: "删除有序数组中的重复项", link: "/arithmetic/series/removeRepeat/删除有序数组中的重复项.md" },
+          { text: "删除有序数组中的重复项 II", link: "/arithmetic/series/removeRepeat/删除有序数组中的重复项 II.md" },
+        ],
+      },
     ],
   },
 ]
