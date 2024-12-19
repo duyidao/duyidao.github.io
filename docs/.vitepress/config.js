@@ -3,6 +3,7 @@ import sidebar from "./silber";
 import rewrites from "./rewrites";
 import boke from './public/boke.txt';
 import gitee from './public/gitee.txt';
+import options from './search';
 
 module.exports = {
   // 网站标题
@@ -47,6 +48,11 @@ module.exports = {
     search: {
       provider: 'local'
     },
+    // algolia搜索
+    // search: {
+    //   provider: 'algolia',
+    //   options,
+    // },
     // 头部导航栏配置
     nav,
     // 左侧导航栏
