@@ -20,27 +20,33 @@ export default {
     console.log('route: ', route);
     
     // Obtain configuration from: https://giscus.app/
-    // giscusTalk(
-    //   {
-    //     repo: 'your github repository', 
-    //     repoId: 'your repository id',   
-    //     category: 'your category', // default: `General` 
-    //     categoryId: 'your category id', 
-    //     mapping: 'pathname', // default: `pathname`
-    //     inputPosition: 'top', // default: `top`
-    //     lang: 'en', // default: `zh-CN`
-    //     lightTheme: 'light', // default: `light`
-    //     darkTheme: 'transparent_dark', // default: `transparent_dark`
-    //     // ...
-    //   },
-    //   {
-    //     frontmatter, route
-    //   },
-    //   // Whether to activate the comment area on all pages.
-    //   // The default is true, which means enabled, this parameter can be ignored;
-    //   // If it is false, it means it is not enabled.
-    //   // You can use `comment: true` preface to enable it separately on the page.
-    //   true
-    // );
+    giscusTalk(
+      {
+        repo: 'duyidao/blog_review', 
+        repoId: 'R_kgDONiZuEA',   
+        category: 'Announcements', // default: `General` 
+        categoryId: 'DIC_kwDONiZuEM4ClhjR', 
+        mapping: 'pathname', // default: `pathname`
+        inputPosition: 'top', // default: `top`
+        lang: 'zh-CN', // default: `zh-CN`
+        lightTheme: 'light', // default: `light`
+        darkTheme: 'transparent_dark', // default: `transparent_dark`
+        strict: '0', // default: `0`
+        reactionsEnabled: '1', // default: `1`
+        emitMetadata: '0', // default: `0`
+        inputPosition: 'top', // default: `bottom`
+        loading: 'lazy', // default: `lazy`
+        crossorigin: 'anonymous', // default: `anonymous`
+        // ...
+      },
+      {
+        frontmatter, route
+      },
+      // Whether to activate the comment area on all pages.
+      // The default is true, which means enabled, this parameter can be ignored;
+      // If it is false, it means it is not enabled.
+      // You can use `comment: true` preface to enable it separately on the page.
+      true
+    );
   }
 }
