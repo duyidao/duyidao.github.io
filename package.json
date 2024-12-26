@@ -10,6 +10,7 @@
   "dependencies": {
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "vitepress-plugin-comment-with-giscus": "^1.1.15"
   }
 }

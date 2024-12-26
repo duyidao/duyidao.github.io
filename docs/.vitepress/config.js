@@ -45,9 +45,9 @@ module.exports = {
     outline: [0, 6],
     // 启动页面丝滑滚动
     smoothScroll: true,
-    search: {
-      provider: 'local'
-    },
+    // search: {
+    //   provider: 'local'
+    // },
     // algolia搜索
     // search: {
     //   provider: 'algolia',
