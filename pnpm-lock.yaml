@@ -19,6 +19,9 @@ dependencies:
     version: 1.1.15(vue@3.5.13)
 
 devDependencies:
+  medium-zoom:
+    specifier: ^1.1.0
+    version: 1.1.0
   vitepress:
     specifier: ^1.0.0-alpha.29
     version: 1.5.0(@algolia/client-search@5.17.1)(less@4.2.1)(search-insights@2.17.3)(typescript@5.7.2)
@@ -1184,6 +1187,10 @@ packages:
       unist-util-position: 5.0.0
       unist-util-visit: 5.0.0
       vfile: 6.0.3
+    dev: true
+
+  /medium-zoom@1.1.0:
+    resolution: {integrity: sha512-ewyDsp7k4InCUp3jRmwHBRFGyjBimKps/AJLjRSox+2q/2H4p/PNpQf+pwONWlJiOudkBXtbdmVbFjqyybfTmQ==}
     dev: true
 
   /micromark-util-character@2.1.1:

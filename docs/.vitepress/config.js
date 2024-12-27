@@ -91,6 +91,13 @@ module.exports = {
       prev: '前往上一页',
       next: '去往下一页'
     },
+    langMenuLabel: '多语言',
+    returnToTopLabel: '回到顶部',
+    sidebarMenuLabel: '菜单',
+    darkModeSwitchLabel: '主题',
+    lightModeSwitchTitle: '切换到浅色模式',
+    darkModeSwitchTitle: '切换到深色模式',
+    skipToContentLabel: '跳转到内容',
     //页脚
     footer: {
       copyright: "Copyright © 2023-present 杜一刀",
