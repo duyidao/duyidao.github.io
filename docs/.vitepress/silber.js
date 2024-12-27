@@ -1162,7 +1162,14 @@ const VitePressSidebar = [
       { text: "🧩 搭建", link: "/vitePress/Dev" },
       { text: "🎁 打包", link: "/vitePress/Build" },
       { text: "⏳ 部署", link: "/vitePress/Deploy" },
-      { text: "✨ 拓展", link: "/vitePress/Know" },
+      {
+        text: "✨ 拓展",
+        collapsible: true,
+        items: [
+          { text: "内部拓展", link: "/vitePress/Know" },
+          { text: "评论功能拓展", link: "/vitePress/review" },
+        ]
+      },
     ],
   },
 ]

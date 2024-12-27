@@ -1,6 +1,18 @@
 ---
-title 引言
+layout: doc
+title: 引言
+titleTemplate: Vitepress首页
+description: VitePress首页
+head:
+  - - meta
+    - name: description
+      content: vitepress首页
+  - - meta
+    - name: keywords
+      content: vitepress 引言
+pageClass: vitepress-index-class
 ---
+
 # 关于此模块
 
 刀刀博客从搭建到部署在 `Gitee Pages` 上，前前后后大约花费2个星期左右。其中，花费的时间主要在于 `vitePress` 的使用以及部署的要点上，百度搜索大量的文章。

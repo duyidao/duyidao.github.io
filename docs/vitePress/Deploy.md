@@ -1,6 +1,18 @@
 ---
-title 部署
+layout: doc
+title: 部署
+titleTemplate: Vitepress部署
+description: VitePress部署
+head:
+  - - meta
+    - name: description
+      content: vitepress部署
+  - - meta
+    - name: keywords
+      content: vitepress 部署
+pageClass: vitepress-deploy-class
 ---
+
 # 部署
 
 ## gitee部署
@@ -29,6 +41,8 @@ title 部署
 
 ## github部署
 
+### 手动部署
+
 在创建好的仓库点击 `Setting`，找到 `Pages`，调整 `Branch` 设置：
 1. 选择 `main` 分支，这里是主分支，因此默认 `main` 
 2. 选择部署文件，这里是直接上传打包后的内容，因此文件夹选择 `root` 根文件
@@ -36,3 +50,7 @@ title 部署
 
 若没有看到选择分支的下拉框，则先切换 `Source` 下拉框再切换回来即可。
 ![部署一图流](https://pic.imgdb.cn/item/675260bad0e0a243d4de6f10.png)
+
+### 流水线自动部署
+
+想要实现流水线自动部署，需要在项目

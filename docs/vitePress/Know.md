@@ -1,6 +1,18 @@
 ---
-title 拓展学习
+layout: doc
+title: 拓展学习
+titleTemplate: Vitepress拓展学习
+description: VitePress拓展学习
+head:
+  - - meta
+    - name: description
+      content: vitepress拓展学习
+  - - meta
+    - name: keywords
+      content: vitepress 拓展 rewrite 组件
+pageClass: vitepress-know-class
 ---
+
 # 拓展学习
 部署成功并不是终点， `vitepress` 的学习之旅还在继续。此模块收集一些知识点与功能的使用，还在不断完善中~
 > 前路渐行渐远，退路遥遥无期

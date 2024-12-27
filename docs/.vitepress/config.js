@@ -6,9 +6,10 @@ import gitee from './public/gitee.txt';
 import options from './search';
 
 module.exports = {
+  lang: 'zh-CN',
   // 网站标题
   title: '🔪 刀刀博客',
-  // base: '/blog/',
+  titleTemplate: ':title - 刀刀博客', // 网站描述
   // 网站描述
   description: '刀刀博客',
   // 打包目录
@@ -27,7 +28,20 @@ module.exports = {
     ["meta", { httpEquiv: "Cache-Control", content: "no-cache, no-store, must-revalidate" }],
     ["meta", { httpEquiv: "Pragma", content: "no-cache" }],
     ["meta", { httpEquiv: "Expires", content: "0" }],
+    [
+      'script',
+      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=TAG_ID' }
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'TAG_ID');`
+    ]
   ],
+  cleanUrls: true, // 删除 .html 后缀
   // 使用插件
   plugins: [
     '@vuepress/active-header-links',   // 页面滚动时自动激活侧边栏链接的插件
@@ -39,10 +53,16 @@ module.exports = {
   themeConfig: {
     logo: "/favicon.ico",
     // 获取每个文件最后一次 git 提交的 UNIX 时间戳(ms)，同时它将以合适的日期格式显示在每一页的底部
-    lastUpdated: 'Last Updated', // string | boolean
+    lastUpdated: {
+      text: '最近一次更新于',
+      formatOptions: {
+        dateStyle: 'full',
+        timeStyle: 'medium'
+      }
+    },
     siteTitle: "『 刀刀博客 』",
     outlineTitle: '我是一个目录哦~',
-    outline: [0, 6],
+    outline: [2, 6], // 目录只获取h2到h6
     // 启动页面丝滑滚动
     smoothScroll: true,
     // search: {
@@ -67,6 +87,10 @@ module.exports = {
         svg: boke
       }, link: "https://duyidao.github.io/blogweb/#/" },
     ],
+    docFooter: {
+      prev: '前往上一页',
+      next: '去往下一页'
+    },
     //页脚
     footer: {
       copyright: "Copyright © 2023-present 杜一刀",

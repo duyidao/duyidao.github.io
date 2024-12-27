@@ -1,55 +1,121 @@
 ---
-title 搭建
+layout: doc
+title: 构建
+titleTemplate: Vitepress构建
+description: VitePress构建
+head:
+  - - meta
+    - name: description
+      content: vitepress构建
+  - - meta
+    - name: keywords
+      content: vitepress 构建
+pageClass: vitepress-dev-class
 ---
+
 # 搭建
 
-- vitePress官网： [VitePress](https://vitepress.vuejs.org/)
-- vitePress中文网文档：[VitePress中文网文档](https://vitejs.cn/vitepress/guide/getting-started.html)
+| 官网        |      链接      |
+| :-----------: | :-----------: |
+| VitePress官网    | [VitePress官网](https://vitepress.vuejs.org/) |
+| VitePress中文网文档    |   [VitePress中文网文档](https://vitejs.cn/vitepress/guide/getting-started.html)    |
 
 ## 项目创建
 
 1. 新建一个文件夹(文件名可以自行取，但不建议叫 `vitepress`)，进入该文件夹并初始化 `package.json` 文件。
-   ```sh
+   
+   ::: code-group
+
+   ```sh [yarn]
     yarn init
    ```
+
+   ```sh [npm]
+    npm init
+   ```
+
+   ```sh [pnpm]
+    pnpm init
+   ```
+
+   :::
+
 2. 本地安装 `vitePress` 。
-   ```sh
+   
+   ::: code-group
+
+   ```sh [yarn]
     yarn add --dev vitepress
    ```
-3. 根目录下新建一个 `docs` 文件夹，进入文件夹新建一个 `index.md` 文档，输入内容。
+
+   ```sh [npm]
+    npm install --dev vitepress
+   ```
+
+   ```sh [pnpm]
+    pnpm i --dev vitepress
+   ```
+
+   :::
+
+3. 根目录下新建一个 `docs` 文件夹，进入文件夹，新建一个 `index.md` 文档，输入内容。
+   
 4. 修改 `package.json` 文件，添加运行脚本。
+   
    ```js
     {
       // ...,
       "scripts": {
-        "docs:dev": "vitepress dev docs",
-        "docs:build": "vitepress build docs",
-        "docs:serve": "vitepress serve docs"
+        "dev": "vitepress dev docs",
+        "build": "vitepress build docs",
+        "serve": "vitepress serve docs"
       }
     }
    ```
+
 5. 配置 `.vitepress` 目录。所有 `VitePress` 相关的文件都将会被放在这里。创建配置文件 `.vitepress/config.js`，导出一个 `JavaScript` 对象。
+   
    ```js
     module.exports = {
       title: 'Hello VitePress',
       description: 'Just playing around.'
     }
    ```
-   > 这部分会在 『配置文件配置』 模块详细介绍。
+
+   ::: info 提示
+    这部分会在 『配置文件配置』 模块详细介绍。
+   :::
+
 6. 运行
-   ```sh
-    yarn docs:dev
+   
+   ::: code-group
+
+   ```sh [yarn]
+    yarn dev
    ```
+
+   ```sh [npm]
+    npm dev
+   ```
+
+   ```sh [pnpm]
+    pnpm dev
+   ```
+
+   :::
 
 现在能够运行成功，打开页面能够看到效果了。但是这远远不够我们的预期，需要做进一步的调整。
 
 ## 目录结构
+
 作为新手梳理一遍目录结构还是有必要的，比较心急想要尽快实现效果的话可以 『跳过』 本段，从下一段 『首页配置』 开始。
+
+::: details 点我查看详细结构
 ```
 ├── docs
 │   ├── .vitepress
 │   │   ├── theme
-│   │   │   ├── custom.styl
+│   │   │   ├── custom.less
 │   │   │   └── index.js
 │   │   ├── config.js
 |   ├── public
@@ -60,11 +126,12 @@ title 搭建
 │   │   ├── Music.md
 └── package.json
 ```
+:::
 
 下面一一讲解。
 - `docs/.vitepress`: 用于存放全局的配置。
 - `docs/.vitepress/theme`: 用于存放本地主题。
-- `docs/.vitepress/theme/custom.styl`: 用于定义自定义css样式。
+- `docs/.vitepress/theme/custom.less`: 用于定义自定义css样式。
 - `docs/.vitepress/theme/index.js`: 将自定义css样式抛出。
 - `docs/.vitepress/config.js`: 配置文件的入口文件，用于设置博客的导航栏、侧边栏等属性，是重点文件。
 - `docs/public`: 静态资源目录。
@@ -73,13 +140,14 @@ title 搭建
 ## 首页配置
 修改 `docs/index.md` 的内容，想要先看效果的话可直接复制以下代码。
 
+::: details 点我查看代码
 ```md
 ---
 layout: home
 
 hero:
   name: 刀刀博客
-  text: 欢迎来到刀刀博客，我是杜一刀。                                     这里记录自己的学习成果，项目学习经验。不定时更新~
+  text: 欢迎来到刀刀博客，我是杜一刀。这里记录自己的学习成果，项目学习经验。不定时更新~
   tagline: 每天都要比昨天更有进步💪
   actions:
     - theme: brand
@@ -96,26 +164,28 @@ features:
   - icon: 📕
     title: 学习之旅
     details: 自学成果
-    link: /CSS/
-  - icon: ⚡
-    title: 项目之旅
-    details: 项目总结
+    link: /learn/HTML/
   - icon:  ⌛
-    title: 博客部署
-    details: 从0到1部署博客
-    link: /vitePress/
+    title: 项目总结
+    details: 项目总结
+    link: /project/Music/
   - icon:  🎈️
     title: 未完待续
     details: 尽情期待
 ---
 ```
+:::
 
 下面一一介绍。注意前置要求，需要根据自己配置的路径配置对应的文件和文件夹。例如上方的示例代码，`/CSS/` 需要在 `docs` 文件创建 `CSS.md` 文档。其他以此类推。
 
 - 第一步最主要的，是把代码包裹在 `---` 内，如上方代码所示。
+  
 - `layout: home`，表明该 `index.md` 文件是首页。
   
-  > 注：`vuePress` 声明首页的方式不一样，不要搞混淆了。
+  ::: 注意
+  `VuePress` 声明首页的方式不一样，不要搞混淆了。
+  :::
+
 - `hero`：重点模块之一，主要用于设置首页的大标题、介绍、小标题以及按钮。
   
   1. `name`：首页大标题。
@@ -136,6 +206,8 @@ features:
 
 ## 配置文件配置
 修改 `docs/.vitepress/config.js` 的内容，老规矩，先放总体代码，想先看效果的可以复制粘贴。后面对每项进行详细介绍。
+
+::: details 点我查看代码
 ```js
 module.exports = {
   // 网站标题
@@ -172,7 +244,7 @@ module.exports = {
       {
         text: "前端知识",
         items: [
-          { text: "CSS", link: "/CSS/" },
+          { text: "HTML", link: "/learn/HTML/" },
         ],
       },
       {
@@ -184,32 +256,28 @@ module.exports = {
     ],
     // 左侧导航栏
     sidebar: {
-      '/learn': getLearnSidebar(),
+      '/learn': {
+        text: "前端知识",
+        items: [
+          { text: "HTML", link: "/learn/HTML/index" }
+        ],
+      },
+      '/project': {
+        text: "前端项目",
+        items: [
+          { text: "HTML", link: "/project/Music/index" }
+        ],
+      },
     },
     //社交链接
     socialLinks: [
       { icon: "github", link: "https://gitee.com/duyidao" }
     ],
     //页脚
-    footer: {
-      copyright: "Copyright © 2023-present 杜一刀",
-    },
   }
 }
-
-// 获取前端的数组
-function getLearnSidebar() {
-  return [
-    {
-      text: 'CSS',
-      collapsible: true,
-      items: [
-        { text: '基础', link: '/CSS/' },
-      ]
-    },
-  ]
-}
 ```
+:::
 
 ### 基础建设
 `config.js` 是博客的配置文件，需要导出一个对象。
@@ -314,56 +382,6 @@ module.exports = {
 #### 左侧导航栏
 `themeConfig` 对象中为 `sidebar` 对象赋值一个数组，该数组中每一个对象是一个导航栏模块。
 
-```js
-module.exports = {
-  // ...,
-  themeConfig: {
-    // ...,
-    nav: [],
-    sidebar:{
-      '/':getSidebar()
-    }
-  }
-}
-
-function getLearnSidebar() {
-  return [
-    {
-      text: 'HTML',
-      collapsible: true,
-      items: [
-        { text: '基础', link: '/learn/HTML/' },
-        { text: '进阶', link: '/learn/HTML/advanced' },
-      ]
-    },
-    {
-      text: 'CSS',
-      collapsible: true,
-      items: [
-        { text: '基础', link: '/learn/CSS/' },
-        { text: '进阶', link: '/learn/CSS/advanced' },
-      ]
-    },
-    {
-      text: 'Javascript',
-      collapsible: true,
-      items: [
-        { text: '基础', link: '/learn/Javascript/' },
-        { text: '进阶', link: '/learn/Javascript/advanced' },
-      ]
-    },
-    {
-      text: 'Vue',
-      collapsible: true,
-      items: [
-        { text: '基础', link: '/learn/Vue/' },
-        { text: '进阶', link: '/learn/Vue/advanced' },
-      ]
-    }
-  ]
-}
-```
-
 其中：
 - `sidebar` 对象内左侧为该导航模块的父级路由，`/` 表示同一目录下的同级文件夹。
 - `text` 为该模块的标题
@@ -379,9 +397,11 @@ function getLearnSidebar() {
 - `/learn/HTML/` 表示在 `docs` 文佳佳下创建一个 `learn` 文件夹，进入该文件夹创建一个 `HTML` 文件夹，再进入该文件夹创建一个 `index.md` 文件（斜杆后面不写表示省略 `index`）
 - `/learn/HTML/know` 表示在 `docs` 文佳佳下创建一个 `learn` 文件夹，进入该文件夹创建一个 `HTML` 文件夹，再进入该文件夹创建一个 `know.md` 文件（除了 `index` 外其余文件名都不可省略）
 
-> 后续有一种场景：我后续想要开一个新的模块，不与这些模块一起展示，该怎么做呢？
-> 
-> 答案：往 `sidebar` 对象继续设置新的模块，设置新的导航模块，如 `'/learn/'` ，再 `docs` 文件夹下创建一个 `learn` 文件夹即可，如下方代码和截图所示。
+::: tip 后续有一种场景：我后续想要开一个新的模块，不与这些模块一起展示，该怎么做呢？ 
+
+答案：往 `sidebar` 对象继续设置新的模块，设置新的导航模块，如 `'/learn/'` ，再 `docs` 文件夹下创建一个 `learn` 文件夹即可，如下方代码和截图所示。
+
+:::
 
 ```js
 module.exports = {
