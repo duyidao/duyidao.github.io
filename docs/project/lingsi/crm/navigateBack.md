@@ -1,8 +1,24 @@
+---
+layout: doc
+title: CRM 传参
+titleTemplate: CRM 传参
+description: CRM 小程序 传参
+head:
+  - - meta
+    - name: description
+      content: CRM 传参
+  - - meta
+    - name: keywords
+      content: CRM 小程序 传参
+pageClass: lingsi-crm-navigateBack
+---
+
 # navigateBack 传参
-根据官方文档显示，wx.navigateBack() 方法是不支持传参的，因此如果需要返回上一页对数据做某种处理时，可以使用 getCurrentPages() 方法。
+根据官方文档显示，`wx.navigateBack()` 方法是不支持传参的，因此如果需要返回上一页对数据做某种处理时，可以使用 `getCurrentPages()` 方法。
+
 ## getCurrentPages
 获取当前页面栈。数组中第一个元素为首页，最后一个元素为当前页面。
-> 注意：
+> [!IMMPORTANT] 注意
 > 不要尝试修改页面栈，会导致路由以及页面状态错误。
 
 不要在 `App.onLaunch` 的时候调用 `etCurrentPages`，此时 `page` 还没有生成。
@@ -18,6 +34,7 @@ wx.navigateBack({
 })
 ```
 现在就可以对该页面的数据做操作再返回上一页了。
-> 拓展
-> [getCurrentPages的一些坑点](https://blog.csdn.net/shadow_zed/article/details/104387841/)
 
+::: tip 拓展
+[getCurrentPages的一些坑点](https://blog.csdn.net/shadow_zed/article/details/104387841/)
+:::
