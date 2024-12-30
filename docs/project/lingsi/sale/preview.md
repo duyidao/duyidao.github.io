@@ -1,5 +1,16 @@
 ---
-title 附件下载
+layout: doc
+title: 视频分销附件下载
+titleTemplate: 视频分销附件下载
+description: 视频分销 项目 附件下载
+head:
+  - - meta
+    - name: description
+      content: 视频分销附件下载
+  - - meta
+    - name: keywords
+      content: 视频分销 项目 附件下载
+pageClass: lingsi-sale-preview
 ---
 
 # 附件下载
@@ -8,11 +19,11 @@ title 附件下载
 
 `openDocument` 方法参数如下所示
 
-| 属性     | 类型    | 默认值 | 必填 | 说明                                           | 最低版本                                                     |
-| :------- | :------ | :----- | :--- | :--------------------------------------------- | :----------------------------------------------------------- |
-| filePath | string  |        | 是   | 文件路径 (本地路径) ，可通过 downloadFile 获得 |                                                              |
-| showMenu | boolean | false  | 否   | 是否显示右上角菜单                             | [2.11.0](https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html) |
-| fileType | string  |        | 否   | 文件类型，指定文件类型打开文件                 | [1.4.0](https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html) |
+| 属性     | 类型    | 默认值 | 必填 | 说明    | 最低版本         |
+| :------- | :------ | :----- | :--- | :---------- | :----- |
+| `filePath` | string  |        | 是   | 文件路径 (本地路径) ，可通过 downloadFile 获得 |                                                              |
+| `showMenu` | boolean | false  | 否   | 是否显示右上角菜单                             | [2.11.0](https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html) |
+| `fileType` | string  |        | 否   | 文件类型，指定文件类型打开文件                 | [1.4.0](https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html) |
 
 微信小程序中文件保存到手机的方式比较特殊，我们需要把 `showMenu` 设为 `true` ，预览的时候显示右上角的菜单，通过另存为的方式保存文件。
 
@@ -55,19 +66,21 @@ handleDownFn() {
 
 ## 遇到的问题
 
-运行之后效果实现了，本来以为松了口气，但是测试说她的 IOS 系统手机无法打开预览，测试一下后发现报错，报错信息为：
+运行之后效果实现了，本来以为松了口气，但是测试说她的 IOS 系统手机无法打开预览，测试一下后发现报错，信息如下：
 
+::: info 报错信息
+```js
+openDocument: fail filetype not supported
 ```
-openDocument:fail filetype not supported
-```
+:::
 
-解决方法：`openDocument` 方法设置 `fileType` 参数，传递其要显示的文件的类型（由于代码量不大，因此上方代码已包含该功能）。
+解决方法为 `openDocument` 方法设置 `fileType` 参数，传递其要显示的文件的类型（由于代码量不大，因此上方代码已包含该功能）。
 
 添加之后，苹果系统的手机也可预览了。
 
-> 拓展
->
-> 最新版代码去掉了 `wx.saveFile` 方法。直接 `wx.downloadFile` 后 `wx.openDocument` 即可预览，忽略了保存文件方法。
+::: tip 拓展
+最新版代码去掉了 `wx.saveFile` 方法。直接 `wx.downloadFile` 后 `wx.openDocument` 即可预览，忽略了保存文件方法。
+:::
 
 但是还没结束，后台附件上传了格式为图片的附件时， IOS 系统的手机又打不开了。搜索了一下找到解决方法：
 

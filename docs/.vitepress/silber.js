@@ -714,6 +714,7 @@ const LingsiSidebar = [
 
 // 音果云音的数组
 const MusicSidebar = [
+  { text: "简介", link: "/lingsi/music/" },
   {
     text: "📱 APP",
     collapsible: true,
