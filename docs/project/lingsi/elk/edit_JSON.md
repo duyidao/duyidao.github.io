@@ -1,21 +1,48 @@
+---
+layout: doc
+title: ELK JSON编辑器的使用
+titleTemplate: ELK JSON编辑器的使用
+description: ELK 项目 JSON编辑器
+head:
+  - - meta
+    - name: description
+      content: ELK JSON编辑器的使用
+  - - meta
+    - name: keywords
+      content: ELK 项目 JSON编辑器
+pageClass: lingsi-elk-json
+---
+
 # JSON 编辑器的使用
-vue-json-editor 是一个 json 编辑器，能够格式化 json 数据，同时也支持编辑功能。
+`vue-json-editor` 是一个 `json` 编辑器，能够格式化 `json` 数据，同时也支持编辑功能。
+
 ## 安装
-```shell
+:::code-group
+```shell [yarn]
 yarn add vue-json-editor --save 
 ```
+```shell [npm]
+npm i vue-json-editor --save 
+```
+```shell [pnpm]
+pnpm i vue-json-editor --save 
+```
+:::
+
 ## 使用
 
 1. 引入模块
 2. 注册组件
 3. 使用
-```javascript
+
+::: code-group
+```javascript  [引入模块]
 import vueJsonEditor from 'vue-json-editor'
 ```
-```javascript
+```javascript  [注册组件]
 components: { vueJsonEditor }
 ```
-```vue
+```vue  [使用]
 <vue-json-editor
   v-model="searchJSON"
   :showBtns="false"
@@ -23,6 +50,8 @@ components: { vueJsonEditor }
   lang="zh"
 />
 ```
+:::
+
 ## 可用参数
 
 - v-model：双向绑定的数据
@@ -114,7 +143,4 @@ components: { vueJsonEditor }
     }
   }
 </script>
-
-  <style>
-    </style>
 ```

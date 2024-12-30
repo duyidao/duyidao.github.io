@@ -1,11 +1,37 @@
+---
+layout: doc
+title: ELK Canvas 绘制表格
+titleTemplate: ELK Canvas 绘制表格
+description: ELK 项目 Canvas 绘制表格
+head:
+  - - meta
+    - name: description
+      content: ELK Canvas 绘制表格
+  - - meta
+    - name: keywords
+      content: ELK 项目 Canvas 绘制表格
+pageClass: lingsi-elk-table
+---
+
 # Canvas 绘制表格
-原理：通过第三方插件 canvas-table 配合画布 canvas 实现表格图的绘制。
+
+原理：通过第三方插件 `canvas-table` 配合画布 `canvas` 实现表格图的绘制。
+
 ## 下载插件
-```shell
+:::code-group
+```shell [yarn]
 yarn add canvas-table
 ```
-> 注意：
-这里可能会报错没有模块，根据提示下载相对应的模块即可。
+```shell [npm]
+npm i canvas-table
+```
+```shell [pnpm]
+pnpm i canvas-table
+```
+:::
+
+> [!IMPORTANT] 注意：
+> 这里可能会报错没有模块，根据提示下载相对应的模块即可。
 
 ## 引用
 ```javascript
@@ -14,6 +40,7 @@ import { CanvasTable } from "canvas-table";
 ## 使用
 ### 数据源
 数据源是一个二维数组，如下所示。
+
 ```javascript
 const data = [
   ["Alfreds Futterkiste", "Maria Anders", "$400", "Germany"],
@@ -24,8 +51,8 @@ const data = [
   ["Magazzini Alimentari Riuniti", "Giovanni Rovelli", "$100", "Italy"]
 ];
 ```
-> 注意：
-封装插件的人写法有问题，数组内的值必须是字符串，不能是数值型，不然会出错无法渲染。
+> [!IMPORTANT] 注意：
+> 封装插件的人写法有问题，数组内的值必须是字符串，不能是数值型，不然会出错无法渲染。
 
 ### 列名称
 创建一个数组对象，每个对象的 `title`即列的名称。
@@ -46,13 +73,13 @@ const columns = [{
 ```
 ### 样式
 可设置的样式如下所示，表格颜色，表头、行、表格标题、表脚等。
+
 ```javascript
 const options = {
   borders: {
     table: {
       color: "#aaa",
       width: 1,
-
     }
   },
   header: {
@@ -73,6 +100,7 @@ const options = {
   }
 };
 ```
+
 ### 事件
 ```javascript
 const events =
@@ -93,10 +121,12 @@ const events =
 1. 获取结构中的画布
 2. 收集表格图的数据
 3. 绘制表格
-```javascript
+
+::: code-group
+```javascript [获取结构中的画布]
 const canvas = document.getElementById("canvas");
 ```
-```javascript
+```javascript [收集表格图的数据]
 const config = {
   data,
   columns,
@@ -104,9 +134,9 @@ const config = {
   events
 };
 ```
-```javascript
+```javascript [绘制表格]
 const ct = new CanvasTable(canvas, config);
 let cc = ct.generateTable();
 console.log(cc)
 ```
-
+:::

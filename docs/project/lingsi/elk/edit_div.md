@@ -1,5 +1,22 @@
+---
+layout: doc
+title: ELK DIV 文本编辑
+titleTemplate: ELK DIV 文本编辑
+description: ELK 项目 DIV 文本编辑
+head:
+  - - meta
+    - name: description
+      content: ELK DIV 文本编辑
+  - - meta
+    - name: keywords
+      content: ELK 项目 DIV 文本编辑
+pageClass: lingsi-elk-div
+---
+
 # DIV 可编辑文本
-DIV 有个属性 contenteditable 可实现文本编辑，代码如下所示：
+
+DIV 有个属性 `contenteditable` 可实现文本编辑，代码如下所示：
+
 ```vue
 <div
   class="editdiv"
@@ -12,11 +29,15 @@ DIV 有个属性 contenteditable 可实现文本编辑，代码如下所示：
   contenteditable
 ></div>
 ```
+
 ## 参数介绍
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29781801/1675737310538-4e90f0ec-bd6e-4a2e-8dd8-7a037c63184b.png#averageHue=%23f8f7f7&clientId=ucb45ef2f-96a1-4&from=paste&id=u04d1321f&name=image.png&originHeight=297&originWidth=902&originalType=url&ratio=1&rotation=0&showTitle=false&size=27189&status=done&style=none&taskId=u6e3be09a-2f5f-418a-bff6-57cf9ee8699&title=)
+![参数介绍](https://pic1.imgdb.cn/item/67725583d0e0a243d4ec8b61.png)
+
 ## 使用
-以上方代码为例，为 div 设置了 contenteditable 属性让其可以编辑后为其添加 聚焦focus 、 失焦blur 、 键盘弹起keyup 事件。
+以上方代码为例，为 div 设置了 `contenteditable` 属性让其可以编辑后为其添加 聚焦 `focus` 、 失焦 `blur` 、 键盘弹起 `keyup` 事件。
+
 ### 聚焦
+
 ```javascript
 // 编辑器获取焦点
 editFocus() {
@@ -40,7 +61,8 @@ editFocus() {
 },
 ```
 #### 文本变化
-DOMCharacterDataModified 事件在文本节点的值发生变化的时候触发，触发时通过 getSelection 获取最新的文本值，做数据交互等处理。
+`DOMCharacterDataModified` 事件在文本节点的值发生变化的时候触发，触发时通过 `getSelection` 获取最新的文本值，做数据交互等处理。
+
 ```javascript
 //  div里面的内容每次发生变化
 DonEveryChange: debounce(function () {
@@ -85,8 +107,10 @@ DonEveryChange: debounce(function () {
     "1px solid #409eff";
 }),
 ```
+
 #### 粘贴事件
 直接复制粘贴使用即可。
+
 ```javascript
 pasteValue(e) {
   e.stopPropagation();
@@ -107,6 +131,7 @@ pasteValue(e) {
   }
 },
 ```
+
 ### 失焦
 ```javascript
 editblur() {
@@ -129,16 +154,19 @@ editblur() {
   this.showallList = "";
 },
 ```
+
 ### 键盘弹起
 
 1. 记录编辑框每次最后编辑弹起的光标对象
 2. 处理输入款键盘事件
-```javascript
+
+::: code-group
+```javascript [记录编辑框每次最后编辑弹起的光标对象]
 editdivKeyUp(e) {
   this.lastRange = getSelection().getRangeAt(0);
 },
 ```
-```javascript
+```javascript [处理输入款键盘事件]
 handleKeyUpEvent(event) {
   switch (event.code) {
     case "ArrowDown":
@@ -150,7 +178,10 @@ handleKeyUpEvent(event) {
   }
 },
 ```
+:::
+
 ## 总结
+
 ### DOM变动事件的用法
 DOM2级的変动事件是为XML或html的DOM设计的，不特定于某种语言。变动事件的分类有7种：
 
@@ -161,6 +192,7 @@ DOM2级的変动事件是为XML或html的DOM设计的，不特定于某种语言
 5. DOMNodeRemovedFromDocument：在一个节点被直接从文档中删除或通过子树间接从文档中移除之前触发。在 DOMNodeRemoved 之后触发。
 6. DOMAttrModified：在特性被修改之后触发；
 7. DOMCharacterDataModified：在文本节点的值发生变化的时候触发。
+
 ### 粘贴事件
 可以用js给页面中的元素绑定 paste 事件的方法，当用户鼠标在该元素上或者该元素处于 focus 状态，绑定到 paste 事件的方法就运行了。
 绑定的元素不一定是 input ，普通的 div 也是可以绑定的，如果是给 document 绑定了，就相当于全局了，任何时候的粘贴操作都会触发。

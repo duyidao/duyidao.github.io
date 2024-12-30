@@ -1,23 +1,55 @@
+---
+layout: doc
+title: ELK 导出PDF
+titleTemplate: ELK 导出PDF
+description: ELK 项目 导出PDF
+head:
+  - - meta
+    - name: description
+      content: ELK 导出PDF
+  - - meta
+    - name: keywords
+      content: ELK 项目 导出PDF
+pageClass: lingsi-elk-pdf
+---
+
 # 导出PDF
-导出页面为一个 pdf 文件，我们需要用到两个第三方包： html2Canvas 和 jsPdf 。
+导出页面为一个 `pdf` 文件，我们需要用到两个第三方包： `html2Canvas` 和 `jsPdf` 。
+
 ## html2Canvas
+
 ### 安装
+::: code-group
+```shell [npm]
+npm i html2canvas 
+```
+```shell [yarn]
 yarn add html2canvas 
+```
+```shell [pnpm]
+pnpm i html2canvas 
+```
+:::
+
 ### 引用
+
 ```javascript
 import html2Canvas from 'html2canvas'
 ```
+
 ### 是什么
 允许让我们直接在用户浏览器上拍摄网页或其部分的“截图”。
 它的屏幕截图是基于 DOM 的，因此可能不会 100% 精确到真实的表示，因为它不会生成实际的屏幕截图，而是基于页面上可用的信息构建屏幕截图。
+
 ### 怎么用
 
 1. 获取到需要“截图”的 DOM 节点
 2. 传递“截图”的参数：
-   - allowTaint：允许跨域图片
-   - useCORS：开启跨域配置
-   - scale：比例缩放整体图片
+   - `allowTaint`：允许跨域图片
+   - `useCORS`：开启跨域配置
+   - `scale`：比例缩放整体图片
 3. 在回调中通过 toDataURL 方法把获取到的图片转为 base64 的形式
+
 ```javascript
 html2Canvas(document.querySelector('.id'), {
   allowTaint: true,
@@ -29,20 +61,40 @@ html2Canvas(document.querySelector('.id'), {
   img.src = pageData
 })
 ```
+
 ### 常见问题
 
 1. Error loading img
-图片跨域时会造成污染，导致绘制失败。看后台是否开启跨域，开启后设置 useCORS 和 allowTaint 。
+  
+    图片跨域时会造成污染，导致绘制失败。看后台是否开启跨域，开启后设置 `useCORS` 和 `allowTaint` 。
+
 2. 不支持 css3
-插件不支持 css3 新特性，因此使用 background 等背景图会有一些潜在的 bug ，如果确定该页面需要导出，就使用 img 配合定位的形式实现效果。
+
+    插件不支持 `css3` 新特性，因此使用 `background` 等背景图会有一些潜在的 `bug` ，如果确定该页面需要导出，就使用 `img` 配合定位的形式实现效果。
+
 ## jsPdf
+
 ### 安装
+::: code-group
+```shell [npm]
+npm i jspdf 
+```
+```shell [yarn]
 yarn add jspdf 
+```
+```shell [pnpm]
+pnpm i jspdf 
+```
+:::
+
 ### 引用
+
 ```javascript
 import jsPDF from "jspdf"
 ```
+
 ### 使用
+
 ```javascript
 let pdf = new jsPDF('p', 'pt', [pdfX, pdfY]);
 ```
@@ -50,11 +102,16 @@ let pdf = new jsPDF('p', 'pt', [pdfX, pdfY]);
 - 参数一：方向（l：横向 p：纵向）
 - 参数二：测量单位（"pt"，"mm", "cm", "m", "in" or "px"）
 - 参数三：可以是下面格式，默认为“a4”。如果想使用自己的格式，只需将大小作为数字数组传递，例如[595.28, 841.89];
+
 ### 添加图片
-通过 pdf.addImage() 将图像添加到 PDF ，addImage 参数设置如下：
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29781801/1675736751934-4ea419c8-ccbb-4a7b-8c44-0cef59c52cfa.png#averageHue=%23fefefe&clientId=ua586776f-4dd9-4&from=paste&id=u7cb72feb&name=image.png&originHeight=1334&originWidth=2262&originalType=url&ratio=1&rotation=0&showTitle=false&size=314753&status=done&style=none&taskId=u1871541a-1796-4e07-9a05-9c92a370708&title=)
+通过 `pdf.addImage()` 将图像添加到 PDF ，`addImage` 参数设置如下：
+
+![addImage参数](https://pic1.imgdb.cn/item/67725714d0e0a243d4ec8bf1.png)
+
 ### 保存文档
-通过 pdf.save(name + '.pdf'); 的方法导出文档并命名。
+
+通过 `pdf.save(name + '.pdf');` 的方法导出文档并命名。
+
 ### 整体代码
 ```javascript
 const pageData = canvas.toDataURL('image/jpeg', 1.0)
@@ -74,6 +131,7 @@ img.onload = function() {
 }
 return true
 ```
+
 ## 导出函数封装
 ```javascript
 import html2Canvas from 'html2canvas'

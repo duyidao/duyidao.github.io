@@ -1,10 +1,27 @@
-后端返回二进制流文件，前端需要通过特殊方法把二进制流文件转为 json 格式。方法如下：
+---
+layout: doc
+title: ELK二进制流文件下载
+titleTemplate: ELK二进制流文件下载
+description: ELK 项目 二进制流 文件下载
+head:
+  - - meta
+    - name: description
+      content: ELK二进制流文件下载
+  - - meta
+    - name: keywords
+      content: ELK 项目 二进制流 文件下载
+pageClass: lingsi-elk-blob
+---
 
-1. 通过 axios 发送请求，设置基准路径、请求参数、响应数据类型为 blob ，请求头携带 token 等。
+# 文件下载
+
+后端返回二进制流文件，前端需要通过特殊方法把二进制流文件转为 `json` 格式。方法如下：
+
+1. 通过 `axios` 发送请求，设置基准路径、请求参数、响应数据类型为 `blob` ，请求头携带 `token` 等。
 2. 请求成功后回调函数中执行以下操作：
-   - 调用 new Blob() 方法，把参数传递给该方法，设置 type 类型为 {type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document;charset=utf-8'} 。
+   - 调用 new Blob() 方法，把参数传递给该方法，设置 type 类型为 `{type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document;charset=utf-8'}` 。
    - 创建一个新的对象 URL ，该对象 URL 可以代表某一个指定的 file 对象或者 bolb 对象。用于在浏览器上预览本地的图片或者视频。
-   - 创建 a 标签，使用其 download 方法，这样就能下载文件而不是预览，再设置下载文件名。
+   - 创建 a 标签，使用其 `download` 方法，这样就能下载文件而不是预览，再设置下载文件名。
    - 下载完毕后移出元素和方法。
 ```javascript
 axios.get( baseUrl + '后端接口', {
@@ -19,6 +36,7 @@ axios.get( baseUrl + '后端接口', {
 ```
 
 总体代码如下所示：
+
 ```javascript
 downLoad(row) {
   axios.get( baseUrl + '/license/down/auth/code', {
@@ -49,4 +67,5 @@ downLoad(row) {
   }).finally(() => {
     //请求结束回调
   })
+}
 ```
