@@ -1,12 +1,23 @@
 ---
-title 详情页
+layout: doc
+title: 音果云音项目详情页
+titleTemplate: 音果云音项目详情页
+description: 音果云音 项目 详情
+head:
+  - - meta
+    - name: description
+      content: 音果云音项目详情页
+  - - meta
+    - name: keywords
+      content: 音果云音 项目 详情
+pageClass: lingsi-music-detail
 ---
 
 # 详情
 
 ## 音频详情
 
-音频详情页需要一个播放音频的控件，在最开始的时候使用的是 `uniapp` 提供的 `audio` 组件，在app上运行无误，但是在h5上运行时报错，发现其组件停止维护。根据项目经理的要求，为了不给后续埋雷，改成使用 API  ` uni.createInnerAudioContext()` 的形式。
+音频详情页需要一个播放音频的控件，在最开始的时候使用的是 `UniApp` 提供的 `audio` 组件，在app上运行无误，但是在h5上运行时报错，发现其组件停止维护。根据项目经理的要求，为了不给后续埋雷，改成使用 `UniApp` 内置API  `uni.createInnerAudioContext()` 。
 
 ### 音频组件
 
@@ -14,13 +25,13 @@ title 详情页
 
 ##### 思路
 
-音频 API 详情查看 [音频组件控制](https://uniapp.dcloud.net.cn/api/media/audio-context.html#createinneraudiocontext) 官方文档。该方法用于创建并返回内部 audio 上下文 `innerAudioContext` 对象。
+音频 API 详情查看 [音频组件控制](https://uniapp.dcloud.net.cn/api/media/audio-context.html#createinneraudiocontext) 官方文档。该方法用于创建并返回内部 `audio` 上下文 `innerAudioContext` 对象。
 
 我们需要实现下方的效果：
 
-[![pCoPrRS.png](https://s1.ax1x.com/2023/07/17/pCoPrRS.png)](https://imgse.com/i/pCoPrRS)
+![pCoPrRS.png](https://s1.ax1x.com/2023/07/17/pCoPrRS.png)
 
-我们需要音频的总时长、当前播放的时长、进度条、暂停播放的控制等。
+由上图可以看出来，需要实现的功能包括但不限于音频的总时长、当前播放的时长、进度条、暂停播放的控制等。
 
 首先查看文档的代码示例，示例代码如下：
 
@@ -202,23 +213,23 @@ innerAudioContext.onError((res) => {
 
 ##### 思路
 
-现在基于第一版做功能升级。市面上的音频功能大多都可以通过拖拽进度条的形式改变当前音频播放的进度。进度条组件上方的示例代码中已存在，因此不再二次展示。
+现在基于第一版做功能升级。市面上的音频功能大多都可以通过拖拽进度条的形式改变当前音频播放的进度。
 
-音频的进度条可以使用 `uniapp` 官方提供的 `slider` 进度条组件，官网文档指路 [slider](https://uniapp.dcloud.net.cn/component/slider.html#slider) 。其提供的属性和方法如下所示：
+音频的进度条可以使用 `UniApp` 官方提供的 `slider` 进度条组件，官网文档指路 [slider](https://uniapp.dcloud.net.cn/component/slider.html#slider) 。其提供的属性和方法如下所示：
 
-| 属性名          | 类型        | 默认值               | 说明                                                         |
-| :-------------- | :---------- | :------------------- | :----------------------------------------------------------- |
-| min             | Number      | 0                    | 最小值，音频最小默认为0                                      |
-| max             | Number      | 100                  | 最大值，把音频的时长赋值给他即可                             |
+| 属性名          | 类型        | 默认值               | 说明                                                               |
+| :-------------- | :---------- | :------------------- | :----------------------------------------------------------------- |
+| min             | Number      | 0                    | 最小值，音频最小默认为0                                            |
+| max             | Number      | 100                  | 最大值，把音频的时长赋值给他即可                                   |
 | step            | Number      | 1                    | 步长，取值必须大于 0，并且可被(max - min)整除，取默认值1，无需更改 |
-| value           | Number      | 0                    | 当前取值，把当前音频播放的进度currentTime赋值过去            |
-| activeColor     | Color       | 各个平台不同，详见下 | 滑块左侧已选择部分的线条颜色                                 |
-| backgroundColor | Color       | #e9e9e9              | 滑块右侧背景条的颜色                                         |
-| block-size      | Number      | 28                   | 滑块的大小，取值范围为 12 - 28                               |
-| block-color     | Color       | #ffffff              | 滑块的颜色                                                   |
-| show-value      | Boolean     | false                | 是否显示当前 value                                           |
-| @change         | EventHandle |                      | 完成一次拖动后触发的事件，event.detail = {value: value}      |
-| @changing       | EventHandle |                      | 拖动过程中触发的事件，event.detail = {value: value}          |
+| value           | Number      | 0                    | 当前取值，把当前音频播放的进度currentTime赋值过去                  |
+| activeColor     | Color       | 各个平台不同，详见下 | 滑块左侧已选择部分的线条颜色                                       |
+| backgroundColor | Color       | #e9e9e9              | 滑块右侧背景条的颜色                                               |
+| block-size      | Number      | 28                   | 滑块的大小，取值范围为 12 - 28                                     |
+| block-color     | Color       | #ffffff              | 滑块的颜色                                                         |
+| show-value      | Boolean     | false                | 是否显示当前 value                                                 |
+| @change         | EventHandle |                      | 完成一次拖动后触发的事件，event.detail = {value: value}            |
+| @changing       | EventHandle |                      | 拖动过程中触发的事件，event.detail = {value: value}                |
 
 可以看到，其提供了两个方法：正在拖动中的 `@changing` 和拖动完毕的 `@change` 。打印他的参数，输出的数据如下所示：
 
@@ -370,7 +381,7 @@ const handleSheetFn = index => {
 		default:
 			break;
 	}
-	if(context.value.paused context.value.play()
+	if(context.value.paused) context.value.play()
 }
 
 // 音频播放结束后
@@ -451,21 +462,21 @@ onLoad((val) => {
 
 本以为能够交差了，测试和我说当重复进入该页面后就会卡顿，我尝试了一下到第三次已经明显的卡了，到第六次直接点不动了，打印音频对象结果如下所示：
 
-[![p9hWor9.png](https://s1.ax1x.com/2023/05/19/p9hWor9.png)](https://imgse.com/i/p9hWor9)
+![p9hWor9.png](https://s1.ax1x.com/2023/05/19/p9hWor9.png)
 
 可以看到每点击一次他就往里面添加一次函数。还记得吗？在前面介绍的时候我们已经介绍过了，那些方法都是传一个回调函数进去，等那些方法触发后再触发回调。因此越积越多，直到最后内存溢出。
 
-后续又做了其他尝试，比如手动清空再赋值，把那些方法都放进if内，都没有效果。
+后续又做了其他尝试，比如手动清空再赋值，把那些方法都放进 `if` 内，都没有效果。
 
 ### 背景音频播放管理
 
 #### 思路与代码
 
-在寻找解决方法时，无意间发现 `uniapp` 提供另外一个背景音频方法 `uni.getBackgroundAudioManager()` ，官网指路 [ uni.getBackgroundAudioManager()](https://uniapp.dcloud.net.cn/api/media/background-audio-manager.html) 。官方描述是这么写的：
+在寻找解决方法时，无意间发现 `UniApp` 提供另外一个背景音频方法 `uni.getBackgroundAudioManager()` ，官网指路 [ uni.getBackgroundAudioManager()](https://uniapp.dcloud.net.cn/api/media/background-audio-manager.html) 。官方描述是这么写的：
 
-> 获取**全局唯一**的背景音频管理器 `backgroundAudioManager`。
->
-> 背景音频，不是游戏的背景音乐，而是类似QQ音乐那样，App在后台时，仍然在播放音乐。如果你不需要在App切后台时继续播放，那么不应该使用本API，而应该使用普通音频API[uni.createInnerAudioContext](https://uniapp.dcloud.io/api/media/audio-context)。
+::: tip 获取**全局唯一**的背景音频管理器 `backgroundAudioManager`。
+背景音频，不是游戏的背景音乐，而是类似QQ音乐那样，App在后台时，仍然在播放音乐。如果你不需要在App切后台时继续播放，那么不应该使用本API，而应该使用普通音频API[uni.createInnerAudioContext](https://uniapp.dcloud.io/api/media/audio-context)。
+:::
 
 刚好符合我们的场景要求，查看其事件方法和属性，与音频组件差异不大，直接使用即可，注意事项贴在下方。
 
@@ -705,11 +716,11 @@ export const useMusicStore = defineStore("music", () => {
 
 ```js
 context.value.onPlay(() => {
-    if(!timer.value) {
-        timer.value = setInterval(() => {
-            listerenTime.value += 1
-        }, 1000)
-    }
+  if(!timer.value) {
+      timer.value = setInterval(() => {
+        listerenTime.value += 1
+    }, 1000)
+  }
 })
 ```
 
@@ -727,11 +738,10 @@ context.value.onPlay(() => {
 
 思路分析完毕，接下来着手如何实现。
 
-当音频在播放时，会持续触发 `onTimeUpdate` 回调函数，因此在这上面添加判断。 `uniapp` 提供了 `uni.getNetworkType()` 方法，其中成功回调函数返回 `networkType` 网络类型，有效值如下所示：
+当音频在播放时，会持续触发 `onTimeUpdate` 回调函数，因此在这上面添加判断。 `UniApp` 提供了 `uni.getNetworkType()` 方法，其中成功回调函数返回 `networkType` 网络类型，有效值如下所示：
 
-|          |                            |              |
-| :------- | :------------------------- | :----------- |
 | 值       | 说明                       | 平台差异说明 |
+| :------- | :------------------------- | :----------- |
 | wifi     | wifi 网络                  |              |
 | 2g       | 2g 网络                    |              |
 | 3g       | 3g 网络                    |              |
@@ -770,7 +780,7 @@ context.value.onTimeUpdate(() => {
 
 #### 音频下载
 
-免费音频支持用户下载功能，下载功能的实现依靠 `uniapp` 提供的 [uni.downloadFile](https://uniapp.dcloud.net.cn/api/request/network-file.html#downloadfile) 方法。该方法成功后会触发 `success` 函数，返回下载好的临时路径，如下所示。
+免费音频支持用户下载功能，下载功能的实现依靠 `UniApp` 提供的 [uni.downloadFile](https://uniapp.dcloud.net.cn/api/request/network-file.html#downloadfile) 方法。该方法成功后会触发 `success` 函数，返回下载好的临时路径，如下所示。
 
 ```js
 {
@@ -840,35 +850,34 @@ const downloadMusicFn = () => {
 
 既然这个方法不能走，那就换一个方法。通过 ChatGPT 发现有 `navigator` 方法可以使用， ChatGPT 是这么介绍它的：
 
-> `navigator` 是 Web 浏览器提供的一个内置对象，它包含了很多有关浏览器环境和用户设备的信息，可以通过它来获取和操作这些信息。
->
-> 以下是一些常见的 `navigator` 对象的属性和方法：
->
-> - `navigator.userAgent`：返回浏览器的用户代理字符串，它可以用来确定用户使用的浏览器和操作系统。
-> - `navigator.platform`：返回当前操作系统的平台信息，如 "Win32"、"MacIntel" 等。
-> - `navigator.language`：返回用户的首选语言，根据浏览器设置的语言偏好进行确定。
-> - `navigator.cookieEnabled`：返回一个布尔值，表示浏览器是否启用了 cookie。
-> - `navigator.geolocation`：提供了获取用户地理位置信息的方法和属性。
-> - `navigator.onLine`：返回一个布尔值，表示当前是否处于联网状态。
-> - `navigator.sendBeacon(url, data)`：用于异步向服务器发送数据，适用于在页面卸载、关闭或导航发生时发送异步请求。
-> - `navigator.clipboard`：提供了读取和写入剪贴板内容的方法和属性。
-> - `navigator.vibrate(pattern or time)`：用于控制设备的震动功能。
->
-> 需要注意的是，`navigator` 对象中的属性和方法在不同的浏览器中可能会有所差异，所以在使用之前最好检查其兼容性或使用相关的 polyfill 库来保证代码的正确运行。
->
-> 希望以上信息可以帮助到你。如果还有其他问题，请随时提问。
+::: tip `navigator` 是 Web 浏览器提供的一个内置对象，它包含了很多有关浏览器环境和用户设备的信息，可以通过它来获取和操作这些信息。
+
+以下是一些常见的 `navigator` 对象的属性和方法：
+
+- `navigator.userAgent`：返回浏览器的用户代理字符串，它可以用来确定用户使用的浏览器和操作系统。
+- `navigator.platform`：返回当前操作系统的平台信息，如 "Win32"、"MacIntel" 等。
+- `navigator.language`：返回用户的首选语言，根据浏览器设置的语言偏好进行确定。
+- `navigator.cookieEnabled`：返回一个布尔值，表示浏览器是否启用了 cookie。
+- `navigator.geolocation`：提供了获取用户地理位置信息的方法和属性。
+- `navigator.onLine`：返回一个布尔值，表示当前是否处于联网状态。
+- `navigator.sendBeacon(url, data)`：用于异步向服务器发送数据，适用于在页面卸载、关闭或导航发生时发送异步请求。
+- `navigator.clipboard`：提供了读取和写入剪贴板内容的方法和属性。
+- `navigator.vibrate(pattern or time)`：用于控制设备的震动功能。
+
+需要注意的是，`navigator` 对象中的属性和方法在不同的浏览器中可能会有所差异，所以在使用之前最好检查其兼容性或使用相关的 polyfill 库来保证代码的正确运行。
+:::
 
 根据介绍可以通过 `online` 来判断是否有联网，实现逻辑。代码如下：
 
 ```js
 const checkNetworkStatus = () => {
-    if (!navigator.onLine) {
-		uni.showToast({
-			title: '检测到你的网络未连接，请先连接网络',
-			icon: 'none'
-		})
-		context.value.pause()
-    }
+  if (!navigator.onLine) {
+    uni.showToast({
+      title: '检测到你的网络未连接，请先连接网络',
+      icon: 'none'
+    })
+    context.value.pause()
+  }
 }
 context.value.onTimeUpdate(() => {
 	checkNetworkStatus()
@@ -923,34 +932,33 @@ const downloadMusicFn = () => {
 
 运行后发现点击按钮后页面跳转，地址为音频路径，这显然不是我们想要的，故询问 ChatGPT 如何解决。以下为 ChatGPT 提供的解决方案：
 
-> 如果你希望在前端实现点击后不跳转直接下载音频文件的功能，可以使用 JavaScript 的 XMLHttpRequest 或 Fetch API 来获取音频文件，并利用 Blob 对象创建下载链接。
->
-> 以下是一个示例代码：
->
-> ```javascript
-> const audioUrl = 'https://your-aliyun-server.com/audio.mp3'; // 音频文件的 URL
-> const filename = 'audio.mp3'; // 音频文件的文件名
-> 
-> fetch(audioUrl)
->   .then(response => response.blob())
->   .then(blob => {
->     const downloadLink = document.createElement('a');
->     downloadLink.href = URL.createObjectURL(blob);
->     downloadLink.download = filename;
->     downloadLink.style.display = 'none';
->     document.body.appendChild(downloadLink);
->     downloadLink.click();
->     document.body.removeChild(downloadLink);
->   });
-> ```
->
-> 在这个示例中，我们使用 Fetch API 来获取音频文件的响应对象，并使用 `blob()` 方法将响应内容转换为 Blob 对象。然后，我们创建一个 `<a>` 元素，设置其 `href` 属性为 Blob 对象的 URL，将文件名设置为 `download` 属性，并将其添加到页面上。最后，我们模拟用户点击操作，实现直接下载功能，并在下载完成后将 `<a>` 元素从页面上移除。
->
-> 这种方法可以在前端直接下载音频文件，并且无需后端参与。
->
-> 请注意，部分旧版浏览器可能不支持 Fetch API，你可以使用 XMLHttpRequest 来替代。
->
-> 希望这个解决方案对你有帮助。如果你有其他问题，请随时提问。
+::: tip 如果你希望在前端实现点击后不跳转直接下载音频文件的功能，可以使用 JavaScript 的 XMLHttpRequest 或 Fetch API 来获取音频文件，并利用 Blob 对象创建下载链接。
+
+以下是一个示例代码：
+
+```javascript
+const audioUrl = 'https://your-aliyun-server.com/audio.mp3'; // 音频文件的 URL
+const filename = 'audio.mp3'; // 音频文件的文件名
+
+fetch(audioUrl)
+  .then(response => response.blob())
+  .then(blob => {
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = filename;
+    downloadLink.style.display = 'none';
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  });
+```
+
+在这个示例中，我们使用 Fetch API 来获取音频文件的响应对象，并使用 `blob()` 方法将响应内容转换为 Blob 对象。然后，我们创建一个 `<a>` 元素，设置其 `href` 属性为 Blob 对象的 URL，将文件名设置为 `download` 属性，并将其添加到页面上。最后，我们模拟用户点击操作，实现直接下载功能，并在下载完成后将 `<a>` 元素从页面上移除。
+
+这种方法可以在前端直接下载音频文件，并且无需后端参与。
+
+请注意，部分旧版浏览器可能不支持 Fetch API，你可以使用 XMLHttpRequest 来替代。
+:::
 
 没用过 `fetch` ，而 XML 是我们熟悉的 AJAX，因此试一下原生 AJAX 的方法可不可行，代码修改如下形式：
 
@@ -1014,19 +1022,21 @@ const downloadMusicFn = () => {
 ### 阿里云播放器SDK
 课程视频用户统一上传到阿里云服务器上，播放视频考虑使用阿里云sdk。详情可前往官方文档 [阿里云播放器sdk](https://help.aliyun.com/document_detail/125570.html) 查看。
 
-#### 引入资源
+#### 初始设置
 
-```html
+::: code-group
+```html [index.html引入资源]
 <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.12.1/skins/default/aliplayer-min.css" />  //（可选）如果您的使用场景需要用到H5模式的播放器，则需引用此css文件。
 <script charset="utf-8" type="text/javascript" src="https://g.alicdn.com/de/prismplayer/2.12.1/aliplayer-min.js"></script>  //（必须）引入js文件。
 ```
 
-提供挂载元素
 
-在结构中创建一个 `dom` 元素供点播器挂载，注意复制时看 `id` 是否对应。
-```html
+
+
+```html [提供挂载元素]
 <div id="aliplayerVedio"></div>
 ```
+:::
 
 #### 播放设置
 点播播放有多种方式可供选择，这里采取的是官方最为推荐的 `VID + PlayAuth` 的方式。
@@ -1040,133 +1050,143 @@ var player = new Aliplayer({
    console.log('The player is created.')
 });
 ```
-此时运行，运行在浏览器中的 `demo` 已经成功跑起来，返回 `uniapp` 中运行，却报以下错误。
-> `Aliplayer is not defined`
+此时运行，运行在浏览器中的 `demo` 已经成功跑起来，返回 `UniApp` 中运行，却报以下错误。
 
-`uniapp` 运行机制不一样，因此拿不到 `index.html` 引入的js文件，运行之后会报错。
+::: danger 报错
+`Aliplayer is not defined`
+:::
+
+`UniApp` 运行机制不一样，因此拿不到 `index.html` 引入的js文件，运行之后会报错。
 
 #### 改造
 
-- 基于 `uniapp` 开发的在浏览器上运行的解决方案
+- 基于 `UniApp` 开发的在浏览器上运行的解决方案
+
    1. 动态创建 `script` 标签，引入资源
    2. 动态创建 `link` 标签，实现跳转
-```js
-function loadScriptString(src) {
-  var script = document.createElement('script') //创建一个script标签
-  script.type = 'text/javascript'
-  script.src = src
-  document.getElementsByTagName('head')[0].appendChild(script)
-}
 
-function loadLinkString(src) {
-  var link = document.createElement('link') //创建一个link标签
-  link.rel = 'stylesheet'
-  link.href = src
-  document.getElementsByTagName('head')[0].appendChild(link)
-}
+  ```js
+  function loadScriptString(src) {
+    var script = document.createElement('script') //创建一个script标签
+    script.type = 'text/javascript'
+    script.src = src
+    document.getElementsByTagName('head')[0].appendChild(script)
+  }
 
-// 使用阿里云播放器
-loadLinkString('https://g.alicdn.com/de/prismplayer/2.9.19/skins/default/aliplayer-min.css')
-loadScriptString('https://g.alicdn.com/de/prismplayer/2.9.19/aliplayer-min.js')
-```
+  function loadLinkString(src) {
+    var link = document.createElement('link') //创建一个link标签
+    link.rel = 'stylesheet'
+    link.href = src
+    document.getElementsByTagName('head')[0].appendChild(link)
+  }
+
+  // 使用阿里云播放器
+  loadLinkString('https://g.alicdn.com/de/prismplayer/2.9.19/skins/default/aliplayer-min.css')
+  loadScriptString('https://g.alicdn.com/de/prismplayer/2.9.19/aliplayer-min.js')
+  ```
 
 - 基于手机 `app` 开发
 
-手机 `app` 没有 `document` 标签，因此无法使用这个方案。上文 《tabBar页》 中描述了 `webview` 的功能，刚好符合这个场景。
+  手机 `app` 没有 `document` 标签，因此无法使用这个方案。上文 《tabBar页》 中描述了 `webview` 的功能，刚好符合这个场景。
 
-在 `webview` 中写原生 `html` 代码，把需要的参数通过 query 的方式传递过去。
-```vue
-<template>
- <view class="content">
-  <web-view :src="videoUrl"></web-view>1
- </view>
-</template>
+  在 `webview` 中写原生 `html` 代码，把需要的参数通过 query 的方式传递过去。
 
-<script>
-export default {
-    data() {
-        return {
-         videoUrl:'static/index.html?'
-        }
-    },
-    onLoad() {
-        let vid = '808243746770483c843bef3e4f91b629';
-        let playauth = "凭证";
-        this.videoUrl +=`vid=${vid}&playauth=${playauth}`;
-    },
-    methods: {
-    }
-}
-</script>
-```
-```html
-<!DOCTYPE html>
-<html lang="zh">
- <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <head>
-   <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.12.1/skins/default/aliplayer-min.css" />
-   <script charset="utf-8" type="text/javascript"
-    src="https://g.alicdn.com/de/prismplayer/2.12.1/aliplayer-h5-min.js"></script>
-  </head>
-  <title>视频详情</title>
- </head>
- <body>
-  <div id="ali_video"></div>
-  
+  :::code-group
+  ```vue [视频组件]
+  <template>
+  <view class="content">
+    <web-view :src="videoUrl"></web-view>1
+  </view>
+  </template>
+
   <script>
-   let vid = getValue('vid');
-   let playauth = getValue('playauth');
-   var player = new Aliplayer({
-    id: 'ali_video',
-    width: '100%',
-    vid: vid,
-    playauth: playauth,
-   }, function(player) {
-    console.log('The player is created.')
-   });
-   console.log(player)
-
-   /**
-    * @description 从地址栏获取参数
-    * @param {Object} key 地址栏关键字key名称
-    */
-   function getValue(key) {
-    var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
-    var r = window.location.search.substr(1).match(reg);
-    if (r != null) return unescape(r[2]);
-    return null;
-   }
+  export default {
+      data() {
+          return {
+          videoUrl:'static/index.html?'
+          }
+      },
+      onLoad() {
+          let vid = '808243746770483c843bef3e4f91b629';
+          let playauth = "凭证";
+          this.videoUrl +=`vid=${vid}&playauth=${playauth}`;
+      },
+      methods: {
+      }
+  }
   </script>
- </body>
-</html>
-```
+  ```
+  ```html [html页面]
+  <!DOCTYPE html>
+  <html lang="zh">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <head>
+    <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.12.1/skins/default/aliplayer-min.css" />
+    <script charset="utf-8" type="text/javascript"
+      src="https://g.alicdn.com/de/prismplayer/2.12.1/aliplayer-h5-min.js"></script>
+    </head>
+    <title>视频详情</title>
+  </head>
+  <body>
+    <div id="ali_video"></div>
+    
+    <script>
+    let vid = getValue('vid');
+    let playauth = getValue('playauth');
+    var player = new Aliplayer({
+      id: 'ali_video',
+      width: '100%',
+      vid: vid,
+      playauth: playauth,
+    }, function(player) {
+      console.log('The player is created.')
+    });
+    console.log(player)
+
+    /**
+      * @description 从地址栏获取参数
+      * @param {Object} key 地址栏关键字key名称
+      */
+    function getValue(key) {
+      var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return unescape(r[2]);
+      return null;
+    }
+    </script>
+  </body>
+  </html>
+  ```
+  :::
 
 #### 总结
 利用 `webview` 书写原生，根据官方文档实现阿里云点播器播放视频功能。
-> 题外话：
-> 最后使用的时候项目经理觉得体验感极差，让后端修改接口，直接返回视频的 `url` ，前端修改为使用 `uniapp` 自带的视频组件 `video` 。
+::: warning 题外话
+最后使用的时候项目经理觉得体验感极差，让后端修改接口，直接返回视频的 `url` ，前端修改为使用 `UniApp` 自带的视频组件 `video` 。
+:::
 
 ## 活动详情
 效果如下图所示。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/29781801/1675129545381-370b1a74-daf5-4b3c-a7af-2d07f3fd7cee.png#averageHue=%23bec2a9&clientId=u4be0b9f7-2df9-4&from=paste&height=474&id=u276d4dc6&name=image.png&originHeight=474&originWidth=247&originalType=binary&ratio=1&rotation=0&showTitle=false&size=121890&status=done&style=none&taskId=u79a1e18c-f581-4835-8d60-44d49b560b4&title=&width=247)
+![活动详情效果](https://pic1.imgdb.cn/item/67721131d0e0a243d4ec5fdf.png)
 
 下方是一个富文本内容，第一时间联想起使用富文本的几种方式。
 
 ### 富文本的使用方式
 
 #### rich-text
-`rich-text` 是 `uni-app` 的内置组件，提供了高性能的富文本渲染模式。API参考 [rich-text](https://uniapp.dcloud.io/component/rich-text) 。
+`rich-text` 是 `UniApp` 的内置组件，提供了高性能的富文本渲染模式。API参考 [rich-text](https://uniapp.dcloud.io/component/rich-text) 。
 
 `rich-text` 的优势是全端支持、高性能。但是 `rich-text` 不支持内嵌视频，可以通过拆分多个 `rich-text`，中间插入 `video` 来实现。
-> 注：
-> 小程序端有个缺陷是只能整体设点击事情，无法对富文本中的图片、超链接单独设点击事件。
+
+::: tip 注意
+小程序端有个缺陷是只能整体设点击事情，无法对富文本中的图片、超链接单独设点击事件。
+:::
 
 如果是图片，可以把内容拆成多个 `rich-text` 解决。
-
 
 #### v-html
 `v-html` 指令，是 `web` 开发中很常用的。小程序不支持。

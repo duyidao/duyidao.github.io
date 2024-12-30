@@ -1,10 +1,21 @@
 ---
-title 灵思项目引言
+layout: doc
+title: 灵思项目引言
+titleTemplate: 任职灵思开发的项目列表
+description: 项目 灵思
+head:
+  - - meta
+    - name: description
+      content: 灵思项目引言
+  - - meta
+    - name: keywords
+      content: 灵思 项目
+pageClass: lingsi-project-class
 ---
 
 # 引言
 
-广州灵思科技有限股份公司中担任前端开发一职，接手或从 0 到 1 开发了如下项目，分别为：
+在广州灵思科技有限股份公司中担任前端开发一职，接手或从 0 到 1 开发了如下项目，分别为：
 
 - [音果云音](/project/lingsi/music/)
 

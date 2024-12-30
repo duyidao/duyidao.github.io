@@ -1,5 +1,16 @@
 ---
-title 更新
+layout: doc
+title: 音果云音项目更新
+titleTemplate: 音果云音项目更新
+description: 音果云音 项目 更新
+head:
+  - - meta
+    - name: description
+      content: 音果云音项目更新
+  - - meta
+    - name: keywords
+      content: 音果云音 项目 更新
+pageClass: lingsi-music-update
 ---
 
 # 更新
@@ -45,9 +56,9 @@ const getAppInfo = () => {
 
 回调函数的参数中 `version` 属性是我们需要的版本号；`name` 属性是我们需要的应用名称。
 
-> 注意：
->
-> `plus.runtime.version` 也能获取版本号，二者不同之处在于 `plus.runtime.version` 获取到的是 `manifest.json` 中设置的 `apk/ipa` 版本号，整包更新的版本。
+::: warning 注意
+`plus.runtime.version` 也能获取版本号，二者不同之处在于 `plus.runtime.version` 获取到的是 `manifest.json` 中设置的 `apk/ipa` 版本号，整包更新的版本。
+:::
 
 ### install
 

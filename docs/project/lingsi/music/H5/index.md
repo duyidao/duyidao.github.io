@@ -1,6 +1,18 @@
 ---
-title 海报页
+layout: doc
+title: 音果云音海报页
+titleTemplate: 音果云音海报页
+description: 音果云音 项目 海报
+head:
+  - - meta
+    - name: description
+      content: 音果云音海报页
+  - - meta
+    - name: keywords
+      content: 音果云音 项目 海报
+pageClass: lingsi-music-h5
 ---
+
 # 海报页
 
 ## 浏览器判断
@@ -10,11 +22,15 @@ title 海报页
 
 1. 在PC端打开 ，navigator.userAgent 显示如下
 
-`Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36`
+    ::: info
+    `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36`
+    :::
 
 2. 在手机web端打开 ，navigator.userAgent 显示如下
 
-`Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1`
+    ::: info
+    `Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1`
+    :::
 
 总体代码如下所示：
 ```javascript

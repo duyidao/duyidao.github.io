@@ -1,20 +1,27 @@
 ---
-title sku商品规格
+layout: doc
+title: 音果云音项目sku组件
+titleTemplate: 音果云音项目sku组件
+description: 音果云音 项目 sku
+head:
+  - - meta
+    - name: description
+      content: 音果云音项目sku组件
+  - - meta
+    - name: keywords
+      content: 音果云音 项目 sku
+pageClass: lingsi-music-sku
 ---
+
 # sku商品规格
-工具类商品提供 `sku` 规格搜索，效果如下图：
 
-![iMS8Xv.png](https://i.imgloc.com/2023/05/03/iMS8Xv.png)
-
-每项分类都有几个选项，选择完相应的规格后会显示对应的图片、价格、库存数量等。
+工具类商品提供 `sku` 规格搜索，每项分类都有几个选项，选择完相应的规格后会显示对应的图片、价格、库存数量等。
 
 ## 数据返回
 
 查看后端返回的数据，根据后端返回的数据来做页面渲染与事件点击操作。
 
 ### 商品规格
-
-![iMSuxU.png](https://i.imgloc.com/2023/05/03/iMSuxU.png)
 
 后端返回一个数组对象，对象内返回相应的数据：
 
@@ -26,7 +33,7 @@ title sku商品规格
 
 ### 型号
 
-[![p9gc9hR.png](https://s1.ax1x.com/2023/05/15/p9gc9hR.png)](https://imgse.com/i/p9gc9hR)
+![p9gc9hR.png](https://s1.ax1x.com/2023/05/15/p9gc9hR.png)
 
 型号是数组对象的形式，通过 `v-for` 遍历渲染；子选项则遍历其属性 `values` 即可。
 
@@ -116,6 +123,3 @@ const handleChoseFn = (item, index) => {
 如果三项都有值了，则判断选择的值是否在 `sku` 数组中，只要有一项不存在，直接 `break` 跳过当前循环，开始下一次的循环，都符合要求则返回相对应的数据。
 
 如果循环结束都没有该规格，视为不存在该规格，提示库存不足即可。
-
-
-

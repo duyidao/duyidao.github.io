@@ -1,6 +1,18 @@
 ---
-title 分享页
+layout: doc
+title: 音果云音项目分享页
+titleTemplate: 音果云音项目分享页
+description: 音果云音 项目 分享
+head:
+  - - meta
+    - name: description
+      content: 音果云音项目分享页
+  - - meta
+    - name: keywords
+      content: 音果云音 项目 分享 QrCode Canvas
+pageClass: lingsi-music-share
 ---
+
 # 分享
 
 使用者点击分享按钮后会跳到分享页，生成落地海报，点击保存按钮可将海报保存到相册中。思路整理：
@@ -10,7 +22,7 @@ title 分享页
 - 生成的图片通过 [uni.saveImageToPhotosAlbum](https://uniapp.dcloud.net.cn/api/media/image.html#saveimagetophotosalbum) 保存到相册。
 
 ## 画布设置
-根据官方文档，在使用画布标签时需要为其添加一个 id 属性，该id必须唯一，不可重复。
+根据官方文档，在使用画布标签时需要为其添加一个 `id` 属性，该 `id` 必须唯一，不可重复。
 ```vue
 <canvas canvas-id="drawing" id="drawing"></canvas>
 ```
@@ -31,6 +43,7 @@ const getSystemInfo = () => {
 
 ### 获取图片信息
 落地页的背景图片在本地文件夹中，绘制画布时需要等待其绘制背景图片，可以通过 [uni.getImageInfo](https://uniapp.dcloud.net.cn/api/media/image.html#getimageinfo) 获取图片信息，获取成功后再绘制画布，返回值如下所示。
+
 ```javascript
 {
   errMsg: "getImageInfo:ok",
@@ -57,9 +70,9 @@ const getImageInfo = (image) => {
 脚本需要找到渲染上下文，然后在它的上面绘制。<br />`<canvas>` 元素创造了一个固定大小的画布，它公开了一个或多个渲染上下文，其可以用来绘制和处理要展示的内容。具体参数如下所示。
 
 | 参数 | 类型 | 说明 |
-| --- | --- | --- |
-| canvasId | String | 画布表示，传入定义在 <canvas/> 的 canvas-id或id（支付宝小程序是id、其他平台是canvas-id） |
-| componentInstance | Object | 自定义组件实例 this ，表示在这个自定义组件下查找拥有 canvas-id 的 <canvas/> ，如果省略，则不在任何自定义组件内查找 |
+| :--- | :---: | ---: |
+| `canvasId` | String | 画布表示，传入定义在 `<canvas/>` 的 `canvas-id`或 `id`（支付宝小程序是`id`、其他平台是`canvas-id`） |
+| `componentInstance` | Object | 自定义组件实例 `this` ，表示在这个自定义组件下查找拥有 `canvas-id` 的 `<canvas/>` ，如果省略，则不在任何自定义组件内查找 |
 
 ```javascript
 var ctx = uni.createCanvasContext('drawing', this);
@@ -77,8 +90,8 @@ ctx.fillRect(0, 0, canvasW.value, canvasH.value) // fillRect(x起点,y起点,�
 ### 绘制图片
 使用 `drawImage()` 方法把一幅图像绘制到画布上。
 
-| **语法** | **说明** | **示例代码** |
-| --- | --- | --- |
+| 语法 | 说明 | 示例代码 |
+| :--- | :---: | ---: |
 | ctx.drawImage(image, dx, dy); | 绘制起点的x和y坐标 | ctx.drawImage(image, 10, 10); |
 | ctx.drawImage(image, dx, dy, dWidth, dHeight); | 绘制目标的宽、高 | ctx.drawImage(image, 50, 10, 20, 30); // 表示绘制出来的图像大小会变成 20×30 像素 |
 | ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight); |  |  |
@@ -117,7 +130,9 @@ ctx.setFontSize(20) // 字号
 ctx.setFillStyle('#f1654d') // 颜色
 ctx.fillText(code, canvasW.value - canvasW.value / 2 - 57, 330) // （文字，x坐标，y坐标）
 ```
-注意：如果要绘制图片和文字，则要把文字绘制的方法写在绘制图片之后。
+::: info 注意
+如果要绘制图片和文字，则要把文字绘制的方法写在绘制图片之后。
+:::
 
 ### 画布绘制内容
 ```javascript
@@ -215,7 +230,7 @@ ctx.draw(true, (ret) => {
 `uni.canvasToTempFilePath(object, component)`<br />把当前画布指定区域的内容导出生成指定大小的图片，并返回文件路径。在自定义组件下，第二个参数传入自定义组件实例，以操作组件内 `<canvas>` 组件。<br />**object参数说明：**
 
 | 参数 | 类型 | 必填 | 说明 |
-| --- | --- | --- | --- |
+| :--- | :---: | :---: | ---: |
 | x | Number | 否 | 画布x轴起点（默认0） |
 | y | Number | 否 | 画布y轴起点（默认0） |
 | width | Number | 否 | 画布宽度（默认为canvas宽度-x） |
@@ -242,6 +257,7 @@ uni.canvasToTempFilePath({ // 保存canvas为图片
 ```
 
 ## 保存相册
+
 `uni.saveImageToPhotosAlbum(OBJECT)` 保存图片到系统相册。
 
 | 参数名 | 类型 | 必填 | 说明 |

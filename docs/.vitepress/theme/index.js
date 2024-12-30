@@ -3,6 +3,8 @@ import './custom.less'
 import compList from '../components/index.js'; // 引入自定义Vue组件
 import giscusTalk from 'vitepress-plugin-comment-with-giscus'; // 引入giscus评论插件
 import { useData, useRoute } from 'vitepress';
+import mediumZoom from 'medium-zoom'; // 引入图片放大插件
+import { onMounted, watch, nextTick } from 'vue';
 
 export default {
   ...DefaultTheme,
@@ -16,8 +18,18 @@ export default {
     const { frontmatter } = useData();
     const route = useRoute();
 
-    console.log('frontmatter: ', frontmatter);
-    console.log('route: ', route);
+    // 实现图片点击放大
+    const initZoom = () => {
+      // mediumZoom('[data-zoomable]', { background: 'var(--vp-c-bg)' }); // 默认
+      mediumZoom(".main img", { background: "var(--vp-c-bg)" }); // 不显式添加{data-zoomable}的情况下为所有图像启用此功能
+    };
+    onMounted(() => {
+      initZoom(); 
+    }); 
+    watch(  
+      () => route.path,
+      () => nextTick(() => initZoom())
+    );
     
     // Obtain configuration from: https://giscus.app/
     giscusTalk(

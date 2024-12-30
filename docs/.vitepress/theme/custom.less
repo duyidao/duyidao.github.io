@@ -20,7 +20,13 @@
   // 引用背景色
   --color-block-bg: rgba(77, 208, 225, .15);
 }
-
+/* .vitepress/theme/style/var.css */
+.medium-zoom-overlay {
+  z-index: 30;
+}
+.medium-zoom-image {
+  z-index: 9999 !important; /* 给的值是21，但是实测盖不住，直接999 */
+}
 * {
   margin: 0;
   padding: 0;

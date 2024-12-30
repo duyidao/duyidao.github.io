@@ -1,7 +1,20 @@
 ---
-title 支付页
+layout: doc
+title: 音果云音项目支付页
+titleTemplate: 音果云音项目支付页
+description: 音果云音 项目 支付
+head:
+  - - meta
+    - name: description
+      content: 音果云音项目支付页
+  - - meta
+    - name: keywords
+      content: 音果云音 项目 支付
+pageClass: lingsi-music-pay
 ---
+
 # 支付
+
 根据后端的接口文档，支付模块需要调用两个接口：
 
 1. 创建订单
@@ -52,7 +65,7 @@ title 支付页
 **参数说明**
 
 | 参数名 | 类型 | 必填 | 说明 |
-| --- | --- | --- | --- |
+| :--- | :---: | :---: | ---: |
 | `provider` | `String` | 是 | 服务提供商，通过 [uni.getProvider](https://uniapp.dcloud.net.cn/api/plugins/provider) 获取。 |
 | `orderInfo` | `String/Object` | 是 | 订单数据，[注意事项](https://uniapp.dcloud.net.cn/api/plugins/payment#orderinfo) |
 | `timeStamp` | `String` | 微信小程序必填 | 时间戳从1970年1月1日至今的秒数，即当前的时间。 |
@@ -90,23 +103,22 @@ const realPay = (res) => {
     })
   })
 }
-
 ```
 
 ## 注意事项
 
 ### manifest.json配置相关参数
 
-1. 在manifest.json - App模块权限选择 中勾选 payment(支付)
-2. 在 manifest.json - App SDK配置 中，勾选需要的支付平台，目前有微信支付、支付宝支付、苹果应用内支付(IAP)，其中微信支付需要填写从微信开放平台获取的AppID
-3. 这些配置需要打包生效，真机运行仍然是HBuilder基座的设置，可使用自定义基座调试。离线打包请参考离线打包文档在原生工程中配置。
-4. 配置并打包后，通过 `uni.getProvider` 可以得到配置的结果列表，注意这里返回的是manifest配置的，与手机端是否安装微信、支付宝无关。
+1. 在 manifest.json - App模块权限选择 中勾选 `payment`(支付)
+2. 在 manifest.json - App SDK配置 中，勾选需要的支付平台，目前有微信支付、支付宝支付、苹果应用内支付(IAP)，其中微信支付需要填写从微信开放平台获取的 AppID
+3. 这些配置需要打包生效，真机运行仍然是 HBuilder 基座的设置，可使用自定义基座调试。离线打包请参考离线打包文档在原生工程中配置。
+4. 配置并打包后，通过 `uni.getProvider` 可以得到配置的结果列表，注意这里返回的是manifest 配置的，与手机端是否安装微信、支付宝无关。
 
 ### H5微信浏览器无效
 
 产品在测试的时候通过微信内置的浏览器打开项目时，发现支付宝支付只能显示链接不能跳转，且链接复制到浏览器后部分链接会报错，如下所示：
 
-[![pC42OfJ.jpg](https://s1.ax1x.com/2023/07/14/pC42OfJ.jpg)](https://imgse.com/i/pC42OfJ)
+![pC42OfJ.jpg](https://s1.ax1x.com/2023/07/14/pC42OfJ.jpg)
 
 最终经过商讨，决定在用户使用微信内置浏览器打开时，给予提示使用外部浏览器打开项目。如何判断当前浏览器是微信浏览器的方法可见 [音果H5](/project/lingsi/music/H5/index.md) 。
 

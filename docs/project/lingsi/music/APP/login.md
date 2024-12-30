@@ -1,5 +1,16 @@
 ---
-title 登录页
+layout: doc
+title: 音果云音项目登录页
+titleTemplate: 音果云音项目登录页
+description: 音果云音 项目 登录
+head:
+  - - meta
+    - name: description
+      content: 音果云音项目登录页
+  - - meta
+    - name: keywords
+      content: 音果云音 项目 登录
+pageClass: lingsi-music-login
 ---
 
 # 登录页
@@ -31,14 +42,16 @@ title 登录页
       3. 变量为0时恢复内容，关闭定时器
    - 禁止按钮点击事件
 
-当按钮被点击调用接口成功后禁用按钮，倒计时结束后恢复按钮点击
-> **可实现的优化**
-> 可以为点击事件添加一个节流操作，防止用户短时间内点击多次调用多次接口。
+当按钮被点击调用接口成功后禁用按钮，倒计时结束后恢复按钮点击。
+
+::: tip 可实现的优化
+可以为点击事件添加一个节流操作，防止用户短时间内点击多次调用多次接口。
+:::
 
 ### 登录
 获取用户输入的手机号与验证码（或者账号和密码），正则校验是否符合条件。校验通过调用接口，与机器码一同传递给后端（机器码在游客登录中详谈），失败则给用户提示。
 
-根据接口返回的数据，利用 `uni.setStorageSync` 本地存储用户的 `cookie` 和 用户信息 `userInfo` 。
+根据接口返回的数据，利用 `uni.setStorageSync` 本地存储用户的 `cookie` 和用户信息 `userInfo` 。
 
 由于这个方法经常使用，且字段较多容易写错，更推荐把本地存储的方法抽取出来封装为几个函数使用：
 
@@ -66,9 +79,9 @@ export {
 ### 游客登录
 本项目是一个上传项目，用户希望能够得知使用者对软件的使用情况以及记录他们的使用时间，因此需要获取到机器码（也就是使用者设备的唯一标识）。
 
-对于这个需求，最开始开发时想到的是 `uni-app` 提供的 `uni.getDeviceInfo()` 方法，返回了 `deviceId` 设备id 。但是根据 [官方文档](https://uniapp.dcloud.net.cn/api/system/getDeviceInfo.html#getdeviceinfo) 描述在清除缓存后会改变，不符合要求，因此排除。
+对于这个需求，最开始开发时想到的是 `UniApp` 提供的 `uni.getDeviceInfo()` 方法，返回了 `deviceId` 设备id 。但是根据 [官方文档](https://uniapp.dcloud.net.cn/api/system/getDeviceInfo.html#getdeviceinfo) 描述在清除缓存后会改变，不符合要求，因此排除。
 
-经过查询，发现原生 `plus` 有一个获取设备 uuid 的方法，返回的结果是一个16进制的字符串，符合要求。
+经过查询，发现原生 `plus` 有一个获取设备 `uuid` 的方法，返回的结果是一个16进制的字符串，符合要求。
 
 ```js
 export const getDeviceId = () => {
@@ -81,6 +94,7 @@ export const getDeviceId = () => {
 
 ### 忘记密码
 忘记密码与重置密码业务相近，原型相近，因此可以复用同一个页面，通过路径传参判断当前需要实现的是什么业务，通过 `uni.setNavigationBarTitle` 自定义初始化标题。
+
 ```js
 onLoad((val) => {
   // 传递type，做修改密码业务，修改标题
@@ -95,7 +109,7 @@ onLoad((val) => {
 
 ### 微信授权登录
 
-现在客户那边提出想要一个微信授权登录的功能，查看 `uniapp` 官方文档后发现相关方法，指路：[App端微信授权登录](https://uniapp.dcloud.net.cn/tutorial/app-oauth-weixin.html#%E5%BC%80%E9%80%9A) 。
+现在客户那边提出想要一个微信授权登录的功能，查看 `UniApp` 官方文档后发现相关方法，指路：[App端微信授权登录](https://uniapp.dcloud.net.cn/tutorial/app-oauth-weixin.html#%E5%BC%80%E9%80%9A) 。
 
 首先需要前往 `manifest.json` 文件配置相关的 `appid` 、`appSecret` 、`UniversalLinks` 。步骤如下：
 
@@ -111,29 +125,25 @@ onLoad((val) => {
 
 ![源码配置](https://pic.imgdb.cn/item/64d49f9c1ddac507cc948536.jpg)
 
-> 注意：
->
-> 这么配置的appsecret参数，云端打包后会保存在apk/ipa中，存在参数泄露的风险！且不经业务服务器验证完成登录。最好只在测试环境使用。
+::: warning 注意
+这么配置的appsecret参数，云端打包后会保存在apk/ipa中，存在参数泄露的风险！且不经业务服务器验证完成登录。最好只在测试环境使用。
+:::
 
 配置完成之后通过 `uni.login` 方法，可以获取微信登录返回的 `openId` 与 `uniId` 。
 
 ```js
 uni.login({
-    provider: 'weixin',
-    success: function (loginRes) {
-        // 登录成功
-        console.log(loginRes)
-    },
-    fail: function (err) {
-        // 登录授权失败  
-        // err.code是错误码
-    }
+  provider: 'weixin',
+  success: function (loginRes) {
+    // 登录成功
+    console.log(loginRes)
+  },
+  fail: function (err) {
+    // 登录授权失败  
+    // err.code是错误码
+  }
 });
 ```
-
-打印的结果如下图所示：
-
-![iPmfBQ.png](https://i.imgloc.com/2023/05/04/iPmfBQ.png)
 
 授权登录成功后可以获取用户信息，通过 `uni.getUserInfo` 方法。该方法可以获取用户的头像、昵称、性别等字段。
 
@@ -174,10 +184,6 @@ const wxLoginFn = () => {
 	});
 }
 ```
-
-获取到的返回结果如下所示：
-
-![iPmADC.png](https://i.imgloc.com/2023/05/04/iPmADC.png)
 
 根据所拿到的数据对象与后端沟通，最后讨论出来的解决方案是把该 `openId` 连同手机号密码一起传递给后端接口即可。
 

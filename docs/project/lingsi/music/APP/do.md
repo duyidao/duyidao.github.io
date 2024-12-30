@@ -1,15 +1,28 @@
 ---
-title 操作页
+layout: doc
+title: 音果云音项目操作页
+titleTemplate: 音果云音项目操作页
+description: 音果云音 项目 操作
+head:
+  - - meta
+    - name: description
+      content: 音果云音项目操作页
+  - - meta
+    - name: keywords
+      content: 音果云音 项目 操作
+pageClass: lingsi-music-do
 ---
 
 # 操作
 
 ## 蓝牙连接
 
-用户需要 `app` 连接蓝牙设备进行各自操作的功能，`uniapp` 有对应的 `API` 可以使用，详情请见 [蓝牙](https://uniapp.dcloud.net.cn/api/system/bluetooth.html#openbluetoothadapter) 与 [低功耗蓝牙](https://uniapp.dcloud.net.cn/api/system/ble.html) 。
+用户需要 `app` 连接蓝牙设备进行各自操作的功能，`UniApp` 有对应的 `API` 可以使用，详情请见 [蓝牙](https://uniapp.dcloud.net.cn/api/system/bluetooth.html#openbluetoothadapter) 与 [低功耗蓝牙](https://uniapp.dcloud.net.cn/api/system/ble.html) 。
 
 ### 初始化蓝牙
-> 最开始需要初始化蓝牙模块，初始化成功后才能调用其他蓝牙相关的 API，否则会返回 _未初始化蓝牙适配器_ 的错误。
+::: warning 注意
+最开始需要初始化蓝牙模块，初始化成功后才能调用其他蓝牙相关的 API，否则会返回 _未初始化蓝牙适配器_ 的错误。
+:::
 
 ```javascript
 const openBluetoothAdapter = () => {
@@ -31,7 +44,9 @@ const openBluetoothAdapter = () => {
 
 ### 开启搜寻
 开始搜寻附近的蓝牙外围设备。
-> 此操作比较耗费系统资源，搜索并连接到设备后调用 `uni.stopBluetoothDevicesDiscovery` 方法停止搜索。
+::: warning 注意
+此操作比较耗费系统资源，搜索并连接到设备后调用 `uni.stopBluetoothDevicesDiscovery` 方法停止搜索。
+:::
 
 ```javascript
 const startBluetoothDevicesDiscovery = () => {
@@ -55,7 +70,9 @@ const startBluetoothDevicesDiscovery = () => {
 
 - `uni.getBluetoothDevices` 获取在蓝牙模块生效期间所有已发现的蓝牙设备。本项目的蓝牙设备均以 “TGYY” 开头，过滤出这些需要的设备渲染在页面上。
 - 获取成功后 `uni.stopBluetoothDevicesDiscovery` 关闭蓝牙搜索。
-```javascript
+
+::: code-group
+```javascript [获取生效设备代码]
 const getBluetoothDevices = () => {
   setTimeout(() => {
     uni.getBluetoothDevices({
@@ -84,32 +101,40 @@ const getBluetoothDevices = () => {
   }, 2000);
 };
 ```
-搜索到的设备会返回以下数据：
-```javascript
+```javascript [返回值]
 {
-    "devices": [{
-        "deviceId": "B4:10:7B:C4:83:14",
-        "name": "蓝牙设备名",
-        "RSSI": -58,
-        "localName": "",
-        "advertisServiceUUIDs": ["0000FFF0-0000-1000-8000-00805F9B34FB"],
-        "advertisData": {}
-    }]
+  "devices": [{
+    "deviceId": "B4:10:7B:C4:83:14",
+    "name": "蓝牙设备名",
+    "RSSI": -58,
+    "localName": "",
+    "advertisServiceUUIDs":["0000FFF0-0000-1000-8000-00805F9B34FB"],
+    "advertisData": {}
+  }]
 }
 ```
+:::
 
 ### 连接低功耗蓝牙
 `uni.createBLEConnection(OBJECT)` 连接低功耗蓝牙设备。
 
-| 属性 | 类型 | 必填 | 说明 |
-| --- | --- | --- | --- |
-| deviceId | string | 是 | 用于区分设备的 id |
+| 属性     | 类型   | 必填 | 说明              |
+| :-------- | :------: | :----: | -----------------: |
+| deviceId | string | 是   | 用于区分设备的 id |
 
 设备 `id` 在第三步获取蓝牙设备步骤中成功回调里获取。我给每条搜索到的蓝牙结果添加一个 `click` 事件，会向目标设备发送连接请求，连接成功后可获取状态值。流程如下：
 
 1. 连接设备：使用设备ID进行连接 `uni.createBLEConnection`
 2. 获取设备所有服务：使用设备ID进行连接 `uni.getBLEDeviceServices`
-```javascript
+
+获取设备服务返回值如下所示：
+
+| 属性      | 类型    | 说明                |
+| :--------- | :-------: | -------------------: |
+| uuid      | string  | 蓝牙设备服务的 uuid |
+| isPrimary | boolean | 该服务是否为主服务  |
+
+```javascript [连接设备代码]
 const handleBLEFn = item => {
   deviceId.value = item.deviceId;
   deviceName.value = item.name;
@@ -155,34 +180,34 @@ const handleBLEFn = item => {
   });
 };
 ```
-获取设备服务返回值如下所示：
-
-| 属性 | 类型 | 说明 |
-| --- | --- | --- |
-| uuid | string | 蓝牙设备服务的 uuid |
-| isPrimary | boolean | 该服务是否为主服务 |
-
-```javascript
+```javascript [返回值]
 {
-    "services": [{
-        "uuid": "00001800-0000-1000-8000-00805F9B34FB",
-        "isPrimary": true
-    }, {
-        "uuid": "00001801-0000-1000-8000-00805F9B34FB",
-        "isPrimary": true
-    }, {
-        "uuid": "0000180A-0000-1000-8000-00805F9B34FB",
-        "isPrimary": true
-    }, {
-        "uuid": "0000FFF0-0000-1000-8000-00805F9B34FB",
-        "isPrimary": true
-    }, {
-        "uuid": "0000FFE0-0000-1000-8000-00805F9B34FB",
-        "isPrimary": true
-    }],
-    "errMsg": "getBLEDeviceServices:ok"
+  "services": [
+    {
+      "uuid": "00001800-0000-1000-8000-00805F9B34FB",
+      "isPrimary": true
+    },
+    {
+      "uuid": "00001801-0000-1000-8000-00805F9B34FB",
+      "isPrimary": true
+    },
+    {
+      "uuid": "0000180A-0000-1000-8000-00805F9B34FB",
+      "isPrimary": true
+    },
+    {
+      "uuid": "0000FFF0-0000-1000-8000-00805F9B34FB",
+      "isPrimary": true
+    },
+    {
+      "uuid": "0000FFE0-0000-1000-8000-00805F9B34FB",
+      "isPrimary": true
+    }
+  ],
+  "errMsg": "getBLEDeviceServices:ok"
 }
 ```
+:::
 
 ### 获取设备特征值，开启消息监听并接收消息监听传来的数据
 通过获取到的设备ID和蓝牙设备服务数组的第二项元素 `uuid` 去获取蓝牙设备某个服务中所有特征值。
@@ -190,7 +215,9 @@ const handleBLEFn = item => {
 1. 允许读：调用 `uni.readBLECharacteristicValue` 事件监听
 2. 允许写：保存其 `uuid` 后续做写的操作
 3. 允许监听：调用 `uni.notifyBLECharacteristicValueChange` 事件开启监听，再通过 `uni.onBLECharacteristicValueChange` 监听其变化。
-```javascript
+
+::: code-group
+```javascript [获取设备特征值代码]
 const handleBLEDeviceFn = uuid => {
   uni.showLoading({
     title: '正在获取特征值',
@@ -266,23 +293,28 @@ const handleBLEDeviceFn = uuid => {
   });
 };
 ```
-> 必须先启用 `notifyBLECharacteristicValueChange` 才能监听到设备 `characteristicValueChange` 事件。
 
-获取指定服务的特征值返回值如下所示：
-```javascript
+```javascript [返回值]
 {
-    "characteristics": [{
-        "uuid": "0000FFE1-0000-1000-8000-00805F9B34FB",
-        "properties": {
-            "read": true,
-            "write": true,
-            "notify": true,
-            "indicate": false
-        }
-    }],
-    "errMsg": "getBLEDeviceCharacteristics:ok"
+  "characteristics": [
+    {
+      "uuid": "0000FFE1-0000-1000-8000-00805F9B34FB",
+      "properties": {
+        "read": true,
+        "write": true,
+        "notify": true,
+        "indicate": false
+      }
+    }
+  ],
+  "errMsg": "getBLEDeviceCharacteristics:ok"
 }
 ```
+:::
+
+::: warning 注意
+必须先启用 `notifyBLECharacteristicValueChange` 才能监听到设备 `characteristicValueChange` 事件。
+:::
 
 ### 写入数据
 数据的写入需要蓝牙设备厂商提供对应的十六进制指令。
@@ -340,13 +372,13 @@ dataView.getUint8(0) // 0, 参数表示读取的起始位置
 ```javascript
 new DataView(buffer, byteOffset, byteLength)
 ```
-**参数：**该函数接受三个参数，如下所述：
+**参数：** 该函数接受三个参数，如下所述：
 
 - **buffer：**一个已经存在的 `ArrayBuffer`，用于存储新的`DataView`对象。
 - **byteOffset (optional)：**缓冲区中的`offset`(以字节为单位)用于启动缓冲区的新视图。默认情况下，新视图从第一个字节开始。
 - **byteLength (optional)：**它代表字节数组中的元素数。默认情况下，缓冲区的长度被视为视图的长度。
 
-**返回值：**它返回一个新的`DataView`对象，它将代表指定的数据缓冲区。
+**返回值：** 它返回一个新的`DataView`对象，它将代表指定的数据缓冲区。
 
 ### 总体代码
 ```vue
@@ -923,22 +955,22 @@ new DataView(buffer, byteOffset, byteLength)
 ```
 
 ## 扫一扫
-uniapp 内置事件 [uni.scanCode](https://uniapp.dcloud.net.cn/api/system/barcode.html#scancode) 可调起客户端扫码界面，扫码成功后返回对应的结果。
+`UniApp` 内置事件 [uni.scanCode](https://uniapp.dcloud.net.cn/api/system/barcode.html#scancode) 可调起客户端扫码界面，扫码成功后返回对应的结果。
 
-| 参数名 | 类型 | 必填 | 说明 |
-| --- | --- | --- | --- |
-| onlyFromCamera | Boolean | 否 | 是否只能从相机扫码，不允许从相册选择图片 |
-| scanType | Array | 否 | 扫码类型，参考下方scanType的合法值 |
-| autoDecodeCharset | Boolean | 否 | 是否启用自动识别字符编码功能，默认为否 |
-| autoZoom | Boolean | 否 | 是否启用自动放大，默认启用 |
-| barCodeInput | Boolean | 否 | 是否支持手动输入条形码 |
-| hideAlbum | Boolean | 否 | 是否隐藏相册（不允许从相册选择图片），只能从相机扫码。默认值为 false。 |
-| success | Function | 否 | 接口调用成功的回调，返回内容详见返回参数说明。 |
-| fail | Function | 否 | 接口调用失败的回调函数（识别失败、用户取消等情况下触发） |
-| complete | Function | 否 | 接口调用结束的回调函数（调用成功、失败都会执行） |
+| 参数名            | 类型     | 必填 | 说明  |
+| :----------------- | :--------: | :--------: | -----------------------: |
+| onlyFromCamera    | Boolean  | 否   | 是否只能从相机扫码，不允许从相册选择图片                               |
+| scanType          | Array    | 否   | 扫码类型，参考下方scanType的合法值                                     |
+| autoDecodeCharset | Boolean  | 否   | 是否启用自动识别字符编码功能，默认为否                                 |
+| autoZoom          | Boolean  | 否   | 是否启用自动放大，默认启用                                             |
+| barCodeInput      | Boolean  | 否   | 是否支持手动输入条形码                                                 |
+| hideAlbum         | Boolean  | 否   | 是否隐藏相册（不允许从相册选择图片），只能从相机扫码。默认值为 false。 |
+| success           | Function | 否   | 接口调用成功的回调，返回内容详见返回参数说明。                         |
+| fail              | Function | 否   | 接口调用失败的回调函数（识别失败、用户取消等情况下触发）               |
+| complete          | Function | 否   | 接口调用结束的回调函数（调用成功、失败都会执行）                       |
 
-成功状态返回值如下所示：
-```javascript
+::: code-group
+```javascript [成功状态返回值]
 {
  "scanType": "QR_CODE",
  "path": "/storage/emulated/0/Android/data/io.dcloud.HBuilder/apps/HBuilder/doc/uniapp_temp/compressed/1672372115339_Screenshot_2022-12-16-05-50-02-044_com.tencent.mm.jpg",
@@ -947,8 +979,7 @@ uniapp 内置事件 [uni.scanCode](https://uniapp.dcloud.net.cn/api/system/barco
  "errMsg": "scanCode:ok"
 }
 ```
-对象内的 result 包含二维码的内容，是一个 JSON 格式的字符串。
-```javascript
+```javascript [对象内的result包含二维码的内容，是一个 JSON 格式的字符串]
 const scanCodeFn = () => {
   uni.scanCode({
     scanType: ['qrCode'], //条形码
@@ -966,3 +997,4 @@ const scanCodeFn = () => {
   })
 }
 ```
+:::

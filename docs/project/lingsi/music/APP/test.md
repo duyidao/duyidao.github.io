@@ -1,16 +1,28 @@
 ---
-title 测试页
+layout: doc
+title: 音果云音项目测试页
+titleTemplate: 音果云音项目测试页
+description: 音果云音 项目 测试
+head:
+  - - meta
+    - name: description
+      content: 音果云音项目测试页
+  - - meta
+    - name: keywords
+      content: 音果云音 项目 测试
+pageClass: lingsi-music-test
 ---
+
 # 测试页
 
-点击上一题前往上一题，点击下一题前往下一题，最后一道题提交测试。看到效果第一时间考虑的是该如何布局才能更简便呢？（以下思路以及代码由CharHua同事提供）
+现有一个需求：点击上一题前往上一题，点击下一题前往下一题，最后一道题做完提交测试。看到效果第一时间考虑的是该如何布局才能更简便呢？（以下思路以及代码由CharHua同事提供）
 
-`uniapp` 有一个内置组件 `swiper` ，滑块视图容器。一般用于左右滑动或上下滑动，比如`banner`轮播图。注意滑动切换和滚动的区别，滑动切换是一屏一屏的切换。`swiper`下的每个`swiper-item`是一个滑动切换区域，不能停留在2个滑动区域之间。详情可前往官方文档 [swiper](https://uniapp.dcloud.net.cn/component/swiper.html#swiper) 查看。
+`UniApp` 有一个内置组件 `swiper` ，滑块视图容器。一般用于左右滑动或上下滑动，比如`banner`轮播图。注意滑动切换和滚动的区别，滑动切换是一屏一屏的切换。`swiper`下的每个`swiper-item`是一个滑动切换区域，不能停留在2个滑动区域之间。详情可前往官方文档 [swiper](https://uniapp.dcloud.net.cn/component/swiper.html#swiper) 查看。
 
 **属性说明**
 
 | 属性名 | 类型 | 默认值 | 说明 |
-| --- | --- | --- | --- |
+| :--- | :---: | :---: | ---: |
 | `indicator-dots` | `Boolean` | `false` | 是否显示面板指示点 |
 | `current` | `Number` | 0 | 当前所在滑块的 index |
 | `current-item-id` | `String` |  | 当前所在滑块的 item-id ，不能与 `current` 被同时指定 |
@@ -20,7 +32,8 @@ title 测试页
 
 整体代码如下所示。
 
-```vue
+::: code-group
+```vue [js模块]
 <script setup>
 	const titleList = ref([]) // 试题数组
 	const initTopic = async (id) => {
@@ -68,7 +81,8 @@ title 测试页
 		}
 	}
 </script>
-
+```
+```vue [template模块]
 <template>
 		<view class="examination-program">
 			<view class="exam-main-area">
@@ -115,3 +129,4 @@ title 测试页
 	</view>
 </template>
 ```
+:::
