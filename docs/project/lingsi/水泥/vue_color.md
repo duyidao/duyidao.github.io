@@ -1,14 +1,35 @@
+---
+layout: doc
+title: 华润水泥 vue-color的使用
+titleTemplate: 华润水泥 vue-color的使用
+description: 华润水泥 jeecg 后台管理 低代码 vue-color
+head:
+  - - meta
+    - name: description
+      content: 华润水泥 vue-color的使用
+  - - meta
+    - name: keywords
+      content: 华润水泥 jeecg 后台管理 低代码 vue-color
+pageClass: lingsi-jeecg-index
+---
+
 # vue-color的使用
 
 水泥项目有一个需求：提供颜色选择器给用户选择颜色，旁边能还让用户看到预览颜色及其 `rgb` 内容。根据搜寻最后找到插件 `vue-color` 。`github` 官方文档地址为： [vue-color](https://hub.nuaa.cf/xiaokaike/vue-color) 。
 
-## 下载
+## 引入插件
 
-引入插件
-
-```sh
+::: code-group
+```sh [npm]
+npm i vue-color
+```
+```sh [yarn]
 yarn add vue-color
 ```
+```sh [pnpm]
+pnpm i vue-color
+```
+:::
 
 ## 使用
 
@@ -16,7 +37,7 @@ yarn add vue-color
 
    在项目中新建一个测试页面 `test.vue` ，导入相对应的模块
 
-   ```
+   ```js
    import { Photoshop, Chrome, Sketch, Slider, Swatches, Compact, Material } from 'vue-color'
    ```
 
@@ -26,7 +47,7 @@ yarn add vue-color
    - 引入组件并注册
    - 使用
 
-   ```js
+   ```vue
    <template>
      <div class="vueColor">
      	<material-picker v-model="colors" />

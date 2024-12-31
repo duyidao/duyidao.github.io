@@ -1,8 +1,21 @@
+---
+layout: doc
+title: 华润水泥 j-vxe-table搭配其他组件
+titleTemplate: 华润水泥 j-vxe-table搭配其他组件
+description: 华润水泥 jeecg 后台管理 低代码 j-vxe-table
+head:
+  - - meta
+    - name: description
+      content: 华润水泥 j-vxe-table搭配其他组件
+  - - meta
+    - name: keywords
+      content: 华润水泥 jeecg 后台管理 低代码 j-vxe-table
+pageClass: lingsi-jeecg-index
+---
+
 # j-vxe-table搭配其他组件
 
-`j-vxe-table` 是 `jeecg-boot` 基于`vxe-table`组件开发的自定义组件，在弹窗组件中引入一个子表单，效果如下图所示：
-
-![ijiFXF.png](https://i.328888.xyz/2023/04/04/ijiFXF.png)
+`j-vxe-table` 是 `jeecg-boot` 基于`vxe-table`组件开发的自定义组件，在弹窗组件中引入一个子表单。
 
 官方文档指路：[JVXETable 文档](http://doc.jeecg.com/2043991) 。
 
@@ -25,9 +38,8 @@
 
 ## 使用
 
-设置插槽以及名称：
-
-```js
+::: code-group
+```js [设置插槽以及名称]
 {
   title: '设计',
   key: 'designName',
@@ -35,10 +47,7 @@
   slotName: 'img_url',
 },
 ```
-
-使用插槽动态判断当前是显示效果图还是输入框：
-
-```html
+```html [使用插槽动态判断当前是显示效果图还是输入框]
 <template v-slot:img_url="props">
   <!-- props.row.designImg-->
   <a-input v-if='!productImg[props.index]' placeholder="请选择产品设计" @click='showSelectFn(props)' />
@@ -48,16 +57,13 @@
   <SelectPopup ref="selectDesignPopupRef" :value="productImg[props.index]" :selected-items="productId" @confirm="(e) => handleOkConsultDesign(e, props)" modalTitle="选择产品设计" />
 </template>
 ```
-
-`prop` 为当前行的数据，部分数据如下图所示：
-
-![im5oV5.png](https://i.328888.xyz/2023/04/10/im5oV5.png)
-
-可以看到，当前行数据会保存在 `prop` 下的 `row` 对象内。
+:::
 
 阅读更深层次的源码，发现其通过 `mixins` 封装保存每一列的数据到 `props` 对象内，依据同名变量中本地文件的变量优先级高于 `mixins` 文件内的变量，可以设置一个变量对象 `props` ，把修改后的值保存到 `props` 内。
 
-> 保存到 `props` 变量内而不是直接保存到传参内还有一个好处，如果用户点击新增多行，然后修改非最后一行的数据，修改的数据只会保存到最后一行中。
+::: tip 提示
+保存到 `props` 变量内而不是直接保存到传参内还有一个好处，如果用户点击新增多行，然后修改非最后一行的数据，修改的数据只会保存到最后一行中。
+:::
 
 页面回显的图片数据则另外保存到一个数组中，，保存依据为当前操作的是哪一行的表单。通过 `props.index` 即可操作。
 

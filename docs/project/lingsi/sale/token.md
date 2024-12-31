@@ -25,7 +25,7 @@ pageClass: lingsi-sale-token
 调用接口不能使用封装后的方法，因为调用刷新 `token` 的接口已经封装好了，如果继续调用封装好的方法会一直判断时间戳，调用接口，判断时间戳......进入死循环。
 :::
 
-不要用了框架就忘记原生方法。`uniapp` 提供一个方法 [uni.request](https://uniapp.dcloud.net.cn/api/request/request.html#request) 发起网络请求，参数说明如下：
+不要用了框架就忘记原生方法。`UniApp` 提供一个方法 [uni.request](https://uniapp.dcloud.net.cn/api/request/request.html#request) 发起网络请求，参数说明如下：
 
 **参数说明**
 

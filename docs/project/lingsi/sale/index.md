@@ -89,7 +89,7 @@ pageClass: lingsi-sale-index
 
 ### 长按触发点击事件
 
-在投票界面用户需要长按对应作品复制其链接，轻车熟路从 `uniapp` 文档中找到 `longtap` 方法，运行测试一下有效果了，但是微信开发工具爆了一个警告：
+在投票界面用户需要长按对应作品复制其链接，轻车熟路从 `UniApp` 文档中找到 `longtap` 方法，运行测试一下有效果了，但是微信开发工具爆了一个警告：
 
 ```
 [Deprecation] 'longtap' event is deprecated. Please use 'longpress' instead.
@@ -142,7 +142,7 @@ pageClass: lingsi-sale-index
 
 通过二维码扫码跳转的页面包含活动详情页，如果用户未登录，则会跳转到登录页，登录成功后返回的是首页，体验很不友好，因此需要让用户从哪里进的登录页，就回到哪里去。
 
-`uniapp` 中没有路由的概念，可以通过 `getCurrentPages()` 方法获取当前的页面栈，为数组对象的形式，第一项为当前的页面，第二项为上一页。`route` 属性的值是该页面的路由，因此可以获取然后跳转页面。
+`UniApp` 中没有路由的概念，可以通过 `getCurrentPages()` 方法获取当前的页面栈，为数组对象的形式，第一项为当前的页面，第二项为上一页。`route` 属性的值是该页面的路由，因此可以获取然后跳转页面。
 
 ```js
 const pages = getCurrentPages() //获取加载的页面，数组形式，route是页面栈的路由

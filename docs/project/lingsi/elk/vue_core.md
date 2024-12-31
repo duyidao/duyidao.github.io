@@ -41,7 +41,7 @@ Vue.use(VueCron);//使用方式：<vueCron></vueCron>
 ```
 
 ## 示例
-vue-cron 有两个方法：
+`vue-cron` 有两个方法：
 
 - change ：失焦后修改时间时触发。
 - close ：点击取消按钮时触发。
