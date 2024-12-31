@@ -21,7 +21,7 @@ const CanvasSidebar = [
     collapsible: true,
     // collapsed: true,
     items: [
-      { text: "canvas", link: "/Canvas/index" },
+      { text: "canvas", link: "/Canvas/" },
       { text: "图片压缩", link: "/Canvas/compress" },
       { text: "图片滤镜", link: "/Canvas/filter" },
       { text: "调色盘", link: "/Canvas/palette" },
@@ -201,7 +201,7 @@ const RegSidebar = [
         text: "知识点",
         collapsible: true,
         items: [
-          { text: "正则表达式", link: "/Reg/knowledge/index" },
+          { text: "正则表达式", link: "/Reg/knowledge/" },
           { text: "元子字符", link: "/Reg/knowledge/元子字符" },
           { text: "模式修饰", link: "/Reg/knowledge/模式修饰" },
           { text: "原子", link: "/Reg/knowledge/原子" },
@@ -880,8 +880,8 @@ const BaiduSidebar = [
     collapsible: true,
     items: [
       { text: "⛷️ 引言", link: "/baidu/" },
-      { text: "🗺 图层", link: "/baidu/layer/index" },
-      { text: "🎞️ 佛开", link: "/baidu/fokai/LED/index" },
+      { text: "🗺 图层", link: "/baidu/layer/" },
+      { text: "🎞️ 佛开", link: "/baidu/fokai/LED/" },
       { text: "🗑 返回", link: "/project/" },
     ],
   },
@@ -893,7 +893,7 @@ const LayerSidebar = [
     text: "🗺 图层",
     collapsible: true,
     items: [
-      { text: "💡 介绍", link: "/baidu/layer/index" },
+      { text: "💡 介绍", link: "/baidu/layer/" },
       { text: "📦 封装", link: "/baidu/layer/封装" },
       { text: "⛑️ 规范", link: "/baidu/layer/规范" },
       { text: "🌊 样式", link: "/baidu/layer/样式" },
@@ -917,7 +917,7 @@ const FokaiSidebar = [
         text: "🖥 平台",
         collapsible: true,
         items: [
-          { text: "💡 介绍", link: "/baidu/fokai/platform/index" },
+          { text: "💡 介绍", link: "/baidu/fokai/platform/" },
           { text: "👣 组件", link: "/baidu/fokai/platform/component" },
           { text: "⏭️ 3d跳转", link: "/baidu/fokai/platform/3d跳转" },
         ]
@@ -926,7 +926,7 @@ const FokaiSidebar = [
         text: "💡 LED大屏",
         collapsible: true,
         items: [
-          { text: "💡 介绍", link: "/baidu/fokai/LED/index" },
+          { text: "💡 介绍", link: "/baidu/fokai/LED/" },
           { text: "🟥 样式", link: "/baidu/fokai/LED/style" },
           { text: "🛑 覆盖物", link: "/baidu/fokai/LED/overlay" },
           { text: "💻 Ws", link: "/baidu/fokai/LED/ws" },
@@ -1107,7 +1107,7 @@ const ReadSidebar = [
             collapsible: true,
             collapsed: true,
             items: [
-              { text: "索引", link: "/read/javascript/ES6标准入门/index" },
+              { text: "索引", link: "/read/javascript/ES6标准入门/" },
               { text: "第一章 ECMAScript6简介", link: "/read/javascript/ES6标准入门/1" },
               { text: "第二章 Let 和 const 命令", link: "/read/javascript/ES6标准入门/2" },
               { text: "第三章 变量的解构赋值", link: "/read/javascript/ES6标准入门/3" },
@@ -1263,7 +1263,7 @@ const AskSidebar = [
     items: [
       {
         text: "面试历程",
-        link: "/interview/index",
+        link: "/interview/",
       },
       {
         text: "印萌",

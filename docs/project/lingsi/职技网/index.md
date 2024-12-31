@@ -1,5 +1,16 @@
 ---
-title 职技网项目简介
+layout: doc
+title: 职技网项目简介
+titleTemplate: 职技网 简介
+description: 职技网 公众号 简介
+head:
+  - - meta
+    - name: description
+      content: 职技网 简介
+  - - meta
+    - name: keywords
+      content: 职技网 公众号 简介
+pageClass: lingsi-job-index
 ---
 
 # 职技网
@@ -22,13 +33,13 @@ title 职技网项目简介
 
 ## 项目技术栈
 
-职教网的技术栈是 `vue2` + `axios` + `vuex` + `router` + `less` ；选用 `vant2` 组件库。
+职教网的技术栈是 `Vue2` + `axios` + `Vuex` + `router` + `less` ；选用 `Vant2` 组件库。
 
 ## 项目亮点
 
 ### 二次封装
 
-该项目利用 `vant` 组件库提供的组件进行二次封装，避免重复造轮子，提高复用组件的可维护性和可使用性。详细可见二次封装。
+该项目利用 `Vant` 组件库提供的组件进行二次封装，避免重复造轮子，提高复用组件的可维护性和可使用性。详细可见二次封装。
 
 ### 富文本
 

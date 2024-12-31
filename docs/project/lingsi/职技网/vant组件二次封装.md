@@ -1,10 +1,21 @@
 ---
-title vant组件二次封装
+layout: doc
+title: 职技网 Vant组件二次封装
+titleTemplate: 职技网 项目创建
+description: 职技网 公众号 Vant组件 二次封装
+head:
+  - - meta
+    - name: description
+      content: 职技网 Vant组件二次封装
+  - - meta
+    - name: keywords
+      content: 职技网 公众号 Vant组件 二次封装
+pageClass: lingsi-job-establish
 ---
 
 # vant组件二次封装
 
-为了更方便复用组件，更贴切业务范围，本项目对 `vant` 的部分组件进行二次封装，提高组件的复用性和可维护性。
+为了更方便复用组件，更贴切业务范围，本项目对 `Vant` 的部分组件进行二次封装，提高组件的复用性和可维护性。
 
 ## NavBar导航栏
 
@@ -90,7 +101,7 @@ export default {
 
 ## 文件上传组件
 
-`vant` 提供了文件上传组件 `Uploader` ，主要做以下几步封装：
+`Vant` 提供了文件上传组件 `Uploader` ，主要做以下几步封装：
 
 - 判断当前的状态 `disabled` ：是否禁用该组件（查看详情时候）
 - 判断是否显示叉叉 `deletable` ：查看详情的时候隐藏
@@ -166,6 +177,5 @@ judgeFileFn(e, type) {
       break;
   }
   return true
-},
+}
 ```
-
