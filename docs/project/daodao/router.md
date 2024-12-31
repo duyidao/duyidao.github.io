@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 刀刀小站路由自动导入
+titleTemplate: 刀刀小站路由自动导入
+description: Vue3 刀刀小站 路由自动导入
+head:
+  - - meta
+    - name: description
+      content: 刀刀小站路由自动导入
+  - - meta
+    - name: keywords
+      content: Vue3 刀刀小站 路由自动导入
+pageClass: project-daodao-router
+---
+
 # 路由自动导入
 
 ## 前置知识
@@ -23,7 +38,8 @@ console.log(pages)
 ### 获取导出
 
 在每个 `page.js` 文件中默认导出需要的信息：
-```js
+::: code-group
+```js [page.js]
 import cssImg from '@/assets/img/filter.jpg'
 
 export default {
@@ -33,8 +49,7 @@ export default {
     menuOrder: 2,
 }
 ```
-
-```js
+```js [router.js]
 const pages = import.meta.glob('../views/**/page.js', { // [!code ++]
     eager: true, // [!code ++] // 只获取导出结果
     import: 'default', // [!code ++] // 获取默认导出
@@ -42,6 +57,8 @@ const pages = import.meta.glob('../views/**/page.js', { // [!code ++]
 
 console.log(pages)
 ```
+:::
+
 此时查看打印，可以看到已经获取到了导出结果，但是还是需要手动处理一下：
 
 ![打印](https://pic.imgdb.cn/item/66252b160ea9cb1403eaf1e7.png)
@@ -54,6 +71,7 @@ console.log(pages)
 - name：通过文件路径修改连接符生成文件名
 - meta：路由元信息，即键值
 - component：通过文件路径替换掉 `page.js` ，修改为 `index.vue` 
+
 ```js
 const routes = Object.entries(pages).map([path, meta]) => {
     const compPath = path.replace('../views', '').replace('/page.js', 'index.vue')

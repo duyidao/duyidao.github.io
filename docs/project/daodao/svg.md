@@ -1,16 +1,27 @@
+---
+layout: doc
+title: 刀刀小站Svg组件封装
+titleTemplate: 刀刀小站Svg组件封装
+description: Vue3 刀刀小站 Svg 组件封装
+head:
+  - - meta
+    - name: description
+      content: 刀刀小站Svg组件封装
+  - - meta
+    - name: keywords
+      content: Vue3 刀刀小站 Svg 组件封装
+pageClass: project-daodao-svg
+---
+
 # Svg组件封装
 
-在 `vue3` 项目中，可以通过第三方库 `vite-plugin-svg-icons` 封装一个 `svg` 组件全局使用，通过父子传参设置 `svg` 图标的宽高、颜色等。
+在 `Vue3` 项目中，可以通过第三方库 `vite-plugin-svg-icons` 封装一个 `svg` 组件全局使用，通过父子传参设置 `svg` 图标的宽高、颜色等。下载依赖，在 `vite.config.js` 文件中引入，配置 `svg` 图标存放的文件路径和使用名称格式
 
-下载依赖：
-
-```
+::: code-group
+```shell [下载依赖]
 pnpm i vite-plugin-svg-icons
 ```
-
-在 `vite.config.js` 文件中引入，配置 `svg` 图标存放的文件路径和使用名称格式：
-
-```js
+```js [vite.config.js]
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 
 export default defineConfig({
@@ -32,6 +43,7 @@ export default defineConfig({
   // ...
 })
 ```
+:::
 
 封装子组件：
 

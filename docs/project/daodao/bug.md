@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 刀刀小站Bug 修改
+titleTemplate: 刀刀小站Bug 修改
+description: Vue3 刀刀小站 Bug 修改
+head:
+  - - meta
+    - name: description
+      content: 刀刀小站Bug 修改
+  - - meta
+    - name: keywords
+      content: Vue3 刀刀小站 Bug 修改
+pageClass: project-daodao-bug
+---
+
 # Bug 修改
 
 ## _commonHelpers.js 文件404

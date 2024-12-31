@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 刀刀小站优化
+titleTemplate: 刀刀小站优化
+description: Vue3 刀刀小站 优化
+head:
+  - - meta
+    - name: description
+      content: 刀刀小站优化
+  - - meta
+    - name: keywords
+      content: Vue3 刀刀小站 优化
+pageClass: project-daodao-prod
+---
+
 # 优化
 
 ## 图片处理
@@ -46,6 +61,7 @@
     }
   ```
   还有一下小细节比如图片加载失败后用失败占位图来代替，图片加载成功后添加 `fade-in` 动画等，这里不做过多赘述。
+  
 - 组件
   ```vue
   <script setup>
