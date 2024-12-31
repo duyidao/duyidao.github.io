@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 百度外包佛开项目LED屏
+titleTemplate: 百度外包佛开项目LED屏
+description: 地图 百度 佛开 大屏端 LED
+head:
+  - - meta
+    - name: description
+      content: 百度外包佛开项目LED屏
+  - - meta
+    - name: keywords
+      content: 地图 百度 佛开 大屏端 LED
+pageClass: baidu-fokai-led
+---
+
 # LED屏
 
 ## 项目简介
@@ -22,16 +37,14 @@
 
 ![应用](https://pic.imgdb.cn/item/65fa51f69f345e8d03029179.png)
 
-接下来复制官方文档的 `script` 标签，粘贴到项目的 `index.html` 文件中。
+接下来复制官方文档的 `script` 标签，粘贴到项目的 `index.html` 文件中。在 `App.vue` 中创建一个盒子地图容器，用于展示地图，设置宽高。创建地图实例，设置中心点坐标，最后初始化完成。
 
-```html
+::: code-group
+```html [index.html]
 <script type="text/javascript" src="https://api.map.baidu.com/api?v=1.0&&type=webgl&ak=您的密钥">
 </script>
 ```
-
-在 `App.vue` 中创建一个盒子地图容器，用于展示地图，设置宽高。创建地图实例，设置中心点坐标，最后初始化完成。
-
-```vue
+```vue [App.vue]
 <script setup>
 import { onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
@@ -57,5 +70,6 @@ onMounted(() => {
     <div ref="container" id="map_container"></div>
 </template>
 ```
+:::
 
 现在页面上就能看到效果了。

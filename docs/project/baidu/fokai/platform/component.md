@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 百度外包佛开项目子组件动态挂载
+titleTemplate: 百度外包佛开项目子组件动态挂载
+description: 地图 百度 佛开 动态挂载
+head:
+  - - meta
+    - name: description
+      content: 百度外包佛开项目子组件动态挂载
+  - - meta
+    - name: keywords
+      content: 地图 百度 佛开 动态挂载
+pageClass: baidu-fokai-comp
+---
+
 # 子组件动态挂载
 
 ## 前置
@@ -28,8 +43,9 @@
     Object.entries(routeFiles) // [!code ++]
         .filter(([path]) => path.startsWith('./model')) // [!code ++]
         .forEach(([path, component]) => { // [!code ++]
-            const name = getCardNameByPath(path); // [!code ++] // 获取组件名
-   
+            const name = getCardNameByPath(path); // 获取组件名 // [!code ++]
+        }) // [!code ++]
+
     export default asyncComponents; // [!code ++]
    
     function getCardNameByPath(path) { // [!code ++]
@@ -40,8 +56,8 @@
 4. 检查 `asyncComponents` 对象是否有以组件名为键的属性，如果有，就获取这个属性的值；如果没有，就创建一个新的空对象。使用 `defineAsyncComponent` 方法将组件定义为异步组件，并将其赋值给 `components` 对象的对应类型的属性。`defineAsyncComponent` 是 Vue3 中的一个函数，用于定义异步组件。最后，将 `components` 对象赋值回 `asyncComponents` 对象的对应组件名的属性。这样，`asyncComponents` 对象就包含了所有以 `./model` 开头的路径的组件。
 
 ### 总体代码
+::: details 点击查看整体代码
 ```js
-
 import {defineAsyncComponent} from 'vue';
 const routeFiles = import.meta.glob(['./*/*.vue', './*.vue']);
 
@@ -68,6 +84,7 @@ function getCardNameByPath(path) {
     return toLowerCase(upperName);
 }
 ```
+:::
 
 ## 父组件
 
@@ -127,23 +144,20 @@ const dict = {
 
 ### 过滤对应子组件
 
-封装一个函数，用于过滤查找出当前页面对应的左侧、右侧子组件。通过字典可以看出，我需要接收当前是哪个页面，以及需要哪侧的子组件参数。
+封装一个函数，用于过滤查找出当前页面对应的左侧、右侧子组件。通过字典可以看出，我需要接收当前是哪个页面，以及需要哪侧的子组件参数，这里可以通过 `reduce` 方法来实现。
 
-这里可以通过 `reduce` 方法来实现，代码如下：
-
-```js
+::: code-group
+```js [方法]
 function getSys(configKey) {
     return configKey.split('.').reduce((p, c) => {
         return p?.[c];
     }, dict);
 };
 ```
-
-以设备左侧为例，调用该函数的代码如下所示：
-
-```js
+```js [使用]
 const leftCard = getSys('emquity.left')
 ```
+:::
 
 此时就能拿到对应页面的对应侧位的对应子组件数组。
 
@@ -208,7 +222,7 @@ const click = () => {
 
 首先声明一个变量，表示能渲染多少组件，然后通过计算属性过滤数组。每当一个组件挂载成功，让该变量自增一，这样就能一个个挂载，并由于有 `transition-group` ，能够实现动画效果。
 
-```vue
+```vue {10,21-25}
 <template>
 	<transition-group
       enter-active-class="animate__animated animate__fadeIn"
@@ -218,7 +232,7 @@ const click = () => {
           v-for="el in cards"
           :key="el.component"
           v-bind="el"
-          @vue:mounted="mounted" <!-- [!code ++] -->
+          @vue:mounted="mounted"
       />
   </transition-group>
 </template>
@@ -229,11 +243,11 @@ import useCard from './useCard';
 const {cards} = useCard('right');
 
 const show = ref(false);
-const getInitIndex = () => (show.value ? 1 : 0); // [!code ++] // 0:未展开 1:展开;
-const renderIndex = ref(getInitIndex()); // [!code ++]
-const mounted = () => { // [!code ++]
-    renderIndex.value++; // [!code ++]
-}; // [!code ++]
+const getInitIndex = () => (show.value ? 1 : 0);
+const renderIndex = ref(getInitIndex());
+const mounted = () => {
+    renderIndex.value++;
+};
 
 const click = () => {
     show.value = !show.value;

@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 百度外包图层项目MapVThree
+titleTemplate: 百度外包图层项目MapVThree
+description: 地图 百度 图层 MapVThree
+head:
+  - - meta
+    - name: description
+      content: 百度外包图层项目MapVThree
+  - - meta
+    - name: keywords
+      content: 地图 百度 图层 MapVThree
+pageClass: baidu-layout-prod
+---
+
 # MapVThree
 
 百度地图官方文档指路：[Mapvthree开发文档 (baidu.com)](https://lbsyun.baidu.com/solutions/mapvthreedoc) 。地图方法每个图层都要使用，因此统一封装成公共方法，通过传值的形式设置不同的属性。下面从方法封装、使用入手。
@@ -24,8 +39,7 @@
 
 5. 创建一个删除点的方法，调用地图实例的 `remove()` 方法实现删除
 
-代码如下所示：
-
+::: details 点击展开详细代码
 ```js
 // 添加icon
 export const addIcon = (coordinates, url, info) => {
@@ -75,6 +89,7 @@ export const removeIcon = (icon, _engine = engine.value) => {
     icon && _engine.remove(icon);
 };
 ```
+:::
 
 ### 线
 
@@ -94,8 +109,7 @@ export const removeIcon = (icon, _engine = engine.value) => {
 
 5. 创建一个删除线的方法，调用地图实例的 `remove()` 方法实现删除
 
-代码如下所示：
-
+::: details 点击展开详细代码
 ```js
 // 添加线
 export const addLine = (coordinates, info, _engine, callback) => {
@@ -132,6 +146,7 @@ export const removeLine = (line, _engine = engine.value) => {
     line && _engine.remove(line);
 };
 ```
+:::
 
 ### 模型
 
@@ -142,8 +157,7 @@ export const removeLine = (line, _engine = engine.value) => {
 3. 在模型方法的 `load` 回调函数中获取到模型数据，并给模型设置坐标和大小
 4. 删除同理使用地图实例的 `remove()` 方法移除
 
-代码如下所示：
-
+::: details 点击展开详细代码
 ```js
 // 添加模型
 export const addModel = (url = 'maplayer/assets/models/car-impact.glb', position, scale = 7, callback) => {
@@ -165,6 +179,7 @@ export const removeModel = model => {
     model && engine.value.remove(model);
 };
 ```
+:::
 
 ### 视野漫游动画
 
@@ -176,8 +191,7 @@ export const removeModel = model => {
 4. 返回创建好的视野漫游动画和该地图实例
 5. 创建一个删除点的方法，调用地图实例的 `remove()` 方法实现删除
 
-代码如下所示：
-
+::: details 点击展开详细代码
 ```js
 // 添加视野漫游动画
 export const addPathTracker = options => {
@@ -214,7 +228,7 @@ export const removePathTracker = (name, _engine = engine.value) => {
     name && _engine.remove(name);
 };
 ```
-
+:::
 ## 地图方法使用
 
 方法有了，现在就是使用方法实现需求了。
@@ -242,18 +256,19 @@ export const removePathTracker = (name, _engine = engine.value) => {
 - 扎点状态，有正常（绿色）、告警病害等（红色）；以及其他排名类（UI 图有对应的其他颜色）
 - 扎点尺寸，有小尺寸、中尺寸和大尺寸
 
-因此需要根据类型获取需要的图片路径。图片资源放到 `public/assets/image` 文件夹里面。因此可以这么处理：
+因此需要根据类型获取需要的图片路径。图片资源放到 `public/assets/image` 文件夹里面。
 
-> 每一个图片都规范命名，命名格式为 `扎点类型_扎点大小_扎点状态` 。由于考虑到扎点数量与种类过多，因此扎点类型取该扎点到中文，如 `qiaoliang` 等；尺寸大小仿照开源组件库的取法， `normal` 、`small` 等；状态则取对应的颜色英文单词，这样也能有一定的语义化。
->
-> 由于图片都是放在 `public` 中，因此图片路径最终为 `public/assets/image/${扎点类型}_${扎点尺寸}_${扎点颜色}` 。
+::: info 处理方式
+每一个图片都规范命名，命名格式为 `扎点类型_扎点大小_扎点状态` 。由于考虑到扎点数量与种类过多，因此扎点类型取该扎点到中文，如 `qiaoliang` 等；尺寸大小仿照开源组件库的取法， `normal` 、`small` 等；状态则取对应的颜色英文单词，这样也能有一定的语义化。
+
+由于图片都是放在 `public` 中，因此图片路径最终为 `public/assets/image/${扎点类型}_${扎点尺寸}_${扎点颜色}` 。
+:::
 
 右侧采用地图的自定义 `label` ，调用方法传入其需要的真实 `dom` 、坐标和偏移值即可。前两者在调用时参数传入，偏移值通过计算。
 
 底部的气泡图同理，调用方法传入其需要的尺寸大小、颜色、类型即可。
 
-总体示例代码如下所示：
-
+::: details 点击展开详细代码
 ```js
 import {addBubble, removeBubble, addIcon, removeIcon, addDOMOverlay, removeDOMOverlay} from '../xxx.js';
 
@@ -417,6 +432,7 @@ export {
     LayerManager,
 };
 ```
+:::
 
 ### 视野漫游动画
 
@@ -431,6 +447,7 @@ export {
 3. 定义一个 `removePathTrackerByName()` 方法，方法接收一个名称的参数，通过该名称获取映射表对应的映射，从映射表中删除对应的映射，并从地图上删除对应的数据
 4. 定义一个 `clear()` 方法，方法循环遍历映射表的 `key` 值，依次调用 `removeXxxx()` 方法删除地图
 
+::: details 点击展开详细代码
 ```js
 import {addPathTracker, addLine, addModel, removePathTracker, removeModel, removeLine} from '../xxx.js';
 // 是野蛮懂管理器
@@ -480,3 +497,4 @@ export {
     PathTrackerManager,
 };
 ```
+:::

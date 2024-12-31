@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 百度外包佛开项目大屏WS设置
+titleTemplate: 百度外包佛开项目大屏WS设置
+description: 地图 百度 佛开 大屏端 WS
+head:
+  - - meta
+    - name: description
+      content: 百度外包佛开项目大屏WS设置
+  - - meta
+    - name: keywords
+      content: 地图 百度 佛开 大屏端 WS
+pageClass: baidu-fokai-ws
+---
+
 # Ws
 
 在本项目中，拥堵情况的事件扎点采取 `WebSocket` 实时推送数据渲染。第一次使用 `WebSocket` （后面省略为 `ws` ），来记录一下。
@@ -7,10 +22,18 @@
 关于 `ws` ，主要遵循以下几个步骤：
 
 1. 项目中安装 `ws` 
-
-   ```bash
+   
+   ::: code-group
+   ```bash [pnpm]
    pnpm i ws
    ```
+   ```bash [npm]
+   npm i ws
+   ```
+   ```bash [yarn]
+   yarn add ws
+   ```
+   :::
 
 2. 创建 `WebSocket` 实例
 
@@ -205,8 +228,7 @@ export default WebSocketUtil;
 1. 空指针判断。比如 `url` 、`this.ws` 等，做空指针判断处理，如果是空返回 `error` 信息
 2. 事件卸载。在建立 `ws` 连接时，会给它添加 `open` 、`message` 等事件，但关闭后没有卸载这些事件。卸载后可以有效避免内存泄漏
 
-最终优化代码如下：
-
+::: details 点击查看最终优化版代码
 ```js
 // WS.js
 class WS {
@@ -337,5 +359,6 @@ class WS {
 
 export default WS;
 ```
+:::
 
 上方代码需要注意的是 `this` 指向问题。普通函数中，`this` 指向是谁使用了该函数，`this` 指向谁。因此如果没有在构造器上通过 `bind` 修改 `this` 这一步骤，后续 `addEventListener` 后，`_onerror` 等事件函数内的 `this` 指向的就是 `ws` ，而不是 `WS` 类。

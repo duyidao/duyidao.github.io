@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 百度外包佛开项目平台端简介
+titleTemplate: 百度外包佛开项目平台端简介
+description: 地图 百度 佛开 平台端 简介
+head:
+  - - meta
+    - name: description
+      content: 百度外包佛开项目平台端简介
+  - - meta
+    - name: keywords
+      content: 地图 百度 佛开 平台端 简介
+pageClass: baidu-fokai-index
+---
+
 # 平台端
 
 佛开平台端项目我主要负责设备设施和结构物监测两个模块的开发，其中，主要的工作量为参与公共组件的封装与维护、实现客户的需求等。

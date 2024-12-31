@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 百度外包佛开项目大屏自定义样式
+titleTemplate: 百度外包佛开项目大屏自定义样式
+description: 地图 百度 佛开 大屏端 自定义样式
+head:
+  - - meta
+    - name: description
+      content: 百度外包佛开项目大屏自定义样式
+  - - meta
+    - name: keywords
+      content: 地图 百度 佛开 大屏端 自定义样式
+pageClass: baidu-fokai-style
+---
+
 # 自定义样式
 
 地图默认样式是白色底，可以通过相应的 API 实现切换不同种类的样式。

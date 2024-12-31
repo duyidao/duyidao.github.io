@@ -1,6 +1,16 @@
 ---
-title 图层
-
+layout: doc
+title: 百度外包图层项目简介
+titleTemplate: 百度外包图层项目简介
+description: 地图 百度 图层
+head:
+  - - meta
+    - name: description
+      content: 百度外包图层项目简介
+  - - meta
+    - name: keywords
+      content: 地图 百度 图层 简介
+pageClass: baidu-layout-index
 ---
 
 # 图层
@@ -24,6 +34,7 @@ title 图层
 
 项目结构主要如下：
 
+::: details 点击查看详细目录
 ```js
 |-examples // 图层的根组件
 	|--App.vue // 整个图层的根组件
@@ -45,13 +56,14 @@ title 图层
 |-index.html // 主页面
 |-vite.config.js // 文件夹路径简写和跨域代理
 ```
+:::
 
 本项目是一个项目包含多个图层，每个图层使用到的方法会有相同的地方，但也会有各自不同的方法。因此需要做封装处理，封装时也需要考虑到易用性、复用性和可拓展性。
 
 
 ## 效果展示
 
-下面附上几张效果图展示，以下效果均来自沙盒 Mock 环境：
+下面附上几张效果图展示，以下效果均来自沙盒 Mock 环境，数据均为假数据：
 
 - 结构物
   

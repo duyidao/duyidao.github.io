@@ -1,6 +1,21 @@
+---
+layout: doc
+title: 百度外包图层项目Poc迁移
+titleTemplate: 百度外包图层项目Poc迁移
+description: 地图 百度 图层 Poc Vue2.7
+head:
+  - - meta
+    - name: description
+      content: 百度外包图层项目Poc迁移
+  - - meta
+    - name: keywords
+      content: 地图 百度 图层 Poc Vue2.7
+pageClass: baidu-layout-poc
+---
+
 # Poc迁移
 
-Poc迁移是把这个广东省数据的项目迁移一份给北京总部那边，在那边招标拉项目。由于项目是 Vue2.7 版本的项目，因此会遇到一些 Vue2.7 的写法。此模块用于记录使用 Vue2.7 `setup` 语法的写法。
+Poc迁移是把这个广东省数据的项目迁移一份给北京总部那边招标。由于项目是 Vue2.7 版本的项目，因此会遇到一些 Vue2.7 的写法。此模块用于记录使用 Vue2.7 `setup` 语法的写法。
 
 ## v-model语法糖
 
@@ -12,15 +27,12 @@ Poc迁移是把这个广东省数据的项目迁移一份给北京总部那边�
 2. 子组件在修改值时调用 `update:value` 方法
 3. 父组件 `v-model` 绑定数据
 
-父组件代码如下：
-
-```vue
+代码如下：
+::: code-group
+```vue [父组件]
 <son v-model="value" />
 ```
-
-子组件代码如下：
-
-```vue
+```vue [子组件]
 <template>
 	<div>
     {{ value }}
@@ -47,6 +59,7 @@ export default {
 }
 </script>
 ```
+:::
 
 ## 侦听器
 
@@ -116,4 +129,3 @@ export default {
 }
 </script>
 ```
-

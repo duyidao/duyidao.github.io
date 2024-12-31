@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 百度外包佛开项目大屏覆盖物
+titleTemplate: 百度外包佛开项目大屏覆盖物
+description: 地图 百度 佛开 大屏端 覆盖物
+head:
+  - - meta
+    - name: description
+      content: 百度外包佛开项目大屏覆盖物
+  - - meta
+    - name: keywords
+      content: 地图 百度 佛开 大屏端 覆盖物
+pageClass: baidu-fokai-overlay
+---
+
 # 覆盖物
 
 在百度二维地图中，扎点、线等这些统称为覆盖物。项目需要的效果如下图所示：

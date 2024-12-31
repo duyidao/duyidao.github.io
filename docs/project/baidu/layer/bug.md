@@ -1,5 +1,16 @@
 ---
-title BUG
+layout: doc
+title: 百度外包图层项目BUG
+titleTemplate: 百度外包图层项目BUG
+description: 地图 百度 图层 BUG
+head:
+  - - meta
+    - name: description
+      content: 百度外包图层项目BUG
+  - - meta
+    - name: keywords
+      content: 地图 百度 图层 BUG
+pageClass: baidu-layout-prod
 ---
 
 # 抓虫记录

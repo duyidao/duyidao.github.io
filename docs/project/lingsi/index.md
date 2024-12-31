@@ -10,7 +10,7 @@ head:
   - - meta
     - name: keywords
       content: 灵思 项目
-pageClass: lingsi-project-class
+pageClass: project-lingsi-class
 ---
 
 # 引言
