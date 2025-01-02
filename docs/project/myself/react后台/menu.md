@@ -1,5 +1,16 @@
 ---
-title react后台菜单封装
+layout: doc
+title: 后台项目菜单封装
+titleTemplate: 后台项目菜单封装
+description: React 后台 菜单封装
+head:
+  - - meta
+    - name: description
+      content: 后台项目菜单封装
+  - - meta
+    - name: keywords
+      content: React 后台 菜单封装
+pageClass: myself-backstage-menu
 ---
 
 # 菜单封装
@@ -8,9 +19,10 @@ title react后台菜单封装
 
 首先把菜单模块抽离出来，不让 `HOME` 页面代码冗余，后续维护菜单模块也好维护。
 
-菜单子组件设置菜单子组件，首先能够渲染静态数组数据，代码如下：
+菜单子组件设置菜单子组件，首先能够渲染静态数组数据，Home父组件引入挂载使用。
 
-```jsx
+::: code-group
+```jsx [子组件]
 import React from "react";
 import { Menu } from "antd";
 import {
@@ -54,10 +66,7 @@ export default function MainMenu() {
 }
 
 ```
-
-Home父组件引入挂载使用：
-
-```jsx
+```jsx [父组件]
 import MainMenu from "@/components/MainMenu/index.jsx";
 
 // ....
@@ -70,6 +79,7 @@ const Home = () => {
 
 export default Home
 ```
+:::
 
 ## 路由跳转
 

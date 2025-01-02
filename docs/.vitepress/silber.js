@@ -1082,6 +1082,7 @@ const ConsultationSidebar = [
       { text: "项目初始化", link: "/myself/优医问诊/" },
       { text: "登录模块", link: "/myself/优医问诊/login" },
       { text: "用户模块", link: "/myself/优医问诊/user" },
+      { text: "极速问诊", link: "/myself/优医问诊/consult" },
       { text: "🗑 返回", link: "/myself/" },
     ],
   },

@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 知乎日报项目请求配置
+titleTemplate: 知乎日报项目请求配置
+description: React 知乎日报 请求配置
+head:
+  - - meta
+    - name: description
+      content: 知乎日报项目请求配置
+  - - meta
+    - name: keywords
+      content: React 知乎日报 请求配置
+pageClass: myself-news-api
+---
+
 # 请求配置
 
 ## Axios二次封装
@@ -13,7 +28,7 @@
 
 首先需要安装依赖：
 
-```
+```shell
 yarn add http-proxy-middleware --save-dev
 ```
 
@@ -34,8 +49,7 @@ module.exports = function(app) {
 };
 ```
 
-> 注意
->
+> [!WARNING] ⚠ 注意
 > 在新版本中已经默认设置代理的文件夹名为 `setupProxy` 。
 >
 > ![img](https://img-blog.csdnimg.cn/f8958cd1fb344e21987883dfa7824413.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA57mB5pif5Y-s5ZSk,size_20,color_FFFFFF,t_70,g_se,x_16)

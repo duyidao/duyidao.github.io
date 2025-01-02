@@ -1,5 +1,16 @@
 ---
-title react后台仓库配置
+layout: doc
+title: 后台项目仓库配置
+titleTemplate: 后台项目仓库配置
+description: React 后台 仓库配置
+head:
+  - - meta
+    - name: description
+      content: 后台项目仓库配置
+  - - meta
+    - name: keywords
+      content: React 后台 仓库配置
+pageClass: myself-backstage-redux
 ---
 
 # 仓库配置
@@ -222,9 +233,8 @@ export default reducer;
 
 新建一个 `indexA.js` 文件（实际上应该创建一个文件夹，同一个模块的 `index.js` 和 `reducer.js` 放到同一个文件夹中），把 `state` 与 `action` 处理出来，并设置名称枚举的对象，代码如下所示：
 
-- `indexA.js`
-
-  ```jsx
+::: code-group
+  ```jsx [indexA.js]
   export default {
     state: {
       num: 20,
@@ -240,10 +250,7 @@ export default reducer;
     }
   }
   ```
-
-- `reducerA.js`
-
-  ```js
+  ```js [reducerA.js]
   // indexA.js文件
   import indexA from './indexA.js'
   
@@ -265,6 +272,7 @@ export default reducer;
   
   export default reducer;
   ```
+:::
 
 ### switch优化
 
@@ -335,7 +343,7 @@ export default store
 
 - 安装
 
-  ```
+  ```shell
   yarn add react-thunk
   ```
 
@@ -444,8 +452,7 @@ export default function Vue() {
 }
 ```
 
-> 注意
->
+> [!WARNING] ⚠ 注意
 > `dispatch` 方法内传的是一个回调函数，因此只需要获取函数方法并填入即可，不需要在后面添加 `()` 。对应的函数则能获取到对应的形参 `dispatch` 。
 
 ## 总结
@@ -531,4 +538,3 @@ export default function Vue() {
   // ...
 }
 ```
-

@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 知乎日报项目Redux配置
+titleTemplate: 知乎日报项目Redux配置
+description: React 知乎日报 Redux配置
+head:
+  - - meta
+    - name: description
+      content: 知乎日报项目Redux配置
+  - - meta
+    - name: keywords
+      content: React 知乎日报 Redux配置
+pageClass: myself-news-redux
+---
+
 # Redux配置
 
 ## 思路分析
@@ -55,19 +70,15 @@ export default reducers;
 
 该文件夹主要放置每个模块的 `action` 对象，与 `reducer` 类似，最后在 `index.js` 文件中导入多文件并统一导出，代码如下：
 
-- 各个模块
-
-  ```js
+::: code-group
+  ```js [各个模块]
   import * as TYPES from "../action-types";
   
   const baseAction = {};
   
   export default baseAction;
   ```
-
-- index.js
-
-  ```js
+  ```js [index.js]
   import base from "./base";
   import store from "./store";
   
@@ -78,6 +89,7 @@ export default reducers;
   
   export default actions;
   ```
+:::
 
 ## action-types.js文件
 
@@ -115,8 +127,9 @@ export default store;
 
 ## 配置store
 
-在入口文件中引入创建并导出的 `store` ，通过 `react-redux` 提供的 `Provider` 组件注册 `store` 。代码如下：
+在入口文件中引入创建并导出的 `store` ，通过 `react-redux` 提供的 `Provider` 组件注册 `store` 。
 
+::: details 代码
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -140,20 +153,17 @@ root.render(
   </React.StrictMode>
 );
 ```
+:::
 
 ## 使用
 
 ### 单使用
 
-在 `action-types.js` 文件中设置需要使用的方法字典：
-
-```js
+::: code-group
+```js [action-types.js 设置需要使用的方法字典]
 export const BASE_INFO = "BASE_INFO";
 ```
-
-在 `reducer` 文件夹下对应模块的文件中设置相应的 `action` 判断以及对应的数据操作：
-
-```js
+```js [reducer文件夹设置相应的 action 判断]
 import * as TYPES from "../action-types";
 
 let initial = {
@@ -174,10 +184,7 @@ export default function baseReducer(state = initial, action) {
   return newState;
 }
 ```
-
-在 `action` 文件夹下对应模块的文件中设置相应的 `action` 方法：
-
-```js
+```js [action文件夹对应模块文件中设置相应的 action 方法]
 import * as TYPES from "../action-types";
 import Api from '@/api/index.js'
 
@@ -209,6 +216,7 @@ const baseAction = {
 
 export default baseAction;
 ```
+:::
 
 在需要使用的函数式组件中引入 `action` 文件夹下的 `index.js` ，引入 `react-redux` 提供的 `connect` API ，把组件和 `redux` 组合起来。代码如下：
 

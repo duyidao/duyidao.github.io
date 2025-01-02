@@ -1,7 +1,16 @@
 ---
-title 用户模块
-
-
+layout: doc
+title: 优医问诊项目用户模块
+titleTemplate: 优医问诊项目用户模块
+description: Vue3 优医问诊 用户模块
+head:
+  - - meta
+    - name: description
+      content: 优医问诊项目用户模块
+  - - meta
+    - name: keywords
+      content: Vue3 优医问诊 用户模块
+pageClass: myself-doctor-user
 ---
 
 # 用户模块
@@ -11,7 +20,9 @@ title 用户模块
 在路由跳转时，需要考虑到两个事情：
 
 - 当前页面是否需要登录后才能进入（ `token` 判断）
+  
 - 跳转进度条（客户体验优化）
+  
 - 浏览器标题修改
 
 综上考虑，路由守卫分为：
@@ -54,11 +65,12 @@ router.afterEach((to) => {
 })
 ```
 
+> [!NOTE] 🔔 提示
 > 在 Vue3 中，不返回，或者 `return true` 就是放行，可以不是 `next` 函数了
 
 ## TS类型合并与取出、排出
 
-在 typescript 中，会遇到前面声明好了一个类型，和现在需要声明的类型有一部分相同，此时会遇到两种情况：
+在 TypeScript 中，会遇到前面声明好了一个类型，和现在需要声明的类型有一部分相同，此时会遇到两种情况：
 
 - 有一部分是需要的。此时需要用到 `Pick` 关键字取出这些属性。代码示例如下：
 
@@ -97,25 +109,19 @@ router.afterEach((to) => {
 - `v-model` 语法糖。本质上是子组件通过 `:value="data"` 绑定变量，再通过 `@input="data = $event"` 修改变量
 - `.sync` 修饰符。通过 `v-bind:xxx="msg"` 绑定变量，通过 `$emit('update:xxx', 'newval')` 修改变量
 
-而在 Vue3 中，想要实现父子组件数据同步就轻松很多了，Vue3 舍弃了 `.sync` 修饰符，优化了 `v-model` 语法糖，现在：一个 v-model 指令搞定，不需要记忆两种语法
+而在 Vue3 中，想要实现父子组件数据同步就轻松很多了，Vue3 舍弃了 `.sync` 修饰符，优化了 `v-model` 语法糖，现在：一个 `v-model` 指令搞定，不需要记忆两种语法。
 
-- vue3 中 `v-model` 语法糖
-
-```vue
+::: code-group
+```vue [父组件]
 <com-a v-model="count"></com-a>
 <!-- 等价 -->
 <com-a :modelValue="count" @update:modelValue="count=$event"></com-a>
-```
 
-```vue
-<com-a v-model:msg="str"></com-a>
+<com-b v-model:msg="str"></com-b>
 <!-- 等价 -->
-<com-a :msg="str" @update:msg="str=$event"></com-a>
+<com-b :msg="str" @update:msg="str=$event"></com-b>
 ```
-
-在子组件中定义好相关方法，如下：
-
-```js
+```js [子组件]
 const emit = defineEmits<{
   	(e: 'update:modelValue', value: string | number): void
 }>()
@@ -124,12 +130,7 @@ const toggleItem = (value: string | number) => {
   	emit('update:modelValue', value)
 }
 ```
-
-总结：
-
-`v-model` 语法糖，拆分写法？
-
-- `:modelValue="count"` 和 `@update:modelValue="count=$event"`
+:::
 
 ## 计算属性数据绑定
 
@@ -153,4 +154,3 @@ const defaultFlag = computed({
   }
 })
 ```
-

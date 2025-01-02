@@ -1,5 +1,16 @@
 ---
-title 甄选项目初始化
+layout: doc
+title: 硅谷甄选项目简介
+titleTemplate: 硅谷甄选项目简介
+description: Vue3 TS 硅谷甄选 简介
+head:
+  - - meta
+    - name: description
+      content: 硅谷甄选项目简介
+  - - meta
+    - name: keywords
+      content: Vue3 TS 硅谷甄选 简介
+pageClass: myself-guigu-index
 ---
 
 # 项目初始化
@@ -8,17 +19,16 @@ title 甄选项目初始化
 
 ## 项目创建
 
-本项目通过 `pnpm` 创建项目，如果电脑没有 `pnpm` ，需要先全局下载：
+本项目通过 `pnpm` 创建项目
 
-```
+::: code-group
+```shell [安装pnpm]
 npm i -g pnpm
 ```
-
-项目初始化命令:
-
-```
+```shell [项目初始化]
 pnpm create vite
 ```
+:::
 
 创建完毕后会需要输入项目名称、项目框架、项目语言 `typescript` ，完毕后安装依赖即可运行。
 
@@ -36,21 +46,14 @@ pnpm create vite
 
 ESLint最初是由[Nicholas C. Zakas](http://nczonline.net/) 于2013年6月创建的开源项目。它的目标是提供一个插件化的**javascript代码检测工具**
 
-首先安装eslint
-
-```
+::: code-group
+```shell [安装eslint]
 pnpm i eslint -D
 ```
-
-生成配置文件:.eslint.cjs
-
-```
+```shell [生成配置文件:.eslint.cjs]
 npx eslint --init
 ```
-
-**.eslint.cjs配置文件**
-
-```
+```cjs [.eslint.cjs配置文件]
 module.exports = {
    //运行环境
     "env": { 
@@ -91,10 +94,11 @@ module.exports = {
     }
 }
 ```
+:::
 
 #### vue3环境代码校验插件
 
-```
+```json
 # 让所有与prettier规则存在冲突的Eslint rules失效，并使用prettier进行代码检查
 "eslint-config-prettier": "^8.6.0",
 "eslint-plugin-import": "^2.27.5",
@@ -109,13 +113,14 @@ module.exports = {
 
 安装指令
 
-```
+```shell
 pnpm install -D eslint-plugin-import eslint-plugin-vue eslint-plugin-node eslint-plugin-prettier eslint-config-prettier eslint-plugin-node @babel/eslint-parser
 ```
 
 #### 修改.eslintrc.cjs配置文件
 
-```
+::: details .eslintrc.cjs配置文件
+```cjs
 // @see https://eslint.bootcss.com/docs/rules/
 
 module.exports = {
@@ -174,8 +179,8 @@ module.exports = {
     'vue/attribute-hyphenation': 'off', // 对模板中的自定义组件强制执行属性命名样式
   },
 }
-
 ```
+:::
 
 #### .eslintignore忽略文件
 
@@ -188,32 +193,28 @@ node_modules
 
 package.json新增两个运行脚本
 
-```
+```json
 "scripts": {
-    "lint": "eslint src",
-    "fix": "eslint src --fix",
+  "lint": "eslint src",
+  "fix": "eslint src --fix",
 }
 ```
 
 ### 配置**prettier**
 
-有了eslint，为什么还要有prettier？eslint针对的是javascript，他是一个检测工具，包含js语法以及少部分格式问题，在eslint看来，语法对了就能保证代码正常运行，格式问题属于其次；
+有了 `eslint`，为什么还要有 `prettier`？`eslint` 针对的是 JavaScript，他是一个检测工具，包含js语法以及少部分格式问题，在 `eslint` 看来，语法对了就能保证代码正常运行，格式问题属于其次；
 
-而prettier属于格式化工具，它看不惯格式不统一，所以它就把eslint没干好的事接着干，另外，prettier支持
-
-包含js在内的多种语言。
-
-总结起来，**eslint和prettier这俩兄弟一个保证js代码质量，一个保证代码美观。**
+而 `prettier` 属于格式化工具，它看不惯格式不统一，所以它就把 `eslint` 没干好的事接着干，另外，`prettier` 支持包含js在内的多种语言。总结起来，**eslint和prettier这俩兄弟一个保证js代码质量，一个保证代码美观。**
 
 #### 安装依赖包
 
-```
+```shell
 pnpm install -D eslint-plugin-prettier prettier eslint-config-prettier
 ```
 
 #### .prettierrc.json添加规则
 
-```
+```json
 {
   "singleQuote": true,
   "semi": false,
@@ -245,7 +246,7 @@ pnpm install -D eslint-plugin-prettier prettier eslint-config-prettier
 
 我们的项目中使用scss作为预处理器，安装以下依赖：
 
-```
+```shell
 pnpm add sass sass-loader stylelint postcss postcss-scss postcss-html stylelint-config-prettier stylelint-config-recess-order stylelint-config-recommended-scss stylelint-config-standard stylelint-config-standard-vue stylelint-scss stylelint-order stylelint-config-standard-scss -D
 ```
 
@@ -253,7 +254,7 @@ pnpm add sass sass-loader stylelint postcss postcss-scss postcss-html stylelint-
 
 **官网:https://stylelint.bootcss.com/**
 
-```
+```cjs
 // @see https://stylelint.bootcss.com/
 
 module.exports = {
@@ -320,7 +321,7 @@ module.exports = {
 
 #### 运行脚本
 
-```
+```json
 "scripts": {
 	"lint:style": "stylelint src/**/*.{css,scss,vue} --cache --fix"
 }
@@ -349,19 +350,16 @@ module.exports = {
 
 要做到这件事情，就需要利用husky在代码提交之前触发git hook(git在客户端的钩子)，然后执行`pnpm run format`来自动的格式化我们的代码。
 
-安装`husky`
-
-```
+::: code-group
+```shell [安装 husky]
 pnpm install -D husky
 ```
-
-执行
-
-```
+```shell [执行]
 npx husky-init
 ```
+:::
 
-会在根目录下生成个一个.husky目录，在这个目录下面会有一个pre-commit文件，这个文件里面的命令在我们执行commit的时候就会执行
+会在根目录下生成个一个 `.husky` 目录，在这个目录下面会有一个 `pre-commit` 文件，这个文件里面的命令在我们执行 `commit` 的时候就会执行
 
 在`.husky/pre-commit`文件添加如下命令：
 
@@ -371,21 +369,17 @@ npx husky-init
 pnpm run format
 ```
 
-当我们对代码进行commit操作的时候，就会执行命令，对代码进行格式化，然后再提交。
+当我们对代码进行 `commit` 操作的时候，就会执行命令，对代码进行格式化，然后再提交。
 
 ### 配置commitlint
 
 对于我们的commit信息，也是有统一规范的，不能随便写,要让每个人都按照统一的标准来执行，我们可以利用**commitlint**来实现。
 
-安装包
-
-```
+::: code-group
+```shell [安装包]
 pnpm add @commitlint/config-conventional @commitlint/cli -D
 ```
-
-添加配置文件，新建`commitlint.config.cjs`(注意是cjs)，然后添加下面的代码：
-
-```
+```cjs [添加配置文件commitlint.config.cjs]
 module.exports = {
   extends: ['@commitlint/config-conventional'],
   // 校验规则
@@ -416,10 +410,7 @@ module.exports = {
   },
 }
 ```
-
-在`package.json`中配置scripts命令
-
-```
+```json [package.json配置scripts命令]
 # 在scrips中添加下面的代码
 {
 "scripts": {
@@ -427,8 +418,17 @@ module.exports = {
   },
 }
 ```
+```shell 【配置husky
+npx husky add .husky/commit-msg 
+```
+``` [commit-msg]
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+pnpm commitlint
+```
+:::
 
-配置结束，现在当我们填写`commit`信息的时候，前面就需要带着下面的`subject`
+配置结束，现在当我们填写 `commit` 信息的时候，前面就需要带着下面的 `subject` 。当我们 commit 提交信息时，就不能再随意写了，必须是 `git commit -m 'fix: xxx'` 符合类型的才可以，**需要注意的是类型的后面需要用英文的 :，并且冒号后面是需要空一格的，这个是不能省略的**
 
 ```
 'feat',//新特性、新功能
@@ -443,29 +443,13 @@ module.exports = {
 'build',//编译相关的修改，例如发布版本、对项目构建或者依赖的改动
 ```
 
-配置husky
-
-```
-npx husky add .husky/commit-msg 
-```
-
-在生成的commit-msg文件中添加下面的命令
-
-```
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-pnpm commitlint
-```
-
-当我们 commit 提交信息时，就不能再随意写了，必须是 git commit -m 'fix: xxx' 符合类型的才可以，**需要注意的是类型的后面需要用英文的 :，并且冒号后面是需要空一格的，这个是不能省略的**
-
 ## 项目集成
 
 ### 集成element-plus
 
-官网地址:https://element-plus.gitee.io/zh-CN/
+官网地址: https://element-plus.gitee.io/zh-CN/
 
-```
+```shell
 pnpm install element-plus @element-plus/icons-vue
 ```
 
@@ -483,7 +467,7 @@ app.use(ElementPlus, {
 
 **图标引入**
 
-```
+```shell
 pnpm install @element-plus/icons-vue
 ```
 
@@ -491,7 +475,7 @@ pnpm install @element-plus/icons-vue
 
 **Element Plus全局组件类型声明**
 
-```
+```json
 // tsconfig.json
 {
   "compilerOptions": {
@@ -507,8 +491,8 @@ pnpm install @element-plus/icons-vue
 
 在开发项目的时候文件与文件关系可能很复杂，因此我们需要给src文件夹配置一个别名！！！
 
-```js
-// vite.config.ts
+::: code-group
+```js [vite.config.ts]
 import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
@@ -524,11 +508,7 @@ export default defineConfig({
     }
 })
 ```
-
-**TypeScript 编译配置**
-
-```js
-// tsconfig.json
+```json [tsconfig.json]
 {
   "compilerOptions": {
     "baseUrl": "./", // 解析非相对模块的基地址，默认是当前目录
@@ -542,6 +522,7 @@ export default defineConfig({
   }
 }
 ```
+:::
 
 ### 环境变量的配置
 
@@ -554,39 +535,31 @@ export default defineConfig({
 - 生产环境（production）
   生产环境是指正式提供对外服务的，一般会关掉错误报告，打开错误日志。(正式提供给客户使用的环境。)
 
-> 注意
->
+> [!WARNING] ⚠ 注意
 > 一般情况下，一个环境对应一台服务器,也有的公司开发与测试环境是一台服务器！！！
 
 项目根目录分别添加 开发、生产和测试环境的文件!
 
 ```
-.env.development
-.env.production
-.env.test
-```
-
-文件内容
-
-```
+::: code-group
+``` [.env.development]
 # 变量必须以 VITE_ 为前缀才能暴露给外部读取
 NODE_ENV = 'development'
 VITE_APP_TITLE = '刀刀甄选'
 VITE_APP_BASE_API = '/dev-api'
 ```
-
-```
+``` [.env.production]
 NODE_ENV = 'production'
 VITE_APP_TITLE = '刀刀甄选'
 VITE_APP_BASE_API = '/prod-api'
 ```
-
-```
+``` [.env.test]
 # 变量必须以 VITE_ 为前缀才能暴露给外部读取
 NODE_ENV = 'test'
 VITE_APP_TITLE = '刀刀甄选'
 VITE_APP_BASE_API = '/test-api'
 ```
+:::
 
 配置运行命令：`package.json`
 
@@ -606,7 +579,7 @@ console.log(import.meta.env);
 
 // 打印：
 {
-    BASE_URL: "/"
+  BASE_URL: "/"
 	DEV: true
 	MODE: "development"
 	PROD: false
@@ -623,15 +596,11 @@ console.log(import.meta.env);
 
 这对页面性能来说是个很大的提升，而且我们 SVG 文件比 img 要小的很多，放在项目中几乎不占用资源。
 
-**安装SVG依赖插件**
-
-```
+::: code-group
+```shell [安装SVG依赖插件]
 pnpm install vite-plugin-svg-icons -D
 ```
-
-**在`vite.config.ts`中配置插件**
-
-```js
+```js [vite.config.ts]
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import path from 'path'
 export default () => {
@@ -647,20 +616,17 @@ export default () => {
   }
 }
 ```
-
-**入口文件导入**
-
-```js
+```js [main.ts]
 import 'virtual:svg-icons-register'
 ```
+:::
 
 #### svg封装为全局组件
 
 因为项目很多模块需要使用图标,因此把它封装为全局组件！！！
 
-**在src/components目录下创建一个SvgIcon组件:代表如下**
-
-```vue
+::: code-group
+```vue [src/components/SvgIcon/index.vue]
 <template>
   <div>
     <svg :style="{ width: width, height: height }">
@@ -697,10 +663,7 @@ defineProps({
 </script>
 <style scoped></style>
 ```
-
-在src文件夹目录下创建一个 `index.ts` 文件：用于注册 `components` 文件夹内部全部全局组件！！！
-
-```js
+```js [src/index.ts]
 import SvgIcon from './SvgIcon/index.vue';
 import type { App, Component } from 'vue';
 const components: { [name: string]: Component } = { SvgIcon };
@@ -712,13 +675,11 @@ export default {
     }
 }
 ```
-
-在入口文件引入 `src/index.ts` 文件，通过 `app.use` 方法安装自定义插件
-
-```js
+```js [main.ts]
 import gloablComponent from './components/index';
 app.use(gloablComponent);
 ```
+:::
 
 #### 拓展
 
@@ -750,13 +711,12 @@ app.use(gloablComponent);
    }
    ```
 
-   > 注意
-   >
+   > [!WARNING] ⚠ 注意
    > 自定义插件内一定要使用 `install` 
 
    其 `install` 有一个形参，打印后内容如下所示：
 
-   [![pCmf5Gt.png](https://s1.ax1x.com/2023/06/13/pCmf5Gt.png)](https://imgse.com/i/pCmf5Gt)
+   ![pCmf5Gt.png](https://s1.ax1x.com/2023/06/13/pCmf5Gt.png)
 
    因此可以通过 `component` 注册组件。注册完毕后入口文件导入自定义插件，通过 `app.use()` 注册插件即可。
 
@@ -810,11 +770,11 @@ export default defineConfig((config) => {
 
 安装依赖:https://www.npmjs.com/package/vite-plugin-mock
 
-```
+```shell
 pnpm install -D vite-plugin-mock@2.9.6 mockjs
 ```
 
-在 vite.config.js 配置文件启用插件。
+在 `vite.config.js` 配置文件启用插件。
 
 ```js
 import { UserConfigExport, ConfigEnv } from 'vite'
@@ -832,10 +792,9 @@ export default ({ command })=> {
 }
 ```
 
-在根目录创建mock文件夹:去创建我们需要mock数据与接口！！！
+在根目录创建mock文件夹:去创建我们需要mock数据与接口！！！在mock文件夹内部创建一个 `user.ts` 文件。
 
-在mock文件夹内部创建一个user.ts文件
-
+::: details  查看代码
 ```js
 //用户信息数据
 function createUserList() {
@@ -907,10 +866,11 @@ export default [
     },
 ]
 ```
+:::
 
 **安装axios**
 
-```
+```shell
 pnpm install axios
 ```
 
@@ -918,9 +878,7 @@ pnpm install axios
 
 ### axios二次封装
 
-在开发项目的时候避免不了与后端进行交互,因此我们需要使用axios插件实现发送网络请求。在开发项目的时候
-
-我们经常会把axios进行二次封装。
+在开发项目的时候避免不了与后端进行交互,因此我们需要使用 `axios` 插件实现发送网络请求。在开发项目的时候我们经常会把 `axios` 进行二次封装。
 
 目的:
 

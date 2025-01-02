@@ -1,16 +1,23 @@
 ---
-title 甄选SPU管理
+layout: doc
+title: 硅谷甄选项目SPU管理
+titleTemplate: 硅谷甄选项目SPU管理
+description: Vue3 TS 硅谷甄选 SPU管理
+head:
+  - - meta
+    - name: description
+      content: 硅谷甄选项目SPU管理
+  - - meta
+    - name: keywords
+      content: Vue3 TS 硅谷甄选 SPU管理
+pageClass: myself-guigu-spu
 ---
 
 # SPU管理
 
-SPU 管理模块页面效果如下所示：
-
-![VRNnuC.png](https://i.imgloc.com/2023/07/02/VRNnuC.png)
-
 主要需要注意的是 SPU 属性的添加。属性值通过接口调用获取，下拉框选择完属性后点击按钮可以添加到表格内。下一次选择的时候就无法再选择该属性，效果如下图所示：
 
-[![pCrzUOI.png](https://s1.ax1x.com/2023/07/03/pCrzUOI.png)](https://imgse.com/i/pCrzUOI)
+![pCrzUOI.png](https://s1.ax1x.com/2023/07/03/pCrzUOI.png)
 
 ## 属性添加
 
@@ -19,8 +26,9 @@ SPU 管理模块页面效果如下所示：
 1. 调用接口获取数据，循环遍历渲染到选择器中
 2. 点击添加按钮后把数据添加到表格数据绑定的数组中
 
-首先需要获取数据并保存到一个数组内，通过 `v-for` 循环遍历数据渲染给 `el-option` 组件，代码如下所示：
+首先需要获取数据并保存到一个数组内，通过 `v-for` 循环遍历数据渲染给 `el-option` 组件。
 
+::: details 查看代码
 ```vue
 <script setup ts>
 // 计算出当前还未拥有的销售属性
@@ -59,6 +67,7 @@ const unSelectAttrList = computed(() => {
   添加销售属性
 </el-button>
 ```
+:::
 
 上方代码中，需要注意两个地方：
 
@@ -168,7 +177,7 @@ const handleEditFn = (row) => {
 
 ### Object.assign
 
-`Object.assign`默认是对对象进行深拷贝的，但是我们需要注意的是，它只对最外层的进行深拷贝，也就是当对象内嵌套有对象的时候，被嵌套的对象进行的还是浅拷贝；
+`Object.assign` 默认是对对象进行深拷贝的，但是我们需要注意的是，它只对最外层的进行深拷贝，也就是当对象内嵌套有对象的时候，被嵌套的对象进行的还是浅拷贝；
 
 ```js
 function cloneDeepAssign(obj){
@@ -313,11 +322,11 @@ console.log(obj1.b.f === obj2.b.f);// false
 
 [BlogPosts/lodash深拷贝源码探究.md at master · moyui/BlogPosts · GitHub](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fmoyui%2FBlogPosts%2Fblob%2Fmaster%2F2018%2Flodash%E6%B7%B1%E6%8B%B7%E8%B4%9D%E6%BA%90%E7%A0%81%E6%8E%A2%E7%A9%B6.md)
 
-注：其实lodash解决循环引用的方式，就是用一个栈记录所有被拷贝的引用值，如果再次碰到同样的引用值的时候，不会再去拷贝一遍，而是利用之前已经拷贝好的。
+注：其实 `lodash` 解决循环引用的方式，就是用一个栈记录所有被拷贝的引用值，如果再次碰到同样的引用值的时候，不会再去拷贝一遍，而是利用之前已经拷贝好的。
 
 ### 总结
 
-其实了解了以上的方式就已经非常够用了；重点记住，在日常生产环境当中，使用完美方案—`lodash.cloneDeep`，面试问起来的话，重点使用递归实现，JSON、Object.assgin、MessageChannel都可以作为补充，这基本上就已经回答的非常好了。
+其实了解了以上的方式就已经非常够用了；重点记住，在日常生产环境当中，使用完美方案—— `lodash.cloneDeep`，面试问起来的话，重点使用递归实现，`JSON`、`Object.assgin`、`MessageChannel` 都可以作为补充，这基本上就已经回答的非常好了。
 
 本文重点的内容其实到这里就结束了，后面是补充一些不太常用的方法，感兴趣的友友可以继续了解
 

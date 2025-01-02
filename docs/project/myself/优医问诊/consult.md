@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 优医问诊项目极速问诊
+titleTemplate: 优医问诊项目极速问诊
+description: Vue3 优医问诊 极速问诊
+head:
+  - - meta
+    - name: description
+      content: 优医问诊项目极速问诊
+  - - meta
+    - name: keywords
+      content: Vue3 优医问诊 极速问诊
+pageClass: myself-doctor-consult
+---
+
 # 极速问诊
 
 ## 枚举定义
@@ -28,17 +43,16 @@ changeDirection(Direction.Up)
   - `Up = 'Up'` 可以，但是后面的值都需要使用字符串。
 - 如果这组可选值语义很高，如 `topic | knowledge | doc | disease` ，使用字面量配合联合类型更简单些
 
-> 注意
->
+> [!WARNING] ⚠ 注意
 > 更推荐使用 `ts` 文件定义枚举而不是使用 `.d.ts` ，枚举的值经常需要在运行的时候使用，`d.ts` 不参与运行。
 
 ## 全部可选
 
-用户输入信息是一步步输入的，因此需要信息全部修改为可选状态。typescript 中 `Required` 转换为全部必须；`Partial` 转换为全部可选  两个内置的泛型类型。
+用户输入信息是一步步输入的，因此需要信息全部修改为可选状态。TypeScript 中 `Required` 转换为全部必须；`Partial` 转换为全部可选  两个内置的泛型类型。
 
 ## Vue3 hook 变量存储
 
-Vue3 状态管理仓库比起使用 `vuex` ，更推荐使用 `pinia` 。通过 hook 的思想导出变量和方法供外部使用。示例代码如下：
+Vue3 状态管理仓库比起使用 Vuex，更推荐使用 Pinia 。通过 `hook` 的思想导出变量和方法供外部使用。示例代码如下：
 
 ```js
 import { defineComponent } from 'vue';
@@ -55,8 +69,9 @@ export default defineComponent({
 });
 ```
 
-在项目中，问诊信息分为多个页面获取，把整体变量放到 `pinia` 中，依次导出变量属性修改的函数，需要使用的地方 导入 使用即可。代码如下：
+在项目中，问诊信息分为多个页面获取，把整体变量放到 Pinia 中，依次导出变量属性修改的函数，需要使用的地方 导入 使用即可。
 
+::: details 代码示例
 ```js
 import type { ConsultType } from '@/enums'
 import type { PartialConsult } from '@/types/consult'
@@ -95,12 +110,13 @@ export const useConsultStore = defineStore(
     }
 )
 ```
+:::
 
 ## websocket
 
 如何使用客户端js库?
 
-```bash
+```shell
 pnpm add socket.io-client
 ```
 

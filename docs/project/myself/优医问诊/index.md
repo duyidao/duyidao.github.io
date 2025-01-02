@@ -1,5 +1,16 @@
 ---
-title 优医问诊
+layout: doc
+title: 优医问诊项目简介
+titleTemplate: 优医问诊项目简介
+description: Vue3 优医问诊 简介
+head:
+  - - meta
+    - name: description
+      content: 优医问诊项目简介
+  - - meta
+    - name: keywords
+      content: Vue3 优医问诊 简介
+pageClass: myself-doctor-index
 ---
 
 # 项目初始化
@@ -10,7 +21,7 @@ title 优医问诊
 
 1. 下载插件
    
-   ```bash
+   ```shell
     pnpm add -D postcss-px-to-viewport
    ```
 2. 配置： postcss.config.js
@@ -27,11 +38,10 @@ title 优医问诊
     };
    ```
 
-> 注意
->
+> [!WARNING] ⚠ 注意
 > 在配置的时候项目报错，报错信息如下所示：
 >
-> ```bash
+> ```shell
 > node:internal/process/promises:279
 >             triggerUncaughtException(err, true /* fromPromise */);
 >             ^
@@ -51,15 +61,15 @@ title 优医问诊
 >
 > 这个错误提示表明在加载 PostCSS 配置时出现了问题。根据错误信息，看起来是因为你的项目被视为 ES 模块进行处理，而在这种情况下，"module" 是不被定义的。
 >
-> 解决这个问题的方法是将文件后缀名从 ".js" 改为 ".cjs"，或者修改 package.json 文件中的 "type" 字段为 "commonjs"。这样可以将项目以 CommonJS 脚本的方式进行处理，避免上述错误。
+> 解决这个问题的方法是将文件后缀名从 `".js"` 改为 `".cjs"`，或者修改 `package.json` 文件中的 `"type"` 字段为 `"commonjs"`。这样可以将项目以 CommonJS 脚本的方式进行处理，避免上述错误。
 
 ## 拦截器封装
 
 拦截器封装可以在拦截器的函数上直接写逻辑，但是为了巩固函数单一，后续维护方便，故此把相关联的方法抽离出来，放到一个对象上，分别保存成功和失败两个属性。代码如下：
 
-拦截器：
 
-```js
+::: code-group
+```js [拦截器 index.ts]
 import axios, { AxiosError, type Method } from 'axios'
 import { headerToken, rejectCode } from './token'
 
@@ -83,9 +93,7 @@ instance.interceptors.response.use(
 )
 ```
 
-对象方法函数：
-
-```js
+```js [对象方法函数 token.ts]
 import { useUserStore } from '@/stores/index'
 import { showToast } from 'vant'
 import router from '@/router'
@@ -128,6 +136,7 @@ export const rejectCode = {
     },
 }
 ```
+:::
 
 ## 工具函数封装
 

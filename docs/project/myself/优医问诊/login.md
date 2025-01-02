@@ -1,6 +1,16 @@
 ---
-title 登录模块
-
+layout: doc
+title: 优医问诊项目登录
+titleTemplate: 优医问诊项目登录
+description: Vue3 优医问诊 登录
+head:
+  - - meta
+    - name: description
+      content: 优医问诊项目登录
+  - - meta
+    - name: keywords
+      content: Vue3 优医问诊 登录
+pageClass: myself-doctor-login
 ---
 
 # 登录模块
@@ -22,13 +32,13 @@ if (history.state?.back) {
 
 ## 组件类型
 
-想要实现组件也有 typescript 类型，在使用时能够给予事件、属性提示，可以给组件添加类型。
+想要实现组件也有 TypeScript 类型，在使用时能够给予事件、属性提示，可以给组件添加类型。
 
 添加类型方法分为如下几步：
 
 1. 写一个组件类型声明文件（以 `.d.ts` 为后缀），`declare module 'vue'` 声明一个 vue 类型模块
 2. 然后 `interface GlobalComponents` 书写全局组件的类型
-3. key组件名称支持大驼峰，value是组件类型,通过 typeof 组件实例得到
+3. `key` 组件名称支持大驼峰，`value` 是组件类型,通过 `typeof` 组件实例得到
 
 代码如下所示：
 
@@ -42,8 +52,7 @@ declare module 'vue' {
 }
 ```
 
-> 总结
->
+> [!TIP] 💡  总结
 > 怎么给全局的组件提供类型？
 >
 > - 写一个类型声明文件，`declare module 'vue'` 声明一个 vue 类型模块
@@ -131,12 +140,11 @@ declare module 'vue' {
 
    注意的是文件夹名称是在第二步设置的文件夹，即示例中 `src/icons` 。
 
-> 总结
+> [!TIP] 💡 总结
+> - `icons` 文件打包的产物？
 >
-> - icons文件打包的产物？
+>   会生成一个 `svg` 结构（js创建的）包含所有图标，理解为 `精灵图`
 >
->   会生成一个 svg 结构（js创建的）包含所有图标，理解为 `精灵图`
+> - 怎么使用 `svg` 图标？
 >
-> - 怎么使用svg图标？
->
->   通过 svg 标签 `#icon-文件夹名称-图片名称` 指定图片，理解 `精灵图定位坐标`
+>   通过 `svg` 标签 `#icon-文件夹名称-图片名称` 指定图片，理解 「精灵图定位坐标」

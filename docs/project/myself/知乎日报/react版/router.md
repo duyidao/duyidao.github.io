@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 知乎日报项目路由配置
+titleTemplate: 知乎日报项目路由配置
+description: React 知乎日报 路由配置
+head:
+  - - meta
+    - name: description
+      content: 知乎日报项目路由配置
+  - - meta
+    - name: keywords
+      content: React 知乎日报 路由配置
+pageClass: myself-news-router
+---
+
 # 路由配置
 
 本项目都是一级路由，没有二级路由，因此可以采用创建路由数组、通过循环的形式返回路由组件。
@@ -6,8 +21,9 @@
 
 ## routes.js
 
-通过懒加载的形式引入除首页外的其他路由页面，代码如下：
+通过懒加载的形式引入除首页外的其他路由页面。
 
+::: details 代码示例
 ```js
 import { lazy } from "react";
 import Home from "@/views/Home.jsx";
@@ -80,6 +96,7 @@ const routes = [
 
 export default routes;
 ```
+:::
 
 ## index.js
 
@@ -128,8 +145,7 @@ export default RouterView;
 3. 获取组件并返回
 4. 后续实现路由守卫配置
 
-代码如下：
-
+::: details 代码示例
 ```js
 import {
   Route,
@@ -166,6 +182,7 @@ const Element = (props) => {
   );
 };
 ```
+:::
 
 ### 懒加载配置
 
@@ -254,6 +271,7 @@ root.render(
 
 引入 `redux` 仓库内保存的数据，用于判断是否登录来判断能否进入登录后才能进入的页面。如果没有，则调用接口尝试获取数据，获取到数据则放行；获取数据失败则跳转到登录页。代码如下：
 
+::: details 代码示例
 ```jsx
 import React, { Suspense } from "react";
 import {
@@ -326,11 +344,13 @@ const RouterView = () => {
 
 export default RouterView;
 ```
+:::
 
 运行后发现报错，提示 `Element` 必须返回一个 JSX 组件而不是 `Promise` 对象。因为 `Element` 是函数式组件，也就是说 `async` 不能加在 `Element` 函数上。
 
-转换思路，通过闭包 加 自运行函数的形式调用接口获取数据的形式，代码如下：
+转换思路，通过闭包 加 自运行函数的形式调用接口获取数据的形式。
 
+::: details 代码示例
 ```jsx
 // 统一路由配置。不能把async家在这里，因为最终要返回一个 JSX 而不是 Promise
 const Element = (props) => {
@@ -379,6 +399,7 @@ const RouterView = () => {
 
 export default RouterView;
 ```
+:::
 
 但是保存后运行发现没有效果，他只是提示 “请先登录” ，但是没有跳转登录页。因为调用接口是异步操作，而 `Element` 需要立刻返回一个 JSX ，因此他无法基于异步操作，实现根据异步结果控制同步渲染。
 
@@ -392,8 +413,7 @@ export default RouterView;
 
 需要校验的时候，再通过闭包 加 自运行函数 调用接口获取最新的数据，并保存到 `redux` 内。
 
-代码如下：
-
+::: details 代码示例
 ```jsx
 const isLoading = (path) => {
   let {
@@ -457,20 +477,18 @@ const Element = (props) => {
   );
 };
 ```
+:::
 
-> 注意
->
+> [!WARNING] ⚠ 注意
 > 1. 这里 `setRandom` 的作用是更新 `useState` 的值后触发 `render` 的更新，实现 `redux` 仓库的数据更新后也能更新视图。
 > 2. 如果没登录，路由实际上是从首页跳转到个人页，然后判断出未登录再跳转到登录页，登录后再跳转回个人页，此时路由栈是：首页、个人页、个人页，需要返回两次才是首页。因此在跳转到登录页时要做 `replace` 操作。
 
 ## 总结
 
-在实现业务时应该按照标准的函数组件的操作，基于状态、变量、周期函数，统一处理登录状态的校验：
+在实现业务时应该按照标准的函数组件的操作，基于状态、变量、周期函数，统一处理登录状态的校验：分析是否需要校验：`isShow`
 
-分析是否需要校验：`isShow`
-
-- true 不需要校验，直接渲染需要渲染的视图即可
-- false 需要校验，执行以下操作：
+- `true` 不需要校验，直接渲染需要渲染的视图即可
+- `false` 需要校验，执行以下操作：
   1. 先渲染 `Loading` 异步操作的遮罩层
   2. 在周期函数中做校验，根据校验结果来决定操作。校验通过，更新视图组件；校验不通过，提示并跳转登录页
 
