@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 小兔鲜项目详情页
+titleTemplate: 小兔鲜项目详情页
+description: Vue3 小兔鲜 详情
+head:
+  - - meta
+    - name: description
+      content: 小兔鲜项目详情页
+  - - meta
+    - name: keywords
+      content: Vue3 小兔鲜 详情
+pageClass: myself-rabit-detail
+---
+
 # 详情页
 
 ## 数据渲染
@@ -18,7 +33,7 @@ Uncaught (in promise) TypeError: Cannot read properties of undefined (reading '0
 
 1. 可选链 `?.`
 
-   ```vue
+   ```jsx
    {{ goodData.categories?.[0].name }}
    ```
 
@@ -29,11 +44,12 @@ Uncaught (in promise) TypeError: Cannot read properties of undefined (reading '0
 使用 `vueuse` 中的 `useMouseInElement` 方法获取鼠标的位置，使用方法为：
 
 1. 通过 `ref` 绑定一个节点元素
-2. 把该节点元素放在方法`useMouseInElement` 内，获取其 `x` ，`y` ，`isOutside` 是否在节点元素内
+2. 把该节点元素放在方法 `useMouseInElement` 内，获取其 `x` ，`y` ，`isOutside` 是否在节点元素内
 3. 通过 `watch` 侦听变化后判断：
    - 假设图片宽高400，小框宽高100，则小框随鼠标移动的距离为 100 ~ 300 之间
    - 如果小于100或大于300，则让其宽高固定在边缘
 
+::: details 点击查看代码
 ```js
 // 获取鼠标位置
 const target = ref(null);
@@ -58,6 +74,7 @@ watch([x, y, isOutside], () => {
   if(y.value < 400) top.value = 0
 })
 ```
+:::
 
 大图宽高是其2倍，方向相反，因此设为 `left * -2` 与 `top * -2` 即可。
 
@@ -85,12 +102,11 @@ watch([x, y, isOutside], () => {
 
 通过在 `components` 文件夹内用插件注册的方式注册全部组件，在入口文件中注册该插件即可。
 
-`components/index.js` ：注册组件通过 `app.component` 注册，参数1为该组件的名称，参数2为该组件模块
-
-```js
+::: code-group
+```js [components/index.js注册组件]
 import XtxSku from './XtxSku/index.vue'
 import BannerCarousel from './BannerCarousel.vue'
-
+// 参数1为该组件的名称，参数2为该组件模块
 export const componentsPlugin = {
   install(app) {
     app.component('XtxSku', XtxSku)
@@ -98,12 +114,9 @@ export const componentsPlugin = {
   }
 }
 ```
-
-`main.js` ：
-
-```js
+```js [main.js]
 // 引入全局组件插件并注册
 import { componentsPlugin } from "@/components"
 app.use(componentsPlugin)
 ```
-
+:::

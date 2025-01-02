@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 小兔鲜小程序简介
+titleTemplate: 小兔鲜小程序简介
+description: UniApp 小兔鲜 简介
+head:
+  - - meta
+    - name: description
+      content: 小兔鲜小程序简介
+  - - meta
+    - name: keywords
+      content: UniApp 小兔鲜 简介
+pageClass: myself-rabit-index
+---
+
 # 项目初始化
 
 ## 项目创建
@@ -24,7 +39,7 @@
 
 1. 输入命令行
 
-   ```
+   ```shell
    npx degit dcloudio/uni-preset-vue#vite-ts 项目名
    ```
 
@@ -32,23 +47,31 @@
 
 3. 启动终端（首次使用需要先安装插件），再下载依赖
 
-   ```
+   ::: code-group
+   ```shell [npm]
    npm i
-   #or
+   ```
+   ```shell [yarn]
    yarn
-   # or
+   ```
+   ```shell [pnpm]
    pnpm i
    ```
+   :::
 
 4. 通过命令启动项目
 
-   ```
+   ::: code-group
+   ```shell [npm]
    npm run dev:mp-weixin
-   # or
+   ```
+   ```shell [yarn]
    yarn dev:mp-weixin
-   # or
+   ```
+   ```shell [pnpm]
    pnpm dev:mp-weixin
    ```
+   :::
 
 5. 启动项目成功后会在根目录下新增一个 `dist` 文件夹，打开微信开发者工具，导入 `dist/dev/mp-weixin` 文件夹，起一个项目名称，即可启动项目
 
@@ -64,7 +87,7 @@
 
    - 安装依赖
 
-     ```
+     ```shell
      pnpm i -D @types/wechat-miniprogram @uni-helper/uni-app-types
      ```
 
@@ -107,7 +130,7 @@
 
 安装命令如下：
 
-```
+```shell
 pnpm i sass sass-loader@10.1.1 -D
 pnpm i @dcloudio/uni-ui
 ```
@@ -145,7 +168,7 @@ pnpm i @dcloudio/uni-ui
 
 1. 安装依赖
 
-   ```
+   ```shell
    pnpm i @uni-helper/uni-ui-types -D
    ```
 
@@ -165,11 +188,10 @@ pnpm i @dcloudio/uni-ui
 
 ## 状态管理
 
-状态管理使用了 `pinia` ，通过插件 `pinia-plugin-persistedstate` 实现持久化存储，用法与之前的一致。
+状态管理使用了 Pinia，通过插件 `pinia-plugin-persistedstate` 实现持久化存储，用法与之前的一致。
 
-在 `stores/index.ts` 文件中，创建 `pinia` 仓库：
-
-```js
+::: code-group
+```js [stores/index.ts创建 Pinia 仓库]
 import { createPinia } from "pinia";
 import persist from "pinia-plugin-persistedstate";
 
@@ -184,10 +206,7 @@ export default pinia;
 // 模块统一导出
 export * from "./modules/member";
 ```
-
-在模块化 `stores/modules/member.ts` 中通过组合式创建模块话仓库：
-
-```js
+```js [stores/modules/member.ts创建模块化仓库]
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -221,10 +240,7 @@ export const useMemberStore = defineStore(
   }
 )
 ```
-
-在 `main.ts` 文件中，引入 `pinia` 并注册：
-
-```js
+```js [main.ts引入 Pinia 并注册]
 import { createSSRApp } from "vue";
 import App from "./App.vue";
 import pinia from "@/stores/index";
@@ -238,8 +254,9 @@ export function createApp() {
   };
 }
 ```
+:::
 
-> 注意
+> [!WARNING] ⚠ 注意
 >
 > 通过 `vue3 + uniapp` 创建的项目在微信小程序运行时，本地村粗不再是通过 `localStorage` ，而是通过 `uni.getStorageSync()` 等 API 实现。
 >
@@ -290,8 +307,7 @@ export function createApp() {
   3. 添加小程序端请求体标识
   4. 添加 `token`
 
-代码如下所示：
-
+::: details 代码如下
 ```js
 /**
  * 添加拦截器：
@@ -335,6 +351,7 @@ const httpInterceptor = {
 uni.addInterceptor("request", httpInterceptor);
 uni.addInterceptor("uploadFile", httpInterceptor);
 ```
+:::
 
 ### 请求函数封装
 
@@ -361,8 +378,7 @@ const getBanner = () => {
    - 失败：判断错误类型并作出相应的处理
 3. 设置泛型返回数据类型
 
-代码如下：
-
+::: details 代码如下
 ```tsx
 /**
  * 响应函数
@@ -406,10 +422,11 @@ export const http = <T,>(options: UniApp.RequestOptions) => {
   });
 };
 ```
+:::
 
 现在只需要按需导入使用即可。代码如下：
 
-```vue
+```html
 <script setup lang="ts">
 import { http } '@/utils/http'
 
@@ -432,8 +449,9 @@ const getBanner = () => {
 2. 登录过期
 3. 网络无响应
 
-针对不同的错误做不同的处理，代码如下所示：
+针对不同的错误做不同的处理
 
+::: details 代码如下
 ```js
 // 泛型支持
 export const http = <T>(options: UniApp.RequestOptions) => {
@@ -478,6 +496,7 @@ export const http = <T>(options: UniApp.RequestOptions) => {
   })
 }
 ```
+:::
 
 ### 接口类型设置
 

@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 小兔鲜项目登录
+titleTemplate: 小兔鲜项目登录
+description: Vue3 小兔鲜 登录
+head:
+  - - meta
+    - name: description
+      content: 小兔鲜项目登录
+  - - meta
+    - name: keywords
+      content: Vue3 小兔鲜 登录
+pageClass: myself-rabit-login
+---
+
 # 登录
 
 ## 持久化
@@ -6,15 +21,13 @@
 
 ### 实现
 
-首先下载插件：
+首先下载插件，接着在入口文件中导入并注册持久化插件，然后返回 `store` 中使用，使用方式为在 `defineStore` 方法中传入第三个参数。
 
-```js
+::: code-group
+```shell [下载插件]
 yarn add pinia-plugin-persistedstate
 ```
-
-然后在入口文件中导入并注册持久化插件
-
-```js
+```js [入口文件中导入并注册持久化插件]
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
@@ -25,24 +38,22 @@ app.use(pinia)
 
 pinia.use(piniaPluginPersistedstate)
 ```
-
-然后返回 `store` 中使用，使用方式为在 `defineStore` 方法中传入第三个参数，如下：
-
-```js
+```js [defineStore]
 export const useUserStore = defineStore('user', () => {
   // ...
 }, {
   persist: true
 })
 ```
+:::
 
 ### 原理
 
-插件会在开启本地存储需求后帮我们把`state` 数据实时保存到本地中。因此无论是新值、修改还是删除，本地中都是最新的数据存储。
+插件会在开启本地存储需求后帮我们把 `state` 数据实时保存到本地中。因此无论是新值、修改还是删除，本地中都是最新的数据存储。
 
 ## token请求头
 
-把 `token` 保存在 `pinia` 中有利于多个页面使用数据，如首页个人信息动态渲染，又如请求拦截器封装中把 `token` 放到请求头上。
+把 `token` 保存在 Pinia 中有利于多个页面使用数据，如首页个人信息动态渲染，又如请求拦截器封装中把 `token` 放到请求头上。
 
 ```js
 // axios请求拦截器
@@ -61,7 +72,7 @@ http.interceptors.request.use(config => {
 
 当 `token` 过期或未登录没有 `token` 时，需要做以下处理：
 
-1. 清空本地存储与 `pinia` 状态管理中的信息
+1. 清空本地存储与 Pinia 状态管理中的信息
 2. 跳转到登录页
 
 ```js
@@ -79,4 +90,3 @@ http.interceptors.response.use(res => res.data, e => {
   return Promise.reject(e)
 })
 ```
-

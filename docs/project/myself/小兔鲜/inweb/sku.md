@@ -1,15 +1,31 @@
+---
+layout: doc
+title: 小兔鲜项目Sku组件封装
+titleTemplate: 小兔鲜项目Sku组件封装
+description: Vue3 小兔鲜 sku
+head:
+  - - meta
+    - name: description
+      content: 小兔鲜项目Sku组件封装
+  - - meta
+    - name: keywords
+      content: Vue3 小兔鲜 sku
+pageClass: myself-rabit-sku
+---
+
 # Sku组件封装
 
-##  准备模版渲染规格数据
+## 准备模版渲染规格数据
 
-> 使用Vite快速创建一个Vue项目，在项目中添加请求插件axios，然后新增一个SKU组件，在根组件中把它渲染出来，下面是规格内容的基础模板
+使用 Vite 快速创建一个 Vue 项目，在项目中添加请求插件 `axios` ，然后新增一个 `SKU` 组件，在根组件中把它渲染出来，下面是规格内容的基础模板。
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/274425/1677821818707-dc5529c0-fa8f-442a-af7a-43ad258106f2.png#averageHue=%23fcfcfc&clientId=u7dedb4ef-4c0b-4&from=paste&height=360&id=nGWnP&name=image.png&originHeight=480&originWidth=826&originalType=binary&ratio=2&rotation=0&showTitle=false&size=21008&status=done&style=none&taskId=u14f439b0-74a9-4b91-9de8-14ffcf66166&title=&width=620)
+![基础模板](https://pic1.imgdb.cn/item/6775fd7fd0e0a243d4ed9f23.png)
 
 后端返回的规格数据如下所示，遍历数据渲染数据即可。
 
-[![pCVjbex.png](https://s1.ax1x.com/2023/06/11/pCVjbex.png)](https://imgse.com/i/pCVjbex)
+![pCVjbex.png](https://s1.ax1x.com/2023/06/11/pCVjbex.png)
 
+::: details 点击查看代码
 ```vue
 <script setup>
 import { onMounted, ref } from 'vue'
@@ -97,15 +113,16 @@ onMounted(() => getGoods())
 }
 </style>
 ```
+:::
 
 ## 选中和取消选中实现
 
-> 基本思路：
->
+> [!TIP] 📌 基本思路
 > 1. 每一个规格按钮都拥有自己的选中状态数据 `selected`，`true` 为选中，`false` 为取消选中
 > 2. 配合动态 `class` ，把选中状态 `selected` 作为判断条件，`true` 让 `active` 类名显示，`false` 让 `active` 类名不显示
 > 3. 点击的是未选中，把同一个规格的其他取消选中，当前点击项选中；点击的是已选中，直接取消
 
+::: details 点击查看代码
 ```vue
 <script setup>
 // 省略代码
@@ -143,18 +160,18 @@ const changeSku = (item, val) => {
   </div>
 </template>
 ```
+:::
 
 ## 规格禁用功能实现
 
 ### 整体思路分析
 
-![1.png](https://cdn.nlark.com/yuque/0/2023/png/274425/1677747580985-234fe1bd-483d-49eb-a9cd-42e3a009a375.png#averageHue=%23f6f5f5&clientId=ucecf252d-b9c3-4&from=drop&id=ufb3b1ddd&name=1.png&originHeight=1590&originWidth=1668&originalType=binary&ratio=2&rotation=0&showTitle=false&size=292918&status=done&style=none&taskId=u676b6dfb-8657-4890-8cf8-763b4a35c62&title=)
+![思路分析](https://pic1.imgdb.cn/item/67760053d0e0a243d4eda11e.png)
 
-### 生成路径字典
+### 幂集算法生成路径字典
 
-幂集算法
-
-```javascript
+::: code-group
+```javascript [bwPowerSet.js]
 export default function bwPowerSet (originalSet) {
   const subSets = []
 
@@ -184,8 +201,7 @@ export default function bwPowerSet (originalSet) {
   return subSets
 }
 ```
-
-```javascript
+```javascript [sku.js]
 // 创建生成路径字典对象函数
 const getPathMap = (goods) => {
   const pathMap = {}
@@ -225,11 +241,14 @@ const getGoods = async () => {
   initDisabledState(goods.value.specs, pathMap)
 }
 ```
+:::
 
 ### 根据路径字典设置初始化状态
 
-> 思路：判断规格的name属性是否能在有效路径字典中找到，如果找不到就禁用
+> [!TIP] 🧾 思路
+> 判断规格的name属性是否能在有效路径字典中找到，如果找不到就禁用
 
+::: details 代码实现
 ```jsx
 // 1. 定义初始化函数
 // specs：商品源数据 pathMap：路径字典
@@ -259,18 +278,17 @@ const getGoods = async () => {
 <img :class="{ selected: val.selected, disabled: val.disabled }"/>
 <span :class="{ selected: val.selected, disabled: val.disabled }">{{val.name }}</span>
 ```
+:::
 
 ### 根据路径字典设置组合状态
 
-> 思路：
->
+> [!TIP] 🧾 思路
 > 1. 根据当前选中规格，生成顺序规格数组 =>  ['黑色', undefined, undefined ]
 > 2. 遍历每一个规格按钮
 >
-> 如何规格按钮已经选中，忽略判断
-> 如果规格按钮未选中，拿着按钮的name值按顺序套入匹配数组对应的位置，最后过滤掉没有值的选项，通过-进行拼接成字符串key, 去路径字典中查找，没有找到则把当前规格按钮禁用
+> 如何规格按钮已经选中，忽略判断。如果规格按钮未选中，拿着按钮的name值按顺序套入匹配数组对应的位置，最后过滤掉没有值的选项，通过-进行拼接成字符串key, 去路径字典中查找，没有找到则把当前规格按钮禁用
 
-
+::: details 代码实现
 ```javascript
 // 获取选中匹配数组 ['黑色',undefined,undefined]
 const getSelectedValues = (specs) => {
@@ -297,9 +315,11 @@ const updateDisabledState = (specs, pathMap) => {
   })  
 }
 ```
+:::
 
 ## 产出Prop数据
 
+::: details 代码实现
 ```javascript
 const changeSku = (item, val) => {
   // 省略...
@@ -319,4 +339,4 @@ const changeSku = (item, val) => {
   }
 }
 ```
-
+:::

@@ -1,47 +1,62 @@
+---
+layout: doc
+title: 小兔鲜项目首页
+titleTemplate: 小兔鲜项目首页
+description: Vue3 小兔鲜 首页
+head:
+  - - meta
+    - name: description
+      content: 小兔鲜项目首页
+  - - meta
+    - name: keywords
+      content: Vue3 小兔鲜 首页
+pageClass: myself-rabit-home
+---
+
 # Home 首页
 
 ## 整体结构创建
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/274425/1675417667651-eb841c73-5b36-48a5-a8ee-118dbeaaeb0d.png#averageHue=%23fcf8f8&clientId=u19c1ce9d-cad7-4&from=paste&height=458&id=u7e2d2595&name=image.png&originHeight=916&originWidth=1368&originalType=binary&ratio=1&rotation=0&showTitle=false&size=37531&status=done&style=none&taskId=uf8f39479-333b-4074-b888-53dc829c807&title=&width=684)
+![整体结构创建](https://pic1.imgdb.cn/item/6773cbe7d0e0a243d4ed3174.png)
 
-1- 按照结构新增五个组件，准备最简单的模版，分别在Home模块的入口组件中引入
+1. 按照结构新增五个组件，准备最简单的模版，分别在Home模块的入口组件中引入
 
-- HomeCategory
-- HomeBanner
-- HomeNew
-- HomeHot
-- HomeProduct
+   - HomeCategory
+   - HomeBanner
+   - HomeNew
+   - HomeHot
+   - HomeProduct
 
-```vue
-<script setup>
-</script>
+    ```vue
+    <script setup>
+    </script>
 
-<template>
-  <div> HomeCategory </div>
-</template>
-```
+    <template>
+      <div> HomeCategory </div>
+    </template>
+    ```
 
-2- Home模块入口组件中引入并渲染
+2. Home模块入口组件中引入并渲染
 
-```vue
-<script setup>
-import HomeCategory from './components/HomeCategory.vue'
-import HomeBanner from './components/HomeBanner.vue'
-import HomeNew from './components/HomeNew.vue'
-import HomeHot from './components/HomeHot.vue'
-import homeProduct from './components/HomeProduct.vue'
-</script>
+    ```vue
+    <script setup>
+    import HomeCategory from './components/HomeCategory.vue'
+    import HomeBanner from './components/HomeBanner.vue'
+    import HomeNew from './components/HomeNew.vue'
+    import HomeHot from './components/HomeHot.vue'
+    import homeProduct from './components/HomeProduct.vue'
+    </script>
 
-<template>
-  <div class="container">
-    <HomeCategory />
-    <HomeBanner />
-  </div>
-  <HomeNew />
-  <HomeHot />
-  <homeProduct />
-</template>
-```
+    <template>
+      <div class="container">
+        <HomeCategory />
+        <HomeBanner />
+      </div>
+      <HomeNew />
+      <HomeHot />
+      <homeProduct />
+    </template>
+    ```
 
 ## 分类实现
 
@@ -51,10 +66,10 @@ import homeProduct from './components/HomeProduct.vue'
 
 可以发现，新鲜好物与人气推荐两个模块结构几乎相等，因此可以考虑把它们相同的结构抽离出来作为一个骨架，不同的部分使用各自的数据。
 
-> 组件参数可通过两种方式获取：
->
-> - prop：内容不复杂，单纯纯文本等的标题
-> - 插槽：内容为复杂的模板
+::: info 组件参数可通过两种方式获取
+- prop：内容不复杂，单纯纯文本等的标题
+- 插槽：内容为复杂的模板
+:::
 
 使用：
 
@@ -81,7 +96,8 @@ import homeProduct from './components/HomeProduct.vue'
 - el：绑定了自定义事件的元素。因此可以 `el.src` 
 - binding：等号后的值，可以把图片路径赋过来
 
-```js
+::: code-group
+```js [main.js]
 import { useIntersectionObserver } from '@vueuse/core'
 
 // 图片懒加载自定义指令
@@ -104,12 +120,10 @@ app.directive('img-lazy', {
   }
 })
 ```
-
-组件中：
-
-```vue
+```vue [组件中]
 <img v-img-lazy="item.picture" alt="" />
 ```
+:::
 
 ### 优化
 
@@ -117,9 +131,8 @@ app.directive('img-lazy', {
 
   懒加载指令逻辑不能直接写在入口文件，入口文件通常只做一些初始化的事情，不应该包含太多的逻辑代码。应该封装为插件， `main.js` 入口文件只需要负责注册插件即可。
 
-  `src/directives.js` ：
-
-  ```js
+  ::: code-group
+  ```js [src/directives.js]
   // 定义懒加载插件
   import { useIntersectionObserver } from '@vueuse/core'
   
@@ -148,10 +161,7 @@ app.directive('img-lazy', {
     }
   }
   ```
-
-  `main.js` ：
-
-  ```js
+  ```js [main.js]
   // 引入懒加载指令插件并且注册
   import { lazyPlugin } from "@/directives"
   
@@ -160,6 +170,7 @@ app.directive('img-lazy', {
   app.use(createPinia())
   app.use(lazyPlugin)
   ```
+  :::
 
 - 重复监听问题
 
@@ -206,4 +217,3 @@ app.directive('img-lazy', {
 
 - 把要显示的数据对象设计为 `props` 
 - 如果有复杂结构用插槽
-

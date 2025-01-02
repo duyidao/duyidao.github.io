@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 小兔鲜项目总结
+titleTemplate: 小兔鲜项目总结
+description: Vue3 小兔鲜 总结
+head:
+  - - meta
+    - name: description
+      content: 小兔鲜项目总结
+  - - meta
+    - name: keywords
+      content: Vue3 小兔鲜 总结
+pageClass: myself-rabit-all
+---
+
 # 项目总结
 
 ## 项目信息
@@ -42,9 +57,7 @@ const { stop } = useIntersectionObserver(targetRef, ([{ isIntersecting }]) => {
 - 参数一：需要绑定的 DOM 节点（可通过 `ref` 和 `document` 获取）
 - 参数二：节点出现在视图内的回调函数，其中可获取参数 `isIntersecting ` ，为 `true` 说明绑定的节点已经出现在视图中，`false` 反之
 
-方法 `useIntersectionObserver()` 返回一个方法 `stop` ，用于停止该节点的方法侦听绑定。
-
-页面上许多 `img` 标签都需要该懒加载方法，封装为一个全局自定义指令是比较好的选择，这样每个页面的 `img` 标签都可使用。
+方法 `useIntersectionObserver()` 返回一个方法 `stop` ，用于停止该节点的方法侦听绑定。页面上许多 `img` 标签都需要该懒加载方法，封装为一个全局自定义指令是比较好的选择，这样每个页面的 `img` 标签都可使用。
 
 在 `Vue3` 中，自定义指令封装的思路为：
 
@@ -59,9 +72,8 @@ const { stop } = useIntersectionObserver(targetRef, ([{ isIntersecting }]) => {
 
 #### 代码
 
-`directives/index.js`：
-
-```js
+::: code-group
+```js [directives/index.js]
 // 定义懒加载插件
 import { useIntersectionObserver } from "@vueuse/core";
 
@@ -86,9 +98,7 @@ export const lazyPlugin = {
 };
 ```
 
-`main.js`：
-
-```js
+```js [main.js]
 // 引入懒加载指令插件并且注册
 import { lazyPlugin } from "@/directives";
 
@@ -97,11 +107,11 @@ const app = createApp(App);
 app.use(lazyPlugin);
 ```
 
-使用：
-
-```vue
+```vue [使用]
 <img v-imh-lazy="图片路径" />
 ```
+:::
+
 
 ### 路由缓存优化
 
@@ -147,7 +157,9 @@ onBeforeRouteUpdate((to) => {
 
 通过把相关功能的变量与函数方法拆分到各自的 `js` 文件中，用一个函数封装，`return` 返回 `.vue` 组件需要使用的方法和变量，通过按需导出的方式导出该函数。
 
-> 命名采取 `useXxxx` 的 `use + 功能名` 驼峰命名规范
+::: tip 注意
+命名采取 `useXxxx` 的 `use + 功能名` 驼峰命名规范。
+:::
 
 ```js
 import { onMounted, ref } from "vue";
@@ -190,14 +202,14 @@ const { bannerList } = useBanner();
 本项目中通过这个特性，在子组件使用 `v-model` 的特性实现功能。代码如下所示：
 
 - 父组件中通过 `v-model` 绑定一个布尔值控制子组件的显示隐藏
+- 子组件通过 `:modelValue` 为 `dialog` 组件绑定变量，并声明 `emit` ，在其关闭函数事件中使用：
 
-  ```vue
+::: code-group
+  ```vue [父组件]
   <AddressDialog v-model="show" />
   ```
 
-- 子组件通过 `:modelValue` 为 `dialog` 组件绑定变量，并声明 `emit` ，在其关闭函数事件中使用：
-
-  ```vue
+  ```vue [子组件]
   <script setup>
   defineProps({
     show: {
@@ -223,6 +235,7 @@ const { bannerList } = useBanner();
     ></el-dialog>
   </template>
   ```
+:::
 
 ### 倒计时封装
 
@@ -234,9 +247,8 @@ const { bannerList } = useBanner();
 2. 通过计算属性配合 `dayjs` 把数据转为 `xx分xx秒` 的格式
 3. 最后监听页面销毁事件，清除定时器
 
-代码如下所示：
-
-```js
+::: code-group
+```js [useCountDown.js]
 // 封装倒计时逻辑函数
 import { computed, ref, onUnmounted } from "vue";
 import dayjs from "dayjs";
@@ -268,10 +280,7 @@ export const useCountDown = () => {
   return { formatTime, start };
 };
 ```
-
-使用：
-
-```vue
+```vue [template使用]
 <script setup>
 import { useCountDown } from "@/hooks/useCountDown";
 const { formatTime, start } = useCountDown();
@@ -279,6 +288,7 @@ const { formatTime, start } = useCountDown();
 start(60);
 </script>
 ```
+:::
 
 ## 遇到的 BUG
 
@@ -322,17 +332,17 @@ start(60);
 
 当 `res.result` 还未返回数据时 `.list` 拿到的是 `undefined` ，后续操作不会执行，因此不会出现报错。
 
-> 缺点
->
-> 当组件中有多处地方使用到类似的多层数据渲染，需要一个个加上可选链，步骤繁琐且代码繁杂。
+::: info 缺点
+当组件中有多处地方使用到类似的多层数据渲染，需要一个个加上可选链，步骤繁琐且代码繁杂。
+:::
 
 #### 动态渲染
 
 在外层标签中添加一个 `v-if` 标签，判断 `res.result.list` 是否有数据，如果有数据才会显示内部的 DOM 节点，此时必定能获取到数据，也就不会报错。
 
-> 缺点
->
-> 当只有一两个元素时代码没有可选链那么简便。
+::: info 缺点
+当只有一两个元素时代码没有可选链那么简便。
+:::
 
 ### 状态存储无响应式
 
@@ -382,15 +392,11 @@ const { cartList } = storeToRefs(useCarttStore());
 
 项目完成后需要打包部署，放到 `gitee pages` 上代理。在部署的时候勾选了 “强制使用 HTTPS” 的选项，部署完后接口请求被拦截了，并报了以下的错误：
 
-[![pCZ92wR.png](https://s1.ax1x.com/2023/06/11/pCZ92wR.png)](https://imgse.com/i/pCZ92wR)
+![pCZ92wR.png](https://s1.ax1x.com/2023/06/11/pCZ92wR.png)
 
-原因：
+原因：在 https 中请求 http 接口或引入 http 资源都会被直接 blocked（阻止），浏览器默认此行为不安全，会拦截。
 
-在 https 中请求 http 接口或引入 http 资源都会被直接 blocked（阻止），浏览器默认此行为不安全，会拦截。
-
-解决方案：
-
-在 `index.html` 里添加下方代码，强制将 http 请求转成 https(SSL 协议)请求。
+解决方案：在 `index.html` 里添加下方代码，强制将 http 请求转成 https(SSL 协议)请求。
 
 ```html
 <meta

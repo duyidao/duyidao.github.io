@@ -1,6 +1,18 @@
 ---
-title 项目模块
+layout: doc
+title: 自主学习项目模块简介
+titleTemplate: 自主学习项目模块简介
+description: 项目 自学 简介
+head:
+  - - meta
+    - name: description
+      content: 自主学习项目模块简介
+  - - meta
+    - name: keywords
+      content: 项目 自学 简介
+pageClass: project-myself-class
 ---
+
 # 项目模块引言
 
 主要收录网络上学习的项目，目前有：

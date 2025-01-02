@@ -9,7 +9,7 @@ head:
       content: 工作与学习积累的项目经验
   - - meta
     - name: keywords
-      content: 灵思 自学
+      content: 项目 自学
 pageClass: project-class
 ---
 

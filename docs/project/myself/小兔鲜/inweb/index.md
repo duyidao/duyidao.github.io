@@ -1,20 +1,35 @@
+---
+layout: doc
+title: 小兔鲜项目简介
+titleTemplate: 小兔鲜项目简介
+description: Vue3 小兔鲜 简介
+head:
+  - - meta
+    - name: description
+      content: 小兔鲜项目简介
+  - - meta
+    - name: keywords
+      content: Vue3 小兔鲜 简介
+pageClass: myself-rabit-index
+---
+
 # 项目创建
 
-首先创建一个 `vite + vue3` 项目，命令如下：
+首先创建一个 `Vite + Vue3` 项目，命令如下：
 
-```
+```shell
 npm init vue@latest
 ```
 
-设置项目名称，使用 `pinia` 、`router` ，其余都选择 `No` 。
+设置项目名称，使用 `Pinia` 、`Router` ，其余都选择 `No` 。
 
-[![p9I9xyD.md.png](https://s1.ax1x.com/2023/05/21/p9I9xyD.md.png)](https://imgse.com/i/p9I9xyD)
+![p9I9xyD.md.png](https://s1.ax1x.com/2023/05/21/p9I9xyD.md.png)
 
 ## 配置基础文件夹
 
 文件夹配置如下如所示
 
-[![p9Ikm3q.png](https://s1.ax1x.com/2023/05/21/p9Ikm3q.png)](https://imgse.com/i/p9Ikm3q)
+![p9Ikm3q.png](https://s1.ax1x.com/2023/05/21/p9Ikm3q.png)
 
 ## 前置配置
 
@@ -37,36 +52,34 @@ npm init vue@latest
    }
    ```
 
-> 注意
->
-> 这里仅作代码识别提示，真正转换是在 `vite.config.js` 下的 `resolve` 模块。例如我需要添加一个 `@api` 指向 `src/apis` 的文件夹，则需要在 `json` 文件中添加 `@api` 的提示。
->
-> ```js
-> {
->   "compilerOptions": {
->     "baseUrl": "./",
->     "paths": {
->       "@/*": [
->         "src/*"
->       ],
->       "@api/*": [
->         "src/apis/*"
->       ]
->     }
->   }
-> }
-> ```
->
-> `vite.config.js` 下做相应的配置。
->
-> ```js
-> alias: {
->   '@': fileURLToPath(new URL('./src', import.meta.url)),
->   '@api': fileURLToPath(new URL('./src/apis', import.meta.url))
-> }
-> ```
->
-> 重启项目刷新配置查看效果。
+::: warning 注意
+这里仅作代码识别提示，真正转换是在 `vite.config.js` 下的 `resolve` 模块。例如我需要添加一个 `@api` 指向 `src/apis` 的文件夹，则需要在 `json` 文件中添加 `@api` 的提示。
+
+::: code-group
+```js [jsconfig.json]
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@api/*": [
+        "src/apis/*"
+      ]
+    }
+  }
+}
+```
+```js [vite.config.js]
+alias: {
+  '@': fileURLToPath(new URL('./src', import.meta.url)),
+  '@api': fileURLToPath(new URL('./src/apis', import.meta.url))
+}
+```
+::: code-group
+重启项目刷新配置查看效果。
+:::
 
 ### element-plus
 
@@ -74,15 +87,31 @@ npm init vue@latest
 
 1. 安装
 
+   ::: code-group
+   ```shell [npm]
+   npm i element-plus
    ```
+   ```shell [yarn]
    yarn add element-plus
    ```
+   ```shell [pnpm]
+   pnpm i element-plus
+   ```
+   :::
 
 2. 安装按需导入的插件
 
+   ::: code-group
+   ```shell [npm]
+   npm i -D unplugin-vue-components unplugin-auto-import
    ```
+   ```shell [yarn]
    yarn add -D unplugin-vue-components unplugin-auto-import
    ```
+   ```shell [pnpm]
+   pnpm i -D unplugin-vue-components unplugin-auto-import
+   ```
+   :::
 
 3. 在 `vite.config.js` 中配置
 
@@ -118,9 +147,17 @@ npm init vue@latest
 
 ### 安装 Sass
 
-```bash
-yarn add sass -D
+::: code-group
+```shell [npm]
+npm i -D sass
 ```
+```shell [yarn]
+yarn add -D sass
+```
+```shell [pnpm]
+pnpm i -D sass
+```
+:::
 
 ### 重写主题色
 
@@ -192,9 +229,17 @@ export default defineConfig({
 
 ### 安装
 
-```bash
+::: code-group
+```shell [npm]
+npm i axios
+```
+```shell [yarn]
 yarn add axios
 ```
+```shell [pnpm]
+pnpm i axios
+```
+:::
 
 ### 配置
 
@@ -228,7 +273,8 @@ export default http
 2. 使用封装好的 axios 设置接口函数并导出
 3. 在 main.js 中使用
 
-```js
+::: code-group
+```js [api/index.js]
 // api/index.js
 import http from '@/utils/http'
 
@@ -238,14 +284,14 @@ export const test = () => {
   })
 }
 ```
-
-```js
+```js [main.js]
 // main.js
 import {test} from '@api/index'
 test().then(res => {
   console.log(res);
 })
 ```
+:::
 
 ## 配置路由
 
@@ -255,18 +301,19 @@ test().then(res => {
 
 首页和登录页为一级路由，特征为 `/` 
 
-> 注意
->
-> 此时新增组件时 `eslint` 会报错，在 `.eslintrc.cjs` 文件添加以下代码取消强制要求重命名即可。
->
-> ```js
-> module.exports = {
->     //...
->     rules: {
->         'vue/multi-word-component-name': 0
->     }
-> }
-> ```
+::: warning 注意
+
+此时新增组件时 `eslint` 会报错，在 `.eslintrc.cjs` 文件添加以下代码取消强制要求重命名即可。
+
+```js
+module.exports = {
+    //...
+    rules: {
+        'vue/multi-word-component-name': 0
+    }
+}
+```
+:::
 
 ### 二级路由
 

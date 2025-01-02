@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 小兔鲜小程序首页
+titleTemplate: 小兔鲜小程序首页
+description: UniApp 小兔鲜 首页
+head:
+  - - meta
+    - name: description
+      content: 小兔鲜小程序首页
+  - - meta
+    - name: keywords
+      content: UniApp 小兔鲜 首页
+pageClass: myself-rabit-home
+---
+
 # 首页
 
 ## 头部自定义导航栏
@@ -118,7 +133,7 @@ page {
 
 通过该方法实现下拉刷新，代码如下：
 
-```vue
+```js
 // 下拉刷新
 const onRefresherrefresh = async () => {
   // 加载数据
@@ -138,8 +153,7 @@ const onRefresherrefresh = async () => {
 
 而 `scroll-view` 组件通过属性 `refresher-triggered` 控制是否显示 `loading` 加载。
 
-代码如下：
-
+::: details 代码如下
 ```vue
 <script setup lang="ts">
 // ...
@@ -177,6 +191,7 @@ const onRefresherrefresh = async () => {
   </scroll-view>
 </template>
 ```
+:::
 
 ## 泛型与不确定类型
 

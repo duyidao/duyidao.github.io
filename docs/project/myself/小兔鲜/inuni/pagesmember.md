@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 小兔鲜小程序分包
+titleTemplate: 小兔鲜小程序分包
+description: UniApp 小兔鲜 分包
+head:
+  - - meta
+    - name: description
+      content: 小兔鲜小程序分包
+  - - meta
+    - name: keywords
+      content: UniApp 小兔鲜 分包
+pageClass: myself-rabit-pagesmember
+---
+
 # 分包
 
 小程序有大小限制，最大体积只能在4MB。在真实项目中，小程序的大小往往会超出这个范围，因此，通过分包可以有效减少小程序主包的体积。
@@ -54,10 +69,10 @@
 
      子包获取资源规则，用于设置某个子包在什么路由下获取资源，在什么网络下获取资源，`key` 是页面路径，`value` 是进入此页面的预下载配置，每个配置有以下几项：
 
-     | 字段     | 类型        | 必填 | 默认值 | 说明                                                         |
-     | :------- | :---------- | :--- | :----- | :----------------------------------------------------------- |
-     | packages | StringArray | 是   | 无     | 进入页面后预下载分包的 `root` 或 `name`。`__APP__` 表示主包。 |
-     | network  | String      | 否   | wifi   | 在指定网络下预下载，可选值为： `all`: 不限网络 `wifi`: 仅wifi下预下载 |
+     | 字段     | 类型        | 必填 | 默认值 | 说明          |
+     | :------- | :----------: | :---: | :-----: | ---------------: |
+     | `packages` | StringArray | 是   | 无     | 进入页面后预下载分包的 `root` 或 `name`。`__APP__` 表示主包。 |
+     | `network`  | String      | 否   | wifi   | 在指定网络下预下载，可选值为： `all`: 不限网络 `wifi`: 仅wifi下预下载 |
 
      代码如下所示：
 
