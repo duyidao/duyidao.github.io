@@ -1,0 +1,33 @@
+/* 链接前置图标样式less文件 */
+
+.vp-doc a[href^="https://"]:before {
+  content: '';
+  position: relative;
+  width: 20px;
+  height: 19.5px;
+  display: inline-block;
+  vertical-align: text-top;
+  background-size: cover;
+  margin-right: 4px;
+  background-image: url(/svg/link.svg);
+}
+
+/* YouTube */
+.vp-doc a[href^="https://www.youtube.com/"]:before {
+  background-image: url(/svg/youtube.svg);
+}
+
+/* Vue */
+.vp-doc a[href^="https://cn.vuejs.org/"]:before {
+  background-image: url(/svg/vue.svg);
+}
+
+/* 哔哩哔哩 */
+.vp-doc a[href^="https://www.bilibili.com/"]:before {
+  background-image: url(/svg/bilibili.svg);
+}
+
+/* giscus */
+.vp-doc a[href^="https://giscus.app/zh-CN"]:before {
+  background-image: url(/svg/giscus.svg);
+}

@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: 刀刀博客
-  text: 欢迎来到刀刀博客，我是杜一刀。<br/>这里记录自己的学习成果，项目学习经验。不定时更新~
+  text: 欢迎来到刀刀博客，我是杜一刀。<br/><span>这里记录自己的学习成果，项目学习经验。不定时更新~</span>
   tagline: 每天都要比昨天更有进步💪
   actions:
     - theme: brand
@@ -30,19 +30,19 @@ features:
   - icon: ⚡
     title: 项目之旅
     details: 项目总结
-    link: /project/index
+    link: /project/
   - icon:  ⌛
     title: 博客部署
     details: 从0到1部署博客
-    link: /vitePress/index
+    link: /vitePress/
   - icon:  🎉
     title: 开发帮助
     details: 开发与学习时有用的帮助
-    link: /help/index
+    link: /help/
   - icon:  📖
     title: 阅读之旅
     details: 书籍是人类进步的阶梯，读本好书吧
-    link: /read/index
+    link: /read/
   - icon:  🦆
     title: 面试鸭
     details: 面经
@@ -55,25 +55,3 @@ features:
     title: 未完待续
     details: 尽情期待
 ---
-
-<style>
-:root {
-  --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #63cdcf 45%, #41d1ff);
-
-  --vp-home-hero-image-background-image: linear-gradient(-45deg, #63cdcf 50%, #47caff 50%);
-  --vp-home-hero-image-filter: blur(40px);
-}
-
-@media (min-width: 640px) {
-  :root {
-    --vp-home-hero-image-filter: blur(50px);
-  }
-}
-
-@media (min-width: 960px) {
-  :root {
-    --vp-home-hero-image-filter: blur(60px);
-  }
-}
-</style>

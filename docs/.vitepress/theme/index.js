@@ -1,5 +1,5 @@
 import DefaultTheme from 'vitepress/theme'
-import './custom.less'
+import './index.less'
 import compList from '../components/index.js'; // 引入自定义Vue组件
 import giscusTalk from 'vitepress-plugin-comment-with-giscus'; // 引入giscus评论插件
 import { useData, useRoute } from 'vitepress';

@@ -1,150 +1,95 @@
-/* .vitepress/theme/style/blur.css */
+/* 信息卡片色卡样式less文件 */
 :root {
+  --custom-block-info-left: #cccccc;
+  --custom-block-info-bg: #fafafa;
 
-  /* 首页导航 */
-  .VPNavBar {
-    background-color: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(10px);
-  }
+  --custom-block-tip-left: #009400;
+  --custom-block-tip-bg: #e6f6e6;
 
-  /* 文档页导航两侧 */
-  .VPNavBar:not(.home) {
-    background-color: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(10px);
-  }
+  --custom-block-warning-left: #e6a700;
+  --custom-block-warning-bg: #fff8e6;
 
-  @media (min-width: 960px) {
+  --custom-block-danger-left: #e13238;
+  --custom-block-danger-bg: #ffebec;
 
-    /* 文档页导航两侧 */
-    .VPNavBar:not(.home) {
-      background-color: rgba(255, 255, 255, 0);
-      backdrop-filter: blur(10px);
-    }
+  --custom-block-note-left: #4cb3d4;
+  --custom-block-note-bg: #eef9fd;
 
-    /* 首页下滑后导航两侧 */
-    .VPNavBar:not(.has-sidebar):not(.home.top) {
-      background-color: rgba(255, 255, 255, 0);
-      backdrop-filter: blur(10px);
-    }
-  }
+  --custom-block-important-left: #a371f7;
+  --custom-block-important-bg: #f4eefe;
 
-  @media (min-width: 960px) {
-
-    /* 文档页导航中间 */
-    .VPNavBar:not(.home.top) .content-body {
-      background-color: rgba(255, 255, 255, 0);
-      backdrop-filter: blur(10px);
-    }
-
-    /* 首页下滑后导航中间 */
-    .VPNavBar:not(.has-sidebar):not(.home.top) .content-body {
-      background-color: rgba(255, 255, 255, 0);
-      backdrop-filter: blur(10px);
-    }
-  }
-
-  /* 分割线 */
-
-  @media (min-width: 960px) {
-
-    /* 文档页分割线 */
-    .VPNavBar:not(.home.top) .divider-line {
-      background-color: rgba(255, 255, 255, 0);
-      backdrop-filter: blur(10px);
-    }
-
-    /* 首页分割线 */
-    .VPNavBar:not(.has-sidebar):not(.home.top) .divider {
-      background-color: rgba(255, 255, 255, 0);
-      backdrop-filter: blur(10px);
-    }
-  }
-
-  /* 搜索框 VPNavBarSearchButton.vue */
-  .DocSearch-Button {
-    background-color: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(10px);
-  }
-
-  /* 移动端大纲栏 */
-  .VPLocalNav {
-    background-color: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(10px);
-    /* 隐藏分割线 */
-    /* border-bottom: 5px solid var(--vp-c-gutter); */
-    border-bottom: 0px;
-  }
-}
-
-/* var.css */
-:root {
-  --vp-c-brand-1: #18794e;
-  --vp-c-brand-2: #299764;
-  --vp-c-brand-3: #30a46c;
-
-  /* 提示框背景颜色 */
-  --vp-custom-block-tip-bg: var(--vp-c-green-soft);
+  --custom-block-caution-left: #e0575b;
+  --custom-block-caution-bg: #fde4e8;
 }
 
 .dark {
-  --vp-c-brand-1: #3dd68c;
-  --vp-c-brand-2: #30a46c;
-  --vp-c-brand-3: #298459;
-}
-/* 以前的vp-c-brand已弃用 */
+  --custom-block-info-left: #cccccc;
+  --custom-block-info-bg: #474748;
 
-:root {
-  /* hero标题渐变色 */
-  --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(
-    120deg,
-    #bd34fe,
-    #41d1ff
-  );
+  --custom-block-tip-left: #009400;
+  --custom-block-tip-bg: #003100;
 
-  /*hero logo背景渐变色 */
-  --vp-home-hero-image-background-image: linear-gradient(
-    -45deg,
-    #bd34fe 50%,
-    #47caff 50%
-  );
-  --vp-home-hero-image-filter: blur(40px);
+  --custom-block-warning-left: #e6a700;
+  --custom-block-warning-bg: #4d3800;
+
+  --custom-block-danger-left: #e13238;
+  --custom-block-danger-bg: #4b1113;
+
+  --custom-block-note-left: #4cb3d4;
+  --custom-block-note-bg: #193c47;
+
+  --custom-block-important-left: #a371f7;
+  --custom-block-important-bg: #230555;
+
+  --custom-block-caution-left: #e0575b;
+  --custom-block-caution-bg: #391c22;
 }
 
-/* 也可自行单独修改brand按钮 */
-/* :root {
-    --vp-button-brand-border: #F6CEEC;
-    --vp-button-brand-text: #F6CEEC;
-    --vp-button-brand-bg: #D939CD;
-  
-    --vp-button-brand-hover-border: #F6CEEC;
-    --vp-button-brand-hover-text: #fff;
-    --vp-button-brand-hover-bg: #D939CD;
-  
-    --vp-button-brand-active-border: #F6CEEC;
-  } */
 
-/* 提示框 */
+/* 标题字体大小 */
+.custom-block-title {
+  font-size: 16px;
+}
+
+/* info容器:背景色、左侧 */
+.custom-block.info {
+  border-left: 5px solid var(--custom-block-info-left);
+  background-color: var(--custom-block-info-bg);
+}
+
+/* 提示容器:边框色、背景色、左侧 */
 .custom-block.tip {
-  border-color: var(--vp-c-green-2);
+  /* border-color: var(--custom-block-tip); */ 
+  border-left: 5px solid var(--custom-block-tip-left);
+  background-color: var(--custom-block-tip-bg);
 }
 
-/* 警告框 */
+/* 警告容器:背景色、左侧 */
 .custom-block.warning {
-  /* border-color: #d97706; */
-  border-color: var(--vp-c-yellow-2);
+  border-left: 5px solid var(--custom-block-warning-left);
+  background-color: var(--custom-block-warning-bg);
 }
 
-/* 危险框 */
+/* 危险容器:背景色、左侧 */
 .custom-block.danger {
-  /* border-color: #f43f5e; */
-  border-color: var(--vp-c-red-2);
+  border-left: 5px solid var(--custom-block-danger-left);
+  background-color: var(--custom-block-danger-bg);
 }
 
-.medium-zoom-overlay {
-  z-index: 30;
+/* NOTE容器:背景色、左侧 */
+.custom-block.note {
+  border-left: 5px solid var(--custom-block-note-left);
+  background-color: var(--custom-block-note-bg);
 }
 
-.medium-zoom-image {
-  z-index: 9999 !important; /* 给的值是21，但是实测盖不住，直接999 */
+/* IMPORTANT容器:背景色、左侧 */
+.custom-block.important {
+  border-left: 5px solid var(--custom-block-important-left);
+  background-color: var(--custom-block-important-bg);
+}
+
+/* CAUTION容器:背景色、左侧 */
+.custom-block.caution {
+  border-left: 5px solid var(--custom-block-caution-left);
+  background-color: var(--custom-block-caution-bg);
 }

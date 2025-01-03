@@ -14,7 +14,7 @@ pageClass: vitepress-know-class
 ---
 
 # 拓展学习
-部署成功并不是终点， `vitepress` 的学习之旅还在继续。此模块收集一些知识点与功能的使用，还在不断完善中~
+部署成功并不是终点， Vitepress 的学习之旅还在继续。此模块收集一些知识点与功能的使用，还在不断完善中~
 
 ## 路由跳转
 路由跳转有两种模式：
@@ -24,7 +24,7 @@ pageClass: vitepress-know-class
 
 ## 组件使用
 可以使用 `Vue2` 的组件。
-- 在 `.vitepress/theme/index.js` 中， 因为enhanceApp 函数接受 Vueapp对象，所以可以像普通 Vue 插件那样注册组件。
+- 在 `.vitepress/theme/index.js` 中， 因为 `enhanceApp` 函数接受 `Vue.app` 对象，所以可以像普通 [Vue](https://cn.vuejs.org/) 插件那样注册组件。
 
 - 在全局组件中使用该组件
 
@@ -39,7 +39,7 @@ export default {
   }
 }
 ```
-```md [使用该组件]
+```md [md]
 # Vue.js设计与实现
 
 <MyComponent/>

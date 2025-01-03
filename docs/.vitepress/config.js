@@ -28,26 +28,22 @@ module.exports = {
     ["meta", { httpEquiv: "Cache-Control", content: "no-cache, no-store, must-revalidate" }],
     ["meta", { httpEquiv: "Pragma", content: "no-cache" }],
     ["meta", { httpEquiv: "Expires", content: "0" }],
-    [
-      'script',
-      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=TAG_ID' }
-    ],
-    [
-      'script',
-      {},
-      `window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'TAG_ID');`
-    ]
+    // [
+    //   'script',
+    //   { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=TAG_ID' }
+    // ],
+    // [
+    //   'script',
+    //   {},
+    //   `window.dataLayer = window.dataLayer || [];
+    //   function gtag(){dataLayer.push(arguments);}
+    //   gtag('js', new Date());
+    //   gtag('config', 'TAG_ID');`
+    // ]
   ],
   cleanUrls: true, // 删除 .html 后缀
   // 使用插件
   plugins: [
-    '@vuepress/active-header-links',   // 页面滚动时自动激活侧边栏链接的插件
-    '@vuepress/back-to-top',          // 返回顶部插件
-    '@vuepress/medium-zoom',          // 图片预览插件
-    '@vuepress/nprogress',        //页面顶部进度条
   ],
   // 主题配置
   themeConfig: {

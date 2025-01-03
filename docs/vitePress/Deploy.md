@@ -53,4 +53,59 @@ pageClass: vitepress-deploy-class
 
 ### 流水线自动部署
 
-想要实现流水线自动部署，需要在项目
+想要实现流水线自动部署，需要在项目根目录下新建一个 `.github/workflows` 文件夹，并在该文件夹下新建一个 `deploy.yml` 文件，内容如下：
+
+::: details 点击查看
+```yml
+name: Deploy VitePress site to Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Clean node_modules and package-lock.json
+        run: rm -rf node_modules package-lock.json
+      - name: Install dependencies
+        run: npm install
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Build with VitePress
+        run: npm run build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
+:::
