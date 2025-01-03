@@ -1,15 +1,18 @@
 /* 链接前置图标样式less文件 */
 
-.vp-doc a[href^="https://"]:before {
-  content: '';
-  position: relative;
-  width: 20px;
-  height: 19.5px;
-  display: inline-block;
-  vertical-align: text-top;
-  background-size: cover;
-  margin-right: 4px;
-  background-image: url(/svg/link.svg);
+.vp-doc a {
+  &[href^="http://"]:before,
+  &[href^="https://"]:before {
+    content: '';
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 19px;
+    background-size: cover;
+    margin: 0 4px;
+    vertical-align: text-top;
+    background-image: url(/svg/link.svg);
+  }
 }
 
 /* YouTube */
@@ -30,4 +33,19 @@
 /* giscus */
 .vp-doc a[href^="https://giscus.app/zh-CN"]:before {
   background-image: url(/svg/giscus.svg);
+}
+
+/* uniapp */
+.vp-doc a[href^="https://uniapp.dcloud.net.cn/"]:before {
+  background-image: url(/svg/uniapp.svg);
+}
+
+/* npm */
+.vp-doc a[href^="https://www.npmjs.com/"]:before {
+  background-image: url(/svg/npm.svg);
+}
+
+/* mdn */
+.vp-doc a[href^="https://developer.mozilla.org/"]:before {
+  background-image: url(/svg/mdn.svg);
 }

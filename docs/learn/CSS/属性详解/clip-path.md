@@ -2,7 +2,7 @@
 
 ## 前置知识
 
-**`clip-path`** [CSS](https://developer.mozilla.org/zh-CN/docs/Web/CSS) 属性使用裁剪方式创建元素的可显示区域。区域内的部分显示，区域外的隐藏。
+[clip-path](https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path) 属性使用裁剪方式创建元素的可显示区域。区域内的部分显示，区域外的隐藏。
 
 语法：
 
@@ -76,7 +76,8 @@ clip-path: unset;
 
   不创建剪切路径。
 
-> **备注：** CSS 计算值不为 **`none`** 时，会创建新的[层叠上下文](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context)，就像 CSS [`opacity`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/opacity) 的值不为 `1` 时那样。
+> [!NOTE] 🧾 备注 
+> CSS 计算值不为 **`none`** 时，会创建新的[层叠上下文](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context)，就像 CSS [`opacity`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/opacity) 的值不为 `1` 时那样。
 
 形式定义:
 
@@ -125,24 +126,24 @@ clip-path =
 
    ```html
    <style>
-       .container {
-           width: 400px;
-           height: 400px;
-           margin: 0 auto;
-           background: #14100f;
-       }
-       
-       .box {
-           width: 100%;
-           height: 100%;
-           display: block;
-           clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-           transition: .5s;
-       }
-       
-       .container:hover .box {
-           clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%);
-       }
+     .container {
+        width: 400px;
+        height: 400px;
+        margin: 0 auto;
+        background: #14100f;
+     }
+     
+     .box {
+        width: 100%;
+        height: 100%;
+        display: block;
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        transition: .5s;
+     }
+     
+     .container:hover .box {
+        clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%);
+     }
    </style>
    ```
 
@@ -152,18 +153,18 @@ clip-path =
 
    ```css
    @keyframes wink {
-       15% {
-           clip-path: ellipse(50% 1% at 50% 50%);
-       }
-       30% {
-           clip-path: ellipse(50% 19% at 50% 50%);
-       }
-       45% {
-           clip-path: ellipse(50% 1% at 50% 50%);
-       }
-       70% {
-           clip-path: ellipse(50% 40% at 50% 50%);
-       }
+     15% {
+        clip-path: ellipse(50% 1% at 50% 50%);
+     }
+     30% {
+        clip-path: ellipse(50% 19% at 50% 50%);
+     }
+     45% {
+        clip-path: ellipse(50% 1% at 50% 50%);
+     }
+     70% {
+        clip-path: ellipse(50% 40% at 50% 50%);
+     }
    }
    ```
 
@@ -175,13 +176,13 @@ clip-path =
 
    ```css
    @keyframes fall {
-       0% {
-           clip-path: inset(100% 0% 0% 0%);
-           transform: translateY(-100%);
-       }
-       100% {
-           clip-path: inset(0% 0% 0% 0%);
-       }
+     0% {
+        clip-path: inset(100% 0% 0% 0%);
+        transform: translateY(-100%);
+     }
+     100% {
+        clip-path: inset(0% 0% 0% 0%);
+     }
    }
    ```
 
@@ -189,12 +190,12 @@ clip-path =
 
    ```html
    <style>
-       .img-box img:nth-child(2) {
-           clip-path: polygon(-30% 0, -30% 0, 0% 50%, -30% 100%, -30% 100%);
-       }
-       .img-box:hover img:nth-child(2) {
-           clip-path: polygon(-30% 0, 100% 0, 110% 50%, 100% 100%, -30% 100%);
-       }
+     .img-box img:nth-child(2) {
+        clip-path: polygon(-30% 0, -30% 0, 0% 50%, -30% 100%, -30% 100%);
+     }
+     .img-box:hover img:nth-child(2) {
+        clip-path: polygon(-30% 0, 100% 0, 110% 50%, 100% 100%, -30% 100%);
+     }
    </style>
    ```
 

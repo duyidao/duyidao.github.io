@@ -45,27 +45,26 @@
 
 此外，`html2canvas` 还提供了一系列配置选项，可以用于调整转换的行为，如指定要忽略的元素、设置背景色、跨域处理等。你可以查阅官方文档以获取更多关于配置选项的详细信息。
 
-> 注意
->
+> [!WARNING] ⚠ 注意
 > `html2canvas` 在处理复杂页面和一些特殊元素时可能存在一些限制和局限性，例如不支持播放音视频、某些 CSS 属性可能无法正确应用等。在使用之前，最好先检查库的文档和示例，以了解其支持的功能和适用的场景。
 
 ## 截图实现
 
 ```vue
 <script setup>
-    import html2canvas from 'html2canvas'
-    import { ref } from 'vue'
-    import { saveAs } from 'file-saver'
-    
-    let div1 = ref(null)
-    
-    const saveScreen = () => {
-        html2canvas(div1.value).then(res => {
-            res.toBlob((blob) => {
-                saveAs(blob, 'screen.png')
-            })
-        })
-    }
+  import html2canvas from 'html2canvas'
+  import { ref } from 'vue'
+  import { saveAs } from 'file-saver'
+  
+  let div1 = ref(null)
+  
+  const saveScreen = () => {
+    html2canvas(div1.value).then(res => {
+      res.toBlob((blob) => {
+        saveAs(blob, 'screen.png')
+      })
+    })
+  }
 </script>
 ```
 

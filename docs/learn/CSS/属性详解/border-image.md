@@ -2,13 +2,11 @@
 
 ## 前值知识
 
-`border-image` 是一个复合属性，具体详情可前往文档查看 [border-image](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-image)，它拆分为以下三个属性：
+[border-image](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-image) 是一个复合属性，它拆分为以下三个属性：
 
 - `border-image-source` 图片源
 
-  如果单单设置这个属性，它只会在 `div` 的四个角添加图片效果，如下图所示：
-
-  ![四个角](https://pic.imgdb.cn/item/670f7510d29ded1a8c04cf4d.png)
+  如果单单设置这个属性，它只会在 `div` 的四个角添加图片效果
 
 - `border-image-slice` 图片切割
 

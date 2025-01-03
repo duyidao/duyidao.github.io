@@ -6,24 +6,24 @@
 
 ```vue
 <script setup>
-    import { ref } from 'vue'
+  import { ref } from 'vue'
+  
+  const imgUrl = ref('')
+  const canvasRef = ref(null)
+  const imgRef = ref(null)
+  const onChangeFn = e => {
+    // 获取用户上传的文件
+    const file = e.target.files[0]
     
-    const imgUrl = ref('')
-    const canvasRef = ref(null)
-    const imgRef = ref(null)
-    const onChangeFn = e => {
-        // 获取用户上传的文件
-        const file = e.target.files[0]
-        
-        // 预览文件
-        let fr = new FileReader()
-        fr.readAsDataURL(file)
-        
-        // 获取图片读完的图片结果（非同步，需要在onload获取）
-        fr.onload = () => {
-            imgUrl.value = fr.result
-        }
+    // 预览文件
+    let fr = new FileReader()
+    fr.readAsDataURL(file)
+    
+    // 获取图片读完的图片结果（非同步，需要在onload获取）
+    fr.onload = () => {
+      imgUrl.value = fr.result
     }
+  }
 </script>
 
 <template>

@@ -16,10 +16,10 @@ const imageData = context.getImageData(x, y, width, height);
 
 | 参数   | 含义                      |
 | ------ | ------------------------- |
-| x      | 矩形区域的起始点 x 坐标。 |
-| y      | 矩形区域的起始点 y 坐标。 |
-| width  | 矩形区域的宽度。          |
-| height | 矩形区域的高度。          |
+| `x`      | 矩形区域的起始点 `x` 坐标。 |
+| `y`      | 矩形区域的起始点 `y` 坐标。 |
+| `width`  | 矩形区域的宽度。          |
+| `height` | 矩形区域的高度。          |
 
 以下是一个示例，展示了如何使用 `getImageData` 方法获取指定区域的像素数据：
 
@@ -44,8 +44,7 @@ for (let i = 0; i < imageData.data.length; i += 4) {
 
 在示例中，首先获取到 `<canvas>` 元素的上下文对象 `ctx`。然后，使用 `getImageData` 方法获取画布上指定区域的像素数据，并将结果保存到 `imageData` 对象中。通过访问 `imageData.data`，可以逐个像素地访问像素数组中的 RGBA 值。
 
-> 注意
->
+> [!WARNING] ⚠ 注意
 > 1. `getImageData` 方法返回的 `ImageData` 对象是一个包含了具体像素数据的跨域对象。为了避免遇到跨域问题，画布和图像必须来自同一个域或通过 CORS（Cross-Origin Resource Sharing，跨域资源共享）进行设置。
 > 2. 由于 `getImageData` 返回的像素数据相当庞大，大量使用该方法可能会对性能产生影响。因此，在使用 `getImageData` 时，最好尽可能限制使用范围和像素数量，以免影响性能。
 
@@ -71,8 +70,7 @@ ctx.clearRect(50, 50, 100, 100);
 
 在这个例子中，首先通过 `fillRect` 方法绘制一个蓝色的矩形，然后使用 `clearRect` 方法清除了矩形区域的中间部分，留下四个蓝色的角落。
 
-> 注意
->
+> [!WARNING] ⚠ 注意
 > `clearRect` 方法只适用于 `<canvas>` 元素，如果尝试在其他类型的元素上调用该方法，将会产生错误。
 
 #### putImageData
@@ -108,8 +106,7 @@ ctx.putImageData(imageData, 50, 50);
 
 最后，我们使用 `putImageData` 方法将像素数据绘制到画布上的指定位置。在这个例子中，我们将像素数据放置在画布上的位置 `(50, 50)` 处。
 
-> 注意
->
+> [!WARNING] ⚠ 注意
 > 像素数据必须与画布的大小相匹配，否则绘制将会产生不可预测的结果。
 
 ## 获取图片
@@ -118,34 +115,32 @@ ctx.putImageData(imageData, 50, 50);
 
 ```vue
 <script setup>
-    import { ref } from 'vue'
+  import { ref } from 'vue'
+  
+  const imgUrl = ref('')
+  const onChangeFn = e => {
+    // 获取用户上传的文件
+    const file = e.target.files[0]
     
-    const imgUrl = ref('')
-    const onChangeFn = e => {
-        // 获取用户上传的文件
-        const file = e.target.files[0]
-        
-        // 预览文件
-        let fr = new FileReader()
-        fr.readAsDataURL(file)
-        
-        // 获取图片读完的图片结果（非同步，需要在onload获取）
-        fr.onload = () => {
-            imgUrl.value = fr.result
-        }
+    // 预览文件
+    let fr = new FileReader()
+    fr.readAsDataURL(file)
+    
+    // 获取图片读完的图片结果（非同步，需要在onload获取）
+    fr.onload = () => {
+      imgUrl.value = fr.result
     }
+  }
     
-    const addFn = () => {}
+  const addFn = () => {}
 </script>
 
 <template>
-    <div ref="filterRef">
-        <input type="file" @change="onChangeFn" />
-        <img :src="imgUrl" ref="imgRef" />
-        <button @click="addFn">
-            点我添加滤镜
-        </button>
-    </div>
+  <div ref="filterRef">
+    <input type="file" @change="onChangeFn" />
+    <img :src="imgUrl" ref="imgRef" />
+    <button @click="addFn">点我添加滤镜</button>
+  </div>
 </template>
 ```
 
@@ -163,28 +158,28 @@ ctx.putImageData(imageData, 50, 50);
 // ....
 const filterRef = ref(null)
 const addFn = () => {
-    const filterCanvas = document.createElement('canvas')
-    filterCanvas.height = imgRef.value.height
-    filterCanvas.width = imgRef.value.width
-    
-    let ctx = filterCanvas.getContext('2d')
-    filterRef.value.appendChild(filterCanvas)
-    ctx.drawImage(imgRef.value, 0, 0, imgRef.value.width, imgRef.value.height)
-    
-    // 获取像素值
-    let imageData = ctx.getImageData(0, 0, imgRef.value.width, imgRef.value.height)
-    let _len = imageData.data.length
-    for(let i = 0; i < _len; i++) {
-        if(i % 2 === 0) {
-            imageData.data[i] = 0
-        }
+  const filterCanvas = document.createElement('canvas')
+  filterCanvas.height = imgRef.value.height
+  filterCanvas.width = imgRef.value.width
+  
+  let ctx = filterCanvas.getContext('2d')
+  filterRef.value.appendChild(filterCanvas)
+  ctx.drawImage(imgRef.value, 0, 0, imgRef.value.width, imgRef.value.height)
+  
+  // 获取像素值
+  let imageData = ctx.getImageData(0, 0, imgRef.value.width, imgRef.value.height)
+  let _len = imageData.data.length
+  for(let i = 0; i < _len; i++) {
+    if(i % 2 === 0) {
+      imageData.data[i] = 0
     }
-    
-    // 清空 canvas
-    ctx.clearRect(0, 0, imgRef.value.width, imgRef.value.height)
-    
-    // 重新绘制像素
-    ctx.putImageData(imageData, 0, 0)
+  }
+  
+  // 清空 canvas
+  ctx.clearRect(0, 0, imgRef.value.width, imgRef.value.height)
+  
+  // 重新绘制像素
+  ctx.putImageData(imageData, 0, 0)
 }
 ```
 

@@ -25,7 +25,7 @@ pageClass: vitepress-review-class
 
 ### Github账号下载插件
 
-点击右上角的个人头像，选择`Setting` 设置，左侧导航栏下拉找到 `Applications` 。点击 `New OAuth App` 新建一个应用。搜索 `giscus`，选择刚刚新建好的新公开仓库。
+点击右上角的个人头像，选择`Setting` 设置，左侧导航栏下拉找到 `Applications` 。点击 `New OAuth App` 新建一个应用。搜索 [giscus](https://giscus.app/zh-CN)，选择刚刚新建好的新公开仓库。
 
 ![配置](https://pic.imgdb.cn/item/676d17d9d0e0a243d4ead581.png)
 
@@ -60,7 +60,7 @@ pageClass: vitepress-review-class
 
 ### 配置插件
 
-前往 `.vitepress/themme/index.js` 文件中配置 `giscus` 插件。把前面获取到的脚本代码里的参数一一对应复制上去即可。
+前往 `.vitepress/themme/index.js` 文件中配置 [giscus](https://giscus.app/zh-CN) 插件。把前面获取到的脚本代码里的参数一一对应复制上去即可。
 
 ```js
 import DefaultTheme from 'vitepress/theme';
