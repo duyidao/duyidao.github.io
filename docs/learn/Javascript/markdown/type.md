@@ -6,12 +6,12 @@
 
 `typeof` 用于返回以下原始类型
 
-- 基本类型：number/string/boolean
-- function
-- object
-- undefined
+- 基本类型：`number` / `string` / `boolean`
+- `function`
+- `object`
+- `undefined`
 
-可以使用 typeof 用于判断数据的类型
+可以使用 `typeof` 用于判断数据的类型
 
 ```js
 let a = 1;
@@ -38,7 +38,7 @@ console.log(typeof d); //object
 
 **`instanceof`** 运算符用于检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上。
 
-也可以理解为是否为某个对象的实例，`typeof`不能区分数组，但`instanceof`则可以。
+也可以理解为是否为某个对象的实例，`typeof` 不能区分数组，但 `instanceof` 则可以。
 
 ```js
 let hd = [];
@@ -67,7 +67,7 @@ let cms = new String("duyidao");
 console.log(typeof hd, typeof cms); //string object
 ```
 
-只有对象才有方法使用，但在`JS`中也可以使用值类型调用方法，因为它会在执行时将值类型转为对象。
+只有对象才有方法使用，但在 `JS` 中也可以使用值类型调用方法，因为它会在执行时将值类型转为对象。
 
 ```js
 let hd = "daodao";
@@ -166,8 +166,6 @@ console.log(`${show()}`)
 
 模板字面量支持嵌套使用
 
-![image-20191011025107379](https://doc.daodao.com/assets/img/image-20191011025107379.418bb650.png)
-
 ```js
 let lessons = [
 	{title: '媒体查询响应式布局'},{title: 'FLEX 弹性盒模型'},{title: 'GRID 栅格系统'}
@@ -175,9 +173,9 @@ let lessons = [
 
 function template() {
   return `<ul>
-      ${lessons.map((item)=>`
-          <li>${item.title}</li>
-      `).join('')}
+    ${lessons.map((item)=>`
+      <li>${item.title}</li>
+    `).join('')}
   </ul>`;
 }
 document.body.innerHTML = template();
@@ -193,8 +191,8 @@ let web = '刀刀';
 tag `访问${web}学习${lesson}前端知识`;
 
 function tag(strings, ...values) {
-    console.log(strings); //["访问", "学习", "前端知识"]
-    console.log(values); // ["刀刀", "css"]
+  console.log(strings); //["访问", "学习", "前端知识"]
+  console.log(values); // ["刀刀", "css"]
 }
 ```
 
@@ -237,7 +235,7 @@ document.body.innerHTML += template();
 
 ##### 获取长度
 
-使用`length`属性可以获取字符串长度
+使用 `length` 属性可以获取字符串长度
 
 ```js
 console.log("daodao.com".length)
@@ -259,7 +257,7 @@ console.log('daodao.com'.toLowerCase()); //daodao.com
 
 ##### 移除空白
 
-使用`trim`删除字符串左右的空白字符
+使用 `trim` 删除字符串左右的空白字符
 
 ```js
 let str = '   daodao.com  ';
@@ -267,7 +265,7 @@ console.log(str.length);
 console.log(str.trim().length);
 ```
 
-使用`trimLeft`删除左边空白，使用`trimRight`删除右边空白
+使用 `trimLeft` 删除左边空白，使用 `trimRight` 删除右边空白
 
 ```js
 let name = " daodao ";
@@ -458,7 +456,7 @@ let hd = 99;
 console.log(typeof String(hd));
 ```
 
-js 中大部分类型都是对象，可以使用类方法 `toString`转化为字符串
+JS 中大部分类型都是对象，可以使用类方法 `toString`转化为字符串
 
 ```js
 let hd = 99;
@@ -489,28 +487,28 @@ let hd =true;
 
 #### 隐式转换
 
-基本上所有类型都可以隐式转换为 Boolean 类型。
+基本上所有类型都可以隐式转换为 `Boolean` 类型。
 
 | 数据类型  | true             | false            |
 | --------- | ---------------- | ---------------- |
-| String    | 非空字符串       | 空字符串         |
-| Number    | 非 0 的数值      | 0 、NaN          |
-| Array     | 数组不参与比较时 | 参与比较的空数组 |
-| Object    | 所有对象         |                  |
-| undefined | 无               | undefined        |
-| null      | 无               | null             |
-| NaN       | 无               | NaN              |
+| `String`    | 非空字符串       | 空字符串         |
+| `Number`    | 非 0 的数值      | 0 、`NaN`          |
+| `Array`     | 数组不参与比较时 | 参与比较的空数组 |
+| `Object`    | 所有对象         |                  |
+| `undefined` | 无               | `undefined`        |
+| `null`      | 无               | `null`             |
+| `NaN`       | 无               | `NaN`              |
 
-当与 boolean 类型比较时，会将两边类型统一为数字 1 或 0。
+当与 `boolean` 类型比较时，会将两边类型统一为数字 1 或 0。
 
-如果使用 Boolean 与数值比较时，会进行隐式类型转换 true 转为 1，false 转为 0。
+如果使用 `Boolean` 与数值比较时，会进行隐式类型转换 `true` 转为 1，`false` 转为 0。
 
 ```js
 console.log(3 == true); //false
 console.log(0 == false); //true
 ```
 
-下面是一个典型的例子，字符串在与 Boolean 比较时，两边都为转换为数值类型后再进行比较。
+下面是一个典型的例子，字符串在与 `Boolean` 比较时，两边都为转换为数值类型后再进行比较。
 
 ```js
 console.log(Number("daodao")); //NaN
@@ -530,7 +528,7 @@ console.log([1] == true); //true
 console.log([1, 2, 3] == true); //false
 ```
 
-引用类型的 Boolean 值为真，如对象和数组
+引用类型的 `Boolean` 值为真，如对象和数组
 
 ```js
 console.log(Boolean([])); // true
@@ -569,7 +567,7 @@ console.log(Boolean(hd)); //true
 
 #### 实例操作
 
-下面使用 Boolean 类型判断用户的输入，并给出不同的反馈。
+下面使用 `Boolean` 类型判断用户的输入，并给出不同的反馈。
 
 ```js
 while (true) {
@@ -591,7 +589,7 @@ let hd = new Number(3);
 console.log(hd+3); //6
 ```
 
-Number 用于表示整数和浮点数，数字是 `Number`实例化的对象，可以使用对象提供的丰富方法。
+`Number` 用于表示整数和浮点数，数字是 `Number` 实例化的对象，可以使用对象提供的丰富方法。
 
 ```js
 let num = 99;
@@ -614,7 +612,7 @@ console.log((16.556).toFixed(2)); // 16.56
 
 #### NaN
 
-表示无效的数值，下例计算将产生 NaN 结果。
+表示无效的数值，下例计算将产生 `NaN` 结果。
 
 ```js
 console.log(Number("daodao")); //NaN
@@ -622,7 +620,7 @@ console.log(Number("daodao")); //NaN
 console.log(2 / 'daodao'); //NaN
 ```
 
-NaN 不能使用 `==` 比较，使用以下代码来判断结果是否正确
+`NaN` 不能使用 `==` 比较，使用以下代码来判断结果是否正确
 
 ```js
 var res = 2 / 'daodao';
@@ -642,7 +640,7 @@ console.log(Object.is(res, NaN)); // true
 
 **Number**
 
-使用 Number 函数基本上可以转换所有类型
+使用 `Number` 函数基本上可以转换所有类型
 
 ```js
 console.log(Number('duyidao')); //NaN
@@ -711,7 +709,7 @@ console.log((0.2).toString(2)) //0.001100110011001100110011001100110011001100110
 
 **处理方式**
 
-一种方式使用 toFixed 方法进行小数截取
+一种方式使用 `toFixed` 方法进行小数截取
 
 ```js
 console.log((0.1 + 0.2).toFixed(2)) //0.3
@@ -724,7 +722,7 @@ console.log((1.0 - 0.9).toFixed(2)) //0.10
 
 ```js
 Number.prototype.add = function (num) {
-	//取两个数值中小数位最大的
+  //取两个数值中小数位最大的
   let n1 = this.toString().split('.')[1].length
   let n2 = num.toString().split('.')[1].length
 
@@ -738,13 +736,13 @@ console.log((0.1).add(0.2))
 
 **推荐做法**
 
-市面上已经存在很多针对数学计算的库 [mathjs (opens new window)](https://mathjs.org/examples/browser/basic_usage.html.html)、[decimal.js (opens new window)](http://mikemcl.github.io/decimal.js)等，我们就不需要自己构建了。下面来演示使用 [decimal.js (opens new window)](http://mikemcl.github.io/decimal.js)进行浮点计算。
+市面上已经存在很多针对数学计算的库 [mathjs (opens new window)](https://mathjs.org/examples/browser/basic_usage.html.html) 、[decimal.js (opens new window)](http://mikemcl.github.io/decimal.js) 等，我们就不需要自己构建了。下面来演示使用 [decimal.js (opens new window)](http://mikemcl.github.io/decimal.js) 进行浮点计算。
 
 ```html
 <script src="https://cdn.bootcss.com/decimal.js/10.2.0/decimal.min.js"></script>
 
 <script>
-	console.log(Decimal.add(0.1, 0.2).valueOf())
+  console.log(Decimal.add(0.1, 0.2).valueOf())
 </script>
 ```
 
@@ -757,7 +755,7 @@ console.log((0.1).add(0.2))
 
 ## Math
 
-`Math` 对象提供了众多方法用来进行数学计算，下面介绍常用的方法，更多方法使用请查看 [MDN 官网 (opens new window)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)了解。
+`Math` 对象提供了众多方法用来进行数学计算，下面介绍常用的方法，更多方法使用请查看 [MDN 官网 (opens new window)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math) 了解。
 
 ### 取极限值
 
@@ -769,7 +767,7 @@ console.log(Math.min(1, 2, 3));
 console.log(Math.max(1, 2, 3));
 ```
 
-使用`apply` 来从数组中取值
+使用 `apply` 来从数组中取值
 
 ```js
 console.log(Math.max.apply(Math, [1, 2, 3]));
@@ -777,23 +775,17 @@ console.log(Math.max.apply(Math, [1, 2, 3]));
 
 ### 舍入处理
 
-取最接近的向上整数
-
-```js
+::: code-group
+```js [取最接近的向上整数.js]
 console.log(Math.ceil(1.111)); //2
 ```
-
-得到最接近的向下整数
-
-```js
+```js [得到最接近的向下整数.js]
 console.log(Math.floor(1.555)); //1
 ```
-
-四舍五入处理
-
-```js
+```js [四舍五入处理.js]
 console.log(Math.round(1.5)); //2
 ```
+:::
 
 ### random
 
@@ -813,14 +805,14 @@ const number = Math.floor(Math.random() * (5+1));
 console.log(number);
 ```
 
-下面取 2~5 的随机数（不包括 5）公式为：min+Math.floor(Math.random()*(Max-min))
+下面取 2~5 的随机数（不包括 5）公式为：`min+Math.floor(Math.random()*(Max-min))`
 
 ```js
 const number = Math.floor(Math.random() * (5 - 2)) + 2;
 console.log(number);
 ```
 
-下面取 2~5 的随机数（包括 5）公式为：min+Math.floor(Math.random()*(Max-min+1))
+下面取 2~5 的随机数（包括 5）公式为：`min+Math.floor(Math.random()*(Max-min+1))`
 
 ```js
 const number = Math.floor(Math.random() * (5 - 2 + 1)) + 2;
@@ -957,84 +949,77 @@ function dateFormat(date, format = "YYYY-MM-DD HH:mm:ss") {
 console.log(dateFormat(new Date(), "YYYY年MM月DD日"));
 ```
 
-下面是系统提供的日期时间方法，更多方法请查看 [MDN 官网(opens new window)](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date)
+下面是系统提供的日期时间方法，更多方法请查看 [MDN 官网](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date) 。
 
 | 方法                 | 描述                                                     |
 | :------------------- | :------------------------------------------------------- |
-| Date()               | 返回当日的日期和时间。                                   |
-| getDate()            | 从 Date 对象返回一个月中的某一天 (1 ~ 31)。              |
-| getDay()             | 从 Date 对象返回一周中的某一天 (0 ~ 6)。                 |
-| getMonth()           | 从 Date 对象返回月份 (0 ~ 11)。                          |
-| getFullYear()        | 从 Date 对象以四位数字返回年份。                         |
-| getYear()            | 请使用 getFullYear() 方法代替。                          |
-| getHours()           | 返回 Date 对象的小时 (0 ~ 23)。                          |
-| getMinutes()         | 返回 Date 对象的分钟 (0 ~ 59)。                          |
-| getSeconds()         | 返回 Date 对象的秒数 (0 ~ 59)。                          |
-| getMilliseconds()    | 返回 Date 对象的毫秒(0 ~ 999)。                          |
-| getTime()            | 返回 1970 年 1 月 1 日至今的毫秒数。                     |
-| getTimezoneOffset()  | 返回本地时间与格林威治标准时间 (GMT) 的分钟差。          |
-| getUTCDate()         | 根据世界时从 Date 对象返回月中的一天 (1 ~ 31)。          |
-| getUTCDay()          | 根据世界时从 Date 对象返回周中的一天 (0 ~ 6)。           |
-| getUTCMonth()        | 根据世界时从 Date 对象返回月份 (0 ~ 11)。                |
-| getUTCFullYear()     | 根据世界时从 Date 对象返回四位数的年份。                 |
-| getUTCHours()        | 根据世界时返回 Date 对象的小时 (0 ~ 23)。                |
-| getUTCMinutes()      | 根据世界时返回 Date 对象的分钟 (0 ~ 59)。                |
-| getUTCSeconds()      | 根据世界时返回 Date 对象的秒钟 (0 ~ 59)。                |
-| getUTCMilliseconds() | 根据世界时返回 Date 对象的毫秒(0 ~ 999)。                |
-| parse()              | 返回 1970 年 1 月 1 日午夜到指定日期（字符串）的毫秒数。 |
-| setDate()            | 设置 Date 对象中月的某一天 (1 ~ 31)。                    |
-| setMonth()           | 设置 Date 对象中月份 (0 ~ 11)。                          |
-| setFullYear()        | 设置 Date 对象中的年份（四位数字）。                     |
-| setYear()            | 请使用 setFullYear() 方法代替。                          |
-| setHours()           | 设置 Date 对象中的小时 (0 ~ 23)。                        |
-| setMinutes()         | 设置 Date 对象中的分钟 (0 ~ 59)。                        |
-| setSeconds()         | 设置 Date 对象中的秒钟 (0 ~ 59)。                        |
-| setMilliseconds()    | 设置 Date 对象中的毫秒 (0 ~ 999)。                       |
-| setTime()            | 以毫秒设置 Date 对象。                                   |
-| setUTCDate()         | 根据世界时设置 Date 对象中月份的一天 (1 ~ 31)。          |
-| setUTCMonth()        | 根据世界时设置 Date 对象中的月份 (0 ~ 11)。              |
-| setUTCFullYear()     | 根据世界时设置 Date 对象中的年份（四位数字）。           |
-| setUTCHours()        | 根据世界时设置 Date 对象中的小时 (0 ~ 23)。              |
-| setUTCMinutes()      | 根据世界时设置 Date 对象中的分钟 (0 ~ 59)。              |
-| setUTCSeconds()      | 根据世界时设置 Date 对象中的秒钟 (0 ~ 59)。              |
-| setUTCMilliseconds() | 根据世界时设置 Date 对象中的毫秒 (0 ~ 999)。             |
-| toSource()           | 返回该对象的源代码。                                     |
-| toString()           | 把 Date 对象转换为字符串。                               |
-| toTimeString()       | 把 Date 对象的时间部分转换为字符串。                     |
-| toDateString()       | 把 Date 对象的日期部分转换为字符串。                     |
-| toGMTString()        | 请使用 toUTCString() 方法代替。                          |
-| toUTCString()        | 根据世界时，把 Date 对象转换为字符串。                   |
-| toLocaleString()     | 根据本地时间格式，把 Date 对象转换为字符串。             |
-| toLocaleTimeString() | 根据本地时间格式，把 Date 对象的时间部分转换为字符串。   |
-| toLocaleDateString() | 根据本地时间格式，把 Date 对象的日期部分转换为字符串。   |
-| UTC()                | 根据世界时返回 1970 年 1 月 1 日 到指定日期的毫秒数。    |
-| valueOf()            | 返回 Date 对象的原始值。                                 |
+| `Date()`               | 返回当日的日期和时间。                                   |
+| `getDate()`            | 从 `Date` 对象返回一个月中的某一天 (1 ~ 31)。              |
+| `getDay()`             | 从 `Date` 对象返回一周中的某一天 (0 ~ 6)。                 |
+| `getMonth()`           | 从 `Date` 对象返回月份 (0 ~ 11)。                          |
+| `getFullYear()`        | 从 `Date` 对象以四位数字返回年份。                         |
+| `getYear()`            | 请使用 `getFullYear()` 方法代替。                          |
+| `getHours()`           | 返回 `Date` 对象的小时 (0 ~ 23)。                          |
+| `getMinutes()`         | 返回 `Date` 对象的分钟 (0 ~ 59)。                          |
+| `getSeconds()`         | 返回 `Date` 对象的秒数 (0 ~ 59)。                          |
+| `getMilliseconds()`    | 返回 `Date` 对象的毫秒(0 ~ 999)。                          |
+| `getTime()`            | 返回 1970 年 1 月 1 日至今的毫秒数。                     |
+| `getTimezoneOffset()`  | 返回本地时间与格林威治标准时间 (GMT) 的分钟差。          |
+| `getUTCDate()`         | 根据世界时从 `Date` 对象返回月中的一天 (1 ~ 31)。          |
+| `getUTCDay()`          | 根据世界时从 `Date` 对象返回周中的一天 (0 ~ 6)。           |
+| `getUTCMonth()`        | 根据世界时从 `Date` 对象返回月份 (0 ~ 11)。                |
+| `getUTCFullYear()`     | 根据世界时从 `Date` 对象返回四位数的年份。                 |
+| `getUTCHours()`        | 根据世界时返回 `Date` 对象的小时 (0 ~ 23)。                |
+| `getUTCMinutes()`      | 根据世界时返回 `Date` 对象的分钟 (0 ~ 59)。                |
+| `getUTCSeconds()`      | 根据世界时返回 `Date` 对象的秒钟 (0 ~ 59)。                |
+| `getUTCMilliseconds()` | 根据世界时返回 `Date` 对象的毫秒(0 ~ 999)。                |
+| `parse()`              | 返回 1970 年 1 月 1 日午夜到指定日期（字符串）的毫秒数。 |
+| `setDate()`            | 设置 `Date` 对象中月的某一天 (1 ~ 31)。                    |
+| `setMonth()`           | 设置 `Date` 对象中月份 (0 ~ 11)。                          |
+| `setFullYear()`        | 设置 `Date` 对象中的年份（四位数字）。                     |
+| `setYear()`            | 请使用 `setFullYear()` 方法代替。                          |
+| `setHours()`           | 设置 `Date` 对象中的小时 (0 ~ 23)。                        |
+| `setMinutes()`         | 设置 `Date` 对象中的分钟 (0 ~ 59)。                        |
+| `setSeconds()`         | 设置 `Date` 对象中的秒钟 (0 ~ 59)。                        |
+| `setMilliseconds()`    | 设置 `Date` 对象中的毫秒 (0 ~ 999)。                       |
+| `setTime()`            | 以毫秒设置 `Date` 对象。                                   |
+| `setUTCDate()`         | 根据世界时设置 `Date` 对象中月份的一天 (1 ~ 31)。          |
+| `setUTCMonth()`        | 根据世界时设置 `Date` 对象中的月份 (0 ~ 11)。              |
+| `setUTCFullYear()`     | 根据世界时设置 `Date` 对象中的年份（四位数字）。           |
+| `setUTCHours()`        | 根据世界时设置 `Date` 对象中的小时 (0 ~ 23)。              |
+| `setUTCMinutes()`      | 根据世界时设置 `Date` 对象中的分钟 (0 ~ 59)。              |
+| `setUTCSeconds()`      | 根据世界时设置 `Date` 对象中的秒钟 (0 ~ 59)。              |
+| `setUTCMilliseconds()` | 根据世界时设置 `Date` 对象中的毫秒 (0 ~ 999)。             |
+| `toSource()`           | 返回该对象的源代码。                                     |
+| `toString()`           | 把 `Date` 对象转换为字符串。                               |
+| `toTimeString()`       | 把 `Date` 对象的时间部分转换为字符串。                     |
+| `toDateString()`       | 把 `Date` 对象的日期部分转换为字符串。                     |
+| `toGMTString()`        | 请使用 `toUTCString()` 方法代替。                          |
+| `toUTCString()`        | 根据世界时，把 `Date` 对象转换为字符串。                   |
+| `toLocaleString()`     | 根据本地时间格式，把 `Date` 对象转换为字符串。             |
+| `toLocaleTimeString()` | 根据本地时间格式，把 `Date` 对象的时间部分转换为字符串。   |
+| `toLocaleDateString()` | 根据本地时间格式，把 `Date` 对象的日期部分转换为字符串。   |
+| `UTC()`                | 根据世界时返回 1970 年 1 月 1 日 到指定日期的毫秒数。    |
+| `valueOf()`            | 返回 `Date` 对象的原始值。                                 |
 
 ### moment.js
 
 Moment.js 是一个轻量级的 JavaScript 时间库，它方便了日常开发中对时间的操作，提高了开发效率。
 
-更多使用方法请访问中文官网 [http://momentjs.cn (opens new window)](http://momentjs.cn/)或 英文官网 [https://momentjs.com(opens new window)](https://momentjs.com/)
+更多使用方法请访问中文官网 [http://momentjs.cn (opens new window)](http://momentjs.cn/) 或英文官网 [https://momentjs.com(opens new window)](https://momentjs.com/) 。
 
 ```html
 <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
 ```
 
-获取当前时间
-
-```js
+::: code-group
+```js [获取当前时间.js]
 console.log(moment().format("YYYY-MM-DD HH:mm:ss"));
 ```
-
-设置时间
-
-```js
+```js [设置时间.js]
 console.log(moment("2020-02-18 09:22:15").format("YYYY-MM-DD HH:mm:ss"));
 ```
-
-十天后的日期
-
-```js
+```js [十天后的日期.js]
 console.log(moment().add(10, "days").format("YYYY-MM-DD hh:mm:ss"));
 ```
-
+:::

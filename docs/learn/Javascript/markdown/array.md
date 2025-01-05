@@ -1,6 +1,6 @@
 # 数组
 
-数组是多个变量值的集合，数组是`Array` 对象的实例，所以可以像对象一样调用方法。
+数组是多个变量值的集合，数组是 `Array` 对象的实例，所以可以像对象一样调用方法。
 
 ## 基本使用
 
@@ -67,7 +67,7 @@ console.log(hd); // [empty * 3]
 
 ### Array.of
 
-使用`Array.of` 与 `new Array` 不同是设置一个参数时不会创建空元素数组
+使用 `Array.of` 与 `new Array` 不同是设置一个参数时不会创建空元素数组
 
 ```js
 let hd = Array.of(3);
@@ -104,7 +104,7 @@ console.log(([1, 2, 3]).toString()); // 1,2,3
 console.log(String([1, 2, 3])); // 1,2,3
 ```
 
-或使用`join`连接为字符串
+或使用 `join` 连接为字符串
 
 ```js
 console.log([1, 2, 3].join("-"));//1-2-3
@@ -112,10 +112,10 @@ console.log([1, 2, 3].join("-"));//1-2-3
 
 ### Array.from
 
-使用`Array.from`可将类数组转换为数组，类数组指包含 `length` 属性或可迭代的对象。
+使用 `Array.from` 可将类数组转换为数组，类数组指包含 `length` 属性或可迭代的对象。
 
 - 第一个参数为要转换的数据
-- 第二个参数为类似于`map` 函数的回调方法
+- 第二个参数为类似于 `map` 函数的回调方法
 
 ```js
 let str = 'daodao';
@@ -133,7 +133,7 @@ let user = {
 console.log(Array.from(user)); //["daodao", 18]
 ```
 
-DOM 元素转换为数组后来使用数组函数，第二个参数类似于`map` 函数的方法，可对数组元素执行函数处理。
+DOM 元素转换为数组后来使用数组函数，第二个参数类似于 `map` 函数的方法，可对数组元素执行函数处理。
 
 ```html
 <body>
@@ -142,11 +142,11 @@ DOM 元素转换为数组后来使用数组函数，第二个参数类似于`map
 </body>
 
 <script>
-    let btns = document.querySelectorAll('button');
-    console.log(btns); //包含length属性
-    Array.from(btns, (item) => {
-        item.style.background = 'red';
-    });
+  let btns = document.querySelectorAll('button');
+  console.log(btns); //包含length属性
+  Array.from(btns, (item) => {
+    item.style.background = 'red';
+  });
 </script>
 ```
 
@@ -154,7 +154,7 @@ DOM 元素转换为数组后来使用数组函数，第二个参数类似于`map
 
 ### 数组合并
 
-使用展开语法来合并数组相比 `concat` 要更简单，使用`...` 可将数组展开为多个值。
+使用展开语法来合并数组相比 `concat` 要更简单，使用 `...` 可将数组展开为多个值。
 
 ```js
 let a = [1, 2, 3];
@@ -184,19 +184,19 @@ hd("daodao", 1, 2, 3);
 
 ### 节点转换
 
-可以将 DOM 节点转为数组，下面例子不可以使用 filter 因为是节点列表
+可以将 DOM 节点转为数组，下面例子不可以使用 `filter` 因为是节点列表
 
 ```html
 <body>
-    <button message="daodao">button</button>
-    <button message="duyidao">button</button>
+  <button message="daodao">button</button>
+  <button message="duyidao">button</button>
 </body>
 
 <script>
-    let btns = document.querySelectorAll('button');
-    btns.map((item) => {
-        console.log(item); //TypeError: btns.filter is not a function
-    })
+  let btns = document.querySelectorAll('button');
+  btns.map((item) => {
+    console.log(item); //TypeError: btns.filter is not a function
+  })
 </script>
 ```
 
@@ -222,15 +222,15 @@ hd("daodao", 1, 2, 3);
 
 ```html
 <body>
-    <button message="daodao">button</button>
-    <button message="duyidao">button</button>
+  <button message="daodao">button</button>
+  <button message="duyidao">button</button>
 </body>
 
 <script>
-    let btns = document.querySelectorAll('button');
-    Array.prototype.map.call(btns, (item) => {
-        item.style.background = 'red';
-    });
+  let btns = document.querySelectorAll('button');
+  Array.prototype.map.call(btns, (item) => {
+    item.style.background = 'red';
+  });
 </script>
 ```
 
@@ -285,7 +285,7 @@ console.log(a); //Array(10)
 
 ### 严格模式
 
-非严格模式可以不使用声明指令，严格模式下必须使用声明。所以建议使用 let 等声明。
+非严格模式可以不使用声明指令，严格模式下必须使用声明。所以建议使用 `let` 等声明。
 
 ```js
 "use strict";
@@ -416,7 +416,7 @@ console.log(arr); //["杜一刀", "duyidao", "刀刀", "daodao"]
 
 ### fill
 
-使用`fill` 填充数组元素
+使用 `fill` 填充数组元素
 
 ```js
 console.dir(Array(4).fill("刀刀")); // ["刀刀", "刀刀", "刀刀", "刀刀"]
@@ -462,7 +462,7 @@ console.log(arr.splice(1, 3)); // 返回删除的元素 [1, 2, 3]
 console.log(arr); // 删除数据后的原数组 [0, 4, 5, 6]
 ```
 
-通过修改`length`删除最后一个元素
+通过修改 `length` 删除最后一个元素
 
 ```js
 let arr = ["刀刀", "daodao"];
@@ -513,7 +513,7 @@ console.table(move(array, 0, 3));
 
 ### 清空数组
 
-将数组值修改为`[]`可以清空数组，如果有多个引用时数组在内存中存在被其他变量引用。该方法为开辟一个新空间存放一个空数组，而原本的数组还在。
+将数组值修改为 `[]` 可以清空数组，如果有多个引用时数组在内存中存在被其他变量引用。该方法为开辟一个新空间存放一个空数组，而原本的数组还在。
 
 ```js
 let user = [{ name: "刀刀" }, { name: "daodao" }];
@@ -523,7 +523,7 @@ console.log(user); // []
 console.log(cms); // []
 ```
 
-将数组`length`设置为 0 也可以清空数组
+将数组 `length` 设置为 0 也可以清空数组
 
 ```js
 let user = [{ name: "刀刀" }, { name: "daodao" }];
@@ -531,7 +531,7 @@ user.length = 0;
 console.log(user); // []
 ```
 
-使用`splice`方法删除所有数组元素
+使用 `splice` 方法删除所有数组元素
 
 ```js
 let user = [{ name: "刀刀" }, { name: "daodao" }];
@@ -539,7 +539,7 @@ user.splice(0, user.length);
 console.log(user); // []
 ```
 
-使用`pop/shift`删除所有元素，来清空数组
+使用 `pop/shift` 删除所有元素，来清空数组
 
 ```js
 let user = [{ name: "刀刀" }, { name: "daodao" }];
@@ -551,7 +551,7 @@ console.log(user); // []
 
 ### join
 
-使用`join`连接成字符串
+使用 `join` 连接成字符串
 
 ```js
 let arr = [1, "刀刀", "daodao"];
@@ -560,7 +560,7 @@ console.log(arr.join('-')); //1-刀刀-daodao 使用join可以指定转换的连
 
 ### split
 
-`split` 方法用于将字符串分割成数组，类似`join`方法的反函数。
+`split` 方法用于将字符串分割成数组，类似 `join` 方法的反函数。
 
 ```js
 let price = "99,78,68";
@@ -569,7 +569,7 @@ console.log(price.split(",")); //["99", "78", "68"]
 
 ### concat
 
-`concat`方法用于连接两个或多个数组，元素是值类型的是复制操作，如果是引用类型还是指向同一对象
+`concat` 方法用于连接两个或多个数组，元素是值类型的是复制操作，如果是引用类型还是指向同一对象
 
 ```js
 let array = ["刀刀", "daodao"];
@@ -620,7 +620,7 @@ let arr = [7, 3, 2, 8, 2, 6];
 console.log(arr.indexOf(2)); // 2 从前面查找2出现的位置
 ```
 
-如下面代码一下，使用 `indexOf` 查找字符串将找不到，因为`indexOf` 类似于`===`是严格类型约束。
+如下面代码一下，使用 `indexOf` 查找字符串将找不到，因为 `indexOf` 类似于 `===` 是严格类型约束。
 
 ```js
 let arr = [7, 3, 2, '8', 2, 6];
@@ -664,7 +664,7 @@ let arr = [7, 3, 2, 6];
 console.log(arr.includes(6)); //true
 ```
 
-我们来实现一个自已经的`includes`函数，来加深对`includes`方法的了解
+我们来实现一个自已经的 `includes` 函数，来加深对 `includes` 方法的了解
 
 ```js
 function includes(array, item) {
@@ -680,7 +680,8 @@ console.log(includes([1, 2, 3, 4], 3)); //true
 
 find 方法找到后会把值返回出来
 
-> 如果找不到返回值为`undefined`
+> [!NOTE] 🧾 备注
+> 如果找不到返回值为 `undefined`
 
 返回第一次找到的值，不继续查找
 
@@ -694,7 +695,7 @@ let find = arr.find(function(item) {
 console.log(find); // daodao
 ```
 
-使用`includes`等不能查找引用类型，因为它们的内存地址是不相等的
+使用 `includes` 等不能查找引用类型，因为它们的内存地址是不相等的
 
 ```js
 const user = [{ name: "李四" }, { name: "张三" }, { name: "刀刀" }];
@@ -881,7 +882,7 @@ let lessons = [
 ];
 
 for (const key in lessons) {
-    console.log(`刀刀博客: ${lessons[key].title}`);
+  console.log(`刀刀博客: ${lessons[key].title}`);
 }
 ```
 
@@ -1137,15 +1138,14 @@ console.log(person.map(item => item.name)); // ['万叶', '艾尔海森', '魈']
 函数参数说明如下
 
 | 参数  | 说明                       |
-| ----- | -------------------------- |
-| prev  | 上次调用回调函数返回的结果 |
-| cur   | 当前的元素值               |
-| index | 当前的索引                 |
-| array | 原数组                     |
+| :----- | --------------------------: |
+| `prev`  | 上次调用回调函数返回的结果 |
+| `cur`   | 当前的元素值               |
+| `index` | 当前的索引                 |
+| `array` | 原数组                     |
 
-统计元素出现的次数
-
-```js
+::: code-group
+```js [统计元素出现的次数.js]
 function countArrayELem(array, elem) {
   return array.reduce((total, cur) => (total += cur == elem ? 1 : 0), 0);
 }
@@ -1153,10 +1153,7 @@ function countArrayELem(array, elem) {
 let numbers = [1, 2, 3, 1, 5];
 console.log(countArrayELem(numbers, 1)); //2
 ```
-
-取数组中的最大值
-
-```js
+```js [取数组中的最大值.js]
 function arrayMax(array) {
   return array.reduce(
   	(max, elem) => (max > elem ? max : elem), array[0]
@@ -1165,10 +1162,7 @@ function arrayMax(array) {
 
 console.log(arrayMax([1, 3, 2, 9]));
 ```
-
-取价格最高的商品
-
-```js
+```js [取价格最高的商品.js]
 let cart = [
   { name: "iphone", price: 12000 },
   { name: "imac", price: 25000 },
@@ -1183,10 +1177,7 @@ function maxPrice(array) {
 }
 console.log(maxPrice(cart));
 ```
-
-计算购物车中的商品总价
-
-```js
+```js [计算购物车中的商品总价.js]
 let cart = [
   { name: "iphone", price: 12000 },
   { name: "imac", price: 25000 },
@@ -1198,10 +1189,7 @@ const total = cart.reduce(
 );
 console.log(total); //40600
 ```
-
-获取价格超过 1 万的商品名称
-
-```js
+```js [获取价格超过 1 万的商品名称.js]
 let goods = [
   { name: "iphone", price: 12000 },
   { name: "imac", price: 25000 },
@@ -1218,10 +1206,7 @@ function getNameByPrice(array, price) {
 }
 console.table(getNameByPrice(goods, 10000));
 ```
-
-使用 `reduce` 实现数组去重
-
-```js
+```js [使用 reduce 实现数组去重.js]
 let cart = [
   {name: "iphone", price: 12000},
   {name: "iphone", price: 12000},
@@ -1242,6 +1227,7 @@ function filterGoods(arr) {
 
 console.log(filterGoods(cart));
 ```
+:::
 
 ## 动画案例
 

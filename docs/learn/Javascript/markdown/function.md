@@ -6,7 +6,7 @@
 
 ### 声明定义
 
-在 JS 中函数也是对象函数是`Function`类的创建的实例，下面的例子可以方便理解函数是对象。
+在 JS 中函数也是对象函数是 `Function` 类的创建的实例，下面的例子可以方便理解函数是对象。
 
 ```js
 let hd = new Function("title", "console.log(title)"); // 参数1：函数名称；参数2：函数体
@@ -54,7 +54,7 @@ function screenX() {
 console.log(window.screenX); //刀刀
 ```
 
-使用`let/const`时不会压入 `window`
+使用 `let/const` 时不会压入 `window`
 
 ```js
 let hd = function() {
@@ -121,7 +121,7 @@ console.log(sum(1, 2, 3));
   ```js
   "use strict";
   (function () {
-      var web = 'duyidao';
+    var web = 'duyidao';
   })();
   console.log(web); //web is not defined
   ```
@@ -130,8 +130,8 @@ console.log(sum(1, 2, 3));
 
   ```js
   (function (window) {
-      var web = 'duyidao';
-      window.webout = web
+    var web = 'duyidao';
+    window.webout = web
   })(window);
   console.log(webout); // duyidao
   ```
@@ -150,16 +150,14 @@ console.log(sum(1, 2, 3));
   ```js
   {
   	let web = 'duyidao';
-       window.webout = web
+    window.webout = web
   }
   console.log(webout); // duyidao
   ```
 
-  
-
 ### 函数提升
 
-函数也会提升到前面，优先级行于`var`变量提高
+函数也会提升到前面，优先级行于 `var` 变量提高
 
 ```js
 console.log(hd()); //刀刀
@@ -259,12 +257,12 @@ console.log(sum(2000, undefined, 0.3));
 
 ```html
 <body>
-    <button>订阅</button>
+  <button>订阅</button>
 </body>
 <script>
-    document.querySelector('button').addEventListener('click', function () {
-        alert('感谢订阅');
-    })
+  document.querySelector('button').addEventListener('click', function () {
+    alert('感谢订阅');
+  })
 </script>
 ```
 
@@ -278,7 +276,7 @@ let hd = [1, 2, 3, 4, 5].filter(filterFun);
 console.log(hd); //[1,2,3]
 
 function times(i = 1) {
-    console.log(i++)
+  console.log(i++)
 }
 setTimeInterval(times, 1000)
 ```
@@ -301,8 +299,8 @@ console.log(sum(2, 3, 4, 2, 6)); //17
 
 ```js
 function sum(...args) {
- console.log(args) // [2, 3, 4, 2, 6]
- return args.reduce((a, b) => a + b);
+  console.log(args) // [2, 3, 4, 2, 6]
+  return args.reduce((a, b) => a + b);
 }
 console.log(sum(2, 3, 4, 2, 6)); //17
 ```
@@ -317,8 +315,8 @@ console.log(sum(2, 3, 4, 2, 6)); //17
 
 ```js
 function getSum() {
-   console.log(arguments);  // Arguments(3) [1, 2, 3, callee: ƒ, Symbol(Symbol.iterator): ƒ]
-   arguments.push(4)
+  console.log(arguments);  // Arguments(3) [1, 2, 3, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+  arguments.push(4)
 }
 getSum(1, 2, 3)
 ```
@@ -438,10 +436,10 @@ console.table(change(lessons, 100));
 
 在某个时刻被其他函数调用的函数称为回调函数，比如处理键盘、鼠标事件的函数。
 
-```js
+```html
 <button id='hd'>button</button>
 <script>
-     document.getElementById('hd').addEventListener('click', () => alert('通过回调函数调用'));
+  document.getElementById('hd').addEventListener('click', () => alert('通过回调函数调用'));
 </script>
 ```
 
@@ -494,7 +492,7 @@ function sum(...params) {
 console.log(sum(1, 3, 2, 4));
 ```
 
-多个参数时`...参数`必须放后面，下面计算购物车商品折扣
+多个参数时 `...参数` 必须放后面，下面计算购物车商品折扣
 
 ```js
 function sum(discount = 0, ...prices) {
@@ -551,9 +549,7 @@ console.log(get());
 
 **构造函数**
 
-函数当被 `new` 时即为构造函数，一般构造函数中包含属性与方法。函数中的上下文指向到实例对象。
-
-- 构造函数主要用来生成对象，里面的 this 默认就是指当前对象
+函数当被 `new` 时即为构造函数，一般构造函数中包含属性与方法。函数中的上下文指向到实例对象。构造函数主要用来生成对象，里面的 `this` 默认就是指当前对象
 
 ```js
 function User() {
@@ -569,8 +565,8 @@ console.log(hd.say()); //刀刀
 
 **对象字面量**
 
-- 下例中的 hd 函数不属于对象方法所以指向`window`
-- show 属于对象方法执向 `obj`对象
+- 下例中的 `hd` 函数不属于对象方法所以指向`window`
+- `show` 属于对象方法执向 `obj`对象
 
 ```js
 let obj = {
@@ -588,7 +584,7 @@ let obj = {
 obj.show();
 ```
 
-在方法中使用函数时有些函数可以改变 this 如`forEach`，当然也可以使用后面介绍的`apply/call/bind`
+在方法中使用函数时有些函数可以改变 `this` 如 `forEach`，当然也可以使用后面介绍的 `apply/call/bind`
 
 ```js
 let Lesson = {
@@ -603,25 +599,25 @@ let Lesson = {
 console.log(Lesson.show());
 ```
 
-也可以在父作用域中定义引用`this`的变量
+也可以在父作用域中定义引用 `this` 的变量
 
 ```js
 let Lesson = {
-    site: "刀刀",
-    lists: ["js", "css", "mysql"],
-    show() {
-      const self = this;
-      return this.lists.map(function(title) {
-        return `${self.site}-${title}`;
-      });
-    }
-  };
-  console.log(Lesson.show());
+  site: "刀刀",
+  lists: ["js", "css", "mysql"],
+  show() {
+    const self = this;
+    return this.lists.map(function(title) {
+      return `${self.site}-${title}`;
+    });
+  }
+};
+console.log(Lesson.show());
 ```
 
 ### 箭头函数
 
-箭头函数没有`this`, 也可以理解为箭头函数中的`this` 会继承定义函数时的上下文，可以理解为和外层函数指向同一个 this。
+箭头函数没有 `this`, 也可以理解为箭头函数中的 `this` 会继承定义函数时的上下文，可以理解为和外层函数指向同一个 `this`。
 
 > 如果想使用函数定义时的上下文中的 `this`，那就使用箭头函数
 
@@ -637,7 +633,7 @@ var obj = {
     }
   }
 }
-console.log(obj.getName()()); //返回window.name的值daodao
+console.log(obj.getName()()); // 返回window.name的值daodao
 ```
 
 以往解决办法会匿名函数调用处理定义变量，然后在匿名函数中使用。
@@ -653,10 +649,10 @@ var obj = {
     }
   }
 }
-console.log(obj.getName()()); //返回window.name的值daodao
+console.log(obj.getName()()); // 返回window.name的值daodao
 ```
 
-使用箭头函数后 `this` 为定义该函数的上下文，也可以理解为定义时父作用域中的`this`
+使用箭头函数后 `this` 为定义该函数的上下文，也可以理解为定义时父作用域中的 `this`
 
 ```js
 var name = 'daodao';
@@ -673,14 +669,11 @@ console.log(obj.getName()()); //刀刀
 
 事件中使用箭头函数结果不是我们想要的
 
-- 事件函数可理解为对象`onclick`设置值，所以函数声明时`this`为当前对象
-- 但使用箭头函数时`this`为声明函数上下文
+- 事件函数可理解为对象 `onclick` 设置值，所以函数声明时 `this` 为当前对象
+- 但使用箭头函数时 `this` 为声明函数上下文
 
-下面体验使用普通事件函数时`this`指向元素对象
-
-使用普通函数时`this`为当前 DOM 对象
-
-```html
+::: code-group
+```html [普通事件函数 this 指向元素对象.html]
 <body>
   <button desc="daodao">button</button>
 </body>
@@ -697,10 +690,7 @@ console.log(obj.getName()()); //刀刀
   Dom.bind();
 </script>
 ```
-
-下面是使用箭头函数时 this 指向上下文对象
-
-```html
+```html [箭头事件函数 this 指向上下文对象.html]
 <body>
   <button desc="daodao">button</button>
 </body>
@@ -717,11 +707,11 @@ console.log(obj.getName()()); //刀刀
   Dom.bind();
 </script>
 ```
+:::
 
-使用`handleEvent`绑定事件处理器时，`this`指向当前对象而不是 DOM 元素。
+使用 `handleEvent` 绑定事件处理器时，`this` 指向当前对象而不是 `DOM` 元素。
 
-> `handleEvent()` 
->
+> [!NOTR] `handleEvent()`
 > 当 `EventListener` 所注册的事件发生的时候，该方法会被调用。可以把任意对象注册为事件处理程序，只要它拥有 `handleEvent` 方法
 
 ```html
@@ -745,15 +735,15 @@ console.log(obj.getName()()); //刀刀
 
 ## 总结
 
-箭头函数this指向上下级父级的this，普通函数this指向全局。
+箭头函数 `this` 指向上下级父级的 `this`，普通函数 `this` 指向全局。
 
 ## apply/call/bind
 
-改变 this 指针，也可以理解为对象借用方法，就现像生活中向邻居借东西一样的事情。
+改变 `this` 指针，也可以理解为对象借用方法，就现像生活中向邻居借东西一样的事情。
 
 ### 原理分析
 
-构造函数中的`this`默认是一个空对象，然后构造函数处理后把这个空对象变得有值。
+构造函数中的 `this` 默认是一个空对象，然后构造函数处理后把这个空对象变得有值。
 
 ```js
 function User(name) {
@@ -763,7 +753,7 @@ let hd = new User("刀刀");
 console.log(hd) // User {name: '刀刀'}
 ```
 
-可以改变构造函数中的空对象，即让构造函数 this 指向到另一个对象。
+可以改变构造函数中的空对象，即让构造函数 `this` 指向到另一个对象。
 
 ```js
 function User(name) {
@@ -777,60 +767,52 @@ console.log(daodao); // User {name: '刀刀', age: 20}
 
 ### apply/call
 
-`call` 与 `apply` 用于显示的设置函数的上下文，两个方法作用一样都是将对象绑定到 this，只是在传递参数上有所不同。
+`call` 与 `apply` 用于显示的设置函数的上下文，两个方法作用一样都是将对象绑定到 `this`，只是在传递参数上有所不同。
 
 - `apply` 用数组传参
 - `call` 需要分别传参
-- 与 `bind` 不同 `call`/`apply` 会立即执行函数
+- 与 `bind` 不同 `call` / `apply` 会立即执行函数
 
-语法使用介绍
-
-```js
+::: code-group
+```js [语法使用.js]
 function show(title) {
-    alert(`${title+this.name}`);
+  alert(`${title+this.name}`);
 }
 let lisi = {
-    name: '李四'
+  name: '李四'
 };
 let wangwu = {
-    name: '王五'
+  name: '王五'
 };
 show.call(lisi, '刀刀'); // 刀刀李四
 show.apply(wangwu, ['daodao']); // daodao王五
 ```
-
-使用 `call` 设置函数上下文
-
-```html
+```html [使用 call 设置函数上下文.html]
 <body>
-    <button message="刀刀">button</button>
-    <button message="daodao">button</button>
+  <button message="刀刀">button</button>
+  <button message="daodao">button</button>
 </body>
 <script>
-    function show() {
-        alert(this.getAttribute('message'));
-    }
-    let bts = document.getElementsByTagName('button');
-    for (let i = 0; i < bts.length; i++) {
-        bts[i].addEventListener('click', () => show.call(bts[i]));
-    }
+  function show() {
+    alert(this.getAttribute('message'));
+  }
+  let bts = document.getElementsByTagName('button');
+  for (let i = 0; i < bts.length; i++) {
+    bts[i].addEventListener('click', () => show.call(bts[i]));
+  }
 </script>
 ```
-
-找数组中的数值最大值
-
-```js
+```js [找数组中的数值最大值.js]
 let arr = [1, 3, 2, 8];
 console.log(Math.max(arr)); //NaN
 console.log(Math.max.apply(Math, arr)); //8
  console.log(Math.max(...arr)); //8
 ```
-
+:::
 #### 练习
 
-实现构造函数属性继承
-
-```js
+::: code-group
+```js [实现构造函数属性继承.js]
 function Learn(params) {
   this.url = '/learn/js'
   Request.call(this)
@@ -859,55 +841,53 @@ let product = new Product()
 console.log(product.axios({id: 2, name: 'duyidao'})) // /product/music?id=2&name=duyidao
 ```
 
-制作显示隐藏面板
-
-```html
+```html [制作显示隐藏面板.html]
 <style>
-    * {
-        padding: 0;
-        margin: 0;
-    }
+  * {
+    padding: 0;
+    margin: 0;
+  }
 
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100vw;
-        height: 100vh;
-    }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+  }
 
-    dl {
-        width: 400px;
-        display: flex;
-        flex-direction: column;
-    }
+  dl {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+  }
 
-    dt {
-        background: #e67e22;
-        border-bottom: solid 2px #333;
-        height: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-    }
+  dt {
+    background: #e67e22;
+    border-bottom: solid 2px #333;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
 
-    dd {
-        height: 200px;
-        background: #bdc3c7;
-        font-size: 5em;
-        js-align: center;
-        line-height: 200px;
-    }
+  dd {
+    height: 200px;
+    background: #bdc3c7;
+    font-size: 5em;
+    joctent-align: center;
+    line-height: 200px;
+  }
 </style>
 
 <body>
-    <dl>
-        <dt>刀刀</dt>
-        <dd>1</dd>
-        <dt>daodao</dt>
-        <dd hidden="hidden">2</dd>
-    </dl>
+  <dl>
+    <dt>刀刀</dt>
+    <dd>1</dd>
+    <dt>daodao</dt>
+    <dd hidden="hidden">2</dd>
+  </dl>
 </body>
 <script>
   function panel(i) {
@@ -920,10 +900,11 @@ console.log(product.axios({id: 2, name: 'duyidao'})) // /product/music?id=2&name
   });
 </script>
 ```
+:::
 
 ### bind
 
-`bind()` 是将函数绑定到某个对象，比如 `a.bind(hd)` 可以理解为将 a 函数绑定到 hd 对象上即 `hd.a()` 。
+`bind()` 是将函数绑定到某个对象，比如 `a.bind(hd)` 可以理解为将 `a` 函数绑定到 `hd` 对象上即 `hd.a()` 。
 
 - 与 `call/apply` 不同 `bind` 不会立即执行
 - `bind` 是复制函数形为会返回新函数
@@ -953,7 +934,7 @@ let newFunc = hd.bind({ f: 1 }, 3);
 console.log(newFunc(2));
 ```
 
-在事件中使用`bind`
+在事件中使用 `bind`
 
 ```html
 <body>

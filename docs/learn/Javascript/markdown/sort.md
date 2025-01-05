@@ -60,7 +60,7 @@ console.log(n);
 console.log(n);
 ```
 
-++n 就是 n=n+1 的简写形式。
+`++n` 就是 `n=n+1` 的简写形式。
 
 使用后置操作符，`++n` 会在最先执行，所以 f 的结果是 33。
 
@@ -141,34 +141,34 @@ console.log(a === true); //false
 
 ### 逻辑与
 
-使用 `&&` 符号表示逻辑与，指符号两端都为 true 时表达式结果为 true。
+使用 `&&` 符号表示逻辑与，指符号两端都为 `true` 时表达式结果为 `true`。
 
 ```js
 let a = true,b = true;
 if (a && b) {
-    console.log('表达式成立');
+  console.log('表达式成立');
 }
 ```
 
 ### 逻辑或
 
-使用 `||` 符号表示逻辑或，指符号左右两端有一方为 true，表达式即成立。
+使用 `||` 符号表示逻辑或，指符号左右两端有一方为 `true`，表达式即成立。
 
 ```js
 let a = true,b = false;
 if (a || b) {
-    console.log('表达式成立');
+  console.log('表达式成立');
 }
 ```
 
 ### 逻辑非
 
-使用 `!` 符号表示逻辑非，即原来是 true 转变为 false，反之亦然。
+使用 `!` 符号表示逻辑非，即原来是 `true` 转变为 `false`，反之亦然。
 
 ```js
 let a = true,b = false;
 if (a && !b) {
-    console.log('表达式成立');
+  console.log('表达式成立');
 }
 ```
 
@@ -187,8 +187,6 @@ console.log((true || false) && false);
 ```
 
 ### 密码比对实例
-
-![Untitled](https://doc.daodao.com/assets/img/Untitled-2408590.ed2e964d.gif)
 
 ```html
 <input type="js" name="password" />
@@ -227,7 +225,7 @@ let a = true,f = false;
 console.log(a || f);
 ```
 
-同理当 `f` 值为假时，就已经可以判断 `&&` 的结果了，就没有判断 `a`的必要了。
+同理当 `f` 值为假时，就已经可以判断 `&&` 的结果了，就没有判断 `a` 的必要了。
 
 ```js
 let a = true,f = false;
@@ -241,7 +239,7 @@ let sex = prompt("你的性别是？") || "保密";
 console.log(sex);
 ```
 
-当 opt.url 没有值时，使用短路特性设置 url 的值
+当 `opt.url` 没有值时，使用短路特性设置 `url` 的值
 
 ```js
 let opt = {
@@ -298,7 +296,7 @@ query("#form").addEventListener("submit", function(event) {
 ```js
 let state = true;
 if (true) {
-    console.log('表达式成立');
+  console.log('表达式成立');
 }
 ```
 
@@ -313,8 +311,6 @@ console.log('一直都显示的内容');
 ### if/else
 
 下面是使用多条件判断密码强度的示例
-
-![1](https://doc.daodao.com/assets/img/1.6c60f9e2.gif)
 
 ```html
 <body>
@@ -350,7 +346,7 @@ let f = true ? (1 == true ? 'yes' : 'no') : 3;
 console.log(f); // yes
 ```
 
-下面是创建 DIV 元素的示例，使用三元表达式设置初始值
+下面是创建 `DIV` 元素的示例，使用三元表达式设置初始值
 
 ```js
 function div(options = {}) {
@@ -369,38 +365,38 @@ div();
 
 - 如果表达式等于 `case` 中的值，将执行此 `case` 代码段
 - `break` 关键字会终止 `switch` 的执行
-- 没有任何 `case`匹配时将执行`default` 代码块
-- 如果`case`执行后缺少 break 则接着执行后面的语句
+- 没有任何 `case` 匹配时将执行 `default` 代码块
+- 如果 `case` 执行后缺少 break 则接着执行后面的语句
 
 ```js
 let name = '视频';
 switch (name) {
-    case '产品':
-        console.log('duyidao.com');
-        break;
-    case '视频':
-        console.log('daodao.com'); // 执行此条
-        break;
-    default:
-        console.log('dao.com')
+  case '产品':
+    console.log('duyidao.com');
+    break;
+  case '视频':
+    console.log('daodao.com'); // 执行此条
+    break;
+  default:
+    console.log('dao.com')
 }
 ```
 
-case 合用示例
+`case` 合用示例
 
 ```js
 let error = 'warning';
 switch (error) {
   case 'notice':
   case 'warning':
-      console.log('警告或提示信息');
-      break;
+    console.log('警告或提示信息');
+    break;
   case 'error':
-      console.log('错误信息');
+    console.log('错误信息');
 }
 ```
 
-在`switch` 与 `case` 都可以使用表达式
+在 `switch` 与 `case` 都可以使用表达式
 
 ```js
 function message(age) {
@@ -427,7 +423,7 @@ function message(age) {
 message(10);
 ```
 
-下面例子缺少 break 后，会接着执行后面的 switch 代码。
+下面例子缺少 `break` 后，会接着执行后面的 `switch` 代码。
 
 ```js
 switch (1) {
@@ -485,7 +481,7 @@ hd();
 
 ### for
 
-可以在循环前初始化初始计算变量。下面是使用`for` 打印倒三角的示例
+可以在循环前初始化初始计算变量。下面是使用 `for` 打印倒三角的示例
 
 ```js
 **********
@@ -500,16 +496,14 @@ hd();
 *
 
 for (let i = 10; i > 0; i--) {
-    for (let n = 0; n < i; n++) {
-        document.write('*');
-    }
-    document.write("<br/>");
+  for (let n = 0; n < i; n++) {
+    document.write('*');
+  }
+  document.write("<br/>");
 }
 ```
 
 下面是使用循环制作杨辉三角的案例
-
-![image-20191005010514562.9bfa19b0](https://doc.daodao.com/assets/img/image-20191005010514562.9bfa19b0.9bfa19b0.png)
 
 ```js
     *
@@ -520,16 +514,16 @@ for (let i = 10; i > 0; i--) {
 
 for (let i = 1; i <= 5; i++) {
   for (let n = 5 - i; n > 0; n--) {
-      document.write('^');
+    document.write('^');
   }
   for (let m = i * 2 - 1; m > 0; m--) {
-      document.write('*');
+    document.write('*');
   }
   document.write("<br/>");
 }
 ```
 
-for 的三个参数可以都省略或取几个
+`for` 的三个参数可以都省略或取几个
 
 ```js
 let i = 1;
@@ -540,7 +534,7 @@ for (; i < 10; ) {
 
 ### break/continue
 
-break 用于退出当前循环，continue 用于退出当前循环返回循环起始继续执行。
+`break` 用于退出当前循环，`continue` 用于退出当前循环返回循环起始继续执行。
 
 获取所有偶数，所有奇数使用 `continue` 跳过
 
@@ -565,9 +559,9 @@ for (let i = 1; i <= 10; i++) {
 
 ### label
 
-标签(label) 为程序定义位置，可以使用`continue/break`跳到该位置。
+标签 (`label`) 为程序定义位置，可以使用 `continue` / `break` 跳到该位置。
 
-下面取`i+n` 大于 15 时退出循环
+下面取 `i+n` 大于 15 时退出循环
 
 ```js
 daodao: for (let i = 1; i <= 10; i++) {
@@ -585,7 +579,7 @@ daodao: for (let i = 1; i <= 10; i++) {
 
 ### for/in
 
-用于遍历对象的所有属性，`for/in`主要用于遍历对象，不建议用来遍历数组。
+用于遍历对象的所有属性，`for/in` 主要用于遍历对象，不建议用来遍历数组。
 
 遍历数组操作
 
@@ -624,7 +618,7 @@ for (const key in info) {
 }
 ```
 
-遍历 window 对象的所有属性
+遍历 `window` 对象的所有属性
 
 ```js
 for (name in window) {
@@ -634,16 +628,16 @@ for (name in window) {
 
 ### for/of
 
-用来遍历 Arrays（数组）, Strings（字符串）, Maps（映射）, Sets（集合）等可迭代的数据结构。
+用来遍历 `Arrays`（数组）, `Strings`（字符串）, `Maps`（映射）, `Sets`（集合）等可迭代的数据结构。
 
 与 `for/in` 不同的是 `for/of` 每次循环取其中的值而不是索引。
 
-> 后面在讲到`遍历器` 章节后大家会对 for/of 有更深的体会
+> 后面在讲到`遍历器` 章节后大家会对 `for/of` 有更深的体会
 
 ```js
 let arr = [1, 2, 3];
 for (const iterator of arr) {
-    console.log(iterator); // 1  2  3
+  console.log(iterator); // 1  2  3
 }
 ```
 
@@ -652,7 +646,7 @@ for (const iterator of arr) {
 ```js
 let str = 'daodao';
 for (const iterator of str) {
-    console.log(iterator); // d a o d a o
+  console.log(iterator); // d a o d a o
 }
 ```
 

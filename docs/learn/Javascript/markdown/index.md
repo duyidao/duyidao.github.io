@@ -67,16 +67,16 @@ let web = 'daodao'; //Uncaught SyntaxError: Unexpected token 'while'
 临时性死区可以让程序保持先声明后使用的习惯，让程序更稳定。
 
 - 变量要先声明后使用
-- 建议使用 let/const 而少使用 var
+- 建议使用 `let` / `const` 而少使用 `var`
 
-使用`let/const` 声明的变量在声明前存在临时性死区（TDZ）使用会发生错误
+使用`let` / `const` 声明的变量在声明前存在临时性死区（TDZ）使用会发生错误
 
 ```js
 console.log(x); // Cannot access 'x' before initialization
 let x = 1;
 ```
 
-在`run`函数作用域中产生 TDZ，不允许变量在未声明前使用。
+在 `run` 函数作用域中产生 TDZ，不允许变量在未声明前使用。
 
 ```js
 hd = "daodao";
@@ -94,18 +94,18 @@ function hd(a = b, b = 3) {}
 hd(); //Cannot access 'b' before initialization
 ```
 
-因为 a 已经赋值，所以 b 可以使用 a 变量，下面代码访问正常
+因为 `a` 已经赋值，所以 `b` 可以使用 `a` 变量，下面代码访问正常
 
 ```js
 function hd(a = 2, b = a) {}
 hd();
 ```
 
-# 作用域
+## 作用域
 
-## 共同点
+### 共同点
 
-`var/let/const`共同点是全局作用域中定义的变量，可以在函数中使用
+`var` / `let` / `const` 共同点是全局作用域中定义的变量，可以在函数中使用
 
 ```js
 var hd = 'daodao';
@@ -131,9 +131,9 @@ hd();
 console.log(web); //全局访问: hd is not defined
 ```
 
-## 不同点
+### 不同点
 
-### var
+#### var
 
 使用 `var` 声明的变量存在于最近的函数或全局作用域中，没有块级作用域的机制。
 
@@ -147,7 +147,7 @@ run();
 console.log(web); //daodao
 ```
 
-没有块作用作用域时 var 也会污染全局
+没有块作用作用域时 `var` 也会污染全局
 
 ```js
 for (var i = 0; i < 10; i++) {
@@ -156,7 +156,7 @@ for (var i = 0; i < 10; i++) {
 console.log(i);
 ```
 
-下例中体验到 `var` 没有块作用域概念， `do/while` 定义的变量可以在块外部访问到
+下例中体验到 `var` 没有块作用域概念， `do` / `while` 定义的变量可以在块外部访问到
 
 ```js
 var num = 0;
@@ -173,7 +173,7 @@ function show() {
 show();
 ```
 
-`var` 全局声明的变量也存在于 `window`对象中
+`var` 全局声明的变量也存在于 `window` 对象中
 
 ```js
 var hd = "daodao";
@@ -190,19 +190,19 @@ console.log(window.hd); //daodao
 console.log($.web);
 ```
 
-### let
+#### let
 
-与 `var` 声明的区别是 `let/const` 拥有块作用域，下面代码演示了块外部是无法访问到`let`声明的变量。
+与 `var` 声明的区别是 `let` / `const` 拥有块作用域，下面代码演示了块外部是无法访问到 `let` 声明的变量。
 
-- 建议将`let`在代码块前声明
+- 建议将 `let` 在代码块前声明
 - 用逗号分隔定义多个
 
-`let`存在块作用域特性，变量只在块域中有效
+`let` 存在块作用域特性，变量只在块域中有效
 
 ```js
 if (true) {
-    let web = 'duyidao',url = 'daodao.com';
-    console.log(web); //duyidao
+  let web = 'duyidao',url = 'daodao.com';
+  console.log(web); //duyidao
 }
 console.log(web); //web is not defined
 ```
@@ -235,7 +235,7 @@ function run() {
 run();
 ```
 
-### const
+#### const
 
 使用 `const` 用来声明常量，这与其他语言差别不大，比如可以用来声明后台接口的 URI 地址。
 
@@ -296,7 +296,7 @@ console.log(window.screenLeft) // 80
 
 ### 全局污染
 
-变量声明如果不用 `var/let/const` 进行变量声明，变量会隐式变为全局变量，造成变量全局污染。
+变量声明如果不用 `var` / `let` / `const` 进行变量声明，变量会隐式变为全局变量，造成变量全局污染。
 
 ```js
 function fn() {
@@ -307,7 +307,7 @@ console.log(web) // daodao
 
 ### 重复定义
 
-使用 var 可能造成不小心定义了同名变量
+使用 `var` 可能造成不小心定义了同名变量
 
 ```js
 //优惠价
@@ -317,7 +317,7 @@ var price = 100;
 console.log(`商品优惠价格是:${price}`);
 ```
 
-使用`let` 可以避免上面的问题，因为 let 声明后的变量不允许在同一作用域中重新声明
+使用 `let` 可以避免上面的问题，因为 `let` 声明后的变量不允许在同一作用域中重新声明
 
 ```js
 let web = 'daodao.com';
@@ -333,7 +333,7 @@ if (true) {
 }
 ```
 
-但可以改变值这是与 const 不同点
+但可以改变值这是与 `const` 不同点
 
 ```js
 let price = 90;
@@ -341,7 +341,7 @@ price = 88;
 console.log(`商品价格是:${price}`);
 ```
 
-`let` 全局声明的变量不存在于 `window`对象中，这与`var`声明不同
+`let` 全局声明的变量不存在于 `window` 对象中，这与 `var` 声明不同
 
 ```js
 let hd = "duyidao";
@@ -367,7 +367,7 @@ console.log(INFO);
 
 基本数据类型指数值、字符串等简单数据类型，引用类型指对象数据类型。
 
-基本类型复制是值的复制，互相不受影响。下例中将 a 变量的值赋值给 b 变量后，因为基本类型变量是独立的所以 a 的改变不会影响 b 变量的值。
+基本类型复制是值的复制，互相不受影响。下例中将 `a` 变量的值赋值给 `b` 变量后，因为基本类型变量是独立的所以 `a` 的改变不会影响 `b` 变量的值。
 
 ```js
 let a = 100;
@@ -400,8 +400,6 @@ console.log(typeof hd);
 
 对未声明的变量使用会报错，但判断类型将显示 `undefined`。
 
-![image-20191003194105707](https://doc.daodao.com/assets/img/image-20191003194105707.a5cd9f56.png)
-
 ```js
 console.log(typeof daodao);
 console.log(daodao);
@@ -409,7 +407,7 @@ console.log(daodao);
 
 我们发现未赋值与未定义的变量值都为 `undefined` ，建议声明变量设置初始值，这样就可以区分出变量状态了。
 
-函数参数或无返回值是为`undefined`
+函数参数或无返回值是为 `undefined`
 
 ```js
 function hd(web) {
@@ -421,7 +419,7 @@ console.log(hd()); //undefined
 
 ### null
 
-`null` 用于定义一个空对象，即如果变量要用来保存引用类型，可以在初始化时将其设置为 null
+`null` 用于定义一个空对象，即如果变量要用来保存引用类型，可以在初始化时将其设置为 `null`
 
 ```js
 var hd = null;
