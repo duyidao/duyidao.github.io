@@ -1,3 +1,18 @@
+---
+layout: doc
+title: JavaScript知识点——变量
+titleTemplate: JavaScript知识点——变量
+description: JavaScript 知识点 变量
+head:
+  - - meta
+    - name: description
+      content: JavaScript知识点——变量
+  - - meta
+    - name: keywords
+      content: JavaScript 知识点 变量
+pageClass: javascript-knowledge-index
+---
+
 # 变量
 
 ## 变量声明

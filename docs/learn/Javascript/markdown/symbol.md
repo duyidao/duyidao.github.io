@@ -1,3 +1,18 @@
+---
+layout: doc
+title: JavaScript知识点——Symbol
+titleTemplate: JavaScript知识点——Symbol
+description: JavaScript 知识点 Symbol
+head:
+  - - meta
+    - name: description
+      content: JavaScript知识点——Symbol
+  - - meta
+    - name: keywords
+      content: JavaScript 知识点 Symbol
+pageClass: javascript-knowledge-symbol
+---
+
 # Symbol
 
 `Symbol` 用于防止属性名冲突而产生的，比如向第三方对象中添加属性时。
@@ -35,7 +50,7 @@ console.log(hd); //Symbol(is name)
 console.log(edu.toString()); //Symbol(这是一个测试)
 ```
 
-传入相同参数 `Symbol` 也是独立唯一的，因为参数只是描述而已，但使用 `Symbol.for`则不会
+传入相同参数 `Symbol` 也是独立唯一的，因为参数只是描述而已，但使用 `Symbol.for` 则不会
 
 ```js
 let hd = Symbol("daodao");
@@ -43,7 +58,7 @@ let edu = Symbol("daodao");
 console.log(hd == edu); //false
 ```
 
-使用`description`可以获取传入的描述参数
+使用 `description` 可以获取传入的描述参数
 
 ```js
 let hd = Symbol("daodao");
@@ -82,7 +97,7 @@ console.log(Symbol.keyFor(edu)); //undefined
 - `Symbol` 声明和访问使用 `[]`（变量）形式操作
 - 也不能使用 `.` 语法因为 `.`语法是操作字符串属性的。
 
-下面写法是错误的，会将`symbol` 当成字符串`symbol`处理
+下面写法是错误的，会将 `symbol` 当成字符串 `symbol` 处理
 
 ```js
 let symbol = Symbol("daodao");
@@ -92,7 +107,7 @@ let obj = {
 console.log(obj);
 ```
 
-正确写法是以`[]` 变量形式声明和访问
+正确写法是以 `[]` 变量形式声明和访问
 
 ```js
 let symbol = Symbol("daodao");
@@ -106,8 +121,9 @@ console.log(obj[symbol]); //daodao.com
 
 ### 缓存操作
 
-使用`Symbol`可以解决在保存数据时由于名称相同造成的耦合覆盖问题。
+使用 `Symbol` 可以解决在保存数据时由于名称相同造成的耦合覆盖问题。
 
+::: details 查看代码
 ```js
 class Cache {
   static data = {};
@@ -133,6 +149,7 @@ Cache.set(user.key, user);
 Cache.set(cart.key, cart);
 console.log(Cache.get(user.key));
 ```
+:::
 
 ### 遍历属性
 
@@ -154,10 +171,9 @@ for (const key of Object.keys(obj)) {
 }
 ```
 
-可以使用 `Object.getOwnPropertySymbols` 获取所有`Symbol`属性
+可以使用 `Object.getOwnPropertySymbols` 获取所有 `Symbol` 属性
 
 ```js
-...
 for (const key of Object.getOwnPropertySymbols(obj)) {
   console.log(key);
 }
@@ -166,14 +182,12 @@ for (const key of Object.getOwnPropertySymbols(obj)) {
 也可以使用 `Reflect.ownKeys(obj)` 获取所有属性包括`Symbol`
 
 ```js
-...
 for (const key of Reflect.ownKeys(obj)) {
   console.log(key);
 }
-...
 ```
 
-如果对象属性不想被遍历，可以使用`Symbol`保护
+如果对象属性不想被遍历，可以使用 `Symbol` 保护
 
 ```js
 const site = Symbol("网站名称");

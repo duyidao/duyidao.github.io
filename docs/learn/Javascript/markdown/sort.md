@@ -1,3 +1,18 @@
+---
+layout: doc
+title: JavaScript知识点——赋值运算符
+titleTemplate: JavaScript知识点——赋值运算符
+description: JavaScript 知识点 赋值运算符
+head:
+  - - meta
+    - name: description
+      content: JavaScript知识点——赋值运算符
+  - - meta
+    - name: keywords
+      content: JavaScript 知识点 赋值运算符
+pageClass: javascript-knowledge-sort
+---
+
 # 赋值运算符
 
 使用 `=` 进行变量赋值

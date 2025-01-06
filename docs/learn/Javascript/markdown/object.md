@@ -1,13 +1,28 @@
+---
+layout: doc
+title: JavaScript知识点——对象
+titleTemplate: JavaScript知识点——对象
+description: JavaScript 知识点 对象
+head:
+  - - meta
+    - name: description
+      content: JavaScript知识点——对象
+  - - meta
+    - name: keywords
+      content: JavaScript 知识点 对象
+pageClass: javascript-knowledge-object
+---
+
 # 对象
+
 ## 基础知识
 
-对象是包括属性与方法的数据类型，JS 中大部分类型都是对象如 `String/Number/Math/RegExp/Date` 等等。
+对象是包括属性与方法的数据类型，JS 中大部分类型都是对象如 `String` / `Number` / `Math` / `RegExp` / `Date` 等等。
 
-传统的函数编程会有错中复杂的依赖很容易创造意大利式面条代码。
+传统的函数编程会有错中复杂的依赖很容易创造意大利式面条代码，使用对象编程的代码结构清晰，也减少了函数的参数传递，也不用担心函数名的覆盖。
 
-**面向过程编程**
-
-```js
+::: code-group
+```js [面向过程编程.js]
 let name = "杜一刀";
 let grade = [
   { lesson: "js", score: 99 },
@@ -19,12 +34,7 @@ function average(grade, name) {
 }
 console.log(average(grade, name));
 ```
-
-**面向对象编程**
-
-下面使用对象编程的代码结构清晰，也减少了函数的参数传递，也不用担心函数名的覆盖
-
-```js
+```js [面向对象编程.js]
 let user = {
   name: '刀刀',
   grade: [
@@ -38,6 +48,7 @@ let user = {
 
 console.log(user.average());
 ```
+:::
 
 ### OOP
 
@@ -48,9 +59,10 @@ console.log(user.average());
 
 ### 基本声明
 
-使用字面量形式声明对象是最简单的方式
+使用字面量形式声明对象是最简单的方式，属性与方法可以简写。字面量形式实质上在系统内部也是使用构造函数 `new Object` 创建的，后面会详细介绍构造函数。
 
-```js
+::: code-group
+```js [字面量声明.js]
 let obj = {
   name: '刀刀',
   get:function() {
@@ -59,10 +71,7 @@ let obj = {
 }
 console.log(obj.get()); //刀刀
 ```
-
-属性与方法简写
-
-```js
+```js [属性与方法简写.js]
 let name = "刀刀";
 let obj = {
   name,
@@ -72,51 +81,35 @@ let obj = {
 };
 console.log(obj.get()); //刀刀
 ```
-
-其实字面量形式在系统内部也是使用构造函数 `new Object`创建的，后面会详细介绍构造函数。
-
-```js
+```js [构造函数声明.js]
 let hd = {};
 let daodao = new Object();
 console.log(hd, daodao);
 console.log(hd.constructor);
 console.log(daodao.constructor);
 ```
+:::
 
 ### 操作属性
 
-使用点语法获取
+使用 `.` 操作属性更简洁，`[]` 主要用于通过变量定义属性的场景，如果属性名不是合法变量名就必须使用扩号的形式了。
 
-```js
+::: code-group
+```js [点语法获取.js]
 let user = {
   name: "杜一刀"
 };
 console.log(user.name);
 ```
-
-使用`[]` 获取
-
-```js
+```js [[]获取.js]
 console.log(user["name"]);
 ```
-
-可以看出使用`.`操作属性更简洁，`[]`主要用于通过变量定义属性的场景
-
-```js
-let user = {
-  name: "杜一刀"
-};
-let property = "name";
-console.log(user[property]);
-```
-
-如果属性名不是合法变量名就必须使用扩号的形式了
-
-```js
+```js [属性名不是合法变量名.js]
 let user = {};
 user["my-age"] = 28;
 console.log(user["my-age"]);
 ```
+:::
 
 对象和方法的属性可以动态的添加或删除。
 
@@ -172,18 +165,18 @@ console.log(lisi.avgGrade());
 
 ### 引用特性
 
-对象和函数、数组一样是引用类型，即复制只会复制引用地址。
+1. 对象和函数、数组一样是引用类型，即复制只会复制引用地址
+2. 对象做为函数参数使用时也不会产生完全赋值，内外共用一个对象
+3. 对象的比较是对内存地址的比较所以使用 `==` 或 `===` 一样
 
-```js
+::: code-group
+```js [引用类型.js]
 let hd = { name: "刀刀" };
 let cms = hd;
 cms.name = "xiaodao";
 console.log(hd.name); //xiaodao
 ```
-
-对象做为函数参数使用时也不会产生完全赋值，内外共用一个对象
-
-```js
+```js [共用对象.js]
 let user = { age: 22 };
 function hd(user) {
   user.age += 10;
@@ -191,10 +184,7 @@ function hd(user) {
 hd(user);
 console.log(user.age); //32
 ```
-
-对多的比较是对内存地址的比较所以使用 `==` 或 `===` 一样
-
-```js
+```js [地址比较.js]
 let hd = {};
 let xj = hd;
 let cms = {};
@@ -202,17 +192,19 @@ console.log(hd == xj); //true
 console.log(hd === xj); //true
 console.log(hd === cms); //false
 ```
+:::
 
 ### this
 
-`this` 指当前对象的引用，始终建议在代码内部使用`this` 而不要使用对象名，不同对象的 this 只指向当前对象。
+`this` 指当前对象的引用，始终建议在代码内部使用 `this` 而不要使用对象名，不同对象的 `this` 只指向当前对象。
 
 下例是不使用 `this` 时发生的错误场景
 
-- 删除了`xj` 变量，但在函数体内还在使用`xj`变量造成错误
+- 删除了 `xj` 变量，但在函数体内还在使用 `xj` 变量造成错误
 - 使用 `this` 后始终指向到引用地址，就不会有这个问题
 
-```js
+::: code-group
+```js [not this.js]
 let xj = {
   name: "杜一刀",
   show() {
@@ -221,12 +213,9 @@ let xj = {
 };
 let hd = xj;
 xj = null;
-console.log(hd.show()); //Error
+console.log(hd.show()); // Error
 ```
-
-改用`this` 后一切正常
-
-```js
+```js [use this.js]
 let xj = {
   name: "杜一刀",
   show() {
@@ -235,22 +224,21 @@ let xj = {
 };
 let hd = xj;
 xj = null;
-console.log(hd.show()); //Error
+console.log(hd.show()); // 杜一刀
 ```
+:::
 
 ### 展开语法
 
-使用`...`可以展示对象的结构，下面是实现对象合并的示例
+使用 `...` 可以展示对象的结构，下面是实现示例：
 
-```js
+::: code-group
+```js [对象合并.js]
 let hd = { name: "刀刀", web: "houdurnen.com" };
 let info = { ...hd, site: "xiaodao" };
 console.log(info);
 ```
-
-下面是函数参数合并的示例
-
-```js
+```js [函数参数合并.js]
 function upload(params) {
   let config = {
     type: "*.jpeg,*.png",
@@ -261,12 +249,13 @@ function upload(params) {
 }
 upload({ size: 999 });
 ```
+:::
 
 ## 对象转换
 
 ### 基础知识
 
-对象直接参与计算时，系统会根据计算的场景在 `string/number/default` 间转换。
+对象直接参与计算时，系统会根据计算的场景在 `string` / `number` / `default` 间转换。
 
 - 如果声明需要字符串类型，调用顺序为 `toString > valueOf`
 - 如果场景需要数值类型，调用顺序为 `valueOf > toString`
@@ -286,7 +275,7 @@ let daodao = new Number(1);
 console.log(daodao + "3"); //13
 ```
 
-下面当不确定转换声明时使用 `default` ，大部分`default`转换使用 `number` 转换。
+下面当不确定转换声明时使用 `default` ，大部分 `default` 转换使用 `number` 转换。
 
 ```js
 let daodao = new Number(1);
@@ -295,7 +284,7 @@ console.log(daodao == "1"); //true
 
 ### Symbol.toPrimitive
 
-内部自定义`Symbol.toPrimitive`方法用来处理所有的转换场景
+内部自定义 `Symbol.toPrimitive` 方法用来处理所有的转换场景
 
 ```js
 let hd = {
@@ -309,7 +298,7 @@ console.log(hd + 3); //4
 
 ### valueOf/toString
 
-可以自定义`valueOf` 与 `toString` 方法用来转换，转换并不限制返回类型。
+可以自定义 `valueOf` 与 `toString` 方法用来转换，转换并不限制返回类型。
 
 ```js
 let hd = {
@@ -332,13 +321,10 @@ console.log(`${hd}杜一刀`); //toString 刀刀杜一刀
 
 解构是一种更简洁的赋值特性，可以理解为分解一个数据的结构，在数组章节已经介绍过。
 
-- 建设使用 `var/let/const` 声明
-
 ### 基本使用
 
-下面是基本使用语法
-
-```js
+::: code-group
+```js [基本使用.js]
 //对象使用
 let info = {name:'刀刀',url:'daodao.com'};
 let {name:n,url:u} = info
@@ -348,10 +334,7 @@ console.log(n); // 刀刀
 let {name,url} = {name:'刀刀',url:'daodao.com'};
 console.log(name); // 刀刀
 ```
-
-函数返回值直接解构到变量
-
-```js
+```js [函数返回值解构到变量.js]
 function hd() {
   return {
     name: '刀刀',
@@ -361,16 +344,14 @@ function hd() {
 let {name: n,url: u} = hd();
 console.log(n);
 ```
-
-函数传参
-
-```js
+```js [函数传参.js]
 "use strict";
 function hd({ name, age }) {
   console.log(name, age); //杜一刀 18
 }
 hd({ name: "杜一刀", age: 18 });
 ```
+:::
 
 系统函数解构练习，这没有什么意义只是加深解构印象
 
@@ -381,21 +362,20 @@ console.log(random());
 
 ### 严格模式
 
-非严格模式可以不使用声明指令，严格模式下必须使用声明。所以建议使用 let 等声明。
+非严格模式可以不使用声明指令，严格模式下必须使用声明。所以建议使用 `let` 等声明。
 
-```js
+::: code-group
+```js [非严格模式.js]
 // "use strict";
 ({name,url} = {name:'刀刀',url:'daodao.com'});
 console.log(name, url);
 ```
-
-还是建议使用`let`等赋值声明
-
-```js
+```js [严格模式.js]
 "use strict";
 let { name, url } = { name: "刀刀", url: "daodao.com" };
 console.log(name, url);
 ```
+:::
 
 ### 简洁定义
 
@@ -481,32 +461,26 @@ createElement({
 
 ### 函数参数
 
-数组参数的使用
-
-```js
+::: code-group
+```js [数组参数.js]
 function hd([a, b]) {
 	console.log(a, b);
 }
 hd(['刀刀', 'duyidao']);
 ```
-
-对象参数使用方法
-
-```js
+```js [对象参数使用方法.js]
 function hd({name,url,user='杜一刀'}) {
 	console.log(name,url,user); //刀刀 daodao.com 杜一刀
 }
 hd({name:'刀刀', url:'daodao.com'});
 ```
-
-对象解构传参
-
-```js
+```js [对象解构传参.js]
 function user(name, { sex, age } = {}) {
   console.log(name, sex, age); //杜一刀 男 18
 }
 user("杜一刀", { sex: "男", age: 18 });
 ```
+:::
 
 ## 属性管理
 
@@ -522,7 +496,7 @@ console.log(obj);
 
 ### 删除属性
 
-使用`delete` 可以删除属性（后面介绍的属性特性章节可以保护属性不被删除）
+使用 `delete` 可以删除属性（后面介绍的属性特性章节可以保护属性不被删除）
 
 ```js
 let obj = { name: "刀刀" };
@@ -532,7 +506,7 @@ console.log(obj.name); //undefined
 
 ### 检测属性
 
-`hasOwnProperty`检测对象自身是否包含指定的属性，不检测原型链上继承的属性。
+`hasOwnProperty` 检测对象自身是否包含指定的属性，不检测原型链上继承的属性。
 
 ```js
 let obj = { name: '刀刀'};
@@ -578,7 +552,7 @@ console.log(names)
 
 ### assign
 
-以往我们使用类似`jQuery.extend` 等方法设置属性，现在可以使用 `Object.assign` 静态方法
+以往我们使用类似 `jQuery.extend` 等方法设置属性，现在可以使用 `Object.assign` 静态方法
 
 从一个或多个对象复制属性
 
@@ -662,7 +636,7 @@ console.table(Object.entries(hd)); //[["name","刀刀"],["age",10]]
 
 ### for/in
 
-使用`for/in`遍历对象属性
+使用 `for/in` 遍历对象属性
 
 ```js
 const hd = {
@@ -676,7 +650,7 @@ for (let key in hd) {
 
 ### for/of
 
-`for/of`用于遍历迭代对象，不能直接操作对象。但`Object`对象的`keys/`方法返回的是迭代对象。
+`for/of` 用于遍历迭代对象，不能直接操作对象。但 `Object` 对象的 `keys/` 方法返回的是迭代对象。
 
 ```js
 const hd = {
@@ -693,9 +667,8 @@ for (const key of Object.keys(hd)) {
 }
 ```
 
-获取所有对象属性
-
-```js
+::: code-group
+```js [获取所有对象属性.js]
 const hd = {
   name: "刀刀",
   age: 10
@@ -704,22 +677,17 @@ for (const key of Object.values(hd)) {
   console.log(key); // 刀刀  ;  10
 }
 ```
-
-同时获取属性名与值
-
-```js
+```js [同时获取属性名与值.js]
 for (const array of Object.entries(hd)) {
   console.log(array); // (2) ['name', '刀刀']  ;  (2) ['age', 10]
 }
 ```
-
-使用扩展语法同时获取属性名与值
-
-```js
+```js [使用扩展语法同时获取属性名与值.js]
 for (const [key, value] of Object.entries(hd)) {
   console.log(key, value); // name 刀刀  ;  age 10
 }
 ```
+:::
 
 添加元素 DOM 练习
 
@@ -756,7 +724,7 @@ console.log(b.name); //lisi
 
 ### 浅拷贝
 
-使用`for/in`执行对象拷贝
+使用 `for/in` 执行对象拷贝
 
 ```js
 let obj = {name: "刀刀"};
@@ -930,10 +898,10 @@ dd.show();
 
 和工厂函数相似构造函数也用于创建对象，它的上下文为新的对象实例。
 
-- 构造函数名每个单词首字母大写即`Pascal` 命名规范
-- `this`指当前创建的对象
-- 不需要返回`this`系统会自动完成
-- 需要使用`new`关键词生成对象
+- 构造函数名每个单词首字母大写即 `Pascal` 命名规范
+- `this` 指当前创建的对象
+- 不需要返回 `this` 系统会自动完成
+- 需要使用 `new` 关键词生成对象
 
 ```js
 function Student(name) {
@@ -968,7 +936,7 @@ console.log(array.string("-"));
 
 ### 严格模式
 
-在严格模式下方法中的`this`值为 undefined，这是为了防止无意的修改 window 对象
+在严格模式下方法中的 `this` 值为 `undefined`，这是为了防止无意的修改 `window` 对象
 
 ```js
 "use strict";
@@ -1009,7 +977,7 @@ hd.name = "刀刀";
 console.log(hd);
 ```
 
-字面量创建的对象，内部也是调用了`Object`构造函数
+字面量创建的对象，内部也是调用了 `Object` 构造函数
 
 ```js
 const hd = {
@@ -1025,7 +993,7 @@ console.log(xiaodao);
 
 ### 对象函数
 
-在`JS`中函数也是一个对象
+在 `JS` 中函数也是一个对象
 
 ```js
 function hd(name) {}
@@ -1082,14 +1050,14 @@ let lisi = new User("李四", 22);
 console.log(lisi.about()); // 李四是年轻人
 
 lisi.about = function() {
-    return '我要污染这个函数'
+  return '我要污染这个函数'
 }
 console.log(lisi.about()); // 我要污染这个函数
 ```
 
 ### 抽象封装
 
-上例中的方法和属性仍然可以在外部访问到，比如 `info`方法只是在内部使用，不需要被外部访问到这会破坏程序的内部逻辑。
+上例中的方法和属性仍然可以在外部访问到，比如 `info` 方法只是在内部使用，不需要被外部访问到这会破坏程序的内部逻辑。
 
 下面使用闭包特性将对象进行抽象处理
 
@@ -1107,7 +1075,7 @@ let lisi = new User("刀刀", 22);
 console.log(lisi.message()); // 刀刀是年轻人
 
 lisi.about = function() {
-    return '我要污染这个函数'
+  return '我要污染这个函数'
 }
 console.log(lisi.message()); // 刀刀是年轻人
 ```
@@ -1118,7 +1086,7 @@ JS 中可以对属性的访问特性进行控制。
 
 ### 查看特征
 
-使用 `Object.getOwnPropertyDescriptor`查看对象单个属性的描述。参数2指定查看哪个属性。
+使用 `Object.getOwnPropertyDescriptor` 查看对象单个属性的描述。参数2指定查看哪个属性。
 
 ```js
 "use strict";
@@ -1126,11 +1094,11 @@ const user = {
   name: "杜一刀",
   age: 18
 };
-let desc = Object.getOwnPropertyDescriptor(user, "name"`);
+let desc = Object.getOwnPropertyDescriptor(user, "name");
 console.log(JSON.stringify(desc, null, 2));
 ```
 
-使用 `Object.getOwnPropertyDescriptors`查看对象所有属性的描述
+使用 `Object.getOwnPropertyDescriptors` 查看对象所有属性的描述
 
 ```js
 "use strict";
@@ -1146,16 +1114,17 @@ console.log(JSON.stringify(desc, null, 2));
 
 | 特性         | 说明                                                    | 默认值    |
 | ------------ | ------------------------------------------------------- | --------- |
-| configurable | 能否使用 delete、能否需改属性特性、或能否修改访问器属性 | true      |
-| enumerable   | 对象属性是否可通过 for-in 循环，或 Object.keys() 读取   | true      |
-| writable     | 对象属性是否可修改                                      | true      |
-| value        | 对象属性的默认值                                        | undefined |
+| `configurable` | 能否使用 `delete`、能否需改属性特性、或能否修改访问器属性 | `true`      |
+| `enumerable`   | 对象属性是否可通过 `for...in` 循环，或 `Object.keys()` 读取   | `true`      |
+| `writable`     | 对象属性是否可修改                                      | `true`      |
+| `value`        | 对象属性的默认值                                        | `undefined` |
 
 ### 设置特征
 
-使用`Object.defineProperty` 方法修改属性特性，通过下面的设置属性 name 将不能被遍历、删除、修改。
+使用 `Object.defineProperty` 方法修改属性特性，通过下面的设置属性 `name` 将不能被遍历、删除、修改。
 
-```js
+::: code-group
+```js [不允许修改.js]
 "use strict";
 const user = {
   name: "杜一刀"
@@ -1163,32 +1132,44 @@ const user = {
 Object.defineProperty(user, "name", {
   value: "刀刀",
   writable: false,
+});
+
+user.name = "杜一刀"; // Error
+```
+```js [不允许遍历.js]
+"use strict";
+const user = {
+  name: "杜一刀"
+};
+Object.defineProperty(user, "name", {
+  value: "刀刀",
+  enumerable: false,
+});
+
+console.log(Object.keys(user));
+```
+``` js [不允许删除.js]
+"use strict";
+const user = {
+  name: "杜一刀"
+};
+Object.defineProperty(user, "name", {
+  value: "刀刀",
+  configurable: false
+});
+
+delete user.name;
+console.log(user);
+```
+```js [不允许配置.js] 
+Object.defineProperty(user, "name", {
+  value: "刀刀",
+  writable: true,
   enumerable: false,
   configurable: false
 });
 ```
-
-通过执行以下代码对上面配置进行测试，请分别打开注释进行测试
-
-```js
-// 不允许修改
-// user.name = "杜一刀"; //Error
-
-// 不能遍历
-// console.log(Object.keys(user));
-
-//不允许删除
-// delete user.name;
-// console.log(user);
-
-//不允许配置
-// Object.defineProperty(user, "name", {
-//   value: "刀刀",
-//   writable: true,
-//   enumerable: false,
-//   configurable: false
-// });
-```
+:::
 
 使用 `Object.defineProperties` 可以一次设置多个属性，具体参数和上面介绍的一样。
 
@@ -1271,7 +1252,7 @@ Object.freeze(user);
 user.name = "刀刀"; //Error
 ```
 
-`Object.isFrozen()`方法判断一个对象是否被冻结
+`Object.isFrozen()` 方法判断一个对象是否被冻结
 
 ```js
 "use strict";
@@ -1312,7 +1293,7 @@ user.age = 99;
 console.log(user.age);
 ```
 
-下面使用 getter 设置只读的课程总价
+下面使用 `getter` 设置只读的课程总价
 
 ```js
 let Lesson = {
@@ -1330,7 +1311,7 @@ Lesson.total = 30; //无效
 console.log(Lesson.total); //410
 ```
 
-下面通过设置站网站名称与网址体验`getter/setter`批量设置属性的使用
+下面通过设置站网站名称与网址体验 `getter/setter` 批量设置属性的使用
 
 ```js
 const web = {
@@ -1347,7 +1328,7 @@ web.site = "刀刀,xiaodao.com";
 console.log(web.site);
 ```
 
-下面是设置 token 储取的示例，将业务逻辑使用`getter/setter`处理更方便，也方便其他业务的复用。
+下面是设置 `token` 储取的示例，将业务逻辑使用 `getter/setter` 处理更方便，也方便其他业务的复用。
 
 ```js
 let Request = {
@@ -1420,7 +1401,7 @@ hd.name = "杜一刀";
 console.log(hd.name);
 ```
 
-上面的代码也可以使用语法糖 `class`定义
+上面的代码也可以使用语法糖 `class` 定义
 
 ```js
 "use strict";
@@ -1456,8 +1437,8 @@ console.log(hd);
 下面结合闭包特性对属性进行访问控制
 
 - 下例中访问器定义在函数中，并接收参数 v
-- 在 get() 中通过闭包返回 v
-- 在 set() 中修改了 v，这会影响 get()访问的闭包数据 v
+- 在 `get()` 中通过闭包返回 v
+- 在 `set()` 中修改了 v，这会影响 `get()` 访问的闭包数据 v
 
 ```js
 let data = {
@@ -1491,7 +1472,7 @@ console.dir(data.name) //刀刀
 
 ### 使用方法
 
-代理对象时get方法有两个参数，set方法有三个参数，前两个参数相同。
+代理对象时 `get` 方法有两个参数，`set` 方法有三个参数，前两个参数相同。
 
 - 参数一：代理的对象
 - 参数二：当前使用的属性
@@ -1574,7 +1555,7 @@ console.log(stringDotProxy[0]);
 
 ### 双向绑定
 
-下面通过代理实现`vue` 等前端框架的数据绑定特性特性。
+下面通过代理实现 Vue 等前端框架的数据绑定特性特性。
 
 ![Untitled](https://doc.daodao.com/assets/img/Untitled-5190245.5087f5bc.gif)
 
@@ -1682,9 +1663,9 @@ let view = new View().run();
 
 ## JSON
 
-- json 是一种轻量级的数据交换格式，易于人阅读和编写。
-- 使用`json` 数据格式是替换 `xml` 的最佳方式，主流语言都很好的支持`json` 格式。所以 `json` 也是前后台传输数据的主要格式。
-- json 标准中要求使用双引号包裹属性，虽然有些语言不强制，但使用双引号可避免多程序间传输发生错误语言错误的发生。
+- `json` 是一种轻量级的数据交换格式，易于人阅读和编写。
+- 使用 `json` 数据格式是替换 `xml` 的最佳方式，主流语言都很好的支持 `json` 格式。所以 `json` 也是前后台传输数据的主要格式。
+- `json` 标准中要求使用双引号包裹属性，虽然有些语言不强制，但使用双引号可避免多程序间传输发生错误语言错误的发生。
 
 ### 声明定义
 
@@ -1727,13 +1708,14 @@ console.log(lessons[0].title);
 
 ### 序列化
 
-- 参数1：要转json的数组对象
+- 参数1：要转 `json` 的数组对象
 - 参数2：需要保留的属性，可选
 - 参数3：缩进字符
 
-序列化是将 `json` 转换为字符串，一般用来向其他语言传输使用。
+序列化是将 `json` 转换为字符串，一般用来向其他语言传输使用。根据第二个参数指定保存的属性。第三个是参数用来控制 TAB 数量，如果字符串则为前导字符。
 
-```js
+::: code-group
+```js [json转字符串.js]
 let hd = {
   "title": "刀刀",
   "url": "daodao.com",
@@ -1744,17 +1726,18 @@ let hd = {
 console.log(JSON.stringify(hd));
 //{"title":"刀刀","url":"daodao.com","teacher":{"name":"杜一刀"}}
 ```
-
-根据第二个参数指定保存的属性
-
-```js
+```js [第二个参数指定保存的属性.js]
+let hd = {
+  "title": "刀刀",
+  "url": "daodao.com",
+  "teacher": {
+  	"name": "杜一刀",
+  }
+}
 console.log(JSON.stringify(hd, ['title', 'url']));
 //{"title":"刀刀","url":"daodao.com"}
 ```
-
-第三个是参数用来控制 TAB 数量，如果字符串则为前导字符。
-
-```js
+```js [参数用来控制 TAB 数量.js]
 let hd = {
   "title": "刀刀",
   "url": "daodao.com",
@@ -1764,31 +1747,33 @@ let hd = {
 }
 console.log(JSON.stringify(hd, null, 4));
 ```
+:::
 
 为数据添加 `toJSON` 方法来自定义返回格式
 
 ```js
 let hd = {
-    "title": "刀刀",
-    "url": "daodao.com",
-    "teacher": {
-        "name": "杜一刀",
-    },
-    "toJSON": function () {
-        return {
-            "title": this.url,
-            "name": this.teacher.name
-        };
-    }
+  "title": "刀刀",
+  "url": "daodao.com",
+  "teacher": {
+    "name": "杜一刀",
+  },
+  "toJSON": function () {
+    return {
+      "title": this.url,
+      "name": this.teacher.name
+    };
+  }
 }
 console.log(JSON.stringify(hd)); //{"title":"daodao.com","name":"杜一刀"}
 ```
 
 ### 反序列化
 
-使用 `JSON.parse` 将字符串 `json` 解析成对象
+使用 `JSON.parse` 将字符串 `json` 解析成对象。使用第二个参数函数来对返回的数据二次处理。
 
-```js
+::: code-group
+```js [JSON.parse将json解析成对象.js]
 let hd = {
   "title": "刀刀",
   "url": "daodao.com",
@@ -1799,10 +1784,7 @@ let hd = {
 let jsonStr = JSON.stringify(hd);
 console.log(JSON.parse(jsonStr));
 ```
-
-使用第二个参数函数来对返回的数据二次处理
-
-```js
+```js [对返回的数据二次处理.js]
 let hd = {
   title: "刀刀",
   url: "daodao.com",
@@ -1820,9 +1802,10 @@ console.log(
   })
 );
 ```
+:::
 
 ## Reflect
 
 **Reflect** 是一个内置的对象，它提供拦截 JavaScript 操作的方法
 
-- `Reflect`并非一个构造函数，所以不能通过 new 运算符对其进行调用
+- `Reflect`并非一个构造函数，所以不能通过 `new` 运算符对其进行调用

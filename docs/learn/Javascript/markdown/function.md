@@ -1,3 +1,18 @@
+---
+layout: doc
+title: JavaScript知识点——函数
+titleTemplate: JavaScript知识点——函数
+description: JavaScript 知识点 函数
+head:
+  - - meta
+    - name: description
+      content: JavaScript知识点——函数
+  - - meta
+    - name: keywords
+      content: JavaScript 知识点 函数
+pageClass: javascript-knowledge-function
+---
+
 # 函数
 
 ## 基础知识

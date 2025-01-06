@@ -1,3 +1,18 @@
+---
+layout: doc
+title: JavaScript知识点——数据类型
+titleTemplate: JavaScript知识点——数据类型
+description: JavaScript 知识点 数据类型
+head:
+  - - meta
+    - name: description
+      content: JavaScript知识点——数据类型
+  - - meta
+    - name: keywords
+      content: JavaScript 知识点 数据类型
+pageClass: javascript-knowledge-type
+---
+
 # 数据类型
 
 ## 类型判断

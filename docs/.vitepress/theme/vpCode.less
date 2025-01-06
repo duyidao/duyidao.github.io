@@ -65,10 +65,13 @@
     color: var(--vp-c-black-soft);
     border-radius: 8px;
     box-shadow: 0 0 30px 0 rgb(0 0 0 / 40%);
-
+    
+    input:checked + label {
+      color: var(--vp-code-tab-active-bar-color);
+    }
     /* tab间距 */
     .tabs {
-      padding: 20px 6px 5px;
+      padding: 20px 6px 2px;
 
       [data-title]:before {
         display: inline-block;

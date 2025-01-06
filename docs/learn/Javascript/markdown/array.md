@@ -1,3 +1,18 @@
+---
+layout: doc
+title: JavaScript知识点——数组
+titleTemplate: JavaScript知识点——数组
+description: JavaScript 知识点 数组
+head:
+  - - meta
+    - name: description
+      content: JavaScript知识点——数组
+  - - meta
+    - name: keywords
+      content: JavaScript 知识点 数组
+pageClass: javascript-knowledge-array
+---
+
 # 数组
 
 数组是多个变量值的集合，数组是 `Array` 对象的实例，所以可以像对象一样调用方法。

@@ -1,3 +1,18 @@
+---
+layout: doc
+title: JavaScript知识点——Set
+titleTemplate: JavaScript知识点——Set
+description: JavaScript 知识点 Set
+head:
+  - - meta
+    - name: description
+      content: JavaScript知识点——Set
+  - - meta
+    - name: keywords
+      content: JavaScript 知识点 Set
+pageClass: javascript-knowledge-set
+---
+
 # Set
 
 用于存储任何类型的唯一值，无论是基本类型还是对象引用。
@@ -11,16 +26,14 @@
 
 ### 基本使用
 
-对象可以属性最终都会转为字符串
+对象可以属性最终都会转为字符串。使用对象做为键名时，会将对象转为字符串后使用。可以使用数组做初始数据。Set 中是严格类型约束的，下面的数值`1`与字符串`1`属于两个不同的值。使用 `add` 添加元素，不允许重复添加 `duyidao` 值。
 
-```js
+::: code-group
+```js [转字符串.js]
 let obj = { 1: "刀刀", "1": "daodao" };
 console.table(obj); // {1:"daodao"}
 ```
-
-使用对象做为键名时，会将对象转为字符串后使用
-
-```js
+```js [对象做键名.js]
 let obj = { 1: "刀刀", "1": "daodao" };
 console.table(obj);
 
@@ -31,26 +44,17 @@ console.table(hd);
 console.log(hd[obj.toString()]); // duyidao
 console.log(hd["[object Object]"]); // duyidao
 ```
-
-使用数组做初始数据
-
-```js
+```js [数组做初始数据.js]
 let hd = new Set(['daodao', 'duyidao']);
 console.log(hd.values()); //{"daodao", "duyidao"}
 ```
-
-Set 中是严格类型约束的，下面的数值`1`与字符串`1`属于两个不同的值
-
-```js
+```js [严格类型约束.js]
 let set = new Set();
 set.add(1);
 set.add("1");
 console.log(set); //Set(2) {1, "1"}
 ```
-
-使用 `add` 添加元素，不允许重复添加`duyidao`值
-
-```js
+```js [add添加元素.js]
 let hd = new Set();
 
 hd.add('daodao');
@@ -59,6 +63,7 @@ hd.add('duyidao')
 
 console.log(hd.values()); // SetIterator {"daodao", "duyidao"}
 ```
+:::
 
 ### 获取数量
 
@@ -82,7 +87,7 @@ console.log(hd.has('duyidao')); // false
 
 ### 删除元素
 
-使用 `delete` 方法删除单个元素，返回值为`boolean`类型
+使用 `delete` 方法删除单个元素，返回值为 `boolean` 类型
 
 ```js
 let hd = new Set();
@@ -109,7 +114,7 @@ console.log(hd.values()); // SetIterator {}
 
 ### 数组转换
 
-可以使用`点语法` 或 `Array.form` 静态方法将Set类型转为数组，这样就可以使用数组处理函数了
+可以使用 `点语法` 或 `Array.form` 静态方法将Set类型转为数组，这样就可以使用数组处理函数了
 
 ```js
 const set = new Set(["daodao", "duyidao"]);
@@ -127,21 +132,18 @@ console.log(hd); // Set(4) {'1', '2', '3', '4'}
 
 ### 去除重复
 
-去除字符串重复
-
-```js
+::: code-group
+```js [去除字符串重复.js]
 console.log([...new Set("daodao")].join("")); // dao
 ```
-
-去除数组重复
-
-```js
+```js [去除数组重复.js]
 console.log([...new Set([1,2,2,4,5,3,4,2])].join("")); // 12453
 ```
+:::
 
 ### 遍历数据
 
-使用 `keys()/values()/entries()` 都可以返回迭代对象，因为`set`类型只有值所以 `keys与values` 方法结果一致。
+使用 `keys()/values()/entries()` 都可以返回迭代对象，因为 `set` 类型只有值所以 `keys与values` 方法结果一致。
 
 ```js
 const hd = new Set(["daodao", "duyidao"]);
@@ -152,7 +154,7 @@ console.log(hd.entries()); //SetIterator {"daodao" => "daodao", "duyidao" => "du
 
 可以使用 `forEach` 遍历Set数据，默认使用 `values` 方法创建迭代器。
 
-为了保持和遍历数组参数统一，函数中的value与key是一样的。
+为了保持和遍历数组参数统一，函数中的 `value` 与 `key` 是一样的。
 
 ```js
 let arr = [7, 6, 2, 8, 2, 6];
@@ -176,6 +178,7 @@ for (const iterator of set) {
 
 下面通过历史搜索的示例体验`Set` 类型
 
+::: details 查看代码
 ```html
 <style>
   body {
@@ -237,6 +240,7 @@ for (const iterator of set) {
   });
 </script>
 ```
+:::
 
 ### 交集
 
@@ -349,6 +353,7 @@ setTimeout(() => {
 
 ### 案例操作
 
+::: details 查看代码
 ```html
 <style>
   * {
@@ -438,3 +443,4 @@ setTimeout(() => {
   new Todos().run();
 </script>
 ```
+:::

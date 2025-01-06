@@ -1,3 +1,18 @@
+---
+layout: doc
+title: JavaScript知识点——作用域与闭包
+titleTemplate: JavaScript知识点——作用域与闭包
+description: JavaScript 知识点 作用域与闭包
+head:
+  - - meta
+    - name: description
+      content: JavaScript知识点——作用域与闭包
+  - - meta
+    - name: keywords
+      content: JavaScript 知识点 作用域与闭包
+pageClass: javascript-knowledge-scope
+---
+
 # 作用域与闭包
 
 ## 作用域
@@ -26,13 +41,12 @@
 2. 局部变量：函数内部的作用域，只能在函数内部使用（函数的形参也可以看作是局部变量）。
 3. 块级变量：只能在块作用域内访问，不能跨块访问。
 
-> 注意：
->
+> [!WARNING] ⚠️ 注意
 > 若函数作用域内部或块级作用域内部没声明变量，直接赋值，则看成全局作用域，不建议这么做。
 
 ### 使用规范
 
-作用域链只向上查找，找到全局 window 即终止，应该尽量不要在全局作用域中添加变量。
+作用域链只向上查找，找到全局 `window` 即终止，应该尽量不要在全局作用域中添加变量。
 
 函数被执行后其环境变量将从内存中删除。下面函数在每次执行后将删除函数内部的 total 变量。
 
@@ -43,27 +57,25 @@ function count() {
 count();
 ```
 
-函数每次调用都会创建一个新作用域
+函数每次调用都会创建一个新作用域。如果子函数被使用时父级环境将被保留
 
-```js
+::: code-group
+```js [函数调用.js]
 let site = '刀刀';
 
 function a() {
   let hd = 'daodao.com';
 
   function b() {
-      let cms = 'duyidao.com';
-      console.log(hd);
-      console.log(site);
+    let cms = 'duyidao.com';
+    console.log(hd);
+    console.log(site);
   }
   b();
 }
 a();
 ```
-
-如果子函数被使用时父级环境将被保留
-
-```js
+```js [父级环境被保留.js]
 function hd() {
   let n = 1;
   return function() {
@@ -81,8 +93,9 @@ let b = hd()();
 b(); //2,2
 b(); //3,3
 ```
+:::
 
-构造函数也是很好的环境例子，子可以调用父级的变量，把show返回出去之后 因为show函数可能会存在调用a变量的代码所以 a会被保留，子函数被外部使用父级环境将被保留
+构造函数也是很好的环境例子，子可以调用父级的变量，把 `show` 返回出去之后 因为 `show` 函数可能会存在调用 `a` 变量的代码所以 `a` 会被保留，子函数被外部使用父级环境将被保留。
 
 ```js
 function User() {
@@ -139,16 +152,16 @@ for (let i = 0; i <= 3; i++) {
 }
 ```
 
-在没有`let/const` 的历史中使用以下方式产生作用域
+在没有 `let/const` 的历史中使用以下方式产生作用域
 
 ```js
 //自行构建闭包
 var arr = [];
 for (var i = 0; i < 10; i++) {
   (function (i) {
-      setTimeout(() => {
-    	console.log(i); // 1,2,3
-  	  }, 500);
+    setTimeout(() => {
+  	  console.log(i); // 1,2,3
+  	}, 500);
   })(i);
 }
 ```
@@ -306,9 +319,9 @@ divs.forEach(function(item) {
 
 **this 指向**
 
-this 总是指向调用该函数的对象，即函数在搜索 this 时只会搜索到当前活动对象。
+`this` 总是指向调用该函数的对象，即函数在搜索 `this` 时只会搜索到当前活动对象。
 
-下面是函数因为是在全局环境下调用的，所以 this 指向 window，这不是我们想要的。
+下面是函数因为是在全局环境下调用的，所以 `this` 指向 `window`，这不是我们想要的。
 
 ```js
 let hd = {
