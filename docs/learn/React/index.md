@@ -255,7 +255,7 @@ const vDom = (
 
 最终效果如下：
 
-[![p9vhQu4.png](https://s1.ax1x.com/2023/05/31/p9vhQu4.png)](https://imgse.com/i/p9vhQu4)
+[p9vhQu4.png](https://s1.ax1x.com/2023/05/31/p9vhQu4.png)
 
 发现 jsx 自动帮我们循环遍历数组获取数据渲染页面上了，如果换成对象又会有什么效果呢？尝试一下
 
@@ -274,13 +274,13 @@ const vDom = (
 
 运行后发现页面无效果，控制台有报错，报错信息如下图所示：
 
-[![p9vhwKe.png](https://s1.ax1x.com/2023/05/31/p9vhwKe.png)](https://imgse.com/i/p9vhwKe)
+[p9vhwKe.png](https://s1.ax1x.com/2023/05/31/p9vhwKe.png)
 
 翻译一下大意就是他无法自动遍历循环对象数据，如果需要请使用数组代替。并很贴心的给我们把对象的每一项 `key` 值贴出来。
 
 既然能循环，为何不在 `{}` 内使用 `for` 循环呢？说干就干。
 
-[![p9vhsUI.png](https://s1.ax1x.com/2023/05/31/p9vhsUI.png)](https://imgse.com/i/p9vhsUI)
+[p9vhsUI.png](https://s1.ax1x.com/2023/05/31/p9vhsUI.png)
 
 不等我们编译，编译器就已经给我们报错了。在 jsx 中，`{}` 内只能写表达式，不能写语句。其中：
 
@@ -375,7 +375,7 @@ ReactDOM.render(<Demo/>, document.querySelector('#test'))
    
    报错信息如下：
    
-   [![p9vIiuD.png](https://s1.ax1x.com/2023/05/31/p9vIiuD.png)](https://imgse.com/i/p9vIiuD)
+   [p9vIiuD.png](https://s1.ax1x.com/2023/05/31/p9vIiuD.png)
    
    不能把函数作为渲染对象，只能使用虚拟 DOM 或 组件。
 2. 首字母小写
@@ -385,7 +385,7 @@ ReactDOM.render(<Demo/>, document.querySelector('#test'))
    
    这个错误就很眼熟了，原因上方也说明了。
    
-   [![p9vIZ4I.png](https://s1.ax1x.com/2023/05/31/p9vIZ4I.png)](https://imgse.com/i/p9vIZ4I)
+   [p9vIZ4I.png](https://s1.ax1x.com/2023/05/31/p9vIZ4I.png)
 
 #### 拓展
 
@@ -507,7 +507,7 @@ class A {
 
 打印一下 `render` 内的 `this` ，打印如下：
 
-[![p9vxToV.png](https://s1.ax1x.com/2023/05/31/p9vxToV.png)](https://imgse.com/i/p9vxToV)
+[p9vxToV.png](https://s1.ax1x.com/2023/05/31/p9vxToV.png)
 
 后续我们主要考虑 `props` 、`refs` 、`state` 三个属性。
 
@@ -712,7 +712,7 @@ a()
 
 而 `let a = test.say` 这一步操作，则是把这个 `say()` 函数的地址赋值给 `a` ，画图演示：
 
-[![p9xHgUg.png](https://s1.ax1x.com/2023/06/01/p9xHgUg.png)](https://imgse.com/i/p9xHgUg)
+[p9xHgUg.png](https://s1.ax1x.com/2023/06/01/p9xHgUg.png)
 
 因此 `a()` 实际上只是通过地址找到内存中的这个 `say()` 函数并调用，而不是通过查找原型查找。而函数这么调用函数内的 `this` 指向的是 `window` ，但是类中声明的方法做了局部严格模式，因此最终打印的是 `undefined` 。下面可以做一个例子：
 
@@ -872,7 +872,7 @@ ReactDOM.render(<Person name="杜一刀" age="23" sex="男"/>, document.querySel
 > }
 > ```
 > 
-> [![pCC4x78.png](https://s1.ax1x.com/2023/06/05/pCC4x78.png)](https://imgse.com/i/pCC4x78)
+> [pCC4x78.png](https://s1.ax1x.com/2023/06/05/pCC4x78.png)
 
 ### 批量操作
 
@@ -1241,7 +1241,7 @@ handleSubmit = e => {
 
 ### 流程图（旧）
 
-[![pCPxbDO.png](https://s1.ax1x.com/2023/06/06/pCPxbDO.png)](https://imgse.com/i/pCPxbDO)
+[pCPxbDO.png](https://s1.ax1x.com/2023/06/06/pCPxbDO.png)
 
 #### 挂载流程
 
@@ -1328,7 +1328,7 @@ class B extends React.Component {
 
 ### 流程图（新）
 
-[![pCifYND.png](https://s1.ax1x.com/2023/06/07/pCifYND.png)](https://imgse.com/i/pCifYND)
+[pCifYND.png](https://s1.ax1x.com/2023/06/07/pCifYND.png)
 
 #### 新旧版本对比
 
@@ -1356,7 +1356,7 @@ class A extends React.Component {
 
 运行后报错，提示信息如下：
 
-[![pCi4rtS.png](https://s1.ax1x.com/2023/06/07/pCi4rtS.png)](https://imgse.com/i/pCi4rtS)
+[pCi4rtS.png](https://s1.ax1x.com/2023/06/07/pCi4rtS.png)
 
 提示我们需要为其添加 `static` 关键字。
 
@@ -1376,7 +1376,7 @@ class A extends React.Component {
 
 添加后有打印了，但是还是有报错，报错信息如下：
 
-[![pCi4h7V.png](https://s1.ax1x.com/2023/06/07/pCi4h7V.png)](https://imgse.com/i/pCi4h7V)
+[pCi4h7V.png](https://s1.ax1x.com/2023/06/07/pCi4h7V.png)
 
 类 A 的 `getDerivedStateFromProp` 方法必须要返回一个 `state` 状态对象或者 `null` ，可是你返回的是一个 `undefined` 。其可以接收一个参数 `props` ，把 `props` 返回出去，但是不可更改。
 

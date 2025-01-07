@@ -88,11 +88,11 @@ yarn add react-router-dom@5
 
 运行后发现页面报错，报错信息如下所示：
 
-[![pCAsUh9.png](https://s1.ax1x.com/2023/06/09/pCAsUh9.png)](https://imgse.com/i/pCAsUh9)
+[pCAsUh9.png](https://s1.ax1x.com/2023/06/09/pCAsUh9.png)
 
 根据提示需要我们报一个 `Router` 来监管 `Link` ，尝试一下，依旧报错，报错信息如下：
 
-[![pCAyA3R.png](https://s1.ax1x.com/2023/06/09/pCAyA3R.png)](https://imgse.com/i/pCAyA3R)
+[pCAyA3R.png](https://s1.ax1x.com/2023/06/09/pCAyA3R.png)
 
 这是因为前面我们也复习过了，路由分两种模式：哈希和历史。因此这里我们要二选一。本案例先选择历史模式 `BrowserRouter` 。
 
@@ -112,7 +112,7 @@ yarn add react-router-dom@5
 
 运行后报错，错误提示为：
 
-[![pCAsUh9.png](https://s1.ax1x.com/2023/06/09/pCAsUh9.png)](https://imgse.com/i/pCAsUh9)
+[pCAsUh9.png](https://s1.ax1x.com/2023/06/09/pCAsUh9.png)
 
 轻车熟路在其外层包裹一个 `BrowserRouter` ，运行后查看控制台，没有报错信息，但是点击的时候路径发生变化，页面内容却没变化。这是因为我们分开两个路由器，因此点击路由链接切换时组件路由器无法侦听到。让一个路由被同一个路由器监听，路由器放到 `index.js` 中是最好的选择，代码如下：
 
@@ -395,7 +395,7 @@ class A extends Component {
    - 一般组件：写组件标签时传递了什么，就能收到什么
    - 路由组件：接收到三个固定的属性
      
-     [![pCAg5GQ.png](https://s1.ax1x.com/2023/06/09/pCAg5GQ.png)](https://imgse.com/i/pCAg5GQ)
+     [pCAg5GQ.png](https://s1.ax1x.com/2023/06/09/pCAg5GQ.png)
      
      常用方法为：
      ```jsx

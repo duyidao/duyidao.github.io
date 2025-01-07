@@ -846,7 +846,7 @@ const downloadMusicFn = () => {
 
 打印网络类型时发现，其返回的不是 `none` ，而是 `unknown` ，无论当前是否有连接到网络，因此这个判断无效了（这里我要恶狠狠吐槽一波）
 
-[![pC4cTcq.png](https://s1.ax1x.com/2023/07/14/pC4cTcq.png)](https://imgse.com/i/pC4cTcq)
+[pC4cTcq.png](https://s1.ax1x.com/2023/07/14/pC4cTcq.png)
 
 既然这个方法不能走，那就换一个方法。通过 ChatGPT 发现有 `navigator` 方法可以使用， ChatGPT 是这么介绍它的：
 

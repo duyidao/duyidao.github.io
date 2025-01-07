@@ -1,10 +1,19 @@
 /* 导航与目录样式less文件 */
-:root {
+.Layout {
 
-  /* 首页下滑后导航透明 */
-  .VPNavBar:not(.has-sidebar):not(.home.top) {
-    background-color: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(10px);
+  .VPNavBar {
+
+    /* 头部下边框去除 */
+    .divider {
+      width: 0;
+      height: 0;
+    }
+
+    /* 首页下滑后导航透明 */
+    &:not(.has-sidebar):not(.home.top) {
+      background-color: rgba(255, 255, 255, 0);
+      backdrop-filter: blur(10px);
+    }
   }
 
   /* 搜索框透明 */
@@ -13,31 +22,43 @@
     backdrop-filter: blur(10px);
   }
 
-  /* Feature透明 */
-  .VPFeature {
-    border: none;
-    box-shadow: 0 10px 30px 0 rgb(0 0 0 / 15%);
-    background-color: transparent;
-  }
-
   /* 文档页侧边栏顶部透明 */
   .curtain {
     background-color: rgba(255, 255, 255, 0);
     backdrop-filter: blur(10px);
   }
 
-  @media (min-width: 960px) {
+  /* 移动端大纲栏透明 */
+  .VPLocalNav {
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(10px);
+    border-bottom: none;
+
+    .container {
+      > button,
+      > div {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      .VPLocalNavOutlineDropdown {
+        .items {
+          top: 52px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 960px) {
+
+  .VPNav {
 
     /* 文档页导航中间透明 */
     .VPNavBar:not(.home.top) .content-body {
       background-color: rgba(255, 255, 255, 0);
       backdrop-filter: blur(10px);
     }
-  }
-
-  /* 移动端大纲栏透明 */
-  .VPLocalNav {
-    background-color: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(10px);
   }
 }

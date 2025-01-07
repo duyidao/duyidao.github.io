@@ -16,7 +16,7 @@
 
 ### 工作流程
 
-[![pCuqQwq.png](https://s1.ax1x.com/2023/06/15/pCuqQwq.png)](https://imgse.com/i/pCuqQwq)
+[pCuqQwq.png](https://s1.ax1x.com/2023/06/15/pCuqQwq.png)
 
 ## action
 
@@ -437,7 +437,7 @@ export default store
 
 现在，`store` 的状态就有了两个属性可以使用，运行一下看看效果，发现报错，报错信息如下所示：
 
-[![pCGf6W8.png](https://s1.ax1x.com/2023/06/21/pCGf6W8.png)](https://imgse.com/i/pCGf6W8)
+[pCGf6W8.png](https://s1.ax1x.com/2023/06/21/pCGf6W8.png)
 
 在 `Count` 组件中，我们写了这么一段代码 `(state) => ({count: state})` 。在之前没有做数据共享状态合并前他只是一个普通的变量，因此可以直接使用。而现在做了共享合并后，`state` 已经是合并状态了，即是 `{pre: person_reduxer, count: count_redux}` 。因此在容器组件中需要通过对象点语法来获取。代码如下：
 

@@ -1142,9 +1142,16 @@ const ReadSidebar = [
       {
         text: "Vue",
         collapsible: true,
-        collapsed: true,
         items: [
-          { text: "Vue.js设计与实现", link: "/read/Vue/Vue.js设计与实现.md" },
+          {
+            text: "Vue.js设计与实现",
+            collapsible: true,
+            collapsed: true,
+            items: [
+              { text: "索引", link: "/read/Vue/Vue.js设计与实现/" },
+              { text: "1", link: "/read/Vue/Vue.js设计与实现/1" },
+            ]
+          },
         ],
       },
     ],

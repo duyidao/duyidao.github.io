@@ -58,36 +58,12 @@ export default [
     ],
   },
   {
-    text: "🦆 面试鸭",
+    text: "💦 汗水的决心",
     items: [
       { text: "📔 面试八股", link: "/dict/js/数组方法手写原理.md" },
-      { text: "🧮 面试算法", link: "/arithmetic/easy/罗马转数字.md" },
-      { text: "👨‍⚖️ 面试经历", link: "/interview/index.md" },
-    ],
-  },
-  {
-    text: "🧊 博客部署",
-    items: [
-      { text: "🌩️ 引言", link: "/vitePress/" },
-      { text: "🧩 搭建", link: "/vitePress/Dev" },
-      { text: "🎁 打包", link: "/vitePress/Build" },
-      { text: "⏳ 部署", link: "/vitePress/Deploy" },
-      { text: "✨ 拓展", link: "/vitePress/Know" },
-    ],
-  },
-  {
-    text: "📖 阅读",
-    items: [
-      { text: "✨ 索引", link: "/read/" },
-      { text: "Javascript", link: "/read/javascript/ES6标准入门/index" },
-      { text: "Vue", link: "/read/Vue/Vue.js设计与实现.md" },
-    ],
-  },
-  {
-    text: "📴 有用的帮助",
-    items: [
-      { text: "🎃 开发帮助", link: "/help/" },
-      { text: "📕 官方文档", link: "/help/官方文档" },
+      { text: "🧊 博客部署", link: "/vitePress/" },
+      { text: "📖 阅读", link: "/read/" },
+      { text: "📴 有用的帮助", link: "/help/" },
     ],
   },
   {

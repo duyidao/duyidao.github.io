@@ -275,7 +275,7 @@ const { count, double } = storeToRefs(counter)
 
 ### 组合式API风格
 
-[![p9I9uPx.md.png](https://s1.ax1x.com/2023/05/21/p9I9uPx.md.png)](https://imgse.com/i/p9I9uPx)
+[p9I9uPx.md.png](https://s1.ax1x.com/2023/05/21/p9I9uPx.md.png)
 
 ### storeToRefs的使用
 

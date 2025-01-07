@@ -2,7 +2,7 @@
 
 js执行顺序如下图所示：
 
-[![p96gyR0.png](https://s1.ax1x.com/2023/05/13/p96gyR0.png)](https://imgse.com/i/p96gyR0)
+[p96gyR0.png](https://s1.ax1x.com/2023/05/13/p96gyR0.png)
 
 举例 `setTimeout` ，我们都知道定时器是异步任务中的宏任务，但是是 `setTimeout` 中的回调函数是异步的，`setTimeout` 方法本身是同步执行的。
 

@@ -1,6 +1,17 @@
 ---
-title 书籍是人类进步的阶梯
+title: 书籍是人类进步的阶梯
+titleTemplate: 前端知识类书籍阅读与感悟所思
+description: 书籍 阅读 前端
+head:
+  - - meta
+    - name: description
+      content: 前端知识类书籍阅读与感悟所思
+  - - meta
+    - name: keywords
+      content: 书籍 阅读 前端
+pageClass: read-class
 ---
+
 # 书籍是人类进步的阶梯
 
 本模块用于记录前端书籍阅读，并分享阅读心得。阅读的书籍涉猎范围包括但不限于 CSS 、Vue 、React 、Node.js 、Webpack 、TypeScript 、JavaScript 等。
@@ -12,7 +23,7 @@ title 书籍是人类进步的阶梯
 - [CSS设计指南](https://book.douban.com/subject/3329500/)
 
 ## JavaScript
-- [ES6标准入门 第3版(阮一峰)](/read/javascript/ES6标准入门/index)
+- [ES6标准入门 第3版(阮一峰)](/read/javascript/ES6标准入门/)
 - [JavaScript 高级程序设计（第 3 版）](https://book.douban.com/subject/10546925/)
 - [JavaScript 语言精粹](https://book.douban.com/subject/3590768/)
 - [JavaScript 设计模式与开发实践](https://book.douban.com/subject/26382780/)
@@ -27,7 +38,7 @@ title 书籍是人类进步的阶梯
 - [JavaScript 设计模式](https://book.douban.com/subject/26381780/)
 
 ## Vue
-- [Vue.js 设计与实现](/read/Vue/Vue.js 设计与实现.md)
+- [Vue.js 设计与实现](/read/Vue/Vue.js设计与实现/)
 - [Vue.js 实战](https://book.douban.com/subject/26852784/)
 - [Vue.js 技术揭秘](https://github.com/ustbhuangyi/vue-analysis)
 - [Vue.js 源码解析](https://github.com/answershuto/learnVue)

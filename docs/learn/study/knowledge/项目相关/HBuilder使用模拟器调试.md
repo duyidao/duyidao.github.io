@@ -21,16 +21,16 @@
 1）复制adb.exe所在文件夹目录
 
 找到[HBuilder](https://so.csdn.net/so/search?q=HBuilder&spm=1001.2101.3001.7020) X 的安装目录，查找adb.exe文件，复制adb.exe所在文件目录的路径，配置到环境变量的Path中。
-[![pCHFaSP.png](https://s1.ax1x.com/2023/07/20/pCHFaSP.png)](https://imgse.com/i/pCHFaSP)
+[pCHFaSP.png](https://s1.ax1x.com/2023/07/20/pCHFaSP.png)
 2）打开控制面板—系统和安全—系统—高级系统设置—环境变量，界面如下：
-[![pCHF8dH.png](https://s1.ax1x.com/2023/07/20/pCHF8dH.png)](https://imgse.com/i/pCHF8dH)
+[pCHF8dH.png](https://s1.ax1x.com/2023/07/20/pCHF8dH.png)
 3）点击系统变量的Path 点击编辑后 ，把之前复制的adb.exe路径拷贝进来，点击保存。
-[![pCHFlLD.png](https://s1.ax1x.com/2023/07/20/pCHFlLD.png)](https://imgse.com/i/pCHFlLD)
+[pCHFlLD.png](https://s1.ax1x.com/2023/07/20/pCHFlLD.png)
 
 ## 安卓模拟器端口配置
 
 点击Hbuilder的“运行”— 运行到手机或模拟器—Android模拟器端口设置。
-[![pCHFMQK.png](https://s1.ax1x.com/2023/07/20/pCHFMQK.png)](https://imgse.com/i/pCHFMQK)
+[pCHFMQK.png](https://s1.ax1x.com/2023/07/20/pCHFMQK.png)
 
 ## 使用adb命令连接手机模拟器并测试
 
@@ -56,7 +56,7 @@ adb connect 127.0.0.1:7555
 ```
 
 最后测试Hbuilder能否连接手机模拟器
-[![pCHFnRx.png](https://s1.ax1x.com/2023/07/20/pCHFnRx.png)](https://imgse.com/i/pCHFnRx)
+[pCHFnRx.png](https://s1.ax1x.com/2023/07/20/pCHFnRx.png)
 
 ## ADB报错
 

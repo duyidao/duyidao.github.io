@@ -158,15 +158,15 @@ uni.navigateTo({
 
 1. 在 `iconfont` 阿里巴巴矢量库中选择需要的字体图片，新增一个项目并保存
 
-   [![pCSDxD1.png](https://s1.ax1x.com/2023/06/02/pCSDxD1.png)](https://imgse.com/i/pCSDxD1)
+   [pCSDxD1.png](https://s1.ax1x.com/2023/06/02/pCSDxD1.png)
 
 2. 下载项目到本地，把其中的 `iconfont.css` 样式文件拖拽到项目中
 
-   [![pCSrXi8.png](https://s1.ax1x.com/2023/06/02/pCSrXi8.png)](https://imgse.com/i/pCSrXi8)
+   [pCSrXi8.png](https://s1.ax1x.com/2023/06/02/pCSrXi8.png)
 
 3. 去生成链接并粘贴到 `iconfont.css` 文件中
 
-   [![pCSsVWF.png](https://s1.ax1x.com/2023/06/02/pCSsVWF.png)](https://imgse.com/i/pCSsVWF)
+   [pCSsVWF.png](https://s1.ax1x.com/2023/06/02/pCSsVWF.png)
 
 4. 把链接每一个 `url` 内都添加 `https` 。修改后的效果如下：
 
@@ -186,7 +186,7 @@ uni.navigateTo({
    <i class="icon-douyin iconfont" style="color: #e85751; font-size: 30rpx;"></i>
    ```
 
-   [![pCScmQg.png](https://s1.ax1x.com/2023/06/02/pCScmQg.png)](https://imgse.com/i/pCScmQg)
+   [pCScmQg.png](https://s1.ax1x.com/2023/06/02/pCScmQg.png)
    
 6. 最后在 `App.vue` 文件中引入
 

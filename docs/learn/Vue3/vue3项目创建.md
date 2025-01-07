@@ -70,7 +70,7 @@ yarn create vite daodao --template vue-ts
 npm init vue@latest
 ```
 
-[![p9I9xyD.md.png](https://s1.ax1x.com/2023/05/21/p9I9xyD.md.png)](https://imgse.com/i/p9I9xyD)
+[p9I9xyD.md.png](https://s1.ax1x.com/2023/05/21/p9I9xyD.md.png)
 
 ## 入口文件详解
 
