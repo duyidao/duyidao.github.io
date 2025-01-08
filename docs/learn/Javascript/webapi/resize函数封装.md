@@ -1,3 +1,9 @@
+---
+title: resize函数封装
+description: JavaScript 实现resize函数封装
+keywords: JavaScript, resize函数封装, resize
+---
+
 # resize函数封装
 
 ## 思路
@@ -19,7 +25,7 @@ const chartRef = ref(null)
 const width = ref(500)
 
 function handleSizeChange(size) {
-    width.value = size.width
+  width.value = size.width
 }
 </script>
 ```
@@ -53,26 +59,26 @@ const map = new WeakMap()
 
 // 配置监视盒子内容盒或边框盒或者 SVGElement 边界尺寸的变化函数
 const ob = new ResizeObserver((entries) => {
-    for(const entry of entries) {
-        // 运行 entry.target 对应的回调函数
-        // 保存映射表对应的方法
-        const handler = map.get(entry.target)
-        if(handler) {
-            handler({
-                width: entry.borderBoxSize[0].inlineSize
-                height: entry.borderBoxSize[0].blockSize
-            })
-        }
+  for(const entry of entries) {
+    // 运行 entry.target 对应的回调函数
+    // 保存映射表对应的方法
+    const handler = map.get(entry.target)
+    if(handler) {
+      handler({
+        width: entry.borderBoxSize[0].inlineSize
+        height: entry.borderBoxSize[0].blockSize
+      })
     }
+  }
 })
 
 export default {
-    // 监听el元素尺寸变化
-    mounted(el, binding) {
-        // 保存映射表对应的方法
-        map.set(el, binding.value)
-        ob.observe(el)
-    }
+  // 监听el元素尺寸变化
+  mounted(el, binding) {
+    // 保存映射表对应的方法
+    map.set(el, binding.value)
+    ob.observe(el)
+  }
 }
 ```
 
@@ -84,14 +90,14 @@ export default {
 // ...
 
 export default {
-    // 监听el元素尺寸变化
-    mounted(el, binding) {
-        // ...
-    },
-    // 取消监听
-    unmounted(el) {
-        ob.unobserve(el)
-    }
+  // 监听el元素尺寸变化
+  mounted(el, binding) {
+    // ...
+  },
+  // 取消监听
+  unmounted(el) {
+    ob.unobserve(el)
+  }
 }
 ```
 
