@@ -371,10 +371,6 @@ const StudyKnowledgeSidebar = [
         link: "/study/knowledge/JS相关/toFixed结果因精确度产生bug",
       },
       {
-        text: "并发任务控制",
-        link: "/study/knowledge/JS相关/并发任务控制",
-      },
-      {
         text: "设计模式",
         link: "/study/knowledge/JS相关/设计模式",
       },
@@ -408,6 +404,10 @@ const StudyKnowledgeSidebar = [
       {
         text: "并发请求封装",
         link: "/study/knowledge/Promise相关/并发请求封装",
+      },
+      {
+        text: "并发任务控制",
+        link: "/study/knowledge/Promise相关/并发任务控制",
       },
       {
         text: "多接口请求",

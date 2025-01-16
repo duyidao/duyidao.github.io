@@ -35,8 +35,9 @@
     border-bottom: none;
 
     .container {
-      > button,
-      > div {
+
+      >button,
+      >div {
         flex: 1;
         display: flex;
         justify-content: center;
@@ -59,6 +60,21 @@
     .VPNavBar:not(.home.top) .content-body {
       background-color: rgba(255, 255, 255, 0);
       backdrop-filter: blur(10px);
+    }
+  }
+
+
+  .Layout {
+    .VPLocalNav {
+      backdrop-filter: blur(.625rem);
+
+      .menu {
+        display: none !important;
+      }
+
+      .items {
+        left: 50%;
+      }
     }
   }
 }
