@@ -464,6 +464,10 @@ const StudyKnowledgeSidebar = [
         text: "灵活使用冻结对象提升代码效率",
         link: "/study/knowledge/Vue相关/灵活使用冻结对象提升代码效率",
       },
+      {
+        text: "Vue更新机制和优化",
+        link: "/study/knowledge/Vue相关/Vue更新机制和优化",
+      },
     ],
   },
   {
@@ -491,6 +495,10 @@ const StudyKnowledgeSidebar = [
       {
         text: "资源提示符",
         link: "/study/knowledge/项目相关/资源提示符",
+      },
+      {
+        text: "前端不同屏幕尺寸自适应与大屏移动端开发",
+        link: "/study/knowledge/项目相关/前端不同屏幕尺寸自适应与大屏移动端开发",
       },
     ],
   },
