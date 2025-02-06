@@ -508,24 +508,28 @@ const StudyKnowledgeSidebar = [
     collapsed: true,
     items: [
       {
-        text: "打包优化",
-        link: "/study/knowledge/优化相关/打包优化",
-      },
-      {
         text: "项目速度优化",
         link: "/study/knowledge/优化相关/项目速度优化",
       },
       {
-        text: "性能优化",
+        text: "初步性能优化",
         link: "/study/knowledge/优化相关/性能优化",
+      },
+      {
+        text: "性能优化评估",
+        link: "/study/knowledge/优化相关/中级性能优化",
+      },
+      {
+        text: "资源加载优化",
+        link: "/study/knowledge/优化相关/资源加载优化",
       },
       {
         text: "页面加载慢排查与解决方案",
         link: "/study/knowledge/优化相关/页面加载慢排查与解决方案",
       },
       {
-        text: "资源加载优化",
-        link: "/study/knowledge/优化相关/资源加载优化",
+        text: "打包优化",
+        link: "/study/knowledge/优化相关/打包优化",
       },
     ],
   },
