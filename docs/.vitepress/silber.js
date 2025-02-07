@@ -687,6 +687,17 @@ const StudyOperateeSidebar = [
     ],
   },
   {
+    text: "🐍 项目配置项设置",
+    collapsible: true,
+    collapsed: true,
+    items: [
+      {
+        text: "前端代码风格定制",
+        link: "/study/operate/项目配置项设置/前端代码风格定制",
+      },
+    ],
+  },
+  {
     text: "🗑 返回",
     link: "/study/",
   },
