@@ -176,6 +176,7 @@ const GitSidebar = [
       {
         text: "🏋️ 实战训练",
         collapsible: true,
+        collapsed: true,
         items: [
           { text: "根据Change-id合并部分提交", link: "/Git/实战训练/根据ChangeId合并部分提交" },
         ],
@@ -183,6 +184,7 @@ const GitSidebar = [
       {
         text: "🚢 潜在的BUG",
         collapsible: true,
+        collapsed: true,
         items: [
           { text: "大小写规则检测", link: "/Git/潜在的BUG/大小写规则" },
         ],
@@ -198,8 +200,9 @@ const RegSidebar = [
     collapsible: true,
     items: [
       {
-        text: "知识点",
+        text: "📖 知识点",
         collapsible: true,
+        collapsed: true,
         items: [
           { text: "正则表达式", link: "/Reg/knowledge/" },
           { text: "元子字符", link: "/Reg/knowledge/元子字符" },
@@ -210,8 +213,9 @@ const RegSidebar = [
         ],
       },
       {
-        text: "实操演练",
+        text: "🏋️ 实操演练",
         collapsible: true,
+        collapsed: true,
         items: [
           {
             text: "运用前瞻实现密码强度检测",
@@ -220,8 +224,9 @@ const RegSidebar = [
         ],
       },
       {
-        text: "潜在BUG",
+        text: "🚢 潜在BUG",
         collapsible: true,
+        collapsed: true,
         items: [
           { text: "正则中的lastIndex", link: "/Reg/BUG/lastIndex" },
         ],
@@ -996,6 +1001,7 @@ const RabitSidebar = [
       {
         text: "💻 Web 端",
         collapsible: true,
+        collapsed: true,
         items: [
           { text: "项目介绍", link: "/myself/小兔鲜/inweb/all" },
           { text: "项目创建", link: "/myself/小兔鲜/inweb/" },
@@ -1011,6 +1017,7 @@ const RabitSidebar = [
       {
         text: "📱 uniapp 跨端",
         collapsible: true,
+        collapsed: true,
         items: [
           { text: "项目初始化", link: "/myself/小兔鲜/inuni/" },
           { text: "首页", link: "/myself/小兔鲜/inuni/home" },
@@ -1080,6 +1087,7 @@ const PaperSidebar = [
       {
         text: "React版",
         collapsible: true,
+        collapsed: true,
         items: [
           { text: "项目初始化", link: "/myself/知乎日报/react版/" },
           {
@@ -1097,6 +1105,7 @@ const PaperSidebar = [
       {
         text: "Vue3+TS版",
         collapsible: true,
+        collapsed: true,
         items: [],
       },
       { text: "🗑 返回", link: "/myself/" },
@@ -1133,6 +1142,7 @@ const ReadSidebar = [
       {
         text: "Javascript",
         collapsible: true,
+        collapsed: true,
         items: [
           {
             text: "ES6标准入门",
@@ -1173,6 +1183,7 @@ const ReadSidebar = [
       {
         text: "Vue",
         collapsible: true,
+        collapsed: true,
         items: [
           {
             text: "Vue.js设计与实现",
@@ -1222,6 +1233,7 @@ const VitePressSidebar = [
       {
         text: "✨ 拓展",
         collapsible: true,
+        collapsed: true,
         items: [
           { text: "内部拓展", link: "/vitePress/Know" },
           { text: "评论功能拓展", link: "/vitePress/review" },
@@ -1279,6 +1291,7 @@ const DictionarySidebar = [
       {
         text: "Javascript",
         collapsible: true,
+        collapsed: true,
         items: [
           {
             text: "(a==1&&a==2&&a==3)",
@@ -1300,6 +1313,7 @@ const DictionarySidebar = [
       {
         text: "项目",
         collapsible: true,
+        collapsed: true,
         items: [
           {
             text: "前端面试项目亮点和难点",
