@@ -494,16 +494,20 @@ const StudyKnowledgeSidebar = [
         link: "/study/knowledge/项目相关/绝对路径与相对路径",
       },
       {
-        text: "前端环境变量使用和原理",
-        link: "/study/knowledge/项目相关/前端环境变量使用和原理",
-      },
-      {
         text: "资源提示符",
         link: "/study/knowledge/项目相关/资源提示符",
       },
       {
         text: "前端不同屏幕尺寸自适应与大屏移动端开发",
         link: "/study/knowledge/项目相关/前端不同屏幕尺寸自适应与大屏移动端开发",
+      },
+      {
+        text: "前端工具函数开发",
+        link: "/study/knowledge/项目相关/前端工具函数开发",
+      },
+      {
+        text: "需求架构设计并优雅实现",
+        link: "/study/knowledge/项目相关/需求架构设计并优雅实现",
       },
     ],
   },
@@ -650,6 +654,10 @@ const StudyOperateeSidebar = [
         text: "文件签名与画板功能",
         link: "/study/operate/功能操作与实现/文件签名与画板功能",
       },
+      {
+        text: "元素不定大小隐藏做溢出隐藏",
+        link: "/study/operate/功能操作与实现/元素不定大小隐藏做溢出隐藏",
+      },
     ],
   },
   {
@@ -707,6 +715,10 @@ const StudyOperateeSidebar = [
       {
         text: "前端自动化测试",
         link: "/study/operate/项目配置与测试/前端自动化测试",
+      },
+      {
+        text: "前端环境变量使用和原理",
+        link: "/study/operate/项目配置与测试/前端环境变量使用和原理",
       },
     ],
   },
