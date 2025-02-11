@@ -473,6 +473,10 @@ const StudyKnowledgeSidebar = [
         text: "Vue更新机制和优化",
         link: "/study/knowledge/Vue相关/Vue更新机制和优化",
       },
+      {
+        text: "从Vue2、Vue3不更新学Vue原理",
+        link: "/study/knowledge/Vue相关/从Vue2、Vue3不更新学Vue原理",
+      },
     ],
   },
   {
