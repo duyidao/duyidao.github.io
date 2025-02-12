@@ -724,6 +724,10 @@ const StudyOperateeSidebar = [
         text: "前端环境变量使用和原理",
         link: "/study/operate/项目配置与测试/前端环境变量使用和原理",
       },
+      {
+        text: "前端部署与缓存管理",
+        link: "/study/operate/项目配置与测试/前端部署与缓存管理",
+      },
     ],
   },
   {
