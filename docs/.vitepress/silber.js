@@ -368,6 +368,10 @@ const StudyKnowledgeSidebar = [
         link: "/study/knowledge/JS相关/垃圾回收与console.log内存泄漏.md",
       },
       {
+        text: "console.log对象时需要注意的坑",
+        link: "/study/knowledge/JS相关/console.log对象时需要注意的坑.md",
+      },
+      {
         text: "windoe.onstorage标签页通信",
         link: "/study/knowledge/JS相关/windoe.onstorage标签页通信",
       },
