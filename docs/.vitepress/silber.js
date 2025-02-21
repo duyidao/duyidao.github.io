@@ -670,6 +670,10 @@ const StudyOperateeSidebar = [
         text: "元素不定大小隐藏做溢出隐藏",
         link: "/study/operate/功能操作与实现/元素不定大小隐藏做溢出隐藏",
       },
+      {
+        text: "前端滚动锚点注意事项",
+        link: "/study/operate/功能操作与实现/前端滚动锚点注意事项",
+      },
     ],
   },
   {
