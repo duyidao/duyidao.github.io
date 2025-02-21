@@ -517,6 +517,10 @@ const StudyKnowledgeSidebar = [
         text: "需求架构设计并优雅实现",
         link: "/study/knowledge/项目相关/需求架构设计并优雅实现",
       },
+      {
+        text: "前端Bug调试指南",
+        link: "/study/knowledge/项目相关/前端Bug调试指南",
+      },
     ],
   },
   {
