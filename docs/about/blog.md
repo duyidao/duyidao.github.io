@@ -19,6 +19,13 @@ title 关于刀刀博客
 3. 实现博客的评论功能 [相关网址](https://chunge16.github.io/vitepress-blogs/blog/posts/2023/vitepress-plugin-comment-with-giscus)
 4. 博客首页样式等优化 [相关网址](https://swkende.github.io/swkende-doc/01_VitePress/03_VitePress%E4%BC%98%E5%8C%96.html)
 
+## 网上导师
+
+1. B站 UP主：[三十的前端课程](https://space.bilibili.com/2114295304?spm_id_from=333.1387.follow.user_card.click)
+2. B站 UP主：[小野WEB世界](https://space.bilibili.com/492976859/dynamic?spm_id_from=333.1365.list.card_avatar.click)
+3. B站 UP主：[渡一教育](https://space.bilibili.com/3494367333452734?spm_id_from=333.1387.follow.user_card.click)
+4. B站 UP主：[后盾人-前端后端编程](https://space.bilibili.com/282190994?spm_id_from=333.1387.follow.user_card.click)
+
 ## 最后
 
 欢迎来到刀刀博客，这里记载了我所有所学所思所想，希望这里能够给予你哪怕一丁点的小帮助，那也是我的荣幸。也欢迎提出宝贵的修改建议与意见，我将不胜感激。

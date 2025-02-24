@@ -28,6 +28,8 @@ const CanvasSidebar = [
       { text: "页面截图", link: "/Canvas/screenshot" },
       { text: "图片裁剪", link: "/Canvas/tailor" },
       { text: "视频提取画面帧", link: "/Canvas/video" },
+      { text: "文件签名与画板功能", link: "/Canvas/drawbed" },
+      { text: "根据背景图片改变主题色", link: "/Canvas/theme" },
     ],
   },
 ]
@@ -661,10 +663,6 @@ const StudyOperateeSidebar = [
       {
         text: "移动端大屏端布局适配",
         link: "/study/operate/功能操作与实现/移动端大屏端布局适配",
-      },
-      {
-        text: "文件签名与画板功能",
-        link: "/study/operate/功能操作与实现/文件签名与画板功能",
       },
       {
         text: "元素不定大小隐藏做溢出隐藏",
