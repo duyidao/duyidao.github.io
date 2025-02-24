@@ -21,15 +21,52 @@ const CanvasSidebar = [
     collapsible: true,
     // collapsed: true,
     items: [
-      { text: "canvas", link: "/Canvas/" },
-      { text: "图片压缩", link: "/Canvas/compress" },
-      { text: "图片滤镜", link: "/Canvas/filter" },
-      { text: "调色盘", link: "/Canvas/palette" },
-      { text: "页面截图", link: "/Canvas/screenshot" },
-      { text: "图片裁剪", link: "/Canvas/tailor" },
-      { text: "视频提取画面帧", link: "/Canvas/video" },
-      { text: "文件签名与画板功能", link: "/Canvas/drawbed" },
-      { text: "根据背景图片改变主题色", link: "/Canvas/theme" },
+      {
+        text: "🛹 效果案例",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          { text: "图片压缩", link: "/Canvas/operation/compress" },
+          { text: "图片滤镜", link: "/Canvas/operation/filter" },
+          { text: "调色盘", link: "/Canvas/operation/palette" },
+          { text: "页面截图", link: "/Canvas/operation/screenshot" },
+          { text: "图片裁剪", link: "/Canvas/operation/tailor" },
+          { text: "视频提取画面帧", link: "/Canvas/operation/video" },
+          { text: "文件签名与画板功能", link: "/Canvas/operation/drawbed" },
+          { text: "根据背景图片改变主题色", link: "/Canvas/operation/theme" },
+        ],
+      },
+      {
+        text: "✊ 项目实操",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {
+            text: "饼图中部内容自定义，点击图例中间内容修改",
+            link: "/Canvas/project/饼图中部内容自定义，点击图例中间内容修改",
+          },
+          {
+            text: "横向柱状图参数数量设置",
+            link: "/Canvas/project/横向柱状图参数数量设置",
+          },
+          {
+            text: "图表菜单项自定义",
+            link: "/Canvas/project/图表菜单项自定义",
+          },
+          {
+            text: "柱状图悬停文本自定义",
+            link: "/Canvas/project/柱状图悬停文本自定义",
+          },
+          {
+            text: "柱状图封装",
+            link: "/Canvas/project/柱状图封装",
+          },
+          {
+            text: "饼图轮播，hover图例后修改中间内容",
+            link: "/Canvas/project/饼图轮播，hover图例后修改中间内容",
+          },
+        ],
+      },
     ],
   },
 ]
@@ -341,408 +378,329 @@ const NodeSidebar = [
 // 学习数组
 const StudySidebar = [
   {
-    text: "🚴 学而时习之",
+    text: "📑 学无止境",
     collapsible: true,
     items: [
-      { text: "引言", link: "/study/" },
-      { text: "学无止境", link: "/study/knowledge/JS相关/垃圾回收与console.log内存泄漏.md" },
       {
-        text: "实操训练",
-        link: "/study/operate/功能操作与实现/Vue项目权限控制",
+        text: "🔏 JS相关",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {
+            text: "垃圾回收与内存泄漏",
+            link: "/study/knowledge/JS相关/垃圾回收与console.log内存泄漏.md",
+          },
+          {
+            text: "console.log对象时需要注意的坑",
+            link: "/study/knowledge/JS相关/console.log对象时需要注意的坑.md",
+          },
+          {
+            text: "windoe.onstorage标签页通信",
+            link: "/study/knowledge/JS相关/windoe.onstorage标签页通信",
+          },
+          {
+            text: "toFixed结果因精确度产生bug",
+            link: "/study/knowledge/JS相关/toFixed结果因精确度产生bug",
+          },
+          {
+            text: "设计模式",
+            link: "/study/knowledge/JS相关/设计模式",
+          },
+          {
+            text: "Proxy与defineProperty",
+            link: "/study/knowledge/JS相关/Proxy与defineProperty",
+          },
+          {
+            text: "LocalStorage封装",
+            link: "/study/knowledge/JS相关/LocalStorage封装",
+          },
+          {
+            text: "判断是否是数组",
+            link: "/study/knowledge/JS相关/判断是否是数组",
+          },
+          {
+            text: "js深度克隆",
+            link: "/study/knowledge/JS相关/js深度克隆",
+          },
+        ],
       },
       {
-        text: "项目实战",
-        link: "/study/item/Echart/饼图中部内容自定义，点击图例中间内容修改",
-      },
-    ],
-  },
-]
-
-// 学而时习之 - 学无止境数组
-const StudyKnowledgeSidebar = [
-  {
-    text: "🔏 JS相关",
-    collapsible: true,
-    collapsed: true,
-    items: [
-      {
-        text: "垃圾回收与内存泄漏",
-        link: "/study/knowledge/JS相关/垃圾回收与console.log内存泄漏.md",
-      },
-      {
-        text: "console.log对象时需要注意的坑",
-        link: "/study/knowledge/JS相关/console.log对象时需要注意的坑.md",
-      },
-      {
-        text: "windoe.onstorage标签页通信",
-        link: "/study/knowledge/JS相关/windoe.onstorage标签页通信",
-      },
-      {
-        text: "toFixed结果因精确度产生bug",
-        link: "/study/knowledge/JS相关/toFixed结果因精确度产生bug",
-      },
-      {
-        text: "设计模式",
-        link: "/study/knowledge/JS相关/设计模式",
+        text: "🎡 Promise相关",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {
+            text: "Axios二次封装",
+            link: "/study/knowledge/Promise相关/Axios二次封装",
+          },
+          {
+            text: "并发请求封装",
+            link: "/study/knowledge/Promise相关/并发请求封装",
+          },
+          {
+            text: "并发任务控制",
+            link: "/study/knowledge/Promise相关/并发任务控制",
+          },
+          {
+            text: "多接口请求",
+            link: "/study/knowledge/Promise相关/多接口请求",
+          },
+          {
+            text: "高量级任务执行优化",
+            link: "/study/knowledge/Promise相关/高量级任务执行优化",
+          },
+          {
+            text: "消除异步传染性",
+            link: "/study/knowledge/Promise相关/消除异步传染性",
+          },
+        ],
       },
       {
-        text: "Proxy与defineProperty",
-        link: "/study/knowledge/JS相关/Proxy与defineProperty",
+        text: "☸️ Vue相关",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {
+            text: "$nexttick",
+            link: "/study/knowledge/Vue相关/$nexttick",
+          },
+          {
+            text: "ref和reactive在使用上的区别",
+            link: "/study/knowledge/Vue相关/ref和reactive在使用上的区别",
+          },
+          {
+            text: "Vue2 VS Vue3",
+            link: "/study/knowledge/Vue相关/Vue2 VS Vue3",
+          },
+          {
+            text: "v-model双向绑定",
+            link: "/study/knowledge/Vue相关/v-model双向绑定",
+          },
+          {
+            text: "vue图片动态引入使用require",
+            link: "/study/knowledge/Vue相关/vue图片动态引入使用require",
+          },
+          {
+            text: "vue项目打包后首页白屏总结",
+            link: "/study/knowledge/Vue相关/vue项目打包后首页白屏总结",
+          },
+          {
+            text: "Vue项目对render和jsx的妙用",
+            link: "/study/knowledge/Vue相关/Vue项目对render和jsx的妙用",
+          },
+          {
+            text: "Vue项目中TS意义与麻烦",
+            link: "/study/knowledge/Vue相关/Vue项目中TS意义与麻烦",
+          },
+          {
+            text: "灵活使用冻结对象提升代码效率",
+            link: "/study/knowledge/Vue相关/灵活使用冻结对象提升代码效率",
+          },
+          {
+            text: "Vue更新机制和优化",
+            link: "/study/knowledge/Vue相关/Vue更新机制和优化",
+          },
+          {
+            text: "从Vue2、Vue3不更新学Vue原理",
+            link: "/study/knowledge/Vue相关/从Vue2、Vue3不更新学Vue原理",
+          },
+        ],
       },
       {
-        text: "LocalStorage封装",
-        link: "/study/knowledge/JS相关/LocalStorage封装",
+        text: "📈 项目相关",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          { text: "HBuilder使用模拟器调试", link: "/study/knowledge/项目相关/HBuilder使用模拟器调试" },
+          {
+            text: "import引入库引入的什么",
+            link: "/study/knowledge/项目相关/import引入库引入的什么",
+          },
+          {
+            text: "sass加css变量实现现代前端换肤",
+            link: "/study/knowledge/项目相关/sass加css变量实现现代前端换肤",
+          },
+          {
+            text: "绝对路径与相对路径",
+            link: "/study/knowledge/项目相关/绝对路径与相对路径",
+          },
+          {
+            text: "资源提示符",
+            link: "/study/knowledge/项目相关/资源提示符",
+          },
+          {
+            text: "前端不同屏幕尺寸自适应与大屏移动端开发",
+            link: "/study/knowledge/项目相关/前端不同屏幕尺寸自适应与大屏移动端开发",
+          },
+          {
+            text: "前端工具函数开发",
+            link: "/study/knowledge/项目相关/前端工具函数开发",
+          },
+          {
+            text: "需求架构设计并优雅实现",
+            link: "/study/knowledge/项目相关/需求架构设计并优雅实现",
+          },
+          {
+            text: "前端Bug调试指南",
+            link: "/study/knowledge/项目相关/前端Bug调试指南",
+          },
+        ],
       },
       {
-        text: "判断是否是数组",
-        link: "/study/knowledge/JS相关/判断是否是数组",
-      },
-      {
-        text: "js深度克隆",
-        link: "/study/knowledge/JS相关/js深度克隆",
-      },
-    ],
-  },
-  {
-    text: "🎡 Promise相关",
-    collapsible: true,
-    collapsed: true,
-    items: [
-      {
-        text: "Axios二次封装",
-        link: "/study/knowledge/Promise相关/Axios二次封装",
-      },
-      {
-        text: "并发请求封装",
-        link: "/study/knowledge/Promise相关/并发请求封装",
-      },
-      {
-        text: "并发任务控制",
-        link: "/study/knowledge/Promise相关/并发任务控制",
-      },
-      {
-        text: "多接口请求",
-        link: "/study/knowledge/Promise相关/多接口请求",
-      },
-      {
-        text: "高量级任务执行优化",
-        link: "/study/knowledge/Promise相关/高量级任务执行优化",
-      },
-      {
-        text: "消除异步传染性",
-        link: "/study/knowledge/Promise相关/消除异步传染性",
-      },
-    ],
-  },
-  {
-    text: "☸️ Vue相关",
-    collapsible: true,
-    collapsed: true,
-    items: [
-      {
-        text: "$nexttick",
-        link: "/study/knowledge/Vue相关/$nexttick",
-      },
-      {
-        text: "ref和reactive在使用上的区别",
-        link: "/study/knowledge/Vue相关/ref和reactive在使用上的区别",
-      },
-      {
-        text: "Vue2 VS Vue3",
-        link: "/study/knowledge/Vue相关/Vue2 VS Vue3",
-      },
-      {
-        text: "v-model双向绑定",
-        link: "/study/knowledge/Vue相关/v-model双向绑定",
-      },
-      {
-        text: "vue图片动态引入使用require",
-        link: "/study/knowledge/Vue相关/vue图片动态引入使用require",
-      },
-      {
-        text: "vue项目打包后首页白屏总结",
-        link: "/study/knowledge/Vue相关/vue项目打包后首页白屏总结",
-      },
-      {
-        text: "Vue项目对render和jsx的妙用",
-        link: "/study/knowledge/Vue相关/Vue项目对render和jsx的妙用",
-      },
-      {
-        text: "Vue项目中TS意义与麻烦",
-        link: "/study/knowledge/Vue相关/Vue项目中TS意义与麻烦",
-      },
-      {
-        text: "灵活使用冻结对象提升代码效率",
-        link: "/study/knowledge/Vue相关/灵活使用冻结对象提升代码效率",
-      },
-      {
-        text: "Vue更新机制和优化",
-        link: "/study/knowledge/Vue相关/Vue更新机制和优化",
-      },
-      {
-        text: "从Vue2、Vue3不更新学Vue原理",
-        link: "/study/knowledge/Vue相关/从Vue2、Vue3不更新学Vue原理",
-      },
-    ],
-  },
-  {
-    text: "📈 项目相关",
-    collapsible: true,
-    collapsed: true,
-    items: [
-      { text: "HBuilder使用模拟器调试", link: "/study/knowledge/项目相关/HBuilder使用模拟器调试" },
-      {
-        text: "import引入库引入的什么",
-        link: "/study/knowledge/项目相关/import引入库引入的什么",
-      },
-      {
-        text: "sass加css变量实现现代前端换肤",
-        link: "/study/knowledge/项目相关/sass加css变量实现现代前端换肤",
-      },
-      {
-        text: "绝对路径与相对路径",
-        link: "/study/knowledge/项目相关/绝对路径与相对路径",
-      },
-      {
-        text: "资源提示符",
-        link: "/study/knowledge/项目相关/资源提示符",
-      },
-      {
-        text: "前端不同屏幕尺寸自适应与大屏移动端开发",
-        link: "/study/knowledge/项目相关/前端不同屏幕尺寸自适应与大屏移动端开发",
-      },
-      {
-        text: "前端工具函数开发",
-        link: "/study/knowledge/项目相关/前端工具函数开发",
-      },
-      {
-        text: "需求架构设计并优雅实现",
-        link: "/study/knowledge/项目相关/需求架构设计并优雅实现",
-      },
-      {
-        text: "前端Bug调试指南",
-        link: "/study/knowledge/项目相关/前端Bug调试指南",
-      },
-    ],
-  },
-  {
-    text: "🚢 优化相关",
-    collapsible: true,
-    collapsed: true,
-    items: [
-      {
-        text: "项目速度优化",
-        link: "/study/knowledge/优化相关/项目速度优化",
-      },
-      {
-        text: "初步性能优化",
-        link: "/study/knowledge/优化相关/性能优化",
-      },
-      {
-        text: "性能优化评估",
-        link: "/study/knowledge/优化相关/中级性能优化",
-      },
-      {
-        text: "资源加载优化",
-        link: "/study/knowledge/优化相关/资源加载优化",
-      },
-      {
-        text: "页面加载慢排查与解决方案",
-        link: "/study/knowledge/优化相关/页面加载慢排查与解决方案",
-      },
-      {
-        text: "打包优化",
-        link: "/study/knowledge/优化相关/打包优化",
+        text: "🚢 优化相关",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {
+            text: "项目速度优化",
+            link: "/study/knowledge/优化相关/项目速度优化",
+          },
+          {
+            text: "初步性能优化",
+            link: "/study/knowledge/优化相关/性能优化",
+          },
+          {
+            text: "性能优化评估",
+            link: "/study/knowledge/优化相关/中级性能优化",
+          },
+          {
+            text: "资源加载优化",
+            link: "/study/knowledge/优化相关/资源加载优化",
+          },
+          {
+            text: "页面加载慢排查与解决方案",
+            link: "/study/knowledge/优化相关/页面加载慢排查与解决方案",
+          },
+          {
+            text: "打包优化",
+            link: "/study/knowledge/优化相关/打包优化",
+          },
+        ],
       },
     ],
   },
   {
-    text: "🗑 返回",
-    link: "/study/",
-  },
-]
-
-// 学而时习之 - 项目实战数组
-const StudyItemSidebar = [
-  {
-    text: "🎰 Echart",
-    collapsible: true,
-    collapsed: true,
-    items: [
-      {
-        text: "饼图中部内容自定义，点击图例中间内容修改",
-        link: "/study/item/Echart/饼图中部内容自定义，点击图例中间内容修改",
-      },
-      {
-        text: "横向柱状图参数数量设置",
-        link: "/study/item/Echart/横向柱状图参数数量设置",
-      },
-      {
-        text: "图表菜单项自定义",
-        link: "/study/item/Echart/图表菜单项自定义",
-      },
-      {
-        text: "柱状图悬停文本自定义",
-        link: "/study/item/Echart/柱状图悬停文本自定义",
-      },
-      {
-        text: "柱状图封装",
-        link: "/study/item/Echart/柱状图封装",
-      },
-      {
-        text: "饼图轮播，hover图例后修改中间内容",
-        link: "/study/item/Echart/饼图轮播，hover图例后修改中间内容",
-      },
-    ],
-  },
-  {
-    text: "👔 Js",
+    text: "🚴 实操训练",
     collapsible: true,
     items: [
       {
-        text: "数组对象遍历",
-        link: "/study/item/Js/数组对象遍历",
+        text: "⚙ 功能操作与实现",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {
+            text: "Vue项目权限控制",
+            link: "/study/operate/功能操作与实现/Vue项目权限控制",
+          },
+          {
+            text: "摆脱手动依赖引入，自动引入依赖",
+            link: "/study/operate/功能操作与实现/摆脱手动依赖引入，自动引入依赖",
+          },
+          {
+            text: "操作内嵌ifrname与传递消息",
+            link: "/study/operate/功能操作与实现/操作内嵌ifrname与传递消息",
+          },
+          {
+            text: "从一个需求出发如何更优雅写代码",
+            link: "/study/operate/功能操作与实现/从一个需求出发如何更优雅写代码",
+          },
+          {
+            text: "富文本编辑器",
+            link: "/study/operate/功能操作与实现/富文本编辑器",
+          },
+          {
+            text: "前端操作excel与word",
+            link: "/study/operate/功能操作与实现/前端操作excel与word",
+          },
+          {
+            text: "前端文件上传与相关操作",
+            link: "/study/operate/功能操作与实现/前端文件上传与相关操作",
+          },
+          {
+            text: "前端下载后端传输的文件",
+            link: "/study/operate/功能操作与实现/前端下载后端传输的文件",
+          },
+          {
+            text: "移动端大屏端布局适配",
+            link: "/study/operate/功能操作与实现/移动端大屏端布局适配",
+          },
+          {
+            text: "元素不定大小隐藏做溢出隐藏",
+            link: "/study/operate/功能操作与实现/元素不定大小隐藏做溢出隐藏",
+          },
+          {
+            text: "前端滚动锚点注意事项",
+            link: "/study/operate/功能操作与实现/前端滚动锚点注意事项",
+          },
+        ],
+      },
+      {
+        text: "🎁 组件封装与二开",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {
+            text: "vue重复小组件处理经验",
+            link: "/study/operate/组件封装与二开/vue重复小组件处理经验",
+          },
+          {
+            text: "vue组件设计技巧",
+            link: "/study/operate/组件封装与二开/vue组件设计技巧",
+          },
+          {
+            text: "对话框弹窗组件",
+            link: "/study/operate/组件封装与二开/对话框弹窗组件",
+          },
+          {
+            text: "输入框组件封装",
+            link: "/study/operate/组件封装与二开/输入框组件封装",
+          },
+          {
+            text: "通过el-calendar实现业务",
+            link: "/study/operate/组件封装与二开/通过el-calendar实现业务",
+          },
+          {
+            text: "通过el-select实现多个省略学习如何改造第三方组件满足自己的要求",
+            link: "/study/operate/组件封装与二开/通过el-select实现多个省略学习如何改造第三方组件满足自己的要求",
+          },
+          {
+            text: "通过el-table实现多数据完美无限滚动效果",
+            link: "/study/operate/组件封装与二开/通过el-table实现多数据完美无限滚动效果",
+          },
+          {
+            text: "页码列表组件封装思路",
+            link: "/study/operate/组件封装与二开/页码列表组件封装思路",
+          },
+          {
+            text: "组件库搭建",
+            link: "/study/operate/组件封装与二开/组件库搭建",
+          },
+        ],
+      },
+      {
+        text: "🐍 项目配置与测试",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {
+            text: "前端代码风格定制",
+            link: "/study/operate/项目配置与测试/前端代码风格定制",
+          },
+          {
+            text: "前端自动化测试",
+            link: "/study/operate/项目配置与测试/前端自动化测试",
+          },
+          {
+            text: "前端环境变量使用和原理",
+            link: "/study/operate/项目配置与测试/前端环境变量使用和原理",
+          },
+          {
+            text: "前端部署与缓存管理",
+            link: "/study/operate/项目配置与测试/前端部署与缓存管理",
+          },
+        ],
       },
     ],
-  },
-  {
-    text: "🧺 Vue",
-    collapsible: true,
-    items: [
-      {
-        text: "自定义事件封装",
-        link: "/study/item/Vue/自定义事件封装",
-      },
-    ],
-  },
-  {
-    text: "🗑 返回",
-    link: "/study/",
-  },
-]
-
-// 学而时习之 - 实操训练数组
-const StudyOperateeSidebar = [
-  {
-    text: "⚙ 功能操作与实现",
-    collapsible: true,
-    collapsed: true,
-    items: [
-      {
-        text: "Vue项目权限控制",
-        link: "/study/operate/功能操作与实现/Vue项目权限控制",
-      },
-      {
-        text: "摆脱手动依赖引入，自动引入依赖",
-        link: "/study/operate/功能操作与实现/摆脱手动依赖引入，自动引入依赖",
-      },
-      {
-        text: "操作内嵌ifrname与传递消息",
-        link: "/study/operate/功能操作与实现/操作内嵌ifrname与传递消息",
-      },
-      {
-        text: "从一个需求出发如何更优雅写代码",
-        link: "/study/operate/功能操作与实现/从一个需求出发如何更优雅写代码",
-      },
-      {
-        text: "富文本编辑器",
-        link: "/study/operate/功能操作与实现/富文本编辑器",
-      },
-      {
-        text: "前端操作excel与word",
-        link: "/study/operate/功能操作与实现/前端操作excel与word",
-      },
-      {
-        text: "前端文件上传与相关操作",
-        link: "/study/operate/功能操作与实现/前端文件上传与相关操作",
-      },
-      {
-        text: "前端下载后端传输的文件",
-        link: "/study/operate/功能操作与实现/前端下载后端传输的文件",
-      },
-      {
-        text: "移动端大屏端布局适配",
-        link: "/study/operate/功能操作与实现/移动端大屏端布局适配",
-      },
-      {
-        text: "元素不定大小隐藏做溢出隐藏",
-        link: "/study/operate/功能操作与实现/元素不定大小隐藏做溢出隐藏",
-      },
-      {
-        text: "前端滚动锚点注意事项",
-        link: "/study/operate/功能操作与实现/前端滚动锚点注意事项",
-      },
-    ],
-  },
-  {
-    text: "🎁 组件封装与二开",
-    collapsible: true,
-    collapsed: true,
-    items: [
-      {
-        text: "vue重复小组件处理经验",
-        link: "/study/operate/组件封装与二开/vue重复小组件处理经验",
-      },
-      {
-        text: "vue组件设计技巧",
-        link: "/study/operate/组件封装与二开/vue组件设计技巧",
-      },
-      {
-        text: "对话框弹窗组件",
-        link: "/study/operate/组件封装与二开/对话框弹窗组件",
-      },
-      {
-        text: "输入框组件封装",
-        link: "/study/operate/组件封装与二开/输入框组件封装",
-      },
-      {
-        text: "通过el-calendar实现业务",
-        link: "/study/operate/组件封装与二开/通过el-calendar实现业务",
-      },
-      {
-        text: "通过el-select实现多个省略学习如何改造第三方组件满足自己的要求",
-        link: "/study/operate/组件封装与二开/通过el-select实现多个省略学习如何改造第三方组件满足自己的要求",
-      },
-      {
-        text: "通过el-table实现多数据完美无限滚动效果",
-        link: "/study/operate/组件封装与二开/通过el-table实现多数据完美无限滚动效果",
-      },
-      {
-        text: "页码列表组件封装思路",
-        link: "/study/operate/组件封装与二开/页码列表组件封装思路",
-      },
-      {
-        text: "组件库搭建",
-        link: "/study/operate/组件封装与二开/组件库搭建",
-      },
-    ],
-  },
-  {
-    text: "🐍 项目配置与测试",
-    collapsible: true,
-    collapsed: true,
-    items: [
-      {
-        text: "前端代码风格定制",
-        link: "/study/operate/项目配置与测试/前端代码风格定制",
-      },
-      {
-        text: "前端自动化测试",
-        link: "/study/operate/项目配置与测试/前端自动化测试",
-      },
-      {
-        text: "前端环境变量使用和原理",
-        link: "/study/operate/项目配置与测试/前端环境变量使用和原理",
-      },
-      {
-        text: "前端部署与缓存管理",
-        link: "/study/operate/项目配置与测试/前端部署与缓存管理",
-      },
-    ],
-  },
-  {
-    text: "🗑 返回",
-    link: "/study/",
   },
 ]
 
@@ -1439,9 +1397,6 @@ export default {
   "/Node": generateSidebarItems(NodeSidebar),
   "/Git": generateSidebarItems(GitSidebar),
   "/study": generateSidebarItems(StudySidebar),
-  "/study/knowledge": generateSidebarItems(StudyKnowledgeSidebar),
-  "/study/item": generateSidebarItems(StudyItemSidebar),
-  "/study/operate": generateSidebarItems(StudyOperateeSidebar),
   "/dict": generateSidebarItems(DictionarySidebar),
   "/interview": generateSidebarItems(AskSidebar),
   "/arithmetic": generateSidebarItems(LeedCodeSidebar),
