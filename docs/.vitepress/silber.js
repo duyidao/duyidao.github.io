@@ -17,12 +17,12 @@ function generateSidebarItems(arr) {
 // 前端canvas的数组
 const CanvasSidebar = [
   {
-    text: "Canvas",
+    text: "📈 图表",
     collapsible: true,
     // collapsed: true,
     items: [
       {
-        text: "🛹 效果案例",
+        text: "🛹 Canvas",
         collapsible: true,
         collapsed: true,
         items: [
@@ -37,7 +37,7 @@ const CanvasSidebar = [
         ],
       },
       {
-        text: "✊ 项目实操",
+        text: "✊ Echart",
         collapsible: true,
         collapsed: true,
         items: [

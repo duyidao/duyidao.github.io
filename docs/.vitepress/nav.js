@@ -5,7 +5,6 @@ export default [
       {
         text: "🗡️ 基础",
         items: [
-          { text: "Canvas", link: "/Canvas/index" },
           { text: "CSS", link: "/CSS/属性详解/-webkit-box-reflect" },
           { text: "JavaScript", link: "/Javascript/markdown/" },
         ],
@@ -21,6 +20,7 @@ export default [
       {
         text: "⬆️ 进阶",
         items: [
+          { text: "图表", link: "/Canvas/operation/compress" },
           { text: "TypeScript", link: "/TypeScript/环境配置" },
           { text: "Git", link: "/Git/潜在的BUG/大小写规则" },
           { text: "正则表达式", link: "/Reg/knowledge/index" },
@@ -32,7 +32,7 @@ export default [
         items: [
           {
             text: "学而时习之",
-            link: "/study/",
+            link: "/study/knowledge/JS相关/垃圾回收与console.log内存泄漏",
           },
         ],
       },
