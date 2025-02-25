@@ -1,5 +1,6 @@
 import Iframe from './iframe.vue';
 import BlogLis from './lis.vue';
+import SpecialWords from './specialWords.vue';
 
 const list = [
   {
@@ -9,6 +10,10 @@ const list = [
   {
     name: 'BlogLis',
     compoment: BlogLis,
+  },
+  {
+    name: 'SpecialWords',
+    compoment: SpecialWords,
   },
 ]
 

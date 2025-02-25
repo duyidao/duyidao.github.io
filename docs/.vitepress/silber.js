@@ -422,6 +422,10 @@ const StudySidebar = [
             text: "js深度克隆",
             link: "/study/knowledge/JS相关/js深度克隆",
           },
+          {
+            text: "吃透js执行顺序以及异步实战管理技巧",
+            link: "/study/knowledge/JS相关/吃透js执行顺序以及异步实战管理技巧",
+          },
         ],
       },
       {
