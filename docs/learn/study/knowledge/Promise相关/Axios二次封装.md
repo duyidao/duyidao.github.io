@@ -4,15 +4,35 @@
 
 ### 基本全局配置
 
-如 `baseURL` ，超时时间等
+如 `baseURL` ，超时时间等。
+
+```js
+let request = axios.create({
+  baseURL: 'http://192.168.0.18', // 基准路径
+  timeout: 9000, // 超时时间
+  responseType: 'json', // 响应类型
+  headers: { // 请求头
+    'Content-Type': 'xxx' // 请求头设置
+  },
+  widthCredentials: true // 允许跨域
+})
+```
 
 ### 密钥
 
-`Token` ，密钥等出于权限和安全性考虑的密钥请求头设置
+`Token` ，密钥等出于权限和安全性考虑的密钥请求头设置。一般设置在请求拦截器上，做额外的处理。
+
+```js
+let whileList = ['/a'] // 不需要验证token的白名单接口
+
+request.intercepetors.request.use((config) => {
+  
+})
+```
 
 ### 响应
 
-针对不同的状态码做处理，主要针对错误请求做全局统一处理
+针对不同的状态码做处理，主要针对错误请求做全局统一处理。在响应拦截器上获取到响应数据，根据状态码做处理。
 
 ### 请求封装
 
@@ -150,7 +170,7 @@ let myRequest = (function() {
 })()
 ```
 
-## 优化代码
+### 优化代码
 
 如果后面再加功能，就要再加 `if...else if` ，代码冗余且低效，因此需要优化。
 

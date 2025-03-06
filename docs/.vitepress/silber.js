@@ -682,6 +682,21 @@ const StudySidebar = [
         ],
       },
       {
+        text: "🏋️ 项目实战与训练",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {
+            text: "通过状态思维应对多变页面",
+            link: "/study/operate/项目实战与训练/通过状态思维应对多变页面",
+          },
+          {
+            text: "Vue复杂联动表单",
+            link: "/study/operate/项目实战与训练/Vue复杂联动表单",
+          },
+        ]
+      },
+      {
         text: "🐍 项目配置与测试",
         collapsible: true,
         collapsed: true,
