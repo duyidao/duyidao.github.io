@@ -53,22 +53,22 @@ pnpm i eslint -D
 ```shell [生成配置文件:.eslint.cjs]
 npx eslint --init
 ```
-```cjs [.eslint.cjs配置文件]
+```js [.eslint.cjs配置文件]
 module.exports = {
    //运行环境
     "env": { 
-        "browser": true,//浏览器端
-        "es2021": true,//es2021
+      "browser": true,//浏览器端
+      "es2021": true,//es2021
     },
     //规则继承
     "extends": [ 
-       //全部规则默认是关闭的,这个配置项开启推荐规则,推荐规则参照文档
-       //比如:函数不能重名、对象不能出现重复key
-        "eslint:recommended",
-        //vue3语法规则
-        "plugin:vue/vue3-essential",
-        //ts语法规则
-        "plugin:@typescript-eslint/recommended"
+      //全部规则默认是关闭的,这个配置项开启推荐规则,推荐规则参照文档
+      //比如:函数不能重名、对象不能出现重复key
+      "eslint:recommended",
+      //vue3语法规则
+      "plugin:vue/vue3-essential",
+      //ts语法规则
+      "plugin:@typescript-eslint/recommended"
     ],
     //要为特定类型的文件指定处理器
     "overrides": [
@@ -80,14 +80,14 @@ module.exports = {
     "parser": "@typescript-eslint/parser",
     //指定解析器选项
     "parserOptions": {
-        "ecmaVersion": "latest",//校验ECMA最新版本
-        "sourceType": "module"//设置为"script"（默认），或者"module"代码在ECMAScript模块中
+      "ecmaVersion": "latest",//校验ECMA最新版本
+      "sourceType": "module"//设置为"script"（默认），或者"module"代码在ECMAScript模块中
     },
     //ESLint支持使用第三方插件。在使用插件之前，您必须使用npm安装它
     //该eslint-plugin-前缀可以从插件名称被省略
     "plugins": [
-        "vue",
-        "@typescript-eslint"
+      "vue",
+      "@typescript-eslint"
     ],
     //eslint规则
     "rules": {
@@ -120,7 +120,7 @@ pnpm install -D eslint-plugin-import eslint-plugin-vue eslint-plugin-node eslint
 #### 修改.eslintrc.cjs配置文件
 
 ::: details .eslintrc.cjs配置文件
-```cjs
+```js
 // @see https://eslint.bootcss.com/docs/rules/
 
 module.exports = {
@@ -254,7 +254,7 @@ pnpm add sass sass-loader stylelint postcss postcss-scss postcss-html stylelint-
 
 **官网:https://stylelint.bootcss.com/**
 
-```cjs
+```js
 // @see https://stylelint.bootcss.com/
 
 module.exports = {
@@ -379,7 +379,7 @@ pnpm run format
 ```shell [安装包]
 pnpm add @commitlint/config-conventional @commitlint/cli -D
 ```
-```cjs [添加配置文件commitlint.config.cjs]
+```js [添加配置文件commitlint.config.cjs]
 module.exports = {
   extends: ['@commitlint/config-conventional'],
   // 校验规则
