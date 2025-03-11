@@ -61,14 +61,15 @@ module.exports = {
     outline: [2, 6], // 目录只获取h2到h6
     // 启动页面丝滑滚动
     smoothScroll: true,
-    // search: {
-    //   provider: 'local'
-    // },
-    // algolia搜索
-    // search: {
-    //   provider: 'algolia',
-    //   options,
-    // },
+    // algolia搜索 官网： https://dashboard.algolia.com/apps/86R5OLPTQ1/dashboard
+    search: {
+      provider: 'algolia',
+      options: {
+        appId: '7NYO59ARBT',
+        apiKey: '813532e3a1d5053e5d9a4ff14ae0f2cf',
+        indexName: 'duyidaoio'
+      }
+    },
     // 头部导航栏配置
     nav,
     // 左侧导航栏
