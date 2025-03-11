@@ -694,6 +694,10 @@ const StudySidebar = [
             text: "Vue复杂联动表单",
             link: "/study/operate/项目实战与训练/Vue复杂联动表单",
           },
+          {
+            text: "通过动态列表学习数据思维",
+            link: "/study/operate/项目实战与训练/通过动态列表学习数据思维",
+          },
         ]
       },
       {
