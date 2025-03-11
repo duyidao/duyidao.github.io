@@ -556,8 +556,8 @@ const StudySidebar = [
         collapsed: true,
         items: [
           {
-            text: "项目速度优化",
-            link: "/study/knowledge/优化相关/项目速度优化",
+            text: "优化项目速度",
+            link: "/study/knowledge/优化相关/优化项目速度",
           },
           {
             text: "初步性能优化",
