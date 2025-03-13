@@ -48,7 +48,7 @@ for (let i = 0; i < imageData.data.length; i += 4) {
 > 1. `getImageData` 方法返回的 `ImageData` 对象是一个包含了具体像素数据的跨域对象。为了避免遇到跨域问题，画布和图像必须来自同一个域或通过 CORS（Cross-Origin Resource Sharing，跨域资源共享）进行设置。
 > 2. 由于 `getImageData` 返回的像素数据相当庞大，大量使用该方法可能会对性能产生影响。因此，在使用 `getImageData` 时，最好尽可能限制使用范围和像素数量，以免影响性能。
 
-#### clearRect
+### clearRect
 
 `clearRect` 是一个用于在 HTML5 的 `<canvas>` 元素上清除矩形区域的方法。它可以用来擦除画布上的内容，以便进行新的绘制。
 
@@ -73,7 +73,7 @@ ctx.clearRect(50, 50, 100, 100);
 > [!WARNING] ⚠ 注意
 > `clearRect` 方法只适用于 `<canvas>` 元素，如果尝试在其他类型的元素上调用该方法，将会产生错误。
 
-#### putImageData
+### putImageData
 
 `putImageData` 是 HTML5 `<canvas>` 元素的一个方法，用于将像素数据放回画布中。
 
@@ -118,6 +118,7 @@ ctx.putImageData(imageData, 50, 50);
   import { ref } from 'vue'
   
   const imgUrl = ref('')
+  const imgRef = ref(null)
   const onChangeFn = e => {
     // 获取用户上传的文件
     const file = e.target.files[0]
@@ -170,6 +171,7 @@ const addFn = () => {
   let imageData = ctx.getImageData(0, 0, imgRef.value.width, imgRef.value.height)
   let _len = imageData.data.length
   for(let i = 0; i < _len; i++) {
+    // 滤镜算法：将所有像素点的红色通道值设为0，其他通道值保持不变
     if(i % 2 === 0) {
       imageData.data[i] = 0
     }

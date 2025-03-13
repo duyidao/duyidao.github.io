@@ -533,20 +533,8 @@ const StudySidebar = [
             link: "/study/knowledge/项目相关/资源提示符",
           },
           {
-            text: "前端不同屏幕尺寸自适应与大屏移动端开发",
-            link: "/study/knowledge/项目相关/前端不同屏幕尺寸自适应与大屏移动端开发",
-          },
-          {
-            text: "前端工具函数开发",
-            link: "/study/knowledge/项目相关/前端工具函数开发",
-          },
-          {
-            text: "需求架构设计并优雅实现",
-            link: "/study/knowledge/项目相关/需求架构设计并优雅实现",
-          },
-          {
-            text: "前端Bug调试指南",
-            link: "/study/knowledge/项目相关/前端Bug调试指南",
+            text: "dataUrl与base64的区别",
+            link: "/study/knowledge/项目相关/dataUrl与base64的区别",
           },
         ],
       },
@@ -702,6 +690,18 @@ const StudySidebar = [
             text: "实战中有用的TypeScript项目技巧",
             link: "/study/operate/项目实战与训练/实战中有用的ts项目技巧",
           },
+          {
+            text: "前端不同屏幕尺寸自适应与大屏移动端开发",
+            link: "/study/operate/项目实战与训练/前端不同屏幕尺寸自适应与大屏移动端开发",
+          },
+          {
+            text: "前端工具函数开发",
+            link: "/study/operate/项目实战与训练/前端工具函数开发",
+          },
+          {
+            text: "需求架构设计并优雅实现",
+            link: "/study/operate/项目实战与训练/需求架构设计并优雅实现",
+          },
         ]
       },
       {
@@ -724,6 +724,10 @@ const StudySidebar = [
           {
             text: "前端部署与缓存管理",
             link: "/study/operate/项目配置与测试/前端部署与缓存管理",
+          },
+          {
+            text: "前端Bug调试指南",
+            link: "/study/operate/项目配置与测试/前端Bug调试指南",
           },
         ],
       },

@@ -6,7 +6,7 @@
 
 `file-saver` ，其 `saveAs` 方法用于获取并保存 `blob` 等格式的图片。
 
-#### Canvas
+### Canvas
 
 使用 `drawImage` 绘制图片，语法如下：
 
@@ -93,13 +93,14 @@ canvas.toBlob(function(blob) {
 
 ## 获取图片
 
-首先先获取用户选择上传的图片，前端文件上传与相关操作方法复习可点击 [前端文件上传与相关操作](/learn/study/operate/功能操作与实现/前端文件上传与相关操作) 。代码如下所示：
+首先先获取用户选择上传的图片，前端文件上传与相关操作方法复习可点击 [前端文件上传与相关操作](/study/operate/功能操作与实现/前端文件上传与相关操作) 。代码如下所示：
 
 ```vue
 <script setup>
   import { ref } from 'vue'
     
   const imgUrl = ref('')
+  const imgRef = ref(null) // img DOM 节点
   const onChangeFn = e => {
     // 获取用户上传的文件
     const file = e.target.files[0]
@@ -111,13 +112,13 @@ canvas.toBlob(function(blob) {
     // 获取图片读完的图片结果（非同步，需要在onload获取）
     fr.onload = () => {
       imgUrl.value = fr.result
-      }
+    }
   }
 </script>
 
 <template>
 	<input type="file" @change="onChangeFn" />
-	<img :src="imgUrl" />
+	<img ref="imgRef" :src="imgUrl" />
 </template>
 ```
 
@@ -135,30 +136,38 @@ canvas.toBlob(function(blob) {
 ```js
 import { saveAs } from 'file-saver'
 
+const imgRef = ref(null) // img DOM 节点
 const onChangeFn = e => {
-  const imgRef = ref(null) // img DOM 节点
-  // ...
+  // 获取用户上传的文件
+  const file = e.target.files[0]
+        
+  // 预览文件
+  let fr = new FileReader()
+  fr.readAsDataURL(file)
+        
+  // 获取图片读完的图片结果（非同步，需要在onload获取）
   fr.onload = () => {
     imgUrl.value = fr.result
     
-    // 创建canvas真实dom元素
-    let canvas = document.createElement('canvas')
-    canvas.height = imgRef.value.height
-    canvas.width = imgRef.value.width
+    // 创建canvas真实dom元素 // [!code ++]
+    let canvas = document.createElement('canvas') // [!code ++]
+    canvas.height = imgRef.value.height // [!code ++]
+    canvas.width = imgRef.value.width // [!code ++]
         
-    // 创建2d上下文
-    let ctx = canvas.getContext('2d')
-    setTimeout(() => {
-      ctx.drawImage(imgRef.value, 0, 0, imgRef.value.width, imgRef.value.height)
+    // 创建2d上下文 // [!code ++]
+    let ctx = canvas.getContext('2d') // [!code ++]
+
+    setTimeout(() => { // [!code ++]
+      ctx.drawImage(imgRef.value, 0, 0, imgRef.value.width, imgRef.value.height) // [!code ++]
       
-      // 把canvas转为blob格式
-      canvas.toBlob((blob) => {
-        // saveAs(blob, 'img.jpeg')
-        let form = new FormData()
-        form.append('file', blob)
-        axios.post('xxx', form)
-      }, 'image/jpeg', 0.4)
-    }, 1000)
+      // 把canvas转为blob格式 // [!code ++]
+      canvas.toBlob((blob) => { // [!code ++]
+        saveAs(blob, 'img.jpeg') // 保存图片 // [!code ++]
+        let form = new FormData() // [!code ++]
+        form.append('file', blob) // [!code ++]
+        axios.post('xxx', form) // 模拟发请求 // [!code ++]
+      }, 'image/jpeg', 0.4) // 第三个参数是压缩多少，参数在0-1之间 // [!code ++]
+    }, 1000) // [!code ++]
   }
 }
 ```
