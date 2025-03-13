@@ -698,6 +698,10 @@ const StudySidebar = [
             text: "通过动态列表学习数据思维",
             link: "/study/operate/项目实战与训练/通过动态列表学习数据思维",
           },
+          {
+            text: "实战中有用的TypeScript项目技巧",
+            link: "/study/operate/项目实战与训练/实战中有用的ts项目技巧",
+          },
         ]
       },
       {
