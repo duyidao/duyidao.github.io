@@ -6,6 +6,29 @@ keywords: JavaScript, resize函数封装, resize
 
 # resize函数封装
 
+## 前置知识
+
+Resizeobserver 的作用是监测元素的尺寸变化。这是一种强大的WebAPl，允许开发者在元素的尺寸发生改变时 (无论是因为元素内容的变化、窗又大小的调整还是其他原因导致的尺寸改变)，执行一些操作或布局更新。
+
+在过去，开发者通常需要依赖定时器或者传统的 `resize` 事件来间接监测元素尺寸的变化，这种方法不仅不够精确，而且效率低下。Resizeobserver 提供了一种更为直接和高效的方式来响应尺寸变化。
+
+使 用 Resizeobserver 很简单，只需要创建一个 Resizeobserver 实例，并为它提供一个回调函数。在回调函数中，你可以基于元素尺寸的变化来执行相应的操作。然后，使用 observer 方法来指定需要被观察尺寸变化的元素。
+
+```js
+// 监测的目桥元素
+const targetElement = document.queryselector(".resizable");
+// 创建Resizeobserver 实例
+const resizeObserver =newResizeobserver((entries) => {
+  for (let entry of entries) { // entry. target 是被观察的元素// entry.contentRect 包含了元素的尺寸信息
+    console.log("Element size changed:", entry.target);
+    console.log({entry.contentRect.width});
+    console.log({entry.contentRect.height});
+  }
+});
+// 开始观察目标元素
+resizeobserver.observe(targetElement);
+```
+
 ## 思路
 
 前端有一个交互是用户拖拽父级盒子，其内容会根据盒子宽度的变化而显示不同数量的内容。如下图所示：

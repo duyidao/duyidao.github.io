@@ -12,8 +12,7 @@ export default [
       {
         text: "🧺 框架",
         items: [
-          { text: "Vue2", link: "/vue2/指令" },
-          { text: "Vue3", link: "/Vue3/vue3项目创建" },
+          { text: "Vue", link: "/vue/指令" },
           { text: "React", link: "/React/" },
         ],
       },
@@ -25,6 +24,7 @@ export default [
           { text: "Git", link: "/Git/潜在的BUG/大小写规则" },
           { text: "正则表达式", link: "/Reg/knowledge/index" },
           { text: "Node", link: "/Node/" },
+          { text: "小程序", link: "/MiniProgram/" },
         ],
       },
       {
@@ -60,7 +60,7 @@ export default [
   {
     text: "💦 汗水的决心",
     items: [
-      { text: "📔 面试八股", link: "/dict/js/数组方法手写原理.md" },
+      { text: "📔 面试八股", link: "/interview/js/数组方法手写原理.md" },
       { text: "🧊 博客部署", link: "/vitePress/" },
       { text: "📖 阅读", link: "/read/" },
       { text: "📴 有用的帮助", link: "/help/" },

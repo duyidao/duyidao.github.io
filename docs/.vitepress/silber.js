@@ -274,53 +274,49 @@ const RegSidebar = [
   },
 ]
 
-// 前端Vue2数组
-const Vue2Sidebar = [
+// 前端Vue2、Vue3数组
+const VueSidebar = [
   {
     text: "Vue2",
     collapsible: true,
     items: [
-      { text: "指令", link: "/vue2/指令" },
+      { text: "指令", link: "/vue/指令" },
       {
         text: "动态样式、计算属性、过滤器与侦听器",
-        link: "/vue2/动态样式、计算属性、过滤器与侦听器",
+        link: "/vue/动态样式、计算属性、过滤器与侦听器",
       },
-      { text: "组件通信", link: "/vue2/组件通信" },
+      { text: "组件通信", link: "/vue/组件通信" },
       {
         text: "动态组件、插槽与自定义指令",
-        link: "/vue2/动态组件、插槽与自定义指令",
+        link: "/vue/动态组件、插槽与自定义指令",
       },
       {
         text: "vue2核心源码及设计思想",
-        link: "/vue2/源码—vue2核心源码及设计思想",
+        link: "/vue/源码—vue2核心源码及设计思想",
       },
       {
         text: "从零手写VueRouter及Vuex",
-        link: "/vue2/源码—从零手写VueRouter及Vuex",
+        link: "/vue/源码—从零手写VueRouter及Vuex",
       },
       {
         text: "阅读框架源码方法",
-        link: "/vue2/源码—阅读框架源码方法",
+        link: "/vue/源码—阅读框架源码方法",
       },
     ],
   },
-]
-
-// 前端Vue3数组
-const Vue3Sidebar = [
   {
     text: "Vue3",
     collapsible: true,
     items: [
-      { text: "vue3项目创建", link: "/Vue3/vue3项目创建" },
-      { text: "vue3的使用", link: "/Vue3/vue3的使用" },
-      { text: "组件", link: "/Vue3/组件" },
-      { text: "插槽", link: "/Vue3/插槽" },
-      { text: "自定义指令", link: "/Vue3/自定义指令" },
-      { text: "内置组件", link: "/Vue3/内置组件" },
-      { text: "pinia", link: "/Vue3/pinia" },
-      { text: "Vue3新特性", link: "/Vue3/Vue3新特性" },
-      { text: "源码", link: "/Vue3/源码" },
+      { text: "vue3项目创建", link: "/vue/vue3项目创建" },
+      { text: "vue3的使用", link: "/vue/vue3的使用" },
+      { text: "组件", link: "/vue/组件" },
+      { text: "插槽", link: "/vue/插槽" },
+      { text: "自定义指令", link: "/vue/自定义指令" },
+      { text: "内置组件", link: "/vue/内置组件" },
+      { text: "pinia", link: "/vue/pinia" },
+      { text: "Vue3新特性", link: "/vue/Vue3新特性" },
+      { text: "源码", link: "/vue/源码" },
     ],
   },
 ]
@@ -425,6 +421,10 @@ const StudySidebar = [
           {
             text: "吃透js执行顺序以及异步实战管理技巧",
             link: "/study/knowledge/JS相关/吃透js执行顺序以及异步实战管理技巧",
+          },
+          {
+            text: "Performance API",
+            link: "/study/knowledge/JS相关/Performance",
           },
         ],
       },
@@ -1303,7 +1303,7 @@ const AboutSidebar = [
  * 面试模块 ************************************************************
  */
 // 面试典数组
-const DictionarySidebar = [
+const InterviewSidebar = [
   {
     text: "📔 面试题典",
     collapsible: true,
@@ -1315,19 +1315,19 @@ const DictionarySidebar = [
         items: [
           {
             text: "(a==1&&a==2&&a==3)",
-            link: "/dict/js/(a==1&&a==2&&a==3)",
+            link: "/interview/js/(a==1&&a==2&&a==3)",
           },
           {
             text: "数组方法手写原理",
-            link: "/dict/js/数组方法手写原理",
+            link: "/interview/js/数组方法手写原理",
           },
           {
             text: "关于forEach使用break跳出循环",
-            link: "/dict/js/关于forEach使用break跳出循环",
+            link: "/interview/js/关于forEach使用break跳出循环",
           },
-          { text: "手写封装AJAX", link: "/dict/js/手写封装AJAX" },
-          { text: "数组去重", link: "/dict/js/数组去重" },
-          { text: "js执行顺序", link: "/dict/js/js执行顺序" },
+          { text: "手写封装AJAX", link: "/interview/js/手写封装AJAX" },
+          { text: "数组去重", link: "/interview/js/数组去重" },
+          { text: "js执行顺序", link: "/interview/js/js执行顺序" },
         ]
       },
       {
@@ -1337,24 +1337,20 @@ const DictionarySidebar = [
         items: [
           {
             text: "前端面试项目亮点和难点",
-            link: "/面试鸭/面试典/project/前端面试项目亮点和难点",
+            link: "/interview/project/前端面试项目亮点和难点",
           },
           {
             text: "前端经验与水平体现",
-            link: "/面试鸭/面试典/project/前端经验与水平体现",
+            link: "/interview/project/前端经验与水平体现",
           },
           {
             text: "代码评审的18条军规",
-            link: "/面试鸭/面试典/project/代码评审的18条军规",
+            link: "/interview/project/代码评审的18条军规",
           },
         ]
       },
     ],
   },
-]
-
-// 面试问数组
-const AskSidebar = [
   {
     text: "👨‍⚖️ 面试问答",
     collapsible: true,
@@ -1373,48 +1369,53 @@ const AskSidebar = [
       },
     ],
   },
-]
-
-// 面试算法数组
-const LeedCodeSidebar = [
   {
-    text: "简单题",
-    collapsible: true,
-    items: [
-      { text: "罗马转数字", link: "/arithmetic/easy/罗马转数字.md" },
-      { text: "合并两个有序数组", link: "/arithmetic/easy/合并两个有序数组.md" },
-      { text: "最长公共前缀", link: "/arithmetic/easy/最长公共前缀.md" },
-      { text: "移除元素", link: "/arithmetic/easy/移除元素.md" },
-      { text: "删除有序数组中的重复项", link: "/arithmetic/easy/删除有序数组中的重复项.md" },
-      { text: "多数元素", link: "/arithmetic/easy/多数元素.md" },
-    ],
-  },
-  {
-    text: "中等题",
-    collapsible: true,
-    items: [
-      { text: "删除有序数组中的重复项 II", link: "/arithmetic/medium/删除有序数组中的重复项 II.md" },
-      { text: "轮转数组", link: "/arithmetic/medium/轮转数组.md" },
-    ],
-  },
-  {
-    text: "系列题",
+    text: "🧮 面试算法",
     collapsible: true,
     items: [
       {
-        text: "买卖股票的最佳时机",
+        text: "简单题",
         collapsible: true,
+        collapsed: true,
         items: [
-          { text: "买卖股票的最佳时机", link: "/arithmetic/series/buySellStock/买卖股票的最佳时机.md" },
-          { text: "买卖股票的最佳时机 II", link: "/arithmetic/series/buySellStock/买卖股票的最佳时机 II.md" },
+          { text: "罗马转数字", link: "/interview/easy/罗马转数字.md" },
+          { text: "合并两个有序数组", link: "/interview/easy/合并两个有序数组.md" },
+          { text: "最长公共前缀", link: "/interview/easy/最长公共前缀.md" },
+          { text: "移除元素", link: "/interview/easy/移除元素.md" },
+          { text: "删除有序数组中的重复项", link: "/interview/easy/删除有序数组中的重复项.md" },
+          { text: "多数元素", link: "/interview/easy/多数元素.md" },
         ],
       },
       {
-        text: "删除有序数组中的重复项",
+        text: "中等题",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          { text: "轮转数组", link: "/interview/medium/轮转数组.md" },
+        ],
+      },
+      {
+        text: "系列题",
         collapsible: true,
         items: [
-          { text: "删除有序数组中的重复项", link: "/arithmetic/series/removeRepeat/删除有序数组中的重复项.md" },
-          { text: "删除有序数组中的重复项 II", link: "/arithmetic/series/removeRepeat/删除有序数组中的重复项 II.md" },
+          {
+            text: "买卖股票的最佳时机",
+            collapsible: true,
+            collapsed: true,
+            items: [
+              { text: "买卖股票的最佳时机", link: "/interview/series/buySellStock/买卖股票的最佳时机.md" },
+              { text: "买卖股票的最佳时机 II", link: "/interview/series/buySellStock/买卖股票的最佳时机 II.md" },
+            ],
+          },
+          {
+            text: "删除有序数组中的重复项",
+            collapsible: true,
+            collapsed: true,
+            items: [
+              { text: "删除有序数组中的重复项", link: "/interview/series/removeRepeat/删除有序数组中的重复项.md" },
+              { text: "删除有序数组中的重复项 II", link: "/interview/series/removeRepeat/删除有序数组中的重复项 II.md" },
+            ],
+          },
         ],
       },
     ],
@@ -1430,16 +1431,13 @@ export default {
   "/CSS": generateSidebarItems(CssSidebar),
   "/Javascript": generateSidebarItems(JsSidebar),
   "/Reg": generateSidebarItems(RegSidebar),
-  "/vue2": generateSidebarItems(Vue2Sidebar),
-  "/Vue3": generateSidebarItems(Vue3Sidebar),
+  "/vue": generateSidebarItems(VueSidebar),
   "/React": generateSidebarItems(ReactSidebar),
   "/TypeScript": generateSidebarItems(TsSidebar),
   "/Node": generateSidebarItems(NodeSidebar),
   "/Git": generateSidebarItems(GitSidebar),
   "/study": generateSidebarItems(StudySidebar),
-  "/dict": generateSidebarItems(DictionarySidebar),
-  "/interview": generateSidebarItems(AskSidebar),
-  "/arithmetic": generateSidebarItems(LeedCodeSidebar),
+  "/interview": generateSidebarItems(InterviewSidebar),
   "/project": generateSidebarItems(ProjectSidebar),
   "/lingsi": generateSidebarItems(LingsiSidebar),
   "/lingsi/sale": generateSidebarItems(SaleSidebar),

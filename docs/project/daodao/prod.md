@@ -17,6 +17,10 @@ pageClass: project-daodao-prod
 
 ## 图片处理
 
+### webp
+
+在线网址把图片转换为 webp 格式，可以显著减少图片的大小，提升加载速度。
+
 ### 懒加载与占位图
 
 在进入文章列表和效果列表时，由于图片资源较多，需要一定的时间进行加载，图片未加载时样式相对丑陋。为了提升使用体验，在图片未加载时使用占位图来代替图片，待图片加载完毕后再替换原图。
@@ -145,3 +149,28 @@ const createPreloadLink = () => {
 
 createPreloadLink();
 ```
+
+## 第三方库
+
+该项目引入了百度地图和 `md5` 两个第三方库，但是在加载的时候，由于这两个库的包体积较大，导致首屏加载时间过长。为了优化首屏加载速度，修改为 `pnpm i` 和按需加载的方式。
+
+```js
+/**
+ * 预加载百度地图API
+ *
+ * @returns 返回一个Promise对象，加载成功时resolve，加载失败时reject
+ */
+export const preloadBMap = () => {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = 'https://api.map.baidu.com/api?v=3.0&s=1&ak=42fr9YjV9zQPGeuHeOD5DpXGY8InSmCI&callback=baiduMapInit';
+    script.type = 'text/javascript';
+    script.async = true;
+    script.onload = () => resolve();
+    script.onerror = () => reject();
+    document.head.appendChild(script);
+  });
+}
+```
+
+在需要的组件中引入该函数，并在 `onMounted` 钩子中调用。
