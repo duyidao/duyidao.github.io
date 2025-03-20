@@ -3,7 +3,6 @@ import sidebar from "./silber";
 import rewrites from "./rewrites";
 import boke from './public/boke.txt';
 import gitee from './public/gitee.txt';
-import options from './search';
 
 module.exports = {
   lang: 'zh-CN',
