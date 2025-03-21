@@ -218,6 +218,7 @@ const GitSidebar = [
         collapsed: true,
         items: [
           { text: "根据Change-id合并部分提交", link: "/Git/实战训练/根据ChangeId合并部分提交" },
+          { text: "工作中项目git如何管理，冲突如何解决", link: "/Git/实战训练/工作中项目git如何管理，冲突如何解决" },
         ],
       },
       {

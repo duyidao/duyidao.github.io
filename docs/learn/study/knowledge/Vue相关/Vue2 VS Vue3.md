@@ -392,6 +392,75 @@ const Component = {
 
 ## Vue2 与 Vue3 区别
 
+1. 改成组合式 API 没有 `this` 
+2. 生命周期没有 `create` ，`setup` 等同于 `create` ，卸载 `destroyed` 改成 `unmounted`
+3. Vue3 中 `v-if` 优先级高于 `v-for`
+4. 根实例创建从 `new app` 变为 `createApp` 方法
+5. 全局注册「如 `mixin`、全局组件、`use` 」改成用 `App` 实例调用，而不是 Vue 类调用
+6. 新增传送门组件 `teleport`
+7. `template` 模版可不包在根 `div` 里
+8. Vue3 新增了静态节点，在对比更新时，如果发现节点是静态的，那么会跳过对比，从而提升性能
+   
+   ::: code-group
+   ```html [代码.html]
+   <div>{{ a }}</div>
+   <div>123</div>
+   <div :class="b">cc</div>
+   ```
+   ```js [转换.js]
+   export function render(_ctx, _cache, $props, $setup, $data, $options) {
+    return (_openBlock(), _createElementBlock(_Fragment, null, [
+      _createElementVNode("div", null, toDisplayString(_ctx.a), 1 /* TEXT */),
+      _createElementVNode("div", null, "123"),
+      _createElementVNode("div", { class: _ctx.b }, "cc", 2 /* CLASS */),
+    ]))
+   }
+   ```
+   :::
+
+   不难看出，如果是模版字符串这种文本动态，会有一个标记「1」，类名这种属性动态，会有一个标记「2」，而静态节点，则没有标记。
+
+### mixin与hook
+
+Vue2 中，对于公共方法可以使用 `mixin` 混入方法。
+
+```js
+app.mixin({
+  data() {
+    return {
+      name: "mixin",
+    };
+  },
+  methods: {
+    mixinMethod() {
+      console.log("mixinMethod");
+    },
+  },
+  mounted() {}
+})
+```
+
+但是 `mixin` 是选项式 API，在 Vue3 中，推荐使用 `Composition API`，`mixin` 不适用，更推荐使用 `hook` 。
+
+```js
+import { ref, onMounted } from "vue";
+
+export function useHello() {
+  const name = ref("hook");
+
+  const hello = () => {
+    console.log("hello from hook!");
+  };
+
+  onMounted(hello);
+
+  return {
+    name,
+    hello,
+  };
+}
+```
+
 ### 根节点
 
 - vue2 只能有一个根节点，多个根节点存在他会报错
