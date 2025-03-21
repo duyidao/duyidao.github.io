@@ -661,6 +661,10 @@ const StudySidebar = [
             link: "/study/operate/组件封装与二开/通过el-table实现多数据完美无限滚动效果",
           },
           {
+            text: "elememntui日历二次修改",
+            link: "/study/operate/组件封装与二开/elememntui日历二次修改",
+          },
+          {
             text: "页码列表组件封装思路",
             link: "/study/operate/组件封装与二开/页码列表组件封装思路",
           },
