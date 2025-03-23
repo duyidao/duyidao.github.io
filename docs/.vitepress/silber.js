@@ -206,75 +206,6 @@ const JsSidebar = [
   },
 ]
 
-// 前端git的数组
-const GitSidebar = [
-  {
-    text: "Git",
-    collapsible: true,
-    items: [
-      {
-        text: "🏋️ 实战训练",
-        collapsible: true,
-        collapsed: true,
-        items: [
-          { text: "根据Change-id合并部分提交", link: "/Git/实战训练/根据ChangeId合并部分提交" },
-          { text: "工作中项目git如何管理，冲突如何解决", link: "/Git/实战训练/工作中项目git如何管理，冲突如何解决" },
-        ],
-      },
-      {
-        text: "🚢 潜在的BUG",
-        collapsible: true,
-        collapsed: true,
-        items: [
-          { text: "大小写规则检测", link: "/Git/潜在的BUG/大小写规则" },
-        ],
-      },
-    ],
-  },
-]
-
-// 前端正则表达式数组
-const RegSidebar = [
-  {
-    text: "正则",
-    collapsible: true,
-    items: [
-      {
-        text: "📖 知识点",
-        collapsible: true,
-        collapsed: true,
-        items: [
-          { text: "正则表达式", link: "/Reg/knowledge/" },
-          { text: "元子字符", link: "/Reg/knowledge/元子字符" },
-          { text: "模式修饰", link: "/Reg/knowledge/模式修饰" },
-          { text: "原子", link: "/Reg/knowledge/原子" },
-          { text: "匹配", link: "/Reg/knowledge/匹配" },
-          { text: "方法", link: "/Reg/knowledge/方法" },
-        ],
-      },
-      {
-        text: "🏋️ 实操演练",
-        collapsible: true,
-        collapsed: true,
-        items: [
-          {
-            text: "运用前瞻实现密码强度检测",
-            link: "/Reg/do/运用前瞻实现密码强度检测",
-          },
-        ],
-      },
-      {
-        text: "🚢 潜在BUG",
-        collapsible: true,
-        collapsed: true,
-        items: [
-          { text: "正则中的lastIndex", link: "/Reg/BUG/lastIndex" },
-        ],
-      },
-    ],
-  },
-]
-
 // 前端Vue2、Vue3数组
 const VueSidebar = [
   {
@@ -355,19 +286,107 @@ const TsSidebar = [
   },
 ]
 
-// 前端node数组
-const NodeSidebar = [
+// 前端工程图谱数组
+const UpgradeSidebar = [
   {
-    text: "Node",
+    text: "📸 Git",
     collapsible: true,
+    collapsed: true,
     items: [
-      { text: "node", link: "/Node/" },
-      { text: "fs", link: "/Node/fs" },
-      { text: "path", link: "/Node/path" },
-      { text: "http", link: "/Node/http" },
-      { text: "module", link: "/Node/module" },
-      { text: "express", link: "/Node/express" },
-      { text: "npm", link: "/Node/npm" },
+      {
+        text: "🏋️ 实战训练",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          { text: "根据Change-id合并部分提交", link: "/Git/实战训练/根据ChangeId合并部分提交" },
+          { text: "工作中项目git如何管理，冲突如何解决", link: "/Git/实战训练/工作中项目git如何管理，冲突如何解决" },
+        ],
+      },
+      {
+        text: "🚢 潜在的BUG",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          { text: "大小写规则检测", link: "/Git/潜在的BUG/大小写规则" },
+        ],
+      },
+    ],
+  },
+  {
+    text: "🗄 正则",
+    collapsible: true,
+    collapsed: true,
+    items: [
+      {
+        text: "📖 知识点",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          { text: "正则表达式", link: "/Reg/knowledge/" },
+          { text: "元子字符", link: "/Reg/knowledge/元子字符" },
+          { text: "模式修饰", link: "/Reg/knowledge/模式修饰" },
+          { text: "原子", link: "/Reg/knowledge/原子" },
+          { text: "匹配", link: "/Reg/knowledge/匹配" },
+          { text: "方法", link: "/Reg/knowledge/方法" },
+        ],
+      },
+      {
+        text: "🏋️ 实操演练",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          {
+            text: "运用前瞻实现密码强度检测",
+            link: "/Reg/do/运用前瞻实现密码强度检测",
+          },
+        ],
+      },
+      {
+        text: "🚢 潜在BUG",
+        collapsible: true,
+        collapsed: true,
+        items: [
+          { text: "正则中的lastIndex", link: "/Reg/BUG/lastIndex" },
+        ],
+      },
+    ],
+  },
+  {
+    text: "💬 Node",
+    collapsible: true,
+    collapsed: true,
+    items: [
+      { text: "node", link: "/Upgrade/Node/" },
+      { text: "fs", link: "/Upgrade/Node/fs" },
+      { text: "path", link: "/Upgrade/Node/path" },
+      { text: "http", link: "/Upgrade/Node/http" },
+      { text: "module", link: "/Upgrade/Node/module" },
+      { text: "express", link: "/Upgrade/Node/express" },
+      { text: "npm", link: "/Upgrade/Node/npm" },
+    ],
+  },
+  {
+    text: "〰 MiniProgram",
+    collapsible: true,
+    collapsed: true,
+    items: [
+      { text: "两个线程", link: "/Upgrade/MiniProgram/" },
+      // {
+      //   text: "🏋️ 实战训练",
+      //   collapsible: true,
+      //   collapsed: true,
+      //   items: [
+      //   ],
+      // },
+    ],
+  },
+  {
+    text: "🌐 网络",
+    collapsible: true,
+    collapsed: true,
+    items: [
+      { text: "网络分层模型", link: "/Upgrade/Network/" },
+      { text: "应用协议", link: "/Upgrade/Network/xieyi" },
     ],
   },
 ]
@@ -1435,12 +1454,10 @@ export default {
   "/Canvas": generateSidebarItems(CanvasSidebar),
   "/CSS": generateSidebarItems(CssSidebar),
   "/Javascript": generateSidebarItems(JsSidebar),
-  "/Reg": generateSidebarItems(RegSidebar),
   "/vue": generateSidebarItems(VueSidebar),
   "/React": generateSidebarItems(ReactSidebar),
   "/TypeScript": generateSidebarItems(TsSidebar),
-  "/Node": generateSidebarItems(NodeSidebar),
-  "/Git": generateSidebarItems(GitSidebar),
+  "/Upgrade": generateSidebarItems(UpgradeSidebar),
   "/study": generateSidebarItems(StudySidebar),
   "/interview": generateSidebarItems(InterviewSidebar),
   "/project": generateSidebarItems(ProjectSidebar),

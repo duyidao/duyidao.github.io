@@ -11,15 +11,19 @@
 #VPContent {
   .VPHome {
     h1.name {
-      margin-bottom: 15px;
+      font-size: 60px;
+      margin-bottom: 25px;
     }
 
     p.text {
-      font-size: 34px;
-      line-height: 46px;
+      font-size: 40px;
+      line-height: 50px;
 
       span {
-        font-size: 23px;
+        display: block;
+        font-size: 26px;
+        line-height: 36px;
+        margin-top: 10px;
       }
     }
 
@@ -29,48 +33,6 @@
       background-color: transparent;
     }
   }
-
-  // .VPFeatures {
-  //   .container {
-  //     .item a {
-  //       position: relative;
-  //       top: 0;
-  //       left: 0;
-  //       bottom: 0;
-  //       right: 0;
-  //       z-index: 5;
-
-  //       &:hover {
-  //         &::before {
-  //           opacity: 1;
-  //         }
-  //       }
-
-  //       &::before {
-  //         content: '';
-  //         position: absolute;
-  //         left: var(--x);
-  //         top: var(--y);
-  //         transform: translate(-50%, -50%);
-  //         width: 100px;
-  //         height: 100px;
-  //         background-image: radial-gradient(green, transparent, transparent);
-  //         transition: all 0.3s, top 0.001s, left 0.001s;
-  //         opacity: 0;
-  //         z-index: 6;
-  //       }
-        
-  //       &::after {
-  //         content: '';
-  //         position: absolute;
-  //         inset: 2px;
-  //         border-radius: 18px;
-  //         background-color: #41d1ff;
-  //         z-index: 1;
-  //       }
-  //     }
-  //   }
-  // }
 }
 
 @media (min-width: 640px) {
@@ -84,5 +46,31 @@
   :root {
     /* 首页图标背景色样式 */
     --vp-home-hero-image-filter: blur(60px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #VPContent {
+    .VPHome {
+      h1.name {
+        margin-bottom: .9375rem;
+      }
+  
+      p.text {
+        font-size: 2.125rem;
+        line-height: 2.875rem;
+  
+        span {
+          font-size: 1.4375rem;
+          line-height: 1rem;
+        }
+      }
+  
+      /* Feature透明 */
+      .VPFeature {
+        box-shadow: 0 .625rem 1.875rem 0 rgb(0 0 0 / 15%);
+        background-color: transparent;
+      }
+    }
   }
 }

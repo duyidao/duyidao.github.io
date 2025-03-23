@@ -21,10 +21,7 @@ export default [
         items: [
           { text: "图表", link: "/Canvas/operation/compress" },
           { text: "TypeScript", link: "/TypeScript/环境配置" },
-          { text: "Git", link: "/Git/潜在的BUG/大小写规则" },
-          { text: "正则表达式", link: "/Reg/knowledge/index" },
-          { text: "Node", link: "/Node/" },
-          { text: "小程序", link: "/MiniProgram/" },
+          { text: "工程图谱", link: "/Upgrade/Git/潜在的BUG/大小写规则" },
         ],
       },
       {
