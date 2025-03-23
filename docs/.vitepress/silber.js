@@ -387,6 +387,7 @@ const UpgradeSidebar = [
     items: [
       { text: "网络分层模型", link: "/Upgrade/Network/" },
       { text: "应用协议", link: "/Upgrade/Network/xieyi" },
+      { text: "xhr与fetch", link: "/Upgrade/Network/xhr_fetch" },
     ],
   },
 ]
