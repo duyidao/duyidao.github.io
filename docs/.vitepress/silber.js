@@ -388,6 +388,7 @@ const UpgradeSidebar = [
       { text: "网络分层模型", link: "/Upgrade/Network/" },
       { text: "应用协议", link: "/Upgrade/Network/xieyi" },
       { text: "xhr与fetch", link: "/Upgrade/Network/xhr_fetch" },
+      { text: "跨域问题及解决方案", link: "/Upgrade/Network/core" },
     ],
   },
 ]
@@ -1391,6 +1392,10 @@ const InterviewSidebar = [
       {
         text: "百度",
         link: "/interview/百度",
+      },
+      {
+        text: "穗腾科技",
+        link: "/interview/穗腾科技",
       },
     ],
   },
