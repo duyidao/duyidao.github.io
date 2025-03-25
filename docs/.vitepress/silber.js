@@ -298,8 +298,8 @@ const UpgradeSidebar = [
         collapsible: true,
         collapsed: true,
         items: [
-          { text: "根据Change-id合并部分提交", link: "/Git/实战训练/根据ChangeId合并部分提交" },
-          { text: "工作中项目git如何管理，冲突如何解决", link: "/Git/实战训练/工作中项目git如何管理，冲突如何解决" },
+          { text: "根据Change-id合并部分提交", link: "/Upgrade/Git/实战训练/根据ChangeId合并部分提交" },
+          { text: "工作中项目git如何管理，冲突如何解决", link: "/Upgrade/Git/实战训练/工作中项目git如何管理，冲突如何解决" },
         ],
       },
       {
@@ -307,7 +307,7 @@ const UpgradeSidebar = [
         collapsible: true,
         collapsed: true,
         items: [
-          { text: "大小写规则检测", link: "/Git/潜在的BUG/大小写规则" },
+          { text: "大小写规则检测", link: "/Upgrade/Git/潜在的BUG/大小写规则" },
         ],
       },
     ],
@@ -322,12 +322,12 @@ const UpgradeSidebar = [
         collapsible: true,
         collapsed: true,
         items: [
-          { text: "正则表达式", link: "/Reg/knowledge/" },
-          { text: "元子字符", link: "/Reg/knowledge/元子字符" },
-          { text: "模式修饰", link: "/Reg/knowledge/模式修饰" },
-          { text: "原子", link: "/Reg/knowledge/原子" },
-          { text: "匹配", link: "/Reg/knowledge/匹配" },
-          { text: "方法", link: "/Reg/knowledge/方法" },
+          { text: "正则表达式", link: "/Upgrade/Reg/knowledge/" },
+          { text: "元子字符", link: "/Upgrade/Reg/knowledge/元子字符" },
+          { text: "模式修饰", link: "/Upgrade/Reg/knowledge/模式修饰" },
+          { text: "原子", link: "/Upgrade/Reg/knowledge/原子" },
+          { text: "匹配", link: "/Upgrade/Reg/knowledge/匹配" },
+          { text: "方法", link: "/Upgrade/Reg/knowledge/方法" },
         ],
       },
       {
@@ -337,7 +337,7 @@ const UpgradeSidebar = [
         items: [
           {
             text: "运用前瞻实现密码强度检测",
-            link: "/Reg/do/运用前瞻实现密码强度检测",
+            link: "/Upgrade/Reg/do/运用前瞻实现密码强度检测",
           },
         ],
       },
@@ -346,7 +346,7 @@ const UpgradeSidebar = [
         collapsible: true,
         collapsed: true,
         items: [
-          { text: "正则中的lastIndex", link: "/Reg/BUG/lastIndex" },
+          { text: "正则中的lastIndex", link: "/Upgrade/Reg/BUG/lastIndex" },
         ],
       },
     ],
@@ -356,13 +356,13 @@ const UpgradeSidebar = [
     collapsible: true,
     collapsed: true,
     items: [
-      { text: "node", link: "/Upgrade/Node/" },
-      { text: "fs", link: "/Upgrade/Node/fs" },
-      { text: "path", link: "/Upgrade/Node/path" },
-      { text: "http", link: "/Upgrade/Node/http" },
-      { text: "module", link: "/Upgrade/Node/module" },
-      { text: "express", link: "/Upgrade/Node/express" },
-      { text: "npm", link: "/Upgrade/Node/npm" },
+      { text: "node", link: "/Upgrade/Upgrade/Node/" },
+      { text: "fs", link: "/Upgrade/Upgrade/Node/fs" },
+      { text: "path", link: "/Upgrade/Upgrade/Node/path" },
+      { text: "http", link: "/Upgrade/Upgrade/Node/http" },
+      { text: "module", link: "/Upgrade/Upgrade/Node/module" },
+      { text: "express", link: "/Upgrade/Upgrade/Node/express" },
+      { text: "npm", link: "/Upgrade/Upgrade/Node/npm" },
     ],
   },
   {
