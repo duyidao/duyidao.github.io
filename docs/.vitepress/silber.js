@@ -143,6 +143,7 @@ const JsSidebar = [
       { text: "Set", link: "/Javascript/markdown/set" },
       { text: "Map", link: "/Javascript/markdown/map" },
       { text: "Symbol", link: "/Javascript/markdown/symbol" },
+      { text: "事件循环", link: "/Javascript/markdown/eventloop" },
     ],
   },
   {
