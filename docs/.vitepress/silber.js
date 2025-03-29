@@ -393,7 +393,7 @@ const UpgradeSidebar = [
     ],
   },
   {
-    text: " 浏览器",
+    text: "💻 浏览器",
     collapsible: true,
     collapsed: true,
     items: [
