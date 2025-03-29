@@ -16,7 +16,7 @@ hero:
       text: 关于
       link: /about/
     - theme: brand
-      text: 刀刀小站
+      text: 刀刀小站入口
       link: https://duyidao.github.io/blogweb/#/
   image:
     src: /favicon.ico

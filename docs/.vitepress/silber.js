@@ -392,6 +392,14 @@ const UpgradeSidebar = [
       { text: "跨域问题及解决方案", link: "/Upgrade/Network/core" },
     ],
   },
+  {
+    text: " 浏览器",
+    collapsible: true,
+    collapsed: true,
+    items: [
+      { text: "浏览器渲染原理", link: "/Upgrade/Browser/" },
+    ],
+  },
 ]
 
 // 学习数组

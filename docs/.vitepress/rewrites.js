@@ -14,6 +14,7 @@ export default {
     'learn/Upgrade/MiniProgram/(.*)': 'Upgrade/MiniProgram/(.*)',
     'learn/Upgrade/Node/(.*)': 'Upgrade/Node/(.*)',
     'learn/Upgrade/Network/(.*)': 'Upgrade/Network/(.*)',
+    'learn/Upgrade/Browser/(.*)': 'Upgrade/Browser/(.*)',
     'learn/study/(.*)': 'study/(.*)',
     'project/lingsi/(.*)': 'lingsi/(.*)',
     'project/daodao/(.*)': 'daodao/(.*)',
