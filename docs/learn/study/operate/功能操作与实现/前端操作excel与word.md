@@ -1,4 +1,4 @@
-# 前端操作excel与word
+# 前端操作 excel 与 word
 
 ## Excel
 
@@ -7,7 +7,7 @@
 | 解析内容操作 | xlsx | xlsx              | xlsx              |
 | 预览         | xlsx | @vue-office/excel | react-file-viewer |
 
-### 前端excel转为表格或数据
+### 前端 excel 转为表格或数据
 
 1. 通过 `arrayBuffer` 方法把 `blob` 转为二进制
 
@@ -18,7 +18,7 @@
 
 3. 通过 `utils` 中的 `sheet_to_json` 方法把晦涩难用的数据转为数组格式
 
-4. 通过 `utils` 中的 `sheet_to_html` 方法把晦涩难用的数据转为 `html` 
+4. 通过 `utils` 中的 `sheet_to_html` 方法把晦涩难用的数据转为 `html`
 
 **代码**
 
@@ -34,23 +34,23 @@ import { read, utils } from "xlsx";
 export default {
   data() {
     return {
-      excelHTML: ''
+      excelHTML: "",
     };
   },
   methods: {
     change(e) {
-      let file = e.target.files[0] // 读取文件数据
+      let file = e.target.files[0]; // 读取文件数据
       file.arrayBuffer().then((res) => {
-        const wb = read(res) // 读取数据
+        const wb = read(res); // 读取数据
 
-        const sheet1 = wb.Sheets.Sheet1 // 取表，为一个对象
-      
-        const data = utils.sheet_to_json(sheet1) // utils的方法，可以把获取到的混乱的数据转为数组的形式
-        const html = utils.sheet_to_html(sheet1) // utils的方法，可以把获取到的混乱的数据转为html
+        const sheet1 = wb.Sheets.Sheet1; // 取表，为一个对象
 
-        this.excelHTML = html
-      })
-    }
+        const data = utils.sheet_to_json(sheet1); // utils的方法，可以把获取到的混乱的数据转为数组的形式
+        const html = utils.sheet_to_html(sheet1); // utils的方法，可以把获取到的混乱的数据转为html
+
+        this.excelHTML = html;
+      });
+    },
   },
 };
 </script>
@@ -60,7 +60,7 @@ export default {
 >
 > 前端通过接口请求获取的 `blob` 格式数据也可以使用该方法。
 
-### 前端对象或表格dom转为excel
+### 前端对象或表格 dom 转为 excel
 
 - 通过 `utils` 中的 `xx_to_sheet` 方法转为 `sheet` 对象
 
@@ -86,29 +86,29 @@ import { writeFile, utils } from "xlsx";
 export default {
   data() {
     return {
-      excelHTML: ''
+      excelHTML: "",
     };
   },
   methods: {
     createExcel() {
       // 转换data数组数据
       let data = [
-          {name: 'daodao', age: 18},
-          {name: 'xiaodao', age: 20},
-          {name: 'duyidao', age: 23},
-      ]
-      const ws = utils.json_to_sheet(data)
-      const wb = utils.book_new()
-      utils.book_append_sheet(wb,ws, 'sheet1')
-      wirteFile(wb, 'test.xlsx')
+        { name: "daodao", age: 18 },
+        { name: "xiaodao", age: 20 },
+        { name: "duyidao", age: 23 },
+      ];
+      const ws = utils.json_to_sheet(data);
+      const wb = utils.book_new();
+      utils.book_append_sheet(wb, ws, "sheet1");
+      wirteFile(wb, "test.xlsx");
 
       // 转换table dom
-      const tableDom = this.$refs.table // 获取节点
-      const tableWs = utils.table_to_sheet(tableDom)
-      const wb2 = utils.book_new()
-      utils.book_append_sheet(wb2,tableWs, 'sheet1')
-      wirteFile(wb2, 'tableTest.xlsx')
-    }
+      const tableDom = this.$refs.table; // 获取节点
+      const tableWs = utils.table_to_sheet(tableDom);
+      const wb2 = utils.book_new();
+      utils.book_append_sheet(wb2, tableWs, "sheet1");
+      wirteFile(wb2, "tableTest.xlsx");
+    },
   },
 };
 </script>
@@ -117,6 +117,7 @@ export default {
 ### 第三方库实现在线预览
 
 - 下载依赖
+
   ```
   npm i @vue-office/excel
   ```
@@ -124,30 +125,31 @@ export default {
 - 引入第三方库
 
   ```js
-  import vueofficeExcel from '@vue-office/excel'
+  import vueofficeExcel from "@vue-office/excel";
   ```
 
 - 为组件的 `src` 属性赋值
-  
+
   允许接收以下三种情况：
-  
-  1. 把后端返回的 `excel` 路径传给他的 `src` 
 
-    ```vue
-    <vueofficeExcel :src="excelSrc" />
-    ```
+  1. 把后端返回的 `excel` 路径传给他的 `src`
 
-  2. 后端返回的是一个 `blob` 流，则转为 `base64` 
+  ```vue
+  <vueofficeExcel :src="excelSrc" />
+  ```
 
-    ```js
-    const file = res.data.file
-    const fr = file.FileReader()
-    fr.readAsDataURL(file)
-    fr.onload = (e) => {
-        this.excelSrc = e.target.result
-    }
-    ```
-  3. 本地资源，放在public内直接通过路径传递即可
+  2. 后端返回的是一个 `blob` 流，则转为 `base64`
+
+  ```js
+  const file = res.data.file;
+  const fr = file.FileReader();
+  fr.readAsDataURL(file);
+  fr.onload = (e) => {
+    this.excelSrc = e.target.result;
+  };
+  ```
+
+  3. 本地资源，放在 public 内直接通过路径传递即可
 
 ### 总结
 
@@ -176,20 +178,20 @@ export default {
 - 引入第三方组件
 
   ```js
-  import vueofficedocx from '@vue-office/docx'
+  import vueofficedocx from "@vue-office/docx";
   ```
 
 - 获取 `input` 框上传的文件，转为 `dataurl` 格式即可
 
   ```js
-  const changeFn = e => {
-    const file = e.data.files[0]
-    const fr = new FileReader()
-    fr.readAsDataURL(file)
+  const changeFn = (e) => {
+    const file = e.data.files[0];
+    const fr = new FileReader();
+    fr.readAsDataURL(file);
     fr.onload = (e) => {
-        this.wordSrc = e.target.result
-    }
-  }
+      this.wordSrc = e.target.result;
+    };
+  };
   ```
 
 - 把变量给组件的 `src` 属性
@@ -198,13 +200,14 @@ export default {
   <vueofficedocx :src="wordSrc" />
   ```
 
-### mammon预览
+### mammon 预览
 
 - 下载依赖
   ```
   npm i docx-preview
   ```
 - 功能实现
+
   1. 获取文件二进制流
   2. 通过 `renderAsync` 方法读取
 
@@ -216,10 +219,10 @@ export default {
   }
   ```
 
-### docxtemplater预览
+### docxtemplater 预览
 
 1. 获取文件二进制流
-2. 转为 `arrayBuffer` 
+2. 转为 `arrayBuffer`
 3. 压缩形成压缩包
 4. 转为二进制流
 5. 保存
@@ -242,4 +245,5 @@ change(e) {
 ```
 
 ## 总体效果
-<Iframe url="https://duyidao.github.io/blogweb/#/detail/learn/xlsxAndWord" />
+
+<Iframe url="https://duyidao.github.io/blogweb/#/info/js/xlsxAndWord" />

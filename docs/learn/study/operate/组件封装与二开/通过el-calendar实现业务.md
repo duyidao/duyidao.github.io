@@ -19,7 +19,7 @@
 
 2. 修改每个日历格子的高度
 
-   > 注意
+   > [!WARNING] 注意
    >
    > 如果该模型的样式设置了怪异盒子模型 `box-sizing: border-box` ，则为其设置行高时需要把内边距去掉才能实现垂直居中。
    >
@@ -66,7 +66,7 @@
 
 效果如下图所示：
 
-[p9RwnVs.png](https://s1.ax1x.com/2023/05/16/p9RwnVs.png)
+![p9RwnVs.png](https://s1.ax1x.com/2023/05/16/p9RwnVs.png)
 
 ### 插槽改造
 
@@ -74,7 +74,7 @@
 
 首先查看插槽都提供什么数据，打印数据结果如下图所示：
 
-[p9Rw2dA.png](https://s1.ax1x.com/2023/05/16/p9Rw2dA.png)
+![p9Rw2dA.png](https://s1.ax1x.com/2023/05/16/p9Rw2dA.png)
 
 接下来获取数据循环遍历即可，再通过其 `state` 状态来动态添加类名。
 
@@ -177,13 +177,13 @@ export default {
 >
 > 如果使用了插槽却不定义元素，则相应的内容则会被置空，如下图所示：
 >
-> [p9RwRII.png](https://s1.ax1x.com/2023/05/16/p9RwRII.png)
+> ![p9RwRII.png](https://s1.ax1x.com/2023/05/16/p9RwRII.png)
 >
 > 因为插槽的本质是如果父组件不传递数据，则使用默认的子组件数据。
 
 现在点击后能够显示列表的值（目前是前端写死而不是动态获取）。
 
-[p9W4M4K.png](https://s1.ax1x.com/2023/05/17/p9W4M4K.png)
+![p9W4M4K.png](https://s1.ax1x.com/2023/05/17/p9W4M4K.png)
 
 ## 列表制作
 

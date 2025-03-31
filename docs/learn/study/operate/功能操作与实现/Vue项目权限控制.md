@@ -1,4 +1,4 @@
-# Vue项目权限控制
+# Vue 项目权限控制
 
 ## 后端返回路由规则 ※
 
@@ -8,7 +8,7 @@
 2. 根据用户 `userid` 获取对应菜单
 3. 规则化格式（根据数据生成合适的路由规则）
 4. 添加动态路由（使用 `addRoute` ）
-5. 记录 `state` 
+5. 记录 `state`
 
 ### 登录获取，格式化数组
 
@@ -17,43 +17,43 @@
 获取后端返回的路由数据并格式化。因为后端返回的数据最全面的也是一个数组对象，每一项包含 `name` 、`path` 与 `component` ，值都是字符串。而前端路由 `component` 是需要 `important()` ，因此需要格式化。
 
 - 首先调用接口获取数据
-- 遍历返回的数据数组，格式化 `component` 
+- 遍历返回的数据数组，格式化 `component`
 - 动态添加到 `router` 内
 
 ```js
-let routeArr = []
+let routeArr = [];
 function parseRoute(arr) {
-    // 返回一个 Promise，后续异步获取数据
-    return new Promise((resolve) => {
-        	arr.forEach(item => {
-            	let newItem = Object.assign({}, item)
-            	let str = item.component
-            	newItem.component = () => {
-                	// return require([`@/views${str}`])
-                	return import(`@/views${str}`)
-            	}
-            	routeArr.push(newItem)
-        	})
-        return routeArr
-	})
+  // 返回一个 Promise，后续异步获取数据
+  return new Promise((resolve) => {
+    arr.forEach((item) => {
+      let newItem = Object.assign({}, item);
+      let str = item.component;
+      newItem.component = () => {
+        // return require([`@/views${str}`])
+        return import(`@/views${str}`);
+      };
+      routeArr.push(newItem);
+    });
+    return routeArr;
+  });
 }
 
-if(如果有用户id) {
-    // 把数据保存到state中
-    axios.get('接口').then(res => {
-    	let newArr = parseRoute(res.data.data)
-        commit('SET_ROUTES', newArr)
-   	})
+if (如果有用户id) {
+  // 把数据保存到state中
+  axios.get("接口").then((res) => {
+    let newArr = parseRoute(res.data.data);
+    commit("SET_ROUTES", newArr);
+  });
 }
 ```
 
-> **注意：**
+> [!WARNING] 注意
 >
 > 1. 格式化 `component` 时不能先赋值给字符串变量，再放进去，如：
 >
 >    ```js
->    let str = `@/views${item}`
->    return import(str)
+>    let str = `@/views${item}`;
+>    return import(str);
 >    ```
 >
 >    这样会报错。
@@ -61,13 +61,13 @@ if(如果有用户id) {
 > 2. 低版本不能使用 `import` 时，可以使用 `require` 返回，如：
 >
 >    ```js
->    return require([`@/views${str}`])
+>    return require([`@/views${str}`]);
 >    ```
 >
 > 3. 格式化时必须要 `@/views` 拼接，不能后端返回 `/views/page` ，前端直接采取下面的方式引入：
 >
 >    ```js
->    return import(`@${str}`)
+>    return import(`@${str}`);
 >    ```
 >
 >    这样会报错。
@@ -75,60 +75,60 @@ if(如果有用户id) {
 ### 导航守卫，动态添加
 
 ```js
-const routerArr = store.state.login.routerArr
+const routerArr = store.state.login.routerArr;
 
 router.beforeEach(async (to, from, next) => {
-    const token = Cookies.get('token')
-    if(token) {
-        if(to.path === '/login') {
-            next('/')
-        } else {
-            // 判断是否发请求获取路由规则
-            if(routerArr.length == 0) {
-                // 没有，掉请求
-                const _routerArr = await store.dispatch('getRouter')
-                
-                _routerArr.forEach(item => {
-                    router.addRoute(item)
-                })
-                
-                next(to.path) // 继续跳转
-            } else {
-                // 有了，判断当前用户是否有该路由的权限
-                if(to.matched.length !== 0) {
-                    next() // 有直接跳转
-                } else {
-                    next(from.path) // 没有返回来的页面
-                }
-            }
-        }
+  const token = Cookies.get("token");
+  if (token) {
+    if (to.path === "/login") {
+      next("/");
     } else {
-        // 未登录，判断是否在白名单内
-        if(whileList.indexOf(to.path) !== -1) {
-            next() // 在白名单内，可以访问
+      // 判断是否发请求获取路由规则
+      if (routerArr.length == 0) {
+        // 没有，掉请求
+        const _routerArr = await store.dispatch("getRouter");
+
+        _routerArr.forEach((item) => {
+          router.addRoute(item);
+        });
+
+        next(to.path); // 继续跳转
+      } else {
+        // 有了，判断当前用户是否有该路由的权限
+        if (to.matched.length !== 0) {
+          next(); // 有直接跳转
         } else {
-            next('/login') // 不在白名单内，返回登录页
+          next(from.path); // 没有返回来的页面
         }
+      }
     }
-})
+  } else {
+    // 未登录，判断是否在白名单内
+    if (whileList.indexOf(to.path) !== -1) {
+      next(); // 在白名单内，可以访问
+    } else {
+      next("/login"); // 不在白名单内，返回登录页
+    }
+  }
+});
 ```
 
-> 注意：
+> [!WARNING] 注意
 >
 > 老版本可以使用 `addRoutes()` ，放入路由数组；新版已经弃用，只能使用 `addRoute()` ，放入单个路由对象，因此需要使用数组遍历的形式。
 >
 > ```js
 > let arr = [
->     {
->         name: 'page',
->         path: '/page',
->         component: () => import('')
->     }
-> ]
-> 
-> arr.forEach(item => {
->     router.addRoute(item)
-> })
+>   {
+>     name: "page",
+>     path: "/page",
+>     component: () => import(""),
+>   },
+> ];
+>
+> arr.forEach((item) => {
+>   router.addRoute(item);
+> });
 > ```
 
 ### 重置路由
@@ -139,10 +139,10 @@ router.beforeEach(async (to, from, next) => {
 
 ```js
 export function resetRoute() {
-    const newRouter = new VueRouter({
-        routes: initRoutes
-    })
-    router.matcher = newRouter.matcher
+  const newRouter = new VueRouter({
+    routes: initRoutes,
+  });
+  router.matcher = newRouter.matcher;
 }
 ```
 
@@ -171,15 +171,15 @@ getCode() {
 
 ```js
 const initRoutes = [
-    {
-        path: '/',
-        name: 'Home',
-        component: () => import('@/views/home'),
-        meta: {
-        	whileList: ['admin','test01']
-    	}
-    }
-]
+  {
+    path: "/",
+    name: "Home",
+    component: () => import("@/views/home"),
+    meta: {
+      whileList: ["admin", "test01"],
+    },
+  },
+];
 ```
 
 在前置守卫中通过 `to.meta.whileList.includes()` 判断当前用户是否有该权限即可。
