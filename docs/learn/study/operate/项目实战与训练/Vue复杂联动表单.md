@@ -1,4 +1,4 @@
-# Vue复杂联动表单
+# Vue 复杂联动表单
 
 ## 效果展示
 
@@ -24,53 +24,62 @@
 
 最后梳理数据流向一图流如下所示：
 
-![数据流向](https://pic1.imgdb.cn/item/67c69a10d0e0a243d40b4e7a.png)
+![数据流向一图流](https://pic1.imgdb.cn/item/67ebe1f10ba3d5a1d7e931c5.png)25c0ba3d5a1d7e955d7.png)
 
 ## 页面架构
 
 先给出页面的相关静态组件架构。
 
 ::: code-group
+
 ```vue [App.vue]
 <script setup>
 const options = [
   {
-    value: '1',
-    label: '区域1'
+    value: "1",
+    label: "区域1",
   },
   {
-    value: '2',
-    label: '区域2'
+    value: "2",
+    label: "区域2",
   },
   {
-    value: '3',
-    label: '区域3'
+    value: "3",
+    label: "区域3",
   },
   {
-    value: '4',
-    label: '区域4'
+    value: "4",
+    label: "区域4",
   },
-]
+];
 
-const crowdTableRef = ref()
+const crowdTableRef = ref();
 
-const formData = ref([])
+const formData = ref([]);
 
 const computedValue = computed(() => {
-  return ''
-})
+  return "";
+});
 
-const handleChange = (value) => {
-}
+const handleChange = (value) => {};
 
-const handleSubmit = () => {
-}
+const handleSubmit = () => {};
 </script>
 
 <template>
   <div>
-    <el-select :model-value="computedValue" @change="handleChange" placeholder="请选择" multiple>
-      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+    <el-select
+      :model-value="computedValue"
+      @change="handleChange"
+      placeholder="请选择"
+      multiple
+    >
+      <el-option
+        v-for="item in options"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      ></el-option>
     </el-select>
 
     <DetailTable :data="formData" />
@@ -81,9 +90,10 @@ const handleSubmit = () => {
   </div>
 </template>
 ```
+
 ```vue [投放详细.vue]
 <script setup>
-const { data } = defineProps(['data'])
+const { data } = defineProps(["data"]);
 </script>
 
 <template>
@@ -93,9 +103,9 @@ const { data } = defineProps(['data'])
   </el-table>
 </template>
 ```
+
 ```vue [目标人群.vue]
-<script setup>
-</script>
+<script setup></script>
 
 <template>
   <el-table :data="data">
@@ -107,11 +117,13 @@ const { data } = defineProps(['data'])
   </div>
 </template>
 ```
+
 :::
 
 ## 逻辑实现
 
 Vue/React 核心思想：
+
 1. 数据驱动
 2. 理清数据流向
 
@@ -155,41 +167,54 @@ const computedValue = computed(() => { // [!code ++]
 「投放详细」表格直接使用 `formData` 作为数据源，用户修改委托人时直接修改 `formData` 中的 `duty` 数据。在回显区域名称时，直接使用 `name` 属性显示的是 `code` 值，需要匹配对应的 `label` 值做回显。数组查找每次都需要循环，会造成一定的性能浪费，可以使用 `Map` 数据结构优化。
 
 ::: code-group
+
 ```vue [App.vue]
 <script setup>
 const options = [
   {
-    value: '1',
-    label: '区域1'
+    value: "1",
+    label: "区域1",
   },
   {
-    value: '2',
-    label: '区域2'
+    value: "2",
+    label: "区域2",
   },
   {
-    value: '3',
-    label: '区域3'
+    value: "3",
+    label: "区域3",
   },
   {
-    value: '4',
-    label: '区域4'
+    value: "4",
+    label: "区域4",
   },
-]
+];
 
-const optionMap = {} // [!code ++]
+const optionMap = {}; // [!code ++]
 
-options.forEach(item => { // [!code ++]
-  optionMap[item.value] = item.label // [!code ++]
-}) // [!code ++]
+options.forEach((item) => {
+  // [!code ++]
+  optionMap[item.value] = item.label; // [!code ++]
+}); // [!code ++]
 </script>
 
 <template>
   <div>
-    <el-select :model-value="computedValue" @change="handleChange" placeholder="请选择" multiple>
-      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+    <el-select
+      :model-value="computedValue"
+      @change="handleChange"
+      placeholder="请选择"
+      multiple
+    >
+      <el-option
+        v-for="item in options"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      ></el-option>
     </el-select>
 
-    <DetailTable :data="formData" :optionMap="optionMap" /> <!-- [!code ++] -->
+    <DetailTable :data="formData" :optionMap="optionMap" />
+    <!-- [!code ++] -->
 
     <CrowdTable ref="crowdTableRef" />
 
@@ -197,32 +222,46 @@ options.forEach(item => { // [!code ++]
   </div>
 </template>
 ```
+
 ```vue [投放详细.vue]
 <script setup>
-const { data, optionMap } = defineProps(['data']) // [!code ++]
+const { data, optionMap } = defineProps(["data"]); // [!code ++]
 </script>
 
 <template>
   <el-table :data="data">
-    <el-table-column label="区域名称" /> <!-- [!code --] -->
-    <el-table-column label="投放责任人" /> <!-- [!code --] -->
-    <el-table-column label="区域名称"> <!-- [!code ++] -->
-      <template #default="{row}"> <!-- [!code ++] -->
-        {{ optionMap[row.name] }} <!-- [!code ++] -->
-      </template> <!-- [!code ++] -->
-    </el-table-column> <!-- [!code ++] -->
-    <el-table-column label="投放责任人"> <!-- [!code ++] -->
-      <template #default="{row}"> <!-- [!code ++] -->
-        <el-input v-model="row.details.duty" /> <!-- [!code ++] -->
-      </template> <!-- [!code ++] -->
-    </el-table-column> <!-- [!code ++] -->
+    <el-table-column label="区域名称" />
+    <!-- [!code --] -->
+    <el-table-column label="投放责任人" />
+    <!-- [!code --] -->
+    <el-table-column label="区域名称">
+      <!-- [!code ++] -->
+      <template #default="{ row }">
+        <!-- [!code ++] -->
+        {{ optionMap[row.name] }}
+        <!-- [!code ++] -->
+      </template>
+      <!-- [!code ++] -->
+    </el-table-column>
+    <!-- [!code ++] -->
+    <el-table-column label="投放责任人">
+      <!-- [!code ++] -->
+      <template #default="{ row }">
+        <!-- [!code ++] -->
+        <el-input v-model="row.details.duty" />
+        <!-- [!code ++] -->
+      </template>
+      <!-- [!code ++] -->
+    </el-table-column>
+    <!-- [!code ++] -->
   </el-table>
 </template>
 ```
+
 :::
 
 > [!WARNING] ⚠️ 注意
-> 这里子组件是直接修改了父组件 `props` 传递过来的参数，在React中不能这么做，需要 `@change` 子传父在伏组件修改变量；在Vue中只是其中的属性是允许的，如果整个对象全部替换则是不允许的。
+> 这里子组件是直接修改了父组件 `props` 传递过来的参数，在 React 中不能这么做，需要 `@change` 子传父在伏组件修改变量；在 Vue 中只是其中的属性是允许的，如果整个对象全部替换则是不允许的。
 
 ### 目标人群
 
@@ -233,50 +272,67 @@ const { data, optionMap } = defineProps(['data']) // [!code ++]
 最终父组件点击提交按钮时，获取到子组件的变量 `crowdArr`，循环 `formData` 数组，把子组件的变量 `crowdArr` 赋值给每一条对象的 `crowd` 数组内。
 
 ::: code-group
+
 ```vue [App.vue]
 <script setup>
-const crowdTableRef = ref()
+const crowdTableRef = ref();
 
 const handleSubmit = () => {
-  formData.value.forEach(item => { // [!code ++]
-    item.crowd = crowdTableRef.value.crowdArr // [!code ++]
-  }) // [!code ++]
+  formData.value.forEach((item) => {
+    // [!code ++]
+    item.crowd = crowdTableRef.value.crowdArr; // [!code ++]
+  }); // [!code ++]
 
-  axios.get('/xxx', { params: formData.value }).then(res => {}) // 模拟调用接口 // [!code ++]
-}
+  axios.get("/xxx", { params: formData.value }).then((res) => {}); // 模拟调用接口 // [!code ++]
+};
 </script>
 ```
+
 ```vue [目标人群.vue]
 <script setup>
-const crowdArr = ref([]) // [!code ++]
-const handleAdd = () => { // [!code ++]
-  crowdArr.value.push({ crowdName: '', crowdSize: '' }) // [!code ++]
-} // [!code ++]
+const crowdArr = ref([]); // [!code ++]
+const handleAdd = () => {
+  // [!code ++]
+  crowdArr.value.push({ crowdName: "", crowdSize: "" }); // [!code ++]
+}; // [!code ++]
 
-defineExpose({ crowdArr }) // [!code ++]
+defineExpose({ crowdArr }); // [!code ++]
 </script>
 
 <template>
   <el-table :data="data">
     <el-table-column label="人群名称" /><!-- [!code --] -->
     <el-table-column label="目标量级" /><!-- [!code --] -->
-    <el-table-column label="人群名称"> <!-- [!code ++] -->
-      <template #default="{row}"> <!-- [!code ++] -->
-        <el-input v-model="row.crowdName" /> <!-- [!code ++] -->
-      </template> <!-- [!code ++] -->
-    </el-table-column> <!-- [!code ++] -->
-    <el-table-column label="目标量级"> <!-- [!code ++] -->
-      <template #default="{row}"> <!-- [!code ++] -->
-        <el-input v-model="row.crowdSize" /> <!-- [!code ++] -->
-      </template> <!-- [!code ++] -->
-    </el-table-column> <!-- [!code ++] -->
+    <el-table-column label="人群名称">
+      <!-- [!code ++] -->
+      <template #default="{ row }">
+        <!-- [!code ++] -->
+        <el-input v-model="row.crowdName" />
+        <!-- [!code ++] -->
+      </template>
+      <!-- [!code ++] -->
+    </el-table-column>
+    <!-- [!code ++] -->
+    <el-table-column label="目标量级">
+      <!-- [!code ++] -->
+      <template #default="{ row }">
+        <!-- [!code ++] -->
+        <el-input v-model="row.crowdSize" />
+        <!-- [!code ++] -->
+      </template>
+      <!-- [!code ++] -->
+    </el-table-column>
+    <!-- [!code ++] -->
   </el-table>
   <div>
-    <el-button type="primary">新增</el-button> <!-- [!code --] -->
-    <el-button type="primary" @click="handleAdd">新增</el-button> <!-- [!code ++] -->
+    <el-button type="primary">新增</el-button>
+    <!-- [!code --] -->
+    <el-button type="primary" @click="handleAdd">新增</el-button>
+    <!-- [!code ++] -->
   </div>
 </template>
 ```
+
 :::
 
 ### 优化修改
@@ -291,185 +347,213 @@ defineExpose({ crowdArr }) // [!code ++]
 第二个问题的解决方案是在子组件再暴露一个方法，父组件在获取到数据时，调用子组件的方法，把数据回显赋值到子组件的变量 `crowdArr` 中。由于每个对象的 `crowd` 数组数据都是一样的，因此随便获取任意一个数据的数据即可。
 
 ::: code-group
+
 ```vue [App.vue]
 <script setup>
-const handleChange = (value) => { 
+const handleChange = (value) => {
   // 保存数据到 formData 每一个对象的 name 属性中
-  formData.value = value.map(item => { 
-    let details = formData.value.find(i => i.name === item)?.details || {} // [!code ++]
-    return { 
-      name: item, 
-      details: { // [!code --]
-        duty: '', // [!code --]
+  formData.value = value.map((item) => {
+    let details = formData.value.find((i) => i.name === item)?.details || {}; // [!code ++]
+    return {
+      name: item,
+      details: {
+        // [!code --]
+        duty: "", // [!code --]
       }, // [!code --]
       details, // [!code ++]
-      crowd: [] 
-    } 
-  }) 
-} 
+      crowd: [],
+    };
+  });
+};
 
 // 回显功能测试 // [!code ++]
-const handleEcho = () => { // [!code ++]
-  formData.value = [ // [!code ++]
-    { // [!code ++]
-      name: '北京', // [!code ++]
-      details: { // [!code ++]
-        duty: '张三' // [!code ++]
+const handleEcho = () => {
+  // [!code ++]
+  formData.value = [
+    // [!code ++]
+    {
+      // [!code ++]
+      name: "北京", // [!code ++]
+      details: {
+        // [!code ++]
+        duty: "张三", // [!code ++]
       }, // [!code ++]
-      crowd: [ // [!code ++]
-        { // [!code ++]
-          crowdName: '人群1', // [!code ++]
-          crowdSize: 100 // [!code ++]
+      crowd: [
+        // [!code ++]
+        {
+          // [!code ++]
+          crowdName: "人群1", // [!code ++]
+          crowdSize: 100, // [!code ++]
         }, // [!code ++]
-        { // [!code ++]
-          crowdName: '人群2', // [!code ++]
-          crowdSize: 200 // [!code ++]
-        } // [!code ++]
-      ] // [!code ++]
+        {
+          // [!code ++]
+          crowdName: "人群2", // [!code ++]
+          crowdSize: 200, // [!code ++]
+        }, // [!code ++]
+      ], // [!code ++]
     }, // [!code ++]
-    { // [!code ++]
-      name: '上海', // [!code ++]
-      details: { // [!code ++]
-        duty: '李四' // [!code ++]
+    {
+      // [!code ++]
+      name: "上海", // [!code ++]
+      details: {
+        // [!code ++]
+        duty: "李四", // [!code ++]
       }, // [!code ++]
-      crowd: [ // [!code ++]
-        { // [!code ++]
-          crowdName: '人群1', // [!code ++]
-          crowdSize: 100 // [!code ++]
+      crowd: [
+        // [!code ++]
+        {
+          // [!code ++]
+          crowdName: "人群1", // [!code ++]
+          crowdSize: 100, // [!code ++]
         }, // [!code ++]
-        { // [!code ++]
-          crowdName: '人群2', // [!code ++]
-          crowdSize: 200 // [!code ++]
-        } // [!code ++]
-      ] // [!code ++]
-    } // [!code ++]
-  ] // [!code ++]
-  crowdTableRef.value.setCrowd(formData.value[0].crowd) // [!code ++]
-} // [!code ++]
+        {
+          // [!code ++]
+          crowdName: "人群2", // [!code ++]
+          crowdSize: 200, // [!code ++]
+        }, // [!code ++]
+      ], // [!code ++]
+    }, // [!code ++]
+  ]; // [!code ++]
+  crowdTableRef.value.setCrowd(formData.value[0].crowd); // [!code ++]
+}; // [!code ++]
 </script>
 ```
+
 ```vue [目标人群.vue]
 <script setup>
-const crowdArr = ref([])
+const crowdArr = ref([]);
 const handleAdd = () => {
-  crowdArr.value.push({ crowdName: '', crowdSize: '' })
-}
-const setCrowd = (value) => { // [!code ++]
-  crowdArr.value = value // [!code ++]
-} // [!code ++]
+  crowdArr.value.push({ crowdName: "", crowdSize: "" });
+};
+const setCrowd = (value) => {
+  // [!code ++]
+  crowdArr.value = value; // [!code ++]
+}; // [!code ++]
 
 defineExpose({
   crowdArr,
-  setCrowd // [!code ++]
-})
+  setCrowd, // [!code ++]
+});
 </script>
 ```
+
 :::
 
 ## 完整代码
 
 ::: code-group
+
 ```vue [App.vue]
 <script setup>
 const options = [
   {
-    value: '1',
-    label: '区域1'
+    value: "1",
+    label: "区域1",
   },
   {
-    value: '2',
-    label: '区域2'
+    value: "2",
+    label: "区域2",
   },
   {
-    value: '3',
-    label: '区域3'
+    value: "3",
+    label: "区域3",
   },
   {
-    value: '4',
-    label: '区域4'
+    value: "4",
+    label: "区域4",
   },
-]
+];
 
-const crowdTableRef = ref()
+const crowdTableRef = ref();
 
-const formData = ref([])
+const formData = ref([]);
 
-const handleChange = (value) => { 
+const handleChange = (value) => {
   // 保存数据到 formData 每一个对象的 name 属性中
-  formData.value = value.map(item => {
-    let details = formData.value.find(i => i.name === item)?.details || {}
+  formData.value = value.map((item) => {
+    let details = formData.value.find((i) => i.name === item)?.details || {};
 
-    return { 
-      name: item, 
+    return {
+      name: item,
       details,
-      crowd: [] 
-    } 
-  }) 
-} 
+      crowd: [],
+    };
+  });
+};
 
 // 计算属性，获取当前选中的值用于下拉框回显
-const computedValue = computed(() => { 
-  return formData.value.map(item => item.name) 
-})
+const computedValue = computed(() => {
+  return formData.value.map((item) => item.name);
+});
 
-const optionMap = {} 
+const optionMap = {};
 
-options.forEach(item => { 
-  optionMap[item.value] = item.label 
-})
+options.forEach((item) => {
+  optionMap[item.value] = item.label;
+});
 
 const handleSubmit = () => {
-  formData.value.forEach(item => { 
-    item.crowd = crowdTableRef.value.crowdArr 
-  }) 
+  formData.value.forEach((item) => {
+    item.crowd = crowdTableRef.value.crowdArr;
+  });
 
-  axios.get('/xxx', { params: formData.value }).then(res => {}) // 模拟调用接口
-}
+  axios.get("/xxx", { params: formData.value }).then((res) => {}); // 模拟调用接口
+};
 
 // 回显功能测试
-const handleEcho = () => { 
-  formData.value = [ 
-    { 
-      name: '北京', 
-      details: { 
-        duty: '张三'
-      }, 
-      crowd: [ 
-        { 
-          crowdName: '人群1', 
-          crowdSize: 100
-        }, 
-        { 
-          crowdName: '人群2', 
-          crowdSize: 200
-        } 
-      ] 
-    }, 
-    { 
-      name: '上海', 
-      details: { 
-        duty: '李四'
-      }, 
-      crowd: [ 
-        { 
-          crowdName: '人群1', 
-          crowdSize: 100
-        }, 
-        { 
-          crowdName: '人群2', 
-          crowdSize: 200
-        } 
-      ] 
-    } 
-  ] 
-  crowdTableRef.value.setCrowd(formData.value[0].crowd) 
-}
+const handleEcho = () => {
+  formData.value = [
+    {
+      name: "北京",
+      details: {
+        duty: "张三",
+      },
+      crowd: [
+        {
+          crowdName: "人群1",
+          crowdSize: 100,
+        },
+        {
+          crowdName: "人群2",
+          crowdSize: 200,
+        },
+      ],
+    },
+    {
+      name: "上海",
+      details: {
+        duty: "李四",
+      },
+      crowd: [
+        {
+          crowdName: "人群1",
+          crowdSize: 100,
+        },
+        {
+          crowdName: "人群2",
+          crowdSize: 200,
+        },
+      ],
+    },
+  ];
+  crowdTableRef.value.setCrowd(formData.value[0].crowd);
+};
 </script>
 
 <template>
   <div>
-    <el-select :model-value="computedValue" @change="handleChange" placeholder="请选择" multiple>
-      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+    <el-select
+      :model-value="computedValue"
+      @change="handleChange"
+      placeholder="请选择"
+      multiple
+    >
+      <el-option
+        v-for="item in options"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      ></el-option>
     </el-select>
 
     <DetailTable :data="formData" :optionMap="optionMap" />
@@ -480,50 +564,52 @@ const handleEcho = () => {
   </div>
 </template>
 ```
+
 ```vue [投放详细.vue]
 <script setup>
-const { data, optionMap } = defineProps(['data'])
+const { data, optionMap } = defineProps(["data"]);
 </script>
 
 <template>
   <el-table :data="data">
-    <el-table-column label="区域名称"> 
-      <template #default="{row}"> 
-        {{ optionMap[row.name] }} 
-      </template> 
-    </el-table-column> 
-    <el-table-column label="投放责任人"> 
-      <template #default="{row}"> 
-        <el-input v-model="row.details.duty" /> 
-      </template> 
+    <el-table-column label="区域名称">
+      <template #default="{ row }">
+        {{ optionMap[row.name] }}
+      </template>
+    </el-table-column>
+    <el-table-column label="投放责任人">
+      <template #default="{ row }">
+        <el-input v-model="row.details.duty" />
+      </template>
     </el-table-column>
   </el-table>
 </template>
 ```
+
 ```vue [目标人群.vue]
 <script setup>
-const crowdArr = ref([]) 
-const handleAdd = () => { 
-  crowdArr.value.push({ crowdName: '', crowdSize: '' }) 
-}
-const setCrowd = (value) => { 
-  crowdArr.value = value 
-}
+const crowdArr = ref([]);
+const handleAdd = () => {
+  crowdArr.value.push({ crowdName: "", crowdSize: "" });
+};
+const setCrowd = (value) => {
+  crowdArr.value = value;
+};
 
-defineExpose({ crowdArr, setCrowd })
+defineExpose({ crowdArr, setCrowd });
 </script>
 
 <template>
   <el-table :data="data">
-    <el-table-column label="人群名称"> 
-      <template #default="{row}"> 
-        <el-input v-model="row.crowdName" /> 
-      </template> 
-    </el-table-column> 
-    <el-table-column label="目标量级"> 
-      <template #default="{row}"> 
-        <el-input v-model="row.crowdSize" /> 
-      </template> 
+    <el-table-column label="人群名称">
+      <template #default="{ row }">
+        <el-input v-model="row.crowdName" />
+      </template>
+    </el-table-column>
+    <el-table-column label="目标量级">
+      <template #default="{ row }">
+        <el-input v-model="row.crowdSize" />
+      </template>
     </el-table-column>
   </el-table>
   <div>
@@ -531,4 +617,5 @@ defineExpose({ crowdArr, setCrowd })
   </div>
 </template>
 ```
+
 :::

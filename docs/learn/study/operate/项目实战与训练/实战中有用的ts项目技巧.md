@@ -1,4 +1,4 @@
-# 实战中有用的TypeScript项目技巧
+# 实战中有用的 TypeScript 项目技巧
 
 ## 第三方库处理技巧
 
@@ -26,12 +26,12 @@ export declare interface RouterOptions extends PathParserOptions {
 这些有什么用呢？`vue-router` 有一个方法 `addRoute` 可以添加路由规则，这个路由规则类型必须要正确才能生效，想要获取正确的路由规则类型，可以用上面的方法查看 `RouterOptions` 中的 `routes` 属性，这个属性的类型是 `Readonly<RouterRecordRaw[]>`，一路点击跳转到对应的方法、属性上，就能看到需要的类型了。也能引入这些规则，为自己的方法函数参数绑定类型说明。
 
 ```js
-import type { RouteRecordRaw, Router } from 'vue-router';
+import type { RouteRecordRaw, Router } from "vue-router";
 
-function addRouterFn (routerConfig: RouteRecordRaw[], router: Router) {
+function addRouterFn(routerConfig: RouteRecordRaw[], router: Router) {
   routerConfig.forEach((route) => {
     router.addRoute(route);
-  })
+  });
 }
 ```
 
@@ -40,8 +40,9 @@ function addRouterFn (routerConfig: RouteRecordRaw[], router: Router) {
 在例如 `pinia` 仓库，多人开发想要定义批量仓库编写时第二个函数参数返回的类型，可以用 ts 定义好。后续团队成员引入就能使用了，如果他们不按要求返回需要的变量方法，或者方法变量类型不正确，都会报错。
 
 ::: code-group
+
 ```js [storeType.ts]
-import { ref, type Ref } from 'vue';
+import { ref, type Ref } from "vue";
 
 export interface UserInfoType {
   name: string;
@@ -50,44 +51,50 @@ export interface UserInfoType {
 
 export type useUserInfoStoreType = () => {
   userInfo: Ref<UserInfoType>,
-  setUserInfo: (info: UserInfoType) => void
-}
+  setUserInfo: (info: UserInfoType) => void,
+};
 ```
+
 ```js [userInfo.ts]
-import { defineStore } from 'pinia';
-import type { UserInfoType, useUserInfoStoreType } from './storeType';
+import { defineStore } from "pinia";
+import type { UserInfoType, useUserInfoStoreType } from "./storeType";
 
 let storeFn: useUserInfoStoreType = () => {
-  const userInfo = ref<UserInfoType>({
-    name: '张三',
-    age: 18
-  });
+  const userInfo =
+    ref <
+    UserInfoType >
+    {
+      name: "张三",
+      age: 18,
+    };
 
   const setUserInfo = (info: UserInfoType) => {
     userInfo.value = info;
-  }
+  };
 
   return {
     userInfo,
-    setUserInfo
-  }
-}
+    setUserInfo,
+  };
+};
 
-export default defineStore('userInfo', storeFn);
+export default defineStore("userInfo", storeFn);
 ```
+
 :::
 
 ## 基于已有类型快速处理新类型
 
 通常对接口的返回需要编写 ts，但是后续在接口返回数据使用中，往往需要根据需要生成一些次级类型。
 
-### 接口返回一个粉丝列表，一个用户信息，用两个ref变量分别存储
+### 接口返回一个粉丝列表，一个用户信息，用两个 ref 变量分别存储
 
 类型一般需要两个，接口的返回 ts 类型，请求接口的参数 ts 类型。组件中引入需要的类型，此时就遇到问题了，组件中分别申请两个变量存储粉丝列表和个人信息对象，但是接口定义类型时它是一个对象中，此时直接赋值会报错，如何给它们单独从接口返回类型中取出对应类型呢？
 
 解决方案为：使用中括号 `[]` 取出对象中的属性即可。
 
 ::: code-group
+
 ```js [api.ts]
 imterface api1Res {
   fansList: {
@@ -107,19 +114,21 @@ export function getApi1(data: api1Req) {
   return axios.post<api1Res>('/api1', data);
 }
 ```
+
 ```vue [App.vue]
 <script setup>
-import { getApi1, type api1Res } from './api';
+import { getApi1, type api1Res } from "./api";
 
-const fansList = ref<api1Res['fansList']>([]);
-const myInfo = ref<api1Res['myInfo']>({});
+const fansList = ref < api1Res["fansList"] > [];
+const myInfo = ref < api1Res["myInfo"] > {};
 
-getApi1({ id: '123' }).then((res) => {
+getApi1({ id: "123" }).then((res) => {
   fansList.value = res.data.fansList;
   myInfo.value = res.data.myInfo;
 });
 </script>
 ```
+
 :::
 
 ### 定义枚举，有时需要说明某个类型是这些枚举中的某一个
@@ -128,14 +137,15 @@ getApi1({ id: '123' }).then((res) => {
 
 ```js
 export const UserTypeMap = {
-  sing: 'sing',
-  dancer: 'dancer',
-}
+  sing: "sing",
+  dancer: "dancer",
+};
 ```
 
 这么做的好处是，如果后端后续修改了属性字段，如上方例子，后端把 `sing` ，改成了 `singer` ，此时前端没有做枚举而是直接判断，会有很多地方需要修改。而使用枚举字典，只需要修改字典即可，前端代码不需要修改。
 
 ::: code-group
+
 ```vue [无字典.vue]
 <template>
   <div v-if="userType === 'sing'">...</div>
@@ -146,6 +156,7 @@ export const UserTypeMap = {
   <div v-if="userType === 'sing'">...</div>
 </template>
 ```
+
 ```vue [有字典.vue]
 <template>
   <div v-if="userType === UserTypeMap.sing">...</div>
@@ -155,6 +166,7 @@ export const UserTypeMap = {
   <div v-if="userType === UserTypeMap.sing">...</div>
 </template>
 ```
+
 :::
 
 如果想要使用枚举中每一个类型属性，可以使用 `keyof` 操作符和 `typeof` 的组合快速实现枚举类型提取。
@@ -197,15 +209,17 @@ type obj1 = {
   name: string,
   age: number,
   sex: string,
-  height: number
-}
+  height: number,
+};
 
-type obj2 = Omit<obj1, 'age' | 'sex'>; // obj2 = { name: string, height: number }
+type obj2 = Omit<obj1, "age" | "sex">; // obj2 = { name: string, height: number }
 ```
 
 > [!IMPORTANT] 拓展
 > `Pick` 和 `Omit` 作用相反，`Pick` 是取出对象中的某些属性，`Omit` 是剔除对象中的某些属性。
+>
 > ```js
-> type obj2 = Pick<obj1, 'name' | 'height'>; // obj2 = { name: string, height: number }
+> type obj2 = Pick<obj1, "name" | "height">; // obj2 = { name: string, height: number }
 > ```
+>
 > 如何选取取决于要拿到的属性多不多，如果是在一个很多属性的类型获取其中几个，`Pick` 速度更快，如果是在很多属性的类型剔除其中几个获取剩下的，`Omit` 速度更快。
