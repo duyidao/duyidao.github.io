@@ -454,6 +454,10 @@ const StudySidebar = [
             link: "/study/knowledge/JS相关/吃透js执行顺序以及异步实战管理技巧",
           },
           {
+            text: "属性描述符",
+            link: "/study/knowledge/JS相关/属性描述符",
+          },
+          {
             text: "Performance API",
             link: "/study/knowledge/JS相关/Performance",
           },
@@ -538,6 +542,10 @@ const StudySidebar = [
           {
             text: "从Vue2、Vue3不更新学Vue原理",
             link: "/study/knowledge/Vue相关/从Vue2、Vue3不更新学Vue原理",
+          },
+          {
+            text: "Vue常见优化手段",
+            link: "/study/knowledge/Vue相关/Vue常见优化手段",
           },
         ],
       },

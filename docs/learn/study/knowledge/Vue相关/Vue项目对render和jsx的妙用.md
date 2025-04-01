@@ -6,7 +6,7 @@
 
 我们有一个数组，需要把这个数组渲染成多个表格列的形式。如果直接在 `template` 中写代码，则需写成如下形式：
 
-```vue
+```html
 <table>
   <tbody>
   	<tr v-for="item in list" :key="item.id">
