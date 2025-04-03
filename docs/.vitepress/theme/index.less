@@ -4,7 +4,17 @@
 @import './link.less';
 @import './vpCode.less';
 @import './codeTabIcon.less';
-// @import './vpDoc.less';
+
+:root {
+  --color: rgb(8 126 164 / 1);
+  --bg-color: rgb(230 247 255 / 1);
+  --bd-color: rgb(8 126 164 / 1);
+}
+:root.dark {
+  --color: rgb(88 196 220 / 1);
+  --bg-color: rgba(88, 175, 223, .1);
+  --bd-color: rgb(88 196 220 / 1);
+}
 
 html {
   font-size: 16px;

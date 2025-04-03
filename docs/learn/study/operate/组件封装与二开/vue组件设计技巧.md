@@ -1,4 +1,4 @@
-# Vue组件设计技巧
+# Vue 组件设计技巧
 
 设计一个组件需要从以下四个方面来思考：
 
@@ -57,6 +57,7 @@ input {
 预留部分可能需要的调控类名，如输入错误显示红色，正确显示绿色等，这样使用者在需要使用时可直接添加类名，实现效果。如下：
 
 ::: code-group
+
 ```vue [child.vue]
 <template>
   <div>
@@ -77,13 +78,15 @@ input {
 }
 </style>
 ```
+
 ```vue [father.vue]
 <template>
-	<MyInput>
-    	<input class="input_success" />
-    </MyInput>
+  <MyInput>
+    <input class="input_success" />
+  </MyInput>
 </template>
 ```
+
 :::
 
 ## 组件的思考
@@ -106,7 +109,7 @@ input {
   <div>
     <slot #input></slot>
     <slot #default>
-    	<input name="搜索" />
+      <input name="搜索" />
     </slot>
   </div>
 </template>
@@ -117,11 +120,12 @@ input {
 如果数据在子组件内，子组件操作数据后还需要传递给父组件，过程繁琐。可以采用父组件通过插槽传递组件，数据变量也设置在父组件，这样父组件可以直接操作使用，无需子组件与父组件的通信。
 
 ::: code-group
+
 ```vue [child.vue]
 <template>
   <div>
     <slot #default>
-    	<input :value="name" @change="changeFn" name="搜索" />
+      <input :value="name" @change="changeFn" name="搜索" />
     </slot>
   </div>
 </template>
@@ -129,17 +133,18 @@ input {
 <script>
 export default {
   props: {
-    name: String
+    name: String,
   },
   methods: {
     changeFn(e) {
-      this.$emit('update:name', e.target.value)
-      this.$emit('change', e.target.value)
-    }
-  }
-}
+      this.$emit("update:name", e.target.value);
+      this.$emit("change", e.target.value);
+    },
+  },
+};
 </script>
 ```
+
 ```vue [father.vue]
 <template>
   <div>
@@ -151,17 +156,18 @@ export default {
 export default {
   data() {
     return {
-      name: 'daodao'
-    }
+      name: "daodao",
+    };
   },
   methods: {
     changeFn(value) {
       // ...
-    }
-  }
-}
+    },
+  },
+};
 </script>
 ```
+
 :::
 
 ## 行为的思考
@@ -176,6 +182,7 @@ export default {
 - 确定事件，此行为属于业务行为，直接 `emit` 留给父组件实现不同操作。
 
 ::: code-group
+
 ```vue [child.vue]
 <template>
   <div v-if="show">
@@ -186,19 +193,22 @@ export default {
 <script>
 export default {
   props: {
-    show: Boolean
+    show: Boolean,
   },
   methods: {
     close() {
-      this.$emit('update:show', false)
-      this.$emit('close')
-    }
-  }
-}
+      this.$emit("update:show", false);
+      this.$emit("close");
+    },
+  },
+};
 </script>
 ```
+
 ```vue [father.vue]
+
 ```
+
 :::
 
 ### 行为周期拆分
@@ -211,13 +221,13 @@ export default {
 
 ```js
 const close = () => {
-  emit('beforeColse')
-  show.value = false
-  emit('afterClose')
-}
+  emit("beforeColse");
+  show.value = false;
+  emit("afterClose");
+};
 ```
 
-## props的思考
+## props 的思考
 
 ### 数据定义
 
@@ -239,9 +249,9 @@ const close = () => {
 <script>
 export default {
   props: {
-    reset: Boolean
-  }
-}
+    reset: Boolean,
+  },
+};
 </script>
 ```
 

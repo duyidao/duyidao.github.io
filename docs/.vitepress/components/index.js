@@ -1,6 +1,7 @@
 import Iframe from './iframe.vue';
 import BlogLis from './lis.vue';
 import SpecialWords from './specialWords.vue';
+import ArticleMetadata from './ArticleMetadata.vue';
 
 const list = [
   {
@@ -14,6 +15,10 @@ const list = [
   {
     name: 'SpecialWords',
     compoment: SpecialWords,
+  },
+  {
+    name: 'ArticleMetadata',
+    compoment: ArticleMetadata,
   },
 ]
 

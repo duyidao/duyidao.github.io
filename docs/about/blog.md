@@ -1,6 +1,7 @@
 ---
-title 关于刀刀博客
+title: 关于刀刀博客
 ---
+
 # 关于刀刀博客
 
 ## 前言
@@ -14,17 +15,21 @@ title 关于刀刀博客
 这里是记录着刀刀学习与工作成果的博客，立志于做到日后翻阅时，我能够感叹道，原来我学了这么多东西呀。到那时我将不需再埋怨自己虚度光阴。
 
 ## 未来规划
-1. 实现博客的搜素功能 [相关网址](https://www.algolia.com/)
-2. 实现博客的标签功能 [相关网址](https://www.liyd.net/how-to-implement-tabs-in-vitepress)
-3. 实现博客的评论功能 [相关网址](https://chunge16.github.io/vitepress-blogs/blog/posts/2023/vitepress-plugin-comment-with-giscus)
-4. 博客首页样式等优化 [相关网址](https://swkende.github.io/swkende-doc/01_VitePress/03_VitePress%E4%BC%98%E5%8C%96.html)
+
+<ol>
+   <li>实现博客的标签功能 <a href="https://www.liyd.net/how-to-implement-tabs-in-vitepress">相关网址</a><i style="color: red">（待开始）</i></li>
+   <li style="text-decoration: line-through">实现博客的搜素功能 <a href="https://www.algolia.com/">相关网址</a><i style="color: green">（已实现）</i></li>
+   <li style="text-decoration: line-through">实现博客的评论功能 <a href="https://chunge16.github.io/vitepress-blogs/blog/posts/2023/vitepress-plugin-comment-with-giscus">相关网址</a><i style="color: green">（已实现）</i></li>
+   <li>博客首页样式等优化 <a href="https://swkende.github.io/swkende-doc/01_VitePress/03_VitePress%E4%BC%98%E5%8C%96.html">相关网址</a><i style="color: orange">（进行中）</i></li>
+</ol>
 
 ## 网上导师
 
 1. B站 UP主：[三十的前端课程](https://space.bilibili.com/2114295304?spm_id_from=333.1387.follow.user_card.click)
-2. B站 UP主：[小野WEB世界](https://space.bilibili.com/492976859/dynamic?spm_id_from=333.1365.list.card_avatar.click)
+1. 抖音 博主：[远方OS](https://www.douyin.com/user/MS4wLjABAAAAGUvGqSgUb8n2mLUU9SOa5wmdZy-Sj5_FUt-DK5Iu6PpxO1QgrJ1_vXy6ikzz_Q4h?from_tab_name=main&vid=7473143189256310054)
 3. B站 UP主：[渡一教育](https://space.bilibili.com/3494367333452734?spm_id_from=333.1387.follow.user_card.click)
 4. B站 UP主：[后盾人-前端后端编程](https://space.bilibili.com/282190994?spm_id_from=333.1387.follow.user_card.click)
+2. B站 UP主：[小野WEB世界](https://space.bilibili.com/492976859/dynamic?spm_id_from=333.1365.list.card_avatar.click)
 
 ## 最后
 

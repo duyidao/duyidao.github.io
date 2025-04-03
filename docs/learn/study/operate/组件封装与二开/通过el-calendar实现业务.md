@@ -1,4 +1,4 @@
-# 通过el-日历实现
+# 通过 el-日历实现
 
 ## 效果
 
@@ -7,9 +7,9 @@
 第三方库按需求改造一般方案：
 
 1. 通过 `css` 改造达到视觉效果欺骗
-2. 通过 `css` 配合 `js` 操作 `dom` 
+2. 通过 `css` 配合 `js` 操作 `dom`
 
-## UI改造
+## UI 改造
 
 ### 样式改造
 
@@ -23,7 +23,7 @@
    >
    > 如果该模型的样式设置了怪异盒子模型 `box-sizing: border-box` ，则为其设置行高时需要把内边距去掉才能实现垂直居中。
    >
-   > 因为怪异盒子模型的高度把内边距和边框都算进去，因此你设置了高度 37px ，内边距 10px ，实际高度只有17px 。
+   > 因为怪异盒子模型的高度把内边距和边框都算进去，因此你设置了高度 37px ，内边距 10px ，实际高度只有 17px 。
 
 3. 微调，如取消边框，添加背景颜色等
 
@@ -53,13 +53,13 @@
 
 #app .el-calendar-table td.is-today {
   border-radius: 50%;
-  background-color: #409EFF;
+  background-color: #409eff;
   color: #fff;
 }
 
 #app .el-calendar-table td.is-today:hover {
   background-color: #fff;
-  color: #409EFF;
+  color: #409eff;
 }
 </style>
 ```
@@ -86,9 +86,7 @@
         <div :class="returnClass(obj.data.day)">
           {{ obj.data.day.split("-")[2] }}
         </div>
-        <div class="toolTip">
-          dasdasddasdasdasdadsadadas
-        </div>
+        <div class="toolTip">dasdasddasdasdasdadsadadas</div>
       </template>
     </el-calendar>
   </div>
@@ -139,7 +137,7 @@ export default {
   position: relative;
 }
 .hastate::after {
-  content: '';
+  content: "";
   position: absolute;
   /* display: none; */
   bottom: 2px;
@@ -166,11 +164,10 @@ export default {
   z-index: 500;
 }
 
-.is-selected .toolTip  {
+.is-selected .toolTip {
   display: block;
 }
 </style>
-
 ```
 
 > 注意：
@@ -213,16 +210,16 @@ export default {
     let list = [];
 
     function createList(list) {
-      let arr = list.map(v => {
-        return h('p', v)
-      })
-      return arr
+      let arr = list.map((v) => {
+        return h("p", v);
+      });
+      return arr;
     }
 
     this.deadlineList.forEach((e) => {
       if (e.time === this.day) {
         classObj.hastate = true;
-        list = createList(e.list)
+        list = createList(e.list);
         // 进一步判断是已完成还是未完成
         e.state === "finish"
           ? (classObj.finish = true)
@@ -233,10 +230,10 @@ export default {
     if (list && list.length > 0) {
       return h("div", { class: classObj }, [
         this.day.split("-")[2],
-        h("div", { class: 'toolTip' }, [...list]),
+        h("div", { class: "toolTip" }, [...list]),
       ]);
     } else {
-      return h("div", { class: classObj }, this.day.split("-")[2])
+      return h("div", { class: classObj }, this.day.split("-")[2]);
     }
   },
 };
@@ -257,9 +254,8 @@ export default {
 
 如果遇到类似的场景，可以使用 `jsx` 的思想创建节点并返回渲染元素，该方法能够自主掌控。
 
-jsx创建节点复习：
+jsx 创建节点复习：
 
-- 参数1：你要创建的元素标签，如div、p
-- 参数2：该元素的属性，如类名，id等，对象形式
-- 参数3：该元素的内容。多个内容以数组的形式
-
+- 参数 1：你要创建的元素标签，如 div、p
+- 参数 2：该元素的属性，如类名，id 等，对象形式
+- 参数 3：该元素的内容。多个内容以数组的形式

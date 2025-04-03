@@ -1,4 +1,4 @@
-# elememntui日历二次修改
+# elememntui 日历二次修改
 
 ![需求效果](https://pic1.imgdb.cn/item/67dd07b288c538a9b5c2ad2c.png)
 
@@ -7,8 +7,9 @@
 ## 思路
 
 第三方库按需求改造方案一般为：
+
 - 尽量 `css` 改造
-- `css` 改造不行再 `js` 操作 `dom` 
+- `css` 改造不行再 `js` 操作 `dom`
 
 ## 实现
 
@@ -36,85 +37,78 @@
 接下来实现点击日期弹出弹框，展示对应的待办事项。
 
 ::: code-group
+
 ```vue [app.vue]
 <template>
   <el-calendar>
     <template v-slot:dateCell="obj">
-      <div :class="getClassName(obj.data.day)">{{ obj.data.day.split('-')[2] }}</div>
+      <div :class="getClassName(obj.data.day)">
+        {{ obj.data.day.split("-")[2] }}
+      </div>
       <div v-if="isInit(obj.data.day)" class="tooltip">
-        <span v-for="item in getList(obj.data.day)" :key="item">{{ item }}</span>
+        <span v-for="item in getList(obj.data.day)" :key="item">{{
+          item
+        }}</span>
       </div>
     </template>
   </el-calendar>
 </template>
 ```
+
 ```js [app.js]
 const res = [
   {
-    day: '2024-04-04',
+    day: "2024-04-04",
     finish: true,
-    list: [
-      '任务1',
-      '任务2',
-    ]
+    list: ["任务1", "任务2"],
   },
   {
-    day: '2024-04-05',
+    day: "2024-04-05",
     finish: false,
-    list: [
-      '任务1',
-      '任务2',
-    ]
+    list: ["任务1", "任务2"],
   },
   {
-    day: '2024-04-06',
+    day: "2024-04-06",
     finish: false,
-    list: [
-      '任务1',
-      '任务2',
-    ]
+    list: ["任务1", "任务2"],
   },
   {
-    day: '2024-04-07',
+    day: "2024-04-07",
     finish: true,
-    list: [
-      '任务1',
-      '任务2',
-    ] },
-  {
-    day: '2024-04-08',
-    finish: true,
-    list: [
-      '任务1',
-      '任务2',
-    ]
+    list: ["任务1", "任务2"],
   },
-]
+  {
+    day: "2024-04-08",
+    finish: true,
+    list: ["任务1", "任务2"],
+  },
+];
 
 const getClassName = (day) => {
-  let classObj = {}
-  const item = res.find(item => item.day === day)
+  let classObj = {};
+  const item = res.find((item) => item.day === day);
   if (item) {
-    classObj.hasState = true // 有任务
-    item.finish ? classObj.finish = true : classObj.unfinish = true // 任务完成状态
+    classObj.hasState = true; // 有任务
+    item.finish ? (classObj.finish = true) : (classObj.unfinish = true); // 任务完成状态
   }
-  return classObj
-}
+  return classObj;
+};
 
 const isInit = (day) => {
-  return res.find(item => item.day === day)
-}
+  return res.find((item) => item.day === day);
+};
 
 const getList = (day) => {
-  return res.find(item => item.day === day).list
-}
+  return res.find((item) => item.day === day).list;
+};
 ```
+
 ```css [app.css]
 .hasState {
   position: relative;
 }
 .hasState::after {
-  content: '';
+  content: "";
   position: absolute;
   display: none;
   bottom: 2px;
@@ -146,6 +140,7 @@ const getList = (day) => {
   display: block;
 }
 ```
+
 :::
 
 ### 进阶方法
@@ -159,52 +154,51 @@ const getList = (day) => {
 新建一个组件，圆点和弹框都在里面实现，父组件只负责引入使用，传递需要的字段即可。
 
 ::: code-group
+
 ```vue [dateTd.vue]
 <script>
 export default {
-  name: 'DateTd',
+  name: "DateTd",
   props: {
     day: {
       type: String,
-      default: ''
+      default: "",
     },
     dataList: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   render(h) {
-    let classObj = {}
-    let day = this.day
-    let list = []
+    let classObj = {};
+    let day = this.day;
+    let list = [];
 
     const createList = (list) => {
-      const arr = list.map(item => h('span', item))
-      return arr
-    }
+      const arr = list.map((item) => h("span", item));
+      return arr;
+    };
 
-    const item = res.find(item => item.day === day)
+    const item = res.find((item) => item.day === day);
     if (item) {
-      createList(item.list)
-      classObj.hasState = true // 有任务
-      item.finish ? classObj.finish = true : classObj.unfinish = true // 任务完成状态
+      createList(item.list);
+      classObj.hasState = true; // 有任务
+      item.finish ? (classObj.finish = true) : (classObj.unfinish = true); // 任务完成状态
     }
 
     if (list.length > 0) {
-      return h('div', { class: classObj },
-        [
-          day.split('-')[2],
-          h('div', { class: 'tooltip' }, [...list])
-        ]
-      )
+      return h("div", { class: classObj }, [
+        day.split("-")[2],
+        h("div", { class: "tooltip" }, [...list]),
+      ]);
+    } else {
+      return h("div", { class: classObj }, day.split("-")[2]);
     }
-    else {
-      return h('div', { class: classObj }, day.split('-')[2])
-    }
-  }
-}
+  },
+};
 </script>
 ```
+
 ```vue [app.vue]
 <template>
   <el-calendar>
@@ -215,7 +209,8 @@ export default {
 </template>
 
 <script setup>
-import dateTd from './dateTd.vue'
+import dateTd from "./dateTd.vue";
 </script>
 ```
+
 :::

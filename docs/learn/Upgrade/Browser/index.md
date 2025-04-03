@@ -27,14 +27,14 @@ function render(html) {
 `HTML` 解析的时候里面有的 DOM 都会解析为一个 DOM 树（这个 DOM 生成的时候是用 C++ 生成的，然后在外层给他包装了一层 `JS` 方便前端操作）。
 
 解析过程中遇到 `CSS` 解析 `CSS`，遇到 `JS` 执行 `JS`。为了提高解析效率，浏览器在开始解析前，会启动一个预解析的线程，率先下载 `HTML` 中的外部 `CSS` 文件和 外部的 `JS` 文件。
+
 - 如果主线程解析到 `link` 位置，此时外部的 `CSS` 文件还没有下载解析好，主线程不会等待，继续解析后续的 `HTML`。这是因为下载和解析 `CSS` 的工作是在预解析线程中进行的。这就是 `CSS` 不会阻塞 `HTML` 解析的根本原因。
-  
+
   ![CSS解析流程](https://pic1.imgdb.cn/item/67ed09ff0ba3d5a1d7eaff9e.png)
 
 - 如果主线程解析到 `script` 位置，会停止解析 `HTML`，转而等待 `JS` 文件下载好，并将全局代码解析执行完成后，才能继续解析 `HTML`。这是因为 `JS` 代码的执行过程可能会修改当前的 `DOM` 树，所以 `DOM` 树的生成必须暂停，这就是为什么 `JS` 会阻塞 `HTML` 解析的根本原因。
-  
-  ![JS解析流程](https://pic1.imgdb.cn/item/67ed0ae10ba3d5a1d7eb0045.png)
 
+  ![JS解析流程](https://pic1.imgdb.cn/item/67ed0ae10ba3d5a1d7eb0045.png)
 
 第一步完成后，会得到 `DOM` 树和 `CSSOM` 树，方便后续操作这个树对象。浏览器的默认样式、内部样式、外部样式、行内样式均会包含在 `CSSOM` 树中。除了浏览器的默认样式，其他的样式 `JS` 都能操作。
 
@@ -48,11 +48,12 @@ function render(html) {
 
 ```js
 console.log(document.styleSheets); // 查看所有的样式表，如下图所示
-document.styleSheets[0].addRule('p', 'color: red'); // 给第一个样式表添加一条规则，p 标签的颜色为 red
+document.styleSheets[0].addRule("p", "color: red"); // 给第一个样式表添加一条规则，p 标签的颜色为 red
 ```
 
 > [!NOTE] 思考
 > 为什么 `HTML` 和 `CSS` 都有生成树，而 `JS` 没有生成树？
+>
 > - `HTML` 生成树是因为 `HTML` 是用来描述页面结构的，后续浏览器渲染需要使用，可能还有修改，所以需要生成树。
 > - `CSS` 生成树是因为 `CSS` 是用来描述页面样式的，后续浏览器渲染需要使用，可能还要修改，所以需要生成树。
 > - `JS` 没有生成树是因为 `JS` 是用来描述页面行为的，只需要解析一遍，后续步骤用不到，所以不需要生成树。
@@ -104,10 +105,11 @@ CSS 属性值的计算过程包含了层叠、样式继承等，很多预设值�
 主线程会为每个层单独产生绘制指令集「如先画什么，后画什么」，用于描述这一层的内容该如何画出来。完成绘制后，主线程将每个图层的绘制信息提交给合成线程，剩余工作将由合成线程完成。
 
 例如：
+
 - 把笔移动到 10,30 的位置
-- 画一个 100*30 的矩形
+- 画一个 100\*30 的矩形
 - 用红色填充矩形
-上方的指令集最终页面上就能画出一个红色矩形。
+  上方的指令集最终页面上就能画出一个红色矩形。
 
 ![绘制](https://pic1.imgdb.cn/item/67e7cad20ba3d5a1d7e66be6.png)
 
@@ -125,9 +127,9 @@ CSS 属性值的计算过程包含了层叠、样式继承等，很多预设值�
 
 ![光栅化](https://pic1.imgdb.cn/item/67e7ce230ba3d5a1d7e66cb5.png)
 
-合成线程会将块信息交给 <SpecialWord word="GPU" /> 进程，以极高的速度完成光栅化。GPU 进程会开启多个线程来完成光栅化，并且优先处理靠近视口区域的块。光栅化的结果，就是一块一块的位图。
+合成线程会将块信息交给 <SpecialWords text="GPU" /> 进程，以极高的速度完成光栅化。GPU 进程会开启多个线程来完成光栅化，并且优先处理靠近视口区域的块。光栅化的结果，就是一块一块的位图。
 
-> GPU能干的事，CPU都能干，只不过会慢；CPU能干的事GPU不一定能干。
+> GPU 能干的事，CPU 都能干，只不过会慢；CPU 能干的事 GPU 不一定能干。
 
 ### 第八步，画
 
@@ -156,12 +158,12 @@ CSS 属性值的计算过程包含了层叠、样式继承等，很多预设值�
 也同样因为如此，当 `JS` 获取布局属性时，就可能造成无法获取到最新的布局信息。浏览器在反复权衡下，最终决定在这种情况下立即 `reflow`。
 
 ```js
-div.style.width = '100px'
-div.style.height = '100px'
-div.style.margin = '100px'
-div.style.padding = '100px'
+div.style.width = "100px";
+div.style.height = "100px";
+div.style.margin = "100px";
+div.style.padding = "100px";
 
-div.clientWidth // 此时会触发 reflow
+div.clientWidth; // 此时会触发 reflow
 ```
 
 ### 什么是重绘 repaint?
