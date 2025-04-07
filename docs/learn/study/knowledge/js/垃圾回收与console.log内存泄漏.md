@@ -8,16 +8,14 @@
 
 ```js
 let user = [
-    {name: 'join', age: 24},
-    {name: 'amy', age: 25},
-    {name: 'cat', age: 23},
-]
+  { name: "join", age: 24 },
+  { name: "amy", age: 25 },
+  { name: "cat", age: 23 },
+];
 
-const avgAge = user
-	.reduce((sum, user) => sum + user.age, 0)
-	/ user.length
+const avgAge = user.reduce((sum, user) => sum + user.age, 0) / user.length;
 
-console.log(avgAge)
+console.log(avgAge);
 ```
 
 该代码主要求平均年龄，然后将年龄打印出来。当程序运行完之后，`users` 在控制台上还能打印。它是否需不需要不是由垃圾回收器说了算，而是由人说了算，垃圾回收器再聪明，也只是一个算法，无法真正回收所有不需要的内存空间。它无法理解何为需要，何为不需要。
@@ -26,18 +24,16 @@ console.log(avgAge)
 
 ```js
 let user = [
-    {name: 'join', age: 24},
-    {name: 'amy', age: 25},
-    {name: 'cat', age: 23},
-]
+  { name: "join", age: 24 },
+  { name: "amy", age: 25 },
+  { name: "cat", age: 23 },
+];
 
-const avgAge = user
-	.reduce((sum, user) => sum + user.age, 0)
-	/ user.length
+const avgAge = user.reduce((sum, user) => sum + user.age, 0) / user.length;
 
-users = null // [!code ++]
+users = null; // [!code ++]
 
-console.log(avgAge)
+console.log(avgAge);
 ```
 
 代码运行后无论如何也无法拿到 `users` 数组了，这块内存空间就能够被认定为垃圾。
@@ -58,8 +54,8 @@ console.log(avgAge)
 举一个代码例子：
 
 ```js
-var a = {b: 1}
-a = {c: 3}
+var a = { b: 1 };
+a = { c: 3 };
 ```
 
 此时只能访问触达到 `{c: 3}` ，原本的 `{b: 1}` 无法触达，变为垃圾空间，后续会被回收。
@@ -68,74 +64,75 @@ a = {c: 3}
 
 ```js
 function createIncrease() {
-    let count = 0
-    return function () {
-        return count++
-    }
+  let count = 0;
+  return function () {
+    return count++;
+  };
 }
-let increase = createIncrease()
-    
-let handler = function () {
-    const n = increase()
-    console.log(n)
-}
+let increase = createIncrease();
 
-window.addEventListener('click', handler)
+let handler = function () {
+  const n = increase();
+  console.log(n);
+};
+
+window.addEventListener("click", handler);
 ```
 
 这段闭包代码没有造成任何内存泄漏，因为每个变量都是可访达的，是需要使用到的。如果代码修改一下变为下面这段：
 
 ```js
 function createIncrease() {
-    let count = 0
-    return function () {
-        return count++
-    }
+  let count = 0;
+  return function () {
+    return count++;
+  };
 }
-let increase = createIncrease()
-    
-let handler = function () {
-    const n = increase()
-    if (n === 3) { // [!code ++]
-        window.removeListener('click', handler) // [!code ++]
-        return // [!code ++]
-    } // [!code ++]
-    console.log(n)
-}
+let increase = createIncrease();
 
-window.addEventListener('click', handler)
+let handler = function () {
+  const n = increase();
+  if (n === 3) {
+    // [!code ++]
+    window.removeListener("click", handler); // [!code ++]
+    return; // [!code ++]
+  } // [!code ++]
+  console.log(n);
+};
+
+window.addEventListener("click", handler);
 ```
 
-在 `n` 等于3时移出点击事件，此时整个代码都不需要了，但是 `increase` 和 `handler` 还存在可被访达，此时才会造成内存泄漏。
+在 `n` 等于 3 时移出点击事件，此时整个代码都不需要了，但是 `increase` 和 `handler` 还存在可被访达，此时才会造成内存泄漏。
 
 解决方法也很简单，把这两个变量置空即可。
 
 ```js
 function createIncrease() {
-    let count = 0
-    return function () {
-        return count++
-    }
+  let count = 0;
+  return function () {
+    return count++;
+  };
 }
-let increase = createIncrease()
-    
-let handler = function () {
-    const n = increase()
-    if (n === 3) {
-        window.removeListener('click', handler)
-        increase = null // [!code ++]
-        handler = null // [!code ++]
-        return
-    }
-    console.log(n)
-}
+let increase = createIncrease();
 
-window.addEventListener('click', handler)
+let handler = function () {
+  const n = increase();
+  if (n === 3) {
+    window.removeListener("click", handler);
+    increase = null; // [!code ++]
+    handler = null; // [!code ++]
+    return;
+  }
+  console.log(n);
+};
+
+window.addEventListener("click", handler);
 ```
 
 这样无法访达后这块内存就能被回收掉。
 
-## console.log导致内存泄漏
+## console.log 导致内存泄漏
 
 `console.log` 在调试的时候非常方便，但是在 `eslint` 中会有报错或警告，这是因为 `console.log` 一般用于调试信息，而这些信息不建议在客户端打印。
 
@@ -147,7 +144,7 @@ window.addEventListener('click', handler)
 
 下面是添加了 `console.log` 后的内存：
 
-![](https://pic.imgdb.cn/item/65f85b5d9f345e8d0344da8a.png)
+![有console.log](https://pic.imgdb.cn/item/65f85b5d9f345e8d0344da8a.png)
 
 可以看到，有很多数据内存没被回收，因此造成内存泄漏。
 
@@ -156,40 +153,40 @@ window.addEventListener('click', handler)
 如果是 `vue-cli` 配置的项目，它内部已经支持该工具的使用，无需再 `npm i` 引入。在 `vue.config.js` 文件中做相应的配置处理。
 
 ```js
-const { defineConfig } = require('@vue/cli-service');
+const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
-    transpileDependencies: true,
-    terser: {
-        terserOptions: {
-            // 压缩的方式
-            compress: {
-                drop_console: true,
-                drop_debugger: true,
-            }
-        }
-    }
-})
+  transpileDependencies: true,
+  terser: {
+    terserOptions: {
+      // 压缩的方式
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+  },
+});
 ```
 
 如果项目用的是 Vue3 的 `vite` ，也是可以做到的。在 `vite.config.js` 文件做相应的配置即可。
 
 ```js
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
-    plugin: [vue()],
-    build: {
-        minify: 'terser',
-        terserOptions: {
-            // 压缩的方式
-            compress: {
-                drop_console: true,
-                drop_debugger: true,
-            }
-        }
-    }
-})
+  plugin: [vue()],
+  build: {
+    minify: "terser",
+    terserOptions: {
+      // 压缩的方式
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+  },
+});
 ```
 
 注意的是，`vite` 没有内置该库，因此需要先引入。

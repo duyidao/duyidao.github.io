@@ -71,7 +71,7 @@ onMounted(() => {
 
 <template>
   <div class="word">
-    <p>
+    <p title="文档创作者">
       <svg t="1743683703435"
         class="icon"
         viewBox="0 0 1024 1024"
@@ -89,9 +89,9 @@ onMounted(() => {
           fill="#8a8a8a"
           p-id="8259"></path>
       </svg>
-      文档创作者: 刀刀
+      <span>刀刀</span>
     </p>
-    <p>
+    <p title="最后一次更新时间">
       <svg t="1724572866572"
         class="icon"
         viewBox="0 0 1024 1024"
@@ -105,9 +105,9 @@ onMounted(() => {
           fill="#8a8a8a"
           p-id="18132"></path>
       </svg>
-      更新: {{ date.toLocaleDateString() }}
+      <span>{{ date.toLocaleDateString() }}</span>
     </p>
-    <p>
+    <p title="文档字数">
       <svg t="1724571760788"
         class="icon"
         viewBox="0 0 1024 1024"
@@ -125,9 +125,9 @@ onMounted(() => {
           opacity=".619"
           p-id="6127"></path>
       </svg>
-      字数: {{ wordCount }} 字
+      <span>{{ wordCount }} 字</span>
     </p>
-    <p>
+    <p title="预计阅读时间">
       <svg t="1724572797268"
         class="icon"
         viewBox="0 0 1060 1024"
@@ -141,19 +141,19 @@ onMounted(() => {
           fill="#8a8a8a"
           p-id="15032"></path>
       </svg>
-      时长: {{ readTime }} 分钟
+      <span>{{ readTime }} 分钟</span>
     </p>
   </div>
   <ul v-if="page.frontmatter?.isReship"
     class="reship">
     <div class="reship-icon">
       <i></i>
-      学习明灯
+      <span>学习明灯</span>
     </div>
     <li v-for="item in page.frontmatter?.author"
       :key="item">
-      <span>UP主：{{ item.split(' ')[0] }}，</span>
-      <span>视频地址：<a :href="item.split(' ')[1]">前往学习</a></span>
+      <span>UP主：{{ item.split(' ')[0] }}</span>
+      <span v-if="item.split(' ')[1]">，视频地址：<a :href="item.split(' ')[1]" target="_blank">前往学习</a></span>
     </li>
   </ul>
 </template>
@@ -164,18 +164,26 @@ onMounted(() => {
   align-items: center;
   color: var(--vp-c-text-2);
   font-size: 15px;
+  margin: 30px 0 20px;
 
   p {
-    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    margin: 0 18px 14px 0;
+    line-height: 1;
+
+    span {
+      margin-left: 8px;
+    }
   }
 }
 
 .reship {
   position: relative;
   border: 1px solid var(--vp-custom-block-tip-text);
-  padding: 24px 10px 8px 30px;
+  padding: 24px 10px 10px 30px;
   margin: 10px 0 0;
-  border-radius: 12px;
+  border-radius: 6px;
 
   .reship-icon {
     display: flex;
@@ -189,7 +197,7 @@ onMounted(() => {
     font-weight: bold;
     font-family: '仿宋';
     border: 1px solid var(--vp-custom-block-tip-text);
-    border-radius: 4px;
+    border-radius: 5px;
 
     i {
       width: 16px;
@@ -201,8 +209,41 @@ onMounted(() => {
   }
 }
 
-.icon {
-  display: inline-block;
-  transform: translate(0px, 2px);
+@media screen and (max-width: 768px) {
+  .word {
+    flex-wrap: wrap;
+    font-size: .9375rem;
+    margin: 1rem 0;
+
+    p {
+      margin: 0 .875rem .875rem 0;
+
+      span {
+        margin-left: .5rem;
+      }
+    }
+  }
+
+  .reship {
+    border-width: .0625rem;
+    padding: 1.5rem .625rem .625rem 1.875rem;
+    margin: .625rem 0 0;
+    border-radius: .375rem;
+
+    .reship-icon {
+      top: -1.125rem;
+      left: 1.25rem;
+      padding: .1875rem .625rem;
+      font-size: 1.125rem;
+      border-width: .0625rem;
+      border-radius: .3125rem;
+
+      i {
+        width: 1rem;
+        height: 1rem;
+        margin-right: .375rem;
+      }
+    }
+  }
 }
 </style>

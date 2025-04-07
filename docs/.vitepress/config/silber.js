@@ -323,12 +323,12 @@ const UpgradeSidebar = [
         collapsible: true,
         collapsed: true,
         items: [
-          { text: "正则表达式", link: "/Upgrade/Reg/knowledge/" },
-          { text: "元子字符", link: "/Upgrade/Reg/knowledge/元子字符" },
-          { text: "模式修饰", link: "/Upgrade/Reg/knowledge/模式修饰" },
-          { text: "原子", link: "/Upgrade/Reg/knowledge/原子" },
-          { text: "匹配", link: "/Upgrade/Reg/knowledge/匹配" },
-          { text: "方法", link: "/Upgrade/Reg/knowledge/方法" },
+          { text: "正则表达式", link: "/Upgrade/Reg/" },
+          { text: "元子字符", link: "/Upgrade/Reg/元子字符" },
+          { text: "模式修饰", link: "/Upgrade/Reg/模式修饰" },
+          { text: "原子", link: "/Upgrade/Reg/原子" },
+          { text: "匹配", link: "/Upgrade/Reg/匹配" },
+          { text: "方法", link: "/Upgrade/Reg/方法" },
         ],
       },
       {
@@ -400,6 +400,17 @@ const UpgradeSidebar = [
       { text: "浏览器渲染原理", link: "/Upgrade/Browser/" },
     ],
   },
+  {
+    text: "🚧 工程化",
+    collapsible: true,
+    collapsed: true,
+    items: [
+      { text: "前端工程化的意义", link: "/Upgrade/Engineer/" },
+      { text: "模块化和包管理", link: "/Upgrade/Engineer/module" },
+      { text: "JS 工具链", link: "/Upgrade/Engineer/js" },
+      { text: "CSS 工具链", link: "/Upgrade/Engineer/css" },
+    ],
+  },
 ]
 
 // 学习数组
@@ -415,51 +426,51 @@ const StudySidebar = [
         items: [
           {
             text: "垃圾回收与内存泄漏",
-            link: "/study/knowledge/JS相关/垃圾回收与console.log内存泄漏.md",
+            link: "/study/js/垃圾回收与console.log内存泄漏.md",
           },
           {
             text: "console.log对象时需要注意的坑",
-            link: "/study/knowledge/JS相关/console.log对象时需要注意的坑.md",
+            link: "/study/js/console.log对象时需要注意的坑.md",
           },
           {
             text: "windoe.onstorage标签页通信",
-            link: "/study/knowledge/JS相关/windoe.onstorage标签页通信",
+            link: "/study/js/windoe.onstorage标签页通信",
           },
           {
             text: "toFixed结果因精确度产生bug",
-            link: "/study/knowledge/JS相关/toFixed结果因精确度产生bug",
+            link: "/study/js/toFixed结果因精确度产生bug",
           },
           {
             text: "设计模式",
-            link: "/study/knowledge/JS相关/设计模式",
+            link: "/study/js/设计模式",
           },
           {
             text: "Proxy与defineProperty",
-            link: "/study/knowledge/JS相关/Proxy与defineProperty",
+            link: "/study/js/Proxy与defineProperty",
           },
           {
             text: "LocalStorage封装",
-            link: "/study/knowledge/JS相关/LocalStorage封装",
+            link: "/study/js/LocalStorage封装",
           },
           {
             text: "判断是否是数组",
-            link: "/study/knowledge/JS相关/判断是否是数组",
+            link: "/study/js/判断是否是数组",
           },
           {
             text: "js深度克隆",
-            link: "/study/knowledge/JS相关/js深度克隆",
+            link: "/study/js/js深度克隆",
           },
           {
             text: "吃透js执行顺序以及异步实战管理技巧",
-            link: "/study/knowledge/JS相关/吃透js执行顺序以及异步实战管理技巧",
+            link: "/study/js/吃透js执行顺序以及异步实战管理技巧",
           },
           {
             text: "属性描述符",
-            link: "/study/knowledge/JS相关/属性描述符",
+            link: "/study/js/属性描述符",
           },
           {
             text: "Performance API",
-            link: "/study/knowledge/JS相关/Performance",
+            link: "/study/js/Performance",
           },
         ],
       },
@@ -470,27 +481,27 @@ const StudySidebar = [
         items: [
           {
             text: "Axios二次封装",
-            link: "/study/knowledge/Promise相关/Axios二次封装",
+            link: "/study/promise/Axios二次封装",
           },
           {
             text: "并发请求封装",
-            link: "/study/knowledge/Promise相关/并发请求封装",
+            link: "/study/promise/并发请求封装",
           },
           {
             text: "并发任务控制",
-            link: "/study/knowledge/Promise相关/并发任务控制",
+            link: "/study/promise/并发任务控制",
           },
           {
             text: "多接口请求",
-            link: "/study/knowledge/Promise相关/多接口请求",
+            link: "/study/promise/多接口请求",
           },
           {
             text: "高量级任务执行优化",
-            link: "/study/knowledge/Promise相关/高量级任务执行优化",
+            link: "/study/promise/高量级任务执行优化",
           },
           {
             text: "消除异步传染性",
-            link: "/study/knowledge/Promise相关/消除异步传染性",
+            link: "/study/promise/消除异步传染性",
           },
         ],
       },
@@ -501,51 +512,51 @@ const StudySidebar = [
         items: [
           {
             text: "$nexttick",
-            link: "/study/knowledge/Vue相关/$nexttick",
+            link: "/study/vue/$nexttick",
           },
           {
             text: "ref和reactive在使用上的区别",
-            link: "/study/knowledge/Vue相关/ref和reactive在使用上的区别",
+            link: "/study/vue/ref和reactive在使用上的区别",
           },
           {
             text: "Vue2 VS Vue3",
-            link: "/study/knowledge/Vue相关/Vue2 VS Vue3",
+            link: "/study/vue/Vue2 VS Vue3",
           },
           {
             text: "v-model双向绑定",
-            link: "/study/knowledge/Vue相关/v-model双向绑定",
+            link: "/study/vue/v-model双向绑定",
           },
           {
             text: "vue图片动态引入使用require",
-            link: "/study/knowledge/Vue相关/vue图片动态引入使用require",
+            link: "/study/vue/vue图片动态引入使用require",
           },
           {
             text: "vue项目打包后首页白屏总结",
-            link: "/study/knowledge/Vue相关/vue项目打包后首页白屏总结",
+            link: "/study/vue/vue项目打包后首页白屏总结",
           },
           {
             text: "Vue项目对render和jsx的妙用",
-            link: "/study/knowledge/Vue相关/Vue项目对render和jsx的妙用",
+            link: "/study/vue/Vue项目对render和jsx的妙用",
           },
           {
             text: "Vue项目中TS意义与麻烦",
-            link: "/study/knowledge/Vue相关/Vue项目中TS意义与麻烦",
+            link: "/study/vue/Vue项目中TS意义与麻烦",
           },
           {
             text: "灵活使用冻结对象提升代码效率",
-            link: "/study/knowledge/Vue相关/灵活使用冻结对象提升代码效率",
+            link: "/study/vue/灵活使用冻结对象提升代码效率",
           },
           {
             text: "Vue更新机制和优化",
-            link: "/study/knowledge/Vue相关/Vue更新机制和优化",
+            link: "/study/vue/Vue更新机制和优化",
           },
           {
             text: "从Vue2、Vue3不更新学Vue原理",
-            link: "/study/knowledge/Vue相关/从Vue2、Vue3不更新学Vue原理",
+            link: "/study/vue/从Vue2、Vue3不更新学Vue原理",
           },
           {
             text: "Vue常见优化手段",
-            link: "/study/knowledge/Vue相关/Vue常见优化手段",
+            link: "/study/vue/Vue常见优化手段",
           },
         ],
       },
@@ -554,26 +565,26 @@ const StudySidebar = [
         collapsible: true,
         collapsed: true,
         items: [
-          { text: "HBuilder使用模拟器调试", link: "/study/knowledge/项目相关/HBuilder使用模拟器调试" },
+          { text: "HBuilder使用模拟器调试", link: "/study/item/HBuilder使用模拟器调试" },
           {
             text: "import引入库引入的什么",
-            link: "/study/knowledge/项目相关/import引入库引入的什么",
+            link: "/study/item/import引入库引入的什么",
           },
           {
             text: "sass加css变量实现现代前端换肤",
-            link: "/study/knowledge/项目相关/sass加css变量实现现代前端换肤",
+            link: "/study/item/sass加css变量实现现代前端换肤",
           },
           {
             text: "绝对路径与相对路径",
-            link: "/study/knowledge/项目相关/绝对路径与相对路径",
+            link: "/study/item/绝对路径与相对路径",
           },
           {
             text: "资源提示符",
-            link: "/study/knowledge/项目相关/资源提示符",
+            link: "/study/item/资源提示符",
           },
           {
             text: "dataUrl与base64的区别",
-            link: "/study/knowledge/项目相关/dataUrl与base64的区别",
+            link: "/study/item/dataUrl与base64的区别",
           },
         ],
       },
@@ -584,27 +595,27 @@ const StudySidebar = [
         items: [
           {
             text: "优化项目速度",
-            link: "/study/knowledge/优化相关/优化项目速度",
+            link: "/study/optimize/优化项目速度",
           },
           {
             text: "初步性能优化",
-            link: "/study/knowledge/优化相关/性能优化",
+            link: "/study/optimize/性能优化",
           },
           {
             text: "性能优化评估",
-            link: "/study/knowledge/优化相关/中级性能优化",
+            link: "/study/optimize/中级性能优化",
           },
           {
             text: "资源加载优化",
-            link: "/study/knowledge/优化相关/资源加载优化",
+            link: "/study/optimize/资源加载优化",
           },
           {
             text: "页面加载慢排查与解决方案",
-            link: "/study/knowledge/优化相关/页面加载慢排查与解决方案",
+            link: "/study/optimize/页面加载慢排查与解决方案",
           },
           {
             text: "打包优化",
-            link: "/study/knowledge/优化相关/打包优化",
+            link: "/study/optimize/打包优化",
           },
         ],
       },
@@ -621,47 +632,47 @@ const StudySidebar = [
         items: [
           {
             text: "Vue项目权限控制",
-            link: "/study/operate/功能操作与实现/Vue项目权限控制",
+            link: "/study/handle/Vue项目权限控制",
           },
           {
             text: "摆脱手动依赖引入，自动引入依赖",
-            link: "/study/operate/功能操作与实现/摆脱手动依赖引入，自动引入依赖",
+            link: "/study/handle/摆脱手动依赖引入，自动引入依赖",
           },
           {
             text: "操作内嵌ifrname与传递消息",
-            link: "/study/operate/功能操作与实现/操作内嵌ifrname与传递消息",
+            link: "/study/handle/操作内嵌ifrname与传递消息",
           },
           {
             text: "从一个需求出发如何更优雅写代码",
-            link: "/study/operate/功能操作与实现/从一个需求出发如何更优雅写代码",
+            link: "/study/handle/从一个需求出发如何更优雅写代码",
           },
           {
             text: "富文本编辑器",
-            link: "/study/operate/功能操作与实现/富文本编辑器",
+            link: "/study/handle/富文本编辑器",
           },
           {
             text: "前端操作excel与word",
-            link: "/study/operate/功能操作与实现/前端操作excel与word",
+            link: "/study/handle/前端操作excel与word",
           },
           {
             text: "前端文件上传与相关操作",
-            link: "/study/operate/功能操作与实现/前端文件上传与相关操作",
+            link: "/study/handle/前端文件上传与相关操作",
           },
           {
             text: "前端下载后端传输的文件",
-            link: "/study/operate/功能操作与实现/前端下载后端传输的文件",
+            link: "/study/handle/前端下载后端传输的文件",
           },
           {
             text: "移动端大屏端布局适配",
-            link: "/study/operate/功能操作与实现/移动端大屏端布局适配",
+            link: "/study/handle/移动端大屏端布局适配",
           },
           {
             text: "元素不定大小隐藏做溢出隐藏",
-            link: "/study/operate/功能操作与实现/元素不定大小隐藏做溢出隐藏",
+            link: "/study/handle/元素不定大小隐藏做溢出隐藏",
           },
           {
             text: "前端滚动锚点注意事项",
-            link: "/study/operate/功能操作与实现/前端滚动锚点注意事项",
+            link: "/study/handle/前端滚动锚点注意事项",
           },
         ],
       },
@@ -672,43 +683,43 @@ const StudySidebar = [
         items: [
           {
             text: "vue重复小组件处理经验",
-            link: "/study/operate/组件封装与二开/vue重复小组件处理经验",
+            link: "/study/package/vue重复小组件处理经验",
           },
           {
             text: "vue组件设计技巧",
-            link: "/study/operate/组件封装与二开/vue组件设计技巧",
+            link: "/study/package/vue组件设计技巧",
           },
           {
             text: "对话框弹窗组件",
-            link: "/study/operate/组件封装与二开/对话框弹窗组件",
+            link: "/study/package/对话框弹窗组件",
           },
           {
             text: "输入框组件封装",
-            link: "/study/operate/组件封装与二开/输入框组件封装",
+            link: "/study/package/输入框组件封装",
           },
           {
             text: "通过el-calendar实现业务",
-            link: "/study/operate/组件封装与二开/通过el-calendar实现业务",
+            link: "/study/package/通过el-calendar实现业务",
           },
           {
             text: "通过el-select实现多个省略学习如何改造第三方组件满足自己的要求",
-            link: "/study/operate/组件封装与二开/通过el-select实现多个省略学习如何改造第三方组件满足自己的要求",
+            link: "/study/package/通过el-select实现多个省略学习如何改造第三方组件满足自己的要求",
           },
           {
             text: "通过el-table实现多数据完美无限滚动效果",
-            link: "/study/operate/组件封装与二开/通过el-table实现多数据完美无限滚动效果",
+            link: "/study/package/通过el-table实现多数据完美无限滚动效果",
           },
           {
             text: "elememntui日历二次修改",
-            link: "/study/operate/组件封装与二开/elememntui日历二次修改",
+            link: "/study/package/elememntui日历二次修改",
           },
           {
             text: "页码列表组件封装思路",
-            link: "/study/operate/组件封装与二开/页码列表组件封装思路",
+            link: "/study/package/页码列表组件封装思路",
           },
           {
             text: "组件库搭建",
-            link: "/study/operate/组件封装与二开/组件库搭建",
+            link: "/study/package/组件库搭建",
           },
         ],
       },
@@ -719,31 +730,31 @@ const StudySidebar = [
         items: [
           {
             text: "通过状态思维应对多变页面",
-            link: "/study/operate/项目实战与训练/通过状态思维应对多变页面",
+            link: "/study/train/通过状态思维应对多变页面",
           },
           {
             text: "Vue复杂联动表单",
-            link: "/study/operate/项目实战与训练/Vue复杂联动表单",
+            link: "/study/train/Vue复杂联动表单",
           },
           {
             text: "通过动态列表学习数据思维",
-            link: "/study/operate/项目实战与训练/通过动态列表学习数据思维",
+            link: "/study/train/通过动态列表学习数据思维",
           },
           {
             text: "实战中有用的TypeScript项目技巧",
-            link: "/study/operate/项目实战与训练/实战中有用的ts项目技巧",
+            link: "/study/train/实战中有用的ts项目技巧",
           },
           {
             text: "前端不同屏幕尺寸自适应与大屏移动端开发",
-            link: "/study/operate/项目实战与训练/前端不同屏幕尺寸自适应与大屏移动端开发",
+            link: "/study/train/前端不同屏幕尺寸自适应与大屏移动端开发",
           },
           {
             text: "前端工具函数开发",
-            link: "/study/operate/项目实战与训练/前端工具函数开发",
+            link: "/study/train/前端工具函数开发",
           },
           {
             text: "需求架构设计并优雅实现",
-            link: "/study/operate/项目实战与训练/需求架构设计并优雅实现",
+            link: "/study/train/需求架构设计并优雅实现",
           },
         ]
       },
@@ -754,23 +765,23 @@ const StudySidebar = [
         items: [
           {
             text: "前端代码风格定制",
-            link: "/study/operate/项目配置与测试/前端代码风格定制",
+            link: "/study/test/前端代码风格定制",
           },
           {
             text: "前端自动化测试",
-            link: "/study/operate/项目配置与测试/前端自动化测试",
+            link: "/study/test/前端自动化测试",
           },
           {
             text: "前端环境变量使用和原理",
-            link: "/study/operate/项目配置与测试/前端环境变量使用和原理",
+            link: "/study/test/前端环境变量使用和原理",
           },
           {
             text: "前端部署与缓存管理",
-            link: "/study/operate/项目配置与测试/前端部署与缓存管理",
+            link: "/study/test/前端部署与缓存管理",
           },
           {
             text: "前端Bug调试指南",
-            link: "/study/operate/项目配置与测试/前端Bug调试指南",
+            link: "/study/test/前端Bug调试指南",
           },
         ],
       },

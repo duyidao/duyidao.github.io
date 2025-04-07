@@ -17,10 +17,10 @@ title: 关于刀刀博客
 ## 未来规划
 
 <ol>
-   <li>实现博客的标签功能 <a href="https://www.liyd.net/how-to-implement-tabs-in-vitepress">相关网址</a><i style="color: red">（待开始）</i></li>
-   <li style="text-decoration: line-through">实现博客的搜素功能 <a href="https://www.algolia.com/">相关网址</a><i style="color: green">（已实现）</i></li>
-   <li style="text-decoration: line-through">实现博客的评论功能 <a href="https://chunge16.github.io/vitepress-blogs/blog/posts/2023/vitepress-plugin-comment-with-giscus">相关网址</a><i style="color: green">（已实现）</i></li>
-   <li>博客首页样式等优化 <a href="https://swkende.github.io/swkende-doc/01_VitePress/03_VitePress%E4%BC%98%E5%8C%96.html">相关网址</a><i style="color: orange">（进行中）</i></li>
+   <li>实现博客的标签功能 <a href="https://www.liyd.net/how-to-implement-tabs-in-vitepress" target="_blank">相关网址</a><i style="color: red">（待开始）</i></li>
+   <li style="text-decoration: line-through">实现博客的搜素功能 <a href="https://www.algolia.com/" target="_blank">相关网址</a><i style="color: green">（已实现）</i></li>
+   <li style="text-decoration: line-through">实现博客的评论功能 <a href="https://chunge16.github.io/vitepress-blogs/blog/posts/2023/vitepress-plugin-comment-with-giscus" target="_blank">相关网址</a><i style="color: green">（已实现）</i></li>
+   <li>博客首页样式等优化 <a href="https://swkende.github.io/swkende-doc/01_VitePress/03_VitePress%E4%BC%98%E5%8C%96.html" target="_blank">相关网址</a><i style="color: orange">（进行中）</i></li>
 </ol>
 
 ## 网上导师

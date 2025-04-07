@@ -29,7 +29,7 @@ export default [
         items: [
           {
             text: "学而时习之",
-            link: "/study/knowledge/JS相关/垃圾回收与console.log内存泄漏",
+            link: "/study/js/垃圾回收与console.log内存泄漏",
           },
         ],
       },
