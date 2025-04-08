@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: 刀刀博客
-  text: 欢迎来到刀刀博客，我是杜一刀。<br/><span>这里记录自己的学习成果，项目学习经验。不定时更新~</span>
+  text: 欢迎来到刀刀博客，我是刀刀<br/><span>这里记录自己的学习成果，项目学习经验。不定时更新~</span>
   tagline: 每天都要比昨天更有进步💪
   actions:
     - theme: brand
@@ -46,7 +46,7 @@ features:
   - icon:  🦆
     title: 面试鸭
     details: 面经
-    link: /dict/js/(a==1&&a==2&&a==3)
+    link: /interview/js/(a==1&&a==2&&a==3)
   - icon:  📘
     title: 刀刀小站
     details: 刀刀博客效果展示，功能实现，不容错过

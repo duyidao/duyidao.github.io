@@ -409,6 +409,7 @@ const UpgradeSidebar = [
       { text: "模块化和包管理", link: "/Upgrade/Engineer/module" },
       { text: "JS 工具链", link: "/Upgrade/Engineer/js" },
       { text: "CSS 工具链", link: "/Upgrade/Engineer/css" },
+      { text: "构建工具和脚手架", link: "/Upgrade/Engineer/engineer" },
     ],
   },
 ]

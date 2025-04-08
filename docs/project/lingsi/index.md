@@ -20,7 +20,7 @@ pageClass: project-lingsi-class
 <BlogLis :items="[
   {
     title: '音果云音',
-    link: '/project/lingsi/music/',
+    link: '/lingsi/music/',
     description: '已上线，各端下载地址为：',
     subItems: [
       { title: '安卓-百度助手', link: 'https://mobile.baidu.com/item?pid=5000028289&source=appbaidu', pref: '安卓-百度助手：' },
@@ -30,7 +30,7 @@ pageClass: project-lingsi-class
   },
   {
     title: '职技网',
-    link: '/project/lingsi/职技网/',
+    link: '/lingsi/职技网/',
     description: '已上线，通过关注公众号打开，地址为：',
     subItems: [
       { title: '职技网', link: 'http://www.zhijijob.com/client/#/' },
@@ -38,17 +38,17 @@ pageClass: project-lingsi-class
   },
   {
     title: '视频分销',
-    link: '/project/lingsi/sale/',
+    link: '/lingsi/sale/',
     description: '已上线，关注公众号抓猫电商打开，小程序项目',
   },
   {
     title: '华润水泥',
-    link: '/project/lingsi/水泥/',
+    link: '/lingsi/水泥/',
     description: '内部使用的后台管理项目',
   },
   {
     title: 'CRM',
-    link: '/project/lingsi/crm/',
+    link: '/lingsi/crm/',
     description: '内部使用的小程序项目',
   }
 ]" />
