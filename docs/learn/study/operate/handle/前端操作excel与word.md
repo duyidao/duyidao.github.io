@@ -1,11 +1,18 @@
+---
+title: 前端操作 excel 与 word
+isReship: true
+author:
+  - 三十的前端课 https://www.bilibili.com/video/BV1ko4y1B7z2/?spm_id_from=333.1387.upload.video_card.click&vd_source=04a0a5a7dec43971cb2db79d05d54d8d
+---
+
 # 前端操作 excel 与 word
 
 ## Excel
 
 |              | 通用 | Vue               | React             |
 | ------------ | ---- | ----------------- | ----------------- |
-| 解析内容操作 | xlsx | xlsx              | xlsx              |
-| 预览         | xlsx | @vue-office/excel | react-file-viewer |
+| 解析内容操作 | `xlsx` | `xlsx`              | `xlsx`              |
+| 预览         | `xlsx` | `@vue-office/excel` | `react-file-viewer` |
 
 ### 前端 excel 转为表格或数据
 
@@ -56,7 +63,7 @@ export default {
 </script>
 ```
 
-> 注意：
+> [!WARNING] 注意：
 >
 > 前端通过接口请求获取的 `blob` 格式数据也可以使用该方法。
 
@@ -70,7 +77,7 @@ export default {
 
 - 通过 `book_new()` 方法创建数据
 
-- 通过 `wirteFile()` 方法写入 `excel` 。第一个参数为`book_new()` 创建的数据，第二个参数为 `excel` 名称
+- 通过 `wirteFile()` 方法写入 `excel` 。第一个参数为 `book_new()` 创建的数据，第二个参数为 `excel` 名称
 
 **代码**
 
@@ -118,7 +125,7 @@ export default {
 
 - 下载依赖
 
-  ```
+  ```sh
   npm i @vue-office/excel
   ```
 
@@ -149,7 +156,7 @@ export default {
   };
   ```
 
-  3. 本地资源，放在 public 内直接通过路径传递即可
+  3. 本地资源，放在 `public` 内直接通过路径传递即可
 
 ### 总结
 
@@ -166,13 +173,13 @@ export default {
 
 |              | 通用                | Vue              | React             |
 | ------------ | ------------------- | ---------------- | ----------------- |
-| 解析内容操作 | docxtemplater       | docxtemplater    | docxtemplater     |
-| 预览         | mammothdocx-preview | @vue-office/docx | react-file-viewer |
+| 解析内容操作 | `docxtemplater`       | `docxtemplater`    | `docxtemplater`     |
+| 预览         | `mammothdocx-preview` | `@vue-office/docx` | `react-file-viewer` |
 
 ### 组件预览
 
 - 下载依赖
-  ```
+  ```sh
   npm i @vue-office/docx
   ```
 - 引入第三方组件
@@ -203,7 +210,7 @@ export default {
 ### mammon 预览
 
 - 下载依赖
-  ```
+  ```sh
   npm i docx-preview
   ```
 - 功能实现

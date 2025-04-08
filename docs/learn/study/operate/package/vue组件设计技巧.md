@@ -1,3 +1,10 @@
+---
+title: Vue 组件设计技巧
+isReship: true
+author:
+  - 三十的前端课 https://www.bilibili.com/video/BV1de411X73e/?spm_id_from=333.1387.upload.video_card.click
+---
+
 # Vue 组件设计技巧
 
 设计一个组件需要从以下四个方面来思考：
@@ -6,7 +13,7 @@
 
    样式应该写哪些？需要注意什么？
 
-2. template
+2. `template`
 
    通过插槽传递还是直接写在子组件内？
 
@@ -14,7 +21,7 @@
 
    某逻辑是由父组件处理还是子组件处理？
 
-4. props
+4. `props`
 
    哪些东西放在子组件内？哪些数据通过父组件传参？
 

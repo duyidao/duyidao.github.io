@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: 前端知识
-      link: /CSS/
+      link: /CSS/属性详解/-webkit-box-reflect
     - theme: alt
       text: 项目总结
       link: /project/

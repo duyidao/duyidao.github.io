@@ -1,4 +1,11 @@
-# vue 重复小组件处理经验
+---
+title: Vue 重复小组件处理经验
+isReship: true
+author:
+  - 三十的前端课 https://www.bilibili.com/video/BV1RK4118727/?spm_id_from=333.1387.upload.video_card.click
+---
+
+# Vue 重复小组件处理经验
 
 ## 重复小组件处理经验
 
@@ -74,7 +81,7 @@ export const signProp = (content) => {
 };
 ```
 
-这么写点击按钮后页面能生成对应的 DOM，点击不同意按钮也能卸载。但是再次点击按钮后不再生成 DOM 了，因为 `render` 函数只会执行一次，执行完之后虽然页面的真实 DOMM 被删除了，但是 `render` 认为你已经挂载了，就不再执行。
+这么写点击按钮后页面能生成对应的 <SpecialWords text="DOM" />，点击不同意按钮也能卸载。但是再次点击按钮后不再生成 <SpecialWords text="DOM" /> 了，因为 `render` 函数只会执行一次，执行完之后虽然页面的真实 <SpecialWords text="DOM" /> 被删除了，但是 `render` 认为你已经挂载了，就不再执行。
 
 参考一下 `element-ui` 的方法修改一下。
 
@@ -115,7 +122,7 @@ export const signProp = (content, handler) => {
 };
 ```
 
-它是通过原生 DOM 来加入到 `body` 内，这样他就不会管虚拟 DOM 是否挂载。
+它是通过原生 <SpecialWords text="DOM" /> 来加入到 `body` 内，这样他就不会管虚拟 <SpecialWords text="DOM" /> 是否挂载。
 
 现在可以在各个需要的场景使用该方法了。
 

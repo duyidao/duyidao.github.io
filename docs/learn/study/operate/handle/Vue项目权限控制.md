@@ -1,3 +1,10 @@
+---
+title: Vue 项目权限控制
+isReship: true
+author:
+  - 三十的前端课 https://www.bilibili.com/video/BV1e8411F7Ds/?spm_id_from=333.1387.search.video_card.click
+---
+
 # Vue 项目权限控制
 
 ## 后端返回路由规则 ※
@@ -159,7 +166,7 @@ export function resetRoute() {
 
 ```js
 getCode() {
-    // ['BUY', 'SALE']
+  // ['BUY', 'SALE']
 }
 ```
 

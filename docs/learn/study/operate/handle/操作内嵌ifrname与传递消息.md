@@ -1,3 +1,10 @@
+---
+title: 操作内嵌 ifrname 与传递消息
+isReship: true
+author:
+  - 三十的前端课 https://www.bilibili.com/video/BV14s4y1V7oN/?spm_id_from=333.1387.upload.video_card.click
+---
+
 # 操作内嵌 ifrname 与传递消息
 
 ## 直接操作 ifrname
@@ -8,7 +15,7 @@
 
 ### 获取元素
 
-1. 通过 `$refs` 获取 `ifrname` 的 `dom` 元素
+1. 通过 `$refs` 获取 `ifrname` 的 <SpecialWords text="DOM" /> 元素
 2. 通过 `.contentWindow` 获取 `ifrname` 的窗口对象（全局对象获取窗口对象）
 3. 通过 `.contentDocument` 获取 `ifrname` 的 `document` 对象（操作节点时获取该对象）
 
@@ -35,7 +42,7 @@ mounted() {
 }
 ```
 
-接收参数 e 有两个属性：
+接收参数 `e` 有两个属性：
 
 - `data` ：传递过来的数据
 - `origin` ：传递的地址，如 `localhost:8081` 传递的数据就打印其地址
@@ -176,6 +183,6 @@ saveTo(item) {
 
 ## 总结
 
-如果能够改变源码，可以直接操作源码的 `dom` 结构，使用 `postMessage` 的方法。
+如果能够改变源码，可以直接操作源码的 <SpecialWords text="DOM" /> 结构，使用 `postMessage` 的方法。
 
-如果不能操作源码，则在使用的界面获取相对应的 `ifrname` 结构操作原生 `dom` 即可。
+如果不能操作源码，则在使用的界面获取相对应的 `ifrname` 结构操作原生 <SpecialWords text="DOM" /> 即可。

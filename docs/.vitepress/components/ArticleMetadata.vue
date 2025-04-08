@@ -169,11 +169,11 @@ onMounted(() => {
   p {
     display: flex;
     align-items: center;
-    margin: 0 18px 14px 0;
+    margin: 0 20px 14px 0;
     line-height: 1;
 
     span {
-      margin-left: 8px;
+      margin-left: 6px;
     }
   }
 }
@@ -182,7 +182,7 @@ onMounted(() => {
   position: relative;
   border: 1px solid var(--vp-custom-block-tip-text);
   padding: 24px 10px 10px 30px;
-  margin: 10px 0 0;
+  margin: 30px 0 30px;
   border-radius: 6px;
 
   .reship-icon {
@@ -226,8 +226,9 @@ onMounted(() => {
 
   .reship {
     border-width: .0625rem;
-    padding: 1.5rem .625rem .625rem 1.875rem;
-    margin: .625rem 0 0;
+    padding: 2rem .625rem .625rem 1.875rem;
+    margin: 1.875rem 0;
+    font-size: 1rem;
     border-radius: .375rem;
 
     .reship-icon {
