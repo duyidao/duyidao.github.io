@@ -9,11 +9,12 @@
 
 不过浏览器并不支持这些语言，所以需要编译成 <SpecialWords text="CSS" /> 才能被浏览器识别。这些编译器被称之为 <SpecialWords text="CSS" /> 预处理器。
 
-## Sass转换
+## Sass 转换
 
 新建一个 `a.scss` 文件，用 `scss` 的函数变量实现样式效果，在命令行中执行 `sass a.scss a.css ` 命令，将 `a.scss` 编译成 `a.css` 文件。
 
 ::: code-group
+
 ```scss [a.scss]
 $color: #f00;
 
@@ -27,9 +28,10 @@ $color: #f00;
   color: #f00;
 }
 ```
+
 :::
 
-## Sass实现星空效果
+## Sass 实现星空效果
 
 ### 星星实现
 
@@ -40,9 +42,9 @@ $color: #f00;
  * 函数通过循环创建阴影效果，实现星星
  */
 @function createShadow(Sn) {
-  $shadow: '#{random(100)}vw #{random(100)}vh #fff';
+  $shadow: "#{random(100)}vw #{random(100)}vh #fff";
   @for $i from 2 through Sn {
-    $shadow: '#{$shadow}, #{random(100)}vw #{random(100)}vh #fff';
+    $shadow: "#{$shadow}, #{random(100)}vw #{random(100)}vh #fff";
   }
   @return $shadow;
 }
@@ -65,45 +67,52 @@ $color: #f00;
 
 ```scss
 @function createShadow(Sn) {
-  $shadow: '#{random(100)}vw #{random(100)}vh #fff';
+  $shadow: "#{random(100)}vw #{random(100)}vh #fff";
   @for $i from 2 through Sn {
-    $shadow: '#{$shadow}, #{random(100)}vw #{random(100)}vh #fff';
+    $shadow: "#{$shadow}, #{random(100)}vw #{random(100)}vh #fff";
   }
   @return $shadow;
 }
 
 @count: 1000; // [!code ++]
 @duration: 400s; // [!code ++]
-@for $i from 1 through 3 { // [!code ++]
+@for $i from 1 through 3 {
+  // [!code ++]
   @count: floor(calc($count / 2)); // [!code ++]
   @duration: floor(calc($duration / 2)); // [!code ++]
-  .layer { // [!code --]
-  .layer#{$i} { // [!code ++]
-    $size: 4px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: $size;
-    height: $size;
-    border-radius: 50%;
-    box-shadow: createShadow(100);
-    animation: move 5s linear infinite; // [!code ++]
-    &::after { // [!code ++]
-      content: ''; // [!code ++]
-      position: fixed; // [!code ++]
-      top: 100vh; // [!code ++]
-      left: 0; // [!code ++]
-      width: inherit; // [!code ++]
-      height: inherit; // [!code ++]
-      border-radius: inherit; // [!code ++]
-      box-shadow: inherit; // [!code ++]
-    } // [!code ++]
-  }
+  .layer {
+    // [!code --]
+    .layer#{$i} {
+      // [!code ++]
+      $size: 4px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: $size;
+      height: $size;
+      border-radius: 50%;
+      box-shadow: createShadow(100);
+      animation: move 5s linear infinite; // [!code ++]
+      &::after {
+        // [!code ++]
+        content: ""; // [!code ++]
+        position: fixed; // [!code ++]
+        top: 100vh; // [!code ++]
+        left: 0; // [!code ++]
+        width: inherit; // [!code ++]
+        height: inherit; // [!code ++]
+        border-radius: inherit; // [!code ++]
+        box-shadow: inherit; // [!code ++]
+      } // [!code ++]
+    }
   }
 } // [!code ++]
 
-@keyframes move { // [!code ++]
-  100% { transform: translateY(-100vh); } // [!code ++]
+@keyframes move {
+  // [!code ++]
+  100% {
+    transform: translateY(-100vh);
+  } // [!code ++]
 } // [!code ++]
 ```
 
@@ -121,6 +130,7 @@ $color: #f00;
 它会把接收到的 <SpecialWords text="CSS" /> 代码转为抽象语法树，通过插件处理这个抽象语法树，最后把抽象语法树转为 <SpecialWords text="CSS" /> 代码。可以把它类比为 <SpecialWords text="JavaScript" /> 代码的 `babel` 。
 
 上面提到的功能它都有对应的插件处理：
+
 - 厂商前缀：`postcss-preset-env`
 - 代码冲突：`postcss-modules`
 
