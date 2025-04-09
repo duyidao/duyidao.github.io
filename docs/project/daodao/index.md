@@ -17,7 +17,7 @@ pageClass: project-daodao-index
 
 ## 网址
 
-[刀刀小站](https://duyidao.gitee.io/blogweb/)
+[刀刀小站](https://duyidao.github.io/blogweb/#/)
 
 ## 项目搭建
 

@@ -38,4 +38,6 @@
 
 如果使用了别名如 `@/assets` ，那么会根据配置的别名查找。
 
+![入口依赖分析](https://pic1.imgdb.cn/item/67f641fe88c538a9b5c79ab3.png)
+
 ### 开发服务器
