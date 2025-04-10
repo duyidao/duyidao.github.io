@@ -16,6 +16,7 @@ export default {
   "learn/Upgrade/Network/(.*)": "Upgrade/Network/(.*)",
   "learn/Upgrade/Browser/(.*)": "Upgrade/Browser/(.*)",
   "learn/Upgrade/Engineer/(.*)": "Upgrade/Engineer/(.*)",
+  "learn/Upgrade/Framework/(.*)": "Upgrade/Framework/(.*)",
   "learn/study/operate/(.*)": "study/(.*)",
   "learn/study/knowledge/(.*)": "study/(.*)",
   "project/lingsi/(.*)": "lingsi/(.*)",

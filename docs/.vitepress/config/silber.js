@@ -412,6 +412,15 @@ const UpgradeSidebar = [
       { text: "构建工具和脚手架", link: "/Upgrade/Engineer/engineer" },
     ],
   },
+  {
+    text: "🗜️ 架构",
+    collapsible: true,
+    collapsed: true,
+    items: [
+      { text: "前端工程化的意义", link: "/Upgrade/Framework/" },
+      { text: "读与写的深度思考", link: "/Upgrade/Framework/getAndSet" },
+    ],
+  },
 ]
 
 // 学习数组
