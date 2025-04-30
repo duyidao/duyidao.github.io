@@ -318,6 +318,23 @@ const outfile = resolve(
 
 const pkg = require(`../packages/${target}/package.json`); // [!code ++]
 
+/**
+ * 打印结果如下：
+ * pkg {
+    name: '@vue/reactivity',
+    version: '1.0.0',
+    description: '响应式模块',
+    main: 'dist/reactivity.cjs.js',
+    module: 'dist/reactivity.esm.js',
+    files: [ 'index.js', 'dist' ],
+    sideEffects: false,
+    buildOptions: {
+      name: 'VueReactivity',
+      formats: [ 'esm-bundler', 'esm-browser', 'cjs', 'global' ]
+    }
+  }
+ */
+
 esbuild
   .context({
     entryPoints: [entry],
@@ -326,7 +343,7 @@ esbuild
     sourcemap: true,
     outfile,
     format,
-    globalName: pkg.name, // [!code ++]
+    globalName: pkg.buildOptions.name, // [!code ++]
   })
   .then((ctx) => {
     ctx.watch();

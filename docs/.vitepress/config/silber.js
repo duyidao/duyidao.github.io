@@ -831,7 +831,7 @@ const MyVue3Sidebar = [
     text: "⏰ 响应式",
     collapsible: true,
     items: [
-      { text: "海报页", link: "/myVue3/H5/" },
+      { text: "基础实现", link: "/myVue3/reactivity/" },
     ],
   },
 ]
