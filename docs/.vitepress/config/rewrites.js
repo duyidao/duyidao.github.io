@@ -23,6 +23,7 @@ export default {
   "project/daodao/(.*)": "daodao/(.*)",
   "project/baidu/(.*)": "baidu/(.*)",
   "project/myself/(.*)": "myself/(.*)",
+  "project/myVue3/(.*)": "myVue3/(.*)",
   "interview/arithmetic/(.*)": "interview/(.*)",
   "interview/dict/(.*)": "interview/(.*)",
   "interview/ask/(.*)": "interview/(.*)",

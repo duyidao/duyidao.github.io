@@ -815,6 +815,27 @@ const ProjectSidebar = [
   },
 ]
 
+// 音果云音的数组
+const MyVue3Sidebar = [
+  { text: "💴 前言", link: "/myVue3/" },
+  {
+    text: "🤺 基建",
+    collapsible: true,
+    items: [
+      { text: "基础搭建", link: "/myVue3/dev" },
+      { text: "打包配置", link: "/myVue3/build" },
+      { text: "Monorepo扩展", link: "/myVue3/monorepo" },
+    ],
+  },
+  {
+    text: "⏰ 响应式",
+    collapsible: true,
+    items: [
+      { text: "海报页", link: "/myVue3/H5/" },
+    ],
+  },
+]
+
 // 灵思的数组
 const LingsiSidebar = [
   {
@@ -1505,6 +1526,7 @@ export default {
   "/study": generateSidebarItems(StudySidebar),
   "/interview": generateSidebarItems(InterviewSidebar),
   "/project": generateSidebarItems(ProjectSidebar),
+  "/myVue3": generateSidebarItems(MyVue3Sidebar),
   "/lingsi": generateSidebarItems(LingsiSidebar),
   "/lingsi/sale": generateSidebarItems(SaleSidebar),
   "/lingsi/职技网": generateSidebarItems(JobSidebar),
