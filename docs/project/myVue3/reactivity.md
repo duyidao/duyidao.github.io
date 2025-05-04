@@ -1,4 +1,4 @@
-# 响应式 Reactivity
+# 响应式 Reactivity 基础实现
 
 ## 初步实现
 
@@ -675,7 +675,7 @@ export const effect = (fn, options) => {
 
 `effect` 不再是普通的函数，而是一个类实例，并扩展了 `run`、`scheduler` 方法，`run` 方法执行并返回 `fn` 函数的结果，并收集依赖，`scheduler` 方法执行 `run` 方法，如果使用时第二个参数传入包含 `scheduler` 方法的对象，则实例方法会覆盖类方法。`reactivity` 类中只需要执行 `notify` 方法即可，无需理会内部的逻辑。`effect` 最后通过修改 `this` 指向，返回一个函数，并在函数内添加一个 `effect` 属性，指向当前实例，方便后续操作。
 
-## dep与sub复用
+## dep与sub双向关联与复用
 
 ### 问题复现
 
@@ -725,7 +725,7 @@ export const effect = (fn, options) => {
 
 为了解决这个问题，我们需要给 `effect` 类实例添加一个链表，头节点指针 `deps` 和尾节点指针 `depsTail` 指向对应的节点 `link` ，节点 `link` 的 `dep` 指向对应的响应式变量。每次指向 `effect` 方法时，都先将它的尾节点指针 `depsTail` 指向 `undefined`，然后判断，如果有头节点指针 `deps`，且尾节点指针 `depsTail` 为 `undefined`，则说明该次是相同的依赖，方法可以复用，就不需要多创建节点了。
 
-### 依赖项收集
+### 双向关联依赖项收集
 
 根据上面的解决方法，我们需要为 `effect` 生成对应的链表，指向对应的节点 `link`，节点 `link` 的 `dep` 指向对应的响应式变量。画一个图，方便理解：
 
@@ -823,7 +823,7 @@ export const link = (dep, sub) => {
 
 ### 节点复用
 
-根据之前的思想，每次调用 `effect` 方法时，先把当前的尾指针 `depsTail` 置为 `undefined`，每次要创建新的 `newLink` 前，先判断当前的依赖项 `sub` 的 `deps` 是否存在，如果存在且 `depsTail` 为空，则直接复用 `sub.deps`，否则创建新的 `newLink`。
+根据之前的思想，每次调用 `effect` 方法时，先把当前的尾指针 `depsTail` 置为 `undefined`，每次要创建新的 `newLink` 前，先判断当前的依赖项 `sub` 的 `deps` 是否存在，如果存在且 `depsTail` 为空，则直接复用 `sub.deps`，否则获取下一个节点。
 
 ![节点复用](https://pic1.imgdb.cn/item/68147c8458cb8da5c8d6a64d.png)
 
@@ -845,7 +845,7 @@ run() {
 ```ts [system.ts]
 export const link = (dep, sub) => {
   const currentDep = sub.depsTail // [!code ++]
-  const nextDep = currentDep === undefined ? sub.deps : undefined // [!code ++]
+  const nextDep = currentDep === undefined ? sub.deps : currentDep.nextDep // [!code ++]
   if (nextDep && nextDep.dep === dep) { // [!code ++]
     sub.depsTail = nextDep // [!code ++]
     return // [!code ++]
