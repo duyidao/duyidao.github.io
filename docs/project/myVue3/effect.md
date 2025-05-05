@@ -187,6 +187,185 @@
 
 ### 方法实现
 
+以上方的示例代码为例，解决思路是把 `age` 的 `nextDep` 指向 `name` 的 `newLink` 节点，此时 `depsTail` 尾指针指向的是 `age` ，而 `age` 的下一个节点 `nextDep` 还有值，在运行完 `fn` 后就把 `depsTail` 后面的节点都清掉，这样 `name` 的 `sub` 就没有 `effect` 了。
 
+一图流如下所示：
+![一图流](https://pic1.imgdb.cn/item/681856c858cb8da5c8dce082.png)
+
+修改原来的 `newLink` 写法，原本是直接给 `nextDep` 赋值为 `undefined`，现在则要赋值 `activeSub` 的尾节点 `depsTail` 的 `nextDep` 节点。
+
+如果 `depsTail` 存在且还有 `nextDep`，则判断以下情况：
+- `depsTail.nextDep` 是否有 `prevSub`，如果没有说明它是 `subs` 的头节点，修改头节点 `subs` 指向 `nextSub` 节点；如果有，说明它不是第一个节点，则让它前一个节点的下一个节点指向 `nextSub` 节点，然后清掉自身的 `nextSub`。
+- `depsTail.nextDep` 是否有 `nextSub`，如果没有说明它是 `subs` 的尾节点，修改尾节点 `subsTail` 指向 `prevSub` 节点；如果有，说明它不是最后一个节点，则让它后一个节点的前一个节点指向 `prevSub` 节点，然后清掉自身的 `prevSub`。
+- 清掉 `depsTail.nextDep` 的 `sub` 和 `dep` 、 `nextDep`，然后继续循环，直到清掉后面所有的节点。
+
+代码改动如下：
+::: code-group
+```ts [effect.ts]
+class ReactiveEffect {
+  deps: Link | undefined;
+  depsTail: Link | undefined;
+
+  constructor(public fn) {}
+
+  run() {
+    // 把当前的 effect 保存，后面执行完 fn 函数后再获取
+    let prevSub = activeSub;
+    // 每次执行都把 fn 放到 activeSub 中，让 reactivity 收集依赖
+    activeSub = this;
+    this.depsTail = undefined; // [!code --]
+    startTrack(this); // [!code ++]
+    try {
+      return this.fn();
+    } finally {
+      endTrack(this); // [!code ++]
+      activeSub = prevSub;
+    }
+  }
+
+  // ..,
+}
+```
+```ts [system.ts]
+export const link = (dep, sub) => {
+  const currentDep = sub.depsTail
+  const nextDep = currentDep === undefined ? sub.deps : currentDep.nextDep
+  if (nextDep && nextDep.dep === dep) {
+    sub.depsTail = nextDep
+    return
+  }
+
+  const newLink: Link = {
+    sub,
+    nextSub: undefined,
+    prevSub: undefined,
+    dep,
+    nextDep: undefined, // [!code --]
+    nextDep, // [!code ++]
+  };
+
+  // ...
+};
+
+export function startTrack(sub) { // [!code ++]
+  sub.depsTail = undefined; // [!code ++]
+} // [!code ++]
+
+export function endTrack (sub) { // [!code ++]
+  const depsTail = sub.depsTail; // [!code ++]
+  if (depsTail) { // [!code ++]
+    if (depsTail.nextDep) { // [!code ++]
+      clearTracking(depsTail.nextDep); // [!code ++]
+      depsTail.nextDep = undefined // [!code ++]
+    } // [!code ++]
+  } // [!code ++]
+} // [!code ++]
+
+export function clearTracking (link: Link) { // [!code ++]
+  while (link) { // [!code ++]
+    const { nextDep, prevSub, dep, nextSub } = link; // [!code ++]
+    if (prevSub) { // [!code ++]
+      prevSub.nextSub = nextSub; // [!code ++]
+      link.nextSub = undefined; // [!code ++]
+    } // [!code ++]
+    else { // [!code ++]
+      dep.subs = nextSub; // [!code ++]
+    } // [!code ++]
+    if (nextSub) { // [!code ++]
+      nextSub.prevSub = prevSub; // [!code ++]
+      link.prevSub = undefined; // [!code ++]
+    } // [!code ++]
+    else { // [!code ++]
+      dep.subsTail = prevSub; // [!code ++]
+    } // [!code ++]
+    link.dep = link.sub = undefined // [!code ++]
+    link.nextDep = undefined // [!code ++]
+    link = nextDep // [!code ++]
+  } // [!code ++]
+} // [!code ++]
+```
+:::
 
 ## 依赖清理
+
+目前还有一个问题，还是以上方的示例代码为例，添加一点判断条件，代码如下：
+
+```html
+<body>
+  <div id="text"></div>
+  <button id="flag">change flag</button>
+  <button id="name">change name</button>
+  <button id="age">change age</button>
+  <script type="module">
+    import {ref, effect} from '../dist/reactivity.esm.js'
+
+    const flag = ref(true)
+    const age = ref(1)
+    const name = ref('刀刀')
+    const btnFlag = document.querySelector('#flag')
+    const btnAge = document.querySelector('#age')
+    const btnName = document.querySelector('#name')
+    const text = document.querySelector('#text')
+
+    let count = 0 // [!code ++]
+    effect(() => {
+      console.count('run effect' + count);
+      if (count > 1) return // [!code ++]
+      count++ // [!code ++]
+      if(flag.value) {
+        text.innerText = name.value
+      } else {
+        text.innerText = age.value
+      }
+    })
+
+    btnFlag.addEventListener('click', () => {
+      flag.value = !flag.value
+    })
+
+    btnAge.addEventListener('click', () => {
+      age.value += 1
+    })
+
+    btnName.addEventListener('click', () => {
+      name.value += '1'
+    })
+  </script>
+</body>
+```
+
+改动很简单，我们添加了一个 `count` 变量，用于记录 `effect` 函数执行的次数。在 `effect` 函数中，我们添加了一个判断，如果 `count` 大于 1，则直接返回，不再执行后续的代码。
+
+一进入页面，执行了一次 `effect` 函数，打印了一次 `console` ，`count` 自增1，此时值为1。点击 `flag` 或者 `name` 按钮，执行 `effect` 函数，打印了一次 `console` ，`count` 自增1，此时值为2。再次点击按钮时，判断条件成立，`return` 返回不继续往下执行，按理来说应该触发不了 `RefImpl` 类收集不了依赖，但是没有清掉依赖，导致依赖还是触发了。
+
+下面来梳理一下流程，第二次点击按钮后，修改 `flag.value` 的值，触发 `effect.run()` 方法，`depsTail` 值为 `undefined`，保存当前 `activeSub`，然后运行 `fn`。此时 `count` 值为2，`return` 返回，`effect` 函数执行完毕。
+
+解决方法是在 `endTrack` 函数中，判断当前 `depsTail` 值是否为 `undefined`，因为它没有继续往下执行，没法收集到依赖，也就不会有 `depsTail` 值，所以可以依靠这个作为判断条件，如果 `depsTail` 值是 `undefined` ，说明没有依赖收集，如果 `deps` 链表有节点，就清掉 `deps` 所有的节点，避免依赖触发。
+
+```ts
+export function endTrack (sub) {
+  const depsTail = sub.depsTail;
+  if (depsTail) {
+    if (depsTail.nextDep) {
+      clearTracking(depsTail.nextDep);
+      depsTail.nextDep = undefined
+    }
+  }
+  else if (sub.deps) { // [!code ++]
+    clearTracking(sub.deps); // [!code ++]
+    sub.deps = undefined; // [!code ++]
+  } // [!code ++]
+}
+```
+
+## 小结
+
+本次在创建节点时复用了之前获取到的 `nextDep`，如果是第一次运行 `effect` 函数，则 `nextDep` 值为 `undefined`；如果是后续运行 `effect` 函数，会出现分支切换的情况，此时 `nextDep` 值旧分支，以上方示例代码为例，切换了 `flag.value` 后新分支是 `age.value`，旧分支是 `name.value`，因此 `age.value` 节点的 `nextDep` 值为 `name.value` 节点。
+
+运行完 `fn` 函数后，清掉不需要的依赖，避免依赖触发。判断条件为如果有尾节点 `depsTail`，且尾节点还有下一个节点 `nextDep`，则循环清掉尾节点后面所有节点。
+
+清理方式为判断它们在 `subs` 链表中是否是头节点，如果是则把头节点设置为下一个节点；如果不是则把当前节点的上一个节点的 `nextSub` 设置为下一个节点；如果是尾节点，则尾节点设置为上一个节点；如果不是，则把上一个节点的 `nextSub` 指向下一个节点。
+
+最后清掉当前节点的 `dep` 和 `sub` 和 `nextDep`，继续循环。
+
+如果 `activeSub` 没有 `depsTail` 尾节点，则判断当前是否有链表 `deps` ，如果有说明没有依赖收集，直接循环清掉 `deps` 链表，避免依赖触发。
