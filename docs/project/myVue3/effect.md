@@ -369,3 +369,125 @@ export function endTrack (sub) {
 最后清掉当前节点的 `dep` 和 `sub` 和 `nextDep`，继续循环。
 
 如果 `activeSub` 没有 `depsTail` 尾节点，则判断当前是否有链表 `deps` ，如果有说明没有依赖收集，直接循环清掉 `deps` 链表，避免依赖触发。
+
+## 节点复用
+
+目前每次清掉节点依赖，需要用时创建新的节点，性能会有一定的消耗。如果每次清掉节点依赖后，把节点保存起来，下次复用，性能会有所提升。
+
+新建一个 `linkPool` 变量，用于保存旧节点，默认为 `undefined`，在 `cleaTracking` 函数中，把旧节点保存起来。
+
+在 `link` 函数中，判断当前 `linkPool` 是否有值，如果有值，复用 `linkPool`，修改 `nextDep` 、`sub` 和 `dep` 的值。
+
+
+```ts [system.ts]
+export const link = (dep, sub) => {
+  // 获取订阅者链表尾节点
+  const currentDep = sub.depsTail
+  // 如果没有尾节点，则从头节点拿取；如果有尾节点，则拿尾节点的下一个节点做复用
+  const nextDep = currentDep === undefined ? sub.deps : currentDep.nextDep
+  if (nextDep && nextDep.dep === dep) {
+    sub.depsTail = nextDep
+    return
+  }
+
+  const newLink = { // [!code --]
+    sub, // [!code --]
+    nextSub: undefined, // [!code --]
+    prevSub: undefined, // [!code --]
+    dep, // [!code --]
+    nextDep, // [!code --]
+  }; // [!code --]
+
+  let newLink: Link // [!code ++]
+  
+  if (linkPool) { // [!code ++]
+    // 从对象池中拿取 // [!code ++]
+    newLink = linkPool // [!code ++]
+    linkPool = linkPool.nextDep // [!code ++]
+    newLink.nextDep = nextDep // [!code ++]
+    newLink.dep = dep // [!code ++]
+    newLink.sub = sub // [!code ++]
+  } // [!code ++]
+  else { // [!code ++]
+    newLink = { // [!code ++]
+      sub, // [!code ++]
+      nextSub: undefined, // [!code ++]
+      prevSub: undefined, // [!code ++]
+      dep, // [!code ++]
+      nextDep, // [!code ++]
+    }; // [!code ++]
+  } // [!code ++]
+
+  // ...
+};
+
+let linkPool: link | undefined = undefined // [!code ++]
+
+export function clearTracking (link: Link) {
+  while (link) {
+    const { nextDep, prevSub, dep, nextSub } = link;
+
+    // ...
+
+    // 将当前节点从依赖项链表中移除，并将其放入linkPool中，以便下次使用
+    link.dep = link.sub = undefined
+    link.nextDep = linkPool // [!code ++]
+    linkPool = link // [!code ++]
+    link = nextDep
+  }
+}
+```
+
+## 避免递归
+
+下面先来看一个例子：
+
+```js
+import {ref, effect} from '../dist/reactivity.esm.js'
+
+let count = ref(0)
+effect(() => {
+  console.log('count.value++', count.value++);
+})
+```
+
+运行这段代码会出现死循环的情况，因为 `effect` 函数中会调用 `count.value++`，而 `count.value++` 会触发 `count` 的 `set` 方法实现赋值，`set` 方法会调用 `run` 方法，又再次调用 `effect` 函数，导致递归调用。
+
+解决方法是添加一个 `trackShaking` 属性，用来标记当前是否正在收集依赖，默认值为 `false`，如果是，则不进行递归调用。
+
+在 `propagate` 函数中，之前是直接把 `link.sub` 添加到数组中，现在改为先判断 `trackShaking` 是否为 `false`，如果是才把 `link.sub` 添加到数组中。
+
+```ts
+export const propagate = (subs) => {
+  let link = subs;
+  let queueEffects = [];
+  while (link) {
+    let sub = link.sub // [!code ++]
+    if (!sub.trackShaking) queueEffects.push(link.sub); // [!code ++]
+    queueEffects.push(link.sub); // [!code --]
+    link = link.nextSub;
+  }
+  queueEffects.forEach((effect) => effect?.notify());
+};
+
+
+export function startTrack(sub) {
+  sub.depsTail = undefined;
+  sub.trackShaking = true; // [!code ++]
+}
+
+export function endTrack (sub) {
+  const depsTail = sub.depsTail;
+  sub.trackShaking = false; // [!code ++]
+  if (depsTail) {
+    if (depsTail.nextDep) {
+      clearTracking(depsTail.nextDep);
+      depsTail.nextDep = undefined
+    }
+  }
+  else if (sub.deps) {
+    clearTracking(sub.deps);
+    sub.deps = undefined;
+  }
+}
+```
