@@ -831,8 +831,9 @@ const MyVue3Sidebar = [
     text: "⏰ 响应式",
     collapsible: true,
     items: [
-      { text: "基础实现", link: "/myVue3/reactivity" },
-      { text: "进阶实现", link: "/myVue3/effect" },
+      { text: "Ref 基础实现", link: "/myVue3/ref_start" },
+      { text: "Ref 进阶实现", link: "/myVue3/ref_advance" },
+      { text: "Reactive 进阶实现", link: "/myVue3/reactive" },
     ],
   },
 ]
