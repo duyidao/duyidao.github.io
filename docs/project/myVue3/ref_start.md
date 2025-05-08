@@ -863,11 +863,64 @@ export const link = (dep, sub) => {
 :::
 
 ## 总结
+### 步骤流程
 
 本章主要实现 `ref` 基础实现。
 
-先新建一个 `ref.ts` 文件，创建一个 `RefImpl` 类，构造器接收一个值，赋值给 `_value`。当获取值时，触发 `get` 方法，返回 `this._value` ；当设置赋值时，触发 `set` 方法，把新值赋值给 `this._value`。
+先新建一个 `ref.ts` 文件，创建一个 `RefImpl` 类，类包含两个重要属性 `subs` 和 `subsTail`，分别指向依赖项链表的头节点和尾节点。构造器接收一个值，赋值给 `_value` ，然后做如下操作：
+1. 当获取值时，触发 `get` 方法，调用 `link` 函数收集依赖，并保存为一个链表，返回 `this._value`
+2. 当设置赋值时，触发 `set` 方法把新值赋值给 `this._value` ，再调用 `propagate` 函数循环链表，依次触发依赖。
 
 创建并导出一个 `ref` 函数，接收一个值，返回一个 `new RefImpl` 实例。因此用 `ref` 实际上获取的是 `RefImpl` 类的 `_value` 属性。
 
-再创建一个 `effect.ts` 文件，创建一个 `EffectReactive` 类，构造器接收一个函数 `fn` ，
+再新建一个 `effect.ts` 文件，导出一个变量 `activeSub` ，表示当前的 `effect` 回调函数，全局仅此唯一一个「单例模式」。创建一个 `EffectReactive` 类，类包含两个重要属性 `deps` 和 `depsTail`，分别指向订阅者链表的头节点和尾节点。构造器接收一个函数 `fn` ，做了如下操作：
+1. 新建一个 `run` 方法，用于调用依赖项函数，先保存当前的 `activeSub` 赋值给 `prevSub` 变量，然后赋值 `this` 给 `activeSub` （此时 `activeSub` 就代表 `EffectReactive` 类）。再把类的 `depsTail` 属性置为 `undefined` ，表示刚触发该函数，然后执行传过来的 `fn` 函数，并把执行结果 `return` 返回回去。
+
+2. 等待函数执行完毕后，再把 `prevSub` 赋值给 `activeSub` ，表示当前的 `effect` 接收到的回调函数 `fn` 已经执行完毕，该执行上一个保存还没执行完的 `effect` 回调了。这个是为了解决 `effect` 函数嵌套的 <SpecialWords text="BUG" /> ，代码示例如下：
+   
+    ```js
+    effect(() => {
+      count.value++
+      effect(() => {
+        count.value++
+      })
+    })
+    ```
+
+    由于 `return` 后面的代码不会再执行，但是又需要等待 `return` 函数执行结果后再做 `prevSub` 赋值给 `activeSub` 的操作，这里借助 `try...finally` 语句块，在 `try` 语句块执行 `return` 操作，执行完毕后会执行 `finally` 语句块中的赋值操作。
+
+3. 创建一个 `scheduler` 调度函数，默认执行 `run` 方法，使用者在使用 `effect` 时，第二个参数传入一个对象，对象的 `scheduler` 属性可以自定义调度函数，并覆盖类实例的调度函数。
+4. 创建一个 `notify` 函数方法，该方法是执行类的最终方法，内部无论如何变化，外部都无需关注，只要执行 `notify` 方法即可。
+
+创建并导出一个 `effect` 函数，接收亮哥参数：
+- 参数一 `fn`：回调函数，`new EffectReactive` 创建一个类实例对象并传参过去，得到一个类实例对象。
+- 参数二 `options`：对象，包含 `scheduler` 属性，用于自定义调度函数。
+
+通过 `Object.assign` 合并 `EffectReactive` 类实例对象和 `options` 对象，得到一个新对象，如果使用者传了 `scheduler` 属性，则覆盖类实例的调度函数。执行 `run` 方法，通过 `bind` 方法修改 `this` 的指向，得到一个新的函数，并把类实例绑定给函数的 `effect` 属性上。最后返回该新的函数。
+
+再新建一个 `system.ts` 文件，用于实现公共方法并导出。
+1. 新建一个 `link` 方法，用于收集依赖。该方法接收两个参数：
+   
+   - `dep`：一个类实例对象，包含 `subs` 和 `subsTail` 属性，分别指向依赖项链表的头节点和尾节点。用于创建节点并保存到链表中。
+   - `sub`：一个类实例对象，包含 `deps` 和 `depsTail` 属性，分别指向订阅者链表的头节点和尾节点。用于创建节点。
+  
+    做如下操作：
+
+   1. 获取订阅者链表的尾指针 `sub.depsTail` ，判断是否为 `undefined` ，如果是，则说明是刚调用 `effect` 函数（因为 `run` 方法执行了 `this.depsTail = undefined`）。
+   
+   创建一个变量 `nextDep` ，用于获取下一个订阅者 `dep`，如果没有尾节点，则说明是刚执行 `effect`，用头节点 `sub.dep`；否则用尾节点的下一个节点。
+   
+   这一步用于 `effect` 函数与 `ref` 变量做关联关系，一个 `effect` 函数内可能会使用多个 `ref` 变量，因此需要保存多个依赖项。
+
+   2. 创建一个新节点 `newLink`，包含 `sub` 、`nextSub` 、`prevSub` 、`dep` 、`nextDep` 属性，分别指向订阅者链表的头节点、尾节点、下一个节点、依赖项链表的头节点、尾节点、下一个节点。
+   3. 判断 `dep` 订阅者是否有依赖项链表尾指针，如果有说明已经有链表了，把新节点的上一个节点指向尾指针，尾指针下一个节点指向新节点，尾指针指向新节点。否则头指针和尾指针都指向新节点。
+   4. 判断 `sub` 订阅者是否有依赖项链表尾指针，如果有说明已经有链表了，把新节点的上一个节点指向尾指针，尾指针指向新节点。否则头指针和尾指针都指向新节点。
+   
+2. 新建一个 `propagate` 方法，用于触发依赖。该方法接收一个参数 `sub` ，表示当前触发的 `activeSub`，做如下操作：
+   1. 拿到当前 `activeSub` 的 `subs` 订阅者链表头节点
+   2. 新建一个空数组
+   3. 循环链表，依次把当前节点的 `sub` 属性保存到数组中
+   4. 循环数组，依次执行 `sub.notify()` 方法，触发依赖函数，实现更新
+
+### 时序图
+
