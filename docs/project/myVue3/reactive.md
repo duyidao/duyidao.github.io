@@ -66,7 +66,7 @@ const obj = reactive({
 }
 ```
 
-因此在 `trackReactive` 方法中，我们需要做的操作为：
+在 `trackReactive` 方法中，我们需要做的操作为：
 1. 根据 `target` 获取 `WeakMap` 中保存的对象
    - 如果能拿到对象，说明之前有保存到，直接使用
    - 如果拿不到对象，说明是第一次获取，`new Map` 新建一个 `Map` ， `WeakMap.set()` 保存到 `WeakMap` 中
@@ -104,24 +104,21 @@ export function createObjectReactive(obj) {
 
 const trackWeakMap = new WeakMap() // [!code ++]
 
-function trackReactive(target, key) { // [!code ++]
+function trackReactive(target, key) {
   if (activeSub) { // [!code ++]
     let depsMap = trackWeakMap.get(target) // [!code ++]
-
     if (!depsMap) { // [!code ++]
       depsMap = new Map() // [!code ++]
       trackWeakMap.set(target, depsMap) // [!code ++]
     } // [!code ++]
-
     let dep = depsMap.get(key) // [!code ++]
     if (!dep) { // [!code ++]
       dep = new Dep() // [!code ++]
       depsMap.set(key, dep) // [!code ++]
     } // [!code ++]
-
-    link(dep, activeSub) // [!code ++]
+    link(dep, activeSub)
   } // [!code ++]
-} // [!code ++]
+}
 
 class Dep { // [!code ++]
   subs; // [!code ++]
@@ -130,3 +127,10 @@ class Dep { // [!code ++]
   constructor() {} // [!code ++]
 } // [!code ++]
 ```
+
+而 `propagate` 方法需要参数 `subs` 链表，循环链表拿到对应依赖并执行。前面我们已经创建好了 `WeakMap`，并确立了数据结构，因此可以通过代理的对象和键名拿到对应的 `Dep` 对象，再通过 `Dep` 对象拿到 `subs` 链表，传参即可。
+
+在 `triggerReactive` 方法中，我们需要做的操作为：
+1. 根据 `target` 获取 `WeakMap` 中保存的对象，拿到对应的 `Map`，如果拿不到，`return` 阻止往下执行
+2. 根据 `key` 获取 `Map` 中保存数据，拿到对应的 `Dep`，如果拿不到，`return` 阻止往下执行
+3. 调用 `propagate` 方法，把 `dep.subs` 传入 

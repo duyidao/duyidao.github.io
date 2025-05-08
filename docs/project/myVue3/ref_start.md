@@ -863,6 +863,7 @@ export const link = (dep, sub) => {
 :::
 
 ## 总结
+
 ### 步骤流程
 
 本章主要实现 `ref` 基础实现。
@@ -924,3 +925,4 @@ export const link = (dep, sub) => {
 
 ### 时序图
 
+![时序图](https://pic1.imgdb.cn/item/681cc3c158cb8da5c8e66d0f.png)
