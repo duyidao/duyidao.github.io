@@ -834,6 +834,7 @@ const MyVue3Sidebar = [
       { text: "Ref 基础实现", link: "/myVue3/ref_start" },
       { text: "Ref 进阶实现", link: "/myVue3/ref_advance" },
       { text: "Reactive 进阶实现", link: "/myVue3/reactive" },
+      { text: "Computed 实现", link: "/myVue3/compute_realize" },
     ],
   },
 ]
