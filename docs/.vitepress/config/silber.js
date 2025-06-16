@@ -525,6 +525,10 @@ const StudySidebar = [
             link: "/study/vue/$nexttick",
           },
           {
+            text: "customRef实现全局loading封装",
+            link: "/study/vue/customRef实现全局loading封装",
+          },
+          {
             text: "ref和reactive在使用上的区别",
             link: "/study/vue/ref和reactive在使用上的区别",
           },
@@ -537,11 +541,11 @@ const StudySidebar = [
             link: "/study/vue/v-model双向绑定",
           },
           {
-            text: "vue图片动态引入使用require",
+            text: "Vue图片动态引入使用require",
             link: "/study/vue/vue图片动态引入使用require",
           },
           {
-            text: "vue项目打包后首页白屏总结",
+            text: "Vue项目打包后首页白屏总结",
             link: "/study/vue/vue项目打包后首页白屏总结",
           },
           {
@@ -558,11 +562,7 @@ const StudySidebar = [
           },
           {
             text: "Vue更新机制和优化",
-            link: "/study/vue/Vue更新机制和优化",
-          },
-          {
-            text: "从Vue2、Vue3不更新学Vue原理",
-            link: "/study/vue/从Vue2、Vue3不更新学Vue原理",
+            link: "/study/vue/Vue的更新",
           },
           {
             text: "Vue常见优化手段",
@@ -692,11 +692,11 @@ const StudySidebar = [
         collapsed: true,
         items: [
           {
-            text: "vue重复小组件处理经验",
+            text: "Vue重复小组件处理经验",
             link: "/study/package/vue重复小组件处理经验",
           },
           {
-            text: "vue组件设计技巧",
+            text: "Vue组件设计技巧",
             link: "/study/package/vue组件设计技巧",
           },
           {
