@@ -3,6 +3,7 @@ title: Vue 重复小组件处理经验
 isReship: true
 author:
   - 三十的前端课 https://www.bilibili.com/video/BV1RK4118727/?spm_id_from=333.1387.upload.video_card.click
+  - 远方os https://www.bilibili.com/video/BV1J7NPe1EL7?vd_source=8628f61938375f4995c51e0b8c7d8165
 ---
 
 # Vue 重复小组件处理经验
@@ -11,12 +12,14 @@ author:
 
 ### 场景模拟
 
-现有一个项目需求需要使用一个授权提示弹窗组件，有多个页面组件需要检测用户是否授权，如果未授权则弹出弹窗提示授权。用户可选择同意或拒绝。该弹窗需求和组件库不太一致，需要自行编写。
+现有一个项目需求需要使用一个提示弹窗组件，有多个页面组件需要使用。
 
 该弹窗组件在封装时需要注意：
 
 1. 该弹窗显示的时机不一致，可能在 A 页面是一进入就显示，在 B 页面就点击按钮显示
 2. 该弹窗同意或拒绝按钮执行的后续不一致，拒绝隐藏弹窗，同意调用接口，后续操作看各自组件需求
+
+如果直接使用多个组件，则页面上就需要写很多个组件，声明很多个控制显隐的变量，代码冗余且不易维护。
 
 ### render 方案
 
@@ -52,7 +55,7 @@ export const signProp = (content) => {
 
 现在页面上就有一个没有样式的效果了。但是这种方法不推荐，更推荐使用 `jsx` 。
 
-### jsx 方案
+### jsx 组件标签方案
 
 ```jsx
 import { render } from "vue";
@@ -146,6 +149,55 @@ import { signProp } from "./signProp.jsx";
 ```
 
 注意的是，有一些场景可能用不到 `cancel` 之类的按钮点击事件，没有传对应的函数方法，需要有良好的代码健壮性意识，添加非空判断，避免代码报错。
+
+### h 与 createApp 方案
+
+这个写法和前面的 `jsx` 方案类似，只不过不使用标签的方式，而是使用 <SpecialWords text="Vue" /> 提供的 `h` 和 `createApp` 方式。
+
+首先声明一个函数，接收三个参数，第一个参数是弹窗内部要渲染的组件（这里以 `antd vue` 组件的弹窗为例子），第二个参数是内部组件的 `props` ，第三个参数是弹窗组件的 `props`。通过 `h` 创建完虚拟 <SpecialWords text="DOM" /> 后，再通过 `createApp` 创建一个 <SpecialWords text="Vue" /> 实例，最后通过 `mount` 方法挂载到 `body` 上。
+
+::: code-group
+```ts [signProp.ts]
+import { createApp, h } from "vue";
+import { Modal } from "ant-design-vue";
+
+export function signProp(component, props, modalProps) {
+  const dialog = h(
+    Modal,
+    modalProps,
+    { default: () => h(component, props) }
+  );
+
+  const div = document.createElement("div");
+  document.body.appendChild(div);
+  app.mount(div);
+}
+```
+```vue [App.vue]
+<script setup>
+import signProp from "./signProp.ts";
+import { AButton, AForm, AFormItem, AInput } from "ant-design-vue";
+
+const clickFn = () => {
+  signProp(
+    AForm,
+    {
+      msg: "欢迎来到xx系统",
+    },
+    {
+      title: '登录',
+    }
+  );
+}
+</script>
+
+<template>
+  <a-button @click="clickFn"></a-button>
+</template>
+```
+:::
+
+但是执行后发现页面只打开了 `dialog` 弹窗，没有 `form` 表单组件。查看控制台发现有警告说组件找不到。这是因为 `createApp` 创建的实例需要 `use` 方法来注册组件和方法（如组件库组件、`pinia`、`router`）。
 
 ## 总体效果
 
