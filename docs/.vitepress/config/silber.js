@@ -521,6 +521,10 @@ const StudySidebar = [
         collapsed: true,
         items: [
           {
+            text: "父组件监听子组件生命周期",
+            link: "/study/vue/父组件监听子组件生命周期",
+          },
+          {
             text: "$nexttick",
             link: "/study/vue/$nexttick",
           },
@@ -692,11 +696,15 @@ const StudySidebar = [
         collapsed: true,
         items: [
           {
-            text: "vue重复小组件处理经验",
+            text: "Vue3 + TS 二次封装组件库组件",
+            link: "/study/package/vue3+ts二次封装组件库组件",
+          },
+          {
+            text: "Vue重复小组件处理经验",
             link: "/study/package/vue重复小组件处理经验",
           },
           {
-            text: "vue组件设计技巧",
+            text: "Vue组件设计技巧",
             link: "/study/package/vue组件设计技巧",
           },
           {
@@ -1401,6 +1409,10 @@ const InterviewSidebar = [
         collapsible: true,
         collapsed: true,
         items: [
+          {
+            text: "判断对象循环引用",
+            link: "/interview/js/判断对象循环引用",
+          },
           {
             text: "(a==1&&a==2&&a==3)",
             link: "/interview/js/(a==1&&a==2&&a==3)",
