@@ -1,3 +1,10 @@
+---
+title: 组合式函数封装
+isReship: true
+author:
+  - 远方os https://www.bilibili.com/video/BV1soMtz4ExE?vd_source=8628f61938375f4995c51e0b8c7d8165
+---
+
 # Vue3 + TS 二次封装组件库组件
 
 ## 思考
@@ -126,3 +133,6 @@ function changeRef(inputInstance) { // [!code ++]
 </template>
 ```
 :::
+
+> [!IMPORTANT] 注意
+> 父组件拿到的不是直接拿 `exposed`，而是 `exposed` 的 `exposeProxy` 代理对象属性，因此不能只修改 `vm.exposed` ，还需要修改 `vm.exposeProxy` 。

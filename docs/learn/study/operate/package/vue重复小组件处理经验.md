@@ -164,9 +164,11 @@ import { Modal } from "ant-design-vue";
 export function signProp(component, props, modalProps) {
   const dialog = h(
     Modal,
-    modalProps,
+    { ...modalProps, open: true },
     { default: () => h(component, props) }
   );
+
+  app.createApp(dialog);
 
   const div = document.createElement("div");
   document.body.appendChild(div);
@@ -176,11 +178,11 @@ export function signProp(component, props, modalProps) {
 ```vue [App.vue]
 <script setup>
 import signProp from "./signProp.ts";
-import { AButton, AForm, AFormItem, AInput } from "ant-design-vue";
+import LoginForm from "./LoginForm.vue";
 
 const clickFn = () => {
   signProp(
-    AForm,
+    LoginForm,
     {
       msg: "欢迎来到xx系统",
     },
@@ -197,7 +199,176 @@ const clickFn = () => {
 ```
 :::
 
-但是执行后发现页面只打开了 `dialog` 弹窗，没有 `form` 表单组件。查看控制台发现有警告说组件找不到。这是因为 `createApp` 创建的实例需要 `use` 方法来注册组件和方法（如组件库组件、`pinia`、`router`）。
+但是执行后发现页面只打开了 `dialog` 弹窗，没有 `form` 表单组件。查看控制台发现有警告说组件找不到。这是因为 `createApp` 创建的实例需要 `use` 方法来注册组件和方法（如组件库组件、`pinia`、`router`），之前 `template` 的写法用的是 `main.ts` 入口文件的 `createApp` 实例，组件和方法都注册了；但是这里是新建了一个 `createApp` 实例，没有注册其他组件库的组件，所以报警告，找不到组件。
+
+解决方法是，在 `signProp` 函数中，通过 `app.use` 方法来注册组件库的组件。可以一个个复制粘贴过来，如果代码量少这样很方便，但是代码量多会很繁琐，且不利于后续维护，更好的方法是写成一个函数，在函数内注册挂载。
+
+::: code-group
+```ts [plugin.ts]
+import Antd from 'ant-design-vue'; // [!code ++]
+// [!code ++]
+export function loadPlugin(app) { // [!code ++]
+  app.use(Antd); // [!code ++]
+} // [!code ++]
+```
+```ts [signProp.ts]
+import { createApp, h } from "vue";
+import { Modal } from "ant-design-vue";
+import { loadPlugin } from "./plugin.ts"; // [!code ++]
+
+export function signProp(component, props, modalProps) {
+  const dialog = h(
+    Modal,
+    { ...modalProps, open: true },
+    { default: () => h(component, props) }
+  );
+
+  app.createApp(dialog);
+  loadPlugin(app); // [!code ++]
+
+  const div = document.createElement("div");
+  document.body.appendChild(div);
+  app.mount(div);
+}
+```
+:::
+
+现在能正常渲染组件了，但是点击关闭按钮后发现无法生效，这是因为弹框开启的变量 `open` 设为 `true` ，需要修改为一个响应式变量。修改为响应式变量后，点击关闭按钮发现还是不生效，这是因为响应式变量想要工作，需要作为订阅者 `effect` 函数的依赖项，因此这里需要调整为一个函数的形式。
+
+```ts
+import { createApp, h } from "vue";
+import { Modal } from "ant-design-vue";
+import { loadPlugin } from "./plugin.ts";
+
+export function signProp(component, props, modalProps) {
+  const open = ref(true); // [!code ++]
+  const dialog = () => // [!code ++]
+    h(
+      Modal,
+      {
+        ...modalProps,
+        open: open.value, // [!code ++]
+        onCancel() { // [!code ++]
+          unmount(); // [!code ++]
+        }, // [!code ++]
+      },
+      { default: () => h(component, props) }
+    );
+
+  app.createApp(dialog);
+  loadPlugin(app);
+
+  const div = document.createElement("div");
+  document.body.appendChild(div);
+  app.mount(div);
+
+
+  function unmount() { // [!code ++]
+    open.value = false; // [!code ++]
+    setTimeout(() => { // [!code ++]
+      // 组件关闭后再卸载组件，保留弹框的关闭动画 // [!code ++]
+      app.unmount(); // [!code ++]
+      document.body.removeChild(div); // [!code ++]
+    }, 300); // [!code ++]
+  } // [!code ++]
+}
+```
+
+现在关闭功能实现了，该来实现点击确定按钮的功能了，对于表单而言，点击确定按钮后，需要实现表单校验、调用接口等功能，这些功能是组件 `compoennt` 内部就封装好了的，需要考虑的是如何调用该组件的方法。
+
+声明一个变量，在 `h` 函数第三个参数中的 `h` 函数的第二个参数添加一个 `ref` ，后续可以通过这个变量拿到组件内部的方法。
+
+```ts
+import { createApp, h } from "vue";
+import { Modal } from "ant-design-vue";
+import { loadPlugin } from "./plugin.ts";
+
+export function signProp(component, props, modalProps) {
+  const open = ref(true);
+  const instanceRef = ref();
+  const dialog = () =>
+    h(
+      Modal,
+      {
+        ...modalProps,
+        open: open.value,
+        onCancel() {
+          unmount();
+        },
+        onOk() { // [!code ++]
+          instanceRef.value?.submit?.(); // [!code ++]
+          unmount(); // [!code ++]
+        }, // [!code ++]
+      },
+      { default: () => h(component, props) } // [!code --]
+      { default: () => h(component, { ref: instanceRef, ...props }) } // [!code ++]
+    );
+
+  app.createApp(dialog);
+  loadPlugin(app);
+
+  const div = document.createElement("div");
+  document.body.appendChild(div);
+  app.mount(div);
+
+
+  function unmount() {
+    open.value = false;
+    setTimeout(() => {
+      // 组件关闭后再卸载组件，保留弹框的关闭动画
+      app.unmount();
+      document.body.removeChild(div);
+    }, 300);
+  }
+}
+```
+
+最后，如果想要暴露出去让父组件也能使用内部的变量和方法，可以 `return` 出去。
+
+```ts
+import { createApp, h } from "vue";
+import { Modal } from "ant-design-vue";
+import { loadPlugin } from "./plugin.ts";
+
+export function signProp(component, props, modalProps) {
+  const open = ref(true);
+  const instanceRef = ref();
+  const dialog = () =>
+    h(
+      Modal,
+      {
+        ...modalProps,
+        open: open.value,
+        onCancel() {
+          unmount();
+        },
+        onOk() {
+          instanceRef.value?.submit?.();
+          unmount();
+        },
+      },
+      { default: () => h(component, { ref: instanceRef, ...props }) }
+    );
+
+  app.createApp(dialog);
+  loadPlugin(app);
+
+  const div = document.createElement("div");
+  document.body.appendChild(div);
+  app.mount(div);
+
+  function unmount() {
+    open.value = false;
+    setTimeout(() => {
+      // 组件关闭后再卸载组件，保留弹框的关闭动画
+      app.unmount();
+      document.body.removeChild(div);
+    }, 300);
+  }
+
+  return { instanceRef, unmount } // [!code ++]
+}
+```
 
 ## 总体效果
 

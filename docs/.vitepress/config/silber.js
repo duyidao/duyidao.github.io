@@ -700,6 +700,10 @@ const StudySidebar = [
             link: "/study/package/vue3+ts二次封装组件库组件",
           },
           {
+            text: "组合式函数封装",
+            link: "/study/package/组合式函数封装",
+          },
+          {
             text: "Vue重复小组件处理经验",
             link: "/study/package/vue重复小组件处理经验",
           },
@@ -1470,6 +1474,14 @@ const InterviewSidebar = [
       {
         text: "穗腾科技",
         link: "/interview/穗腾科技",
+      },
+      {
+        text: "网易",
+        link: "/interview/网易",
+      },
+      {
+        text: "向蜜鸟",
+        link: "/interview/向蜜鸟",
       },
     ],
   },

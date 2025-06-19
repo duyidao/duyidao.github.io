@@ -50,17 +50,3 @@ export function loading = customRef(() => {
   };
 })
 ```
-
-使用时，将 `loading` 替换为 `useLoading()` 返回的 `ref` 即可。
-
-```js
-import { useLoading } from './loading';
-
-const loading = useLoading();
-
-export async function request(url: string, params: Record<string, string>) {
-  const query = new URLSearchParams(params).toString();
-  loading.value = true;
-  return await fetch(`${url}?${query}`).finally(() => {
-    loading.value = false;
-}
