@@ -494,6 +494,10 @@ const StudySidebar = [
             link: "/study/promise/Axios二次封装",
           },
           {
+            text: "请求取消",
+            link: "/study/promise/请求取消",
+          },
+          {
             text: "并发请求封装",
             link: "/study/promise/并发请求封装",
           },
