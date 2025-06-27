@@ -29,6 +29,11 @@ request.intercepetors.request.use((config) => {
   let url = config.url
   let token = localStorage.getItem('token')
 
+  if (!token) {
+    alert('请先登录')
+    logout() // 登出
+  }
+
   /* 不在白名单且有token，则设置请求头token */
   if(!whileList.includes(url) && token) {
     config.headers.token = token
@@ -47,6 +52,8 @@ request.intercepetors.request.use((config) => {
 
 针对不同的状态码做处理，主要针对错误请求做全局统一处理。在响应拦截器上获取到响应数据，根据状态码做处理。
 
+错误码包括浏览器与服务端的错误，如 404、500 等；还有业务错误码，前后端协商设置的，如 999、10 等。
+
 ```js
 request.intercepetors.response.use((res) => {
   // 响应成功
@@ -55,17 +62,67 @@ request.intercepetors.response.use((res) => {
 
   switch (code) {
     case 200:
-      return res.data
+      return res.data.data
     case 401:
     case 403:
       // 登录过期
       alert('没有权限，重新登录')
       router.push('/login')
       break
+    case 999:
+      alert('xxx参数有误')
+      break
     default:
       alert(`错误码${code}，${message}`)
       return Promise.reject(new Error(message))
   }
+}, (error) => {
+  // 响应失败，统一处理
+  alert(error) // 一般还是用组件库的提示信息组件，这里简单代替
+  return Promise.reject(new Error(error))
+})
+```
+
+但是如果 `code` 后续如果多新增几个情况，`switch` 需要写很多，代码冗余不好维护，可以修改为策略模式。业务错误代码和浏览器错误码分开处理。还支持函数传参，做特殊提示定制。
+
+最后考虑一些特殊接口如 `blob` 数据的，接口，可以判断当前的类型是不是一个 `blob` 类型，如果是，则直接返回 `res` 即可。
+
+```js
+const errorCode = { // [!code ++]
+  999: (v) => { // [!code ++]
+    alert('xxx参数有误', v) // [!code ++]
+  }, // [!code ++]
+} // [!code ++]
+const httpErrorCode = { // [!code ++]
+  403: (v) => { // [!code ++]
+    alert('暂无权限') // [!code ++]
+  }, // [!code ++]
+} // [!code ++]
+request.intercepetors.response.use((res) => {
+  // 响应成功
+  const { code = 200, message = '未知错误', data } = res.data // [!code ++]
+  if (res.data instanceof Blob) return res.data // [!code ++]
+  switch (code) { // [!code --]
+    case 200: // [!code --]
+      return res.data.data // [!code --]
+    case 401: // [!code --]
+    case 403: // [!code --]
+      // 登录过期 // [!code --]
+      alert('没有权限，重新登录') // [!code --]
+      router.push('/login') // [!code --]
+      break // [!code --]
+    case 999: // [!code --]
+      alert('xxx参数有误') // [!code --]
+      break // [!code --]
+    default: // [!code --]
+      alert(`错误码${code}，${message}`) // [!code --]
+      return Promise.reject(new Error(message)) // [!code --]
+  } // [!code --]
+  if (code === 200) { // [!code ++]
+    return data // [!code ++]
+  } // [!code ++]
+  errorCode[code]?.() // [!code ++]
+  httpErrorCode[code]?.() // [!code ++]
 }, (error) => {
   // 响应失败，统一处理
   alert(error) // 一般还是用组件库的提示信息组件，这里简单代替
