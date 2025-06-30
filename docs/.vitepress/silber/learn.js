@@ -532,6 +532,10 @@ export const StudySidebar = [
         collapsed: true,
         items: [
           {
+            text: "Vue组件状态重置",
+            link: "/study/vue/Vue组件状态重置",
+          },
+          {
             text: "父组件监听子组件生命周期",
             link: "/study/vue/父组件监听子组件生命周期",
           },
@@ -570,10 +574,6 @@ export const StudySidebar = [
           {
             text: "Vue项目中TS意义与麻烦",
             link: "/study/vue/Vue项目中TS意义与麻烦",
-          },
-          {
-            text: "灵活使用冻结对象提升代码效率",
-            link: "/study/vue/灵活使用冻结对象提升代码效率",
           },
           {
             text: "Vue更新机制和优化",
