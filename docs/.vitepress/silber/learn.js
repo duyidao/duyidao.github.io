@@ -438,12 +438,16 @@ export const StudySidebar = [
         collapsed: true,
         items: [
           {
+            text: "类的多态",
+            link: "/study/js/类的多态",
+          },
+          {
             text: "垃圾回收与内存泄漏",
-            link: "/study/js/垃圾回收与console.log内存泄漏.md",
+            link: "/study/js/垃圾回收与console.log内存泄漏",
           },
           {
             text: "console.log对象时需要注意的坑",
-            link: "/study/js/console.log对象时需要注意的坑.md",
+            link: "/study/js/console.log对象时需要注意的坑",
           },
           {
             text: "windoe.onstorage标签页通信",
@@ -532,8 +536,16 @@ export const StudySidebar = [
         collapsed: true,
         items: [
           {
+            text: "Vue组件内的模板复用",
+            link: "/study/vue/Vue组件内的模板复用",
+          },
+          {
             text: "Vue组件状态重置",
             link: "/study/vue/Vue组件状态重置",
+          },
+          {
+            text: "全局状态管理",
+            link: "/study/vue/全局状态管理",
           },
           {
             text: "父组件监听子组件生命周期",
