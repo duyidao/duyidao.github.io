@@ -497,12 +497,23 @@ export const StudySidebar = [
         collapsed: true,
         items: [
           {
-            text: "Axios二次封装",
-            link: "/study/promise/Axios二次封装",
+            text: "手写 Promise",
+            collapsible: true,
+            collapsed: true,
+            items: [
+              {
+                text: "类与.then",
+                link: "/study/promise/手写promise/类与.then",
+              },
+              {
+                text: ".catch与.finally",
+                link: "/study/promise/手写promise/catch",
+              },
+            ]
           },
           {
-            text: "手写promise",
-            link: "/study/promise/手写promise",
+            text: "Axios二次封装",
+            link: "/study/promise/Axios二次封装",
           },
           {
             text: "请求取消",
