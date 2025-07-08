@@ -509,6 +509,10 @@ export const StudySidebar = [
                 text: ".catch与.finally",
                 link: "/study/promise/手写promise/catch",
               },
+              {
+                text: "静态方法",
+                link: "/study/promise/手写promise/静态方法",
+              },
             ]
           },
           {
