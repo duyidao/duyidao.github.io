@@ -14,30 +14,6 @@ export const ProjectSidebar = [
   },
 ];
 
-// 音果云音的数组
-export const MyVue3Sidebar = [
-  { text: "💴 前言", link: "/myVue3/" },
-  {
-    text: "🤺 基建",
-    collapsible: true,
-    items: [
-      { text: "基础搭建", link: "/myVue3/dev" },
-      { text: "打包配置", link: "/myVue3/build" },
-      { text: "Monorepo扩展", link: "/myVue3/monorepo" },
-    ],
-  },
-  {
-    text: "⏰ 响应式",
-    collapsible: true,
-    items: [
-      { text: "Ref 基础实现", link: "/myVue3/ref_start" },
-      { text: "Ref 进阶实现", link: "/myVue3/ref_advance" },
-      { text: "Reactive 进阶实现", link: "/myVue3/reactive" },
-      { text: "Computed 实现", link: "/myVue3/compute_realize" },
-    ],
-  },
-];
-
 // 灵思的数组
 export const LingsiSidebar = [
   {

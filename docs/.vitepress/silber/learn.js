@@ -90,6 +90,7 @@ export const CssSidebar = [
     collapsible: true,
     collapsed: true,
     items: [
+      { text: "主题过渡动画", link: "/CSS/效果提升/主题过渡动画" },
       { text: "变量", link: "/CSS/效果提升/变量" },
       { text: "宽度适配内容", link: "/CSS/效果提升/宽度适配内容" },
       { text: "瀑布流", link: "/CSS/效果提升/瀑布流" },
@@ -248,7 +249,32 @@ export const VueSidebar = [
       { text: "内置组件", link: "/vue/内置组件" },
       { text: "pinia", link: "/vue/pinia" },
       { text: "Vue3新特性", link: "/vue/Vue3新特性" },
-      { text: "源码", link: "/vue/源码" },
+      {
+        text: "源码",
+        collapsible: true,
+        items: [
+          { text: "💴 前言", link: "/myVue3/" },
+          {
+            text: "🤺 基建",
+            collapsible: true,
+            items: [
+              { text: "基础搭建", link: "/myVue3/dev" },
+              { text: "打包配置", link: "/myVue3/build" },
+              { text: "Monorepo扩展", link: "/myVue3/monorepo" },
+            ],
+          },
+          {
+            text: "⏰ 响应式",
+            collapsible: true,
+            items: [
+              { text: "Ref 基础实现", link: "/myVue3/ref_start" },
+              { text: "Ref 进阶实现", link: "/myVue3/ref_advance" },
+              { text: "Reactive 进阶实现", link: "/myVue3/reactive" },
+              { text: "Computed 实现", link: "/myVue3/compute_realize" },
+            ],
+          },
+        ],
+      },
     ],
   },
 ];
@@ -513,7 +539,7 @@ export const StudySidebar = [
                 text: "静态方法",
                 link: "/study/promise/手写promise/静态方法",
               },
-            ]
+            ],
           },
           {
             text: "Axios二次封装",

@@ -1,5 +1,5 @@
 import { CanvasSidebar, CssSidebar, JsSidebar, VueSidebar, ReactSidebar, TsSidebar, UpgradeSidebar, StudySidebar } from '../silber/learn.js';
-import { ProjectSidebar, MyVue3Sidebar, LingsiSidebar, MusicSidebar, JobSidebar, SaleSidebar, CementSidebar, ELKSidebar, CRMSidebar, DaodaoSidebar, BaiduSidebar, LayerSidebar, FokaiSidebar, SelfstudySidebar, RabitSidebar, SelectSidebar, DoctorSidebar, BackstageSidebar, PaperSidebar, ConsultationSidebar } from '../silber/project.js';
+import { ProjectSidebar, LingsiSidebar, MusicSidebar, JobSidebar, SaleSidebar, CementSidebar, ELKSidebar, CRMSidebar, DaodaoSidebar, BaiduSidebar, LayerSidebar, FokaiSidebar, SelfstudySidebar, RabitSidebar, SelectSidebar, DoctorSidebar, BackstageSidebar, PaperSidebar, ConsultationSidebar } from '../silber/project.js';
 import { ReadSidebar } from '../silber/read.js';
 import { VitePressSidebar } from '../silber/vitepress.js';
 import { InterviewSidebar } from '../silber/interview.js';
@@ -26,13 +26,13 @@ export default {
   "/CSS": generateSidebarItems(CssSidebar),
   "/Javascript": generateSidebarItems(JsSidebar),
   "/vue": generateSidebarItems(VueSidebar),
+  "/myVue3": generateSidebarItems(VueSidebar),
   "/React": generateSidebarItems(ReactSidebar),
   "/TypeScript": generateSidebarItems(TsSidebar),
   "/Upgrade": generateSidebarItems(UpgradeSidebar),
   "/study": generateSidebarItems(StudySidebar),
   "/interview": generateSidebarItems(InterviewSidebar),
   "/project": generateSidebarItems(ProjectSidebar),
-  "/myVue3": generateSidebarItems(MyVue3Sidebar),
   "/lingsi": generateSidebarItems(LingsiSidebar),
   "/lingsi/sale": generateSidebarItems(SaleSidebar),
   "/lingsi/职技网": generateSidebarItems(JobSidebar),
