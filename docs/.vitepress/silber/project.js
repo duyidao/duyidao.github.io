@@ -184,6 +184,7 @@ export const DaodaoSidebar = [
       { text: "🦩 适应性布局", link: "/daodao/适应性布局" },
       { text: "☁️ 天气获取", link: "/daodao/天气获取" },
       { text: "💻 代码编辑器", link: "/daodao/代码编辑器" },
+      { text: "⌚️ 多人协同在线表格简易实现", link: "/daodao/tableOnline" },
       { text: "🐛 捉虫记录", link: "/daodao/bug" },
       { text: "🖼️ 优化", link: "/daodao/prod" },
       { text: "🗑 返回", link: "/project/" },
