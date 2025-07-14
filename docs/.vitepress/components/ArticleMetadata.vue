@@ -1,13 +1,12 @@
 <script setup>
 import { useData } from 'vitepress'
-import { computed, ref, onMounted } from 'vue'
+import { computed, ref, onMounted, h } from 'vue'
 
 const pattern
   = /[a-zA-Z0-9_\u0392-\u03C9\u00C0-\u00FF\u0600-\u06FF\u0400-\u04FF]+|[\u4E00-\u9FFF\u3400-\u4DBF\uF900-\uFAFF\u3040-\u309F\uAC00-\uD7AF]+/g
 
 // 初始化文章元数据信息
 const { page } = useData();
-console.log(page.value);
 
 function countWord(data) {
   const m = data.match(pattern)
@@ -67,6 +66,13 @@ onMounted(() => {
   // 初始化时执行一次
   analyze()
 })
+
+const spanDom = ({item}) => {
+  const href = item.split(' ')[1]
+  const link = href.includes('^') ? href.split('^')[1] : href
+  const name = href.includes('^') ? href.split('^')[0] : '前往学习'
+  return item.split(' ')[1] ? h('span', {}, [`；视频地址：`, h('a', { href: link, target: '_blank' }, name)]) : null
+}
 </script>
 
 <template>
@@ -152,8 +158,8 @@ onMounted(() => {
     </div>
     <li v-for="item in page.frontmatter?.author"
       :key="item">
-      <span>UP主：{{ item.split(' ')[0] }}</span>
-      <span v-if="item.split(' ')[1]">，视频地址：<a :href="item.split(' ')[1]" target="_blank">前往学习</a></span>
+      <span>视频来源：{{ item.split(' ')[0] }}</span>
+      <spanDom :item="item"/>
     </li>
   </ul>
 </template>
