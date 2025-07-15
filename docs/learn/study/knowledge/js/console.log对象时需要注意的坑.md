@@ -1,3 +1,10 @@
+---
+title: console.log 对象时需要注意的坑
+isReship: true
+author:
+  - 三十的前端课 console.log对象时，一定要注意的坑^https://www.bilibili.com/video/BV1XdxxeQE3s/
+---
+
 # console.log 对象时需要注意的坑
 
 ## 坑点

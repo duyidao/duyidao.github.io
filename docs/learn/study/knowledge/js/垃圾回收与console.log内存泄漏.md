@@ -1,3 +1,11 @@
+---
+title: 内存泄漏
+isReship: true
+author:
+  - 渡一教育 垃圾回收与内存泄露^https://www.bilibili.com/video/BV1fH4y137Sz/
+  - 渡一教育 console.log导致的内存泄露^https://www.bilibili.com/video/BV16Q4y1p7bZ/
+---
+
 # 垃圾回收与内存泄漏
 
 ## 垃圾回收

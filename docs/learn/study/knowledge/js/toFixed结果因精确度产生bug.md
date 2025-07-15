@@ -1,3 +1,10 @@
+---
+title: toFixed 结果因精确度产生 bug
+isReship: true
+author:
+  - 渡一教育 toFixed的结果可能会欺骗你^https://www.bilibili.com/video/BV12i4y1i7Lv/
+---
+
 # toFixed 结果因精确度产生 bug
 
 ## 前情提要

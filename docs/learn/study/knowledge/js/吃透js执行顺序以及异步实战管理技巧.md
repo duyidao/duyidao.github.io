@@ -1,3 +1,10 @@
+---
+title: 吃透js执行顺序以及异步实战管理技巧
+isReship: true
+author:
+  - 三十的前端课 吃透js执行顺序及异步实战管理技巧经验^https://www.bilibili.com/video/BV1KX4y1o7E7/
+---
+
 # 吃透js执行顺序以及异步实战管理技巧
 
 ## js执行顺序

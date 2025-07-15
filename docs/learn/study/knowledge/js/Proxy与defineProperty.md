@@ -1,3 +1,11 @@
+---
+title: Proxy与defineProperty
+isReship: true
+author:
+  - 渡一教育 Proxy和DefineProperty^https://www.bilibili.com/video/BV1b8M7zNEJL/
+  - 渡一教育 Proxy比defineProperty到底好在哪^https://www.bilibili.com/video/BV1jeoPYxEz9/
+---
+
 # Proxy与defineProperty
 
 ## Proxy与defineProperty的区别
@@ -27,7 +35,7 @@ obj.b = 2;
 'c' in obj;
 delete obj.a;
 for(const k in obj) {
-    console.log(k);
+  console.log(k);
 }
 obj.c();
 ```
@@ -50,12 +58,12 @@ obj.c();
 
 ```js
 const obj = {
-    a: 1,
-    b: 2,
-    c: {
-        tree: 1,
-        flower: 2
-    }
+  a: 1,
+  b: 2,
+  c: {
+    tree: 1,
+    flower: 2
+  }
 }
 ```
 
@@ -65,16 +73,16 @@ const obj = {
 
 ```js
 Object.defineProperty(obj, 'a', {
-    get() {
-        console.log('读取a:', a)
-        return a
-    },
-    set(val) {
-        if(val !== obj.a) {
-            console.log('更改a:', a)
-            obj.a = val
-        }
+  get() {
+    console.log('读取a:', a)
+    return a
+  },
+  set(val) {
+    if(val !== obj.a) {
+      console.log('更改a:', a)
+      obj.a = val
     }
+  }
 })
 ```
 
@@ -84,26 +92,26 @@ Object.defineProperty(obj, 'a', {
 
 ```js
 function _isObject(v) {
-    return typeof v === 'object' && v !== null
+  return typeof v === 'object' && v !== null
 }
 
 function observe(obj) {
-    for(const k in obj) {
-        let v = obj[k]
-        if(_isObject(v)) observe(v)
+  for(const k in obj) {
+    let v = obj[k]
+    if(_isObject(v)) observe(v)
+  }
+  Object.defineProperty(obj, k, {
+    get() {
+      console.log('读取:', k)
+      return v
+    },
+    set(val) {
+      if(val !== v) {
+        console.log('更改:', k)
+        v = val
+      }
     }
-    Object.defineProperty(obj, k, {
-        get() {
-            console.log('读取:', k)
-            return v
-        },
-        set(val) {
-            if(val !== v) {
-                console.log('更改:', k)
-                v = val
-            }
-        }
-    })
+  })
 }
 ```
 
@@ -119,17 +127,17 @@ function observe(obj) {
 
 ```js
 const newObj = new Proxy(obj, {
-    get(target, k) {
-        let v = target[k]
-        console.log(k, 'read')
-        return v
-    },
-    set(target, k, val) {
-        let v = target[k]
-        if(target[k] !== val) {
-            target[k] = val
-        }
+  get(target, k) {
+    let v = target[k]
+    console.log(k, 'read')
+    return v
+  },
+  set(target, k, val) {
+    let v = target[k]
+    if(target[k] !== val) {
+      target[k] = val
     }
+  }
 })
 ```
 
@@ -137,27 +145,27 @@ const newObj = new Proxy(obj, {
 
 ```js
 function _isObject(v) {
-    return typeof v === 'object' && v !== null
+  return typeof v === 'object' && v !== null
 }
 
 function observe(obj) {
-    const newObj = new Proxy(obj, {
-        get(target, k) {
-            let v = target[k]
-            if(_isObject(v)) {
-                v = observe(v)
-            }
-            console.log(k, 'read')
-            return v
-        },
-        set(target, k, val) {
-            let v = target[k]
-            if(target[k] !== val) {
-                target[k] = val
-            }
-        }
-    })
-    return newObj
+  const newObj = new Proxy(obj, {
+    get(target, k) {
+      let v = target[k]
+      if(_isObject(v)) {
+        v = observe(v)
+      }
+      console.log(k, 'read')
+      return v
+    },
+    set(target, k, val) {
+      let v = target[k]
+      if(target[k] !== val) {
+        target[k] = val
+      }
+    }
+  })
+  return newObj
 }
 ```
 
