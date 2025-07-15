@@ -558,10 +558,6 @@ export const StudySidebar = [
             link: "/study/promise/并发任务控制",
           },
           {
-            text: "多接口请求",
-            link: "/study/promise/多接口请求",
-          },
-          {
             text: "高量级任务执行优化",
             link: "/study/promise/高量级任务执行优化",
           },

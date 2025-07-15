@@ -1,3 +1,11 @@
+---
+title: Axios二次封装
+isReship: true
+author:
+  - 三十的前端课 axios请求二次封装都做些什么?^https://www.bilibili.com/video/BV1fg4y1M7pe/
+  - 三十的前端课 提升代码思维，从一个案例看如何提高代码质量^https://www.bilibili.com/video/BV1is4y117ow/
+---
+
 # Axios二次封装
 
 ## 基本封装部分
