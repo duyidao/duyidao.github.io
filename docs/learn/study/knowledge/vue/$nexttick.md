@@ -1,3 +1,9 @@
+---
+title: $nexttick
+isReship: true
+author:
+  - 远方os vue 的异步更新原理和 nextTick 的实现^https://www.bilibili.com/video/BV1xwpme4EJk/
+---
 # $nexttick
 
 ## 执行原理

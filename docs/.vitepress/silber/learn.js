@@ -464,6 +464,29 @@ export const StudySidebar = [
         collapsed: true,
         items: [
           {
+            text: "设计模式",
+            collapsible: true,
+            collapsed: true,
+            items: [
+              {
+                text: "设计模式概念",
+                link: "/study/js/设计模式/",
+              },
+              {
+                text: "优化案例：商品卡不同类型代码如何实现",
+                link: "/study/js/设计模式/优化案例：商品卡不同类型代码如何实现",
+              },
+              {
+                text: "优化案例：请求的复用与兼容",
+                link: "/study/js/设计模式/优化案例：请求的复用与兼容",
+              },
+              {
+                text: "优化案例：视频列表只允许单个视频播放",
+                link: "/study/js/设计模式/优化案例：视频列表只允许单个视频播放",
+              },
+            ],
+          },
+          {
             text: "类的多态",
             link: "/study/js/类的多态",
           },
@@ -482,10 +505,6 @@ export const StudySidebar = [
           {
             text: "toFixed结果因精确度产生bug",
             link: "/study/js/toFixed结果因精确度产生bug",
-          },
-          {
-            text: "设计模式",
-            link: "/study/js/设计模式",
           },
           {
             text: "Proxy与defineProperty",

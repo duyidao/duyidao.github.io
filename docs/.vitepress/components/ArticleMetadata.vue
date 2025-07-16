@@ -67,11 +67,19 @@ onMounted(() => {
   analyze()
 })
 
-const spanDom = ({item}) => {
+const typeMap = {
+  video: '视频',
+  blog: '博客',
+  article: '文章'
+}
+let type = []
+
+const spanDom = ({item, index}) => {
   const href = item.split(' ')[1]
+  type[index] = item.split(' ')[0].split('^')[1] || 'video'
   const link = href.includes('^') ? href.split('^')[1] : href
   const name = href.includes('^') ? href.split('^')[0] : '前往学习'
-  return item.split(' ')[1] ? h('span', {}, [`；视频地址：`, h('a', { href: link, target: '_blank' }, name)]) : null
+  return item.split(' ')[1] ? h('span', {}, [`；${typeMap[type[index]]}地址：`, h('a', { href: link, target: '_blank' }, name)]) : null
 }
 </script>
 
@@ -156,10 +164,10 @@ const spanDom = ({item}) => {
       <i></i>
       <span>学习明灯</span>
     </div>
-    <li v-for="item in page.frontmatter?.author"
+    <li v-for="(item, index) in page.frontmatter?.author"
       :key="item">
-      <span>视频来源：{{ item.split(' ')[0] }}</span>
-      <spanDom :item="item"/>
+      <span>{{ typeMap[type[index]] }}来源：{{ item.split(' ')[0].split('^')[0] }}</span>
+      <spanDom :item="item" :index="index"/>
     </li>
   </ul>
 </template>
