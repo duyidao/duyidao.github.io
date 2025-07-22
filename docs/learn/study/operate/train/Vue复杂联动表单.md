@@ -1,3 +1,10 @@
+---
+title: Vue 复杂联动表单
+isReship: true
+author:
+  - 三十的前端课 能让你学到很多的，vue复杂联动表单需求^https://www.bilibili.com/video/BV14QkeYsESm
+---
+
 # Vue 复杂联动表单
 
 ## 效果展示
@@ -21,10 +28,6 @@
 「投放详细」表格则直接使用 `formData` 变量作为数据源，用户修改委托人时直接修改 `formData` 中的数据。
 
 最后「目标人群」直接修改 `formData` 中的数据很不方便，因此作为一个子组件，它自己使用自己的数据，父组件点击 “提交” 按钮后，获取到子组件的数据，循环 `formData` 变量，把从子组件拿到的数据添加到每个对象的 `crowd` 数组中。
-
-最后梳理数据流向一图流如下所示：
-
-![数据流向一图流](https://pic1.imgdb.cn/item/67ebe1f10ba3d5a1d7e931c5.png)25c0ba3d5a1d7e955d7.png)
 
 ## 页面架构
 

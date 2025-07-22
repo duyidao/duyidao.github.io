@@ -4,6 +4,8 @@ isReship: true
 author:
   - 三十的前端课 axios请求二次封装都做些什么?^https://www.bilibili.com/video/BV1fg4y1M7pe/
   - 三十的前端课 提升代码思维，从一个案例看如何提高代码质量^https://www.bilibili.com/video/BV1is4y117ow/
+  - 远方os 前端请求应该如何封装^https://www.douyin.com/video/7433832678895422783
+  - 三十的前端课 前端的请求错误处理，一节课搞通透^https://www.bilibili.com/video/BV16JQ2YTEoL/
 ---
 
 # Axios二次封装

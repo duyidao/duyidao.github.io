@@ -763,10 +763,6 @@ export const StudySidebar = [
             link: "/study/handle/前端下载后端传输的文件",
           },
           {
-            text: "移动端大屏端布局适配",
-            link: "/study/handle/移动端大屏端布局适配",
-          },
-          {
             text: "元素不定大小隐藏做溢出隐藏",
             link: "/study/handle/元素不定大小隐藏做溢出隐藏",
           },
@@ -839,6 +835,14 @@ export const StudySidebar = [
           {
             text: "通过状态思维应对多变页面",
             link: "/study/train/通过状态思维应对多变页面",
+          },
+          {
+            text: "前端动图动效方案",
+            link: "/study/train/前端动图动效方案",
+          },
+          {
+            text: "websocket实时进度条",
+            link: "/study/train/websocket实时进度条",
           },
           {
             text: "Vue复杂联动表单",

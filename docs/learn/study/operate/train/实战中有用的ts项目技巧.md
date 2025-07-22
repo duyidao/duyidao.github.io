@@ -1,3 +1,10 @@
+---
+title: 实战中有用的 TypeScript 项目技巧
+isReship: true
+author:
+  - 三十的前端课 实战中很有用的Typescript技巧^https://www.bilibili.com/video/BV1W6PjesEe8/
+---
+
 # 实战中有用的 TypeScript 项目技巧
 
 ## 第三方库处理技巧
@@ -39,6 +46,8 @@ function addRouterFn(routerConfig: RouteRecordRaw[], router: Router) {
 
 在例如 `pinia` 仓库，多人开发想要定义批量仓库编写时第二个函数参数返回的类型，可以用 ts 定义好。后续团队成员引入就能使用了，如果他们不按要求返回需要的变量方法，或者方法变量类型不正确，都会报错。
 
+假设有一个变量是通过 `ref` 声明的响应式变量，不知道该怎么设置 `ts` 类型，可以根据上面的步骤，`ctrl` 进入源码查看 `ref` 的类型注释，然后根据需要设置类型。
+
 ::: code-group
 
 ```js [storeType.ts]
@@ -59,14 +68,12 @@ export type useUserInfoStoreType = () => {
 import { defineStore } from "pinia";
 import type { UserInfoType, useUserInfoStoreType } from "./storeType";
 
+// 定义一个函数，这个函数返回一个对象，这个对象包含：响应式变量userInfo，和函数方法setUserInfo
 let storeFn: useUserInfoStoreType = () => {
-  const userInfo =
-    ref <
-    UserInfoType >
-    {
-      name: "张三",
-      age: 18,
-    };
+  const userInfo = ref<UserInfoType>({
+    name: "张三",
+    age: 18,
+  });
 
   const setUserInfo = (info: UserInfoType) => {
     userInfo.value = info;
@@ -97,6 +104,8 @@ export default defineStore("userInfo", storeFn);
 
 ```js [api.ts]
 imterface api1Res {
+  success: string,
+  status: string,
   fansList: {
     fansName: string,
     fansYear: string
@@ -119,8 +128,8 @@ export function getApi1(data: api1Req) {
 <script setup>
 import { getApi1, type api1Res } from "./api";
 
-const fansList = ref < api1Res["fansList"] > [];
-const myInfo = ref < api1Res["myInfo"] > {};
+const fansList = ref<api1Res["fansList"]>[];
+const myInfo = ref<api1Res["myInfo"]>{};
 
 getApi1({ id: "123" }).then((res) => {
   fansList.value = res.data.fansList;
@@ -130,6 +139,8 @@ getApi1({ id: "123" }).then((res) => {
 ```
 
 :::
+
+如上方代码所示，通过 `[]` 把 `fansList` 类型从 `api1Res` 中提取出来 `api1Res["fansList"]`，作为 `fansList` 变量的类型。
 
 ### 定义枚举，有时需要说明某个类型是这些枚举中的某一个
 
@@ -168,6 +179,8 @@ export const UserTypeMap = {
 ```
 
 :::
+
+后续如果要把 `sing` 改为 `singer` ，前端只需要修改 `UserTypeMap.sing` 的值即可，无需大规模改动。
 
 如果想要使用枚举中每一个类型属性，可以使用 `keyof` 操作符和 `typeof` 的组合快速实现枚举类型提取。
 

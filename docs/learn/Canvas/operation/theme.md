@@ -1,3 +1,10 @@
+---
+title: 根据背景图片改变主题色阴影
+isReship: true
+author:
+  - 三十的前端课 根据背景图片改主题色^https://www.bilibili.com/video/BV1U2wce7EHY
+---
+
 # 根据背景图片改变主题色阴影
 
 ## 需求效果
