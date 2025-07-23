@@ -82,6 +82,14 @@ export const InterviewSidebar = [
         text: "向蜜鸟",
         link: "/interview/向蜜鸟",
       },
+      {
+        text: "易联众",
+        link: "/interview/易联众",
+      },
+      {
+        text: "华苏",
+        link: "/interview/华苏",
+      },
     ],
   },
   {
