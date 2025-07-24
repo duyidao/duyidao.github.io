@@ -83,6 +83,10 @@ export const InterviewSidebar = [
         link: "/interview/向蜜鸟",
       },
       {
+        text: "华兴银行",
+        link: "/interview/华兴银行",
+      },
+      {
         text: "易联众",
         link: "/interview/易联众",
       },
