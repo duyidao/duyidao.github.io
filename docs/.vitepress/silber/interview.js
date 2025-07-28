@@ -98,6 +98,10 @@ export const InterviewSidebar = [
         text: "数说",
         link: "/interview/数说",
       },
+      {
+        text: "广州智算",
+        link: "/interview/广州智算",
+      },
     ],
   },
   {
