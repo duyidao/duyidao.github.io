@@ -91,8 +91,12 @@ export const InterviewSidebar = [
         link: "/interview/易联众",
       },
       {
-        text: "华苏",
+        text: "卓望",
         link: "/interview/华苏",
+      },
+      {
+        text: "数说",
+        link: "/interview/数说",
       },
     ],
   },
