@@ -43,6 +43,7 @@ export default [
         items: [
           { text: "🧟 灵思", link: "/lingsi/" },
           { text: "⛷️ 百度", link: "/baidu/" },
+          { text: "🔢 数说数字化", link: "/shushuo/" },
         ],
       },
       {
