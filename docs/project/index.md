@@ -28,15 +28,25 @@ pageClass: project-class
     link: '/project/baidu/',
     description: `<p>百度外包项目多以百度地图为主，主要通过地图展示模型、扎点、线等因素。由于项目需要提供组件给客户使用，因此使用 <code>Vue2.7</code> 版本，无论客户使用 <code>Vue2</code> 还是 <code>Vue3</code> 都能适配。</p><p>业务方面偏大屏，大量采用 <code>Echart</code> ，也针对配置项做了UI适配处理。</p>`,
   },
+  {
+    title: '数说外包',
+    link: '/project/数说/',
+    description: `<p>数说外包项目多以 <code>AI</code> 为主，主要通过 <code>AI</code> 搭配大模型实现功能。</p>`,
+  },
 ]" />
 
-## 刀刀博客小站
+## 个人项目
 
 <BlogLis :items="[
   {
     title: '刀刀博客小站',
     link: '/project/daodao/',
     description: `<p>刀刀博客效果如何通过代码实现，附带源码展示。</p>`,
+  },
+  {
+    title: '刀刀音乐',
+    link: '/project/music/',
+    description: `<p>通过原生 <code>AudioContext</code> 音频上下文，实现刀刀音乐播放。</p>`,
   },
 ]" />
 

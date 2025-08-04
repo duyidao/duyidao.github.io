@@ -1,5 +1,13 @@
 import { CanvasSidebar, CssSidebar, JsSidebar, VueSidebar, ReactSidebar, TsSidebar, UpgradeSidebar, StudySidebar } from '../silber/learn.js';
-import { ProjectSidebar, LingsiSidebar, MusicSidebar, JobSidebar, SaleSidebar, CementSidebar, ELKSidebar, CRMSidebar, DaodaoSidebar, BaiduSidebar, LayerSidebar, FokaiSidebar, SelfstudySidebar, RabitSidebar, SelectSidebar, DoctorSidebar, BackstageSidebar, PaperSidebar, ConsultationSidebar } from '../silber/project.js';
+import {
+  ProjectSidebar,
+  LingsiSidebar, MusicSidebar, JobSidebar, SaleSidebar, CementSidebar, ELKSidebar, CRMSidebar,
+  DaodaoSidebar,
+  BaiduSidebar, LayerSidebar, FokaiSidebar,
+  SelfstudySidebar, RabitSidebar, SelectSidebar, DoctorSidebar, BackstageSidebar, PaperSidebar, ConsultationSidebar,
+  DaodaoMusicSidebar,
+  ShushuoSidebar, AIReportSidebar
+} from '../silber/project.js';
 import { ReadSidebar } from '../silber/read.js';
 import { VitePressSidebar } from '../silber/vitepress.js';
 import { InterviewSidebar } from '../silber/interview.js';
@@ -44,7 +52,10 @@ export default {
   "/baidu/": generateSidebarItems(BaiduSidebar),
   "/baidu/layer/": generateSidebarItems(LayerSidebar),
   "/baidu/fokai/": generateSidebarItems(FokaiSidebar),
+  "/shushuo/": generateSidebarItems(ShushuoSidebar),
+  "/shushuo/ai-report-frontend/": generateSidebarItems(AIReportSidebar),
   "/myself": generateSidebarItems(SelfstudySidebar),
+  "/music": generateSidebarItems(DaodaoMusicSidebar),
   "/myself/小兔鲜": generateSidebarItems(RabitSidebar),
   "/myself/硅谷甄选": generateSidebarItems(SelectSidebar),
   "/myself/尚医通": generateSidebarItems(DoctorSidebar),

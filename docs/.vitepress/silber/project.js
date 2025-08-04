@@ -8,7 +8,9 @@ export const ProjectSidebar = [
     items: [
       { text: "🧟 灵思", link: "/lingsi/" },
       { text: "⛷️百度外包", link: "/baidu/" },
+      { text: "🔢 数说数字化", link: "/shushuo/" },
       { text: "🔪 刀刀博客", link: "/daodao/" },
+      { text: "🎵 刀刀音乐", link: "/music/" },
       { text: "📜 自主学习", link: "/myself/" },
     ],
   },
@@ -25,7 +27,7 @@ export const LingsiSidebar = [
       { text: "🧫 华润水泥", link: "/lingsi/水泥/" },
       { text: "🔍 CRM", link: "/lingsi/crm/" },
       { text: "🎲 ELK", link: "/lingsi/elk/" },
-      { text: "🗑 返回", link: "/project/" },
+      { text: "🔙 返回", link: "/project/" },
     ],
   },
 ];
@@ -54,7 +56,7 @@ export const MusicSidebar = [
     collapsible: true,
     items: [
       { text: "海报页", link: "/lingsi/music/H5/" },
-      { text: "🗑 返回", link: "/lingsi/" },
+      { text: "🔙 返回", link: "/lingsi/" },
     ],
   },
 ];
@@ -73,7 +75,7 @@ export const JobSidebar = [
       },
       { text: "微信授权", link: "/lingsi/职技网/微信授权" },
       { text: "下载附件", link: "/lingsi/职技网/下载附件" },
-      { text: "🗑 返回", link: "/lingsi/" },
+      { text: "🔙 返回", link: "/lingsi/" },
     ],
   },
 ];
@@ -94,7 +96,7 @@ export const SaleSidebar = [
       { text: "视频轮播", link: "/lingsi/sale/video" },
       { text: "图片上传组件封装", link: "/lingsi/sale/upload" },
       { text: "关注公众号", link: "/lingsi/sale/关注公众号" },
-      { text: "🗑 返回", link: "/lingsi/" },
+      { text: "🔙 返回", link: "/lingsi/" },
     ],
   },
 ];
@@ -129,7 +131,7 @@ export const CementSidebar = [
           },
         ],
       },
-      { text: "🗑 返回", link: "/lingsi/" },
+      { text: "🔙 返回", link: "/lingsi/" },
     ],
   },
 ];
@@ -150,7 +152,7 @@ export const ELKSidebar = [
       { text: "DIV可编辑文本", link: "/lingsi/elk/edit_div" },
       { text: "JSON编辑器", link: "/lingsi/elk/edit_JSON" },
       { text: "导出PDF", link: "/lingsi/elk/pdf" },
-      { text: "🗑 返回", link: "/lingsi/" },
+      { text: "🔙 返回", link: "/lingsi/" },
     ],
   },
 ];
@@ -166,7 +168,7 @@ export const CRMSidebar = [
       { text: "navigateBack传参", link: "/lingsi/crm/navigateBack" },
       { text: "域名配置", link: "/lingsi/crm/部署" },
       { text: "微信授权", link: "/lingsi/crm/微信授权" },
-      { text: "🗑 返回", link: "/lingsi/" },
+      { text: "🔙 返回", link: "/lingsi/" },
     ],
   },
 ];
@@ -187,7 +189,19 @@ export const DaodaoSidebar = [
       { text: "⌚️ 多人协同在线表格简易实现", link: "/daodao/tableOnline" },
       { text: "🐛 捉虫记录", link: "/daodao/bug" },
       { text: "🖼️ 优化", link: "/daodao/prod" },
-      { text: "🗑 返回", link: "/project/" },
+      { text: "🔙 返回", link: "/project/" },
+    ],
+  },
+];
+
+// 刀刀博客的数组
+export const DaodaoMusicSidebar = [
+  {
+    text: "🎵 刀刀音乐",
+    collapsible: true,
+    items: [
+      { text: "🎵 引言", link: "/music/" },
+      { text: "🔙 返回", link: "/project/" },
     ],
   },
 ];
@@ -198,10 +212,9 @@ export const BaiduSidebar = [
     text: "⛷️ 百度",
     collapsible: true,
     items: [
-      { text: "⛷️ 引言", link: "/baidu/" },
       { text: "🗺 图层", link: "/baidu/layer/" },
       { text: "🎞️ 佛开", link: "/baidu/fokai/LED/" },
-      { text: "🗑 返回", link: "/project/" },
+      { text: "🔙 返回", link: "/project/" },
     ],
   },
 ];
@@ -221,7 +234,7 @@ export const LayerSidebar = [
       { text: "⚙️ 功能", link: "/baidu/layer/功能" },
       { text: "🇺🇳 POC", link: "/baidu/layer/Poc" },
       { text: "🕶️ BUG", link: "/baidu/layer/bug" },
-      { text: "🗑 返回", link: "/baidu/" },
+      { text: "🔙 返回", link: "/baidu/" },
     ],
   },
 ];
@@ -252,7 +265,32 @@ export const FokaiSidebar = [
           { text: "📦 打包", link: "/baidu/fokai/LED/build" },
         ],
       },
-      { text: "🗑 返回", link: "/baidu/" },
+      { text: "🔙 返回", link: "/baidu/" },
+    ],
+  },
+];
+
+// 数说的数组
+export const ShushuoSidebar = [
+  {
+    text: "🔢 数说数字化",
+    collapsible: true,
+    items: [
+      { text: "🤖 智能报告", link: "/shushuo/ai-report-frontend/cxo/" },
+      { text: "🔙 返回", link: "/project/" },
+    ],
+  },
+];
+
+// 智能报告的数组
+export const AIReportSidebar = [
+  {
+    text: "🤖 智能报告",
+    collapsible: true,
+    items: [
+      { text: "🚧 路由自动化", link: "/shushuo/ai-report-frontend/unplugin-vue-router" },
+      { text: "✍ 畅写", link: "/shushuo/ai-report-frontend/cxo" },
+      { text: "🔙 返回", link: "/project/shushuo/" },
     ],
   },
 ];
@@ -270,7 +308,7 @@ export const SelfstudySidebar = [
       { text: "🎎 react后台", link: "/myself/react后台/" },
       { text: "📰 知乎日报", link: "/myself/知乎日报/react版/" },
       { text: "👨‍⚕️ 优医问诊", link: "/myself/优医问诊/" },
-      { text: "🗑 返回", link: "/project/" },
+      { text: "🔙 返回", link: "/project/" },
     ],
   },
 ];
@@ -311,7 +349,7 @@ export const RabitSidebar = [
           { text: "打包", link: "/myself/小兔鲜/inuni/build" },
         ],
       },
-      { text: "🗑 返回", link: "/myself/" },
+      { text: "🔙 返回", link: "/myself/" },
     ],
   },
 ];
@@ -329,7 +367,7 @@ export const SelectSidebar = [
       { text: "SPU管理", link: "/myself/硅谷甄选/SPU管理" },
       { text: "设置", link: "/myself/硅谷甄选/设置" },
       { text: "数据大屏", link: "/myself/硅谷甄选/数据大屏" },
-      { text: "🗑 返回", link: "/myself/" },
+      { text: "🔙 返回", link: "/myself/" },
     ],
   },
 ];
@@ -341,7 +379,7 @@ export const DoctorSidebar = [
     collapsible: true,
     items: [
       { text: "项目初始化", link: "/myself/尚医通/" },
-      { text: "🗑 返回", link: "/myself/" },
+      { text: "🔙 返回", link: "/myself/" },
     ],
   },
 ];
@@ -356,7 +394,7 @@ export const BackstageSidebar = [
       { text: "菜单栏配置", link: "/myself/react后台/menu" },
       { text: "仓库配置", link: "/myself/react后台/redux" },
       { text: "路由守卫", link: "/myself/react后台/守卫" },
-      { text: "🗑 返回", link: "/myself/" },
+      { text: "🔙 返回", link: "/myself/" },
     ],
   },
 ];
@@ -391,7 +429,7 @@ export const PaperSidebar = [
         collapsed: true,
         items: [],
       },
-      { text: "🗑 返回", link: "/myself/" },
+      { text: "🔙 返回", link: "/myself/" },
     ],
   },
 ];
@@ -406,7 +444,7 @@ export const ConsultationSidebar = [
       { text: "登录模块", link: "/myself/优医问诊/login" },
       { text: "用户模块", link: "/myself/优医问诊/user" },
       { text: "极速问诊", link: "/myself/优医问诊/consult" },
-      { text: "🗑 返回", link: "/myself/" },
+      { text: "🔙 返回", link: "/myself/" },
     ],
   },
 ];
