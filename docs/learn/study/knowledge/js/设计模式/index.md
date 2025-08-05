@@ -4,6 +4,7 @@ isReship: true
 author:
   - Sunshine_Lin^blog 面试官问我设计模式？我是这么回答的！^https://juejin.cn/post/7205401322111500344
   - 远方os 发布订阅模式如何触发未来事件？^https://www.douyin.com/video/7444172880142716169
+  - 渡一教育 用发布订阅模式解耦^https://www.bilibili.com/video/BV1hubUzkEti/
 ---
 
 # 设计模式
@@ -418,6 +419,80 @@ eventBus.on("event", (val) => {
 // 组件二
 eventBus.emit("event", "params");
 ```
+
+#### 功能解耦
+
+下面看一个例子：
+
+```js
+import { Message } from "ant-design-vue";
+import router from "@/router";
+
+export const errorHttp = (code) => {
+  if (code === 401) {
+    Message.error("登录过期，请重新登录");
+    router.push("/login");
+  }
+}
+```
+
+代码很简单，就是当接口返回 401 状态码时，提示用户登录过期，并跳转到登录页面。
+
+但是，这段代码并没有做到解耦，网络模块的代码还涉及到了组件和路由两个模块。且如果以后还有其他状态码需要处理，那么就需要在 `errorHttp` 函数中添加更多的判断逻辑。这样会导致 `errorHttp` 函数变得越来越庞大，难以维护。
+
+使用发布订阅模式来实现解耦是一个好的优化手段，主要思路是设置一个中间层，当接口返回错误状态码时，发布一个事件，其余需要的模块在中间层订阅这个事件，当事件发布时，中间层会自动处理相应的逻辑。
+
+::: code-group
+```ts [中间层.ts]
+const eventNames = ['API:UN_AUTH', 'API:INVALID'];
+
+class EventEmiter {
+  private listeners: Record<string, Set<Function>> = {
+    'API:UN_AUTH': new Set(),
+    'API:INVALID': new Set(),
+  };
+
+  on(eventName: eventNames, callback: Function) {
+    if (!this.listeners[eventName]) {
+      this.listeners[eventName] = new Set();
+    }
+    this.listeners[eventName].add(callback);
+  }
+
+  emit(eventName: eventNames, ...args: any[]) {
+    const callbacks = this.listeners[eventName];
+    if (callbacks) {
+      callbacks.forEach((callback) => callback(...args));
+    }
+  }
+}
+
+export default new EventEmiter();
+```
+
+```ts [网络模块.ts]
+import eventEmiter from './eventEmiter';
+
+export const errorHttp = (code) => {
+  if (code === 401) {
+    eventEmiter.emit('API:UN_AUTH');
+  }
+  else if (code === 400) {
+    eventEmiter.emit('API:INVALID');
+  }
+}
+```
+
+```ts [组件.ts]
+import eventEmiter from './eventEmiter';
+
+eventEmiter.on('API:UN_AUTH', () => {
+  Message.error('登录过期，请重新登录');
+  router.push('/login');
+});
+```
+
+:::
 
 #### 未来事件触发
 

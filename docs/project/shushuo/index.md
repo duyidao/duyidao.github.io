@@ -20,7 +20,7 @@ pageClass: project-shushuo-class
 <BlogLis :items="[
   {
     title: '智能报告',
-    link: '/shushuo/ai-report-frontend/',
+    link: '/shushuo/ai-report-frontend/cxo',
     description: `<p>企业中远海运特运内部使用的项目，集成了文档模板创建、AI解析上传的 <code>excel</code> 表数据生成对应的内容给使用者粘贴到文档中、<code>Word</code>、<code>PPT</code>在线编辑等功能。</p>`,
   },
 ]" />
