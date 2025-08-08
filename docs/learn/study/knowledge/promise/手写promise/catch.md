@@ -7,7 +7,7 @@ author:
 
 # .catch与.finally
 
-<SpecialWords text="Promise A+" /> 的标准只包含了 `.then`，并没有包含其余的方法，这些方法都是 ES6 标准中新增的，因此 A+ 规范的文档没有这些事件的描述。推荐去 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) 查看。
+<SPW text="Promise A+" /> 的标准只包含了 `.then`，并没有包含其余的方法，这些方法都是 ES6 标准中新增的，因此 A+ 规范的文档没有这些事件的描述。推荐去 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) 查看。
 
 ## 回顾
 

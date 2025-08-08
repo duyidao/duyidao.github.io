@@ -69,7 +69,7 @@ function fn() {
 
 ## 监听数据的读取和修改
 
-对于前端 <SpecialWords text="JavaScript" /> 来说，监听数据的读取和修改，可以通过 `Object.defineProperty` 或者 `Proxy` 来实现。 `Object.defineProperty` 方法只能通过属性描述符监听已有的属性读取和赋值，但是优点是兼容性更好； `Proxy` 可以监听很多对象操作，包括新增属性，监听范围更广，但是兼容性较差，只能兼容 `ES6` 的浏览器上使用。这里以 `Proxy` 为例子。
+对于前端 <SPW text="JavaScript" /> 来说，监听数据的读取和修改，可以通过 `Object.defineProperty` 或者 `Proxy` 来实现。 `Object.defineProperty` 方法只能通过属性描述符监听已有的属性读取和赋值，但是优点是兼容性更好； `Proxy` 可以监听很多对象操作，包括新增属性，监听范围更广，但是兼容性较差，只能兼容 `ES6` 的浏览器上使用。这里以 `Proxy` 为例子。
 
 既然确定了 `Proxy` ，那么目标中的「数据」就要修改了，`Proxy` 只能监听对象，不能直接监听原始数据类型，因此需要把原始数据类型包装成对象。
 

@@ -103,7 +103,7 @@ declare module 'vue-router/auto-routes' {
 
 ## 其余类型
 
-前面在 `vite.config.ts` 中配置了 `auto-import` ，项目会生成一个 `src/auto-imports.d.ts` 声明全局类型声明文件，为项目提供 自动导入（`Auto Import`） 和 全局类型支持，无需手动导入 `Vue Router` ，直接在代码中使用它们而不会触发 <SpecialWords text="TypeScript" /> 报错。
+前面在 `vite.config.ts` 中配置了 `auto-import` ，项目会生成一个 `src/auto-imports.d.ts` 声明全局类型声明文件，为项目提供 自动导入（`Auto Import`） 和 全局类型支持，无需手动导入 `Vue Router` ，直接在代码中使用它们而不会触发 <SPW text="TypeScript" /> 报错。
 
 与前面的路由类型一样，生成的时机也是在首次启动开发服务器或构建时 `pnpm dev`、代码中新增自动导入的 API 时、依赖变更时，会自动重新生成。
 
@@ -151,8 +151,8 @@ declare module 'vue' {
       // 无需手动导入类型
       const count: Ref<number> = ref(0)
       ```
-3. 为 <SpecialWords text="Vue" /> 模板提供类型支持
-    - 作用：让 <SpecialWords text="Vue" /> 单文件组件（`SFC`）的模板也能识别这些全局变量。
+3. 为 <SPW text="Vue" /> 模板提供类型支持
+    - 作用：让 <SPW text="Vue" /> 单文件组件（`SFC`）的模板也能识别这些全局变量。
     - 示例：
       ```vue
       <template>
@@ -167,6 +167,6 @@ declare module 'vue' {
 优点
 1. 提升开发速度：少写大量 `import` 语句。
 
-2. 减少依赖耦合：如果需要替换库（如从 <SpecialWords text="VueUse" /> 切换到 <SpecialWords text="Lodash" />），只需修改声明文件。
+2. 减少依赖耦合：如果需要替换库（如从 <SPW text="VueUse" /> 切换到 <SPW text="Lodash" />），只需修改声明文件。
 
-3. 类型安全：即使不显式导入，也能享受 <SpecialWords text="TypeScript" /> 提示。
+3. 类型安全：即使不显式导入，也能享受 <SPW text="TypeScript" /> 提示。

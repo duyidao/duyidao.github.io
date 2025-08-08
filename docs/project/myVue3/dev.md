@@ -42,7 +42,7 @@ pnpm i typescript -D -w
 
 ## 配置esbuild
 
-安装完 <SpecialWords text="TypeScript" /> 后输入命令 `npx tsc --init` 初始化，初始化完毕后能看到 `tsconfig.json` 文件，修改文件配置：
+安装完 <SPW text="TypeScript" /> 后输入命令 `npx tsc --init` 初始化，初始化完毕后能看到 `tsconfig.json` 文件，修改文件配置：
 
 ```json
 {

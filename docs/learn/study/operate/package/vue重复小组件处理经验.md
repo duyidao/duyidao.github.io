@@ -84,7 +84,7 @@ export const signProp = (content) => {
 };
 ```
 
-这么写点击按钮后页面能生成对应的 <SpecialWords text="DOM" />，点击不同意按钮也能卸载。但是再次点击按钮后不再生成 <SpecialWords text="DOM" /> 了，因为 `render` 函数只会执行一次，执行完之后虽然页面的真实 <SpecialWords text="DOM" /> 被删除了，但是 `render` 认为你已经挂载了，就不再执行。
+这么写点击按钮后页面能生成对应的 <SPW text="DOM" />，点击不同意按钮也能卸载。但是再次点击按钮后不再生成 <SPW text="DOM" /> 了，因为 `render` 函数只会执行一次，执行完之后虽然页面的真实 <SPW text="DOM" /> 被删除了，但是 `render` 认为你已经挂载了，就不再执行。
 
 参考一下 `element-ui` 的方法修改一下。
 
@@ -125,7 +125,7 @@ export const signProp = (content, handler) => {
 };
 ```
 
-它是通过原生 <SpecialWords text="DOM" /> 来加入到 `body` 内，这样他就不会管虚拟 <SpecialWords text="DOM" /> 是否挂载。
+它是通过原生 <SPW text="DOM" /> 来加入到 `body` 内，这样他就不会管虚拟 <SPW text="DOM" /> 是否挂载。
 
 现在可以在各个需要的场景使用该方法了。
 
@@ -152,9 +152,9 @@ import { signProp } from "./signProp.jsx";
 
 ### h 与 createApp 方案
 
-这个写法和前面的 `jsx` 方案类似，只不过不使用标签的方式，而是使用 <SpecialWords text="Vue" /> 提供的 `h` 和 `createApp` 方式。
+这个写法和前面的 `jsx` 方案类似，只不过不使用标签的方式，而是使用 <SPW text="Vue" /> 提供的 `h` 和 `createApp` 方式。
 
-首先声明一个函数，接收三个参数，第一个参数是弹窗内部要渲染的组件（这里以 `antd vue` 组件的弹窗为例子），第二个参数是内部组件的 `props` ，第三个参数是弹窗组件的 `props`。通过 `h` 创建完虚拟 <SpecialWords text="DOM" /> 后，再通过 `createApp` 创建一个 <SpecialWords text="Vue" /> 实例，最后通过 `mount` 方法挂载到 `body` 上。
+首先声明一个函数，接收三个参数，第一个参数是弹窗内部要渲染的组件（这里以 `antd vue` 组件的弹窗为例子），第二个参数是内部组件的 `props` ，第三个参数是弹窗组件的 `props`。通过 `h` 创建完虚拟 <SPW text="DOM" /> 后，再通过 `createApp` 创建一个 <SPW text="Vue" /> 实例，最后通过 `mount` 方法挂载到 `body` 上。
 
 ::: code-group
 ```ts [signProp.ts]

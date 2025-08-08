@@ -37,7 +37,7 @@ author:
 
 ### 组件即函数
 
-在 <SpecialWords text="Vue" /> 中，组件即函数，我们写的 `<template></template>` 后续会被转化为一个函数，所以我们可以通过函数的参数来实现复用。
+在 <SPW text="Vue" /> 中，组件即函数，我们写的 `<template></template>` 后续会被转化为一个函数，所以我们可以通过函数的参数来实现复用。
 
 创建一个对象，里面有一个 `setup` 函数，即生命周期的 `setup`，接收两个参数，第二个参数可以解构出 `slots` 插槽，然后通过 `slots.default()` 获取插槽内容。故可如下实现：
 

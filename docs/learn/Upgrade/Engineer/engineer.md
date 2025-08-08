@@ -12,13 +12,13 @@
 2. 哪种工程更适合运行时
 3. 如何转换（打包）
 
-因为这三个问题不一样，着力点不一样，因此造成很多构建工具都有各自的区别，如 <SpecialWords text="Webpack" />、<SpecialWords text="Rollup" />、<SpecialWords text="Esbuild" />、<SpecialWords text="Vite" /> 等等。本质的差别也就是上面三点的不同。
+因为这三个问题不一样，着力点不一样，因此造成很多构建工具都有各自的区别，如 <SPW text="Webpack" />、<SPW text="Rollup" />、<SPW text="Esbuild" />、<SPW text="Vite" /> 等等。本质的差别也就是上面三点的不同。
 
-学习上重点放在 <SpecialWords text="Webpack" />、<SpecialWords text="Rollup" />、<SpecialWords text="Esbuild" /> 上。
+学习上重点放在 <SPW text="Webpack" />、<SPW text="Rollup" />、<SPW text="Esbuild" /> 上。
 
 ### Webpack
 
-对于 <SpecialWords text="Webpack" /> 来说，对于三方三个问题，它是这么认为的：
+对于 <SPW text="Webpack" /> 来说，对于三方三个问题，它是这么认为的：
 
 1. 哪种工程更适合开发和维护
 
@@ -30,13 +30,13 @@
 
 3. 如何转换（打包）
 
-   通过入口文件找依赖关系，导入谁依赖谁，然后深度遍历，最终找到全部的依赖关系。最终合并，所有 <SpecialWords text="CSS" /> 文件合并在一起，所有<SpecialWords text="JavaScript" /> 文件合并在一起，资源文件如图片音频放在一起，该转换的文件转换，最终生成一个 `dist` 文件夹。
+   通过入口文件找依赖关系，导入谁依赖谁，然后深度遍历，最终找到全部的依赖关系。最终合并，所有 <SPW text="CSS" /> 文件合并在一起，所有<SPW text="JavaScript" /> 文件合并在一起，资源文件如图片音频放在一起，该转换的文件转换，最终生成一个 `dist` 文件夹。
 
 #### 入口依赖分析
 
-以 <SpecialWords text="Vue" /> 项目为例，<SpecialWords text="Webpack" /> 会从 `main.js` 着手，然后把整个文件的代码转为 `AST` 抽象语法树，通过这个抽象语法树找到导入语句，这个语句同时支持 `ESM` 和 `CommonJS` 两种导入方式，因此既支持 `import`，也支持 `require`。通过导入语句就找到对应的依赖关系。
+以 <SPW text="Vue" /> 项目为例，<SPW text="Webpack" /> 会从 `main.js` 着手，然后把整个文件的代码转为 `AST` 抽象语法树，通过这个抽象语法树找到导入语句，这个语句同时支持 `ESM` 和 `CommonJS` 两种导入方式，因此既支持 `import`，也支持 `require`。通过导入语句就找到对应的依赖关系。
 
-通过模块查找规则找到对应的依赖文件，如 `import` 导入的是一个文件夹 `./core` ，那么默认查找该文件夹下的 `index.js` 文件；再如 `import` 导入的是一个文件夹 `jquery` 但是不以 `./` 和 `../` 开头，那么用 <SpecialWords text="Node" /> 的规则查找，在当前文件目录有没有 `node_modules` ，如果没有再返回上一级查找，直到找到 `node_modules` ，再找到对应的模块。
+通过模块查找规则找到对应的依赖文件，如 `import` 导入的是一个文件夹 `./core` ，那么默认查找该文件夹下的 `index.js` 文件；再如 `import` 导入的是一个文件夹 `jquery` 但是不以 `./` 和 `../` 开头，那么用 <SPW text="Node" /> 的规则查找，在当前文件目录有没有 `node_modules` ，如果没有再返回上一级查找，直到找到 `node_modules` ，再找到对应的模块。
 
 如果使用了别名如 `@/assets` ，那么会根据配置的别名查找。
 
@@ -44,11 +44,11 @@
 
 #### 开发服务器
 
-通过 `webpack serve` 命令就能启动一个开发服务器，其本质是使用了 <SpecialWords text="Node" /> 的服务。
+通过 `webpack serve` 命令就能启动一个开发服务器，其本质是使用了 <SPW text="Node" /> 的服务。
 
-主要流程为： <SpecialWords text="Webpack" /> 内置了一个 `webpack-dev-server` 包，这个包又依赖了 `express` ，会启动一个开发服务器，然后在内存进行打包，在内存中形成打包结果，并在终端给出一个地址，浏览器访问这个地址就会访问开发服务器，开发服务器就会响应浏览器，给出打包结果的页面。
+主要流程为： <SPW text="Webpack" /> 内置了一个 `webpack-dev-server` 包，这个包又依赖了 `express` ，会启动一个开发服务器，然后在内存进行打包，在内存中形成打包结果，并在终端给出一个地址，浏览器访问这个地址就会访问开发服务器，开发服务器就会响应浏览器，给出打包结果的页面。
 
-这个服务会监听文件的变化，当文件发生变化时，会重新打包，并告知浏览器刷新页面。浏览器会重新请求，开发服务器会把最新的打包结果返回给浏览器。这里面本质是用了 <SpecialWords text="WebSocket" />。
+这个服务会监听文件的变化，当文件发生变化时，会重新打包，并告知浏览器刷新页面。浏览器会重新请求，开发服务器会把最新的打包结果返回给浏览器。这里面本质是用了 <SPW text="WebSocket" />。
 
 xximg
 
@@ -64,11 +64,11 @@ xxximg
 
 #### css modules
 
-为了避免类名冲突，打包后的 <SpecialWords text="CSS" /> 文件会生成一个唯一的类名，这个类名是通过哈希值生成的。 <SpecialWords text="Webpack" /> 打包后的类名，与源码的类名是一一对应的。
+为了避免类名冲突，打包后的 <SPW text="CSS" /> 文件会生成一个唯一的类名，这个类名是通过哈希值生成的。 <SPW text="Webpack" /> 打包后的类名，与源码的类名是一一对应的。
 
 #### 源码地图
 
-<SpecialWords text="Webpack" /> 打包后的代码是经过压缩的，为了方便调试，<SpecialWords text="Webpack" /> 会生成一个源码地图文件，这个文件是一个映射文件，记录了打包后的代码和源码的对应关系。浏览器在调试时，会使用这个映射文件，把打包后的代码映射回源码，方便调试。
+<SPW text="Webpack" /> 打包后的代码是经过压缩的，为了方便调试，<SPW text="Webpack" /> 会生成一个源码地图文件，这个文件是一个映射文件，记录了打包后的代码和源码的对应关系。浏览器在调试时，会使用这个映射文件，把打包后的代码映射回源码，方便调试。
 
 开启方式为：
 

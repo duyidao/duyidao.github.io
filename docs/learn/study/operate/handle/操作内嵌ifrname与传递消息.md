@@ -15,7 +15,7 @@ author:
 
 ### 获取元素
 
-1. 通过 `$refs` 获取 `ifrname` 的 <SpecialWords text="DOM" /> 元素
+1. 通过 `$refs` 获取 `ifrname` 的 <SPW text="DOM" /> 元素
 2. 通过 `.contentWindow` 获取 `ifrname` 的窗口对象（全局对象获取窗口对象）
 3. 通过 `.contentDocument` 获取 `ifrname` 的 `document` 对象（操作节点时获取该对象）
 
@@ -183,6 +183,6 @@ saveTo(item) {
 
 ## 总结
 
-如果能够改变源码，可以直接操作源码的 <SpecialWords text="DOM" /> 结构，使用 `postMessage` 的方法。
+如果能够改变源码，可以直接操作源码的 <SPW text="DOM" /> 结构，使用 `postMessage` 的方法。
 
-如果不能操作源码，则在使用的界面获取相对应的 `ifrname` 结构操作原生 <SpecialWords text="DOM" /> 即可。
+如果不能操作源码，则在使用的界面获取相对应的 `ifrname` 结构操作原生 <SPW text="DOM" /> 即可。

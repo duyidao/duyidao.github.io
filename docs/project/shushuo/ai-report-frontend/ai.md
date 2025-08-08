@@ -6,19 +6,19 @@
 
 ## SSE请求
 
-配置基础 <SpecialWords text="URL" /> 和认证头，通过 `fetch` 发送请求，返回一个 <SpecialWords text="SSE" /> 流，通过 <SpecialWords text="SSE" /> 流接收消息，并处理消息。
+配置基础 <SPW text="URL" /> 和认证头，通过 `fetch` 发送请求，返回一个 <SPW text="SSE" /> 流，通过 <SPW text="SSE" /> 流接收消息，并处理消息。
 
 ### 主要技术
 主要用到的技术有：
 - 原生 `fetch` 请求
-- AI 界面第三方库 <SpecialWords text="Ant Design X Vue" />
+- AI 界面第三方库 <SPW text="Ant Design X Vue" />
 
 ### 主要思路
 #### 初始化请求
-使用 <SpecialWords text="Ant Design X Vue" /> 的 `XRequest` 方法初始化请求。
+使用 <SPW text="Ant Design X Vue" /> 的 `XRequest` 方法初始化请求。
    
 `XRequest` 方法需要两个参数：
-- `baseURL`：请求的基础 <SpecialWords text="URL" />
+- `baseURL`：请求的基础 <SPW text="URL" />
 - `fetch`：可选的自定义 `fetch` 函数，用于发起请求
 ```ts
 const AIRequest = XRequest({
@@ -36,7 +36,7 @@ const AIRequest = XRequest({
 ```
 
 #### 模型调度
-使用 <SpecialWords text="Ant Design X Vue" /> 的 `useXAgent` 方法模型调度。
+使用 <SPW text="Ant Design X Vue" /> 的 `useXAgent` 方法模型调度。
 
 该方法可以使用预设协议做请求，也可以自定义请求协议，后者需要传入 `request` 方法配置自定义请求，支持流式更新。
 
@@ -137,7 +137,7 @@ const [agent] = useXAgent<XContentType>({
 
 #### 数据转换
 
-使用 <SpecialWords text="Ant Design X Vue" /> 的 `useXChat` 数据管理方法，对消息进行转换。方法接收 4 个参数：
+使用 <SPW text="Ant Design X Vue" /> 的 `useXChat` 数据管理方法，对消息进行转换。方法接收 4 个参数：
 - `agent`：模型调度
 - `requestPlaceholder`：请求占位符，用于在请求过程中显示加载状态
 - `requestFallback`：请求失败时显示的默认消息内容
@@ -170,16 +170,16 @@ const {
     |`fetch`|	标准 Web API，现代浏览器原生支持|	✅ 无需额外依赖，轻量级<br/>❌ 默认不支持取消（需结合 `AbortController`）|
     |`axios`	|复杂请求场景（拦截器、取消等）|	✅ 功能全面，支持取消和拦截器<br/>❌ 增加包体积（约 4KB）|
     |`WebSocket`|	双向实时通信（如聊天室）|	✅ 全双工通信<br/>❌ 复杂度高，不适合单向流式场景|
-    |`EventSource`|	简单 <SpecialWords text="SSE" /> 场景	|✅ 原生 <SpecialWords text="SSE" /> 支持<br/>❌ 功能受限（不能自定义请求头、仅支持 `GET` 请求）|
+    |`EventSource`|	简单 <SPW text="SSE" /> 场景	|✅ 原生 <SPW text="SSE" /> 支持<br/>❌ 功能受限（不能自定义请求头、仅支持 `GET` 请求）|
 2. 选择 `fetch` 的核心原因
-    - <SpecialWords text="SSE" /> 兼容性：fetch 可以灵活处理 <SpecialWords text="SSE" /> 流式响应（`EventSource` 无法自定义 `Authorization` 头）
+    - <SPW text="SSE" /> 兼容性：fetch 可以灵活处理 <SPW text="SSE" /> 流式响应（`EventSource` 无法自定义 `Authorization` 头）
     - 轻量化：项目若无需 `axios` 的复杂功能，`fetch` 是零依赖方案
     - 现代浏览器支持：所有主流浏览器均已支持 `fetch API`
     - 与 `AbortController` 集成：实现请求取消功能
 
 ## 消息转换
 
-<SpecialWords text="Ant Design X Vue" /> 的 `useXChat` 方法支持自定义消息转换函数，用于对消息进行转换。声明一个 `useMessageTransform` 函数，用于处理消息转换。
+<SPW text="Ant Design X Vue" /> 的 `useXChat` 方法支持自定义消息转换函数，用于对消息进行转换。声明一个 `useMessageTransform` 函数，用于处理消息转换。
 
 从后端接收的消息分为以下几种情况，要分别处理：
 - `init`：工作流初始化，首个消息没有 `message` ，此时只需要判断当前是否有会话 `id`
@@ -242,18 +242,18 @@ function transformMessage(chunk: WorkflowRunningResult, message: Message = {}): 
 
 ### 主要技术
 主要用到的技术有：
-- 第三方库 <SpecialWords text="VueUse" /> 的 `useScroll` 方法
+- 第三方库 <SPW text="VueUse" /> 的 `useScroll` 方法
 - 原生的 `scrollTo` 方法
 
 ### 主要思路
 #### 获取滚动元素
-通过 `ref` 获取 <SpecialWords text="AI" /> 问答的 <SpecialWords text="DOM" />元素。
+通过 `ref` 获取 <SPW text="AI" /> 问答的 <SPW text="DOM" />元素。
 ```ts
 const containerRef = ref<{ $el: HTMLElement }>()
 const scrollEl = computed(() => containerRef.value?.$el)
 ```
 #### 获取滚动状态
-调用 <SpecialWords text="VueUse" /> 的 `useScroll` 方法。
+调用 <SPW text="VueUse" /> 的 `useScroll` 方法。
 - 把前面获取到的 `scrollEl` 作为第一个参数传入，表示要监听滚动的元素
 - 第二个参数传入一个对象，属性名是 `offset` ，属性值是一个对象，包含属性 `bottom` ，值为 20，表示当滚动条距离底部 `20px` 时，视为到达底部
 - 返回值是一个对象，解构出 `arrivedState` 和 `directions`，前者表示是否到达底部，后者表示滚动方向
@@ -312,7 +312,7 @@ function scrollToBottom(smooth = false) {
 
 如果涉及到图表表格，就会出现前文（在表格和图表前面的文本）和后文（在表格和图表后面的文本），需要分别处理。
 
-拿到对应的 <SpecialWords text="DOM" /> 元素，通过 `querySelectorAll` 获取全部符合条件的元素，然后判断当前需要拿的是前文还是后文。如果是前文，则获取第一个元素；如果是后文，则获取最后一个元素。
+拿到对应的 <SPW text="DOM" /> 元素，通过 `querySelectorAll` 获取全部符合条件的元素，然后判断当前需要拿的是前文还是后文。如果是前文，则获取第一个元素；如果是后文，则获取最后一个元素。
 
 这里为了代码的健壮性，可以判断一下是否能获取到元素，如果获取不到元素，则返回空字符串。
 
@@ -354,9 +354,9 @@ function getMarkdownPreviewHtml(messageElement?: HTMLElement, section?: 'before'
 
 ### Echart 图表
 
-拿到对应的 <SpecialWords text="DOM" /> 元素，通过 `querySelectorAll` 获取全部的 `canvas` 图表元素。
+拿到对应的 <SPW text="DOM" /> 元素，通过 `querySelectorAll` 获取全部的 `canvas` 图表元素。
 
-遍历优先使用 <SpecialWords text="Echart" /> 的 `getInstanceByDom` 方法，获取到图表实例；如果获取不到，则使用 `parentElement` 尝试从父元素中获取。如果还是获取不到，则返回报错信息。
+遍历优先使用 <SPW text="Echart" /> 的 `getInstanceByDom` 方法，获取到图表实例；如果获取不到，则使用 `parentElement` 尝试从父元素中获取。如果还是获取不到，则返回报错信息。
 
 ```ts
 async function getEChartsInstance(messageElement?: HTMLElement): Promise<EChartsType | null> {
@@ -437,7 +437,7 @@ async function getEChartsInstance(messageElement?: HTMLElement): Promise<ECharts
    ```ts
    selection?.addRange(range);
    ```
-6. 复制内容。优先使用现代 <SpecialWords text="API" /> `navigator.clipboard.write` ，如果浏览器不支持，降级使用 `document.execCommand('copy')` 作为备选方案。如果两者都失败，则返回 `false` 表示复制失败
+6. 复制内容。优先使用现代 <SPW text="API" /> `navigator.clipboard.write` ，如果浏览器不支持，降级使用 `document.execCommand('copy')` 作为备选方案。如果两者都失败，则返回 `false` 表示复制失败
    ```ts
    const textToCopy = hiddenContainer.textContent || ''
    // 尝试使用现代API
@@ -463,7 +463,7 @@ async function getEChartsInstance(messageElement?: HTMLElement): Promise<ECharts
      document.execCommand('copy')
    }
    ```
-7. 清除选区，清理用于复制的不可见 <SpecialWords text="DOM" /> 元素，避免影响用户后续手动选择
+7. 清除选区，清理用于复制的不可见 <SPW text="DOM" /> 元素，避免影响用户后续手动选择
    ```ts
    selection?.removeAllRanges()
    document.body.removeChild(hiddenContainer)
@@ -472,6 +472,6 @@ async function getEChartsInstance(messageElement?: HTMLElement): Promise<ECharts
 
 > [!TIP] 代码亮点
 > 1. 复制富文本的前提：浏览器复制操作（如 `document.execCommand('copy')`）依赖当前选区内容。需要先“选中”内容，才能触发复制。
-> 2. 隐藏容器不可见但可操作：虽然 `hiddenContainer` 被固定在视窗外（`top: -9999px`），但其 <SpecialWords text="DOM" /> 仍存在于文档中，可以被脚本选中。
-> 3. 兼容性：这是旧版 `execCommand` 复制方案的必备步骤（现代 `navigator.clipboard` <SpecialWords text="API" /> 不需要此操作）。代码中实际优先使用了 `navigator.clipboard.write()` ，`execCommand` 复制方案是降级方案的备选路径。
+> 2. 隐藏容器不可见但可操作：虽然 `hiddenContainer` 被固定在视窗外（`top: -9999px`），但其 <SPW text="DOM" /> 仍存在于文档中，可以被脚本选中。
+> 3. 兼容性：这是旧版 `execCommand` 复制方案的必备步骤（现代 `navigator.clipboard` <SPW text="API" /> 不需要此操作）。代码中实际优先使用了 `navigator.clipboard.write()` ，`execCommand` 复制方案是降级方案的备选路径。
 > 4. 清理选区：复制完成后会调用 `selection?.removeAllRanges()` 避免影响用户后续手动选择。

@@ -13,12 +13,12 @@ author:
 
 但是修改不能够修改源码，在使用第三方组件时尽可能避开源码的修改，避免引起不必要的错误。如何修改呢？可以使用以下两种方法：
 
-- 纯 <SpecialWords text="CSS" /> 样式修改
-- 使用原生 <SpecialWords text="JavaScript" /> 操作 <SpecialWords text="DOM" />
+- 纯 <SPW text="CSS" /> 样式修改
+- 使用原生 <SPW text="JavaScript" /> 操作 <SPW text="DOM" />
 
 ## CSS 修改
 
-先看看 <SpecialWords text="CSS" /> 修改的方法，我们可以采取让他显示一定的数量，比如两个，后续的隐藏。找到对应的类名设置样式，代码如下：
+先看看 <SPW text="CSS" /> 修改的方法，我们可以采取让他显示一定的数量，比如两个，后续的隐藏。找到对应的类名设置样式，代码如下：
 
 ```vue
 <style>
@@ -28,7 +28,7 @@ author:
 </style>
 ```
 
-虽然效果实现了，但是还是很不合理，这样子如果不点开看还以为只选择两个选项，没有相应的提示。因此纯 <SpecialWords text="CSS" /> 修改法不合适。
+虽然效果实现了，但是还是很不合理，这样子如果不点开看还以为只选择两个选项，没有相应的提示。因此纯 <SPW text="CSS" /> 修改法不合适。
 
 ## 使用 JS 操作 Dom
 
@@ -111,4 +111,4 @@ export default {
 
 ## 总结
 
-遇到此类需求，可以先用 <SpecialWords text="CSS" /> 隐藏一些不需要显示的东西，达到虚伪的实现效果；如果还是达不到效果，就通过 <SpecialWords text="JavaScript" /> 直接操作 <SpecialWords text="DOM" /> 来实现需求。
+遇到此类需求，可以先用 <SPW text="CSS" /> 隐藏一些不需要显示的东西，达到虚伪的实现效果；如果还是达不到效果，就通过 <SPW text="JavaScript" /> 直接操作 <SPW text="DOM" /> 来实现需求。

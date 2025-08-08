@@ -220,7 +220,7 @@ onounted(() => {
 - 遍历 `ws` 连接池
 - 给所有当前在编辑文件的用户推送新数据
 
-这里用 <SpecialWords text="NodeJS" /> 实现后端的逻辑。
+这里用 <SPW text="NodeJS" /> 实现后端的逻辑。
 
 ```js
 const cors = require('cors')

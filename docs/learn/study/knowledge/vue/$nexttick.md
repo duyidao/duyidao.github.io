@@ -8,11 +8,11 @@ author:
 
 ## 执行原理
 
-在 <SpecialWords text="Vue" /> 更新 <SpecialWords text="DOM" /> 时是异步执行的。只要侦听到数据变化，<SpecialWords text="Vue" /> 将开启一个任务队列，并缓冲在同一时间循环中发生的所有数据变更。如果同一个 watcher 被多次触发，只会被推入到队列中一次。（这种在缓冲时去除重复数据对于避免不必要的计算和 <SpecialWords text="DOM" /> 操作是非常重要的）
+在 <SPW text="Vue" /> 更新 <SPW text="DOM" /> 时是异步执行的。只要侦听到数据变化，<SPW text="Vue" /> 将开启一个任务队列，并缓冲在同一时间循环中发生的所有数据变更。如果同一个 watcher 被多次触发，只会被推入到队列中一次。（这种在缓冲时去除重复数据对于避免不必要的计算和 <SPW text="DOM" /> 操作是非常重要的）
 
-然后，在下一个的事件循环 `tick` 中，<SpecialWords text="Vue" /> 刷新队列并执行任务队列 (已去重的) 工作。
+然后，在下一个的事件循环 `tick` 中，<SPW text="Vue" /> 刷新队列并执行任务队列 (已去重的) 工作。
 
-方法 `$nextTick` 内部采用了一种异步队列技术，它采用了宏任务和微任务的处理机制来保证在 <SpecialWords text="DOM" /> 更新之后执行回调函数。这个方法的执行时间依赖于浏览器的刷新机制，也就是说，它的执行是在下一个浏览器刷新周期之前，而不是立刻执行。
+方法 `$nextTick` 内部采用了一种异步队列技术，它采用了宏任务和微任务的处理机制来保证在 <SPW text="DOM" /> 更新之后执行回调函数。这个方法的执行时间依赖于浏览器的刷新机制，也就是说，它的执行是在下一个浏览器刷新周期之前，而不是立刻执行。
 
 ## 宏任务还是微任务
 
@@ -86,7 +86,7 @@ if (typeof Promise !== "undefined" && isNative(Promise)) {
 }
 ```
 
-即：**<SpecialWords text="Vue" /> 环境支持 <SpecialWords text="Promis" /> 的话，使用 <SpecialWords text="Promis" />。否则 `microTimerFunc` 被定义为宏任务 `macroTimerFunc`**。
+即：**<SPW text="Vue" /> 环境支持 <SPW text="Promis" /> 的话，使用 <SPW text="Promis" />。否则 `microTimerFunc` 被定义为宏任务 `macroTimerFunc`**。
 
 接着看 `macroTimerFunc` 的定义：
 
@@ -122,11 +122,11 @@ if (typeof setImmediate !== "undefined" && isNative(setImmediate)) {
 
 **优先使用 `setImmediate`（只有 IE 浏览器 10 以上支持），其次是 `MessageChannel`，最后是 `setTimeout`**。以上三个都属于宏任务。
 
-HTML5 中规定 `setTimeout` 的最小时间延迟是 4ms，也就是说理想环境下异步回调最快也是 4ms 才能触发。<SpecialWords text="Vue" /> 使用这么多函数来模拟异步任务，其目的只有一个，**就是让回调异步且尽早调用**。而 [`MessageChannel`](https://link.juejin.im/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FMessageChannel) 和 [`setImmediate`](https://link.juejin.im/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FWindow%2FsetImmediate) 的延迟明显是小于 [`setTimeout`](https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2FPDKSophia%2Fblog.io%2Fblob%2Fmaster%2F%E6%B5%8F%E8%A7%88%E5%99%A8%E7%AF%87%20-%20setTimeout%E4%B8%8EsetInterval.md) 的。
+HTML5 中规定 `setTimeout` 的最小时间延迟是 4ms，也就是说理想环境下异步回调最快也是 4ms 才能触发。<SPW text="Vue" /> 使用这么多函数来模拟异步任务，其目的只有一个，**就是让回调异步且尽早调用**。而 [`MessageChannel`](https://link.juejin.im/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FMessageChannel) 和 [`setImmediate`](https://link.juejin.im/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FWindow%2FsetImmediate) 的延迟明显是小于 [`setTimeout`](https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2FPDKSophia%2Fblog.io%2Fblob%2Fmaster%2F%E6%B5%8F%E8%A7%88%E5%99%A8%E7%AF%87%20-%20setTimeout%E4%B8%8EsetInterval.md) 的。
 
 那什么时候使用宏任务，什么时候使用微任务呢？
 
-在 <SpecialWords text="Vue 2.4" /> 之前都是使用的 `microtasks(微任务)`，但是 `microtasks` 的优先级过高，在某些情况下可能会出现比事件冒泡更快的情况，但如果都使用 `macrotasks(宏任务)` 又可能会出现渲染的性能问题。所以*在新版本中，会默认使用 `microtasks`*，**但在特殊情况下会使用 `macrotasks`。比如 `v-on`**。
+在 <SPW text="Vue 2.4" /> 之前都是使用的 `microtasks(微任务)`，但是 `microtasks` 的优先级过高，在某些情况下可能会出现比事件冒泡更快的情况，但如果都使用 `macrotasks(宏任务)` 又可能会出现渲染的性能问题。所以*在新版本中，会默认使用 `microtasks`*，**但在特殊情况下会使用 `macrotasks`。比如 `v-on`**。
 
 下图是使用 `v-on` 时，源码调试截图：
 

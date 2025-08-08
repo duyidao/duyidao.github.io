@@ -102,7 +102,7 @@
 
 现在 `reactivity` 模块想要引用 `shared` 模块的方法，除了 `import { isObject } from '../../shared'`，还可以 `import { isObject } from '@vue/shared'`。但是这么导入的话会报错，找不到模块，因为 `@vue/shared` 模块并没有被安装。
 
-如果直接 `pnpm i @vue/shared --filter @vue/reactivity`，会把 <SpecialWords text="Vue" /> 官方的包也安装进去，这并不是我们想要的。如果想要安装本地的包，需要添加 `--workspace` 标记。
+如果直接 `pnpm i @vue/shared --filter @vue/reactivity`，会把 <SPW text="Vue" /> 官方的包也安装进去，这并不是我们想要的。如果想要安装本地的包，需要添加 `--workspace` 标记。
 
 ```sh
 pnpm i @vue/shared --workspace --filter @vue/reactivity
@@ -121,7 +121,7 @@ pnpm i @vue/shared --workspace --filter @vue/reactivity
 }
 ```
 
-表示 `reactivity` 模块依赖 `@vue/shared` 模块，并且版本是 `workspace:^`，表示在当前工作区中找到 `@vue/shared` 模块。不过会出现 <SpecialWords text="TypeScript" /> 报错，因为 `@vue/shared` 模块并没有定义类型声明文件，所以需要手动添加类型声明文件。
+表示 `reactivity` 模块依赖 `@vue/shared` 模块，并且版本是 `workspace:^`，表示在当前工作区中找到 `@vue/shared` 模块。不过会出现 <SPW text="TypeScript" /> 报错，因为 `@vue/shared` 模块并没有定义类型声明文件，所以需要手动添加类型声明文件。
 
 在 `tsconfig.json` 中添加以下内容：
 

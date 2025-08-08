@@ -4,7 +4,7 @@
 
 前面实现 `ref` 的响应式，我们封装了 `link` 方法收集依赖和 `propagate` 方法触发依赖，因此 `reactive` 的实现可以复用。
 
-在 <SpecialWords text="Vue" /> 官方源码中， `reactive` 都是接收一个对象，通过 `proxy` 代理对象，当访问对象的属性时，触发 `get` 代理，当修改对象的属性时，触发 `set` 代理。
+在 <SPW text="Vue" /> 官方源码中， `reactive` 都是接收一个对象，通过 `proxy` 代理对象，当访问对象的属性时，触发 `get` 代理，当修改对象的属性时，触发 `set` 代理。
 
 在 `get` 方法调用 `link` 方法收集依赖，并使用 `Reflect.get` 映射返回值；在 `set` 方法中使用 `Reflect.set` 保存新值，调用 `propagate` 方法触发依赖，最后返回新值。
 
@@ -70,7 +70,7 @@ function triggerReactive(target, key) {
 
 既然它需要一个包含 `subs` 和 `subsTail` 的类实例对象，那么我们可以创建一个类 `Dep`，并添加 `subs` 和 `subsTail` 两个属性。后续把这个类实例对象传给 `link` 方法生成节点绑定到链表上就好了。现在需要思考用什么形式的数据格式，来关联保存 `reactive` 对象的属性。
 
-在 <SpecialWords text="Vue" /> 官方源码中， `reactive` 会先创建一个 `WeakMap` 保存所有对象，值是一个对象；每一个对象是通过 `Map` 保存的，每一个属性值则是 `new Dep` 类实例对象。格式如下图所示：
+在 <SPW text="Vue" /> 官方源码中， `reactive` 会先创建一个 `WeakMap` 保存所有对象，值是一个对象；每一个对象是通过 `Map` 保存的，每一个属性值则是 `new Dep` 类实例对象。格式如下图所示：
 
 ```js
 const obj = reactive({
@@ -282,7 +282,7 @@ export function createObjectReactive(obj) {
 > console.log('state1 === state2', state1 === state2);
 > ```
 
-一个对象重复做代理，<SpecialWords text="Vue" /> 官方打印结果是相等的，为 `true` ，我们本地还没做处理，每次接收对象都直接 `new Proxy` 创建一个新的代理，因此 `state1` 和 `state2` 是不相等的，为 `false` 。
+一个对象重复做代理，<SPW text="Vue" /> 官方打印结果是相等的，为 `true` ，我们本地还没做处理，每次接收对象都直接 `new Proxy` 创建一个新的代理，因此 `state1` 和 `state2` 是不相等的，为 `false` 。
 
 解决方法很简单，我们创建一个新的 `WeakMap` 变量来存储代理对象，每次创建代理对象的时候，先去这个 `WeakMap` 里查找，如果找到了，直接返回，如果没找到，再创建新的代理对象，并存储到 `WeakMap` 里。
 
@@ -557,7 +557,7 @@ class RefImpl {
 > })
 > ```
 
-如果在 `reactive` 对象内使用了 `ref` 创建的属性，<SpecialWords text="Vue" /> 官方内部会帮我们自动拿到 `.value` 的值，我们使用时无需 `state1.a.value`，而是直接 `state1.a` 即可。
+如果在 `reactive` 对象内使用了 `ref` 创建的属性，<SPW text="Vue" /> 官方内部会帮我们自动拿到 `.value` 的值，我们使用时无需 `state1.a.value`，而是直接 `state1.a` 即可。
 
 想要实现这个功能，可以借助前面实现 `RefImpl` 时，创建的 `isRef` 方法，只要是 `ref` 变量，他都有一个 `__v_isRef` 属性，因此我们可以借助这个方法很轻松就能判断当前的值是不是 `ref` ，如果是返回 `.value` ，不是返回自身。
 

@@ -14,9 +14,9 @@
 
 任何一个语言，都会面临兼容性、语言缺陷的问题。
 
-兼容性方面，涉及 <SpecialWords text="API" /> 兼容和语法兼容。
+兼容性方面，涉及 <SPW text="API" /> 兼容和语法兼容。
 
-下面来看一个 <SpecialWords text="API" /> 兼容问题情况：
+下面来看一个 <SPW text="API" /> 兼容问题情况：
 
 ::: code-group
 
@@ -32,7 +32,7 @@ console.log(result); // [1,2].flatMap is not a function
 
 :::
 
-可以看到，`node 16` 支持 `flatMap`，`node 10` 不支持，这就是 <SpecialWords text="API" /> 兼容问题。
+可以看到，`node 16` 支持 `flatMap`，`node 10` 不支持，这就是 <SPW text="API" /> 兼容问题。
 
 想要解决这个方法，需要用到 `polyfill` 垫片的思想，依靠一个第三方库 `core-js` 或者自己实现所有函数自己实现一遍。
 

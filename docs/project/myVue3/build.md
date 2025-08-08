@@ -26,7 +26,7 @@ pnpm i @types/node -D -w
 
 ![process.argv](https://pic1.imgdb.cn/item/6810e87d58cb8da5c8d4a006.png)
 
-可以看到，`process.argv` 拿到的是一个数组，包含当前执行的文件路径，后面的元素就是参数。但是处理起来可能会很麻烦，所以我们可以借助 <SpecialWords text="Node" /> 自带的 `parseArgs` 方法来处理。
+可以看到，`process.argv` 拿到的是一个数组，包含当前执行的文件路径，后面的元素就是参数。但是处理起来可能会很麻烦，所以我们可以借助 <SPW text="Node" /> 自带的 `parseArgs` 方法来处理。
 
 该方法需要传一个 `options` 对象，对象键名是前面命令参数携带的名称。
 
@@ -133,7 +133,7 @@ const entry = path.resolve(__dirname, `../packages/${target}/src/index.ts`); // 
 
 因为 `path` 、 `__dirname` 等变量是属于 `commonjs` 语法的，目前运行的是 `esm` 语法，因此需要人为封装一下。
 
-<SpecialWords text="Node" /> 提供了 `resolve` 、`dirname` 、`fileURLToPath` 方法，可以做如下封装：
+<SPW text="Node" /> 提供了 `resolve` 、`dirname` 、`fileURLToPath` 方法，可以做如下封装：
 
 ```js
 import { fileURLToPath } from 'node:url'; // [!code ++]
@@ -239,7 +239,7 @@ export function fn (a, b) {
 
 ## iife
 
-目前能够满足 `cjs` 和 `esm` 两种模式的打包了，但是无法打包 `iife` 自执行函数格式，需要对外提供一个全局变量。对于 `monorepo` 项目来说，每个项目都能声明一个自己的 `package.json` 文件，新建一个，复制 <SpecialWords text="Vue" /> 的 `package.json` 文件，删改一下配置。
+目前能够满足 `cjs` 和 `esm` 两种模式的打包了，但是无法打包 `iife` 自执行函数格式，需要对外提供一个全局变量。对于 `monorepo` 项目来说，每个项目都能声明一个自己的 `package.json` 文件，新建一个，复制 <SPW text="Vue" /> 的 `package.json` 文件，删改一下配置。
 
 ```json
 {
@@ -273,13 +273,13 @@ export function fn (a, b) {
 - `unpkg`、`jsdelivr`：CDN 地址，用户可以通过 CDN 把包拉入自己的项目中使用，可以自定义。
 - `files`：打包后的发包会包含的文件，可以自定义。
 - `sideEffects`：`tree-shaking` 用的。
-- `buildOptions`：<SpecialWords text="Vue" /> 自己加的打包选项，和 `package.json` 没啥关系。
-  - `name`：全局变量名，打包后 `window` 绑定的全局变量名，可以自定义。例如 CDN 导入 <SpecialWords text="Vue" /> 时，会挂载到 `window.Vue` 上。
+- `buildOptions`：<SPW text="Vue" /> 自己加的打包选项，和 `package.json` 没啥关系。
+  - `name`：全局变量名，打包后 `window` 绑定的全局变量名，可以自定义。例如 CDN 导入 <SPW text="Vue" /> 时，会挂载到 `window.Vue` 上。
   - `formats`：生产环境的打包格式，可以自定义。例如 `esm`、`cjs`、`iife` 等。
 
 定义完毕后，返回 `dev.js` 文件，添加上 `iife` 所需要的配置项。
 
-`iife` 需要引入各个模块的 `package.json` 文件，由于是动态引入，因此不能使用 `import` ，而是选择 `require`。但是 `ES module` 中不能使用 `require`，因此需要使用 <SpecialWords text="Node" /> 提供的 `createRequire` 方法，自己封装一个 `require` 方法。
+`iife` 需要引入各个模块的 `package.json` 文件，由于是动态引入，因此不能使用 `import` ，而是选择 `require`。但是 `ES module` 中不能使用 `require`，因此需要使用 <SPW text="Node" /> 提供的 `createRequire` 方法，自己封装一个 `require` 方法。
 
 拿到 `package.json` 文件的 `name` 方法后，把值赋值给 `globalName`，这样在打包的时候，会把 `globalName` 赋值给 `window` 对象，这样就可以在全局访问了。
 
@@ -353,4 +353,4 @@ esbuild
 
 ## 注意
 
-`parseArgs` 方法是 <SpecialWords text="Node" /> 17.5.0 版本新增的，如果使用的是 `Node` 17.5.0 之前的版本，需要安装 `util` 模块。推荐升级到 18 版本之后。
+`parseArgs` 方法是 <SPW text="Node" /> 17.5.0 版本新增的，如果使用的是 `Node` 17.5.0 之前的版本，需要安装 `util` 模块。推荐升级到 18 版本之后。

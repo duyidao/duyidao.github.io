@@ -13,7 +13,7 @@ author:
 
 ![一图流](https://pic1.imgdb.cn/item/67bd2db7d0e0a243d4044106.png)
 
-<SpecialWords text="JS" />执行顺序如上图所示，步骤为：
+<SPW text="JS" />执行顺序如上图所示，步骤为：
 
 1. 主线程加载好代码，然后一行行执行代码
 2. 如果执行到异步方法，执行该异步代码，加入到异步队列里
@@ -23,7 +23,7 @@ author:
    ```
    上方代码中，`setTimeout` 是立即执行的，执行完毕后的 `fn` 才是加入宏任务队列。
 
-   <SpecialWords text="Promise" />同理， `new Promise` 是同步操作，其回调函数是作为参数传入，`new Promise` 创建<span class="special_words terminology">Promise</span>后立即执行，因此也是同步的。
+   <SPW text="Promise" />同理， `new Promise` 是同步操作，其回调函数是作为参数传入，`new Promise` 创建<span class="special_words terminology">Promise</span>后立即执行，因此也是同步的。
 
    而 `.then` 和 `.catch` 也是立即执行的，只不过执行完毕后没有把它们加入到异步队列里，因为此时 `new Promise` 还是 `pending` 状态，直到调用 `resolve` 变为 `fullfilled` 状态，才会把 `.then` 回调函数加入到微任务队列里。同理，直到调用 `reject` 变为 `rejected` 状态，才会把 `.catch` 回调函数加入到微任务队列里。
 
@@ -149,7 +149,7 @@ new Promise(resolve => {
 
 ## 一些异步组织的建议
 
-1. 先把异步<SpecialWords text="Promise" />化
+1. 先把异步<SPW text="Promise" />化
 2. 梳理清楚逻辑上的操作顺序
 3. 组织为队列，按顺序执行
 

@@ -2,14 +2,14 @@
 
 标签页通信的常见方案有如下几点：
 
-- <SpecialWords text="BroadCast Channel" />
-- <SpecialWords text="Service Worker" />
-- <SpecialWords text="LocalStorage" /> 通过 `window.onstorage` 监听
-- <SpecialWords text="Shared Worker" /> 定时器轮询（`setInterval`）
-- <SpecialWords text="IndexedDB" /> 定时器轮询（`setInterval`）
-- <SpecialWords text="Cookie" /> 定时器轮询（`setInterval`）
+- <SPW text="BroadCast Channel" />
+- <SPW text="Service Worker" />
+- <SPW text="LocalStorage" /> 通过 `window.onstorage` 监听
+- <SPW text="Shared Worker" /> 定时器轮询（`setInterval`）
+- <SPW text="IndexedDB" /> 定时器轮询（`setInterval`）
+- <SPW text="Cookie" /> 定时器轮询（`setInterval`）
 - `window.open`、`window.postMessage`
-- <SpecialWords text="Websocket" />
+- <SPW text="Websocket" />
 
 这里重点放在如何使用 `windoe.onstorage()` 本地存储监听实现标签页通信。全局对象 `window` 有一个事件 `storage` ，代码如下：
 

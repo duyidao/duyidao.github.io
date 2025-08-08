@@ -291,7 +291,7 @@ export const AIReportSidebar = [
       { text: "✍ 畅写", link: "/shushuo/ai-report-frontend/cxo" },
       { text: "🚧 路由自动化", link: "/shushuo/ai-report-frontend/unplugin-vue-router" },
       { text: "🦿 AI 问答", link: "/shushuo/ai-report-frontend/ai" },
-      { text: "🔙 返回", link: "/project/shushuo/" },
+      { text: "🔙 返回", link: "/shushuo/" },
     ],
   },
 ];

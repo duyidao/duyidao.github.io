@@ -1,7 +1,7 @@
 import Iframe from './iframe.vue';
 import BlogLis from './lis.vue';
 import SpecialWords from './specialWords.vue';
-import ArticleMetadata from './ArticleMetadata.vue';
+import ArticleMetadata from './articleMetadata.vue';
 
 const list = [
   {
@@ -13,7 +13,7 @@ const list = [
     compoment: BlogLis,
   },
   {
-    name: 'SpecialWords',
+    name: 'SPW',
     compoment: SpecialWords,
   },
   {
@@ -22,4 +22,10 @@ const list = [
   },
 ]
 
-export default list
+const install = (app) => {
+  list.forEach(item => {
+    app.component(item.name, item.compoment)
+  })
+}
+
+export default install

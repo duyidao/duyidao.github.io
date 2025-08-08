@@ -1,13 +1,13 @@
 # CSS 工具链
 
-比起 <SpecialWords text="JavaScript" /> 语言， <SpecialWords text="CSS" /> 语言来说要更严重，它有两个问题：
+比起 <SPW text="JavaScript" /> 语言， <SPW text="CSS" /> 语言来说要更严重，它有两个问题：
 
-1. 语法缺失，比如循环、判断、字符串拼接等逻辑性语法 <SpecialWords text="CSS" /> 都是没有的
-2. 功能缺失，有很多函数（比如颜色函数、数学函数、自定义函数等） <SpecialWords text="CSS" /> 都是没有的
+1. 语法缺失，比如循环、判断、字符串拼接等逻辑性语法 <SPW text="CSS" /> 都是没有的
+2. 功能缺失，有很多函数（比如颜色函数、数学函数、自定义函数等） <SPW text="CSS" /> 都是没有的
 
-民间解决方法是有一些团队开发一些新语言，<SpecialWords text="CSS" /> 语言有的功能它都有，还能扩展一些 <SpecialWords text="CSS" /> 语言缺失的部分，这些语言相当于 <SpecialWords text="CSS" /> 语言的一个超集，比如 <SpecialWords text="SASS" />、<SpecialWords text="LESS" />、<SpecialWords text="Stylus" /> 等。
+民间解决方法是有一些团队开发一些新语言，<SPW text="CSS" /> 语言有的功能它都有，还能扩展一些 <SPW text="CSS" /> 语言缺失的部分，这些语言相当于 <SPW text="CSS" /> 语言的一个超集，比如 <SPW text="SASS" />、<SPW text="LESS" />、<SPW text="Stylus" /> 等。
 
-不过浏览器并不支持这些语言，所以需要编译成 <SpecialWords text="CSS" /> 才能被浏览器识别。这些编译器被称之为 <SpecialWords text="CSS" /> 预处理器。
+不过浏览器并不支持这些语言，所以需要编译成 <SPW text="CSS" /> 才能被浏览器识别。这些编译器被称之为 <SPW text="CSS" /> 预处理器。
 
 ## Sass 转换
 
@@ -35,7 +35,7 @@ $color: #f00;
 
 ### 星星实现
 
-通过 <SpecialWords text="SASS" /> 提供的循环、函数等语法，可以很简单的实现一个星空效果。
+通过 <SPW text="SASS" /> 提供的循环、函数等语法，可以很简单的实现一个星空效果。
 
 ```scss
 /**
@@ -125,9 +125,9 @@ $color: #f00;
 
 ## 后处理器
 
-所有转换逻辑依靠 `PostCss` 插件，把一段 <SpecialWords text="CSS" /> 代码交给 `PostCss` 插件，插件会按照顺序执行，最终输出一段 <SpecialWords text="CSS" /> 代码。
+所有转换逻辑依靠 `PostCss` 插件，把一段 <SPW text="CSS" /> 代码交给 `PostCss` 插件，插件会按照顺序执行，最终输出一段 <SPW text="CSS" /> 代码。
 
-它会把接收到的 <SpecialWords text="CSS" /> 代码转为抽象语法树，通过插件处理这个抽象语法树，最后把抽象语法树转为 <SpecialWords text="CSS" /> 代码。可以把它类比为 <SpecialWords text="JavaScript" /> 代码的 `babel` 。
+它会把接收到的 <SPW text="CSS" /> 代码转为抽象语法树，通过插件处理这个抽象语法树，最后把抽象语法树转为 <SPW text="CSS" /> 代码。可以把它类比为 <SPW text="JavaScript" /> 代码的 `babel` 。
 
 上面提到的功能它都有对应的插件处理：
 

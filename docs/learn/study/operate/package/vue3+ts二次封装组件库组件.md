@@ -34,9 +34,9 @@ author:
 ```
 :::
 
-这么做虽然可以穿透事件与方法，但是父组件没有代码提示，只能被迫手敲或者翻阅文档，这样做不利于开发，也失去了 <SpecialWords text="TypeScript" /> 的意义。因此需要转换思路。
+这么做虽然可以穿透事件与方法，但是父组件没有代码提示，只能被迫手敲或者翻阅文档，这样做不利于开发，也失去了 <SPW text="TypeScript" /> 的意义。因此需要转换思路。
 
-<SpecialWords text="Element Plus" /> 组件库导出提供了相关的组件类型，我们可以借助这个类型来获取代码提示。
+<SPW text="Element Plus" /> 组件库导出提供了相关的组件类型，我们可以借助这个类型来获取代码提示。
 
 ```vue [son.vue]
 <script lang="ts" setup> // [!code ++]
@@ -50,7 +50,7 @@ const props = defineProps<InputProps>() // [!code ++]
 </template>
 ```
 
-现在父组件使用时能看到相应的提示了，但是出现了 <SpecialWords text="TypeScript" /> 的报错，提示参数是必传的，需要使用 <SpecialWords text="TypeScript" /> 的 `Partial` 类型来包裹一下。 `Partial` 作用是将类型中的所有属性变为可选。
+现在父组件使用时能看到相应的提示了，但是出现了 <SPW text="TypeScript" /> 的报错，提示参数是必传的，需要使用 <SPW text="TypeScript" /> 的 `Partial` 类型来包裹一下。 `Partial` 作用是将类型中的所有属性变为可选。
 
 目前只考虑了属性，还没考虑到事件。事件都在 `$attrs` 中，因此可以用浅拷贝的方式把 `$attrs` 和 `props` 合并一下。
 
@@ -102,7 +102,7 @@ const props = defineProps<Partial<InputProps>>()
 
 ### 方法二：h&useAttrs&useSlots
 
-`useAttrs` 和 `useSlots` 是 <SpecialWords text="Vue3" /> 提供的钩子函数，可以获取到 `$attrs` 和 `$slots` 。
+`useAttrs` 和 `useSlots` 是 <SPW text="Vue3" /> 提供的钩子函数，可以获取到 `$attrs` 和 `$slots` 。
 
 ```vue
 <script lang="ts" setup>
@@ -143,7 +143,7 @@ const props = defineProps<Partial<InputProps>>()
 ```
 
 > [!IMPORTANT] component 组件为什么可以传入 h 函数 ？
-> `h` 函数用于创建虚拟 <SpecialWords text="DMO" /> 节点（`vnode`），is 属性接收到一个函数时，也就是 `h(ElInput, $attrs, $slots)` ，会立即执行并返回一个 `VNode`，这个 `VNode` 描述了如何渲染 `ElInput` 组件。
+> `h` 函数用于创建虚拟 <SPW text="DMO" /> 节点（`vnode`），is 属性接收到一个函数时，也就是 `h(ElInput, $attrs, $slots)` ，会立即执行并返回一个 `VNode`，这个 `VNode` 描述了如何渲染 `ElInput` 组件。
 
 ## 组件方法暴露
 
@@ -172,7 +172,7 @@ console.log(inputRef.value) // [!code ++]
 
 `ref` 不仅可以赋值字符串，但是还能赋值一个函数，函数的形参接收的就是组件实例。
 
-那么怎么抛出去呢？<SpecialWords text="Vue3" /> 提供了 `getCurrentInstance()` 方法实例，提供了一个 `exposed` 方法可以暴露组件实例。因此上方代码可以改写为：
+那么怎么抛出去呢？<SPW text="Vue3" /> 提供了 `getCurrentInstance()` 方法实例，提供了一个 `exposed` 方法可以暴露组件实例。因此上方代码可以改写为：
 
 ::: code-group
 ```vue [father.vue]
@@ -207,7 +207,7 @@ function changeRef(inputInstance) { // [!code ++]
 
 ### 基础使用
 
-`h` 函数是 <SpecialWords text="Vue3" /> 提供的用于创建虚拟 <SpecialWords text="DMO" /> 节点（`vnode`）的方法，`vnode` 是一个对象，描述了如何渲染一个组件。
+`h` 函数是 <SPW text="Vue3" /> 提供的用于创建虚拟 <SPW text="DMO" /> 节点（`vnode`）的方法，`vnode` 是一个对象，描述了如何渲染一个组件。
 
 `h` 函数第一个参数是组件，第二个参数是属性，第三个参数是插槽。
 
@@ -250,9 +250,9 @@ setTimeout(() => { // [!code ++]
 
 但是过了两秒后，发现页面并没有动态更新。这是为什么呢？
 
-这涉及到了 <SpecialWords text="Vue3" /> 的响应式原理，`ref` 创建的响应式对象，在 `effect` 副作用函数中使用，彼此才能建立依赖关系。`ref` 发生了改变后，会触发 `effect` 副作用函数重新执行，从而更新页面。
+这涉及到了 <SPW text="Vue3" /> 的响应式原理，`ref` 创建的响应式对象，在 `effect` 副作用函数中使用，彼此才能建立依赖关系。`ref` 发生了改变后，会触发 `effect` 副作用函数重新执行，从而更新页面。
 
-在 `template` 模板中使用 `ref` 创建的响应式对象，<SpecialWords text="Vue3" /> 底层会帮我们收集依赖建立关系，但是在 `setup` 中手动使用 `h` 函数，不会建立这层依赖，因此不会触发更新。
+在 `template` 模板中使用 `ref` 创建的响应式对象，<SPW text="Vue3" /> 底层会帮我们收集依赖建立关系，但是在 `setup` 中手动使用 `h` 函数，不会建立这层依赖，因此不会触发更新。
 
 解决方法为修改 `Comp`，不再单单赋值一个 `h` 函数，而是赋值一个函数，返回值是 `h` 函数。这样 `template` 在挂载 `component` 动态节点时，会调用这个函数，这样就会把这个函数视为副作用函数。
 
@@ -283,7 +283,7 @@ setTimeout(() => {
 
 作为一个组件，自然是允许使用者传入属性和插槽的。而 `Comp` 函数实际上可以看作是 `setup` 函数，第一个参数就是传值 `props` ，第二个参数就可以解构出插槽 `{ slots }` 。
 
-而 `ts` 类型，可以通过 <SpecialWords text="Vue3" /> 官方文档提供的 `FunctionComponent` 类型，来定义 `props` 类型，避免 `ts` 类型报错。
+而 `ts` 类型，可以通过 <SPW text="Vue3" /> 官方文档提供的 `FunctionComponent` 类型，来定义 `props` 类型，避免 `ts` 类型报错。
 
 ::: code-group
 ```vue [prop传值.vue]
@@ -414,7 +414,7 @@ const Comp = ((props, { slots}) => {
 
 ### 总结使用
 
-实际上组件就是一个函数，函数的第一个参数可以拿到传值 `props` ，第二个参数可以解构出插槽 `slots` 。而 `ts` 类型，可以通过 <SpecialWords text="Vue3" /> 官方文档提供的 `FunctionComponent` 类型，来定义 `props` 类型，避免 `ts` 类型报错。
+实际上组件就是一个函数，函数的第一个参数可以拿到传值 `props` ，第二个参数可以解构出插槽 `slots` 。而 `ts` 类型，可以通过 <SPW text="Vue3" /> 官方文档提供的 `FunctionComponent` 类型，来定义 `props` 类型，避免 `ts` 类型报错。
 
 想要在 `setup` 内使用 `h` 函数，需要把 `h` 函数作为一个函数的返回值， `template` 在挂载组件节点时，会调用这个函数，这样就会把这个函数视为副作用函数，后续变量变更也会触发更新。
 

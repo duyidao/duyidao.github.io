@@ -4,7 +4,7 @@
 
 ### RefImpl 类
 
-下面先来初步实现响应式原理。<SpecialWords text="Vue3" /> 的响应式原理主要是通过变量的 `get` 、 `set` 和副作用函数 `effect` 来实现的。每当访问变量时，就会触发 `get` ，每当修改变量时，就会触发 `set` ，而 `effect` 则是用于收集依赖和触发副作用函数的，触发变量变更后，会重新执行副作用函数，达到了响应式的效果。
+下面先来初步实现响应式原理。<SPW text="Vue3" /> 的响应式原理主要是通过变量的 `get` 、 `set` 和副作用函数 `effect` 来实现的。每当访问变量时，就会触发 `get` ，每当修改变量时，就会触发 `set` ，而 `effect` 则是用于收集依赖和触发副作用函数的，触发变量变更后，会重新执行副作用函数，达到了响应式的效果。
 
 在 `reactivity/src` 文件夹下新建 `reactivity.ts` 和 `effect.ts` 两个文件，分别用于实现响应式原理和副作用函数。
 
@@ -222,7 +222,7 @@ else {
 
 ### 保存依赖
 
-首先在 `RefImpl` 类中把 `sub` 属性修改为 `subs` ，表示会有多个依赖函数；然后定义一个变量 `subsTail` ，表示链表的尾指针。声明一个链表节点的 <SpecialWords text="TypeScript" /> 类型 `Link` ，节点包含当前的依赖 `sub` ，类型是一个函数；上一个节点 `prevSub` ，类型是 `Link` ；下一个节点 `nextSub` ，类型是 `Link` 。
+首先在 `RefImpl` 类中把 `sub` 属性修改为 `subs` ，表示会有多个依赖函数；然后定义一个变量 `subsTail` ，表示链表的尾指针。声明一个链表节点的 <SPW text="TypeScript" /> 类型 `Link` ，节点包含当前的依赖 `sub` ，类型是一个函数；上一个节点 `prevSub` ，类型是 `Link` ；下一个节点 `nextSub` ，类型是 `Link` 。
 
 触发 `get` 方法后，创建一个节点对象 `newLink`，`sub` 为当前的 `activeSub` 依赖函数，`nextSub` 和 `prevSub` 暂时赋值 `undefined` 。然后判断当前的尾指针 `subsTail` ，出现以下两种情况：
 1. 不为空，说明当前链表有节点了，则将当前链表最后一个节点的 `nextSub` 指向刚刚创建好的节点对象 `newLink`， `newLink` 的 `prevSub` 指向当前链表最后一个节点，最后将尾指针指向当前 `newLink` 。
@@ -733,7 +733,7 @@ export const effect = (fn, options) => {
 
 在 `effect.ts` 中，我们为类新增两个属性：`deps` 和 `depsTail`，分别指向依赖项头节点指针和依赖项尾节点指针。
 
-在 `system.ts` 中，我们修改一下 <SpecialWords text="TypeScript" /> 类型，新增 `Dep` 和 `Sub` 类型，分别有头尾指针，类型为 `Link`，然后修改 `Link` 类型，新增 `dep` 和 `nextDep` 属性，分别指向对应的响应式变量和下一个节点。
+在 `system.ts` 中，我们修改一下 <SPW text="TypeScript" /> 类型，新增 `Dep` 和 `Sub` 类型，分别有头尾指针，类型为 `Link`，然后修改 `Link` 类型，新增 `dep` 和 `nextDep` 属性，分别指向对应的响应式变量和下一个节点。
 
 ::: code-group
 ```ts [effect.ts]
@@ -877,7 +877,7 @@ export const link = (dep, sub) => {
 再新建一个 `effect.ts` 文件，导出一个变量 `activeSub` ，表示当前的 `effect` 回调函数，全局仅此唯一一个「单例模式」。创建一个 `EffectReactive` 类，类包含两个重要属性 `deps` 和 `depsTail`，分别指向订阅者链表的头节点和尾节点。构造器接收一个函数 `fn` ，做了如下操作：
 1. 新建一个 `run` 方法，用于调用依赖项函数，先保存当前的 `activeSub` 赋值给 `prevSub` 变量，然后赋值 `this` 给 `activeSub` （此时 `activeSub` 就代表 `EffectReactive` 类）。再把类的 `depsTail` 属性置为 `undefined` ，表示刚触发该函数，然后执行传过来的 `fn` 函数，并把执行结果 `return` 返回回去。
 
-2. 等待函数执行完毕后，再把 `prevSub` 赋值给 `activeSub` ，表示当前的 `effect` 接收到的回调函数 `fn` 已经执行完毕，该执行上一个保存还没执行完的 `effect` 回调了。这个是为了解决 `effect` 函数嵌套的 <SpecialWords text="BUG" /> ，代码示例如下：
+2. 等待函数执行完毕后，再把 `prevSub` 赋值给 `activeSub` ，表示当前的 `effect` 接收到的回调函数 `fn` 已经执行完毕，该执行上一个保存还没执行完的 `effect` 回调了。这个是为了解决 `effect` 函数嵌套的 <SPW text="BUG" /> ，代码示例如下：
    
     ```js
     effect(() => {
