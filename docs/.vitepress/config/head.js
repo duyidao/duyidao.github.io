@@ -1,6 +1,6 @@
 export default [
   // 添加图标
-  ["link", { rel: "icon", href: "./favicon.ico" }],
+  ["link", { rel: "icon", href: "/favicon.ico" }],
   ["meta", { property: "og:title", content: "刀刀博客" }],
   ["meta", { property: "og:site_name", content: "刀刀博客" }],
   ["meta", { property: "og:type", content: "website" }],
@@ -19,7 +19,7 @@ export default [
         "刀刀,杜一刀,技术博客,博客,前端,js,css,html,react,vue,webpack,vite,git,github,码农,程序员,刀刀博客",
     },
   ],
-  ["meta", { property: "og:image", content: "./favicon.ico" }],
+  ["meta", { property: "og:image", content: "/favicon.ico" }],
   ["meta", { property: "og:url", content: "https://duyidao.github.io/" }],
   [
     "meta",
