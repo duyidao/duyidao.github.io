@@ -185,21 +185,15 @@
 
       /* 代码块：添加macOS风格的小圆点 */
       &::before {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 12px;
-        left: 12px;
-        width: 12px;
-        height: 12px;
-        background-color: #ff5f56;
-        border-radius: 50%;
-        box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #27c93f;
-        z-index: 1;
+        top: .75rem;
+        left: .75rem;
+        width: .75rem;
+        height: .75rem;
+        box-shadow: 1.25rem 0 0 #ffbd2e, 2.5rem 0 0 #27c93f;
       }
 
       &.line-numbers-mode {
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
       }
     }
 
