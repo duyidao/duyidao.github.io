@@ -1,7 +1,7 @@
 import Iframe from './iframe.vue';
 import BlogLis from './lis.vue';
 import SpecialWords from './specialWords.vue';
-import ArticleMetadata from './articleMetadata.vue';
+import ArticleMetadata from './meta.vue';
 
 const list = [
   {
