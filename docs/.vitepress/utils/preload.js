@@ -1,12 +1,7 @@
-const imagesPNG = import.meta.glob('/public/images/*.png', { eager: true })
-const imagesSVG = import.meta.glob('/public/svg/*.svg', { eager: true })
+const images = ['/images/blog.png', '/images/link.png', '/svg/bilibili.svg', '/svg/douyin.svg', '/svg/gis.svg', '/svg/giscus.svg', '/svg/github.svg', '/svg/juejin.svg', '/svg/link.svg', '/svg/mdn.svg', '/svg/npm.svg', '/svg/reship.svg', '/svg/uniapp.svg', '/svg/vue.svg', '/svg/youtube.svg'];
 
 const preloadImages = (max = 3) => {
-  const _images = [
-    ...Object.keys(imagesPNG).map(path => path.replace('/public', '')),
-    ...Object.keys(imagesSVG).map(path => path.replace('/public', '')),
-  ];
-  console.log('_images', _images);
+  const _images = [...images];
   function loadImage() {
     const src = _images.shift();
     return new Promise((resolve, reject) => {
