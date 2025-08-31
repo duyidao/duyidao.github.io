@@ -17,13 +17,15 @@ pageClass: read-class
 本模块用于记录前端书籍阅读，并分享阅读心得。阅读的书籍涉猎范围包括但不限于 CSS 、Vue 、React 、Node.js 、Webpack 、TypeScript 、JavaScript 等。
 
 ## CSS
-- [CSS揭秘](https://book.douban.com/subject/26745943/)
-- [CSS世界](https://book.douban.com/subject/27609361/)
-- [CSS权威指南](https://book.douban.com/subject/23008813/)
-- [CSS设计指南](https://book.douban.com/subject/3329500/)
+
+- [CSS 揭秘](https://book.douban.com/subject/26745943/)
+- [CSS 世界](https://book.douban.com/subject/27609361/)
+- [CSS 权威指南](https://book.douban.com/subject/23008813/)
+- [CSS 设计指南](https://book.douban.com/subject/3329500/)
 
 ## JavaScript
-- [ES6标准入门 第3版(阮一峰)](/read/javascript/ES6标准入门/)
+
+- [ES6 标准入门 第 3 版(阮一峰)](/read/javascript/ES6标准入门/)
 - [JavaScript 高级程序设计（第 3 版）](https://book.douban.com/subject/10546925/)
 - [JavaScript 语言精粹](https://book.douban.com/subject/3590768/)
 - [JavaScript 设计模式与开发实践](https://book.douban.com/subject/26382780/)
@@ -38,7 +40,8 @@ pageClass: read-class
 - [JavaScript 设计模式](https://book.douban.com/subject/26381780/)
 
 ## Vue
-- [Vue.js 设计与实现](/read/Vue/Vue.js设计与实现/)
+
+- [Vue.js 设计与实现](/read/vue/Vue.js设计与实现/)
 - [Vue.js 实战](https://book.douban.com/subject/26852784/)
 - [Vue.js 技术揭秘](https://github.com/ustbhuangyi/vue-analysis)
 - [Vue.js 源码解析](https://github.com/answershuto/learnVue)
@@ -47,6 +50,7 @@ pageClass: read-class
 - [Vue.js 项目实战](https://book.douban.com/subject/30311126/)
 
 ## React
+
 - [React.js 小书](https://book.douban.com/subject/27609361/)
 - [React.js 入门与实践](https://book.douban.com/subject/30323555/)
 - [React.js 技术揭秘](https://github.com/reactjs/react-basic)

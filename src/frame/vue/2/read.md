@@ -314,7 +314,7 @@ Vue.delete = del
 Vue.nextTick = nextTick
 ```
 
-其中，关于 `nextTick` 可以查看我的博客文档 [nextTick](/study/vue/$nexttick) 。
+其中，关于 `nextTick` 可以查看我的博客文档 [nextTick](/learn/vue/nextTick) 。
 
 再往下是让一个对象变成响应式的方法，源码如下：
 

@@ -391,7 +391,7 @@ import { storeToRefs } from 'pinia'
 const { cartList } = storeToRefs(useCarttStore())
 ```
 
-保存运行后数据能够响应式的变化。更多详细功能可前往 [购物车](/project/myself/小兔鲜/inweb/购物车) 模块查看。
+保存运行后数据能够响应式的变化。更多详细功能可前往 [购物车](/study/inweb/shopcar) 模块查看。
 
 ### 部署
 
