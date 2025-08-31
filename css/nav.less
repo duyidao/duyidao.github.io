@@ -1,0 +1,26 @@
+.VPNav .VPNavBar:not(.home) {
+  background-color: transparent;
+}
+
+.VPLocalNav {
+  .container {
+    button, .VPLocalNavOutlineDropdown {
+      flex: 1;
+      justify-content: center;
+
+      button {
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .VPLocalNavOutlineDropdown {
+    > div.items {
+      left: 48%;
+      right: 16px;
+      max-height: calc(var(--vp-vh, 100vh) - 86px);
+    }
+  }
+}

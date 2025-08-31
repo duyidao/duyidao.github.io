@@ -1,0 +1,77 @@
+---
+title: 请求取消
+author:
+  - 远方os 什么？发出去的请求还想取消？&https://www.douyin.com/video/7415960942363561235
+---
+
+# 请求取消
+
+请求可否取消呢？询问 AI 都说 `axios`、`fetch` 发起的请求可以通过 `abort` 方法取消，代码如下：
+
+::: code-group
+
+```js [server.js]
+// 后端nodejs服务
+```
+
+```vue [App.vue]
+<template>
+  <div>
+    <button @click="search">查询</button>
+    <button @click="cancelSearch">取消查询</button>
+    <button @click="delete">删除</button>
+    <button @click="cancelDelete">取消删除</button>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const searchController = null
+const deleteController = null
+
+const search = () => {
+  searchController = new AbortController()
+  const signal = searchController.signal
+  fetch('/api/search', { signal }).then(res => {
+    console.log(res)
+  })
+}
+
+const cancelSearch = () => {
+  searchController.abort?.()
+}
+
+const delete = (id) => {
+  deleteController = new AbortController()
+  const signal = deleteController.signal
+  fetch('/api/delete', {
+    signal,
+    method: 'POST',
+    body: JSON.stringify({ id })
+  }).then(res => {
+    console.log(res)
+  })
+}
+
+const cancelDelete = () => {
+  deleteController.abort?.()
+}
+</script>
+```
+
+:::
+
+运行<word text="NodeJS" />服务，打开页面，点击查询按钮调用接口，查询数据，然后点击取消查询按钮，发现控制台显示请求已取消，看着好像还行，能正常工作？但是点击删除按钮后快速点击取消删除按钮取消删除请求，然后点击查询按钮，可以发现刚刚点击删除的那条数据没了。
+
+下面来解释一下：
+
+- 前端浏览器发送一个删除请求给后端服务器，要求删除一条数据
+- 后端那边接收到删除请求后查询数据库删除数据
+- 前端这边取消删除请求
+- 后端那边并不清楚请求已经被删除了，继续做删除操作
+- 后端删除成功了，发送响应给浏览器
+- 浏览器发现请求已经取消了，就不响应 Promise 展示
+
+> [!IMPORTANT] 综上所述
+> 请求实际上是无法取消的，只是浏览器单方面不关心响应结果罢了。因此，如果是查询操作可以这么做，因为不会对数据有任何影响；而删除、编辑、新增等操作是没法这么做的。

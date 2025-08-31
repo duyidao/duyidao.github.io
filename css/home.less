@@ -1,0 +1,86 @@
+:root {
+  --vp-c-indigo-3: #f49b00;
+  --vp-c-indigo-2: #e69100;
+  --vp-c-indigo-1: #c67600;
+  /* 明亮主题变量 */
+  --learn-primary-color: #FF9800;
+  --learn-primary-dark: #F57C00;
+  --learn-primary-light: #FFE0B2;
+  --learn-primary-extra-light: #FFF3E0;
+  --text-color: #333;
+  --text-secondary: #666;
+  --bg-color: #fff;
+  --card-bg: #fff;
+  --border-color: #FFCC80;
+  --shadow-color: rgba(255, 152, 0, 0.1);
+  --wave1: #FF980077;
+  --wave2: #F57C0066;
+  --wave3: #EF6C0044;
+  --body-bg: linear-gradient(135deg, #fff8f0 0%, #ffecd2 100%);
+  --header-bg: linear-gradient(90deg, var(--learn-primary-color), var(--learn-primary-dark));
+  --header-text: #fff;
+}
+
+:root.dark {
+  --vp-code-block-bg: #292d3e;
+  --vp-c-indigo-1: #FFA500;
+  --vp-c-indigo-2: #FFC364;
+  --vp-c-indigo-3: #FFB732;
+  /* 黑暗主题变量 */
+  --learn-primary-color: #FF9800;
+  --learn-primary-dark: #E65100;
+  --learn-primary-light: #5D4037;
+  --learn-primary-extra-light: #424242;
+  --text-color: #f0f0f0;
+  --text-secondary: #ccc;
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --border-color: #FF8F00;
+  --shadow-color: rgba(255, 152, 0, 0.15);
+  --wave1: #FF8F0077;
+  --wave2: #FF6D0066;
+  --wave3: #FF572244;
+  --body-bg: linear-gradient(135deg, #2c1a0d 0%, #1a120b 100%);
+  --header-bg: linear-gradient(90deg, var(--learn-primary-dark), #BF360C);
+  --header-text: #fff;
+}
+
+body {
+  background-image: var(--body-bg);
+  background-color: transparent !important;
+}
+
+.VPSidebar {
+  &:not(.open) {
+    background-color: transparent !important;
+    background-image: none;
+  }
+}
+
+.VPHome {
+  .VPHero {
+    .main {
+      .home_blog {
+        font-size: 32px;
+        line-height: 1;
+      }
+
+      .home_welcome {
+        font-size: 28px;
+      }
+    }
+  }
+}
+
+/* VPFeatures 页卡悬浮效果 */
+.VPFeatures .items .item {
+  transition: transform 0.3s;
+}
+
+.VPFeatures .items .item:hover {
+  transform: translateY(-5px);
+}
+
+.VPFooter {
+  background: transparent;
+}

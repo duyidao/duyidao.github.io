@@ -1,0 +1,262 @@
+---
+title: 前端工具函数开发
+author:
+  - 三十的前端课 成熟前端如何封装一个函数&https://www.bilibili.com/video/BV18S421o7Pn/
+---
+
+# 前端工具函数开发
+
+本篇从一个需求出发，开发一个前端工具函数，并一步步对它完善、封装，提高它的易用性、复用性、可维护性。
+
+## 需求
+
+编写一个函数，用于单位转化。如 `setUnit(100)` 返回 1 百；`setUnit(1000)` 返回 1 千。
+
+首先看看这个函数的第一个版本。
+
+```js
+function setUnit(num) {
+  if (num < 1000) {
+    return num;
+  } else if (num < 10000) {
+    return `${Math.floor(num / 1000)}千`;
+  } else if (num < 100000) {
+    return `${Math.floor(num / 10000)}万`;
+  } else if (num < 1000000) {
+    return `${Math.floor(num / 100000)}十万`;
+  }
+}
+```
+
+这个函数目前有很多缺陷，比如它最多只能转换到十万，且没办法添加单位，代码的可读性和可维护性都很差。
+
+## 扩展性改版
+
+### 第一版改进
+
+针对上面的问题，我们进行第一版改进。
+
+关于转换，可以设计一个 `Map` 映射，将单位与转换的倍数对应起来，这样在转换时，只需要遍历这个 `Map`，就可以完成转换。
+
+```js
+const unitMap = new Map([
+  '百': 100,
+  '千': 1000,
+  '万': 10000,
+  '十万': 100000,
+]);
+
+function setUnit(value, unit) {
+  return value / unitMap.get(unit) + unit;
+}
+```
+
+这一版的修改增强了代码的可读性和可维护性，用户可以添加单位，并且转换的范围也方便扩大，只需要在映射上添加对应的单位即可。
+
+但是还是存在一些问题，目前看起来很简单，但是后续新增单位还是需要人为维护，如果遇到一些冷门单位，只有部分组件常见需要使用，直接添加在 `Map` 里维护成本也会提高。
+
+### 第二版改进
+
+针对第一版改进的问题，我们进行第二版改进。
+
+对于一些冷门单位，可以让使用者通过第三个参数以 `Map` 映射的方式传递进来，这样就可以动态的添加单位了。有两种方式处理该参数：
+
+1. 如果第三个参数有值（即用户传了映射），则使用用户传的映射。
+2. 如果第三个参数有值（即用户传了映射），则合并默认映射和用户的映射。
+
+上方两个步骤更推荐使用第二种，因为第一种直接摒弃不用默认映射的方式，让默认映射毫无意义，用户如果传参数还得自己把默认映射内的值自己写一遍。
+
+```js
+const unitMap = new Map([
+  '百': 100,
+  '千': 1000,
+  '万': 10000,
+  '十万': 100000,
+]);
+
+function setUnit(value, unit, customUnitMap) { // [!code focus]
+  const finallyUnitMap = new Map([ // [!code focus]
+    ...unitMap, // [!code focus]
+    ...customUnitMap, // [!code focus]
+  ]) // [!code focus]
+  return value / finallyUnitMap.get(unit) + unit; // [!code focus]
+}
+```
+
+现在能够支持使用者动态添加单位映射了，但是这一版还是有缺陷。虽然单位映射能够动态扩展添加，但是扩展性并没有那么好；有一些单位可能不是简简单单就用除法解决，这里写死为除法显然并不合适。
+
+### 第三版改进
+
+针对第二版改进的问题，我们进行第三版改进。
+
+既然计算的方式不确定，那么可以修改 `Map` 映射，单位后面可以接数字，也可以接方法，在根据单位获取值时判断获取到的是否是数字，如果是数字则默认用除法计算；如果是方法说明需要用其他方式计算，直接调用那个方法即可。
+
+```js
+const unitMap = new Map([
+  '百': 100,
+  '千': 1000,
+  '万': 10000,
+  '十万': 100000,
+]);
+
+function setUnit(value, unit, customUnitMap) {
+  const finallyUnitMap = new Map([
+    ...unitMap,
+    ...customUnitMap,
+  ])
+  const unithandle = finallyUnitMap.get(unit); // [!code focus]
+  if (typeof unithandle === 'number') { // [!code focus]
+    return value / unithandle + unit; // [!code focus]
+  } else if (typeof unithandle === 'function') { // [!code focus]
+    return unithandle(value) + unit; // [!code focus]
+  } // [!code focus]
+}
+```
+
+## 方便性改版
+
+目前扩展性已经有了，但是使用的方便性还没有。如果使用者想使用它，必须要传值和单位。在一般项目中，一个页面可能单位都是统一的，但工具函数没有记忆功能，每次使用都需要带单位，很麻烦；另外一些项目有自己的单位，且该单位在这个项目是经常用到的，但是默认映射里面没有，那么使用者每次使用都需要自己传，很麻烦。
+
+为工具函数添加一个记忆功能，如果使用者传了单位，则使用传的；如果使用者没有传单位，则使用上一次记忆保留的。
+
+设置一个变量用于存储记忆单位，可设置一个初始值，每次调用该方法都判断一下用户是否传了单位，传了则更新记忆单位变量，没传则直接使用记忆单位变量。
+
+常用的单位这点，可以设置一个方法 `addUnit` ，如果项目确实经常使用某些单位，可以调用这个方法，把单位添加到默认映射内。
+
+```js
+const unitMap = new Map([
+  '百': 100,
+  '千': 1000,
+  '万': 10000,
+  '十万': 100000,
+]);
+const unitMemory = '千'
+
+export function setUnit(value, unit, customUnitMap) {
+  const finallyUnitMap = new Map([
+    ...unitMap,
+    ...customUnitMap,
+  ])
+  const finallyUnit = unit ? unitMemory = unit : unitMemory; // [!code focus]
+  const unithandle = finallyUnitMap.get(finallyUnit); // [!code focus]
+  if (typeof unithandle === 'number') {
+    return value / unithandle + finallyUnit; // [!code focus]
+  } else if (typeof unithandle === 'function') {
+    return unithandle(value) + finallyUnit; // [!code focus]
+  }
+}
+
+export function addUnit(customUnitMap) { // [!code focus]
+  for (const [key, value] of customUnitMap) { // [!code focus]
+    unitMap.set(key, value); // [!code focus]
+  } // [!code focus]
+} // [!code focus]
+```
+
+> [!NOTE] 提示
+> 三元表达式内是可以使用赋值语句的，赋值语句返回的就是赋值后的值。这样既可以赋值，又可以返回值。
+
+## 健壮性改版
+
+目前工具函数已经具备扩展性、方便性和健壮性，但是还是存在一些问题。
+
+1. 如果使用者传的值不是数字，则工具函数会报错。
+2. 如果使用者传的单位是映射内没有的，则工具函数会报错。
+3. 其他情况......
+
+因此最基础的，函数需要添加一个类型校验判断，如果 `value` 通过 `Number` 转换后得到的是 `NaN` ，则抛出异常；如果单位没有在映射表中，也抛出异常报错。
+
+```js
+const unitMap = new Map([
+  '百': 100,
+  '千': 1000,
+  '万': 10000,
+  '十万': 100000,
+]);
+const unitMemory = '千'
+
+export function setUnit(value, unit, customUnitMap) {
+  if (isNaN(Number(value))) { // [!code focus]
+    console.warn(`${value}必须是一个数值型`) // [!code focus]
+    return value // [!code focus]
+  } // [!code focus]
+  const finallyUnitMap = new Map([
+    ...unitMap,
+    ...customUnitMap,
+  ])
+  const finallyUnit = unit ? unitMemory = unit : unitMemory;
+  if (!finallyUnitMap.has(finallyUnit)) { // [!code focus]
+    console.warn(`${unit}单位不存在`) // [!code focus]
+    return value // [!code focus]
+  }
+  const unithandle = finallyUnitMap.get(finallyUnit);
+  if (typeof unithandle === 'number') {
+    return value / unithandle + finallyUnit;
+  } else if (typeof unithandle === 'function') {
+    return unithandle(value) + finallyUnit;
+  }
+}
+
+export function addUnit(customUnitMap) {
+  for (const [key, value] of customUnitMap) {
+    unitMap.set(key, value);
+  }
+}
+```
+
+> [!INFO] 补充
+> 这里可以抛出异常 `throw new Error()` ，但是这样会中断函数执行，如果使用者不处理这个异常，则会导致页面崩溃，因此这里只是 `console.warn` 警告一下，使用者可以选择处理这个警告，也可以选择不处理，手段更温和一点。
+
+## 最终代码
+
+```js
+// 默认单位映射表
+const unitMap = new Map([
+  '百': 100,
+  '千': 1000,
+  '万': 10000,
+  '十万': 100000,
+]);
+const unitMemory = '千' // 单位记忆
+
+export function setUnit(value, unit, customUnitMap) {
+  // 如果value不是数值，则抛出警告
+  if (isNaN(Number(value))) {
+    console.warn(`${value}必须是一个数值型`)
+    return value
+  }
+  const finallyUnitMap = new Map([
+    ...unitMap,
+    ...customUnitMap,
+  ])
+  // 记忆单位
+  const finallyUnit = unit ? unitMemory = unit : unitMemory;
+  // 如果单位不在映射表内，则抛出警告
+  if (!finallyUnitMap.has(finallyUnit)) {
+    console.warn(`${unit}单位不存在`)
+    return value
+  }
+  const unithandle = finallyUnitMap.get(finallyUnit);
+  // 如果单位映射表内是数值，则除以数值；如果是函数，则调用函数
+  if (typeof unithandle === 'number') {
+    return value / unithandle + finallyUnit;
+  } else if (typeof unithandle === 'function') {
+    return unithandle(value) + finallyUnit;
+  }
+}
+
+// 添加自定义单位映射表
+export function addUnit(customUnitMap) {
+  for (const [key, value] of customUnitMap) {
+    unitMap.set(key, value);
+  }
+}
+```
+
+## 总结
+
+对于代码可读性、可维护性的追求，用更合理的数据结构和代码结构，使代码更简洁。如示例中使用 `Map` 映射而不用数组，这样就减少了数组循环的操作。
+
+对于可拓展性，内置最常用的操作，留出参数让使用时候传入自定义。
+
+对于健壮性，对于一些可能会引起的边界情况，做好校验，抛出易懂的报错提示。

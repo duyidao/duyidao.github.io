@@ -1,0 +1,207 @@
+---
+title: 静态方法 resolve、reject、try、all
+author:
+  - 远方os Promise静态方法resolve、reject、try&https://www.douyin.com/video/7426379475899665705
+  - 远方os 手写Promise静态方法Promise.all&https://www.douyin.com/video/7447140062283762955
+---
+
+# 静态方法
+
+与 `catch` 和 `finally` 类似，<word text="Promise A+" />的标准只包含了 `.then`，并没有包含其余的方法，这些方法都是 ES6 标准中新增的，因此 A+ 规范的文档没有这些事件的描述。推荐去 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve) 查看。
+
+## resolve
+
+根据 [MDN: Promise](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve) 的描述，`Promise.resolve(value)` 方法返回一个以给定值解析后的 `Promise` 对象。如果该值是一个 `thenable`（即带有 `then` 方法的对象），返回的 `Promise` 将“跟随”这个 `thenable`，采用它的最终状态；否则返回的 `Promise` 将以此值完成。
+
+翻译成大白话就是，`Promise.resolve()` 会把值转为 `Promise`，但是分三种情况：
+
+1. 值本来就是 `Promise` —— 不转换直接返回
+2. 值是 `thenable` 对象（即有 `then` 方法）—— 返回 `then` 方法
+3. 都不是，直接 `resolve` 返回该值
+
+分析至此，`resolve` 方法只需要添加一些判断即可。
+
+```js
+class MyPromise {
+  // ...
+
+  static resolve(value) {
+    // 该值本身就是一个 Promise，那么该 Promise 将被返回
+    if (value instanceof Promise) {
+      return value;
+    }
+    return new Promise((resolve, reject) => {
+      if (isPromiseLike(value)) {
+        value.then(resolve, reject);
+      } else {
+        resolve(value);
+      }
+    });
+  }
+}
+```
+
+## reject
+
+根据 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject) 文档来看，`Promise.reject(reason)` 方法返回一个被拒绝的 `Promise` 对象，参数 `reason` 会被传递给被拒绝的回调函数。`Promise.reject()` 实际上相当于 `new Promise((resolve, reject) => reject(reason))` 的简写形式。
+
+> [!TIP] 特别注意
+> 与 `Promise.resolve()` 不同，即使 `reason` 已经是一个 `Promise` 对象，`Promise.reject()` 方法也始终会将其封装在一个新的 `Promise` 对象中。
+
+```js
+class MyPromise {
+  // ...
+
+  static resolve(value) {
+    // 该值本身就是一个 Promise，那么该 Promise 将被返回
+    if (value instanceof Promise) {
+      return value;
+    }
+    return new Promise((resolve, reject) => {
+      if (isPromiseLike(value)) {
+        value.then(resolve, reject);
+      } else {
+        resolve(value);
+      }
+    });
+  }
+
+  static reject(reason) {
+    // [!code ++]
+    return new Promise((_, reject) => {
+      // [!code ++]
+      reject(reason); // [!code ++]
+    }); // [!code ++]
+  } // [!code ++]
+}
+```
+
+## try
+
+`Promise.try` 主要是用于处理同步代码，在 `Promise` 之外抛出的异常，可以通过 `Promise.try` 来捕获。
+
+下面来看一个代码：
+
+```js
+function fn() {
+  throw new Error("错误");
+
+  return 1;
+}
+
+Promise.resolve(fn()).then(
+  (res) => {
+    console.log(res);
+  },
+  (err) => {
+    console.log(err);
+  }
+);
+```
+
+预期的结果是 `console.log(err)`，但是实际结果是代码报错，这说明 `fn` 函数同步报错，是不会进入 `Promise` 里，自然不会被 `onRejected` 捕获。因此需要使用 `Promise.try` 来处理。
+
+`try` 方法实际上返回的也是一个 `new Promise`，接收一个 `callback` 回调函数，调用 `resolve` 修改状态并返回执行结果即可。这里不需要使用 `try...catch` 去捕获错误，因为最终会走到构造器里，构造器会捕获错误并修改状态。
+
+```js
+class MyPromise {
+  // ...
+
+  static resolve(value) {
+    // 该值本身就是一个 Promise，那么该 Promise 将被返回
+    if (value instanceof Promise) {
+      return value;
+    }
+    return new Promise((resolve, reject) => {
+      if (isPromiseLike(value)) {
+        value.then(resolve, reject);
+      } else {
+        resolve(value);
+      }
+    });
+  }
+
+  static reject(reason) {
+    return new Promise((_, reject) => {
+      reject(reason);
+    });
+  }
+
+  static try(callback, ...args) {
+    // [!code ++]
+    return new Promise((resolve) => {
+      // [!code ++]
+      resolve(callback(...args)); // [!code ++]
+    }); // [!code ++]
+  } // [!code ++]
+}
+```
+
+## all
+
+根据 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) 可知，`all` 方法接收一个可迭代的数据，并会按照顺序返回一个数组，数组中的每一项都是 `Promise` 的结果。如果有一个 `Promise` 失败，则返回第一个失败的 `Promise` 的结果。
+
+因此需要注意以下几点：
+
+1. 接收的值是可迭代的，包括数组、字符串、`Map` 和 `Set` 等，为了更好的操作，用扩展运算符 `[...]` 转为数组
+2. 返回的是一个 `new MyPromise` ，遍历转换好的数组，调用 `MyPromise.resolve()` 方法，将每一个值转为 `Promise`，在 `.then` 方法中把执行的结果**按顺序**保存到数组内
+3. 声明一个变量，用于判断当前执行完毕几个 `Promise`，当执行完毕的 `Promise` 数量与数组长度一致时，说明所有 `Promise` 都执行完毕，此时返回结果
+
+```js
+class MyPromise {
+  // ...
+
+  static resolve(value) {
+    // 该值本身就是一个 Promise，那么该 Promise 将被返回
+    if (value instanceof Promise) {
+      return value;
+    }
+    return new Promise((resolve, reject) => {
+      if (isPromiseLike(value)) {
+        value.then(resolve, reject);
+      } else {
+        resolve(value);
+      }
+    });
+  }
+
+  static reject(reason) {
+    return new Promise((_, reject) => {
+      reject(reason);
+    });
+  }
+
+  static try(callback, ...args) {
+    return new Promise((resolve) => {
+      resolve(callback(...args));
+    });
+  }
+
+  static all(promises) {
+    // [!code ++]
+    promises = [...promises]; // [!code ++]
+    return new MyPromise((resolve, reject) => {
+      // [!code ++]
+      let result = []; // 存储结果 // [!code ++]
+      // 如果没传，则返回空数组 // [!code ++]
+      if (promises.length <= 0) resolve(result); // [!code ++]
+      let count = 0; // 当前执行完成的 Promise 数量 // [!code ++]
+      promises.forEach((promise, index) => {
+        // [!code ++]
+        MyPromise.resolve(promise).then((res) => {
+          // [!code ++]
+          count++; // [!code ++]
+          result[index] = res; // [!code ++]
+          // 如果执行完成数量与数组长度相等，说明都执行完毕了 // [!code ++]
+          if (count === promises.length) {
+            // [!code ++]
+            resolve(result); // [!code ++]
+          } // [!code ++]
+        }, reject); // [!code ++]
+      }); // [!code ++]
+    }); // [!code ++]
+  } // [!code ++]
+}
+```
+
+需要注意的是，在保存值时，不能直接使用 `push` 方法存储。因为 `Promise.all` 方法是按照传入的顺序来存储结果。如果使用 `push` 方法，则会变成最先执行完毕的最先存储，顺序就不一致了。

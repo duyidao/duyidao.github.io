@@ -1,5 +1,5 @@
 node_modules
-.DS_Store
-cache
-dist
-docs/.vitepress/docs
+.vitepress/cache
+pnpm-lock.yaml
+.vscode
+.git

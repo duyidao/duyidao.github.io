@@ -1,0 +1,367 @@
+---
+title: 性能优化
+author:
+  - 三十的前端课 前端性能优化实用方案总结&https://www.bilibili.com/video/BV1YC411a7PR/
+  - 三十的前端课 js巧妙设计数据，结构提高性能&https://www.bilibili.com/video/BV1ph411A7uZ/
+---
+
+# 性能优化
+
+性能方面着重考虑几点：
+
+1. 首屏加载优化：首屏速度顾名思义，就是刚进页面获取资源渲染页面的速度
+2. 缓存优化：再次打开网页怎么让速度变快
+3. 渲染优化：操作速度是用户在点击、输入等操作后需要等待的时间
+4. 长任务拆分：动画怎么保证流畅
+
+## 首屏速度，白屏时间等
+
+先来分析一下首屏速度的组成：
+
+![首屏速度组成](https://pic1.imgdb.cn/item/67ebf66b0ba3d5a1d7e9624b.png)
+
+从图不难看出，在浏览器打开页面，需要先从服务器获取资源，获取完资源后才能执行 `js` 文件，这部分时间就是白屏时间；执行完 `js` 文件后请求数据，渲染 DOM 元素，这部分是渲染时间。
+
+在白屏时间中执行 `js` 文件的速度一般情况下是很快的，除非项目用到了大的算法。因此大多数项目白屏时间主要在从服务器请求资源的这段时间。如果是<word text="Vue"/>或 <word text="React"/>项目，它们的 `index.html` 内是没有东西的，请求到资源后还需要执行，这又消耗了一定的时间。
+
+执行完 `js` 文件后浏览器开始渲染页面，发 `axios` 请求获取数据渲染真实 DOM，最后页面呈现数据。
+
+### 指标细化
+
+1. FP（First Paint）：首次绘制，浏览器从开始请求到请求到资源后，渲染出第一个像素的时间
+2. FCP （First Contentful Paint）：首次内容绘制，浏览器从开始请求到请求到资源后，渲染出第一个文本、图片或 `canvas` 元素的时间
+
+   > [!IMPORTANT] 提示
+   > FP 到 FCP 中间主要是 SPA 应用 `js` 执行，太慢就会白屏时间太长
+
+3. FMP（First Meaningful Paint）：首次有意义绘制，页面主要内容开始出现在屏幕上的时间，主要内容呈现时间通过 MutationObserver API 来计算
+4. LCP（Largest Contentful Paint）：最大内容绘制，页面中最大最耗时的元素绘制完成的时间
+5. INP（Interaction to Next Paint）：用户首次交互到页面下一次重绘的时间
+6. TTI（Time to Interactive）：页面可交互时间，页面可交互时间是指页面上的主线程已经空闲，并且可以响应用户操作的时间，页面可交互时间通过 Lighthouse API 来计算（SSR 优化要重点考虑）
+7. TBT（Total Blocking Time）：阻塞总时间，从 FCP 到 TTI 之间的时间
+8. CLS（Cumulative Layout Shift）：累计布局偏移，页面内容在加载过程中发生的偏移量（即页面在加载过程的重排重绘次数）
+9. TTFB（Time to First Byte）：首字节时间，从发起请求到收到第一个字节的时间，这个时间越短，服务器响应越快
+
+### 优化方案
+
+针对上述描述，关于首屏速度优化可以做的操作从收益划分可以划分两类：
+
+- 收益较大的操作：
+
+  减少首屏资源提及（打包工具压缩、异步加载、减少体积、去除大的 `base64` 标识）
+
+- 收益较小或特殊情况特殊分析的操作：
+
+  1. 首屏数据尽量并行，小数据量的接口合并到其他接口
+  2. 页面包含大量 DOM 可以分批随滚动渲染
+  3. 骨架屏、`loading` 等效果优化用户体验
+
+#### 压缩
+
+- 文件压缩
+
+  <word text="CSS"/>、<word text="JavaScript"/>文件压缩，打包构建阶段完成，如 `vite` 打包项目时会使用 `terser` 压缩 `js` 文件，`cssnano` 压缩 `css` 文件。
+
+  - 代码压缩
+  - 文件合并
+  - 文件拆分
+
+- 打包工具压缩
+
+  这方面一般不需要去写什么代码逻辑，因为脚手架已经在打包时有压缩处理，如 `vite` 打包项目后会使用 `gzip` 压缩项目。
+
+#### 异步加载
+
+异步加载不是简单的设置异步，而是需要考虑哪些资源需要异步加载，哪些资源不需要，继续保持同步。用一句话来概括就是，体积大且不是马上需要的资源，就采用异步加载。
+
+举一个例子，项目中引入了第三方库实现 `excel` 和 `word` 资源转换与在线预览，但这两个库很大，在用户没有进入项目页面点击按钮执行操作时是用不到的，和首屏渲染没有关系，这部分的代码可以做异步加载。
+
+#### 第三方库更新
+
+现在的打包工具有一个利器 `tree-shaking` ，它能够实现项目打包时只打包项目需要使用的第三方库，不会全部打包，但是这需要第三方库支持 `tree-shaking` 。有一些老版本的库不支持，更新到最新版后或许会支持，也能减少体积。
+
+在实际项目中，可以通过排查项目使用的第三方依赖，卸载老版本的第三方库，引入新版本的第三方库，把全部导入修改为按需导入，利用 `tree-shaking` 的机制，能够大大减少打包后的体积，加快项目首屏渲染速度。
+
+#### 减少库的使用
+
+有些时候，能不用第三方库自己写代码就不要用第三方库。例如时间格式化，自己写一个相关函数可能只需要 3kb ，引入第三方库可能还需要更大。
+
+#### 减小体积
+
+修改代码，保持精简，积少成多，打包后能更精简。大的图片不要转 `base64` ，图片的渲染不会影响首屏加载的速度，大图不转 `base64` 还能减小代码体积。
+
+#### 其他可用操作
+
+1. 优化图片，采用 `webp` 格式图片，图片压缩，在合适的容器内用合适的尺寸图片（如 2 倍图 3 倍图）
+2. 字体瘦身，设计型产品考虑字体子集化（用了哪些字，最后就只生成对应字的字体文件，可参考 [Github 仓库](https://github.com/ecomfe/fontmin)）
+
+## 操作速度以及渲染速度
+
+以下几种情况会造成操作卡顿和渲染慢：
+
+1. 一次性操作大量的<word text="DOM"/>
+2. 进行复杂度很高的运算（如循环、递归）
+3. <word text="Vue"/>和<word text="React"/>项目中，不必要的渲染太多
+
+这里主要展开第三点，在<word text="Vue"/>项目中有依赖收集，配合<word text="Vue3"/>静态节点标记，基本上避免了因数据改变引起的无意义渲染。只需考虑以下情况：
+
+1. 频繁切换显隐内容使用 `v-show` 来控制，打开决定显隐内容使用 `v-if` 控制
+2. 循环、动态切换的内容添加 `key` 值
+3. `keep-alive` 缓存
+4. 区分请求粒度，减少请求范围，减少更新
+
+其中谨慎缓存接口数据。只有不变数据，定期时效可以缓存在 `cookies` 或者 `localstorage` 中，比如 `token` ，用户名等。
+
+可以考虑做一个缓存队列存于内存中（全局对象，<word text="Vuex"/>）。这样能保证刷新就更新数据，也能一定程度上缓存数据。
+
+## 动画卡顿等长任务拆分
+
+通过控制台，选择性能（英文是 Performance）查看线程是否有堵塞，有针对性做优化
+
+- 减少主线程堵塞：优化<word text="JavaScript"/>执行时间，较少长任务（复杂的计算用 webworker 或 react Scheduler 拆分）
+- GPU 加速渲染优化：CSS 属性有【`transform`、`opacity`】避免使用会引起重排的属性【如定位`left` 、`top` 而是使用 `transform`】
+- `requestAnimationFrame`：它会抢占 CPU，在空闲中适当抢占资源做事
+- 节流防抖
+
+## 应用层状态优化
+
+### React 视图更新优化
+
+1. 减少全局状态依赖：将状态尽可能局部化，避免使用全局状态（如 Redux 或 Context）管理所有数据
+   > [!NOTE] 示例
+   > 对于仅用于某些组件的状态，可以使用组件的 `useState` 或 `useReducer` 来管理，而不是使用全局状态管理器。
+2. 优化 Context 性能：Context 的更新会重新渲染所有订阅的组件，解决方法是拆分 Context，不同逻辑存储到多个 Context 中，降低重新渲染范围
+3. 使用高效的状态管理库【如 Zustand、Jotai 或 Recoil 等】
+4. 避免不必要的状态更新
+
+### Vue 视图更新优化
+
+1. 避免多余的响应式数据：对于不需要响应式的数据，可以使用 `Object.freeze()` 方法冻结对象，避免<word text="Vue"/>的响应式系统对其进行监听；或者不使用 `ref` 、`reactive` 等响应式 API，直接使用普通对象或数组
+2. 使用 `v-once` 和 `v-memo` 指令：`v-once` 可以避免组件的重复渲染，`v-memo` 可以缓存组件的渲染结果，避免不必要的渲染
+3. 拆分组件和局部更新：将大组件拆分为多个小组件，使用 `keep-alive` 缓存不活跃的组件，减少重新渲染的开销
+4. 避免 `watch` 过度使用：优化 `watch` 逻辑，仅对必要的依赖进行监听，减少副作用执行
+5. 使用虚拟滚动
+
+## 事件和渲染细节优化
+
+1. 节流和防抖：频繁触发的事件【滚动、输入等】进行节流防抖处理，避免多次重复渲染
+2. 事件绑定
+   - 在<word text="Vue"/>中，使用 `.native` 修饰符直接绑定<word text="DOM"/>事件
+   - 在<word text="React"/>中，避免在子组件上过多传递回调函数
+3. 避免不必要的<word text="DOM"/>操作：减少<word text="DOM"/>操作，使用虚拟<word text="DOM"/>或<word text="React Fiber"/>等技术优化渲染性能
+4. 异步加载和懒加载：对于路由组件、图片等使用懒加载，降低首次加载压力
+5. 使用请求合并：多次请求时合并请求以减少多余的网络开销
+
+### 设计数据结构实现优化
+
+一般情况下很多人会习惯把枚举数据存储为数组的形式，每次需要拿取对应的值时，都需要通过循环遍历数组来获取，这样无疑会增加很多不必要的计算。可以修改为对象或者 `Map` 来存储枚举数据，通过键值对的形式来获取对应的值，这样能大大减少计算量，提高性能。
+
+::: code-group
+
+```js [数组.js]
+const arr = [
+  {
+    status: "1",
+    name: "已支付",
+  },
+  {
+    status: "2",
+    name: "已发货",
+  },
+  {
+    status: "3",
+    name: "已收货",
+  },
+  {
+    status: "4",
+    name: "已评价",
+  },
+  {
+    status: "5",
+    name: "已取消",
+  },
+];
+
+const getStatysName = (status) => {
+  const obj = arr.find((item) => item.status === status);
+  return obj ? obj.name : "";
+};
+```
+
+```js [对象.js]
+const obj = {
+  1: "已支付",
+  2: "已发货",
+  3: "已收货",
+  4: "已评价",
+  5: "已取消",
+};
+
+const getStatysName = (status) => {
+  return obj[status] || "";
+};
+```
+
+:::
+
+用一个购物车案例为例子，分别感受一下数组遍历的方式和 `Map` 的方式性能上的区别。效果是点击添加按钮后往购物车内添加商品数据，如果没有该商品则直接添加商品，如果有该商品则增加商品数量。
+
+::: code-group
+
+```js [数组.js]
+const shopArr = ref([]);
+
+const btnClickFn = (info) => {
+  const item = shopArr.value.find((item) => item.id === info.id);
+  if (item) {
+    item.num++;
+  } else {
+    shopArr.value.push({
+      ...info,
+      num: 1,
+    });
+  }
+};
+```
+
+```js [Map.js]
+const shopArr = ref([]);
+const shopMap = new Map([]);
+
+const btnClickFn = (info) => {
+  const item = shopMap.get(info.id);
+  if (item) {
+    item.num++;
+  } else {
+    let obj = reactive({
+      ...info,
+      num: 1,
+    });
+    shopArr.value.push(obj);
+    shopMap.set(info.id, obj);
+  }
+};
+```
+
+:::
+
+这里利用了对象存储引用地址的原理，外部声明一个对象，分别添加到数组和 `Map` 里，这样就能实现同步修改。但是需要使用 `reactive` 来创建响应式对象，因为 Vue3 底层给数组添加对象会自动转为 `Proxy` 代理，而 `Map` 没有，所以需要使用 `reactive` 来创建响应式对象，否则无法实现响应式。
+
+## 性能优化评估
+
+分析性能问题，给出性能问题对应的解决方案，实施，建立完整的指标体系持续监控，持续优化。
+
+### 指标体系建立
+
+常规的指标，通过 `Performance` 、`PerformanceObserver API` 搭配 `webvital` 进行计算。
+
+还有一些自定义指标可以通过其他方法计算：
+
+- DNS 查询时间
+- 资源加载时间： `MutationObserver` 计算<word text="DOM" />树加载花费的时间
+- 长任务时间：主线程占用时长超过 50ms
+
+### TTFB（Time to First Byte）
+
+获取首字节到达时间：
+
+```js
+const { timing } = performance;
+const ttfb = timing.responseStart - timing.requestStart;
+console.log("TTFB:" + ttfb + "ms");
+```
+
+### FP（First Paint）
+
+通过 `PerformanceObserver` 监听 FP：
+
+```js
+const paintEntries = performance.getEntriesByType("paint");
+paintEntries.forEach((entry) => {
+  console.log(entry.name + ":" + entry.startTime + "ms");
+});
+```
+
+### LCP（Largest Contentful Paint）
+
+通过 `PerformanceObserver` 监听 LCP：
+
+```js
+const observer = new PerformanceObserver((list) => {
+  const entries = list.getEntries();
+  entries.forEach((entry) => {
+    console.log("LCP:" + entry.startTime + "ms");
+  });
+});
+observer.observe({ type: "largest-contentful-paint", buffered: true });
+```
+
+### CLS（Cumulative Layout Shift）
+
+通过 `PerformanceObserver` 监听 CLS：
+
+```js
+let clsValue = 0;
+const observer = new PerformanceObserver((list) => {
+  list.getEntries().forEach((entry) => {
+    if (!entry.hadRecentInput) {
+      clsValue += entry.value;
+    }
+  });
+});
+
+observer.observe({ type: "layout-shift", buffered: true });
+window.addEventListener("load", () => {
+  console.log("CLS:", clsValue);
+});
+```
+
+## 性能指标采集
+
+1. 常规指标采集：`Performance` 、 `PerformanceObserver API` 和 `webvital`
+2. 自定义指标，`FMP` 通过 `MutationObserver API` 来自定义计算
+3. 额外指标：首字节、服务端上报【xhr 上报（可能会有跨域问题）、图片上报】
+
+   - 实时上报：关键指标如 `LCP`、`CLS` 需要实时上报，确保及时监控
+   - 对非关键指标，利用定时任务进行批量上报，减少网络开销（下方示例代码）
+
+   ```js
+   const metricsBuffer = [];
+   function addMetricsBuffer(name, value) {
+     metricsBuffer.push({ name, value, timestamp: Date.now() });
+     if (metricsBuffer.length > 10) {
+       flushMetrics();
+     }
+   }
+   function flushMetrics() {
+     fetch("/api/report-metrics", {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify(metricsBuffer),
+     });
+     metricsBuffer.length = 0; // 清空
+   }
+   ```
+
+## 性能评估
+
+### 基准策略
+
+1. 确定目标设备和网络环境
+   - 测试覆盖范围包括：高端、中端、低端设备，4G、3G、弱网络环境
+   - 模拟弱网：使用 `Chrome DevTools` 的 `Network Throttling` 功能
+2. 基准值定义：根据行业标准和历史数据定义性能基准（如 LCP<2.5s、CLS<0.1）
+
+### 实时监控和预警
+
+1. 监控工具
+   - 实时采集生产环境用户的性能数据，形成可视化仪表盘
+   - 自动化报警：当性能指标超出设定阈值时触发预警
+2. 定期性能报告：周期性生成性能分析报告（如每周/月），跟踪优化进展
+
+### 问题定位
+
+1. 数据采集：对比不同设备、浏览器、地理位置的数据，定位性能瓶颈
+2. 分析阻塞任务：使用 `Chrome DevTools` 找出阻塞主线程的长任务，优化代码
