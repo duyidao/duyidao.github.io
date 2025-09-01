@@ -40,8 +40,10 @@ const preloadImages = (max = 3) => {
       })
   }
 
-  for (let i = 0; i < max; i++) {
-    _loadImages()
+  if (typeof window !== 'undefined') {
+    for (let i = 0; i < max; i++) {
+      _loadImages()
+    }
   }
 }
 
