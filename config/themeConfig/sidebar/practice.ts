@@ -18,6 +18,16 @@ const myself = [
       { text: 'Bug 修改', link: '/myself/daodao/bug' },
     ],
   },
+  {
+    text: '刀刀音乐',
+    collapsed: true,
+    items: [
+      { text: '简介', link: '/myself/music/' },
+      { text: '队列', link: '/myself/music/task' },
+      { text: '播放', link: '/myself/music/play' },
+      { text: '进度条', link: '/myself/music/progress' },
+    ],
+  },
 ]
 
 const study = [
