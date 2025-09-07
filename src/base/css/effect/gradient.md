@@ -5,6 +5,7 @@ author:
   - 渡一教育 线性渐变&https://www.bilibili.com/video/BV1Gh4y1Y7pU
   - 渡一教育 径向渐变&https://www.bilibili.com/video/BV1Hm4y157xa
   - 渡一教育 锥形渐变，你了解多少？&https://www.bilibili.com/video/BV1GP411C7mQ
+  - 渡一教育 弧形边框选项卡&https://www.bilibili.com/video/BV18F411S7cL
 ---
 
 # 渐变
@@ -25,10 +26,12 @@ author:
 ### 语法
 
 ```css
-< linear-ragient> = linear-ragient( [ [ <angle> | to <side-or-corner ]，]? <color-stop>[ ，<color-stop>]+ )
+<linear-ragient> = linear-ragient( [ [ <angle> | to <side-or-corner ]，]? <color-stop>[ ，<color-stop>]+ )
 ```
 
-### 基础效果
+### 效果
+
+#### 基础效果
 
 `linear-gradient` 线性渐变是一种两个以上颜色之间的平滑过渡效果。线性渐变为某一方向指向的渐变效果，如由左到右，上到下，左上到右下等。和径向渐变不同的是，径向渐变是一中心点向周围扩散的渐变，径向渐变为某一线性指向方向的渐变。
 
@@ -44,7 +47,7 @@ div {
 
 设置了颜色后它会自动计算，均匀分布在渐变路径中。
 
-### 方向切换
+#### 方向切换
 
 渐变的角度方向默认从上到下，也可以手动设置调整，允许输入方向单词和角度。方向单词包括以下几种：
 
@@ -130,7 +133,7 @@ div {
 
 除了设置对角方向，还能设置角度，`0deg` 表示从下到上，`90deg` 表示从左到右。正角度表示顺时针，逆角度表示逆时针。
 
-### 色标位置
+#### 色标位置
 
 可以为径向和线性渐变设置 0、1 或 2 个百分比值或者绝对长度值来调整它们的位置。如果将位置设置为百分数，`0%` 表示起始点，而 `100%` 表示终点，但是如果需要的话也可以设置这个范围之外的其他值。
 
@@ -144,9 +147,9 @@ div {
 
 ![xiaoguo](https://pic.imgdb.cn/item/663f292d0ea9cb1403d92d23.png)
 
-### 过渡效果
+#### 过渡效果
 
-#### 硬过渡
+##### 硬过渡
 
 如果不想要平滑过渡，想要硬线过渡效果，可以将相邻的颜色停止设置为相同的位置。
 
@@ -158,7 +161,7 @@ div {
 
 ![yingguodu](https://pic.imgdb.cn/item/663f2bbd0ea9cb1403dd3f44.png)
 
-#### 过渡中心
+##### 过渡中心
 
 默认情况下，渐变会平滑地从一种颜色过渡到另一种颜色，通过设置一个值可以把渐变的中心点移动到指定位置。
 
@@ -175,7 +178,7 @@ div2 {
 
 ![duibitu](https://pic.imgdb.cn/item/663f30a30ea9cb1403e4ef43.png)
 
-#### 条纹
+##### 条纹
 
 要在渐变中包含一个实心、非过渡的颜色区域，请包含色标的两个位置。色标可以有两个位置，这相当于两个连续颜色在不同位置具有相同的色标。颜色将在第一个色标时达到完全饱和，保持该饱和度到第二个色标，并通过相邻色标的第一个位置过渡到相邻色标的颜色。
 
@@ -220,7 +223,7 @@ div2 {
 
 ![xiaoguo](https://pic.imgdb.cn/item/663f339d0ea9cb1403e9a997.png)
 
-### 叠加效果
+#### 叠加效果
 
 渐变支持透明度，可以将多个背景叠加起来以实现一些非常好看的效果。背景是从顶部到底部堆叠的，指定的第一个就是顶部。
 
@@ -258,7 +261,9 @@ div {
 <radial - gradient> = radial-gradient( [ [ <shape> || <size> ] [ at <position> ]?，| at <position> ，] ? <color-stop> ]+)
 ```
 
-### 基础效果
+### 效果
+
+#### 基础效果
 
 和线性渐变一样，创建径向渐变所需要的就是两个颜色。默认情况下，渐变的中心点是 50% 50% 的位置，默认椭圆 `ellipse` 渐变，可换成圆形 `circle` 渐变。
 
@@ -270,7 +275,7 @@ div {
 
 ![xiaoguo](https://pic.imgdb.cn/item/663f38820ea9cb1403f4920d.png)
 
-### 色标位置
+#### 色标位置
 
 和线性渐变一样，可以用百分比或者绝对长度指定每个径向色标的位置。
 
@@ -282,7 +287,7 @@ div {
 
 ![sebiao](https://pic.imgdb.cn/item/663f3a8a0ea9cb1403f8c93c.png)
 
-### 中心点
+#### 中心点
 
 可以使用关键字、百分比或者绝对长度、长度和百分比值的重复（如果存在，否则就是从左侧位置和顶部位置开始的）以指定渐变的中心。
 
@@ -292,11 +297,11 @@ div {
 }
 ```
 
-### 径向渐变的大小
+#### 径向渐变的大小
 
 和线性渐变不同，可以指定径向渐变的大小。可能的值包括 `closest-corner`、`closest-side`、`farthest-corner` 和 `farthest-side`，其中 `farthest-corner` 是默认值。圆的大小为长度，椭圆则是长度和百分比。
 
-#### closet-side
+##### closet-side
 
 大小通过开始点（中心）和包围盒的最近一侧的距离设置的。假设一个 `div` 是长 200px 高 100px 的矩形，则中心点离上下两条线距离最近。若修改了一下中心点，则选取距离如下图所示：
 
@@ -316,15 +321,15 @@ div {
 }
 ```
 
-#### closest-corner
+##### closest-corner
 
 指定径向渐变的半径长度为从圆心到离圆心最近的角
 
-#### farthest-side
+##### farthest-side
 
 指定径向渐变的半径长度为从圆心到离圆心最远的边
 
-#### farthest-corner
+##### farthest-corner
 
 指定径向渐变的半径长度为从圆心到离圆心最远的角
 
@@ -340,7 +345,7 @@ div {
 }
 ```
 
-#### closet-side
+##### closet-side
 
 这个例子使用了 `closest-side`，使得圆的半径是渐变中心到最近一侧的距离。在这个例子中，半径是中心到底部的距离，因为渐变位于左侧 25%、底部 25% 的位置，而 div 元素的高度小于宽度。
 
@@ -356,7 +361,7 @@ div {
 }
 ```
 
-#### 椭圆形渐变长度或百分比
+##### 椭圆形渐变长度或百分比
 
 对于椭圆，可以使用长度或者百分比来设置其大小，第一个值代表了水平半径，第二个值是竖直半径，你可以使用百分比以表示相对于盒在那个维度上的大小的值。在下面这个例子中，使用了百分比以表示水平半径。
 
@@ -372,7 +377,7 @@ div {
 }
 ```
 
-### 叠加效果
+#### 叠加效果
 
 就像线性渐变一样，可以堆叠径向渐变。指定的第一个位于顶部，最后一个位于底部。
 
@@ -396,6 +401,18 @@ div {
 }
 ```
 
+### 实战
+
+#### 弧形边框实现
+
+效果如下图所示：![效果](https://pic1.imgdb.cn/item/68bd807158cb8da5c88653f5.png)
+
+主要实现思路是利用径向渐变。设置其 `::before` 伪类，宽高都为 20 ，把圆心设置在左上角，然后设置 20px 的透明，再设置相同的背景色，就能实现效果图左侧的弧形边框效果。
+
+右边的效果如法炮制，只需要把圆心点设置在右上角即可。
+
+以此类推，还可以放在左下角或右下角实现剩下的效果。
+
 ## 锥形渐变
 
 `conic-gradient()` 函数创建包含颜色围绕中心点旋转（而不是从中心点辐射）产生的渐变的图像。锥形渐变的例子包括了饼图和[色轮](https://developer.mozilla.org/zh-CN/docs/Glossary/Color_wheel)，但是也可以用于创建棋盘格和其他有趣的效果。
@@ -410,7 +427,8 @@ div {
 conic-gradient( [ from <angle> ]? [ at <position> ]?, <angular-color-stop-list> )
 ```
 
-### 基础效果
+### 效果
+#### 基础效果
 
 和线性和径向的渐变类似，创建锥形渐变所需要的就是两个颜色。默认情况下，渐变的中心位于 50% 50% 的位置，渐变的开始点是朝上的。
 
@@ -420,7 +438,7 @@ div {
 }
 ```
 
-### 位置设置
+#### 位置设置
 
 和锥形渐变类似，可以使用关键词、百分比或者绝对长度，以及关键字“at”来设置锥形渐变的中心位置。
 
@@ -430,7 +448,7 @@ div {
 }
 ```
 
-### 角度设置
+#### 角度设置
 
 默认情况下，指定的不同色标是围绕着圆均等分布的。在开始时可以使用 “from” 关键字以及一个角度或者长度以指定锥形渐变的起始点，然后在后面包括角度或者长度以指定不同的位置。
 
@@ -440,13 +458,13 @@ div {
 }
 ```
 
-## 重复渐变
+### 重复渐变
 
 [`linear-gradient()`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/gradient/linear-gradient)、[`radial-gradient()`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/gradient/radial-gradient) 和 [`conic-gradient()`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/gradient/conic-gradient) 函数不支持自动重复的色标。但是，[`repeating-linear-gradient()`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/gradient/repeating-linear-gradient)、[`repeating-radial-gradient()`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/gradient/repeating-radial-gradient) 和 [`repeating-conic-gradient()`](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/repeating-conic-gradient) 函数可以用于提供此功能。
 
 重复渐变线或弧的大小，是第一个色标和最后一个色标之间的长度。如果第一个色标只有颜色没有色标长度，那么值默认为 0。如果最后一个色标只有颜色没有色标长度，那么值默认为 100%。如果都没有指定，那么渐变线是 100%，意味着线性和锥形的渐变都不会重复，径向渐变只会在渐变的半径小于中心点和最远角之间的距离时重复。如果第一个色标声明了，其值大于 0，渐变也会重复，因为线或弧的大小就是第一个色标和最后一个色标之间的距离，小于 100% 或 360 度。
 
-### 重复线性渐变
+#### 重复线性渐变
 
 ```css
 div {
@@ -489,7 +507,7 @@ div {
 }
 ```
 
-### 重复径向渐变
+#### 重复径向渐变
 
 ```css
 div {
@@ -502,7 +520,7 @@ div {
 }
 ```
 
-### 重复锥形渐变
+#### 重复锥形渐变
 
 ```css
 div {

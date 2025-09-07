@@ -1,97 +1,136 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, watch } from "vue";
 
 defineProps<{
   authorList: any[],
 }>();
 
-const authorTitle = ref(null);
+const authorTitle = ref<any>(null);
 
-const show = ref(false);
-const showCard = () => {
-  show.value = !show.value;
-};
+const show = ref(false)
 
-onMounted(() => {
-  for (let i = 0; i < authorTitle.value.length; i++) {
-    const fullText = authorTitle.value[i].textContent;
+watch(() => authorTitle.value,(newVal) => {
+  if(!newVal) return;
+  for (let i = 0; i < newVal.length; i++) {
+    const fullText = newVal[i].textContent;
     if (
       i % 2 === 0 &&
-      authorTitle.value[i + 1] &&
-      authorTitle.value[i].textContent.length > 10
+      newVal[i + 1] &&
+      newVal[i].textContent.length > 10
     ) {
-      authorTitle.value[i].textContent =
+      newVal[i].textContent =
         fullText.substring(0, 5) +
         "..." +
         fullText.substring(fullText.length - 5);
     }
     if (
       i % 2 !== 0 &&
-      authorTitle.value[i - 1] &&
-      authorTitle.value[i].textContent.length > 10
+      newVal[i - 1] &&
+      newVal[i].textContent.length > 10
     ) {
-      authorTitle.value[i].textContent =
+      newVal[i].textContent =
         fullText.substring(0, 5) +
         "..." +
         fullText.substring(fullText.length - 5);
     }
   }
-});
+}, {deep: true});
+
+// 确保在DOM加载完成后执行
+const waveCanvas = ref<any>(null);
+watch(() => waveCanvas.value, (newVal: any) => {
+  if (!newVal) return;
+  const ctx: CanvasRenderingContext2D | null = newVal.getContext('2d');
+
+  // 设置Canvas尺寸
+  function setCanvasSize() {
+    const rect = newVal.getBoundingClientRect();
+    newVal.width = rect.width;
+    newVal.height = rect.height;
+  }
+
+  // 初始化尺寸
+  setCanvasSize();
+
+  // 监听窗口大小变化
+  window.addEventListener('resize', setCanvasSize);
+
+  let time = 0;
+
+  function animate() {
+    // 清除画布
+    ctx!.clearRect(0, 0, newVal.width, newVal.height);
+
+    // 绘制多层波浪
+    drawWave(ctx as CanvasRenderingContext2D, newVal.width, newVal.height, time, 20, 0.02, 'rgba(255, 255, 255, 0.3)');
+    drawWave(ctx as CanvasRenderingContext2D, newVal.width, newVal.height, time, 15, 0.03, 'rgba(255, 255, 255, 0.2)');
+    drawWave(ctx as CanvasRenderingContext2D, newVal.width, newVal.height, time, 10, 0.04, 'rgba(255, 255, 255, 0.1)');
+
+    time += 0.02;
+    requestAnimationFrame(animate);
+  }
+
+  function drawWave(ctx: CanvasRenderingContext2D, width: number, height: number, time: number, amplitude: number, frequency: number, color: string) {
+    ctx.beginPath();
+    ctx.moveTo(0, height / 2);
+
+    for (let x = 0; x < width; x += 5) {
+      const y = height / 2 + Math.sin(x * frequency + time) * amplitude;
+      ctx.lineTo(x, y);
+    }
+
+    ctx.lineTo(width, height);
+    ctx.lineTo(0, height);
+    ctx.closePath();
+
+    ctx.fillStyle = color;
+    ctx.fill();
+  }
+
+  // 立即执行一次，确保初始化
+  setTimeout(() => {
+    animate();
+  }, 100);
+}, {deep: true});
 </script>
 
 <template>
   <div class="md-info__author">
-    <div class="header"
-      @click="showCard">
+    <div class="header" @click="show = !show">
       <h3>学习明灯</h3>
     </div>
-    <div class="content"
-      :class="{ 'content-show': show }">
-      <div class="resources-list">
-        <!-- 资源条目1 -->
-        <div v-for="author in authorList"
-          :key="author.name"
-          :title="author.title"
-          class="resource-item">
-          <a :href="author.link"
-            class="resource-title"
-            target="_blank"
-            ref="authorTitle">
-            {{ author.title }}
-          </a>
-          <div class="resource-meta">
-            <span class="resource-id">{{ author.name }}</span>
-            <span class="resource-type"
-              :class="{
+
+    <template class="nav" v-if="show">
+      <div class="content">
+        <div class="resources-list">
+          <!-- 资源条目1 -->
+          <div v-for="author in authorList"
+               :key="author.name"
+               :title="author.title"
+               class="resource-item">
+            <a :href="author.link"
+               class="resource-title"
+               target="_blank"
+               ref="authorTitle">
+              {{ author.title }}
+            </a>
+            <div class="resource-meta">
+              <span class="resource-id">{{ author.name }}</span>
+              <span class="resource-type"
+                    :class="{
                 'type-video': author.type === '视频',
                 'type-blog': author.type !== '视频',
               }">{{ author.type }}</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- 波浪效果部分 -->
-    <div class="waves"
-      :class="{ 'waves-show': show }">
-      <!-- 第一层波浪 -->
-      <div class="wave-container">
-        <div class="wave wave1"></div>
-        <div class="wave wave1"></div>
+      <!-- 波浪效果部分 -->
+      <div class="waves">
+        <canvas ref="waveCanvas" id="waveCanvas" class="canvas-wave"></canvas>
       </div>
-
-      <!-- 第二层波浪 -->
-      <div class="wave-container">
-        <div class="wave wave2"></div>
-        <div class="wave wave2"></div>
-      </div>
-
-      <!-- 第三层波浪 -->
-      <div class="wave-container">
-        <div class="wave wave3"></div>
-        <div class="wave wave3"></div>
-      </div>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -112,39 +151,46 @@ onMounted(() => {
   }
 
   .header {
-    background: var(--header-bg);
-    color: var(--header-text);
-    padding: 15px 20px;
-    text-align: center;
-    position: relative;
     overflow: hidden;
-    cursor: pointer;
 
     h3 {
+      position: relative;
+      width: 45%;
+      height: 50px;
       margin-top: 0;
+      text-align: center;
+      line-height: 50px;
+      background: var(--header-bg);
+      border-bottom-right-radius: 20px;
+      color: var(--header-text);
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -35px;
+        width: 35px;
+        height: 35px;
+        background: radial-gradient(circle at 100% 100%, transparent 35px, var(--header-after-bg) 35px);
+      }
     }
   }
 
   .content {
-    padding: 20px 20px 15px;
-    display: none;
-
-    &.content-show {
-      display: block;
-    }
+    padding: 15px 20px 15px;
 
     .resources-list {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      gap: 20px;
+      gap: 16px;
 
       .resource-item {
         flex: 1;
         min-width: 48%;
         background: var(--card-bg);
         border-radius: 15px;
-        padding: 18px;
+        padding: 14px 16px;
         box-shadow: 0 5px 15px var(--shadow-color);
         transition: all 0.3s ease;
         border: 1px solid var(--border-color);
@@ -175,19 +221,19 @@ onMounted(() => {
       padding-top: 12px;
       border-top: 1px dashed #ffcc80;
       color: var(--text-secondary);
-      font-size: 0.9rem;
 
       .resource-id {
         background: var(--learn-primary-extra-light);
         color: #ef6c00;
         padding: 0 6px;
-        font-size: 13px;
+        font-size: 12px;
       }
 
       .resource-type {
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 1px;
+        font-size: 14px;
       }
     }
 
@@ -200,90 +246,87 @@ onMounted(() => {
     }
   }
 
-  /* 波浪效果样式 */
-  /* 优化后的波浪效果 */
   .waves {
-    display: none;
-    position: relative;
-    height: 55px;
-    overflow: hidden;
-    background: linear-gradient(to top, var(--learn-primary-dark), transparent);
-
-    &.waves-show {
+    .canvas-wave {
       display: block;
-    }
-
-    /* 波浪容器 - 使用两个相同的波浪元素实现无缝衔接 */
-    .wave-container {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 200%;
-      /* 双倍宽度 */
-      height: 100%;
-      display: flex;
-    }
-
-    .wave {
-      width: 50%;
-      /* 每个波浪占一半宽度 */
-      height: 100%;
-      background-repeat: repeat-x;
-      background-size: 100% 100%;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-    }
-
-    /* 第一层波浪 */
-    .wave1 {
-      background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" fill="%23FF980077"><path d="M0,60 C150,120 350,0 500,60 C650,120 850,0 1000,60 C1150,120 1200,0 1200,0 L1200,120 L0,120 Z"></path></svg>');
-      animation: wave1 15s linear infinite;
-      opacity: 0.7;
-    }
-
-    /* 第二层波浪 */
-    .wave2 {
-      background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" fill="%23F57C0066"><path d="M0,40 C150,90 350,10 500,40 C650,90 850,10 1000,40 C1150,90 1200,10 1200,10 L1200,120 L0,120 Z"></path></svg>');
-      animation: wave2 20s linear infinite;
-      opacity: 0.5;
-    }
-
-    /* 第三层波浪 */
-    .wave3 {
-      background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" fill="%23EF6C0044"><path d="M0,80 C150,120 350,60 500,80 C650,120 850,60 1000,80 C1150,120 1200,60 1200,60 L1200,120 L0,120 Z"></path></svg>');
-      animation: wave3 25s linear infinite;
-      opacity: 0.3;
+      width: 100%;
+      height: 50px;
+      background: linear-gradient(to bottom, #ff6b35, #f7931e);
     }
   }
+}
 
-  /* 关键帧动画 - 确保无缝连接 */
-  @keyframes wave1 {
-    0% {
-      transform: translateX(0);
+@media screen and (max-width: 768px) {
+  .md-info__author {
+    max-width: 56.25rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 0.5rem 1.875rem var(--shadow-color);
+    margin-top: 1.875rem;
+
+    a[href^="https://"]::before {
+      margin-right: 0.5rem;
     }
 
-    100% {
-      transform: translateX(-100%);
-    }
-  }
+    .header {
 
-  @keyframes wave2 {
-    0% {
-      transform: translateX(0);
-    }
+      h3 {
+        height: 2.5rem;
+        line-height: 2.5rem;
+        border-bottom-right-radius: 0.9375rem;
 
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-
-  @keyframes wave3 {
-    0% {
-      transform: translateX(0);
+        &::after {
+          right: -1.25rem;
+          width: 1.25rem;
+          height: 1.25rem;
+          background: radial-gradient(circle at 100% 100%, transparent 1.25rem, var(--header-after-bg) 1.25rem);
+        }
+      }
     }
 
-    100% {
-      transform: translateX(-100%);
+    .content {
+      padding: 0.9375rem;
+
+      .resources-list {
+        gap: 1rem;
+
+        .resource-item {
+          border-radius: 0.9375rem;
+          padding: 0.875rem 1rem;
+          box-shadow: 0 0.3125rem 0.9375rem var(--shadow-color);
+          border-width: 0.0625rem;
+
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.3125rem 0.75rem rgba(255, 152, 0, 0.3);
+          }
+        }
+
+        .resource-title {
+          font-size: 1.125rem;
+        }
+      }
+
+      .resource-meta {
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+        border-top-width: 0.0625rem;
+
+        .resource-id {
+          padding: 0 0.375rem;
+          font-size: 0.75rem;
+        }
+
+        .resource-type {
+          letter-spacing: 0.0625rem;
+          font-size: 0.875rem;
+        }
+      }
+    }
+
+    .waves {
+      .canvas-wave {
+        height: 3.125rem;
+      }
     }
   }
 }

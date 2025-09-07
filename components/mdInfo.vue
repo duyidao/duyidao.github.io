@@ -132,4 +132,35 @@ const readList = computed(() => {
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .md-info {
+    margin-top: 1.875rem;
+
+    &__read {
+      flex-wrap: wrap;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+      gap: 0;
+
+      >div {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        margin-bottom: 0.75rem;
+
+        &:nth-child(3),
+        &:nth-child(4) {
+          margin-bottom: 0;
+        }
+
+        span {
+          font-weight: 600;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
 </style>
