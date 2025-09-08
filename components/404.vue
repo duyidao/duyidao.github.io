@@ -43,8 +43,6 @@ const goBack = () => {
 </style>
 
 <style lang="less" scoped>
-@import 'https://fonts.googleapis.com/css?family=Inconsolata';
-
 .not-found-page {
   box-sizing: border-box;
   height: calc(100% - 64px);
