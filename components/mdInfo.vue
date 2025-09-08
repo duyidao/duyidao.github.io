@@ -26,51 +26,58 @@ const authorList =
 
 // 获取文章字数
 const wordCount = ref(0)
+const imageCount = ref(0)
 // 获取 Markdown 内容的函数
 const fetchContent = async () => {
-  try {
-    // 通过动态导入获取原始 Markdown 内容
-    console.log('page.value', page.value)
-    const module = await import(
-      /* @vite-ignore */ `../src/${page.value.filePath}?raw`
-    )
-    console.log('module', module)
-    return module.default
-  } catch (error) {
-    console.error('Error loading content:', error)
-    return ''
-  }
+  document.querySelectorAll('.meta-des').forEach((v) => v.remove())
+  const docDomContainer = window.document.querySelector('#VPContent')
+  const imgs = docDomContainer?.querySelectorAll<HTMLImageElement>(
+    '.content-container .main img'
+  )
+  imageCount.value = imgs?.length || 0
+  const words =
+    docDomContainer?.querySelector('.content-container .main')?.textContent ||
+    ''
+  wordCount.value = countWord(words)
 }
-/**
- * 计算文章字数
- * @param content 文章内容
- */
-const calculateWordCount = (content) => {
-  // 移除代码块、HTML标签、Markdown语法等
-  const cleanText = content
-    .replace(/```[\s\S]*?```/g, '') // 移除代码块
-    .replace(/<[^>]+>/g, '') // 移除HTML标签
-    .replace(/\!?\[.*?\]\(.*?\)/g, '') // 移除图片和链接
-    .replace(/[*_#|>`-]/g, '') // 移除Markdown符号
-    .replace(/\s+/g, ' ') // 合并多个空格
-    .trim()
+const wordTime = computed(() => {
+  return (wordCount.value / 275) * 60
+})
 
-  // 计算中英文字数
-  const chineseChars = cleanText.match(/[\u4e00-\u9fa5]/g) || []
-  const englishWords = cleanText
-    .replace(/[\u4e00-\u9fa5]/g, '')
-    .split(/\s+/)
-    .filter((word) => word.length > 0)
+const imageTime = computed(() => {
+  const n = imageCount.value
+  if (imageCount.value <= 10) {
+    // 等差数列求和
+    return n * 13 + (n * (n - 1)) / 2
+  }
+  return 175 + (n - 10) * 3
+})
 
-  return chineseChars.length + englishWords.length
+// 阅读时间
+const readTime = computed(() => {
+  return Math.ceil((wordTime.value + imageTime.value) / 60)
+})
+const pattern =
+  /[a-zA-Z0-9_\u0392-\u03C9\u00C0-\u00FF\u0600-\u06FF\u0400-\u04FF]+|[\u4E00-\u9FFF\u3400-\u4DBF\uF900-\uFAFF\u3040-\u309F\uAC00-\uD7AF]+/g
+
+function countWord(data: string) {
+  const m = data.match(pattern)
+  let count = 0
+  if (!m) {
+    return 0
+  }
+  for (let i = 0; i < m.length; i += 1) {
+    if (m[i].charCodeAt(0) >= 0x4e00) {
+      count += m[i].length
+    } else {
+      count += 1
+    }
+  }
+  return count
 }
 
-onMounted(async () => {
-  const content = await fetchContent()
-  console.log('content', content)
-  if (content) {
-    wordCount.value = calculateWordCount(content)
-  }
+onMounted(() => {
+  fetchContent()
 })
 
 const readList = computed(() => {
@@ -84,7 +91,7 @@ const readList = computed(() => {
     {
       name: 'icon-park-solid:time',
       title: '预计阅读时长',
-      value: Math.max(Math.floor(wordCount.value / 300), 1) + '分钟',
+      value: readTime.value + '分钟',
     },
     {
       name: 'icon-park-solid:update-rotation',
@@ -145,7 +152,7 @@ const readList = computed(() => {
       margin-bottom: 0.5rem;
       gap: 0;
 
-      >div {
+      > div {
         width: 50%;
         display: flex;
         align-items: center;

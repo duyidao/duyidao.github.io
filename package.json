@@ -1,6 +1,8 @@
 {
   "devDependencies": {
     "@nolebase/vitepress-plugin-git-changelog": "^2.18.2",
+    "busuanzi.pure.js": "^1.0.3",
+    "nprogress-v2": "^1.1.10",
     "vitepress": "^1.6.4"
   },
   "scripts": {

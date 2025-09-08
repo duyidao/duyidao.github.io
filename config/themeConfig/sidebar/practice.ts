@@ -26,6 +26,8 @@ const myself = [
       { text: '队列', link: '/myself/music/task' },
       { text: '播放', link: '/myself/music/play' },
       { text: '进度条', link: '/myself/music/progress' },
+      { text: '音频可视化', link: '/myself/music/visualization' },
+      { text: 'BUG', link: '/myself/music/bug' },
     ],
   },
 ]

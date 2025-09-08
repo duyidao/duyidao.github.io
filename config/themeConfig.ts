@@ -38,8 +38,4 @@ export default {
   skipToContentLabel: '跳转到内容',
   //社交链接
   socialLinks: [{ icon: 'github', link: 'https://github.com/duyidao' }],
-  //页脚
-  footer: {
-    copyright: 'Copyright © 2023-present 杜一刀',
-  },
 }

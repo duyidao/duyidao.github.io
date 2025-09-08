@@ -34,9 +34,9 @@ features:
     details: 书籍是人类进步的阶梯，读本好书吧
     link: /read/javascript/ES6标准入门/
   - icon: 📘
-    title: 刀刀小站
-    details: 刀刀博客效果展示，功能实现，不容错过
-    link: https://duyidao.github.io/blogweb/#/
+    title: 刀刀项目
+    details: 我的其他项目，欢迎来体验
+    link: https://duyidao.cn
   - icon: 🎈️
     title: 未完待续
     details: 尽情期待

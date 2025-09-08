@@ -54,23 +54,30 @@
   --custom-block-caution-bg: #391c22;
 }
 
-.vp-doc table th, .vp-doc table td {
+.vp-doc table th,
+.vp-doc table td {
   background-color: var(--vp-code-block-bg);
 }
 
 :root.dark {
-  .vp-doc th, .vp-doc td {
+
+  .vp-doc th,
+  .vp-doc td {
     border-color: rgba(#FFDAB9, .5);
   }
 
-  .vp-doc table thead th, .vp-doc table tbody td {
+  .vp-doc table thead th,
+  .vp-doc table tbody td {
     border-top: none !important;
   }
 
-  .vp-doc table thead th, .vp-doc table tbody td {
+  .vp-doc table thead th,
+  .vp-doc table tbody td {
     border-left: none !important;
   }
-  .vp-doc table thead th:last-child, .vp-doc table tbody td:last-child {
+
+  .vp-doc table thead th:last-child,
+  .vp-doc table tbody td:last-child {
     border-right: none !important;
   }
 }
@@ -143,6 +150,19 @@
 .medium-zoom-overlay {
   z-index: 9998;
 }
+
 img.medium-zoom-image.medium-zoom-image--opened {
   z-index: 9999;
+}
+
+.VPNav {
+  .VPNavScreen {
+    backdrop-filter: blur(3px);
+    background-color: transparent;
+
+    .container {
+      padding: 24px 35px 66px;
+      background-color: var(--vp-nav-screen-bg-color);
+    }
+  }
 }

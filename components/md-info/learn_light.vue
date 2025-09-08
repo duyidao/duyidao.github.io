@@ -1,97 +1,129 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch } from 'vue'
 
 defineProps<{
-  authorList: any[],
-}>();
+  authorList: any[]
+}>()
 
-const authorTitle = ref<any>(null);
+const authorTitle = ref<any>(null)
 
 const show = ref(false)
 
-watch(() => authorTitle.value,(newVal) => {
-  if(!newVal) return;
-  for (let i = 0; i < newVal.length; i++) {
-    const fullText = newVal[i].textContent;
-    if (
-      i % 2 === 0 &&
-      newVal[i + 1] &&
-      newVal[i].textContent.length > 10
-    ) {
-      newVal[i].textContent =
-        fullText.substring(0, 5) +
-        "..." +
-        fullText.substring(fullText.length - 5);
+watch(
+  () => authorTitle.value,
+  (newVal) => {
+    if (!newVal) return
+    for (let i = 0; i < newVal.length; i++) {
+      const fullText = newVal[i].textContent
+      if (i % 2 === 0 && newVal[i + 1] && newVal[i].textContent.length > 10) {
+        newVal[i].textContent =
+          fullText.substring(0, 5) +
+          '...' +
+          fullText.substring(fullText.length - 5)
+      }
+      if (i % 2 !== 0 && newVal[i - 1] && newVal[i].textContent.length > 10) {
+        newVal[i].textContent =
+          fullText.substring(0, 5) +
+          '...' +
+          fullText.substring(fullText.length - 5)
+      }
     }
-    if (
-      i % 2 !== 0 &&
-      newVal[i - 1] &&
-      newVal[i].textContent.length > 10
-    ) {
-      newVal[i].textContent =
-        fullText.substring(0, 5) +
-        "..." +
-        fullText.substring(fullText.length - 5);
-    }
-  }
-}, {deep: true});
+  },
+  { deep: true }
+)
 
 // 确保在DOM加载完成后执行
-const waveCanvas = ref<any>(null);
-watch(() => waveCanvas.value, (newVal: any) => {
-  if (!newVal) return;
-  const ctx: CanvasRenderingContext2D | null = newVal.getContext('2d');
+const waveCanvas = ref<any>(null)
+watch(
+  () => waveCanvas.value,
+  (newVal: any) => {
+    if (!newVal) return
+    const ctx: CanvasRenderingContext2D | null = newVal.getContext('2d')
 
-  // 设置Canvas尺寸
-  function setCanvasSize() {
-    const rect = newVal.getBoundingClientRect();
-    newVal.width = rect.width;
-    newVal.height = rect.height;
-  }
-
-  // 初始化尺寸
-  setCanvasSize();
-
-  // 监听窗口大小变化
-  window.addEventListener('resize', setCanvasSize);
-
-  let time = 0;
-
-  function animate() {
-    // 清除画布
-    ctx!.clearRect(0, 0, newVal.width, newVal.height);
-
-    // 绘制多层波浪
-    drawWave(ctx as CanvasRenderingContext2D, newVal.width, newVal.height, time, 20, 0.02, 'rgba(255, 255, 255, 0.3)');
-    drawWave(ctx as CanvasRenderingContext2D, newVal.width, newVal.height, time, 15, 0.03, 'rgba(255, 255, 255, 0.2)');
-    drawWave(ctx as CanvasRenderingContext2D, newVal.width, newVal.height, time, 10, 0.04, 'rgba(255, 255, 255, 0.1)');
-
-    time += 0.02;
-    requestAnimationFrame(animate);
-  }
-
-  function drawWave(ctx: CanvasRenderingContext2D, width: number, height: number, time: number, amplitude: number, frequency: number, color: string) {
-    ctx.beginPath();
-    ctx.moveTo(0, height / 2);
-
-    for (let x = 0; x < width; x += 5) {
-      const y = height / 2 + Math.sin(x * frequency + time) * amplitude;
-      ctx.lineTo(x, y);
+    // 设置Canvas尺寸
+    function setCanvasSize() {
+      const rect = newVal.getBoundingClientRect()
+      newVal.width = rect.width
+      newVal.height = rect.height
     }
 
-    ctx.lineTo(width, height);
-    ctx.lineTo(0, height);
-    ctx.closePath();
+    // 初始化尺寸
+    setCanvasSize()
 
-    ctx.fillStyle = color;
-    ctx.fill();
-  }
+    // 监听窗口大小变化
+    window.addEventListener('resize', setCanvasSize)
 
-  // 立即执行一次，确保初始化
-  setTimeout(() => {
-    animate();
-  }, 100);
-}, {deep: true});
+    let time = 0
+
+    function animate() {
+      // 清除画布
+      ctx!.clearRect(0, 0, newVal.width, newVal.height)
+
+      // 绘制多层波浪
+      drawWave(
+        ctx as CanvasRenderingContext2D,
+        newVal.width,
+        newVal.height,
+        time,
+        20,
+        0.02,
+        'rgba(255, 255, 255, 0.3)'
+      )
+      drawWave(
+        ctx as CanvasRenderingContext2D,
+        newVal.width,
+        newVal.height,
+        time,
+        15,
+        0.03,
+        'rgba(255, 255, 255, 0.2)'
+      )
+      drawWave(
+        ctx as CanvasRenderingContext2D,
+        newVal.width,
+        newVal.height,
+        time,
+        10,
+        0.04,
+        'rgba(255, 255, 255, 0.1)'
+      )
+
+      time += 0.02
+      requestAnimationFrame(animate)
+    }
+
+    function drawWave(
+      ctx: CanvasRenderingContext2D,
+      width: number,
+      height: number,
+      time: number,
+      amplitude: number,
+      frequency: number,
+      color: string
+    ) {
+      ctx.beginPath()
+      ctx.moveTo(0, height / 2)
+
+      for (let x = 0; x < width; x += 5) {
+        const y = height / 2 + Math.sin(x * frequency + time) * amplitude
+        ctx.lineTo(x, y)
+      }
+
+      ctx.lineTo(width, height)
+      ctx.lineTo(0, height)
+      ctx.closePath()
+
+      ctx.fillStyle = color
+      ctx.fill()
+    }
+
+    // 立即执行一次，确保初始化
+    setTimeout(() => {
+      animate()
+    }, 100)
+  },
+  { deep: true }
+)
 </script>
 
 <template>
@@ -104,23 +136,30 @@ watch(() => waveCanvas.value, (newVal: any) => {
       <div class="content">
         <div class="resources-list">
           <!-- 资源条目1 -->
-          <div v-for="author in authorList"
-               :key="author.name"
-               :title="author.title"
-               class="resource-item">
-            <a :href="author.link"
-               class="resource-title"
-               target="_blank"
-               ref="authorTitle">
+          <div
+            v-for="author in authorList"
+            :key="author.name"
+            :title="author.title"
+            class="resource-item"
+          >
+            <a
+              :href="author.link"
+              class="resource-title"
+              target="_blank"
+              ref="authorTitle"
+            >
               {{ author.title }}
             </a>
             <div class="resource-meta">
               <span class="resource-id">{{ author.name }}</span>
-              <span class="resource-type"
-                    :class="{
-                'type-video': author.type === '视频',
-                'type-blog': author.type !== '视频',
-              }">{{ author.type }}</span>
+              <span
+                class="resource-type"
+                :class="{
+                  'type-video': author.type === '视频',
+                  'type-blog': author.type !== '视频',
+                }"
+                >{{ author.type }}</span
+              >
             </div>
           </div>
         </div>
@@ -145,7 +184,8 @@ watch(() => waveCanvas.value, (newVal: any) => {
   margin-top: 30px;
   background: var(--bg-color);
 
-  a[href^="https://"]::before {
+  a[href^="https://"]::before
+  {
     margin-top: 0;
     margin-right: 8px;
   }
@@ -165,13 +205,17 @@ watch(() => waveCanvas.value, (newVal: any) => {
       color: var(--header-text);
 
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         top: 0;
         right: -35px;
         width: 35px;
         height: 35px;
-        background: radial-gradient(circle at 100% 100%, transparent 35px, var(--header-after-bg) 35px);
+        background: radial-gradient(
+          circle at 100% 100%,
+          transparent 35px,
+          var(--header-after-bg) 35px
+        );
       }
     }
   }
@@ -250,7 +294,7 @@ watch(() => waveCanvas.value, (newVal: any) => {
     .canvas-wave {
       display: block;
       width: 100%;
-      height: 50px;
+      height: 35px;
       background: linear-gradient(to bottom, #ff6b35, #f7931e);
     }
   }
@@ -263,12 +307,12 @@ watch(() => waveCanvas.value, (newVal: any) => {
     box-shadow: 0 0.5rem 1.875rem var(--shadow-color);
     margin-top: 1.875rem;
 
-    a[href^="https://"]::before {
+    a[href^="https://"]::before
+    {
       margin-right: 0.5rem;
     }
 
     .header {
-
       h3 {
         height: 2.5rem;
         line-height: 2.5rem;
@@ -278,7 +322,11 @@ watch(() => waveCanvas.value, (newVal: any) => {
           right: -1.25rem;
           width: 1.25rem;
           height: 1.25rem;
-          background: radial-gradient(circle at 100% 100%, transparent 1.25rem, var(--header-after-bg) 1.25rem);
+          background: radial-gradient(
+            circle at 100% 100%,
+            transparent 1.25rem,
+            var(--header-after-bg) 1.25rem
+          );
         }
       }
     }
@@ -325,7 +373,7 @@ watch(() => waveCanvas.value, (newVal: any) => {
 
     .waves {
       .canvas-wave {
-        height: 3.125rem;
+        height: 2.1875rem;
       }
     }
   }
