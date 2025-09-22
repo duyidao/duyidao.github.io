@@ -96,6 +96,10 @@ const module = [
             text: '工作中项目git如何管理，冲突如何解决',
             link: '/module/git/project_conflict',
           },
+          {
+            text: '多人合作项目变基处理',
+            link: '/module/git/project_rebase',
+          },
         ],
       },
     ],
