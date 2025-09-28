@@ -38,9 +38,10 @@ git rebase origin/main
 
 1. 先在之前的分支继续开发
 2. 等到需要提交的时候，再去基于 `main` 分支新建一个分支
-3. 先 `git stash` 保存当前分支的改动，然后 `git checkout` 切换到刚刚新建的分支
-4. `git stash pop` 恢复改动，如果提示有冲突，解决冲突后，再 `git add` 添加改动，`git commit` 提交
-5. 最后直接在 `gitlab` 申请合并分支即可
+3. 先 `git stash` 保存当前分支的改动，然后 `git checkout` 切换到 `main` 分支
+4. `git pull` 更新，然后再切换到刚刚新建的分支
+5. `git stash pop` 恢复改动，如果提示有冲突，解决冲突后，再 `git add` 添加改动，`git commit` 提交
+6. 最后直接在 `gitlab` 申请合并分支即可
 
 这样做不需要变基，也能保证代码的干净整洁。
 
