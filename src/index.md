@@ -14,7 +14,7 @@ hero:
       link: /shushuo/ai-report/ai
     - theme: brand
       text: 刀刀小站入口
-      link: https://duyidao.github.io/blogweb/#/
+      link: https://duyidao.cn
 
 features:
   - icon: 📕
