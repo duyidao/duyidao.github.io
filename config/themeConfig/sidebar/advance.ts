@@ -67,6 +67,15 @@ const sharp = [
       { text: '装饰器', link: '/sharp/typescript/decorator' },
     ],
   },
+  {
+    text: 'GSAP动画',
+    collapsed: true,
+    items: [
+      { text: '基础', link: '/sharp/gsap/' },
+      { text: '动画参数', link: '/sharp/gsap/variables' },
+      { text: '时间轴', link: '/sharp/gsap/timeline' },
+    ],
+  },
 ]
 
 const module = [
