@@ -86,6 +86,20 @@ const read = [
       { text: '同构渲染', link: '/read/vue/Vue.js设计与实现/18' },
     ],
   },
+  {
+    text: 'CSS 技术揭秘与实战通关',
+    collapsed: true,
+    items: [
+      {
+        text: 'background 的 8 种核心技巧',
+        link: '/read/css/CSS 技术揭秘与实战通关/1',
+      },
+      {
+        text: 'background 的 进阶技巧与实战',
+        link: '/read/css/CSS 技术揭秘与实战通关/2',
+      },
+    ],
+  },
 ]
 
 export { vitepress, read }
