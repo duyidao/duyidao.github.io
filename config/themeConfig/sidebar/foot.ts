@@ -91,12 +91,16 @@ const read = [
     collapsed: true,
     items: [
       {
-        text: 'background 的 8 种核心技巧',
+        text: 'background的8种核心技巧',
         link: '/read/css/CSS 技术揭秘与实战通关/1',
       },
       {
-        text: 'background 的 进阶技巧与实战',
+        text: 'background的进阶技巧与实战',
         link: '/read/css/CSS 技术揭秘与实战通关/2',
+      },
+      {
+        text: '巧用遮罩解决各类视觉难题',
+        link: '/read/css/CSS 技术揭秘与实战通关/3',
       },
     ],
   },
