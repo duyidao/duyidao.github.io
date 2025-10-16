@@ -106,6 +106,10 @@ const read = [
         text: 'mask实现高阶动画效果',
         link: '/read/css/CSS 技术揭秘与实战通关/4',
       },
+      {
+        text: 'clip-path实现不规则图形及溢出场景',
+        link: '/read/css/CSS 技术揭秘与实战通关/5',
+      },
     ],
   },
 ]
