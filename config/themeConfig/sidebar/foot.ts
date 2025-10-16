@@ -102,6 +102,10 @@ const read = [
         text: '巧用遮罩解决各类视觉难题',
         link: '/read/css/CSS 技术揭秘与实战通关/3',
       },
+      {
+        text: 'mask实现高阶动画效果',
+        link: '/read/css/CSS 技术揭秘与实战通关/4',
+      },
     ],
   },
 ]
