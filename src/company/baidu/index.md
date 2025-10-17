@@ -16,7 +16,7 @@ pageClass: project-baidu-class
 
 在百度中担任前端开发一职，接手或从 0 到 1 开发了如下项目，分别为：
 
-<BlogLis :items="[
+<blogLis :items="[
   {
     title: '图业融合',
     link: '/baidu/layer/',
@@ -26,6 +26,6 @@ pageClass: project-baidu-class
     title: '佛开',
     link: '/baidu/fokai/LED/',
     description: `<p>政企利通交通研究院旗下子公司佛开公司内部员工使用的项目，只能内网访问。</p>
-    <p>该项目分为两个模块，一个是平台端，为用户提供设备设施；结构物的各项数据展示。</p><p>一个是 \`LED\` 屏，展示佛开高速路的路线与扎点，根据特定颜色反应拥堵情况。</p>`,
+    <p>该项目分为两个模块，一个是平台端，为用户提供设备设施；结构物的各项数据展示。</p><p>一个是 <code>LED</code> 屏，展示佛开高速路的路线与扎点，根据特定颜色反应拥堵情况。</p>`,
   },
 ]" />

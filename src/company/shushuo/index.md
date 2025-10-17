@@ -17,7 +17,7 @@ pageClass: project-shushuo-class
 
 在数说中担任前端开发一职，接手如下项目，分别为：
 
-<BlogLis :items="[
+<blogLis :items="[
   {
     title: '智能报告',
     link: '/shushuo/ai-report-frontend/cxo',
