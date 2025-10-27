@@ -110,6 +110,10 @@ const read = [
         text: 'clip-path实现不规则图形及溢出场景',
         link: '/read/css/CSS 技术揭秘与实战通关/5',
       },
+      {
+        text: 'clip-path实现形态及区域变化等高级动画效果',
+        link: '/read/css/CSS 技术揭秘与实战通关/6',
+      },
     ],
   },
 ]
