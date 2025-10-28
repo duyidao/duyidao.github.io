@@ -20,6 +20,26 @@ const shushuo = [
         collapsed: true,
         items: [{ text: '代理配置', link: '/shushuo/demand/agent' }],
       },
+      {
+        text: 'N次方',
+        collapsed: true,
+        items: [
+          {
+            text: '移动端',
+            collapsed: true,
+            items: [
+              { text: '本地存储拿不到', link: '/shushuo/mobile/localstorage' },
+              { text: 'Token丢失', link: '/shushuo/mobile/token' },
+              { text: 'Vant 数字键盘组件', link: '/shushuo/mobile/vant-number' },
+            ],
+          },
+          {
+            text: 'web端',
+            collapsed: true,
+            items: [{ text: '代理配置', link: '/shushuo/web/agent' }],
+          },
+        ],
+      },
     ],
   },
 ]
