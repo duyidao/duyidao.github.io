@@ -36,7 +36,7 @@ const shushuo = [
           {
             text: 'web端',
             collapsed: true,
-            items: [{ text: '代理配置', link: '/shushuo/web/agent' }],
+            items: [{ text: '子模块导入', link: '/shushuo/web/submodule' }],
           },
         ],
       },
