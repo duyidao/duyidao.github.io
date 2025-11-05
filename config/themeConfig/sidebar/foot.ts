@@ -114,6 +114,10 @@ const read = [
         text: 'clip-path实现形态及区域变化等高级动画效果',
         link: '/read/css/CSS 技术揭秘与实战通关/6',
       },
+      {
+        text: 'css 阴影',
+        link: '/read/css/CSS 技术揭秘与实战通关/7',
+      },
     ],
   },
 ]

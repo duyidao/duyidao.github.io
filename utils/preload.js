@@ -1,5 +1,6 @@
 const images = [
   '/svg/代码运行.svg',
+  '/svg/语法.svg',
   '/svg/article.svg',
   '/svg/bilibili.svg',
   '/svg/dir_close.svg',
