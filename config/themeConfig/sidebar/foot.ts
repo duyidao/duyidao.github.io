@@ -118,6 +118,10 @@ const read = [
         text: 'css 阴影',
         link: '/read/css/CSS 技术揭秘与实战通关/7',
       },
+      {
+        text: 'shadow的高级技巧',
+        link: '/read/css/CSS 技术揭秘与实战通关/8',
+      },
     ],
   },
 ]
