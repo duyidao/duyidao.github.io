@@ -122,6 +122,10 @@ const read = [
         text: 'shadow的高级技巧',
         link: '/read/css/CSS 技术揭秘与实战通关/8',
       },
+      {
+        text: 'filter的三种滤镜模式',
+        link: '/read/css/CSS 技术揭秘与实战通关/9',
+      },
     ],
   },
 ]
