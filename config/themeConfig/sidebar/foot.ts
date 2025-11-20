@@ -126,6 +126,10 @@ const read = [
         text: 'filter的三种滤镜模式',
         link: '/read/css/CSS 技术揭秘与实战通关/9',
       },
+      {
+        text: 'blur模糊滤镜使用技巧及搭配contrast元素边缘处理',
+        link: '/read/css/CSS 技术揭秘与实战通关/10',
+      },
     ],
   },
 ]
