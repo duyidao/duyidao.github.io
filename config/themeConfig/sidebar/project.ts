@@ -36,7 +36,10 @@ const shushuo = [
           {
             text: 'web端',
             collapsed: true,
-            items: [{ text: '子模块导入', link: '/shushuo/web/submodule' }],
+            items: [
+              { text: '子模块导入', link: '/shushuo/web/submodule' },
+              { text: 'H5预览', link: '/shushuo/web/preview' },
+            ],
           },
         ],
       },

@@ -130,6 +130,10 @@ const read = [
         text: 'blur模糊滤镜使用技巧及搭配contrast元素边缘处理',
         link: '/read/css/CSS 技术揭秘与实战通关/10',
       },
+      {
+        text: 'filter中比阴影更强大的drop-shadow阴影技巧',
+        link: '/read/css/CSS 技术揭秘与实战通关/11',
+      },
     ],
   },
 ]
