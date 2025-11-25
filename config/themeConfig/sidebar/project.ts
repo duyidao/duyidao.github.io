@@ -31,6 +31,7 @@ const shushuo = [
               { text: '本地存储拿不到', link: '/shushuo/mobile/localstorage' },
               { text: 'Token丢失', link: '/shushuo/mobile/token' },
               { text: 'Vant 数字键盘组件', link: '/shushuo/mobile/vant-number' },
+              { text: '小红书分享', link: '/shushuo/mobile/xhsShare' },
             ],
           },
           {

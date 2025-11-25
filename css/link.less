@@ -127,6 +127,11 @@
   background-image: url(/svg/juejin.svg);
 }
 
+.vp-doc a[href^="https://agora.xiaohongshu.com"]::before,
+.vp-doc a[href^="https://www.xiaohongshu.com"]::before {
+  background-image: url(https://www.xiaohongshu.com/favicon.ico);
+}
+
 .vp-doc a[href^="https://zhuanlan.zhihu.com"]::before {
   background-image: url(/svg/zhihu.svg);
 }
@@ -172,10 +177,6 @@
   background-image: url(https://zh-hans.legacy.reactjs.org/favicon.ico);
 }
 
-.vp-doc a[href^="https://microsoftedge.microsoft.com"]::before {
-  background-image: url(https://microsoftedge.microsoft.com/favicon.ico);
-}
-
 .vp-doc a[href^="https://nodejs.org"]::before {
   background-image: url(https://nodejs.org/static/images/favicons/favicon.png);
 }
@@ -193,7 +194,8 @@
   background-image: url(https://code.visualstudio.com/assets/favicon.ico);
 }
 
-.vp-doc a[href^="https://marketplace.visualstudio.com"]::before {
+.vp-doc a[href^="https://marketplace.visualstudio.com"]::before,
+.vp-doc a[href^="https://microsoftedge.microsoft.com"]::before {
   background-image: url(https://marketplace.visualstudio.com/favicon.ico);
 }
 
