@@ -18,7 +18,10 @@ const shushuo = [
       {
         text: '需求洞察',
         collapsed: true,
-        items: [{ text: '代理配置', link: '/shushuo/demand/agent' }],
+        items: [
+          { text: '代理配置', link: '/shushuo/demand/agent' },
+          { text: 'tooltip无法显示', link: '/shushuo/demand/echart' },
+        ],
       },
       {
         text: 'N次方',
