@@ -1,14 +1,14 @@
 ---
-title: 数说故事代理配置
-titleTemplate: 数说故事项目代理配置
-description: 数说故事 项目 代理配置
+title: 数说代理配置
+titleTemplate: 数说项目代理配置
+description: 数说 项目 代理配置
 head:
   - - meta
     - name: description
-      content: 数说故事项目代理配置
+      content: 数说项目代理配置
   - - meta
     - name: keywords
-      content: 数说故事 项目 代理配置
+      content: 数说 项目 代理配置
 pageClass: shushuo-report-ngnix
 tags: 代理,whistle,switch omega
 ---

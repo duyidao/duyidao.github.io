@@ -1,14 +1,14 @@
 ---
-title: 数说故事AI问答
-titleTemplate: 数说故事项目AI问答
-description: 数说故事 项目 AI问答
+title: 数说AI问答
+titleTemplate: 数说项目AI问答
+description: 数说 项目 AI问答
 head:
   - - meta
     - name: description
-      content: 数说故事项目AI问答
+      content: 数说项目AI问答
   - - meta
     - name: keywords
-      content: 数说故事 项目 AI问答
+      content: 数说 项目 AI问答
 pageClass: shushuo-report-ai
 tags: AI,SSE,Ant Design X Vue
 ---
@@ -193,8 +193,8 @@ const { messages, onRequest } = useXChat<XContentType>({
 
 1. 对比常见请求方案
 
-   |     方案      |             适用场景             |                                        优缺点                                         |
-   | :-----------: | :------------------------------: | :-----------------------------------------------------------------------------------: |
+   |     方案      |             适用场景             |                                       优缺点                                        |
+   | :-----------: | :------------------------------: | :---------------------------------------------------------------------------------: |
    |    `fetch`    | 标准 Web API，现代浏览器原生支持 |       ✅ 无需额外依赖，轻量级<br/>❌ 默认不支持取消（需结合 `AbortController`）       |
    |    `axios`    |  复杂请求场景（拦截器、取消等）  |               ✅ 功能全面，支持取消和拦截器<br/>❌ 增加包体积（约 4KB）               |
    |  `WebSocket`  |     双向实时通信（如聊天室）     |                   ✅ 全双工通信<br/>❌ 复杂度高，不适合单向流式场景                   |

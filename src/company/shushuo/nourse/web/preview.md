@@ -1,14 +1,14 @@
 ---
-title: 数说故事Web端H5预览
-titleTemplate: 数说故事Web端H5预览
-description: 数说故事 web端 preview postmessage
+title: 数说Web端H5预览
+titleTemplate: 数说Web端H5预览
+description: 数说 web端 preview postmessage
 head:
   - - meta
     - name: description
-      content: 数说故事Web端H5预览
+      content: 数说Web端H5预览
   - - meta
     - name: keywords
-      content: 数说故事 web端 preview postmessage
+      content: 数说 web端 preview postmessage
 pageClass: shushuo-nourse-webpostmessage
 tags: web,postmessage,preview
 ---

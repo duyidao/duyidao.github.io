@@ -1,14 +1,14 @@
 ---
-title: 数说故事自动化路由
-titleTemplate: 数说故事项目自动化路由
-description: 数说故事 项目 自动化路由
+title: 数说自动化路由
+titleTemplate: 数说项目自动化路由
+description: 数说 项目 自动化路由
 head:
   - - meta
     - name: description
-      content: 数说故事项目自动化路由
+      content: 数说项目自动化路由
   - - meta
     - name: keywords
-      content: 数说故事 项目 自动化路由
+      content: 数说 项目 自动化路由
 pageClass: shushuo-report-router
 tags: unplugin-vue-router,自动路由,typescript
 ---

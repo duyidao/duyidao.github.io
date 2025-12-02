@@ -1,14 +1,14 @@
 ---
-title: 数说故事CXO畅写
-titleTemplate: 数说故事项目CXO畅写
-description: 数说故事 项目 CXO畅写
+title: 数说CXO畅写
+titleTemplate: 数说项目CXO畅写
+description: 数说 项目 CXO畅写
 head:
   - - meta
     - name: description
-      content: 数说故事项目CXO畅写
+      content: 数说项目CXO畅写
   - - meta
     - name: keywords
-      content: 数说故事 项目 CXO畅写
+      content: 数说 项目 CXO畅写
 pageClass: shushuo-report-cxo
 tags: CXO,WPS,iframe
 ---

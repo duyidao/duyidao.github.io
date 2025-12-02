@@ -1,14 +1,14 @@
 ---
-title: 数说故事移动端数字键盘PC点击与键盘输入
-titleTemplate: 数说故事移动端数字键盘PC点击与键盘输入
-description: 数说故事 移动端 vant pc
+title: 数说移动端数字键盘PC点击与键盘输入
+titleTemplate: 数说移动端数字键盘PC点击与键盘输入
+description: 数说 移动端 vant pc
 head:
   - - meta
     - name: description
-      content: 数说故事移动端数字键盘PC点击与键盘输入
+      content: 数说移动端数字键盘PC点击与键盘输入
   - - meta
     - name: keywords
-      content: 数说故事 移动端 vant pc
+      content: 数说 移动端 vant pc
 pageClass: shushuo-nourse-mobilevant
 tags: mobile,bug,pc
 ---

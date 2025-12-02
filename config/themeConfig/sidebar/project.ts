@@ -40,6 +40,7 @@ const shushuo = [
             items: [
               { text: '子模块导入', link: '/shushuo/web/submodule' },
               { text: 'H5预览', link: '/shushuo/web/preview' },
+              { text: '日程表组件', link: '/shushuo/web/fullCalendar' },
             ],
           },
         ],

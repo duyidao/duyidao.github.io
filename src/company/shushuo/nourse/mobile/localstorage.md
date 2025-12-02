@@ -1,14 +1,14 @@
 ---
-title: 数说故事移动端Bug本地存储拿不到
-titleTemplate: 数说故事移动端Bug本地存储拿不到
-description: 数说故事 移动端 bug iframe
+title: 数说移动端Bug本地存储拿不到
+titleTemplate: 数说移动端Bug本地存储拿不到
+description: 数说 移动端 bug iframe
 head:
   - - meta
     - name: description
-      content: 数说故事移动端Bug本地存储拿不到
+      content: 数说移动端Bug本地存储拿不到
   - - meta
     - name: keywords
-      content: 数说故事 移动端 bug localstorage iframe
+      content: 数说 移动端 bug localstorage iframe
 pageClass: shushuo-nourse-mobilebug
 tags: mobile,bug,localstorage,iframe
 ---

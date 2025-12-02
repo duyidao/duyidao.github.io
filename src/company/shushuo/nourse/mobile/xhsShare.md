@@ -1,14 +1,14 @@
 ---
-title: 数说故事移动端小红书分享
-titleTemplate: 数说故事移动端小红书分享
-description: 数说故事 移动端 小红书 分享
+title: 数说移动端小红书分享
+titleTemplate: 数说移动端小红书分享
+description: 数说 移动端 小红书 分享
 head:
   - - meta
     - name: description
-      content: 数说故事移动端小红书分享
+      content: 数说移动端小红书分享
   - - meta
     - name: keywords
-      content: 数说故事 移动端 小红书 分享
+      content: 数说 移动端 小红书 分享
 pageClass: shushuo-nourse-mobile小红书
 tags: mobile,bug,分享
 ---

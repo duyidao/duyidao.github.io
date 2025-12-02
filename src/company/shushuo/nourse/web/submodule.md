@@ -1,14 +1,14 @@
 ---
-title: 数说故事Web端项目子模块导入
-titleTemplate: 数说故事Web端项目子模块导入
-description: 数说故事 web端 git submodule
+title: 数说Web端项目子模块导入
+titleTemplate: 数说Web端项目子模块导入
+description: 数说 web端 git submodule
 head:
   - - meta
     - name: description
-      content: 数说故事Web端项目子模块导入
+      content: 数说Web端项目子模块导入
   - - meta
     - name: keywords
-      content: 数说故事 web端 git submodule
+      content: 数说 web端 git submodule
 pageClass: shushuo-nourse-websubmodule
 tags: web,submodule,git
 ---
