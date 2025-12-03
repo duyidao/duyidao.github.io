@@ -34,6 +34,7 @@ const idea = [
       { text: 'customRef封装全局loading', link: '/learn/vue/customRef' },
       { text: '父组件监听子组件生命周期', link: '/learn/vue/mounted' },
       { text: '全局状态管理', link: '/learn/vue/pinia' },
+      { text: 'provide和inject的context封装', link: '/learn/vue/context' },
       { text: 'ref和reactive在使用上的区别', link: '/learn/vue/ref' },
       { text: 'Vue2 VS Vue3', link: '/learn/vue/different' },
       { text: '更新机制和优化', link: '/learn/vue/update' },

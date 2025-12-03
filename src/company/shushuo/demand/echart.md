@@ -52,3 +52,5 @@ onMounted(() => {
 上述均会导致 ECharts 的对象实例被代理成为响应式对象，影响 ECharts 对内部属性的访问，可能会导致图表无法正确显示等系列意外问题，且会由于深度监听而极大地降低图表展示性能。
 
 Echart 官方也有针对这个的改动和 PR ，可以参考：[fix(core): mark echarts instance object as raw in Vue](https://github.com/apache/echarts/pull/21293)。
+
+![改动PR](https://pic1.imgdb.cn/item/692fa7147e390957debc4239.png)
