@@ -21,7 +21,7 @@ author:
 
 ## 组件搭建
 
-本案例以 `element-plus` 组件库中的表格和分页器组件为基础，做初步搭建。
+本案例以 Element Plus 组件库中的表格和分页器组件为基础，做初步搭建。
 
 ```vue [table.vue]
 <script setup>

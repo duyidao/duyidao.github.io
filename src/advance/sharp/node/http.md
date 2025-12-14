@@ -1,6 +1,6 @@
 # http
 
-`http` 模块是 `Node.js` 官方提供的、用来创建 web 服务器的模块。通过 `http` 模块提供的 `http.createServer()` 方法，就能方便的把一台普通的电脑，变成一台 `Web` 服务器，从而对外提供 `Web` 资源服务。
+`http` 模块是<word text="Node" />官方提供的、用来创建 web 服务器的模块。通过 `http` 模块提供的 `http.createServer()` 方法，就能方便的把一台普通的电脑，变成一台 `Web` 服务器，从而对外提供 `Web` 资源服务。
 
 如果要希望使用 `http` 模块创建 `Web` 服务器，则需要先导入它
 

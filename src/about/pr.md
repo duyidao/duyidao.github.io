@@ -20,13 +20,21 @@ head:
 - [style(theme-chalk): [form-item] reset top position label padding-right](https://github.com/element-plus/element-plus/pull/22965)
 - [style(theme-chalk): el-form-item set label-position=left has pb](https://github.com/element-plus/element-plus/pull/22955)
 
-已经通过了两个。
+已通过 2 个 PR。
 
 ### ant-design-vue
 
 [style(steps): reset top direction title padding-right](https://github.com/vueComponent/ant-design-vue/pull/8427)。
 
 这个 PR 还在审核中。
+
+### vitest-dev
+
+- [docs(runner): translate /config/runner.md](https://github.com/vitest-dev/docs-cn/pull/853)
+- [docs(execargy): translate /config/execargv.md](https://github.com/vitest-dev/docs-cn/pull/861)
+- [docs(hookTimeout): translate /config/hookTimeout.md](https://github.com/vitest-dev/docs-cn/pull/866)
+
+已通过 2 个 PR。
 
 ## 步骤
 
@@ -46,6 +54,14 @@ head:
 
 然后 `pnpm i` 安装依赖，安装完毕后就可以开始运行项目修改代码了。
 
+有一些项目的 PR 是需要先提交到一个临时用于合并的分支，统一时间后再一起合并到 `dev` 分支或主分支，此时即使在 Github 点击 `Sync fork` 按钮更新分支也没用，需要输入以下命令行：
+
+```bash
+git checkout -b docs/xxx upstream/merge
+```
+
+这个命令行的意思是，基于 `upstream` 仓库的 `merge` 分支，创建一个 `docs/xxx` 分支，并切换到 `docs/xxx` 分支。`upstream` 仓库可以通过 `git remote -v` 查看，如果想设置，可以通过 `git remote add upstream https://github.com/vitest-dev/docs-cn.git` 。
+
 ### 修改代码
 
 #### element-plus
@@ -57,6 +73,10 @@ head:
 #### ant-design-vue
 
 我的修改也是基于样式修改，所以在 `components/组件名称/style` 下找到对应的文件，然后修改样式。
+
+#### vitest-cn
+
+这个项目的 PR 主要围绕文档翻译，所以在 `docs-cn/config/` 目录下找到对应的文件，然后修改文档。
 
 ### 提交代码
 
@@ -111,6 +131,10 @@ head:
 #### ant-design-vue
 
 `ant-design-vue` 的提交流程没这么复杂，直接 `git add` 添加修改的文件，然后 `git commit` 提交代码，然后 `git push` 提交代码。
+
+#### vitest-cn
+
+前面提到的 `merge` 分支就是这个项目的，因此普通的 `git push` 不满足，它会默认提交到 `dev` 分支，从而报错。因此，需要使用 `git push origin <branch-name>` 提交代码，其中 `<branch-name>` 是分支名称。
 
 ### 创建 PR
 

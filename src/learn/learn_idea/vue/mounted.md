@@ -1,19 +1,20 @@
 ---
 title: 父组件监听子组件生命周期
+tags: 父子组件,监听,生命周期
 author:
   - 远方os vue中如何监听子组件的生命周期&https://www.douyin.com/user/MS4wLjABAAAAGUvGqSgUb8n2mLUU9SOa5wmdZy-Sj5_FUt-DK5Iu6PpxO1QgrJ1_vXy6ikzz_Q4h?from_tab_name=main&is_search=0&list_name=follow&modal_id=7513596108950621449&nt=0
 ---
 
 # 父组件监听子组件生命周期
 
-父组件监听子组件的生命周期，<word text="Vue2" />可以使用 `@hook` 事件，`@hook` 事件是 Vue2.4.0+ 新增的一个特性，它允许开发者监听组件内生命周期钩子。
+父组件监听子组件的生命周期，<word text="Vue2" />可以使用 `@hook` 事件， `@hook` 事件是 Vue2.4.0+ 新增的一个特性，它允许开发者监听组件内生命周期钩子。
 
 ```vue [vue2.vue]
 <template>
   <Son
     v-if="!flag"
     @hook:mounted="childMounted"
-    @hook:unmount="childUnMount"
+    @hook:unmounted="childUnMount"
   ></Son>
 </template>
 
@@ -28,14 +29,14 @@ function childUnMount() {
 </script>
 ```
 
-但如果是<word text="Vue3" />，则无法直接监听子组件的生命周期，因为 Vue3 中没有 `@hook` 事件。需要修改为 `@vue` 事件。
+但如果是<word text="Vue3" />，则无法直接监听子组件的生命周期，因为<word text="Vue3" />中没有 `@hook` 事件。需要修改为 `@vue` 事件。
 
 ```vue [vue3.vue]
 <template>
   <Son
     v-if="!flag"
     @vue:mounted="childMounted"
-    @vue:unmount="childUnMount"
+    @vue:unmounted="childUnMount"
   ></Son>
 </template>
 
@@ -51,3 +52,13 @@ function childUnMount() {
 ```
 
 这个方法不仅可以监听子组件的生命周期，还能监听子节点的生命周期，即普通的 `div` 也能监听到。
+
+```html
+<template>
+  <div
+    v-if="!flag"
+    @vue:mounted="childMounted"
+    @vue:unmounted="childUnMount"
+  ></div>
+</template>
+```

@@ -26,7 +26,7 @@ author:
 
 缺点：每次都得写组件显隐控制逻辑，还得引入，注册弹窗组件。
 
-希望能像 `element-ui` 的 `messagebox` 方法一样，调用方法就能弹出弹窗。
+希望能像 Element UI 的 `messagebox` 方法一样，调用方法就能弹出弹窗。
 
 实现思路如下：
 
@@ -85,7 +85,7 @@ export const signProp = (content) => {
 
 这么写点击按钮后页面能生成对应的<word text="DOM" />，点击不同意按钮也能卸载。但是再次点击按钮后不再生成<word text="DOM" />了，因为 `render` 函数只会执行一次，执行完之后虽然页面的真实<word text="DOM" />被删除了，但是 `render` 认为你已经挂载了，就不再执行。
 
-参考一下 `element-ui` 的方法修改一下。
+参考一下 Element UI 的方法修改一下。
 
 ```jsx
 import { render } from "vue";
@@ -154,7 +154,7 @@ import { signProp } from "./signProp.jsx";
 
 这个写法和前面的 `jsx` 方案类似，只不过不使用标签的方式，而是使用<word text="Vue" />提供的 `h` 和 `createApp` 方式。
 
-首先声明一个函数，接收三个参数，第一个参数是弹窗内部要渲染的组件（这里以 `antd vue` 组件的弹窗为例子），第二个参数是内部组件的 `props` ，第三个参数是弹窗组件的 `props`。通过 `h` 创建完虚拟<word text="DOM" />后，再通过 `createApp` 创建一个<word text="Vue" />实例，最后通过 `mount` 方法挂载到 `body` 上。
+首先声明一个函数，接收三个参数，第一个参数是弹窗内部要渲染的组件（这里以 Ant Design Vue 组件的弹窗为例子），第二个参数是内部组件的 `props` ，第三个参数是弹窗组件的 `props`。通过 `h` 创建完虚拟<word text="DOM" />后，再通过 `createApp` 创建一个<word text="Vue" />实例，最后通过 `mount` 方法挂载到 `body` 上。
 
 ::: code-group
 
@@ -286,7 +286,7 @@ export function signProp(component, props, modalProps) {
 
 现在关闭功能实现了，该来实现点击确定按钮的功能了，对于表单而言，点击确定按钮后，需要实现表单校验、调用接口等功能，这些功能是组件 `compoennt` 内部就封装好了的，需要考虑的是如何调用该组件的方法。
 
-声明一个变量，在 `h` 函数第三个参数中的 `h` 函数的第二个参数添加一个 `ref` ，后续可以通过这个变量拿到组件内部的方法。
+声明一个变量，在 `h` 函数第三个参数中的 `h` 函数的第二个参数添加一个 `ref`，后续可以通过这个变量拿到组件内部的方法。
 
 ```ts [signProp.ts]
 import { createApp, h } from "vue";

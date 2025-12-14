@@ -10,7 +10,7 @@ author:
 
 前端开发时，常常会搭建一个自己的组件库。搭建一个组件库最基础的步骤总览如下：
 
-1. 创建一个项目（脚手架、`lerna` ），后续项目的 `readme.md` 就是该脚手架的文档
+1. 创建一个项目（脚手架、`lerna`），后续项目的 `readme.md` 就是该脚手架的文档
 2. 项目下新建文件夹，后续在此开发
 3. `Workspace` 定义连接
 4. 编写组件库入口代码，支持按需引入和全局引入。后续引入组件库只需引入入口文件代码
@@ -21,7 +21,7 @@ author:
 
 ### 前置操作
 
-接下来先新建一个项目，这里以 `vite` 创建的 `vue3` 项目为例。
+接下来先新建一个项目，这里以<word text="Vite" />创建的<word text="Vue3" />项目为例。
 
 ```bash
 npm init vue@latest
@@ -31,7 +31,7 @@ npm init vue@latest
 
 新建好后新建一个 `index.js` 文件，`export default` 导出一个对象。
 
-市场上组件库都是直接 `import xxx from '组件库名称'` ，无需 `./` 路径引入。想要实现该功能就需要 `Workspace` 定义连接。返回项目最外层的 `package.json` 文件中定义 `Workspace` 。
+市场上组件库都是直接 `import xxx from '组件库名称'`，无需 `./` 路径引入。想要实现该功能就需要 `Workspace` 定义连接。返回项目最外层的 `package.json` 文件中定义 `Workspace`。
 
 ```json
 {
@@ -44,7 +44,7 @@ npm init vue@latest
 >
 > 1. 在定义好 `Workspace` 后，需要 `npm i` 一下，无之前是否已经 `npm i`
 > 2. 通过命令行初始化 `MyUI` 文件夹，让其生成 `package.json` 文件，后续映射到 `node_modules` 。在 `package.json` 文件中主要由 `main` 字段控制指定导出的文件
-> 3. 注意<word text="NodeJS" />版本要在 16 以上，否则不生效
+> 3. 注意<word text="Node" />版本要在 16 以上，否则不生效
 
 现在 `import` 后打印，控制台能看到导出的对象。
 

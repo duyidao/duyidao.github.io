@@ -1,5 +1,6 @@
 ---
 title: Vue3 + TS 二次封装组件库组件
+tags: 二次封装,$attrs,生命周期
 author:
   - 远方os vue组件二次封装-终极版&https://www.bilibili.com/video/BV1soMtz4ExE
   - 远方os 组件二次封装时不一样的插槽传递方式&https://www.bilibili.com/video/BV1soMtz4ExE
@@ -53,9 +54,11 @@ const props = defineProps<InputProps>(); // [!code ++]
 </template>
 ```
 
-现在父组件使用时能看到相应的提示了，但是出现了<word text="TypeScript" />的报错，提示参数是必传的，需要使用<word text="TypeScript" />的 `Partial` 类型来包裹一下。 `Partial` 作用是将类型中的所有属性变为可选。
+现在父组件使用时能看到相应的提示了，但是出现了<word text="TypeScript" />的报错，提示参数是必传的，需要使用<word text="TypeScript" />的 `Partial` 类型来包裹一下。 
 
-目前只考虑了属性，还没考虑到事件。事件都在 `$attrs` 中，因此可以用浅拷贝的方式把 `$attrs` 和 `props` 合并一下。
+> `Partial` 作用是将类型中的所有属性变为可选。
+
+目前只考虑了属性，还没考虑到事件。事件都在 `$attrs` 中，因此可以用扩展运算符浅拷贝的方式把 `$attrs` 和 `props` 合并一下。
 
 ```vue [son.vue]
 <script lang="ts" setup>
@@ -77,7 +80,7 @@ const props = defineProps<Partial<InputProps>>(); // [!code ++]
 
 ### 方法一：插槽循环
 
-插槽写法可以 `v-for` 循环 `$slots` ，循环把插槽挂载到子组件上，代码如下所示：
+插槽写法可以 `v-for` 循环 `$slots`，循环把插槽挂载到子组件上，代码如下所示：
 
 ```vue
 <script lang="ts" setup>
@@ -95,13 +98,13 @@ const props = defineProps<Partial<InputProps>>();
 ```
 
 > [!INFO] 备注
-> `#[name]` 写法等价于 `v-slot:[name]` ，都是具名插槽。
+> `#[name]` 写法等价于 `v-slot:[name]`，都是具名插槽。
 
 但是这么做很繁琐。
 
 ### 方法二：h&useAttrs&useSlots
 
-`useAttrs` 和 `useSlots` 是<word text="Vue3" />提供的钩子函数，可以获取到 `$attrs` 和 `$slots` 。
+`useAttrs` 和 `useSlots` 是<word text="Vue3" />提供的钩子函数，可以获取到 `$attrs` 和 `$slots`。
 
 ```vue
 <script lang="ts" setup>
@@ -141,7 +144,7 @@ const props = defineProps<Partial<InputProps>>();
 </template>
 ```
 
-> [!IMPORTANT] component 组件为什么可以传入 h 函数 ？
+> [!IMPORTANT] `component` 组件为什么可以传入 `h` 函数 ？
 > `h` 函数用于创建虚拟<word text="DMO" />节点（`vnode`），`is` 属性接收到一个函数时，也就是 `h(ElInput, $attrs, $slots)` ，会立即执行并返回一个 `VNode`，这个 `VNode` 描述了如何渲染 `ElInput` 组件。
 
 ## 组件方法暴露
@@ -421,9 +424,9 @@ const Comp = ((props, { slots }) => {
 
 ### 总结使用
 
-实际上组件就是一个函数，函数的第一个参数可以拿到传值 `props` ，第二个参数可以解构出插槽 `slots` 。而 `ts` 类型，可以通过 <word text="Vue3" /> 官方文档提供的 `FunctionComponent` 类型，来定义 `props` 类型，避免 `ts` 类型报错。
+实际上组件就是一个函数，函数的第一个参数可以拿到传值 `props`，第二个参数可以解构出插槽 `slots`。而 `ts` 类型，可以通过<word text="Vue3" />官方文档提供的 `FunctionComponent` 类型，来定义 `props` 类型，避免 `ts` 类型报错。
 
-想要在 `setup` 内使用 `h` 函数，需要把 `h` 函数作为一个函数的返回值， `template` 在挂载组件节点时，会调用这个函数，这样就会把这个函数视为副作用函数，后续变量变更也会触发更新。
+想要在 `setup` 内使用 `h` 函数，需要把 `h` 函数作为一个函数的返回值，`template` 在挂载组件节点时，会调用这个函数，这样就会把这个函数视为副作用函数，后续变量变更也会触发更新。
 
 下面写一个父组件和一个子组件，来看一下整体代码：
 

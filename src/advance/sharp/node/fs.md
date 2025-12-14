@@ -1,6 +1,6 @@
 # fs
 
-fs 模块是 Node.js 官方提供的、用来操作文件的模块。它提供了一系列的方法和属性，用来满足用户对文件的操作需求。下面来一一介绍。
+`fs` 模块是<word text="Node" />官方提供的、用来操作文件的模块。它提供了一系列的方法和属性，用来满足用户对文件的操作需求。下面来一一介绍。
 
 ## 异步操作
 
@@ -101,20 +101,20 @@ fs.writeFile(file, data[, options], callback)
 
 使用 `fs` 文件系统模块，将素材目录下成绩 `.txt` 文件中的考试数据，整理到成绩 `ok.txt` 文件中。
 
-整理前的格式：
+::: code-group
 
-```
+```[整理前.txt]
 小红=99 小白=100 小刀=150 小李=50
 ```
 
-整理后的格式：
-
-```txt
+```txt [整理后.txt]
 小红：99
 小白：100
 小刀：150
 小李：50
 ```
+
+:::
 
 代码：
 
@@ -148,11 +148,11 @@ fs.readFile("./1.txt", "utf8", function (err, dataStr) {
 
 ### 回调函数
 
-使用 **readFile** 与 **writeFile** 可以对文件进行异步操作，不阻塞进程拥有更好的性能。
+使用 **`readFile`** 与 **`writeFile`** 可以对文件进行异步操作，不阻塞进程拥有更好的性能。
 
-- Node.js 以错误优先为思想，所以回调函数第一个参数为错误信息，没有错误时值为 null
+- <word text="Node" />以错误优先为思想，所以回调函数第一个参数为错误信息，没有错误时值为 `null`
 
-```txt
+```js
 import { readFile, writeFile } from 'fs'
 
 readFile('hd.txt', 'utf8', (error, content) => {
@@ -172,9 +172,9 @@ console.log('后盾人提示，因为是异步，所以这行较readFile的回�
 
 ### Promise
 
-下面使用 Promise 对文件的操作方法进行封装
+下面使用<word text="Promise" />对文件的操作方法进行封装
 
-```txt
+```js
 import { readFile, writeFile } from 'fs'
 
 //获取文件
@@ -210,11 +210,11 @@ console.log('先输出...')
 
 #### fs/promises
 
-其实我们不需要自己封装，因为 Node 提供了 Promise 操作机制
+其实我们不需要自己封装，因为<word text="Node" />提供了<word text="Promise" />操作机制
 
-**fs/promises** 提供了 Promise 操作机制
+**`fs` / `promises`** 提供了<word text="Promise" />操作机制
 
-```txt
+```js
 import { readFile } from 'fs/promises'
 
 readFile('hd.txt', 'utf-8').then((content) => {
@@ -234,9 +234,9 @@ readFile('hd.txt', 'utf-8').then((content) => {
 
 ### existsSync
 
-使用 **existsSync** 判断文件或目录是否存在，返回值是 **boolean**
+使用 **`existsSync`** 判断文件或目录是否存在，返回值是 **`boolean`**
 
-```txt
+```js
 import { existsSync } from 'fs'
 
 if (existsSync('hd.txt')) {
@@ -244,11 +244,11 @@ if (existsSync('hd.txt')) {
 }
 ```
 
-### [#](https://doc.houdunren.com/系统课程/node/8 FS 模块.html#stat)stat
+### stat
 
-使用 **stat** 可以获取文件或目录详细信息，比如可用来判断是否是文件或目录。
+使用 **`stat`** 可以获取文件或目录详细信息，比如可用来判断是否是文件或目录。
 
-```txt
+```js
 import { stat } from 'fs'
 
 stat('hda', (error, stats) => {
@@ -262,9 +262,9 @@ stat('hda', (error, stats) => {
 })
 ```
 
-**fs/promises** 提供了 Promise 的操作方法
+**`fs` / `promises`** 提供了<word text="Promise" />的操作方法
 
-```txt
+```js
 import { stat } from 'fs/promises'
 
 //是否是目录
@@ -282,11 +282,11 @@ fileType('hd').then((type) => {
 })
 ```
 
-### [#](https://doc.houdunren.com/系统课程/node/8 FS 模块.html#unlink)unlink
+### unlink
 
-使用 **unlink** 执行异步删除文件
+使用 **`unlink`** 执行异步删除文件
 
-```txt
+```js
 import { unlink, writeFileSync } from 'fs'
 writeFileSync('hd.txt', 'houdunren')
 setTimeout(() => {
@@ -298,9 +298,9 @@ setTimeout(() => {
 }, 3000)
 ```
 
-**fs/promises** 中封装了 Promise 删除文件方法
+**`fs` / `promises`** 中封装了<word text="Promise" />删除文件方法
 
-```txt
+```js
 import { writeFileSync } from 'fs'
 import { unlink } from 'fs/promises'
 
@@ -314,15 +314,13 @@ setTimeout(() => {
 }, 3000)
 ```
 
-## [#](https://doc.houdunren.com/系统课程/node/8 FS 模块.html#目录管理)目录管理
+## 目录管理
 
-下面向军大叔教大家使用 Node 操作目录
+### 创建目录
 
-### [#](https://doc.houdunren.com/系统课程/node/8 FS 模块.html#创建目录)创建目录
+下面是使用 **`mkdirSync`** 以同步的方式创建多级目录
 
-下面是使用 **mkdirSync** 以同步的方式创建多级目录
-
-```txt
+```js
 import { mkdirSync } from 'fs'
 
 const state = mkdirSync('a/b/c/d', { recursive: true })
@@ -331,9 +329,9 @@ if (state) {
 }
 ```
 
-使用 **mkdir** 可以创建目录，如果目录已经存在将报错
+使用 **`mkdir`** 可以创建目录，如果目录已经存在将报错
 
-```txt
+```js
 import { mkdir } from 'fs'
 
 mkdir('hd', (error) => {
@@ -342,9 +340,9 @@ mkdir('hd', (error) => {
 })
 ```
 
-**fs/promises** 提供了 Promise 操作方法
+**`fs` / `promises`** 提供了<word text="Promise" />操作方法
 
-```txt
+```js
 import { mkdir } from 'fs/promises'
 
 async function hd() {
@@ -354,19 +352,19 @@ async function hd() {
 hd()
 ```
 
-### [#](https://doc.houdunren.com/系统课程/node/8 FS 模块.html#删除目录)删除目录
+### 删除目录
 
 使用 **rmdirSync** 以同步的方式删除多级目录，同步删除会阻塞代码，建议尽可能使用异步操作。
 
-```txt
+```js
 import { rmdirSync } from 'fs'
 
 rmdirSync('a', { recursive: true })
 ```
 
-使用 **rmdir** 异步删除目录，默认只能删除空目录
+使用 **`rmdir`** 异步删除目录，默认只能删除空目录
 
-```txt
+```js
 import { rmdir } from 'fs'
 
 rmdir('hd', (error) => {
@@ -377,7 +375,7 @@ rmdir('hd', (error) => {
 
 递归删除目录，即删除目录中的所有内容，可以删除非空目录
 
-```txt
+```js
 import { rmdir } from 'fs'
 
 rmdir('hd', { recursive: true }, (error) => {
@@ -386,9 +384,9 @@ rmdir('hd', { recursive: true }, (error) => {
 })
 ```
 
-**fs/promises** 提供了 Promise 操作方法，用于异步删除目录
+**`fs` / `promises`** 提供了<word text="Promise" />操作方法，用于异步删除目录
 
-```txt
+```js
 import { rmdir } from 'fs/promises'
 
 rmdir('hd')
