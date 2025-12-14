@@ -47,7 +47,7 @@ let render;
 const DefineTemplate = {
   setup(_, { slots }) {
     return () => {
-      render = slots.default();
+      render = slots.default;
       return render();
     };
   },
@@ -74,7 +74,13 @@ const UseTemplate = () => render();
 
 :::
 
-从 `DefineTemplate` 对象的 `setup` 生命周期中，把相同的模块保存到 `render` 中，然后通过调用 `render()` 函数来复用，这样就能实现模块内复用相同的组件。
+这个写法实际上就是利用了插槽的特性，从 `DefineTemplate` 对象的 `setup` 生命周期中，从插槽获取相同的模块并保存到 `render` 中，然后通过调用 `render()` 函数来复用，这样就能实现模块内复用相同的组件。
+
+可以打印一下 `slot.default()` 的内容，如下：
+
+![打印slot.default()的内容](https://pic1.imgdb.cn/item/69392b416166b81101362ae4.png)
+
+由此可见，<word text="Vue" />中，虚拟组件就是一个个函数，存储着一些必要的信息，如类型 `type` 、内容 `children` 等，通过虚拟组件的 `render` 函数，可以渲染出真实组件。
 
 ### 抽离封装复用
 
@@ -83,20 +89,20 @@ const UseTemplate = () => render();
 ::: code-group
 
 ```js [utils.js]
-export const createReusableTemplate() {
+export const createReusableTemplate() { // [!code ++]
   let render;
   const DefineTemplate = {
     setup(_, { slots }) {
       return () => {
-        render = slots.default();
+        render = slots.default;
         return render(); // [!code --]
       }
     }
   }
 
-  const UseTemplate = () => render() // [!code ++]
+  const UseTemplate = () => render()
   return [DefineTemplate, UseTemplate] // [!code ++]
-}
+} // [!code ++]
 ```
 
 ```vue [index.vue]
@@ -112,7 +118,7 @@ const [DefineTemplate, UseTemplate] = createReusableTemplate(); // [!code ++]
       <div class="content">内容</div>
     </div>
   </DefineTemplate>
-  <UseTemplate></UseTemplate>
+  <UseTemplate></UseTemplate> <!-- [!code ++] -->
   <div>111</div>
   <UseTemplate></UseTemplate>
   <p>2222</p>
@@ -123,7 +129,7 @@ const [DefineTemplate, UseTemplate] = createReusableTemplate(); // [!code ++]
 
 :::
 
-抽离出来放到一个函数中，最后 `return` 一个数组，外部使用时通过数组解构还可以自定义命名，这样就能实现模块内复用相同的组件。
+抽离出来放到一个函数中，明确 `DefineTemplate` 函数和 `UseTemplate` 函数的职责，前者负责保存插槽内的组件，后者负责渲染。最后 `return` 一个数组，外部使用时通过数组解构还可以自定义命名，这样就能实现模块内复用相同的组件。
 
 > [!WARNING] 注意
 > `DefineTemplate` 对象的 `setup` 方法这里去掉了副作用，不再 `return` 返回默认插槽的内容，而是单纯的保存到 `render` 变量中。
@@ -145,19 +151,19 @@ const [DefineTemplate, UseTemplate] = createReusableTemplate();
       <div class="content">内容</div>
     </div>
   </DefineTemplate>
+  <!-- [!code focus] -->
   <UseTemplate title="header" @foo="console.log"></UseTemplate>
-  <!-- [!code focus] -->
   <div>111</div>
-  <UseTemplate title="main"></UseTemplate>
   <!-- [!code focus] -->
+  <UseTemplate title="main"></UseTemplate>
   <p>2222</p>
   <div>333</div>
-  <UseTemplate title="footer"></UseTemplate>
   <!-- [!code focus] -->
+  <UseTemplate title="footer"></UseTemplate>
 </template>
 ```
 
-组件 `UseTemplate` 实际上就是 `UseTemplate` 函数，传的变量和事件都可以在 `UseTemplate` 函数的第一个参数接收。
+前面也说了，组件 `UseTemplate` 实际上就是 `UseTemplate` 函数，传的变量和事件都可以在 `UseTemplate` 函数形参接收。
 
 ```js
 export const createReusableTemplate() {
@@ -213,23 +219,24 @@ const [DefineTemplate, UseTemplate] = createReusableTemplate();
 
 <template>
   <DefineTemplate>
+    <!-- [!code focus] -->
     <div class="container" v-slot="{ title, onFoo }">
       <!-- [!code focus] -->
       <div class="title">{{ title }}</div>
       <!-- [!code focus] -->
       <div class="content" @click="onFoo(111)">内容</div>
-      <!-- [!code focus] -->
+    <!-- [!code focus] -->
     </div>
   </DefineTemplate>
+  <!-- [!code focus] -->
   <UseTemplate title="header" @foo="console.log"></UseTemplate>
-  <!-- [!code focus] -->
   <div>111</div>
-  <UseTemplate title="main"></UseTemplate>
   <!-- [!code focus] -->
+  <UseTemplate title="main"></UseTemplate>
   <p>2222</p>
   <div>333</div>
-  <UseTemplate title="footer"></UseTemplate>
   <!-- [!code focus] -->
+  <UseTemplate title="footer"></UseTemplate>
 </template>
 ```
 
