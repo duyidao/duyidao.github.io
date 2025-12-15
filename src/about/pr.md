@@ -60,7 +60,16 @@ head:
 git checkout -b docs/xxx upstream/merge
 ```
 
-这个命令行的意思是，基于 `upstream` 仓库的 `merge` 分支，创建一个 `docs/xxx` 分支，并切换到 `docs/xxx` 分支。`upstream` 仓库可以通过 `git remote -v` 查看，如果想设置，可以通过 `git remote add upstream https://github.com/vitest-dev/docs-cn.git` 。
+这个命令行的意思是，基于 `upstream` 仓库的 `merge` 分支，创建一个 `docs/xxx` 分支，并切换到 `docs/xxx` 分支。`upstream` 仓库可以通过 `git remote -v` 查看，如果想设置，可以执行命令 `git remote add upstream https://github.com/vitest-dev/docs-cn.git` 。
+
+> [!WARNING] 注意
+> 如果执行 `git checkout -b docs/xxx upstream/merge` 无效，报错 `fatal: 'upstream/merge' is not a commit and a branch 'docs/locators' cannot be created from it`，这说明当前项目没有关联上游的项目仓库。
+>
+> 解决方法为先执行 `git fetch upstream`，成功后会关联到上游仓库，终端会打印上游仓库的各个分支。
+>
+> ![终端打印](https://pic1.imgdb.cn/item/693fab3f4a4e4213d00583ad.png)
+>
+> 后续就能执行 `git checkout -b docs/xxx upstream/merge` 命令，基于 `merge` 分支新建分支了。
 
 ### 修改代码
 
