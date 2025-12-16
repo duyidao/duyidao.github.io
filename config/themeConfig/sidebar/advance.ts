@@ -82,7 +82,10 @@ const module = [
   {
     text: '浏览器',
     collapsed: true,
-    items: [{ text: '浏览器渲染原理', link: '/module/browser/' }],
+    items: [
+      { text: '浏览器渲染原理', link: '/module/browser/' },
+      { text: '浏览器长截图', link: '/module/browser/screen' },
+    ],
   },
   {
     text: 'Git',

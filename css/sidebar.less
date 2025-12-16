@@ -40,6 +40,16 @@ section.collapsible {
       &::before {
         background-image: url(/svg/file.svg);
       }
+
+      a {
+        width: calc(100% - 30px);
+
+        p {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
     }
 
     &.is-link.is-active.has-active {

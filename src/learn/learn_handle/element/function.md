@@ -2,6 +2,7 @@
 title: 组合式函数封装
 author:
   - 远方os 如何封装一个组合式函数？&https://www.bilibili.com/video/BV1PEAreXEVs
+  - 远方os vue组合式函数封装&https://www.bilibili.com/video/BV1UV2tBgEPK
 ---
 
 # 组合式函数封装
@@ -98,31 +99,38 @@ useEvent(divRef.value, "mousemove", () => {
 
 既然无法监听生命周期，那么就通过 `watch` 监听这个 `el` 组件，每次触发更新，都先卸载一遍事件，然后再判断 `el` 是否有值，有的话再绑定事件。
 
+`watch` 方法的第二个函数的第三个形参提供了一个回调函数，该回调函数接收一个函数，当 `watch` 触发或者组件卸载时，会调用这个回调函数，因此可以直接把解绑事件放在这个回调函数中。
+
 ```js
-import { onMounted, onUnmounted, unref } from "vue"; // [!code --]
-import { watch, onUnmounted, unref } from "vue"; // [!code ++]
+import { watch, unref } from "vue";
 
 export function useEvent(el, type, callback, option) {
-  let off = () => {}; // 用于解绑事件的函数，一开始是空，不需要解绑 // [!code ++]
+  // [!code ++]
   watch(
     // [!code ++]
     () => unref(el), // [!code ++]
-    (val) => {
-      // [!code ++]
-      off(); // 运行函数解绑事件 // [!code ++]
+    // [!code ++]
+    (val, _, onCleanup) => {
       if (!val) return; // [!code ++]
       val.addEventListener(type, callback, option); // [!code ++]
-      off = () => val.removeEventListener(type, callback, option); // 绑定当前el的解绑事件 // [!code ++]
-    }, // [!code ++]
+      onCleanup(() => val.removeEventListener(type, callback, option)); // 绑定当前el的解绑事件 // [!code ++]
+       // [!code ++]
+    },
+     // [!code ++]
     {
-      // [!code ++]
       immediate: true, // [!code ++]
     } // [!code ++]
-  ); // [!code ++]
-
+     // [!code ++]
+  );
+  // [!code --]
+  onMounted(() => {
+    unref(el).addEventListener(type, callback, option);// [!code --]
+  // [!code --]
+  });
+  // [!code --]
   onUnmounted(() => {
-    unref(el).removeEventListener(type, callback, option); // [!code --]
-    off(); // [!code ++]
+    unref(el).removeEventListener(type, callback, option);// [!code --]
+  // [!code --]
   });
 }
 ```
@@ -146,103 +154,88 @@ export function useEvent(el, type, callback, option) {
 此时可以判断形参第一个是否是字符串，如果不是字符串，说明是一个 `el` 的 `ref` 对象，否则是一个事件字符串，默认 `window` 。
 
 ```js
-import { watch, onUnmounted, unref } from "vue";
+import { watch, unref } from "vue";
 
 export function useEvent(...args) {
-  let el = typeof args[0] === "string" ? window : args.shift(); // [!code ++]
-  let off = () => {}; // 用于解绑事件的函数，一开始是空，不需要解绑
+  let el = typeof args[0] === "string" ? window : args.shift(); // [!code focus]
   watch(
-    () => unref(el),
-    (val) => {
-      off(); // 运行函数解绑事件
+    () => unref(el), // [!code focus]
+    (val, _, onCleanup) => {
       if (!val) return;
-      val.addEventListener(...argsn);
-      off = () => val.removeEventListener(...argsn); // 绑定当前el的解绑事件
+      val.addEventListener(...argsn); // [!code focus]
+      onCleanup(() => val.removeEventListener(...argsn)); // 绑定当前el的解绑事件 // [!code focus]
     },
     {
       immediate: true,
     }
   );
-
-  onUnmounted(() => {
-    off();
-  });
 }
 ```
 
 ### 手动选择销毁
 
-有一些场景需要使想要自己决定销毁场景，这里需要 `return` 返回一个函数，把 `off` 方法返回出去，使用者自己决定啥时候手动销毁。
+有一些场景需要使想要自己决定销毁场景，而 `watch` 返回了一个 `stop` 方法，调用该方法时，也会触发 `onCleanup` 回调函数，因此可以直接返回 `stop`，组件调用 `stop` 方法来手动销毁。
 
 ```js
-import { onMounted, onUnmounted, unref } from "vue"; // [!code --]
-import { watch, onUnmounted, unref } from "vue"; // [!code ++]
+import { watch, unref } from "vue";
 
 export function useEvent(...args) {
-  let el = typeof args[0] === "string" ? window : args.shift(); // [!code ++]
-  let off = () => {}; // 用于解绑事件的函数，一开始是空，不需要解绑
-  const stop = watch(
+  let el = typeof args[0] === "string" ? window : args.shift();
+   // [!code focus]
+  return watch(
     () => unref(el),
-    (val) => {
+    (val, _, onCleanup) => {
       off(); // 运行函数解绑事件
       if (!val) return;
       val.addEventListener(...argsn);
-      off = () => val.removeEventListener(...argsn); // 绑定当前el的解绑事件
+      onCleanup(() => val.removeEventListener(...argsn)); // 绑定当前el的解绑事件
     },
     {
       immediate: true,
     }
   );
-
-  onUnmounted(() => {
-    off();
-  });
-
-  return () => {
-    // [!code ++]
-    off(); // [!code ++]
-    stop(); // [!code ++]
-  }; // [!code ++]
 }
 ```
 
-最后销毁完后 `watch` 还会触发一次，这里用 `watch` 返回的 `stop` 方法取消监听，提升一点性能。
+## 拓展
 
-> [!IMPORTANT] 注意
-> 这里不能直接返回 `off` 函数，而是要用一个函数包裹返回，是因为 `off` 函数是 `watch` 内部定义的，如果直接返回，外部无法访问到 `off` 函数。
+关于<word text="Vue" />的 `watch` 方法，第二个参数是一个回调函数，它接收三个参数：
 
-### 不局限于组件内
+1. 监听目标的新值
+2. 监听目标的旧值
+3. 清理函数，用于清理副作用
 
-`onUnmounted` 只能局限于组件内卸载，有一些使用场景不只局限于组件内，因此需要把 `onUnmounted` 改成 `onScopeDispose` 。
+其中，清理函数的触发时机为：
 
-```ts
-import { watch, onUnmounted, unref } from 'vue' // [!code --]
-import { watch, onScopeDispose, unref } from 'vue' // [!code ++]
+1. 当被监听的响应式数据发生变化时，`onCleanup` 会被调用
+   
+    ```js
+    const count = ref(0)
+    const name = ref('Alice')
 
-export function useEvent(...args) {
-  let el = typeof args[0] === 'string' ? window : args.shift() // [!code ++]
-  let off = () => {} // 用于解绑事件的函数，一开始是空，不需要解绑
-  const stop = watch(
-    () => unref(el),
-    (val) => {
-      off() // 运行函数解绑事件
-      if (!val) return
-      val.addEventListener(...argsn)
-      off = () => val.removeEventListener(...argsn) // 绑定当前el的解绑事件
-    },
-    {
-      immediate: true,
-    }
-  )
+    watch([count, name], (newValues, oldValues, onCleanup) => {
+      // 每次 count 或 name 变化时，如果之前注册了 cleanup，
+      // 那么旧的 cleanup 会被先调用
+      
+      const cleanup = () => {
+        console.log('清理资源')
+      }
+      
+      // 注册清理函数
+      onCleanup(cleanup)
+    })
+    ```
 
-  onUnmounted(() => { // [!code --]
-  onScopeDispose(() => { // [!code ++]
-    off()
-  })
+2. 当 `watch` 实例被取消监听时（比如在组件卸载时），会触发清理函数
+   
+    ```js
+    const stop = watch(count, (newValue, oldValue, onCleanup) => {
+      // 注册清理函数
+      onCleanup(() => {
+        console.log('组件即将销毁，清理资源')
+      })
+    })
 
-  return () => {
-    off()
-    stop()
-  }
-}
-```
+    // 当组件卸载时，停止监听
+    // stop() // 调用 stop() 会触发清理函数
+    ```
