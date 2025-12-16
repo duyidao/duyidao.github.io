@@ -2,6 +2,7 @@
 title: Vue3 + TS 二次封装组件库组件
 tags: 二次封装,$attrs,生命周期
 author:
+  - 远方os vue组件二次封装-究极版&https://www.bilibili.com/video/BV1bDe1z1Eyr
   - 远方os vue组件二次封装-终极版&https://www.bilibili.com/video/BV1soMtz4ExE
   - 远方os 组件二次封装时不一样的插槽传递方式&https://www.bilibili.com/video/BV1soMtz4ExE
   - 远方os h函数的使用&https://www.bilibili.com/video/BV166421Z7nU
@@ -40,7 +41,7 @@ author:
 
 这么做虽然可以穿透事件与方法，但是父组件没有代码提示，只能被迫手敲或者翻阅文档，这样做不利于开发，也失去了<word text="TypeScript" />的意义。因此需要转换思路。
 
-<word text="Element Plus" />组件库导出提供了相关的组件类型，我们可以借助这个类型来获取代码提示。
+Element Plus 组件库导出提供了相关的组件类型，我们可以借助这个类型来获取代码提示。
 
 ```vue [son.vue]
 <script lang="ts" setup>// [!code ++]
@@ -90,8 +91,11 @@ const props = defineProps<Partial<InputProps>>();
 
 <template>
   <el-input v-bind="{ ...$attrs, ...props }">
+    <!-- [!code focus] -->
     <template v-for="(_, name) in $slots" :key="name" #[name]="slotProps">
+      <!-- [!code focus] -->
       <slot :name="name" v-bind="slotProps"></slot>
+    <!-- [!code focus] -->
     </template>
   </el-input>
 </template>
@@ -144,8 +148,8 @@ const props = defineProps<Partial<InputProps>>();
 </template>
 ```
 
-> [!IMPORTANT] `component` 组件为什么可以传入 `h` 函数 ？
-> `h` 函数用于创建虚拟<word text="DMO" />节点（`vnode`），`is` 属性接收到一个函数时，也就是 `h(ElInput, $attrs, $slots)` ，会立即执行并返回一个 `VNode`，这个 `VNode` 描述了如何渲染 `ElInput` 组件。
+> [!IMPORTANT] component 组件为什么可以传入 h 函数 ？
+> `h` 函数用于创建虚拟<word text="DMO" />节点 （`VNode`），`is` 属性接收到一个函数时，也就是 `h(ElInput, $attrs, $slots)` ，会立即执行并返回一个 `VNode`，这个 `VNode` 描述了如何渲染 `ElInput` 组件。
 
 ## 组件方法暴露
 
@@ -206,13 +210,47 @@ function changeRef(inputInstance) { // [!code ++]
 :::
 
 > [!IMPORTANT] 注意
-> 父组件拿到的不是直接拿 `exposed`，而是 `exposed` 的 `exposeProxy` 代理对象属性，因此不能只修改 `vm.exposed` ，还需要修改 `vm.exposeProxy` 。
+> 1. `defineExpose({ a: 1 })` 实际上等价于 `vm = getCurrentInstance(); vm.exposed = { a: 1 }`。
+> 2. 父组件拿到的不是直接拿 `exposed`，而是 `exposed` 的 `exposeProxy` 代理对象属性，因此不能只修改 `vm.exposed` ，还需要修改 `vm.exposeProxy` 。
+
+## 类型处理
+
+现在父组件能够正常传递属性方法给子组件，也能拿到子组件暴露的属性和方法。但是在父组件书写属性和方法时，是没有提示的。
+
+解决方法只需要加一行 `defineExpose()` 代码即可。
+
+```vue [son.vue]
+<script lang="ts" setup>
+import { ElInput, type InputProps } from "element-plus";
+import { h, getCurrentInstance } from "vue";
+import type { ComponentInternalInstance } from "vue"; // [!code focus]
+const props = defineProps<Partial<InputProps>>();
+
+const vm = getCurrentInstance();
+function changeRef(inputInstance) {
+  vm.exposed = vm.exposeProxy = inputInstance || {};
+}
+
+defineExpose({} as ComponentInternalInstance<typeof ElInput>)
+</script>
+
+<template>
+  <component :is="h(ElInput, { ...$attrs, ...props, ref: changeRef }, $slots)"></component>
+</template>
+```
+
+无需担心 `defineExpose()` 会覆盖掉 `exposed` ，因为 `exposed` 是 `ref` 创建的响应式对象，等到组件开始创建，才会执行 `changeRef` 方法；而 `defineExpose()` 是在组件创建前执行的，因此等组件创建的时候，`vm.exposed` 会覆盖掉前面默认的 `defineExpose({})`。
+
+而 `defineExpose({}）` 的作用是通过断言 `ComponentInternalInstance` 类型，来约束 `exposed` 的类型，从而在父组件中，能够有提示。
+
+> [!wanring] 注意
+> 这个方法有局限性，只能在 VS Code 内使用，而 WebStorm 无法使用。因为这个方法是基于 Vue Language Tool 插件实现的，而 WebStorm 并没有支持这个插件。
 
 ## 回顾：h 函数的使用
 
 ### 基础使用
 
-`h` 函数是<word text="Vue3" />提供的用于创建虚拟<word text="DMO" />节点（`vnode`）的方法，`vnode` 是一个对象，描述了如何渲染一个组件。
+`h` 函数是<word text="Vue3" />提供的用于创建虚拟<word text="DMO" />节点（`vNode`）的方法，`vNode` 是一个对象，描述了如何渲染一个组件。
 
 `h` 函数第一个参数是组件，第二个参数是属性，第三个参数是插槽。
 

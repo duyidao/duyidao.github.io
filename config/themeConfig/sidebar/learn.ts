@@ -13,6 +13,7 @@ const idea = [
           { text: '请求的复用与兼容', link: '/learn/js/design/reuse' },
         ]
       },
+      { text: '如何判断对象是否存在循环引用', link: '/learn/js/objectLoop' },
       { text: 'js执行顺序和异步实战技巧', link: '/learn/js/eat' },
       { text: '垃圾回收与内存泄漏', link: '/learn/js/rubbish' },
       { text: '类的多态', link: '/learn/js/polymorphism' },
@@ -101,6 +102,7 @@ const handle = [
     collapsed: true,
     items: [
       { text: '二次封装组件库组件', link: '/learn/element/twice' },
+      { text: '二次封装el-button实现优雅loading效果', link: '/learn/element/button' },
       { text: '组合式函数封装', link: '/learn/element/function' },
       { text: '重复小组件处理经验', link: '/learn/element/repeat' },
       { text: '组件库搭建', link: '/learn/element/library' },
