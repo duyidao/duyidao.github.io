@@ -1,5 +1,5 @@
 ---
-title: customRef 实现全局loading封装
+title: customRef 实现全局 loading 封装
 author:
   - 远方os customRef实现全局loading&https://www.bilibili.com/video/BV1Yqj3zyECy
 ---
@@ -26,10 +26,10 @@ export async function request(url: string, params: Record<string, string>) {
 
 可以转变一下思路，不单纯直接设置 `loading` 的值，而是设置 `loadingCount` 的值表示当前正在请求多少个接口，每调用了一个接口，就让数值 +1，请求完毕后让数值 -1，当数值为 0 时，表示没有接口在请求，此时 `loading` 为 `false`；只要数值不为 0，`loading` 就为 `true`。
 
-怎么实现呢？可以借助 `customRef` 来实现。 `customRef` 接收一个函数，这个函数接收两个参数 `track` 和 `trigger` ，分别用于通知<word text="Vue" />追踪和触发更新。需要 `return` 一个对象，这个对象需要包含 `get` 和 `set` 方法。其中，`get` 方法在 `ref` 被读取时调用，`set` 方法在 `ref` 被修改时调用。
+怎么实现呢？可以借助 `customRef` 来实现。`customRef` 接收一个函数，这个函数接收两个参数 `track` 和 `trigger`，分别用于通知<word text="Vue" />追踪和触发更新。需要 `return` 一个对象，这个对象需要包含 `get` 和 `set` 方法。其中，`get` 方法在 `ref` 被读取时调用，`set` 方法在 `ref` 被修改时调用。
 
 ```js
-export function loading = customRef(() => {
+export const loading = customRef((track, trigger) => {
   let loadingCount = 0;
 
   return {
@@ -38,12 +38,8 @@ export function loading = customRef(() => {
       return loadingCount > 0;
     },
     set(value) {
-      if (value) {
-        loadingCount++;
-      } else {
-        loadingCount--;
-      }
-      loadingCount = Math.max(loadingCount, 0);
+      loadingCount += value ? 1 : -1;
+      loadingCount = Math.max(loadingCount, 0); // 如果用户多写了几个 -1，就会被设置为负数
       trigger();
     }
   };

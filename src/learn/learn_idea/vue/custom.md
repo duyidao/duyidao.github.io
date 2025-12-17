@@ -12,7 +12,7 @@ Vue 项目中通过封装自定义事件，实现盒子滚动到视口内时，�
 
 ### 前值知识
 
-1. [`Element.animate()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/animate) ：可以创建一个新的 Animation 的便捷方法，将它应用于元素，然后运行动画。返回一个新建的 Animation 对象实例。
+1. [Element.animate()](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/animate) ：可以创建一个新的 Animation 的便捷方法，将它应用于元素，然后运行动画。返回一个新建的 Animation 对象实例。
 
    接收两个参数：
 
