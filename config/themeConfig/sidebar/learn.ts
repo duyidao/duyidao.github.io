@@ -14,6 +14,7 @@ const idea = [
         ]
       },
       { text: '如何判断对象是否存在循环引用', link: '/learn/js/objectLoop' },
+      { text: '异步数据竞态取消', link: '/learn/js/race' },
       { text: 'js执行顺序和异步实战技巧', link: '/learn/js/eat' },
       { text: '垃圾回收与内存泄漏', link: '/learn/js/rubbish' },
       { text: '类的多态', link: '/learn/js/polymorphism' },
