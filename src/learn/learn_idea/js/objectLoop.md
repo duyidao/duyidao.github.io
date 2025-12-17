@@ -46,7 +46,7 @@ function hasCircleRef(obj, seen = new Set()) {
   
   // 如果当前对象有存储到集合内，说明有循环引用
   if (seen.has(obj)) return true
-  set.add(obj)
+  seen.add(obj)
   
   // 循环遍历对象的每一个属性
   for (let key in obj) {
@@ -90,7 +90,7 @@ function hasCircleRef(obj, seen = new Set()) {
   
   // 如果当前对象有存储到集合内，说明有循环引用
   if (seen.has(obj)) return true
-  set.add(obj)
+  seen.add(obj)
   
   // 循环遍历对象的每一个属性
   for (let key in obj) {
@@ -140,9 +140,9 @@ function hasCircleRef(obj, seen = new Set()) {
   
   // 如果当前对象有存储到集合内，说明有循环引用
   if (seen.has(obj)) return true
-  set.add(obj)
+  seen.add(obj)
   
   // 循环遍历对象的每一个属性
-  return Object.values(value).some(item => hasCircleRef(item, new Set(seen))) // [!code focus]
+  return Object.values(obj).some(item => hasCircleRef(item, new Set(seen))) // [!code focus]
 }
 ```
