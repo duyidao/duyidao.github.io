@@ -29,8 +29,11 @@ class BaseLogin {
   abstract getUserInfo(): Promise<{ phone: string }>;
   async login() {
     const { phone } = await this.getUserInfo();
-    login(phone);
-    console.log("登录成功");
+    const token = await login(phone);
+    this.afterLogin(token);
+  }
+  private afterLogin(token) {
+    console.log("登录成功:", token);
   }
 }
 ```
@@ -48,25 +51,28 @@ class BaseLogin {
   abstract getUserInfo(): Promise<{ phone: string }>;
   async login() {
     const { phone } = await this.getUserInfo();
-    login(phone);
-    console.log("登录成功");
+    const token = await login(phone);
+    this.afterLogin(token);
+  }
+  private afterLogin(token) {
+    console.log("登录成功:", token);
   }
 }
 
+// [!code ++]
 class DingTalkLogin extends BaseLogin {
   // [!code ++]
   async getUserInfo() {
-    // [!code ++]
     console.log("获取丁丁信息"); // [!code ++]
     await new Promise((resolve) => setTimeout(resolve, 1000)); // [!code ++]
     return { phone: "dingding" }; // [!code ++]
   } // [!code ++]
 } // [!code ++]
 
+// [!code ++]
 class WeChatLogin extends BaseLogin {
   // [!code ++]
   async getUserInfo() {
-    // [!code ++]
     console.log("获取微信信息"); // [!code ++]
     await new Promise((resolve) => setTimeout(resolve, 1000)); // [!code ++]
     return { phone: "wechat" }; // [!code ++]
@@ -78,6 +84,7 @@ const loginMap = {
   dingTalk: DingTalkLogin, // [!code ++]
   wechat: WeChatLogin, // [!code ++]
 }; // [!code ++]
+
 // [!code ++]
 function loginFactory(type: "dingTalk" | "wechat") {
   // [!code ++]
@@ -86,4 +93,55 @@ function loginFactory(type: "dingTalk" | "wechat") {
 // [!code ++]
 loginFactory("dingTalk").login(); // [!code ++]
 loginFactory("wechat").login(); // [!code ++]
+```
+
+## 严谨
+
+每个类只支持外部调用它们的 `login` 方法，而不允许外部直接调用 `getUserInfo` 方法。
+
+```ts
+function login(phone) {
+  return `${phone} 登录成功`;
+}
+
+class BaseLogin {
+  // [!code focus]
+  protected abstract getUserInfo(): Promise<{ phone: string }>;
+  async login() {
+    const { phone } = await this.getUserInfo();
+    const token = await login(phone);
+    this.afterLogin(token);
+  }
+  private afterLogin(token) {
+    console.log("登录成功:", token);
+  }
+}
+
+class DingTalkLogin extends BaseLogin {
+  // [!code focus]
+  protected async getUserInfo() {
+    console.log("获取丁丁信息");
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    return { phone: "dingding" };
+  }
+}
+
+class WeChatLogin extends BaseLogin {
+  // [!code focus]
+  protected async getUserInfo() {
+    console.log("获取微信信息");
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    return { phone: "wechat" };
+  }
+}
+const loginMap = {
+  dingTalk: DingTalkLogin,
+  wechat: WeChatLogin,
+};
+
+function loginFactory(type: "dingTalk" | "wechat") {
+  return new loginMap[type]();
+}
+loginFactory("dingTalk").login();
+loginFactory("wechat").login();
 ```
