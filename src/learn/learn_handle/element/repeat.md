@@ -1,11 +1,11 @@
 ---
-title: Vue 重复小组件处理经验
+title: 二次封装 el-dialog 学习 Vue 重复小组件处理经验
 author:
   - 三十的前端课 vue项目中的重复小组件处理经验&https://www.bilibili.com/video/BV1RK4118727/?spm_id_from=333.1387.upload.video_card.click
   - 远方os 命令式弹框终极版&https://www.bilibili.com/video/BV1J7NPe1EL7?vd_source=8628f61938375f4995c51e0b8c7d8165
 ---
 
-# Vue 重复小组件处理经验
+# 二次封装 el-dialog 学习 Vue 重复小组件处理经验
 
 ## 重复小组件处理经验
 
@@ -17,6 +17,7 @@ author:
 
 1. 该弹窗显示的时机不一致，可能在 A 页面是一进入就显示，在 B 页面就点击按钮显示
 2. 该弹窗同意或拒绝按钮执行的后续不一致，拒绝隐藏弹窗，同意调用接口，后续操作看各自组件需求
+3. 该弹窗组件内部的内容不一致
 
 如果直接使用多个组件，则页面上就需要写很多个组件，声明很多个控制显隐的变量，代码冗余且不易维护。
 
@@ -26,16 +27,16 @@ author:
 
 缺点：每次都得写组件显隐控制逻辑，还得引入，注册弹窗组件。
 
-希望能像 Element UI 的 `messagebox` 方法一样，调用方法就能弹出弹窗。
+希望能像 Element Plus 的 `ElMessageBox` 方法一样，调用方法就能弹出弹窗。
 
 实现思路如下：
 
-1. 用 `createVnode` 或者 `jsx` 编写组件结构
+1. 用 `createVnode` 或者 JSX 编写组件结构
 2. 用 `render` 方法渲染在一个 `div` 里
 3. 用 `appendChild` 方法加入
 
 ```js
-import {createVNode, render} from 'vue'
+import { createVNode, render } from 'vue'
 
 export const signProp = (content) => {
   // 创建虚拟dom，参数一：dom标签；参数二：dom属性，包括class类名、id、style样式等；参数三：内容，可为数字文本，也可为虚拟dom
@@ -52,7 +53,7 @@ export const signProp = (content) => {
 }
 ```
 
-现在页面上就有一个没有样式的效果了。但是这种方法不推荐，更推荐使用 `jsx` 。
+现在页面上就有一个没有样式的效果了。但是这种方法不推荐，更推荐使用 JSX 。
 
 ### jsx 组件标签方案
 
@@ -152,24 +153,24 @@ import { signProp } from "./signProp.jsx";
 
 ### h 与 createApp 方案
 
-这个写法和前面的 `jsx` 方案类似，只不过不使用标签的方式，而是使用<word text="Vue" />提供的 `h` 和 `createApp` 方式。
+这个写法和前面的 JSX 方案类似，只不过不使用标签的方式，而是使用<word text="Vue" />提供的 `h` 和 `createApp` 方式。
 
-首先声明一个函数，接收三个参数，第一个参数是弹窗内部要渲染的组件（这里以 Ant Design Vue 组件的弹窗为例子），第二个参数是内部组件的 `props` ，第三个参数是弹窗组件的 `props`。通过 `h` 创建完虚拟<word text="DOM" />后，再通过 `createApp` 创建一个<word text="Vue" />实例，最后通过 `mount` 方法挂载到 `body` 上。
+首先声明一个函数，接收三个参数，第一个参数是弹窗内部要渲染的组件（这里以 Element Plus 组件的弹窗为例子），第二个参数是内部组件的 `props` ，第三个参数是弹窗组件的 `props`。通过 `h` 创建完虚拟<word text="DOM" />后，再通过 `createApp` 创建一个<word text="Vue" />实例，最后通过 `mount` 方法挂载到 `body` 上。
 
 ::: code-group
 
 ```ts [signProp.ts]
 import { createApp, h } from "vue";
-import { Modal } from "ant-design-vue";
+import { ElDialog } from "element-plus";
 
-export function signProp(component, props, modalProps) {
+export function signProp({ component, props, modalProps }) {
   const dialog = h(
-    Modal,
-    { ...modalProps, open: true },
+    ElDialog,
+    { ...modalProps, modelValue: true },
     { default: () => h(component, props) }
   );
 
-  app.createApp(dialog);
+  const app = createApp(dialog);
 
   const div = document.createElement("div");
   document.body.appendChild(div);
@@ -183,15 +184,15 @@ import signProp from "./signProp.ts";
 import LoginForm from "./LoginForm.vue";
 
 const clickFn = () => {
-  signProp(
-    LoginForm,
-    {
+  signProp({
+    component: LoginForm,
+    props: {
       msg: "欢迎来到xx系统",
     },
-    {
+    modalProps: {
       title: "登录",
     }
-  );
+  });
 };
 </script>
 
@@ -200,9 +201,71 @@ const clickFn = () => {
 </template>
 ```
 
+```vue [LoginForm.vue]
+<script setup lang="ts">
+import { reactive, ref } from 'vue'
+
+withDefaults(
+  defineProps<{
+    msg: string
+  }>(),
+  {
+    msg: '请登录'
+  }
+)
+
+const formData = reactive({
+  username: '',
+  password: ''
+})
+
+const rules = {
+  username: [
+    { required: true, message: '请输入用户名', trigger: 'blur' },
+    { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+  ],
+  password: [
+    { required: true, message: '请输入密码', trigger: 'blur' },
+    { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+  ]
+}
+
+const formRef = ref(null)
+
+const submit = () => {
+  return new Promise((resolve, reject) => {
+    formRef.value.validate((valid: boolean) => {
+      if (valid) {
+        resolve(valid)
+      } else {
+        reject(valid)
+      }
+    })
+  })
+}
+
+
+defineExpose({
+  submit
+})
+</script>
+
+<template>
+  <el-form ref="formRef" :model="formData" :rules="rules">
+    <p class="mb-20">{{ msg }}</p>
+    <el-form-item label="账号" prop="username">
+      <el-input v-model="formData.username"></el-input>
+    </el-form-item>
+    <el-form-item label="密码" prop="password">
+      <el-input v-model="formData.password"></el-input>
+    </el-form-item>
+  </el-form>
+</template>
+```
+
 :::
 
-但是执行后发现页面只打开了 `dialog` 弹窗，没有 `form` 表单组件。查看控制台发现有警告说组件找不到。这是因为 `createApp` 创建的实例需要 `use` 方法来注册组件和方法（如组件库组件、`pinia`、`router`），之前 `template` 的写法用的是 `main.ts` 入口文件的 `createApp` 实例，组件和方法都注册了；但是这里是新建了一个 `createApp` 实例，没有注册其他组件库的组件，所以报警告，找不到组件。
+但是执行后发现页面只打开了 `dialog` 弹窗，没有 `form` 表单组件。查看控制台发现有警告说组件找不到。这是因为 `createApp` 创建的实例需要 `use` 方法来注册组件和方法 （如组件库组件、`pinia`、`router`） ，之前 `template` 的写法用的是 `main.ts` 入口文件的 `createApp` 实例，组件和方法都注册了；但是这里是新建了一个 `createApp` 实例，没有注册其他组件库的组件，所以报警告，找不到组件。
 
 解决方法是，在 `signProp` 函数中，通过 `app.use` 方法来注册组件库的组件。可以一个个复制粘贴过来，如果代码量少这样很方便，但是代码量多会很繁琐，且不利于后续维护，更好的方法是写成一个函数，在函数内注册挂载。
 
@@ -211,21 +274,21 @@ const clickFn = () => {
 ```ts [plugin.ts]
 import Antd from "ant-design-vue"; // [!code ++]
 // [!code ++]
+// [!code ++]
 export function loadPlugin(app) {
-  // [!code ++]
   app.use(Antd); // [!code ++]
 } // [!code ++]
 ```
 
 ```ts [signProp.ts]
 import { createApp, h } from "vue";
-import { Modal } from "ant-design-vue";
+import { ElDialog } from "element-plus";
 import { loadPlugin } from "./plugin.ts"; // [!code ++]
 
-export function signProp(component, props, modalProps) {
+export function signProp({ component, props, modalProps }) {
   const dialog = h(
-    Modal,
-    { ...modalProps, open: true },
+    ElDialog,
+    { ...modalProps, modelVAlue: true },
     { default: () => h(component, props) }
   );
 
@@ -240,29 +303,48 @@ export function signProp(component, props, modalProps) {
 
 :::
 
-现在能正常渲染组件了，但是点击关闭按钮后发现无法生效，这是因为弹框开启的变量 `open` 设为 `true` ，需要修改为一个响应式变量。修改为响应式变量后，点击关闭按钮发现还是不生效，这是因为响应式变量想要工作，需要作为订阅者 `effect` 函数的依赖项，因此这里需要调整为一个函数的形式。
+现在能正常渲染组件了，但是点击关闭按钮后发现无法生效，这是因为弹框开启的变量 `visible` 设为 `true` ，需要修改为一个响应式变量。修改为响应式变量后，点击关闭按钮发现还是不生效，这是因为响应式变量想要工作，需要作为订阅者 `effect` 函数的依赖项，因此这里需要调整为一个函数的形式。
 
 ```ts [signProp.ts]
 import { createApp, h } from "vue";
-import { Modal } from "ant-design-vue";
+import { ElDialog } from "element-plus";
 import { loadPlugin } from "./plugin.ts";
 
 export function signProp(component, props, modalProps) {
-  const open = ref(true); // [!code ++]
-  const dialog = () =>
-    // [!code ++]
-    h(
-      Modal,
-      {
-        ...modalProps,
-        open: open.value, // [!code ++]
-        onCancel() {
-          // [!code ++]
-          unmount(); // [!code ++]
-        }, // [!code ++]
-      },
-      { default: () => h(component, props) }
-    );
+  const visible = ref(true); // [!code ++]
+  // [!code ++]
+  const dialog = () => h(
+    ElDialog,
+    {
+      ...modalProps,
+      modelValue: visible.value, // [!code ++]
+    },
+    {
+      default: () => h(component, props),
+       // [!code ++]
+      footer: () => h('div', {}, [
+         // [!code ++]
+        h(
+          ElButton, // [!code ++]
+          { // [!code ++]
+            onClick() { // [!code ++]
+              unmount() // [!code ++]
+            } // [!code ++]
+          }, // [!code ++]
+          { default: () => '取消' } // [!code ++]
+        ), // [!code ++]
+        h( // [!code ++]
+          ElButton, // [!code ++]
+          { // [!code ++]
+            type: 'primary', // [!code ++]
+            onClick() { // [!code ++]
+            } // [!code ++]
+          }, // [!code ++]
+          { default: () => '确认' } // [!code ++]
+        ), // [!code ++]
+      ]) // [!code ++]
+    }
+  );
 
   app.createApp(dialog);
   loadPlugin(app);
@@ -271,11 +353,11 @@ export function signProp(component, props, modalProps) {
   document.body.appendChild(div);
   app.mount(div);
 
-  function unmount() {
     // [!code ++]
-    open.value = false; // [!code ++]
-    setTimeout(() => {
+  function unmount() {
+    visible.value = false; // [!code ++]
       // [!code ++]
+    setTimeout(() => {
       // 组件关闭后再卸载组件，保留弹框的关闭动画 // [!code ++]
       app.unmount(); // [!code ++]
       document.body.removeChild(div); // [!code ++]
@@ -290,28 +372,50 @@ export function signProp(component, props, modalProps) {
 
 ```ts [signProp.ts]
 import { createApp, h } from "vue";
-import { Modal } from "ant-design-vue";
+import { ElDialog } from "element-plus";
 import { loadPlugin } from "./plugin.ts";
 
-export function signProp(component, props, modalProps) {
-  const open = ref(true);
-  const instanceRef = ref();
+export function signProp{( component, props, modalProps }) {
+  const visible = ref(true);
+  const instanceRef = ref(); // [!code ++]
   const dialog = () =>
     h(
-      Modal,
+      ElDialog,
+      modelValue: visible.value,
       {
         ...modalProps,
-        open: open.value,
-        onCancel() {
-          unmount();
-        },
-        onOk() { // [!code ++]
-          instanceRef.value?.submit?.(); // [!code ++]
-          unmount(); // [!code ++]
-        }, // [!code ++]
       },
-      { default: () => h(component, props) } // [!code --]
-      { default: () => h(component, { ref: instanceRef, ...props }) } // [!code ++]
+      {
+        default: () => h(component, props), // [!code --]
+        default: () => h(component, { ref: instanceRef, ...props }), // [!code ++]
+        footer: () => h('div', {}, [
+          h(
+            ElButton,
+            {
+              onClick() {
+                unmount()
+              }
+            },
+            { default: () => '取消' }
+          ),
+          h(
+            ElButton,
+            {
+              type: 'primary',
+              async onClick() {
+                try { // [!code ++]
+                  await instanceRef.value.submit() // [!code ++]
+                  unmount() // [!code ++]
+                } // [!code ++]
+                catch (error) { // [!code ++]
+                  console.log(error) // [!code ++]
+                } // [!code ++]
+              }
+            },
+            { default: () => '确认' }
+          ),
+        ])
+      }
     );
 
   app.createApp(dialog);
@@ -323,7 +427,7 @@ export function signProp(component, props, modalProps) {
 
 
   function unmount() {
-    open.value = false;
+    visible.value = false;
     setTimeout(() => {
       // 组件关闭后再卸载组件，保留弹框的关闭动画
       app.unmount();
@@ -333,31 +437,60 @@ export function signProp(component, props, modalProps) {
 }
 ```
 
-最后，如果想要暴露出去让父组件也能使用内部的变量和方法，可以 `return` 出去。
+最后，可以添加按钮 `loading` 效果等优化。如果想要暴露出去让父组件也能使用内部的变量和方法，可以 `return` 出去。
 
 ```ts [signProp.ts]
 import { createApp, h } from "vue";
-import { Modal } from "ant-design-vue";
+import { ElDialog } from "element-plus";
 import { loadPlugin } from "./plugin.ts";
 
-export function signProp(component, props, modalProps) {
-  const open = ref(true);
+export function signProp(( component, props, modalProps, onComfirm = () => {} )) { // [!code ++]
+  const visible = ref(true);
   const instanceRef = ref();
+  const loading = ref(false); // [!code ++]
   const dialog = () =>
     h(
-      Modal,
+      ElDialog,
       {
         ...modalProps,
-        open: open.value,
-        onCancel() {
-          unmount();
-        },
-        onOk() {
-          instanceRef.value?.submit?.();
-          unmount();
-        },
+        modelValue: visible.value,
       },
-      { default: () => h(component, { ref: instanceRef, ...props }) }
+      {
+        default: () => h(component, { ref: instanceRef, ...props }),
+        footer: () => h('div', {}, [
+          h(
+            ElButton,
+            {
+              onClick() {
+                unmount()
+              }
+            },
+            { default: () => '取消' }
+          ),
+          h(
+            ElButton,
+            {
+              type: 'primary',
+              loading: loading.value, // [!code ++]
+              async onClick() {
+                loading.value = true // [!code ++]
+                try {
+                  await instanceRef.value.submit()
+                  await onComfirm() // 通过表单校验后做其他操作 // [!code ++]
+                  unmount()
+                }
+                catch (error) {
+                  console.log(error)
+                }
+                finally { // [!code ++]
+                  loading.value = false // [!code ++]
+                } // [!code ++]
+              }
+            },
+            { default: () => '确认' }
+          ),
+        ])
+      }
     );
 
   app.createApp(dialog);
@@ -368,7 +501,7 @@ export function signProp(component, props, modalProps) {
   app.mount(div);
 
   function unmount() {
-    open.value = false;
+    visible.value = false;
     setTimeout(() => {
       // 组件关闭后再卸载组件，保留弹框的关闭动画
       app.unmount();

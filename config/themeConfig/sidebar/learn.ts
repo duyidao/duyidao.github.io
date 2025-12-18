@@ -105,7 +105,7 @@ const handle = [
       { text: '二次封装组件库组件', link: '/learn/element/twice' },
       { text: '二次封装el-button实现优雅loading效果', link: '/learn/element/button' },
       { text: '组合式函数封装', link: '/learn/element/function' },
-      { text: '重复小组件处理经验', link: '/learn/element/repeat' },
+      { text: '二次封装el-dialog学习重复小组件处理经验', link: '/learn/element/repeat' },
       { text: '组件库搭建', link: '/learn/element/library' },
       { text: '组件设计技巧', link: '/learn/element/skill' },
       { text: '页码列表组件封装思路', link: '/learn/element/pagenation' },
