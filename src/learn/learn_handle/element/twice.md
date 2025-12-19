@@ -5,6 +5,7 @@ author:
   - 远方os vue组件二次封装-究极版&https://www.bilibili.com/video/BV1bDe1z1Eyr
   - 远方os vue组件二次封装-终极版&https://www.bilibili.com/video/BV1soMtz4ExE
   - 远方os 组件二次封装时不一样的插槽传递方式&https://www.bilibili.com/video/BV1soMtz4ExE
+  - 远方os 二次封装组件如何暴漏子组件的方法&https://www.bilibili.com/video/BV1EJstecEbA
   - 远方os h函数的使用&https://www.bilibili.com/video/BV166421Z7nU
   - 远方os h函数的使用场景&https://www.bilibili.com/video/BV1Zm421V7rm
 ---
@@ -149,13 +150,13 @@ const props = defineProps<Partial<InputProps>>();
 ```
 
 > [!IMPORTANT] component 组件为什么可以传入 h 函数 ？
-> `h` 函数用于创建虚拟<word text="DMO" />节点 （`VNode`），`is` 属性接收到一个函数时，也就是 `h(ElInput, $attrs, $slots)` ，会立即执行并返回一个 `VNode`，这个 `VNode` 描述了如何渲染 `ElInput` 组件。
+> `h` 函数用于创建虚拟<word text="DMO" />节点 （`vNode`），`is` 属性接收到一个函数时，也就是 `h(ElInput, $attrs, $slots)` ，会立即执行并返回一个 `vNode`，描述了如何渲染 `ElInput` 组件。
 
 ## 组件方法暴露
 
-### ref 暴露
+### Object.assign 暴露
 
-组件方法暴露可以使用 `ref` 来暴露方法。
+组件方法暴露可以使用 `ref` 来暴露方法，通过 `Object.assign` 合并对象的方式暴露出去。
 
 ```vue [son.vue]
 <script lang="ts" setup>
@@ -164,7 +165,13 @@ import { h, ref } from "vue"; // [!code ++]
 const props = defineProps<Partial<InputProps>>();
 
 const inputRef = ref(); // [!code ++]
-console.log(inputRef.value); // [!code ++]
+console.log(inputRef.value); // 可以拿到组件的实例，里面有它的方法 // [!code ++]
+const inputInstance = {} // [!code ++]
+ // [!code ++]
+onMounted(() => {
+  Object.assign(inputInstance, inputRef.value); // [!code ++]
+}) // [!code ++]
+defineExpose({ inputInstance }); // [!code ++]
 </script>
 
 <template>
@@ -174,9 +181,72 @@ console.log(inputRef.value); // [!code ++]
 
 但是这种方法不可取，如果这个组件绑定了 `v-if` ，后续存在可能会变动的情况，这样就拿不到 `inputRef` 的值了。
 
+### Proxy 代理暴露
+
+既然 `defineExpose` 要传一个对象，那么可不可以用 `new Proxy` 来代理呢？外部使用子组件的时候，触发代理的 `get` 方法，把子组件的实例返回出去。
+
+```vue [son.vue]
+<script lang="ts" setup>
+import { ElInput, type InputProps } from "element-plus";
+import { h, ref } from "vue";
+const props = defineProps<Partial<InputProps>>();
+
+const inputRef = ref();
+console.log(inputRef.value); // 可以拿到组件的实例，里面有它的方法
+
+// [!code ++]
+defineExpose(new Proxy(
+  {},// [!code ++]
+  // [!code ++]
+  {
+    // [!code ++]
+    get(target, key) {
+      return inputRef.value?.[key]// [!code ++]
+    },// [!code ++]
+  }// [!code ++]
+));// [!code ++]
+</script>
+
+<template>
+  <component :is="h(ElInput, { ...$attrs, ...props, ref: 'inputRef' }, $slots)"></component>
+</template>
+```
+
+但是这样还是不够的，在父组件还是拿不到子组件暴露出去的方法。这是因为<word text="Vue" />在底层封装获取代理对象时，还会判断 `proxy.has()` ，如果 `proxy.has()` 返回 `false`，则不会获取到代理对象。
+
+上方代码需要再修改一下。
+
+```vue [son.vue]
+<script lang="ts" setup>
+import { ElInput, type InputProps } from "element-plus";
+import { h, ref } from "vue";
+const props = defineProps<Partial<InputProps>>();
+
+const inputRef = ref();
+console.log(inputRef.value); // 可以拿到组件的实例，里面有它的方法
+
+defineExpose(new Proxy(
+  {},
+  {
+    get(target, key) {
+      return inputRef.value?.[key]
+    },
+    // [!code ++]
+    has(target, key) {
+      return key in inputRef.value // [!code ++]
+    }, // [!code ++]
+  }
+));
+</script>
+
+<template>
+  <component :is="h(ElInput, { ...$attrs, ...props, ref: 'inputRef' }, $slots)"></component>
+</template>
+```
+
 ### exposed 暴露
 
-`ref` 不仅可以赋值字符串，但是还能赋值一个函数，函数的形参接收的就是组件实例。
+`ref` 不仅可以赋值字符串，还能赋值一个函数，函数的形参接收的就是组件实例。
 
 那么怎么抛出去呢？<word text="Vue3" />提供了 `getCurrentInstance()` 方法实例，提供了一个 `exposed` 方法可以暴露组件实例。因此上方代码可以改写为：
 
