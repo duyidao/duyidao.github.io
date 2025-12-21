@@ -1093,6 +1093,8 @@ export const link = (dep, sub) => {
 };
 ```
 
+![多变量的节点复用](https://pic1.imgdb.cn/item/6947fcb66e81cf71b1c9c1e0.png)
+
 仔细一看，这段代码可以优化一下。
 
 ::: code-group
