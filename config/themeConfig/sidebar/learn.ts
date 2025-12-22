@@ -35,6 +35,8 @@ const idea = [
       { text: '组件状态重置', link: '/learn/vue/reset' },
       { text: 'customRef封装全局loading', link: '/learn/vue/customRef' },
       { text: '父组件监听子组件生命周期', link: '/learn/vue/mounted' },
+      { text: 'useTemplateRef实现原理', link: '/learn/vue/useTemplateRef' },
+      { text: '图片预加载', link: '/learn/vue/preload' },
       { text: '全局状态管理', link: '/learn/vue/pinia' },
       { text: 'provide和inject的context封装', link: '/learn/vue/context' },
       { text: 'ref和reactive在使用上的区别', link: '/learn/vue/ref' },
