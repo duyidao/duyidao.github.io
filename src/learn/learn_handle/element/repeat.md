@@ -191,7 +191,7 @@ const clickFn = () => {
     },
     modalProps: {
       title: "登录",
-    }
+    },
   });
 };
 </script>
@@ -203,51 +203,50 @@ const clickFn = () => {
 
 ```vue [LoginForm.vue]
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive, ref } from "vue";
 
 withDefaults(
   defineProps<{
-    msg: string
+    msg: string;
   }>(),
   {
-    msg: '请登录'
+    msg: "请登录",
   }
-)
+);
 
 const formData = reactive({
-  username: '',
-  password: ''
-})
+  username: "",
+  password: "",
+});
 
 const rules = {
   username: [
-    { required: true, message: '请输入用户名', trigger: 'blur' },
-    { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+    { required: true, message: "请输入用户名", trigger: "blur" },
+    { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" },
   ],
   password: [
-    { required: true, message: '请输入密码', trigger: 'blur' },
-    { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-  ]
-}
+    { required: true, message: "请输入密码", trigger: "blur" },
+    { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" },
+  ],
+};
 
-const formRef = ref(null)
+const formRef = ref(null);
 
 const submit = () => {
   return new Promise((resolve, reject) => {
     formRef.value.validate((valid: boolean) => {
       if (valid) {
-        resolve(valid)
+        resolve(valid);
       } else {
-        reject(valid)
+        reject(valid);
       }
-    })
-  })
-}
-
+    });
+  });
+};
 
 defineExpose({
-  submit
-})
+  submit,
+});
 </script>
 
 <template>
@@ -313,38 +312,45 @@ import { loadPlugin } from "./plugin.ts";
 export function signProp(component, props, modalProps) {
   const visible = ref(true); // [!code ++]
   // [!code ++]
-  const dialog = () => h(
-    ElDialog,
-    {
-      ...modalProps,
-      modelValue: visible.value, // [!code ++]
-    },
-    {
-      default: () => h(component, props),
-       // [!code ++]
-      footer: () => h('div', {}, [
-         // [!code ++]
-        h(
-          ElButton, // [!code ++]
-          { // [!code ++]
-            onClick() { // [!code ++]
-              unmount() // [!code ++]
-            } // [!code ++]
-          }, // [!code ++]
-          { default: () => '取消' } // [!code ++]
-        ), // [!code ++]
-        h( // [!code ++]
-          ElButton, // [!code ++]
-          { // [!code ++]
-            type: 'primary', // [!code ++]
-            onClick() { // [!code ++]
-            } // [!code ++]
-          }, // [!code ++]
-          { default: () => '确认' } // [!code ++]
-        ), // [!code ++]
-      ]) // [!code ++]
-    }
-  );
+  const dialog = () =>
+    h(
+      ElDialog,
+      {
+        ...modalProps,
+        modelValue: visible.value, // [!code ++]
+      },
+      {
+        default: () => h(component, props),
+        // [!code ++]
+        footer: () =>
+          h("div", {}, [
+            // [!code ++]
+            h(
+              ElButton, // [!code ++]
+              {
+                // [!code ++]
+                onClick() {
+                  // [!code ++]
+                  unmount(); // [!code ++]
+                }, // [!code ++]
+              }, // [!code ++]
+              { default: () => "取消" } // [!code ++]
+            ), // [!code ++]
+            h(
+              // [!code ++]
+              ElButton, // [!code ++]
+              {
+                // [!code ++]
+                type: "primary", // [!code ++]
+                onClick() {
+                  // [!code ++]
+                }, // [!code ++]
+              }, // [!code ++]
+              { default: () => "确认" } // [!code ++]
+            ), // [!code ++]
+          ]), // [!code ++]
+      }
+    );
 
   app.createApp(dialog);
   loadPlugin(app);
@@ -353,10 +359,10 @@ export function signProp(component, props, modalProps) {
   document.body.appendChild(div);
   app.mount(div);
 
-    // [!code ++]
+  // [!code ++]
   function unmount() {
     visible.value = false; // [!code ++]
-      // [!code ++]
+    // [!code ++]
     setTimeout(() => {
       // 组件关闭后再卸载组件，保留弹框的关闭动画 // [!code ++]
       app.unmount(); // [!code ++]
@@ -513,6 +519,6 @@ export function signProp(( component, props, modalProps, onComfirm = () => {} ))
 }
 ```
 
-## 总体效果
+## 动手实操
 
 <myIframe url="https://example.duyidao.cn/package/el-dialog" />

@@ -12,11 +12,11 @@ author:
 
 ```js
 export async function request(url: string, params: Record<string, string>) {
-  const query = new URLSearchParams(params).toString()
-  loading.value = true
+  const query = new URLSearchParams(params).toString();
+  loading.value = true;
   return await fetch(`${url}?${query}`).finally(() => {
-    loading.value = false
-  })
+    loading.value = false;
+  });
 }
 ```
 
@@ -41,7 +41,11 @@ export const loading = customRef((track, trigger) => {
       loadingCount += value ? 1 : -1;
       loadingCount = Math.max(loadingCount, 0); // 如果用户多写了几个 -1，就会被设置为负数
       trigger();
-    }
+    },
   };
-})
+});
 ```
+
+## 动手实操
+
+<myIframe url="https://example.duyidao.cn/vue/customRefLoading" />

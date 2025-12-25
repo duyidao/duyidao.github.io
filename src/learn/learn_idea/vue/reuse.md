@@ -118,7 +118,8 @@ const [DefineTemplate, UseTemplate] = createReusableTemplate(); // [!code ++]
       <div class="content">内容</div>
     </div>
   </DefineTemplate>
-  <UseTemplate></UseTemplate> <!-- [!code ++] -->
+  <UseTemplate></UseTemplate>
+  <!-- [!code ++] -->
   <div>111</div>
   <UseTemplate></UseTemplate>
   <p>2222</p>
@@ -225,7 +226,7 @@ const [DefineTemplate, UseTemplate] = createReusableTemplate();
       <div class="title">{{ title }}</div>
       <!-- [!code focus] -->
       <div class="content" @click="onFoo(111)">内容</div>
-    <!-- [!code focus] -->
+      <!-- [!code focus] -->
     </div>
   </DefineTemplate>
   <!-- [!code focus] -->
@@ -244,3 +245,7 @@ const [DefineTemplate, UseTemplate] = createReusableTemplate();
 
 > [!WARNING] 注意
 > 方法内部会被转化为 `on` + 首字母大写的形式。
+
+## 动手实操
+
+<myIframe url="https://example.duyidao.cn/vue/defineComponent" />

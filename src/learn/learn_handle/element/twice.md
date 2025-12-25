@@ -45,18 +45,22 @@ author:
 Element Plus 组件库导出提供了相关的组件类型，我们可以借助这个类型来获取代码提示。
 
 ```vue [son.vue]
-<script lang="ts" setup>// [!code ++]
+<script lang="ts" setup>
+// [!code ++]
 import { type InputProps } from "element-plus"; // [!code ++]
 const props = defineProps<InputProps>(); // [!code ++]
-</script><!-- [!code ++] -->
+</script>
+<!-- [!code ++] -->
 
 <template>
-  <el-input v-bind="$attrs"></el-input> <!-- [!code --] -->
-  <el-input v-bind="props"></el-input> <!-- [!code ++] -->
+  <el-input v-bind="$attrs"></el-input>
+  <!-- [!code --] -->
+  <el-input v-bind="props"></el-input>
+  <!-- [!code ++] -->
 </template>
 ```
 
-现在父组件使用时能看到相应的提示了，但是出现了<word text="TypeScript" />的报错，提示参数是必传的，需要使用<word text="TypeScript" />的 `Partial` 类型来包裹一下。 
+现在父组件使用时能看到相应的提示了，但是出现了<word text="TypeScript" />的报错，提示参数是必传的，需要使用<word text="TypeScript" />的 `Partial` 类型来包裹一下。
 
 > `Partial` 作用是将类型中的所有属性变为可选。
 
@@ -70,8 +74,10 @@ const props = defineProps<Partial<InputProps>>(); // [!code ++]
 </script>
 
 <template>
-  <el-input v-bind="props"></el-input> <!-- [!code --] -->
-  <el-input v-bind="{ ...$attrs, ...props }"></el-input> <!-- [!code ++] -->
+  <el-input v-bind="props"></el-input>
+  <!-- [!code --] -->
+  <el-input v-bind="{ ...$attrs, ...props }"></el-input>
+  <!-- [!code ++] -->
 </template>
 ```
 
@@ -96,7 +102,7 @@ const props = defineProps<Partial<InputProps>>();
     <template v-for="(_, name) in $slots" :key="name" #[name]="slotProps">
       <!-- [!code focus] -->
       <slot :name="name" v-bind="slotProps"></slot>
-    <!-- [!code focus] -->
+      <!-- [!code focus] -->
     </template>
   </el-input>
 </template>
@@ -122,7 +128,8 @@ const Comp = h(ElInput, useAttrs(), useSlots()); // [!code ++]
 
 <template>
   <el-input v-bind="{ ...attrs, ...props }">
-    <Comp /> <!-- [!code ++] -->
+    <Comp />
+    <!-- [!code ++] -->
   </el-input>
 </template>
 ```
@@ -142,10 +149,14 @@ const props = defineProps<Partial<InputProps>>();
 </script>
 
 <template>
-  <el-input v-bind="{ ...attrs, ...props }"> <!-- [!code --] -->
-    <Comp /> <!-- [!code --] -->
-  </el-input> <!-- [!code --] -->
-  <component :is="h(ElInput, { ...$attrs, ...props }, $slots)"></component> <!-- [!code ++] -->
+  <el-input v-bind="{ ...attrs, ...props }">
+    <!-- [!code --] -->
+    <Comp />
+    <!-- [!code --] -->
+  </el-input>
+  <!-- [!code --] -->
+  <component :is="h(ElInput, { ...$attrs, ...props }, $slots)"></component>
+  <!-- [!code ++] -->
 </template>
 ```
 
@@ -166,16 +177,19 @@ const props = defineProps<Partial<InputProps>>();
 
 const inputRef = ref(); // [!code ++]
 console.log(inputRef.value); // 可以拿到组件的实例，里面有它的方法 // [!code ++]
-const inputInstance = {} // [!code ++]
- // [!code ++]
+const inputInstance = {}; // [!code ++]
+// [!code ++]
 onMounted(() => {
   Object.assign(inputInstance, inputRef.value); // [!code ++]
-}) // [!code ++]
+}); // [!code ++]
 defineExpose({ inputInstance }); // [!code ++]
 </script>
 
 <template>
-  <component :is="h(ElInput, { ...$attrs, ...props, ref: 'inputRef' }, $slots)"></component><!-- [!code ++] -->
+  <component
+    :is="h(ElInput, { ...$attrs, ...props, ref: 'inputRef' }, $slots)"
+  ></component
+  ><!-- [!code ++] -->
 </template>
 ```
 
@@ -195,20 +209,24 @@ const inputRef = ref();
 console.log(inputRef.value); // 可以拿到组件的实例，里面有它的方法
 
 // [!code ++]
-defineExpose(new Proxy(
-  {},// [!code ++]
-  // [!code ++]
-  {
+defineExpose(
+  new Proxy(
+    {}, // [!code ++]
     // [!code ++]
-    get(target, key) {
-      return inputRef.value?.[key]// [!code ++]
-    },// [!code ++]
-  }// [!code ++]
-));// [!code ++]
+    {
+      // [!code ++]
+      get(target, key) {
+        return inputRef.value?.[key]; // [!code ++]
+      }, // [!code ++]
+    } // [!code ++]
+  )
+); // [!code ++]
 </script>
 
 <template>
-  <component :is="h(ElInput, { ...$attrs, ...props, ref: 'inputRef' }, $slots)"></component>
+  <component
+    :is="h(ElInput, { ...$attrs, ...props, ref: 'inputRef' }, $slots)"
+  ></component>
 </template>
 ```
 
@@ -225,22 +243,26 @@ const props = defineProps<Partial<InputProps>>();
 const inputRef = ref();
 console.log(inputRef.value); // 可以拿到组件的实例，里面有它的方法
 
-defineExpose(new Proxy(
-  {},
-  {
-    get(target, key) {
-      return inputRef.value?.[key]
-    },
-    // [!code ++]
-    has(target, key) {
-      return key in inputRef.value // [!code ++]
-    }, // [!code ++]
-  }
-));
+defineExpose(
+  new Proxy(
+    {},
+    {
+      get(target, key) {
+        return inputRef.value?.[key];
+      },
+      // [!code ++]
+      has(target, key) {
+        return key in inputRef.value; // [!code ++]
+      }, // [!code ++]
+    }
+  )
+);
 </script>
 
 <template>
-  <component :is="h(ElInput, { ...$attrs, ...props, ref: 'inputRef' }, $slots)"></component>
+  <component
+    :is="h(ElInput, { ...$attrs, ...props, ref: 'inputRef' }, $slots)"
+  ></component>
 </template>
 ```
 
@@ -267,19 +289,24 @@ import { h, getCurrentInstance } from "vue"; // [!code ++]
 const props = defineProps<Partial<InputProps>>();
 
 const vm = getCurrentInstance(); // [!code ++]
-function changeRef(inputInstance) { // [!code ++]
+function changeRef(inputInstance) {
+  // [!code ++]
   vm.exposed = vm.exposeProxy = inputInstance || {}; // [!code ++]
 } // [!code ++]
 </script>
 
 <template>
-  <component :is="h(ElInput, { ...$attrs, ...props, ref: changeRef }, $slots)"></component> <!-- [!code ++] -->
+  <component
+    :is="h(ElInput, { ...$attrs, ...props, ref: changeRef }, $slots)"
+  ></component>
+  <!-- [!code ++] -->
 </template>
 ```
 
 :::
 
 > [!IMPORTANT] 注意
+>
 > 1. `defineExpose({ a: 1 })` 实际上等价于 `vm = getCurrentInstance(); vm.exposed = { a: 1 }`。
 > 2. 父组件拿到的不是直接拿 `exposed`，而是 `exposed` 的 `exposeProxy` 代理对象属性，因此不能只修改 `vm.exposed` ，还需要修改 `vm.exposeProxy` 。
 
@@ -293,7 +320,7 @@ function changeRef(inputInstance) { // [!code ++]
 <script lang="ts" setup>
 import { ElInput, type InputProps } from "element-plus";
 import { h, getCurrentInstance } from "vue";
-import type { ComponentInternalInstance } from "vue"; // [!code focus]
+import type { ComponentInstance } from "vue"; // [!code focus]
 const props = defineProps<Partial<InputProps>>();
 
 const vm = getCurrentInstance();
@@ -301,19 +328,21 @@ function changeRef(inputInstance) {
   vm.exposed = vm.exposeProxy = inputInstance || {};
 }
 
-defineExpose({} as ComponentInternalInstance<typeof ElInput>)
+defineExpose({} as ComponentInstance<typeof ElInput>); // [!code focus]
 </script>
 
 <template>
-  <component :is="h(ElInput, { ...$attrs, ...props, ref: changeRef }, $slots)"></component>
+  <component
+    :is="h(ElInput, { ...$attrs, ...props, ref: changeRef }, $slots)"
+  ></component>
 </template>
 ```
 
 无需担心 `defineExpose()` 会覆盖掉 `exposed` ，因为 `exposed` 是 `ref` 创建的响应式对象，等到组件开始创建，才会执行 `changeRef` 方法；而 `defineExpose()` 是在组件创建前执行的，因此等组件创建的时候，`vm.exposed` 会覆盖掉前面默认的 `defineExpose({})`。
 
-而 `defineExpose({}）` 的作用是通过断言 `ComponentInternalInstance` 类型，来约束 `exposed` 的类型，从而在父组件中，能够有提示。
+而 `defineExpose({}）` 的作用是通过断言 `ComponentInstance` 类型，来约束 `exposed` 的类型，从而在父组件中，能够有提示。
 
-> [!wanring] 注意
+> [!warning] 注意
 > 这个方法有局限性，只能在 VS Code 内使用，而 WebStorm 无法使用。因为这个方法是基于 Vue Language Tool 插件实现的，而 WebStorm 并没有支持这个插件。
 
 ## 回顾：h 函数的使用
@@ -350,14 +379,17 @@ const msg = ref("hello world"); // [!code ++]
 const Comp = h("div", { class: "test" }, "hello world"); // [!code --]
 const Comp = h("div", { class: "test" }, msg.value); // [!code ++]
 
-setTimeout(() => { // [!code ++]
+setTimeout(() => {
+  // [!code ++]
   msg.value = "hello vue3"; // [!code ++]
 }, 2000); // [!code ++]
 </script>
 
 <template>
-  <Comp></Comp> <!-- [!code --] -->
-  <component :is="Comp"></component> <!-- [!code ++] -->
+  <Comp></Comp>
+  <!-- [!code --] -->
+  <component :is="Comp"></component>
+  <!-- [!code ++] -->
 </template>
 ```
 
@@ -461,9 +493,12 @@ const Comp = ((props, { slots }) => {
   <!-- 在使用时调用Comp函数，Comp函数就被视作副作用函数 -->
   <component :is="Comp" :count="1">
     <div>111</div>
-    <template #header> <!-- [!code ++] -->
-      <div>333</div> <!-- [!code ++] -->
-    </template> <!-- [!code ++] -->
+    <template #header>
+      <!-- [!code ++] -->
+      <div>333</div>
+      <!-- [!code ++] -->
+    </template>
+    <!-- [!code ++] -->
   </component>
 </template>
 ```
@@ -489,8 +524,10 @@ const Comp = ((props, { slots }) => {
   <!-- 在使用时调用Comp函数，Comp函数就被视作副作用函数 -->
   <component :is="Comp" :count="1">
     <div>111</div>
-    <template #header="{ a }"> <!-- [!code ++] -->
-      <div>333 {{ a }}</div> <!-- [!code ++] -->
+    <template #header="{ a }">
+      <!-- [!code ++] -->
+      <div>333 {{ a }}</div>
+      <!-- [!code ++] -->
     </template>
   </component>
 </template>
@@ -510,7 +547,8 @@ const Comp = ((props, { slots }) => {
     "div",
     {
       class: "test",
-      onClick: () => { // [!code ++]
+      onClick: () => {
+        // [!code ++]
         console.log("click"); // [!code ++]
       }, // [!code ++]
     },
@@ -596,3 +634,7 @@ const Comp = ((props, { slots }) => {
 ```
 
 :::
+
+## 动手实操
+
+<myIframe url="https://example.duyidao.cn/package/el-input" />

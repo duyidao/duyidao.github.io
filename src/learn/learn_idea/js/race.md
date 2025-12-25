@@ -27,10 +27,12 @@ function createCancelTask(task) {
   let cancel = () => {};
   return (...args) => {
     return new Promise((resolve, reject) => {
-      cancel()
-      task(...args).then(res => resolve(res)).catch(err => reject(err));
+      cancel();
+      task(...args)
+        .then((res) => resolve(res))
+        .catch((err) => reject(err));
     });
-  }
+  };
 }
 ```
 
@@ -41,13 +43,16 @@ function createCancelTask(task) {
   let cancel = () => {};
   return (...args) => {
     return new Promise((resolve, reject) => {
-      cancel()
-      cancel = () => { // [!code ++]
-        resolve = reject = () => {} // [!code ++]
-      } // [!code ++]
-      task(...args).then(res => resolve(res)).catch(err => reject(err));
+      cancel();
+      cancel = () => {
+        // [!code ++]
+        resolve = reject = () => {}; // [!code ++]
+      }; // [!code ++]
+      task(...args)
+        .then((res) => resolve(res))
+        .catch((err) => reject(err));
     });
-  }
+  };
 }
 ```
 
@@ -57,11 +62,11 @@ function createCancelTask(task) {
 const init = createCancelTask(async (id) => {
   const res = await fetch(`https://api.xxx.com/order/${id}`);
   return res.json();
-})
+});
 
-init(1)
+init(1);
 
-init(2)
+init(2);
 ```
 
 它的执行流程是：
@@ -69,3 +74,7 @@ init(2)
 1. 调用 `init(1)`，`cancel` 函数为空函数，执行后无任何副作用。修改 `cancel` 函数为把它当前的 `resolve` 和 `reject` 置空。执行 `task` 函数
 2. 调用 `init(1)`，`cancel` 函数是置空 `init(1)` 的 `resolve` 和 `reject` 回调，执行后 `init(1)` 的 `Promise` 状态永远是 `padding`。修改 `cancel` 函数为把它当前的 `resolve` 和 `reject` 置空。执行 `task` 函数
 3. `init(1)` 的 `Promise` 状态永远是 `padding`，`init(2)` 执行完毕后 `resolve()` 返回数据
+
+## 动手实操
+
+<myIframe url="https://example.duyidao.cn/js/createCancelTask" />

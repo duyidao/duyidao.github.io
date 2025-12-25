@@ -51,33 +51,33 @@ author:
 
 ```js
 const images = [
-  'https://picsum.photos/200/100?random=1',
-  'https://picsum.photos/200/100?random=2',
-  'https://picsum.photos/200/100?random=3',
-  'https://picsum.photos/200/100?random=4',
-  'https://picsum.photos/200/100?random=5',
-  'https://picsum.photos/200/100?random=6',
-  'https://picsum.photos/200/100?random=7',
-  'https://picsum.photos/200/100?random=8',
-  'https://picsum.photos/200/100?random=9',
-  'https://picsum.photos/200/100?random=10',
-]
+  "https://picsum.photos/200/100?random=1",
+  "https://picsum.photos/200/100?random=2",
+  "https://picsum.photos/200/100?random=3",
+  "https://picsum.photos/200/100?random=4",
+  "https://picsum.photos/200/100?random=5",
+  "https://picsum.photos/200/100?random=6",
+  "https://picsum.photos/200/100?random=7",
+  "https://picsum.photos/200/100?random=8",
+  "https://picsum.photos/200/100?random=9",
+  "https://picsum.photos/200/100?random=10",
+];
 
 export function preloadImages(images) {
   return new Promise((resolve, reject) => {
     images.forEach((image) => {
-      const link = document.createElement('link')
-      link.rel = 'preload'
-      link.as = 'image'
-      link.href = image
-      document.head.appendChild(link)
-      link.onload = resolve
-      link.onerror = reject
-    })
-  })
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = image;
+      document.head.appendChild(link);
+      link.onload = resolve;
+      link.onerror = reject;
+    });
+  });
 }
 
-preloadImages(images)
+preloadImages(images);
 ```
 
 这样我们就可以动态添加 `link` 标签了，基础的功能也有。
@@ -90,30 +90,30 @@ F12 查看控制台，发现每次它都会先请求 6 张图片，剩余的都�
 
 ```js
 export function preloadImages(images) {
-  const _images = JSON.parse(JSON.stringify(images))
+  const _images = JSON.parse(JSON.stringify(images));
 
   function load() {
     return new Promise((resolve, reject) => {
-      const link = document.createElement('link')
-      link.rel = 'preload'
-      link.as = 'image'
-      link.href = _images.shift()
-      document.head.appendChild(link)
-      link.onload = resolve
-      link.onerror = reject
-    })
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = _images.shift();
+      document.head.appendChild(link);
+      link.onload = resolve;
+      link.onerror = reject;
+    });
   }
 
   function _load() {
     load().finally(() => {
       if (_images.length) {
-        _load()
+        _load();
       }
-    })
+    });
   }
 }
 
-preloadImages(images)
+preloadImages(images);
 ```
 
 ### 写插件
@@ -145,11 +145,11 @@ export default defineConfig({
 ```ts [/src/utils/preload.ts]
 export function preloadImages() {
   return {
-    name: 'preload-images',
+    name: "preload-images",
     transformIndexHtml(html) {
-      console.log(html)
+      console.log(html);
     },
-  }
+  };
 }
 ```
 
@@ -162,67 +162,67 @@ export function preloadImages() {
 ```ts [replace 修改 html.ts]
 export function preloadImages() {
   return {
-    name: 'preload-images',
+    name: "preload-images",
     transformIndexHtml(html) {
       const images = [
-        'https://picsum.photos/200/100?random=1',
-        'https://picsum.photos/200/100?random=2',
-        'https://picsum.photos/200/100?random=3',
-        'https://picsum.photos/200/100?random=4',
-      ]
+        "https://picsum.photos/200/100?random=1",
+        "https://picsum.photos/200/100?random=2",
+        "https://picsum.photos/200/100?random=3",
+        "https://picsum.photos/200/100?random=4",
+      ];
 
       images.forEach((image) => {
-        const link = `<link rel="preload" as="image" href="${image}" />`
-        html = html.replace('</head>', `${link}</head>`)
-      })
+        const link = `<link rel="preload" as="image" href="${image}" />`;
+        html = html.replace("</head>", `${link}</head>`);
+      });
 
-      return html
+      return html;
     },
-  }
+  };
 }
 ```
 
 ```ts [return 数组.ts]
 export function preloadImages() {
   return {
-    name: 'preload-images',
+    name: "preload-images",
     transformIndexHtml(html) {
       return [
         {
-          tag: 'link',
+          tag: "link",
           attrs: {
-            rel: 'preload',
-            as: 'image',
-            href: 'https://picsum.photos/200/100?random=1',
+            rel: "preload",
+            as: "image",
+            href: "https://picsum.photos/200/100?random=1",
           },
         },
         {
-          tag: 'link',
+          tag: "link",
           attrs: {
-            rel: 'preload',
-            as: 'image',
-            href: 'https://picsum.photos/200/100?random=2',
+            rel: "preload",
+            as: "image",
+            href: "https://picsum.photos/200/100?random=2",
           },
         },
         {
-          tag: 'link',
+          tag: "link",
           attrs: {
-            rel: 'preload',
-            as: 'image',
-            href: 'https://picsum.photos/200/100?random=3',
+            rel: "preload",
+            as: "image",
+            href: "https://picsum.photos/200/100?random=3",
           },
         },
         {
-          tag: 'link',
+          tag: "link",
           attrs: {
-            rel: 'preload',
-            as: 'image',
-            href: 'https://picsum.photos/200/100?random=4',
+            rel: "preload",
+            as: "image",
+            href: "https://picsum.photos/200/100?random=4",
           },
         },
-      ]
+      ];
     },
-  }
+  };
 }
 ```
 
@@ -254,31 +254,31 @@ export default defineConfig({
 回到 `/src/utils/preload.ts`，在 `transformIndexHtml` 函数中接收要预加载的图片的路径，可以通过 `import.meta.glob` 获取指定路径的图片，也通过 `fast-glob` 获取指定路径的图片。
 
 ```ts [/src/utils/preload.ts]
-import fastGlob from 'fast-glob'
+import fastGlob from "fast-glob";
 interface PreloadImagesOptions {
-  dir: string
+  dir: string;
 }
 
 export function preloadImages(options: PreloadImagesOptions) {
   return {
-    name: 'preload-images',
+    name: "preload-images",
     transformIndexHtml(html) {
-      const { dir } = options
-      const fs = fastGlob.sync(dir)
-      console.log('files', fs)
+      const { dir } = options;
+      const fs = fastGlob.sync(dir);
+      console.log("files", fs);
 
       return fs.map((href) => {
         return {
-          tag: 'link',
+          tag: "link",
           attrs: {
-            rel: 'prefetch',
+            rel: "prefetch",
             href,
-            as: 'image',
+            as: "image",
           },
-        }
-      })
+        };
+      });
     },
-  }
+  };
 }
 ```
 
@@ -319,35 +319,35 @@ export default defineConfig({
 ```
 
 ```ts [/src/utils/preload.ts]
-import fastGlob from 'fast-glob'
+import fastGlob from "fast-glob";
 interface PreloadImagesOptions {
-  dir: string
+  dir: string;
 }
 
 export function preloadImages(options: PreloadImagesOptions) {
   return {
-    name: 'preload-images',
+    name: "preload-images",
     // [!code focus]
     transformIndexHtml(html, ctx) {
-      const { dir } = options
+      const { dir } = options;
       // [!code focus]
       const fs = fastGlob.sync(dir, {
         cwd: ctx.server.config.publicDir, // [!code focus]
-      }) // [!code focus]
-      console.log('files', fs)
+      }); // [!code focus]
+      console.log("files", fs);
 
       return fs.map((href) => {
         return {
-          tag: 'link',
+          tag: "link",
           attrs: {
-            rel: 'prefetch',
+            rel: "prefetch",
             href,
-            as: 'image',
+            as: "image",
           },
-        }
-      })
+        };
+      });
     },
-  }
+  };
 }
 ```
 
@@ -358,32 +358,32 @@ export function preloadImages(options: PreloadImagesOptions) {
 现在打印查看，结果是正常的。接下来，`base` 的问题，`ctx` 中还有一个 `base` 属性，因此，只需要将 `base` 拼接到 `href` 上即可。
 
 ```ts [/src/utils/preload.ts]
-import fastGlob from 'fast-glob'
+import fastGlob from "fast-glob";
 interface PreloadImagesOptions {
-  dir: string
+  dir: string;
 }
 
 export function preloadImages(options: PreloadImagesOptions) {
   return {
-    name: 'preload-images',
+    name: "preload-images",
     transformIndexHtml(html, ctx) {
-      const { dir } = options
+      const { dir } = options;
       const fs = fastGlob.sync(dir, {
         cwd: ctx.server.config.publicDir,
-      })
+      });
 
       return fs.map((href) => {
         return {
-          tag: 'link',
+          tag: "link",
           attrs: {
-            rel: 'prefetch',
+            rel: "prefetch",
             href: ctx.server.config.base + href, // [!code focus]
-            as: 'image',
+            as: "image",
           },
-        }
-      })
+        };
+      });
     },
-  }
+  };
 }
 ```
 
@@ -416,39 +416,43 @@ export default defineConfig({
 ```
 
 ```ts [/src/utils/preload.ts]
-import fastGlob from 'fast-glob'
+import fastGlob from "fast-glob";
 interface PreloadImagesOptions {
-  dir: string
+  dir: string;
   // [!code focus]
   attrs: {
-    rel: 'preload' | 'prefetch' // [!code focus]
-  } // [!code focus]
+    rel: "preload" | "prefetch"; // [!code focus]
+  }; // [!code focus]
 }
 
 export function preloadImages(options: PreloadImagesOptions) {
   return {
-    name: 'preload-images',
+    name: "preload-images",
     transformIndexHtml(html, ctx) {
-      const { dir, attrs = {} } = options // [!code focus]
+      const { dir, attrs = {} } = options; // [!code focus]
 
       const fs = fastGlob.sync(dir, {
         cwd: ctx.server.config.publicDir,
-      })
+      });
 
       return fs.map((href) => {
         return {
-          tag: 'link',
+          tag: "link",
           attrs: {
-            rel: 'prefetch',
+            rel: "prefetch",
             href: ctx.server.config.base + href,
-            as: 'image',
+            as: "image",
             ...attrs, // [!code focus]
           },
-        }
-      })
+        };
+      });
     },
-  }
+  };
 }
 ```
 
 :::
+
+## 动手实操
+
+<myIframe url="https://example.duyidao.cn/vue/preloadImage" />

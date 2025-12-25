@@ -14,8 +14,8 @@ author:
 
 ```vue
 <script setup>
-import { ref } from 'vue'
-const elRef = ref(null)
+import { ref } from "vue";
+const elRef = ref(null);
 </script>
 
 <template>
@@ -27,8 +27,8 @@ const elRef = ref(null)
 
 ```vue
 <script setup>
-import { useTemplateRef } from 'vue'
-const containerRef = useTemplateRef('elRef')
+import { useTemplateRef } from "vue";
+const containerRef = useTemplateRef("elRef");
 </script>
 
 <template>
@@ -50,9 +50,9 @@ const containerRef = useTemplateRef('elRef')
 
 ```js
 export function useTemplateRef(key) {
-  const container = shallowRef()
+  const container = shallowRef();
 
-  return container
+  return container;
 }
 ```
 
@@ -62,11 +62,11 @@ export function useTemplateRef(key) {
 
 ```vue
 <script setup>
-import { getCurrentInstance } from 'vue'
+import { getCurrentInstance } from "vue";
 // const elRef = ref(null) 注意，这里不能声明 ref，否则 vm 的 refs 对象不会再有 elRef
-const vm = getCurrentInstance()
+const vm = getCurrentInstance();
 
-console.log(vm)
+console.log(vm);
 </script>
 
 <template>
@@ -80,18 +80,19 @@ console.log(vm)
 
 ```js
 export function useTemplateRef(key) {
-  const container = shallowRef()
+  const container = shallowRef();
 
-  const vm = getCurrentInstance() // [!code ++]
+  const vm = getCurrentInstance(); // [!code ++]
   // [!code ++]
   Object.defineProperty(vm.refs, key, {
-    get() {},// [!code ++]
-    set(value) {// [!code ++]
-      console.log('vm set =>', value) // [!code ++]
-    } // [!code ++]
-  }) // [!code ++]
+    get() {}, // [!code ++]
+    set(value) {
+      // [!code ++]
+      console.log("vm set =>", value); // [!code ++]
+    }, // [!code ++]
+  }); // [!code ++]
 
-  return container
+  return container;
 }
 ```
 
@@ -115,37 +116,37 @@ export function useTemplateRef(key) {
 
 ```ts
 export function useTemplateRef<T = unknown, Keys extends string = string>(
-  key: Keys,
+  key: Keys
 ): TemplateRef<T> {
-  const i = getCurrentInstance() // 获取当前组件实例 // [!code focus]
-  const r = shallowRef(null)
+  const i = getCurrentInstance(); // 获取当前组件实例 // [!code focus]
+  const r = shallowRef(null);
   if (i) {
-    const refs = i.refs === EMPTY_OBJ ? (i.refs = {}) : i.refs // 如果当前的组件实例是默认的冻结对象，则声明一个新的对象代替；否则继续复用 // [!code focus]
-    let desc: PropertyDescriptor | undefined
+    const refs = i.refs === EMPTY_OBJ ? (i.refs = {}) : i.refs; // 如果当前的组件实例是默认的冻结对象，则声明一个新的对象代替；否则继续复用 // [!code focus]
+    let desc: PropertyDescriptor | undefined;
     if (
       __DEV__ &&
       (desc = Object.getOwnPropertyDescriptor(refs, key)) &&
       !desc.configurable
     ) {
-      warn(`useTemplateRef('${key}') already exists.`)
+      warn(`useTemplateRef('${key}') already exists.`);
     } else {
       Object.defineProperty(refs, key, {
         enumerable: true,
         get: () => r.value,
-        set: val => (r.value = val),
-      })
+        set: (val) => (r.value = val),
+      });
     }
   } else if (__DEV__) {
     warn(
       `useTemplateRef() is called when there is no active component ` +
-        `instance to be associated with.`,
-    )
+        `instance to be associated with.`
+    );
   }
-  const ret = __DEV__ ? readonly(r) : r
+  const ret = __DEV__ ? readonly(r) : r;
   if (__DEV__) {
-    knownTemplateRefs.add(ret)
+    knownTemplateRefs.add(ret);
   }
-  return ret
+  return ret;
 }
 ```
 
@@ -156,39 +157,42 @@ export function useTemplateRef<T = unknown, Keys extends string = string>(
 在 `set` 方法中，把值赋值给 `shallowRef` 对象；在 `get` 方法中，返回 `shallowRef` 对象。这样，当访问 `vm.refs[key]` 时，返回的就是我们自定义的 `ref` 对象了。
 
 ::: code-group
+
 ```js
 export function useTemplateRef(key) {
-  const container = shallowRef()
+  const container = shallowRef();
 
-  const vm = getCurrentInstance()
-  vm.refs = {} // 转为普通的空对象 // [!code ++]
+  const vm = getCurrentInstance();
+  vm.refs = {}; // 转为普通的空对象 // [!code ++]
   Object.defineProperty(vm.refs, key, {
     get() {
-      return container.value // 返回自定义的 ref 对象 // [!code ++]
+      return container.value; // 返回自定义的 ref 对象 // [!code ++]
     },
     set(value) {
-      container.value = value // 把值赋值给 shallowRef 响应式变量 // [!code ++]
-    }
-  })
+      container.value = value; // 把值赋值给 shallowRef 响应式变量 // [!code ++]
+    },
+  });
 
-  return container
+  return container;
 }
 ```
+
 ```vue
 <script setup>
-import { useTemplateRef } from './hook'
+import { useTemplateRef } from "./hook";
 
-const containerRef = useTemplateRef('elRef')
+const containerRef = useTemplateRef("elRef");
 
 onMounted(() => {
-  console.log(containerRef.value)
-})
+  console.log(containerRef.value);
+});
 </script>
 
 <template>
   <div ref="elRef">Hello World</div>
 </template>
 ```
+
 :::
 
 ### 优化与 Bug 解决
@@ -198,14 +202,14 @@ onMounted(() => {
 ```vue
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useTemplateRef } from './hook'
+import { useTemplateRef } from "./hook";
 
-const containerRef = useTemplateRef('elRef')
-const containerRef1 = useTemplateRef('aRef')
+const containerRef = useTemplateRef("elRef");
+const containerRef1 = useTemplateRef("aRef");
 onMounted(() => {
-  console.log(containerRef.value)
-  console.log(containerRef1.value)
-})
+  console.log(containerRef.value);
+  console.log(containerRef1.value);
+});
 </script>
 
 <template>
@@ -213,9 +217,7 @@ onMounted(() => {
   <p ref="aRef">{{ containerRef1 }}</p>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
 ```
 
 ![使用两个 useTemplateRef 结果](https://pic1.imgdb.cn/item/6948c131dd2050f8d341ff30.png)
@@ -225,70 +227,72 @@ onMounted(() => {
 想要解决这个 Bug，需要绕一下，在函数外部声明一个 `WeakMap`，每次调用 `useTemplateRef` 函数时，先判断一下 `WeakMap` 中是否存在 `vm` 实例，如果存在，说明之前已经有内容了，直接复用；如果不存在，则把 `vm` 实例存入 `WeakMap` 中，再进行后续操作。
 
 ```js
-const vmMap = new WeakMap() // [!code ++]
+const vmMap = new WeakMap(); // [!code ++]
 
 export function useTemplateRef(key) {
-  const container = shallowRef()
+  const container = shallowRef();
 
-  const vm = getCurrentInstance()
+  const vm = getCurrentInstance();
   // [!code ++]
   if (!vmMap.has(vm)) {
-    vm.refs = {} // 转为普通的空对象
-    vmMap.set(vm, vm.refs) // [!code ++]
+    vm.refs = {}; // 转为普通的空对象
+    vmMap.set(vm, vm.refs); // [!code ++]
   } // [!code ++]
   Object.defineProperty(vm.refs, key, {
     get() {
-      return container.value // 返回自定义的 ref 对象
+      return container.value; // 返回自定义的 ref 对象
     },
     set(value) {
-      container.value = value // 把值赋值给 shallowRef 响应式变量
-    }
-  })
+      container.value = value; // 把值赋值给 shallowRef 响应式变量
+    },
+  });
 
-  return container
+  return container;
 }
 ```
 
 ## 完整代码
 
 ::: code-group
-```js [hook.js]
-import { shallowRef, getCurrentInstance } from 'vue'
 
-const wmMap = new WeakMap()
+```js [hook.js]
+import { shallowRef, getCurrentInstance } from "vue";
+
+const wmMap = new WeakMap();
 
 export function useTemplateRef(key) {
-  const container = shallowRef()
+  const container = shallowRef();
 
-  const vm = getCurrentInstance()
+  const vm = getCurrentInstance();
   // 判断是否有vm，有的话就不重新赋值，避免覆盖旧值
   if (!wmMap.has(vm)) {
-    vm.refs = {}
-    wmMap.set(vm, {})
+    vm.refs = {};
+    wmMap.set(vm, {});
   }
   Object.defineProperty(vm.refs, key, {
     get() {
-      return container.value
+      return container.value;
     },
     set(value) {
-      container.value = value
-    }
-  })
+      container.value = value;
+    },
+  });
 
-  return container
+  return container;
 }
 ```
+
 ```vue
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useTemplateRef } from './hook'
+import { useTemplateRef } from "./hook";
 
-const containerRef = useTemplateRef('elRef')
-const containerRef1 = useTemplateRef('aRef')
+const containerRef = useTemplateRef("elRef");
+const containerRef1 = useTemplateRef("aRef");
 onMounted(() => {
-  console.log(containerRef.value)
-  console.log(containerRef1.value)
-})
+  console.log(containerRef.value);
+  console.log(containerRef1.value);
+});
 </script>
 
 <template>
@@ -296,8 +300,11 @@ onMounted(() => {
   <p ref="aRef">{{ containerRef1 }}</p>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
 ```
+
 :::
+
+## 动手实操
+
+<myIframe url="https://example.duyidao.cn/vue/useTemplateRef" />

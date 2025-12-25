@@ -146,3 +146,7 @@ const [obj, resetObj] = useResettableReactive({
 :::
 
 最后在导出时不导出一个对象，而是一个数组。在使用时通过数组解构使用时可以自定义变量和函数的名称。
+
+## 动手实操
+
+<myIframe url="https://example.duyidao.cn/vue/stateReset" />
