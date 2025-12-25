@@ -114,7 +114,6 @@ const handle = [
       { text: '二封el表格组件无限滚动', link: '/learn/element/scroll' },
       { text: '二封el下拉自定义折叠数量', link: '/learn/element/select' },
       { text: '二封el日历组件', link: '/learn/element/calendar' },
-      { text: '对话框弹窗组件封装', link: '/learn/element/dialog' },
     ]
   },
   {

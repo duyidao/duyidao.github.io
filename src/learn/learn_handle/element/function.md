@@ -1,8 +1,8 @@
 ---
 title: 组合式函数封装
 author:
-  - 远方os 如何封装一个组合式函数？&https://www.bilibili.com/video/BV1PEAreXEVs
   - 远方os vue组合式函数封装&https://www.bilibili.com/video/BV1UV2tBgEPK
+  - 远方os Vue 组合式函数类型重载&https://www.bilibili.com/video/BV1anqYBBEUx
 ---
 
 # 组合式函数封装
@@ -185,7 +185,223 @@ export function useEvent(...args) {
   return watch(
     () => unref(el),
     (val, _, onCleanup) => {
-      off(); // 运行函数解绑事件
+      if (!val) return;
+      val.addEventListener(...argsn);
+      onCleanup(() => val.removeEventListener(...argsn)); // 绑定当前el的解绑事件
+    },
+    {
+      immediate: true,
+    }
+  );
+}
+```
+
+## 函数重载
+
+效果上是没问题了，但是在使用上，开发者没有良好的<word text="TypeScript" />提示，需要给函数添加类型。函数重载是一个很好的解决方案。
+
+`useEvent` 函数有两种方案，一种是接收三个参数，分别是 `type` 事件类型、`callback` 回调函数、`option` 事件选项，另一种是接收四个参数，多了第一个参数 `el` 元素。
+
+那么，要如何拿到 `type` 事件类型、`callback` 回调函数的形参类型、以及 `option` 事件选项的类型呢？
+
+### window
+
+首先来看看 `window` 的，看看它原生是怎么实现的。点击后跳转到它的源码部分：
+
+```ts
+interface GlobalEventHandlersEventMap {
+  "abort": UIEvent;
+  "animationcancel": AnimationEvent;
+  "animationend": AnimationEvent;
+  "animationiteration": AnimationEvent;
+  "animationstart": AnimationEvent;
+  "auxclick": PointerEvent;
+  "beforeinput": InputEvent;
+  "beforematch": Event;
+  "beforetoggle": ToggleEvent;
+  "blur": FocusEvent;
+  "cancel": Event;
+  "canplay": Event;
+  "canplaythrough": Event;
+  "change": Event;
+  "click": PointerEvent;
+  "close": Event;
+  "compositionend": CompositionEvent;
+  "compositionstart": CompositionEvent;
+  "compositionupdate": CompositionEvent;
+  "contextlost": Event;
+  "contextmenu": PointerEvent;
+  "contextrestored": Event;
+  "copy": ClipboardEvent;
+  "cuechange": Event;
+  "cut": ClipboardEvent;
+  "dblclick": MouseEvent;
+  "drag": DragEvent;
+  "dragend": DragEvent;
+  "dragenter": DragEvent;
+  "dragleave": DragEvent;
+  "dragover": DragEvent;
+  "dragstart": DragEvent;
+  "drop": DragEvent;
+  "durationchange": Event;
+  "emptied": Event;
+  "ended": Event;
+  "error": ErrorEvent;
+  "focus": FocusEvent;
+  "focusin": FocusEvent;
+  "focusout": FocusEvent;
+  "formdata": FormDataEvent;
+  "gotpointercapture": PointerEvent;
+  "input": Event;
+  "invalid": Event;
+  "keydown": KeyboardEvent;
+  "keypress": KeyboardEvent;
+  "keyup": KeyboardEvent;
+  "load": Event;
+  "loadeddata": Event;
+  "loadedmetadata": Event;
+  "loadstart": Event;
+  "lostpointercapture": PointerEvent;
+  "mousedown": MouseEvent;
+  "mouseenter": MouseEvent;
+  "mouseleave": MouseEvent;
+  "mousemove": MouseEvent;
+  "mouseout": MouseEvent;
+  "mouseover": MouseEvent;
+  "mouseup": MouseEvent;
+  "paste": ClipboardEvent;
+  "pause": Event;
+  "play": Event;
+  "playing": Event;
+  "pointercancel": PointerEvent;
+  "pointerdown": PointerEvent;
+  "pointerenter": PointerEvent;
+  "pointerleave": PointerEvent;
+  "pointermove": PointerEvent;
+  "pointerout": PointerEvent;
+  "pointerover": PointerEvent;
+  "pointerrawupdate": Event;
+  "pointerup": PointerEvent;
+  "progress": ProgressEvent;
+  "ratechange": Event;
+  "reset": Event;
+  "resize": UIEvent;
+  "scroll": Event;
+  "scrollend": Event;
+  "securitypolicyviolation": SecurityPolicyViolationEvent;
+  "seeked": Event;
+  "seeking": Event;
+  "select": Event;
+  "selectionchange": Event;
+  "selectstart": Event;
+  "slotchange": Event;
+  "stalled": Event;
+  "submit": SubmitEvent;
+  "suspend": Event;
+  "timeupdate": Event;
+  "toggle": ToggleEvent;
+  "touchcancel": TouchEvent;
+  "touchend": TouchEvent;
+  "touchmove": TouchEvent;
+  "touchstart": TouchEvent;
+  "transitioncancel": TransitionEvent;
+  "transitionend": TransitionEvent;
+  "transitionrun": TransitionEvent;
+  "transitionstart": TransitionEvent;
+  "volumechange": Event;
+  "waiting": Event;
+  "webkitanimationend": Event;
+  "webkitanimationiteration": Event;
+  "webkitanimationstart": Event;
+  "webkittransitionend": Event;
+  "wheel": WheelEvent;
+}
+
+interface WindowEventMap extends GlobalEventHandlersEventMap, WindowEventHandlersEventMap {
+  "DOMContentLoaded": Event;
+  "devicemotion": DeviceMotionEvent;
+  "deviceorientation": DeviceOrientationEvent;
+  "deviceorientationabsolute": DeviceOrientationEvent;
+  "gamepadconnected": GamepadEvent;
+  "gamepaddisconnected": GamepadEvent;
+  "orientationchange": Event;
+}
+
+addEventListener<K extends keyof WindowEventMap>(type: K, listener: (this: Window, ev: WindowEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+
+addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+
+removeEventListener<K extends keyof WindowEventMap>(type: K, listener: (this: Window, ev: WindowEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+
+removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+```
+
+`addEventListener` 方法的第一个参数 `type` 就是事件类型，它的类型是 `keyof WindowEventMap`，再看看 `WindowEventMap` 继承的 `GlobalEventHandlersEventMap`，发现它的 `key` 就是那些事件名，`value` 就是事件对象，正是需要的事件类型。
+
+```ts
+import { watch, unref } from "vue";
+
+// [!code focus]
+export function useEvent<K extends keyof WindowEventMap>(
+  type: K, // [!code focus]
+  callback: (ev: WindowEventMap[K]) => void, // [!code focus]
+  options?: boolean | AddEventListenerOptions // [!code focus]
+) // [!code focus]
+export function useEvent(...args) {
+  let el = typeof args[0] === "string" ? window : args.shift();
+  return watch(
+    () => unref(el),
+    (val, _, onCleanup) => {
+      if (!val) return;
+      val.addEventListener(...argsn);
+      onCleanup(() => val.removeEventListener(...argsn)); // 绑定当前el的解绑事件
+    },
+    {
+      immediate: true,
+    }
+  );
+}
+```
+
+### HTML 中的元素
+
+如法炮制，看看元素的事件类型源码：
+
+```ts
+interface HTMLElementEventMap extends ElementEventMap, GlobalEventHandlersEventMap {
+}
+
+addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLAnchorElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+
+addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+
+removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLAnchorElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+
+removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+```
+
+可以看到，元素的事件类型继承自 `HTMLElementEventMap`。知道这一点就清楚该怎么修改了。
+
+```ts
+import { watch, unref, type Ref } from "vue"; // [!code focus]
+
+export function useEvent<K extends keyof WindowEventMap>(
+  type: K,
+  callback: (ev: WindowEventMap[K]) => void,
+  options?: boolean | AddEventListenerOptions
+)
+// [!code focus]
+export function useEvent<K extends keyof HTMLElementEventMap>(
+  el: Ref<HTMLElement>, // [!code focus]
+  type: K, // [!code focus]
+  callback: (ev: HTMLElementEventMap[K]) => void, // [!code focus]
+  options?: boolean | AddEventListenerOptions // [!code focus]
+) // [!code focus]
+export function useEvent(...args) {
+  let el = typeof args[0] === "string" ? window : args.shift();
+  return watch(
+    () => unref(el),
+    (val, _, onCleanup) => {
       if (!val) return;
       val.addEventListener(...argsn);
       onCleanup(() => val.removeEventListener(...argsn)); // 绑定当前el的解绑事件
@@ -198,6 +414,8 @@ export function useEvent(...args) {
 ```
 
 ## 拓展
+
+### watch
 
 关于<word text="Vue" />的 `watch` 方法，第二个参数是一个回调函数，它接收三个参数：
 
@@ -239,3 +457,47 @@ export function useEvent(...args) {
     // 当组件卸载时，停止监听
     // stop() // 调用 stop() 会触发清理函数
     ```
+
+### 函数重载
+
+函数重载是指在同一个作用域内可以有多个同名函数，但它们的参数列表不同（参数类型、参数数量或参数顺序不同）。编译器会根据调用时提供的参数来决定调用哪个具体的函数实现。
+
+语法结构如下：
+
+```ts
+// 重载声明（函数签名）
+function functionName(param1: type1): returnType1;
+function functionName(param1: type1, param2: type2): returnType2;
+function functionName(param1: type1, param2: type2, param3: type3): returnType3;
+
+// 实际实现（只有一个实现）
+function functionName(param1: type1, param2?: type2, param3?: type3) {
+  // 实际的函数逻辑
+}
+```
+
+重载的优势在于以下几点：
+
+1. 类型安全：
+
+     - 当传入 `window` 时，只能使用 `WindowEventMap` 中的事件类型
+     - 当传入元素时，只能使用 `HTMLElementEventMap` 中的事件类型
+
+2. 智能提示：
+
+    ```typescript
+    // 使用 window 时，IDE 会提示所有 Window 事件
+    useEvent('click', (e) => { /* e 是 MouseEvent */ })
+
+    // 使用元素时，IDE 会提示对应元素的事件
+    useEvent(element, 'click', (e) => { /* e 是 MouseEvent */ })
+    ```
+
+3. 参数验证：
+
+    - 确保传入正确的参数组合
+    - 提供编译时错误检查
+
+## 动手实操
+
+<myIframe url="https://example.duyidao.cn/vue/useEventListener" />

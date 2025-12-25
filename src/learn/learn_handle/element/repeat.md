@@ -515,4 +515,4 @@ export function signProp(( component, props, modalProps, onComfirm = () => {} ))
 
 ## 总体效果
 
-<myIframe url="https://duyidao.github.io/blogweb/#/info/js/repeat" />
+<myIframe url="https://example.duyidao.cn/package/el-dialog" />

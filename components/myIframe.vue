@@ -9,9 +9,13 @@ defineProps({
 
 <template>
   <iframe width="100%"
-    height="600"
+    height="auto"
     frameborder="0"
     :src="url"></iframe>
 </template>
 
-<style scoped></style>
+<style scoped>
+iframe {
+  min-height: 400px;
+}
+</style>
