@@ -147,6 +147,10 @@ function hasCircleRef(obj, seen = new Set()) {
 }
 ```
 
+## 流程步骤
+
+<myIframe url="https://run.duyidao.cn/objectLoop" />
+
 ## 动手实操
 
 <myIframe url="https://example.duyidao.cn/js/objectLoop" />
