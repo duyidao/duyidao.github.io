@@ -75,6 +75,10 @@ init(2);
 2. 调用 `init(1)`，`cancel` 函数是置空 `init(1)` 的 `resolve` 和 `reject` 回调，执行后 `init(1)` 的 `Promise` 状态永远是 `padding`。修改 `cancel` 函数为把它当前的 `resolve` 和 `reject` 置空。执行 `task` 函数
 3. `init(1)` 的 `Promise` 状态永远是 `padding`，`init(2)` 执行完毕后 `resolve()` 返回数据
 
+## 流程步骤
+
+<myIframe url="https://run.duyidao.cn/promiseCancel" />
+
 ## 动手实操
 
 <myIframe url="https://example.duyidao.cn/js/createCancelTask" />
