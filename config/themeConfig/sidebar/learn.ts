@@ -37,7 +37,6 @@ const idea = [
       { text: '父组件监听子组件生命周期', link: '/learn/vue/mounted' },
       { text: 'useTemplateRef实现原理', link: '/learn/vue/useTemplateRef' },
       { text: '模板自动解包Ref', link: '/learn/vue/templateRef' },
-      { text: '图片预加载', link: '/learn/vue/preload' },
       { text: '全局状态管理', link: '/learn/vue/pinia' },
       { text: 'provide和inject的context封装', link: '/learn/vue/context' },
       { text: 'ref和reactive在使用上的区别', link: '/learn/vue/ref' },
@@ -136,6 +135,7 @@ const handle = [
     text: '项目配置测试',
     collapsed: true,
     items: [
+      { text: '图片预加载插件', link: '/learn/test/preload' },
       { text: '前端环境变量使用和原理', link: '/learn/test/module' },
       { text: '前端部署与缓存管理', link: '/learn/test/develop' },
       { text: '前端代码风格定制', link: '/learn/test/style' },

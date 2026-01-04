@@ -377,7 +377,7 @@ export function preloadImages(options: PreloadImagesOptions) {
           tag: "link",
           attrs: {
             rel: "prefetch",
-            href: ctx.server.config.base + href, // [!code focus]
+            href: (ctx.server.config.base || '') + href, // [!code focus]
             as: "image",
           },
         };
@@ -440,7 +440,7 @@ export function preloadImages(options: PreloadImagesOptions) {
           tag: "link",
           attrs: {
             rel: "prefetch",
-            href: ctx.server.config.base + href,
+            href: (ctx.server.config.base || '') + href,
             as: "image",
             ...attrs, // [!code focus]
           },
@@ -452,6 +452,244 @@ export function preloadImages(options: PreloadImagesOptions) {
 ```
 
 :::
+
+### 优化：加载src目录下的图片
+
+#### 问题点
+
+目前的功能只能实现获取 `public` 文件夹下的图片预加载，无法获取到 `src` 下的。
+
+可能有人会说，“这有啥难的，修改一下 `vite.config.ts` 的 `dir` 传参路径不就好了？”。口说无凭，直接实践尝试见分晓。
+
+```ts [vite.config.ts]
+// ...
+import { PreloadImage } from './src/utils/preloadImage'
+
+export default defineConfig({
+  plugins: [
+    // ...
+    PreloadImage({
+      dir: 'images/*.{jpg,png,svg,webp}', // [!code --]
+      dir: 'src/assets/images/*.{jpg,png,svg,webp}', // [!code ++]
+      attrs: {
+        rel: 'prefetch'
+      }
+    }), // 预加载图片
+  ],
+  // ... 
+})
+```
+
+![打印效果](https://pic1.imgdb.cn/item/6959cc021bba575713f7d70c.png)
+
+打印一下发现，居然是一个空数组。还记得在 `/src/utils/preload.ts` 文件里，我们设置过 `cwd` 为 `ctx.server.config.publicDir`，这一步当初是为了配置用户自定义的 `public` 路径。因此，`src` 目录下的图片无法获取到。
+
+#### 修改配置
+
+```ts [/src/utils/preload.ts]
+// [!code --]
+const files = fastGlob.sync(dir, {
+  cwd: ctx?.server?.config?.publicDir, // [!code --]
+}); // [!code --]
+const files = fastGlob.sync(dir) // [!code ++]
+console.log('files', files)
+```
+
+删除之后，就能拿到到 `src` 目录下的图片了。
+
+![拿到的src目录下的图片](https://pic1.imgdb.cn/item/6959cd221bba575713f7d93b.png)
+
+咋一看现在已经搞好了，打包一下项目，查看一下 `index.html` 文件。
+
+```html [index.html]
+<head>
+  <link rel="prefetch" href="src/assets/images/preloadImage1.jpg" as="image">
+  <link rel="prefetch" href="src/assets/images/preloadImage10.jpg" as="image">
+  <link rel="prefetch" href="src/assets/images/preloadImage2.jpg" as="image">
+  <link rel="prefetch" href="src/assets/images/preloadImage3.jpg" as="image">
+  <link rel="prefetch" href="src/assets/images/preloadImage4.jpg" as="image">
+  <link rel="prefetch" href="src/assets/images/preloadImage5.jpg" as="image">
+  <link rel="prefetch" href="src/assets/images/preloadImage6.jpg" as="image">
+  <link rel="prefetch" href="src/assets/images/preloadImage7.jpg" as="image">
+  <link rel="prefetch" href="src/assets/images/preloadImage8.jpg" as="image">
+  <link rel="prefetch" href="src/assets/images/preloadImage9.jpg" as="image">
+</head>  
+```
+
+可以看到，打完包后它的路径依旧是 `src/xxx`，这显然不对，打包后没有这个 `src` 目录。
+
+该怎么做呢？
+
+#### generateBundle
+
+解决方法是，在 `vite` 打包的时候，通过 `generateBundle` 钩子，将 `src` 替换成 `assets`。
+
+`generateBundle` 钩子会在打包完成后执行，它接收两个参数，第一个参数是 `RollupOutput`，第二个参数是 `RollupOutputOptions`。这里我们需要的是 `RollupOutputOptions`，它是一个对象，包含了打包后的文件信息。
+
+打印一下看看结果，得到的是一个对象数组，每个对象代表一个文件。包含了文件名、路径、大小等信息。
+
+![打印结果](https://pic1.imgdb.cn/item/6959e2ce355893cb826dbf60.png)
+
+而前面通过 `fastGlob.sync(dir)` 获取到的文件路径，是我们想要预加载的图片路径。
+
+因此，我们可以通过 `generateBundle` 钩子，判断一下，如果文件是需要预加载的，那么就转换一下路径即可。
+
+```ts [/src/utils/preload.ts]
+export function PreloadImage(options: PreloadImageOptions) {
+  const { dir, attrs = {} } = options; // [!code focus]
+  const assetsImages: string[] = []; // [!code focus]
+  return {
+    name: "vite-plugin-preload-image",
+     // [!code focus]
+    generateBundle(_: any, bundle: any) {
+      const values = Object.values(bundle) // [!code focus]
+      const files = fastGlob.sync(options.dir); // [!code focus]
+       // [!code focus]
+      values.forEach((item: any) => {
+         // [!code focus]
+        if (files.includes(Reflect.get(item, "originalFileName"))) {
+          assetsImages.push(item.fileName); // [!code focus]
+        } // [!code focus]
+      }) // [!code focus]
+    }, // [!code focus]
+    transformIndexHtml(html: string, ctx: any) {
+      // ...
+    }
+  }
+)
+```
+
+打印 `assetsImages` 查看结果：
+
+![打印assetsImages结果](https://pic1.imgdb.cn/item/6959e5d0fb4819daabe93c1d.png)
+
+可以看到，现在的路径已经变成了 `assets/xxx`，接下来只需要替换一下路径即可。
+
+#### 路径替换
+
+```ts [/src/utils/preload.ts]
+import fastGlob from "fast-glob";
+
+interface PreloadImageOptions {
+  // 预加载图片的路径
+  dir: string;
+  attrs?: {
+    rel: "preload" | "prefetch";
+  };
+}
+
+export function PreloadImage(options: PreloadImageOptions) {
+  const { dir, attrs = {} } = options;
+  const assetsImages: string[] = []; // 存储打包后的图片路径
+
+  return {
+    name: "vite-plugin-preload-image",
+    generateBundle(_: any, bundle: any) {
+      const values = Object.values(bundle)
+      const files = fastGlob.sync(options.dir);
+      values.forEach((item: any) => {
+        if (files.includes(Reflect.get(item, "originalFileName"))) {
+          assetsImages.push(item.fileName);
+        }
+      })
+    },
+    transformIndexHtml(html: string, ctx: any) {
+      let images: string[] = []; // [!code focus]
+      // 本地开发环境，直接读取图片路径 // [!code focus]
+       // [!code focus]
+      if (ctx.server) {
+        const files = fastGlob.sync(options.dir); // [!code focus]
+         // [!code focus]
+        images = files.map((file) => {
+          return (ctx?.server?.config?.base || '') + file; // [!code focus]
+        }) // [!code focus]
+      } // [!code focus]
+      // 生产环境，读取打包后的图片路径 // [!code focus]
+       // [!code focus]
+      else {
+        images = assetsImages; // [!code focus]
+      } // [!code focus]
+       // [!code focus]
+      return images.map((file) => {
+        return {
+          tag: "link",
+          attrs: {
+            rel: "prefetch",
+            href: file, // [!code focus]
+            as: "image",
+            ...attrs,
+          },
+        };
+      });
+    },
+  };
+}
+```
+
+现在再打包项目，查看 `dist/index.html` 文件，可以看到路径已经变成了 `assets/xxx`。
+
+```html
+<head>
+  <link rel="prefetch" href="assets/preloadImage4-BOBAFEBa.jpg" as="image">
+  <link rel="prefetch" href="assets/preloadImage2-BFliE7sc.jpg" as="image">
+  <link rel="prefetch" href="assets/preloadImage1-CN-oGENJ.jpg" as="image">
+  <link rel="prefetch" href="assets/preloadImage3-CoF54uRY.jpg" as="image">
+  <link rel="prefetch" href="assets/preloadImage5-BMtSQGFg.jpg" as="image">
+  <link rel="prefetch" href="assets/preloadImage8-C-FiHkIm.jpg" as="image">
+  <link rel="prefetch" href="assets/preloadImage7-Qf6SeUeD.jpg" as="image">
+  <link rel="prefetch" href="assets/preloadImage9-Cv99fCzM.jpg" as="image">
+  <link rel="prefetch" href="assets/preloadImage6-4XS0y97y.jpg" as="image">
+  <link rel="prefetch" href="assets/preloadImage10-Bd9AsCjj.jpg" as="image">
+</head>
+```
+
+## 拓展
+
+### Reflect
+
+在优化路径替换的时候用到了 `Reflect`，它是 ES6 新增的一个对象，提供了拦截和操作<word text="JavaScript" />对象的方法。
+
+```ts
+if (files.includes(Reflect.get(item, "originalFileName"))) {
+  assetsImages.push(item.fileName);
+}
+```
+
+这里之所以使用 `Reflect.get`，是因为 `item.originalFileName` 是一个 `Getter` 属性，不能直接通过 `item.originalFileName` 获取到值，而 `Reflect.get` 可以获取到 `Getter` 属性的值。
+
+`Reflect` 的主要 API 有：
+
+- `get`
+  
+  ```js
+  Reflect.get(target, propertyKey[, receiver])
+  ```
+  
+  获取对象身上某个属性的值，类似于 `target[propertyKey]`。
+
+- `set`
+  
+  ```js
+  Reflect.set(target, propertyKey, value[, receiver])
+  ```
+  
+  将值分配给对象的属性，类似于 `target[propertyKey] = value`。
+
+- `has`
+  
+  ```js
+  Reflect.has(target, propertyKey)
+  ```
+  
+  判断对象是否具有某个属性，类似于 `propertyKey in target`。
+
+- `deleteProperty`
+  
+  ```js
+  Reflect.deleteProperty(target, propertyKey)
+  ```
+  
+  删除对象的某个属性，类似于 `delete target[propertyKey]`。
 
 ## 动手实操
 
