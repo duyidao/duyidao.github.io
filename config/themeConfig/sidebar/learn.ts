@@ -13,11 +13,39 @@ const idea = [
           { text: '请求的复用与兼容', link: '/learn/js/design/reuse' },
         ]
       },
+      {
+        text: 'Promise',
+        collapsed: true,
+        items: [
+          {
+            text: '手写Promise系列',
+            collapsed: true,
+            items: [
+              { text: '类与.then', link: '/learn/js/promise/write/' },
+              { text: 'catch与finally', link: '/learn/js/promise/write/catch' },
+              { text: '静态方法', link: '/learn/js/promise/write/status' },
+            ]
+          },
+          { text: '请求取消', link: '/learn/js/promise/abort' },
+          { text: '如何避免相同的请求重复发送', link: '/learn/js/promise/abortSame' },
+          { text: 'Axios二次封装', link: '/learn/js/promise/twice' },
+          { text: '并发请求封装', link: '/learn/js/promise/concurrency' },
+          { text: '并发任务控制', link: '/learn/js/promise/control' },
+          { text: '消除异步传染性', link: '/learn/js/promise/infect' },
+          { text: '高量级任务执行优化', link: '/learn/js/promise/task' },
+        ]
+      },
+      {
+        text: '类',
+        collapsed: true,
+        items: [
+          { text: '类的多态', link: '/learn/js/class/polymorphism' },
+        ]
+      },
       { text: '如何判断对象是否存在循环引用', link: '/learn/js/objectLoop' },
       { text: '异步数据竞态取消', link: '/learn/js/race' },
       { text: 'js执行顺序和异步实战技巧', link: '/learn/js/eat' },
       { text: '垃圾回收与内存泄漏', link: '/learn/js/rubbish' },
-      { text: '类的多态', link: '/learn/js/polymorphism' },
       { text: '判断是否是数组', link: '/learn/js/isArray' },
       { text: '属性描述符', link: '/learn/js/descriptor' },
       { text: 'log对象时需要注意的坑', link: '/learn/js/console' },
@@ -47,27 +75,6 @@ const idea = [
       { text: 'nextTick', link: '/learn/vue/nextTick' },
       { text: '图片动态引入使用require', link: '/learn/vue/require' },
       { text: '自定义事件封装', link: '/learn/vue/custom' },
-    ]
-  },
-  {
-    text: 'Promise',
-    collapsed: true,
-    items: [
-      {
-        text: '手写Promise系列',
-        collapsed: true,
-        items: [
-          { text: '类与.then', link: '/learn/promise/write/' },
-          { text: 'catch与finally', link: '/learn/promise/write/catch' },
-          { text: '静态方法', link: '/learn/promise/write/status' },
-        ]
-      },
-      { text: '请求取消', link: '/learn/promise/abort' },
-      { text: 'Axios二次封装', link: '/learn/promise/twice' },
-      { text: '并发请求封装', link: '/learn/promise/concurrency' },
-      { text: '并发任务控制', link: '/learn/promise/control' },
-      { text: '消除异步传染性', link: '/learn/promise/infect' },
-      { text: '高量级任务执行优化', link: '/learn/promise/task' },
     ]
   },
   {
