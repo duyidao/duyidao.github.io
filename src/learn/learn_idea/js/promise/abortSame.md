@@ -25,15 +25,17 @@ async function load() {
 }
 
 function asyncOnce(cb: (...args: any[]) => Promise<any>) {
-  return new Promise((resolve, reject) => {
-    cb()
-      .then((res: any) => {
-        resolve(res)
-      })
-      .catch((err: any) => {
-        reject(err)
-      })
-  })
+  return () => {
+    return new Promise((resolve, reject) => {
+      cb()
+        .then((res: any) => {
+          resolve(res)
+        })
+        .catch((err: any) => {
+          reject(err)
+        })
+    })
+  }
 }
 
 asyncOnce(load)
@@ -53,23 +55,25 @@ asyncOnce(load)
 function asyncOnce(cb: (...args: any[]) => Promise<any>) {
   const isPending = false // [!code ++]
   const stack: any[] = [] // [!code ++]
-  return new Promise((resolve, reject) => {
-     // [!code ++]
-    if (isPending) {
-      stack.push({ resolve, reject }) // [!code ++]
-      return // [!code ++]
-    } // [!code ++]
-    isPending = true // [!code ++]
-    cb()
-      .then((res: any) => {
-        resolve(res)
-        stack.forEach(({ resolve }) => resolve(res)) // [!code ++]
-      })
-      .catch((err: any) => {
-        reject(err)
-        stack.forEach(({ reject }) => reject(err)) // [!code ++]
-      })
-  })
+  return () => {
+    return new Promise((resolve, reject) => {
+      // [!code ++]
+      if (isPending) {
+        stack.push({ resolve, reject }) // [!code ++]
+        return // [!code ++]
+      } // [!code ++]
+      isPending = true // [!code ++]
+      cb()
+        .then((res: any) => {
+          resolve(res)
+          stack.forEach(({ resolve }) => resolve(res)) // [!code ++]
+        })
+        .catch((err: any) => {
+          reject(err)
+          stack.forEach(({ reject }) => reject(err)) // [!code ++]
+        })
+    })
+  }
 }
 ```
 
@@ -85,23 +89,25 @@ function asyncOnce(cb: (...args: any[]) => Promise<any>) {
 function asyncOnce(cb: (...args: any[]) => Promise<any>) {
   const isPending = false
   const stack: any[] = []
-  return new Promise((resolve, reject) => {
-    stack.push({ resolve, reject }) // [!code ++]
-    if (isPending) {
-      stack.push({ resolve, reject }) // [!code --]
-      return
-    }
-    isPending = true
-    cb()
-      .then((res: any) => {
-        resolve(res) // [!code --]
-        stack.forEach(({ resolve }) => resolve(res))
-      })
-      .catch((err: any) => {
-        reject(err) // [!code --]
-        stack.forEach(({ reject }) => reject(err))
-      })
-  })
+  return () => {
+    return new Promise((resolve, reject) => {
+      stack.push({ resolve, reject }) // [!code ++]
+      if (isPending) {
+        stack.push({ resolve, reject }) // [!code --]
+        return
+      }
+      isPending = true
+      cb()
+        .then((res: any) => {
+          resolve(res) // [!code --]
+          stack.forEach(({ resolve }) => resolve(res))
+        })
+        .catch((err: any) => {
+          reject(err) // [!code --]
+          stack.forEach(({ reject }) => reject(err))
+        })
+    })
+  }
 }
 ```
 
@@ -114,29 +120,31 @@ function asyncOnce(cb: (...args: any[]) => Promise<any>) {
 ```ts
 function asyncOnce(cb: (...args: any[]) => Promise<any>) {
   let map = new Map()
-  return new Promise((resolve, reject) => {
-    const key = JSON.stringify(args)
-    // 如果没有key，则新建一个对象，否则直接取对象
-    if (!map.has(key)) {
-      map.set(key, { resolve: [], reject: [], isPending: false })
-    }
-    const state = map.get(key)
-    // 把当前的成功和失败回调保存
-    state.resolve.push(resolve)
-    state.reject.push(reject)
-    if (state.isPending) return
-    state.isPending = true
-    cb()
-      .then((res: any) => {
-        state.resolve.forEach((resolve: any) => resolve(res))
-      })
-      .catch((err: any) => {
-        state.reject.forEach((reject: any) => reject(err))
-      })
-      .finally(() => {
-        map[key] = null
-      })
-  })
+  return (...args: any[]) => {
+    return new Promise((resolve, reject) => {
+      const key = JSON.stringify(args)
+      // 如果没有key，则新建一个对象，否则直接取对象
+      if (!map.has(key)) {
+        map.set(key, { resolve: [], reject: [], isPending: false })
+      }
+      const state = map.get(key)
+      // 把当前的成功和失败回调保存
+      state.resolve.push(resolve)
+      state.reject.push(reject)
+      if (state.isPending) return
+      state.isPending = true
+      cb()
+        .then((res: any) => {
+          state.resolve.forEach((resolve: any) => resolve(res))
+        })
+        .catch((err: any) => {
+          state.reject.forEach((reject: any) => reject(err))
+        })
+        .finally(() => {
+          map.set(key, null) // 请求完成，把key对应的值设置为null
+        })
+    })
+  }
 }
 ```
 
