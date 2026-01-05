@@ -637,4 +637,4 @@ const Comp = ((props, { slots }) => {
 
 ## 动手实操
 
-<myIframe url="https://example.duyidao.cn/package/el-input" />
+<myIframe url="https://example.duyidao.cn/reDevelop/el-input" />

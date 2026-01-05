@@ -149,4 +149,4 @@ const [obj, resetObj] = useResettableReactive({
 
 ## 动手实操
 
-<myIframe url="https://example.duyidao.cn/vue/stateReset" />
+<myIframe url="https://example.duyidao.cn/hook/stateReset" />

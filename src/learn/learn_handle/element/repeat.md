@@ -521,4 +521,4 @@ export function signProp(( component, props, modalProps, onComfirm = () => {} ))
 
 ## 动手实操
 
-<myIframe url="https://example.duyidao.cn/package/el-dialog" />
+<myIframe url="https://example.duyidao.cn/reDevelop/el-dialog" />

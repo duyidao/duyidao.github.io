@@ -248,4 +248,4 @@ const [DefineTemplate, UseTemplate] = createReusableTemplate();
 
 ## 动手实操
 
-<myIframe url="https://example.duyidao.cn/vue/defineComponent" />
+<myIframe url="https://example.duyidao.cn/hook/defineComponent" />

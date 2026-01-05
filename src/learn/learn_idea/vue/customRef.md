@@ -48,4 +48,4 @@ export const loading = customRef((track, trigger) => {
 
 ## 动手实操
 
-<myIframe url="https://example.duyidao.cn/vue/customRefLoading" />
+<myIframe url="https://example.duyidao.cn/hook/customRefLoading" />

@@ -693,4 +693,4 @@ if (files.includes(Reflect.get(item, "originalFileName"))) {
 
 ## 动手实操
 
-<myIframe url="https://example.duyidao.cn/vue/preloadImage" />
+<myIframe url="https://example.duyidao.cn/vite/preloadImage" />

@@ -118,4 +118,4 @@ function defineStore(fn) {
 
 ## 动手实操
 
-<myIframe url="https://example.duyidao.cn/vue/usePinia" />
+<myIframe url="https://example.duyidao.cn/hook/usePinia" />
