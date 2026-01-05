@@ -66,6 +66,7 @@ const idea = [
       { text: 'useTemplateRef实现原理', link: '/learn/vue/useTemplateRef' },
       { text: '模板自动解包Ref', link: '/learn/vue/templateRef' },
       { text: '全局状态管理', link: '/learn/vue/pinia' },
+      { text: 'vue异步组件实现原理', link: '/learn/vue/defineAsyncComponent' },
       { text: 'provide和inject的context封装', link: '/learn/vue/context' },
       { text: 'ref和reactive在使用上的区别', link: '/learn/vue/ref' },
       { text: 'Vue2 VS Vue3', link: '/learn/vue/different' },
