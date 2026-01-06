@@ -113,6 +113,7 @@ const handle = [
     collapsed: true,
     items: [
       { text: '二次封装组件库组件', link: '/learn/element/twice' },
+      { text: 'vue动态表单实现原理', link: '/learn/element/form' },
       { text: '二次封装el-button实现优雅loading效果', link: '/learn/element/button' },
       { text: '组合式函数封装', link: '/learn/element/function' },
       { text: '二次封装el-dialog学习重复小组件处理经验', link: '/learn/element/repeat' },
