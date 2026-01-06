@@ -586,3 +586,7 @@ const form = computed(() => props.formItems.filter(item => !item.hidden)) // [!c
   </el-form>
 </template>
 ```
+
+## 动手实操
+
+<myIframe url="https://example.duyidao.cn/reDevelop/el-form" />
