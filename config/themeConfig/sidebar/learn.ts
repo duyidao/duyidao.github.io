@@ -116,6 +116,7 @@ const handle = [
       { text: 'vue动态表单实现原理', link: '/learn/element/form' },
       { text: '二次封装el-button实现优雅loading效果', link: '/learn/element/button' },
       { text: '组合式函数封装', link: '/learn/element/function' },
+      { text: '第三方插件组合式函数封装', link: '/learn/element/functionThird' },
       { text: '二次封装el-dialog学习重复小组件处理经验', link: '/learn/element/repeat' },
       { text: '组件库搭建', link: '/learn/element/library' },
       { text: '组件设计技巧', link: '/learn/element/skill' },
