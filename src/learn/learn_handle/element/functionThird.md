@@ -389,6 +389,94 @@ export const useSortable = (containerRef: any, list: any[], options?: any = {}) 
 }
 ```
 
+## 无渲染组件方式
+
+大部分的组合式函数都可以做成无渲染组件。
+
+无渲染组件咋一听感觉很高端，实际上就是在一个新的 `.vue` 组件中引入组合式函数，通过 `defineProps` 和 `defineModel` 接收参数。在模板中不写 `div` 这种渲染节点，而是直接一个 `<slot></slot>` 插槽展示内容。
+
+父组件引入这个组件，用默认插槽展示需要展示的内容即可。
+
+以 `useSortable` 为例，代码如下：
+
+::: code-group
+
+```vue [index.vue]
+<script setup lang="ts">
+import { ref, useTemplateRef } from 'vue'
+// [!code focus]
+import VueSortable from './useSortable.vue'
+
+const list = ref([
+  { id: 1, name: '张三' },
+  { id: 2, name: '李四' },
+  { id: 3, name: '王五' },
+  { id: 4, name: '赵六' },
+  { id: 5, name: '钱七' },
+])
+
+// [!code focus]
+const vueSortable = useTemplateRef('vueSortable')
+
+const handleDestroy = () => {
+  // [!code focus]
+  vueSortable.value.instance.destroy()
+}
+</script>
+
+<template>
+  <div>
+    <div class="flex gap-40">
+      <!-- [!code focus] -->
+      <VueSortable ref="vueSortable" :animation="150" v-model="list">
+      <!-- [!code focus] -->
+        <template v-slot="{ instance }">
+      <!-- [!code focus] -->
+          <li v-for="item in list" :key="item.id" class="flex justify-center items-center w-120 h-40 bg-#7553db text-#fff rounded-5 cursor-pointer">{{ item.name }}</li>
+      <!-- [!code focus] -->
+        </template>
+      <!-- [!code focus] -->
+      </VueSortable>
+    </div>
+    <el-button class="mt-20" @click="handleDestroy">手动销毁实例</el-button>
+  </div>
+</template>
+
+<style scoped>
+</style>
+```
+
+```vue [useSortable.vue]
+<script setup lang="ts">
+import { useTemplateRef, useAttrs } from 'vue'
+import { useSortable } from './useSortable'
+
+const modelValue = defineModel()
+
+const containerRef = useTemplateRef('containerRef')
+
+const instance = useSortable(containerRef, modelValue, useAttrs())
+defineExpose({ instance })
+</script>
+
+<template>
+  <ul class="flex flex-col gap-10 list-none" ref="containerRef">
+    <slot :instance="instance"></slot>
+  </ul>
+</template>
+
+<style scoped>
+</style>
+```
+
+:::
+
+子组件主要使用 `defineModel` 接收父组件传递的 `v-model`，使用 `useAttrs` 接收父组件全部的 `v-bind` 参数作为 `options` 数据。再 `defineExpose` 将 `instance` 暴露给父组件使用。
+
+在模板中，通过插槽也能把参数传递给父组件，父组件通过 `v-slot` 接收参数。
+
+> 上述示例代码中，严格来说不算是无渲染组件，因为在模板中有一个 `ul` 标签。但是这个 `ul` 标签是 `Sortable` 的容器，因此可以认为这个 `ul` 标签是必须的。其他不需要挂载容器的组合式函数，可以不需要渲染节点，就能真正意义上实现无渲染组件。
+
 ## 动手实操
 
 <myIframe url="https://example.duyidao.cn/reDevelop/sortable" />
