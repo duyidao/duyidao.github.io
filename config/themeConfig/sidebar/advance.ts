@@ -76,6 +76,14 @@ const sharp = [
       { text: '时间轴', link: '/sharp/gsap/timeline' },
     ],
   },
+  {
+    text: 'Vite',
+    collapsed: true,
+    items: [
+      { text: '创建项目', link: '/sharp/vite/' },
+      { text: '创建项目', link: '/sharp/vite/' },
+    ],
+  },
 ]
 
 const module = [
