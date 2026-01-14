@@ -1,3 +1,10 @@
+---
+title: Vite 的 SPA 模式
+author:
+  - 小猿_Eric 【手把手带你玩转Vite】创建 vue2/3 项目&https://www.bilibili.com/video/BV1whEXzmExw/
+  - 小猿_Eric 【手把手带你玩转Vite】创建 react 项目&https://www.bilibili.com/video/BV1M7JizjE4Y/
+---
+
 # Vite 的 SPA 模式
 
 ## 前言
@@ -8,9 +15,11 @@
 
 最后再来聊聊如何用<word text="Vite" />创建一个<word text="Vue2" />项目。
 
-## Vite 创建 Vue3 项目
+## Vite 创建 Vue 项目
 
-### 命令行对比
+### Vite 创建 Vue3 项目
+
+#### 命令行对比
 
 先来看看最新版的 [Vite 官方文档](https://vitejs.cn/vite6-cn/guide/#scaffolding-your-first-vite-project)，如何新建一个项目。
 
@@ -46,7 +55,7 @@ pnpm create vue@latest
 
 从命令行的对比上看，二者并没有太大的区别。
 
-### 入口文件对比
+#### 入口文件对比
 
 新建一个项目后，我们来看看入口文件有何不同。
 
@@ -88,7 +97,7 @@ pnpm create vue@latest
 
 从入口文件来看，二者并没有多大的差别，都是以 `type` 为 `module` 的 `script` 标签引入加载 `main.js`，运用到的是浏览器的 [ES Module](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules) 特性。
 
-### package.json 对比
+#### package.json 对比
 
 下面来对比两个项目的 `package.json` 文件。
 
@@ -146,7 +155,7 @@ pnpm create vue@latest
 
 相比于<word text="Vite" />项目，<word text="Vue3" />项目多了一个 `vite-plugin-vue-devtools` 插件，该插件主要用于调试项目。
 
-### vite.config.js 对比
+#### vite.config.js 对比
 
 再来看看两个项目的 `vite.config.js` 文件。
 
@@ -190,15 +199,15 @@ export default defineConfig({
 
 除此之外，<word text="Vue3" />项目还配置了 `resolve.alias`，用于简化路径引用。
 
-## Vue Cli 创建 Vue 项目
+### Vue Cli 创建 Vue 项目
 
 接下来用<word text="Vue Cli" />创建一个<word text="Vue3" />项目，看看有何不同。
 
-### 目录结构
+#### 目录结构
 
 首先查看目录结构，可以发现，<word text="Vue Cli" />创建的项目根目录下没有 `index.html` 做入口文件了，且 `index.html` 被放在了 `public` 目录下。
 
-### index.html
+#### index.html
 
 ```html [vue-cli/index.html]
 <!DOCTYPE html>
@@ -220,9 +229,15 @@ export default defineConfig({
 </html>
 ```
 
-现在 `index.html` 充当的不是入口文件，而是模板文件，用于生成入口文件。
+现在 `index.html` 充当的不是入口文件，而是在构建时，被用作模板（`template`），<word text="Webpack" />会在这个模板的基础上：
 
-### package.json
+- 自动注入打包后的资源文件（如 `<script src="/js/app.xxxx.js"></script>`）
+- 注入 `<link rel="stylesheet" href="/css/app.xxxx.css">`
+- 保留你写在模板中的 `<meta>`、`<title>`、`<div id="app"></div>` 等内容
+
+> 简单说：`public/index.html` 是一个挂载点，是“骨架”，构建后会自动“填充”资源引用。
+
+#### package.json
 
 ```json [vue-cli/package.json]
 {
@@ -272,7 +287,7 @@ export default defineConfig({
 
 `package.json` 文件中，多了很多 `babel` 和 `webpack` 相关的配置，用于处理 `ES6` 语法、`eslint` 语法检查等。
 
-### vue.config.js
+#### vue.config.js
 
 由于不是用<word text="Vite" />创建的项目，因此没有 `vite.config.js` 文件，但 `vue-cli` 提供了 `vue.config.js` 文件。
 
@@ -285,7 +300,7 @@ module.exports = defineConfig({
 
 而语法也不是 `ES6` 的 `import`，而是 `CommonJS` 的 `require` 语法。
 
-## 拓展：用 Vite 创建 Vue2 项目
+### 拓展：用 Vite 创建 Vue2 项目
 
 最后，我们再来看看如何用<word text="Vite" />创建一个<word text="Vue2" />项目。
 
@@ -335,8 +350,65 @@ export default defineConfig({
 
 这样就可以用<word text="Vite" />创建一个<word text="Vue2" />项目了。
 
-## 小结
+### 阶段小结
 
 本节我们学习了如何用<word text="Vite" />创建<word text="Vue" />项目，以及不同命令行创建的项目有什么区别。
 
 主要区别在于：入口与传统构建工具的不同。
+
+## Vite 创建 React 项目
+
+在之前，创建一个<word text="React" />项目，需要借助 `Create React App` 工具。
+
+```bash
+npx create-react-app react-app
+```
+
+但是根据 [官网](https://www.reactjs.cn/blog/2025/02/14/sunsetting-create-react-app) 的提示，`Create React App` 已经弃置了，现在创建<word text="React" />项目，推荐使用<word text="Vite" />。
+
+::: code-group
+
+```sh [npm]
+npm create vite@latest
+```
+
+```sh [pnpm]
+pnpm create vite
+```
+
+:::
+
+和创建<word text="Vue" />项目一样，创建<word text="React" />项目时，可以选择模板，比如 `vanilla`、`react-ts`、`vue`、`vue-ts` 等。
+
+```bash
+npm create vite@latest react-app --template react
+```
+
+创建完成后，进入项目目录，安装依赖。
+
+```bash
+cd react-app
+npm install
+```
+
+### 入口文件
+
+一样的，根目录下的 `index.html` 文件，是入口文件。
+
+```html [react/index.html]
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react-app</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+```
+
+终端输入 `pnpm dev` 运行项目后，`main.jsx` 文件会被<word text="Vite" />编译为 `main.js` 文件，浏览器无需关注一开始是 `main.jsx`，而是 `main.js`，只需要最终拿到的是 `js` 文件即可。
