@@ -4,18 +4,18 @@
 
 前面实现 `ref` 的响应式，我们封装了 `link` 方法收集依赖和 `propagate` 方法触发依赖，因此 `reactive` 的实现可以复用。
 
-在<word text="Vue" /> 官方源码中， `reactive` 都是接收一个对象，通过 `proxy` 代理对象，当访问对象的属性时，触发 `get` 代理，当修改对象的属性时，触发 `set` 代理。
+在<word text="Vue" />官方源码中， `reactive` 都是接收一个对象，通过 `proxy` 代理对象，当访问对象的属性时，触发 `get` 代理，当修改对象的属性时，触发 `set` 代理。
 
 在 `get` 方法调用 `link` 方法收集依赖，并使用 `Reflect.get` 映射返回值；在 `set` 方法中使用 `Reflect.set` 保存新值，调用 `propagate` 方法触发依赖，最后返回新值。
 
 ```ts
-import { link, propagate } from './system.ts'
-import { activeSub } from './effect.ts'
-import { isObject } from '@vue/shared'
+import { link, propagate } from "./system.ts";
+import { activeSub } from "./effect.ts";
+import { isObject } from "@vue/shared";
 
 export const reactive = (obj) => {
-  return createObjectReactive(obj)
-}
+  return createObjectReactive(obj);
+};
 
 export function createObjectReactive(obj) {
   /**
@@ -25,26 +25,27 @@ export function createObjectReactive(obj) {
     /**
      * target 不是一个对象，哪儿来的回哪儿去
      */
-    return target
+    return target;
   }
 
   const proxy = new Proxy(obj, {
     get(target, key) {
-      console.log('target, key', target, key)
-      // 收集依赖
-      trackReactive(target, key)
-      return Reflect.get(target, key)
+      console.log("target, key", target, key);
+      // 收集依赖，绑定 target 中某一个 key 和 sub 之间的关系
+      trackReactive(target, key);
+      // 返回值
+      return Reflect.get(target, key);
     },
     set(target, key, newValue) {
-      console.log('target, key, newValue', target, key, newValue)
-      // 保存新值
-      const res = Reflect.set(target, key, newValue)
+      console.log("target, key, newValue", target, key, newValue);
+      // 保存新值，set 的时候，通知之前收集的依赖，重新执行
+      const res = Reflect.set(target, key, newValue);
       // 触发依赖
-      triggerReactive(target, key, res)
-      return res
+      triggerReactive(target, key, res);
+      return res;
     },
-  })
-  return proxy
+  });
+  return proxy;
 }
 
 /**
@@ -53,7 +54,7 @@ export function createObjectReactive(obj) {
  * @param key 属性名
  */
 function trackReactive(target, key) {
-  link(dep, activeSub)
+  link(dep, activeSub);
 }
 
 /**
@@ -62,7 +63,7 @@ function trackReactive(target, key) {
  * @param key 属性名
  */
 function triggerReactive(target, key) {
-  propagate(target, key)
+  propagate(target, key);
 }
 ```
 
@@ -100,68 +101,92 @@ const obj = reactive({
 3. 调用 `link` 方法，把 `dep` 和 `activeSub` 传入
 
 ```ts
-import { link, propagate } from './system.ts'
-import { activeSub } from './effect.ts'
+import { link, propagate, type Link } from "./system.ts";
+import { activeSub } from "./effect.ts";
 
 export const reactive = (obj) => {
-  return createObjectReactive(obj)
-}
+  return createObjectReactive(obj);
+};
 
 export function createObjectReactive(obj) {
   if (!isObject(target)) {
-    return target
+    return target;
   }
 
   const proxy = new Proxy(obj, {
     get(target, key) {
-      console.log('target, key', target, key)
+      console.log("target, key", target, key);
       // 收集依赖
-      trackReactive(target, key)
-      return Reflect.get(target, key)
+      trackReactive(target, key);
+      return Reflect.get(target, key);
     },
     set(target, key, newValue) {
-      console.log('target, key, newValue', target, key, newValue)
+      console.log("target, key, newValue", target, key, newValue);
       // 保存新值
-      const res = Reflect.set(target, key, newValue)
+      const res = Reflect.set(target, key, newValue);
       // 触发依赖
-      triggerReactive(target, key, res)
-      return res
+      triggerReactive(target, key, res);
+      return res;
     },
-  })
-  return proxy
+  });
+  return proxy;
 }
 
-const trackWeakMap = new WeakMap() // [!code ++]
+// [!code ++]
+/**
+  // [!code ++]
+ * 绑定 target 的 key 关联的所有的 Dep
+  // [!code ++]
+ * obj = { a: 1, b: 2, c: 3 }
+  // [!code ++]
+ * targetMap = {
+  // [!code ++]
+ *  [obj]: {
+  // [!code ++]
+ *   [a]: new Dep,
+  // [!code ++]
+ *   [b]: new Dep,
+  // [!code ++]
+ *   [c]: new Dep
+  // [!code ++]
+ *  }
+  // [!code ++]
+ * }
+  // [!code ++]
+ */
+const trackWeakMap = new WeakMap(); // [!code ++]
 
 function trackReactive(target, key) {
+  // [!code ++]
   if (activeSub) {
+    let depsMap = trackWeakMap.get(target); // [!code ++]
     // [!code ++]
-    let depsMap = trackWeakMap.get(target) // [!code ++]
-    /** // [!code ++]
+    /**
      * 没有depsMap说明之前没有收集过这个对象的key，创建一个新的 // [!code ++]
      */ // [!code ++]
+    // [!code ++]
     if (!depsMap) {
-      // [!code ++]
-      depsMap = new Map() // [!code ++]
-      trackWeakMap.set(target, depsMap) // [!code ++]
+      depsMap = new Map(); // [!code ++]
+      trackWeakMap.set(target, depsMap); // [!code ++]
     } // [!code ++]
-    let dep = depsMap.get(key) // [!code ++]
-    /** // [!code ++]
+    let dep = depsMap.get(key); // [!code ++]
+    // [!code ++]
+    /**
      * 没有dep说明之前没有收集过，创建一个新的 // [!code ++]
      */ // [!code ++]
+    // [!code ++]
     if (!dep) {
-      // [!code ++]
-      dep = new Dep() // [!code ++]
-      depsMap.set(key, dep) // [!code ++]
+      dep = new Dep(); // [!code ++]
+      depsMap.set(key, dep); // [!code ++]
     } // [!code ++]
-    link(dep, activeSub)
+    link(dep, activeSub);
   } // [!code ++]
 }
 
+// [!code ++]
 class Dep {
-  // [!code ++]
-  subs // [!code ++]
-  subsTail // [!code ++]
+  subs: Link; // [!code ++]
+  subsTail: Link; // [!code ++]
   constructor() {} // [!code ++]
 } // [!code ++]
 ```
@@ -177,33 +202,45 @@ class Dep {
 ```ts
 function trackReactive(target, key) {
   if (activeSub) {
-    let depsMap = trackWeakMap.get(target)
+    let depsMap = trackWeakMap.get(target);
     /**
      * 没有depsMap说明之前没有收集过这个对象的key，创建一个新的
      */
     if (!depsMap) {
-      depsMap = new Map()
-      trackWeakMap.set(target, depsMap)
+      depsMap = new Map();
+      trackWeakMap.set(target, depsMap);
     }
-    let dep = depsMap.get(key)
+    let dep = depsMap.get(key);
     /**
      * 没有dep说明之前没有收集过，创建一个新的
      */
     if (!dep) {
-      dep = new Dep()
-      depsMap.set(key, dep)
+      dep = new Dep();
+      depsMap.set(key, dep);
     }
-    link(dep, activeSub)
+    link(dep, activeSub);
   }
 }
 
+// [!code ++]
 function triggerReactive(target, key, res) {
+  const depsMap = trackWeakMap.get(target); // [!code ++]
   // [!code ++]
-  const depsMap = trackWeakMap.get(target) // [!code ++]
-  if (!depsMap) return // [!code ++]
-  const dep = depsMap.get(key) // [!code ++]
-  if (!dep) return // [!code ++]
-  propagate(dep.subs) // [!code ++]
+  /**
+  // [!code ++]
+   * deosMap 没有，表示这个对象，没有任何属性在 sub 中访问
+  // [!code ++]
+   */
+  if (!depsMap) return; // [!code ++]
+  const dep = depsMap.get(key); // [!code ++]
+  // [!code ++]
+  /**
+  // [!code ++]
+   * dep 没有，表示这个 key 没有在 sub 中访问
+  // [!code ++]
+   */
+  if (!dep) return; // [!code ++]
+  propagate(dep.subs); // [!code ++]
 } // [!code ++]
 ```
 
@@ -214,19 +251,19 @@ function triggerReactive(target, key, res) {
 > [!info] 例子
 >
 > ```js
-> import { ref, effect, reactive } from '../dist/reactivity.esm.js'
+> import { ref, effect, reactive } from "../dist/reactivity.esm.js";
 > let state = reactive({
 >   a: 1,
 >   get count() {
->     return this.a
+>     return this.a;
 >   },
-> })
+> });
 > effect(() => {
->   console.log('state.a', state.count)
-> })
+>   console.log("state.a", state.count);
+> });
 > setTimeout(() => {
->   state.a = 2
-> }, 1000)
+>   state.a = 2;
+> }, 1000);
 > ```
 
 对象 `state` 中的 `count` 属性是一个 `getter`，当 `state.a` 发生变化时，`state.count` 理应会变化， `state.count` 应该要触发 `effect` 函数。下面来看打印结果：
@@ -284,43 +321,43 @@ export function createObjectReactive(obj) {
 > ```js
 > let obj = {
 >   a: 1,
-> }
-> let state1 = reactive(obj)
-> let state2 = reactive(obj)
+> };
+> let state1 = reactive(obj);
+> let state2 = reactive(obj);
 >
-> console.log('state1 === state2', state1 === state2)
+> console.log("state1 === state2", state1 === state2);
 > ```
 
-一个对象重复做代理，<SPW text="Vue" /> 官方打印结果是相等的，为 `true` ，我们本地还没做处理，每次接收对象都直接 `new Proxy` 创建一个新的代理，因此 `state1` 和 `state2` 是不相等的，为 `false` 。
+一个对象重复做代理，<word text="Vue" />官方打印结果是相等的，为 `true`，我们本地还没做处理，每次接收对象都直接 `new Proxy` 创建一个新的代理，因此 `state1` 和 `state2` 是不相等的，为 `false`。
 
 解决方法很简单，我们创建一个新的 `WeakMap` 变量来存储代理对象，每次创建代理对象的时候，先去这个 `WeakMap` 里查找，如果找到了，直接返回，如果没找到，再创建新的代理对象，并存储到 `WeakMap` 里。
 
 ```ts
-let reactiveMap = new WeakMap() // 复用同一个对象的代理 // [!code ++]
+let reactiveMap = new WeakMap(); // 复用同一个对象的代理 // [!code ++]
 export function createObjectReactive(obj) {
   if (!isObject(target)) {
-    return target
+    return target;
   }
 
-  let projectProxy = reactiveMap.get(obj) // [!code ++]
+  let projectProxy = reactiveMap.get(obj); // [!code ++]
   // 如果已经代理过，直接返回 // [!code ++]
-  if (projectProxy) return projectProxy // [!code ++]
+  if (projectProxy) return projectProxy; // [!code ++]
   const proxy = new Proxy(obj, {
     get(target, key, recevier) {
       // 收集依赖
-      trackReactive(target, key)
+      trackReactive(target, key);
       // 保证访问器里的对象指向代理对象
-      return Reflect.get(target, key, recevier)
+      return Reflect.get(target, key, recevier);
     },
     set(target, key, newValue, recevier) {
       // 触发依赖
-      const res = Reflect.set(target, key, newValue, recevier)
-      triggerReactive(target, key, res)
-      return res
+      const res = Reflect.set(target, key, newValue, recevier);
+      triggerReactive(target, key, res);
+      return res;
     },
-  })
-  reactiveMap.set(obj, proxy) // 没代理过的对象，保存 // [!code ++]
-  return proxy
+  });
+  reactiveMap.set(obj, proxy); // 没代理过的对象，保存 // [!code ++]
+  return proxy;
 }
 ```
 
@@ -329,54 +366,56 @@ export function createObjectReactive(obj) {
 ```js
 let obj = {
   a: 1,
-}
-let state1 = reactive(obj)
-let state2 = reactive(state1)
+};
+let state1 = reactive(obj);
+let state2 = reactive(state1);
 
-console.log('state1 === state2', state1 === state2)
+console.log("state1 === state2", state1 === state2);
 ```
 
 解决方法为新建一个变量 `WeakSet` ，每次代理对象的时候，都会 `add` 添加进去。下次再要创建代理对象的时候，先 `has` 判断 d 在不在 `WeakSet` 里，如果有说明之前已经代理过了，是一个响应式对象，直接拿出来复用，没有再 `new Proxy` 新建一个代理。
 
 ```js
-let reactiveMap = new WeakMap() // 复用同一个对象的代理
-let reactiveSet = new WeakSet() // 保存已经代理过的对象 // [!code ++]
+let reactiveMap = new WeakMap(); // 复用同一个对象的代理
+let reactiveSet = new WeakSet(); // 保存已经代理过的对象 // [!code ++]
 
 export function createObjectReactive(obj) {
   if (!isObject(target)) {
-    return target
+    return target;
   }
 
-  if (isReactive(obj)) return obj // [!code ++]
-  let projectProxy = reactiveMap.get(obj)
+  if (isReactive(obj)) return obj; // 如果已经代理过了，直接返回 // [!code ++]
+  let projectProxy = reactiveMap.get(obj);
   // 如果已经代理过，直接返回
-  if (projectProxy) return projectProxy
+  if (projectProxy) return projectProxy;
   const proxy = new Proxy(obj, {
     get(target, key, recevier) {
       // 收集依赖
-      trackReactive(target, key)
+      trackReactive(target, key);
       // 保证访问器里的对象指向代理对象
-      return Reflect.get(target, key, recevier)
+      return Reflect.get(target, key, recevier);
     },
     set(target, key, newValue, recevier) {
       // 触发依赖
-      const res = Reflect.set(target, key, newValue, recevier)
-      triggerReactive(target, key, res)
-      return res
+      const res = Reflect.set(target, key, newValue, recevier);
+      triggerReactive(target, key, res);
+      return res;
     },
-  })
-  reactiveMap.set(obj, proxy)
-  reactiveSet.add(proxy) // [!code ++]
-  return proxy
+  });
+  reactiveMap.set(obj, proxy);
+  reactiveSet.add(proxy); // 保存已经代理过的对象 // [!code ++]
+  return proxy;
 }
 
-/** // [!code ++]
+// [!code ++]
+/**
  * 判断是否收集过依赖 // [!code ++]
- * @param obj 对象 // [!code ++]
+ // [!code ++]
+ * @param obj 对象
  */ // [!code ++]
+// [!code ++]
 export function isReactive(obj) {
-  // [!code ++]
-  return reactiveSet.has(obj) // [!code ++]
+  return reactiveSet.has(obj); // [!code ++]
 } // [!code ++]
 ```
 
@@ -388,31 +427,31 @@ export function isReactive(obj) {
 之前在实现 `ref` 的功能时，我们创建了一个 `RefImpl` 类，在构造器中当时是直接把值保存到 `this._value` 上，现在实现了 `reactive` 方法后，可以判断 `ref` 接收的是不是一个对象，如果是，直接调用 `reactive` 方法实现响应式即可。
 
 ```ts
-import { isObject } from '@vue/shared' // [!code ++]
-import { reactive } from './reactive' // [!code ++]
+import { isObject } from "@vue/shared"; // [!code ++]
+import { reactive } from "./reactive"; // [!code ++]
 
 class RefImpl {
-  _value
-  subs: Link
+  _value;
+  subs: Link;
   subsTail: Link;
-  [ReactiveFlags.IS_REF] = true
+  [ReactiveFlags.IS_REF] = true;
 
   constructor(value) {
-    this._value = value // [!code --]
-    this._value = isObject(value) ? reactive(value) : value // [!code ++]
+    this._value = value; // [!code --]
+    this._value = isObject(value) ? reactive(value) : value; // [!code ++]
   }
 
   get value() {
     if (activeSub) {
-      trackRef(this)
+      trackRef(this);
     }
-    return this._value
+    return this._value;
   }
 
   set value(newValue) {
-    this._value = newValue // [!code --]
-    this._value = isObject(newValue) ? reactive(newValue) : newValue // [!code ++]
-    triggerRef(this)
+    this._value = newValue; // [!code --]
+    this._value = isObject(newValue) ? reactive(newValue) : newValue; // [!code ++]
+    triggerRef(this);
   }
 }
 ```
@@ -422,41 +461,41 @@ class RefImpl {
 每次执行 `new Proxy` 时都要重新创建一个对象作为第二个参数，这里可以修改一个，把该对象提取出来，这样就可以复用这个对象了。
 
 ```ts
+// [!code focus]
 const mutableHandlers = {
   // [!code focus]
   get(target, key, recevier) {
-    // [!code focus]
     // 收集依赖 // [!code focus]
-    trackReactive(target, key) // [!code focus]
+    trackReactive(target, key); // [!code focus]
     // 保证访问器里的对象指向代理对象 // [!code focus]
-    return Reflect.get(target, key, recevier) // [!code focus]
+    return Reflect.get(target, key, recevier); // [!code focus]
   }, // [!code focus]
+  // [!code focus]
   set(target, key, newValue, recevier) {
-    // [!code focus]
     // 触发依赖 // [!code focus]
-    const res = Reflect.set(target, key, newValue, recevier) // [!code focus]
-    triggerReactive(target, key, res) // [!code focus]
-    return res // [!code focus]
+    const res = Reflect.set(target, key, newValue, recevier); // [!code focus]
+    triggerReactive(target, key, res); // [!code focus]
+    return res; // [!code focus]
   }, // [!code focus]
-} // [!code focus]
+}; // [!code focus]
 
 export function createObjectReactive(obj) {
   if (!isObject(obj)) {
-    return obj
+    return obj;
   }
 
   // 判断是不是reactive代理过的对象
-  if (isReactive(obj)) return obj
+  if (isReactive(obj)) return obj;
 
   // 判断是不是同一个对象重复代理
-  let projectProxy = reactiveMap.get(obj)
+  let projectProxy = reactiveMap.get(obj);
   // 如果已经代理过，直接返回
-  if (projectProxy) return projectProxy
+  if (projectProxy) return projectProxy;
 
-  const proxy = new Proxy(obj, mutableHandlers) // [!code focus]
-  reactiveMap.set(obj, proxy)
-  reactiveSet.add(proxy)
-  return proxy
+  const proxy = new Proxy(obj, mutableHandlers); // [!code focus]
+  reactiveMap.set(obj, proxy);
+  reactiveSet.add(proxy);
+  return proxy;
 }
 ```
 
@@ -469,15 +508,15 @@ export function createObjectReactive(obj) {
 > ```js
 > let obj = {
 >   a: 1,
-> }
-> let state1 = reactive(obj)
+> };
+> let state1 = reactive(obj);
 >
 > effect(() => {
->   console.count('effect' + state1.a)
-> })
+>   console.count("effect" + state1.a);
+> });
 > setTimeout(() => {
->   state1.a = 1
-> }, 1000)
+>   state1.a = 1;
+> }, 1000);
 > ```
 
 这个例子中，`state1.a` 被赋值为 1，一秒钟之后，`state1.a` 再次被赋值为 1，前后两个值没有发生变化，按理来说应该不需要触发 `effect` 函数，但实际上却触发了 `effect` 函数，这是不合理的。
@@ -492,68 +531,67 @@ export function createObjectReactive(obj) {
 
 ```ts [shared/src/index.ts]
 export function isObject(value) {
-  return value !== null && typeof value === 'object'
+  return value !== null && typeof value === "object";
 }
 
+// [!code ++]
 export function hasChanged(newValue, oldValue) {
-  // [!code ++]
-  return !Object.is(newValue, oldValue) // [!code ++]
+  return !Object.is(newValue, oldValue); // [!code ++]
 } // [!code ++]
 ```
 
 ```ts [reactivity/src/reactive.ts]
-import { isObject, hasChanged } from '@vue/shared' // [!code ++]
+import { isObject, hasChanged } from "@vue/shared"; // [!code ++]
 
 // ...
 
 const mutableHandlers = {
   get(target, key, recevier) {
     // 收集依赖
-    trackReactive(target, key)
+    trackReactive(target, key);
     // 保证访问器里的对象指向代理对象
-    return Reflect.get(target, key, recevier)
+    return Reflect.get(target, key, recevier);
   },
   set(target, key, newValue, recevier) {
-    const oldValue = target[key]
+    const oldValue = target[key];
     // 触发依赖
-    const res = Reflect.set(target, key, newValue, recevier)
-    triggerReactive(target, key, res) // [!code --]
+    const res = Reflect.set(target, key, newValue, recevier);
+    triggerReactive(target, key, res); // [!code --]
     // 新旧两值不同，才触发更新 // [!code ++]
-    if (hasChanged(newValue, oldValue)) triggerReactive(target, key, res) // [!code ++]
-    return res
+    if (hasChanged(newValue, oldValue)) triggerReactive(target, key, res); // [!code ++]
+    return res;
   },
-}
+};
 ```
 
 ```ts [reactivity/src/ref.ts]
-import { isObject } from '@vue/shared' // [!code --]
-import { isObject, hasChanged } from '@vue/shared' // [!code ++]
+import { isObject } from "@vue/shared"; // [!code --]
+import { isObject, hasChanged } from "@vue/shared"; // [!code ++]
 
 // ...
 
 class RefImpl {
-  _value
-  subs: Link
+  _value;
+  subs: Link;
   subsTail: Link;
-  [ReactiveFlags.IS_REF] = true
+  [ReactiveFlags.IS_REF] = true;
 
   constructor(value) {
-    this._value = isObject(value) ? reactive(value) : value
+    this._value = isObject(value) ? reactive(value) : value;
   }
 
   get value() {
     if (activeSub) {
-      trackRef(this)
+      trackRef(this);
     }
-    return this._value
+    return this._value;
   }
 
   set value(newValue) {
     // 如果新值和旧值相等，则不进行更新 // [!code ++]
-    if (!hasChanged(newValue, this._value)) return // [!code ++]
-
-    this._value = isObject(newValue) ? reactive(newValue) : newValue
-    if (hasChanged(newValue)) triggerRef(this)
+    if (!hasChanged(newValue, this._value)) return; // [!code ++]
+    this._value = isObject(newValue) ? reactive(newValue) : newValue;
+    triggerRef(this);
   }
 }
 ```
@@ -567,14 +605,14 @@ class RefImpl {
 > [!info] 例子
 >
 > ```js
-> const a = ref(1)
+> const a = ref(1);
 > let state1 = reactive({
 >   a,
-> })
+> });
 >
 > effect(() => {
->   console.count('effect' + state1.a)
-> })
+>   console.count("effect" + state1.a);
+> });
 > ```
 
 如果在 `reactive` 对象内使用了 `ref` 创建的属性，<SPW text="Vue" /> 官方内部会帮我们自动拿到 `.value` 的值，我们使用时无需 `state1.a.value`，而是直接 `state1.a` 即可。
@@ -584,28 +622,28 @@ class RefImpl {
 在 `Proxy` 的 `get` 方法内做判断，因为获取值都会触发 `get` 方法，`get` 方法返回啥值，获取到的值就是啥。
 
 ```ts
-import { isRef } from './ref.ts' // [!code ++]
+import { isRef } from "./ref.ts"; // [!code ++]
 
 // ...
 
 const mutableHandlers = {
   get(target, key, recevier) {
     // 收集依赖
-    trackReactive(target, key)
+    trackReactive(target, key);
     // 保证访问器里的对象指向代理对象
-    return Reflect.get(target, key, recevier) // [!code --]
-    const res = Reflect.get(target, key, recevier) // [!code ++]
+    return Reflect.get(target, key, recevier); // [!code --]
+    const res = Reflect.get(target, key, recevier); // [!code ++]
     // 如果访问的是ref对象，则返回.value，否则返回本身 // [!code ++]
-    return isRef(res) ? res.value : res // [!code ++]
+    return isRef(res) ? res.value : res; // [!code ++]
   },
   set(target, key, newValue, recevier) {
-    const oldValue = target[key]
+    const oldValue = target[key];
     // 触发依赖
-    const res = Reflect.set(target, key, newValue, recevier)
-    if (hasChanged(newValue, oldValue)) triggerReactive(target, key, res)
-    return res
+    const res = Reflect.set(target, key, newValue, recevier);
+    if (hasChanged(newValue, oldValue)) triggerReactive(target, key, res);
+    return res;
   },
-}
+};
 ```
 
 如果不使用 `.value` 修改 `reactive` 内的 `ref` 的值，也应该同步修改 `ref` 的值，示例代码如下：
@@ -613,47 +651,48 @@ const mutableHandlers = {
 > [!info] 例子
 >
 > ```js
-> const a = ref(1)
+> const a = ref(1);
 > let state1 = reactive({
 >   a,
-> })
+> });
 >
 > effect(() => {
->   console.count('effect' + state1.a)
-> })
+>   console.count("effect" + state1.a);
+> });
 >
 > setTimeout(() => {
->   state1.a = 2
-> }, 1000)
+>   state1.a = 2;
+>   state1.a = ref(3);
+> }, 1000);
 > ```
 
-返回 `Proxy` 的 `set` 方法，判断 `oldValue` 是不是一个 `ref` 对象，如果是，且新值 `newValue` 不是一个 `ref` ，则同步修改。
+找到 `Proxy` 的 `set` 方法函数，判断 `oldValue` 是不是一个 `ref` 对象。如果是，且新值 `newValue` 不是一个 `ref` ，则同步修改。
 
 ```ts
 const mutableHandlers = {
   get(target, key, recevier) {
     // 收集依赖
-    trackReactive(target, key)
+    trackReactive(target, key);
     // 保证访问器里的对象指向代理对象
-    const res = Reflect.get(target, key, recevier)
+    const res = Reflect.get(target, key, recevier);
     // 如果访问的是ref对象，则返回.value，否则返回本身
-    return isRef(res) ? res.value : res
+    return isRef(res) ? res.value : res;
   },
   set(target, key, newValue, recevier) {
-    const oldValue = target[key]
+    const oldValue = target[key];
     // 如果新值是ref对象，则直接赋值 // [!code ++]
+    // [!code ++]
     if (isRef(oldValue) && !isRef(newValue)) {
-      // [!code ++]
-      oldValue.value = newValue // [!code ++]
+      oldValue.value = newValue; // [!code ++]
       // 如果值是ref，更新后会自动触发sub的更新，所以不需要执行后续代码 // [!code ++]
-      return res // [!code ++]
+      return res; // [!code ++]
     } // [!code ++]
     // 触发依赖
-    const res = Reflect.set(target, key, newValue, recevier)
-    if (hasChanged(newValue, oldValue)) triggerReactive(target, key, res)
-    return res
+    const res = Reflect.set(target, key, newValue, recevier);
+    if (hasChanged(newValue, oldValue)) triggerReactive(target, key, res);
+    return res;
   },
-}
+};
 ```
 
 ## 代码转移
@@ -663,15 +702,15 @@ const mutableHandlers = {
 ::: code-group
 
 ```ts [reactive.ts]
-import { isObject, hasChanged } from '@vue/shared'
-import { mutableHandlers } from './baseHandlers.ts'
+import { isObject, hasChanged } from "@vue/shared";
+import { mutableHandlers } from "./baseHandlers.ts";
 
 export const reactive = (obj) => {
-  return createObjectReactive(obj)
-}
+  return createObjectReactive(obj);
+};
 
-let reactiveMap = new WeakMap() // 复用同一个对象的代理
-let reactiveSet = new WeakSet()
+let reactiveMap = new WeakMap(); // 复用同一个对象的代理
+let reactiveSet = new WeakSet();
 
 export function createObjectReactive(obj) {
   /**
@@ -681,21 +720,21 @@ export function createObjectReactive(obj) {
     /**
      * obj 不是一个对象，哪儿来的回哪儿去
      */
-    return obj
+    return obj;
   }
 
   // 判断是不是reactive代理过的对象
-  if (isReactive(obj)) return obj
+  if (isReactive(obj)) return obj;
 
   // 判断是不是同一个对象重复代理
-  let projectProxy = reactiveMap.get(obj)
+  let projectProxy = reactiveMap.get(obj);
   // 如果已经代理过，直接返回
-  if (projectProxy) return projectProxy
+  if (projectProxy) return projectProxy;
 
-  const proxy = new Proxy(obj, mutableHandlers)
-  reactiveMap.set(obj, proxy)
-  reactiveSet.add(proxy)
-  return proxy
+  const proxy = new Proxy(obj, mutableHandlers);
+  reactiveMap.set(obj, proxy); // 没代理过的对象，保存
+  reactiveSet.add(proxy); // 保存已经代理过的对象
+  return proxy;
 }
 
 /**
@@ -703,87 +742,87 @@ export function createObjectReactive(obj) {
  * @param obj 对象
  */
 export function isReactive(obj) {
-  return reactiveSet.has(obj)
+  return reactiveSet.has(obj);
 }
 ```
 
 ```ts [dep.ts]
-import { activeSub } from './effect.ts'
-import { link, propagate } from './system.ts'
+import { activeSub } from "./effect.ts";
+import { link, propagate } from "./system.ts";
 
-const trackWeakMap = new WeakMap()
+const trackWeakMap = new WeakMap();
 
 export function trackReactive(target, key) {
   if (activeSub) {
-    let depsMap = trackWeakMap.get(target)
+    let depsMap = trackWeakMap.get(target);
     /**
      * 没有depsMap说明之前没有收集过这个对象的key，创建一个新的
      */
     if (!depsMap) {
-      depsMap = new Map()
-      trackWeakMap.set(target, depsMap)
+      depsMap = new Map();
+      trackWeakMap.set(target, depsMap);
     }
 
-    let dep = depsMap.get(key)
+    let dep = depsMap.get(key);
 
     /**
      * 没有dep说明之前没有收集过，创建一个新的
      */
     if (!dep) {
-      dep = new Dep()
-      depsMap.set(key, dep)
+      dep = new Dep();
+      depsMap.set(key, dep);
     }
 
-    link(dep, activeSub)
+    link(dep, activeSub);
   }
 }
 
 export function triggerReactive(target, key, res) {
-  const depsMap = trackWeakMap.get(target)
-  if (!depsMap) return
+  const depsMap = trackWeakMap.get(target);
+  if (!depsMap) return;
 
-  const dep = depsMap.get(key)
-  if (!dep) return
+  const dep = depsMap.get(key);
+  if (!dep) return;
 
-  propagate(dep.subs)
+  propagate(dep.subs);
 }
 
 class Dep {
-  subs
-  subsTail
+  subs;
+  subsTail;
 
   constructor() {}
 }
 ```
 
 ```ts [baseHandlers.ts]
-import { trackReactive, triggerReactive } from './dep.ts'
-import { isRef } from './ref.ts'
+import { trackReactive, triggerReactive } from "./dep.ts";
+import { isRef } from "./ref.ts";
 
 export const mutableHandlers = {
   get(target, key, recevier) {
     // 收集依赖
-    trackReactive(target, key)
+    trackReactive(target, key);
     // 保证访问器里的对象指向代理对象
-    const res = Reflect.get(target, key, recevier)
+    const res = Reflect.get(target, key, recevier);
     // 如果访问的是ref对象，则返回.value，否则返回本身
-    return isRef(res) ? res.value : res
+    return isRef(res) ? res.value : res;
   },
   set(target, key, newValue, recevier) {
-    const oldValue = target[key]
+    const oldValue = target[key];
     // 如果新值是ref对象，则直接赋值
     if (isRef(oldValue) && !isRef(newValue)) {
-      oldValue.value = newValue
+      oldValue.value = newValue;
       // 如果值是ref，更新后会自动触发sub的更新，所以不需要执行后续代码
-      return res
+      return res;
     }
     // 触发依赖
-    const res = Reflect.set(target, key, newValue, recevier)
+    const res = Reflect.set(target, key, newValue, recevier);
     // 如果新值和旧值不同，则触发更新
-    if (hasChanged(newValue, oldValue)) triggerReactive(target, key, res)
-    return res
+    if (hasChanged(newValue, oldValue)) triggerReactive(target, key, res);
+    return res;
   },
-}
+};
 ```
 
 :::
@@ -799,14 +838,14 @@ export const mutableHandlers = {
 >   a: {
 >     b: 1,
 >   },
-> })
+> });
 >
 > effect(() => {
->   console.count('effect' + state1.a.b)
-> })
+>   console.count("effect" + state1.a.b);
+> });
 > setTimeout(() => {
->   state1.a.b = 2
-> }, 1000)
+>   state1.a.b = 2;
+> }, 1000);
 > ```
 
 如果是对象嵌套的情况，修改对象内的对象的属性，不会触发更新，因为嵌套的对象没有收集依赖。
@@ -820,45 +859,45 @@ export const mutableHandlers = {
 
 由上可以看出，解决方法是不要给它返回普通对象，而是做一个判断，如果是对象，那么就用 `reactive` 包裹一下，这样嵌套的对象也会被代理，从而收集依赖。
 
-```ts
-import { isObject } from '@vue/shared' // [!code ++]
-import { trackReactive, triggerReactive } from './dep.ts'
-import { isRef } from './ref.ts'
-import { reactive } from './reactive.ts' // [!code ++]
+```ts [baseHandlers.ts]
+import { isObject } from "@vue/shared"; // [!code ++]
+import { trackReactive, triggerReactive } from "./dep.ts";
+import { isRef } from "./ref.ts";
+import { reactive } from "./reactive.ts"; // [!code ++]
 
 export const mutableHandlers = {
   get(target, key, recevier) {
     // 收集依赖
-    trackReactive(target, key)
+    trackReactive(target, key);
     // 保证访问器里的对象指向代理对象
-    const res = Reflect.get(target, key, recevier)
+    const res = Reflect.get(target, key, recevier);
     // 如果访问的是ref对象，则返回.value，否则返回本身
+    // [!code ++]
     if (isRef(res)) {
-      // [!code ++]
-      return res.value // [!code ++]
+      return res.value; // [!code ++]
     } // [!code ++]
     // 如果是对象，则返回代理对象 // [!code ++]
+    // [!code ++]
     if (isObject(res)) {
-      // [!code ++]
-      return reactive(res) // [!code ++]
+      return reactive(res); // [!code ++]
     } // [!code ++]
-    return res // [!code ++]
+    return res; // [!code ++]
   },
   set(target, key, newValue, recevier) {
-    const oldValue = target[key]
+    const oldValue = target[key];
     // 如果新值是ref对象，则直接赋值
     if (isRef(oldValue) && !isRef(newValue)) {
-      oldValue.value = newValue
+      oldValue.value = newValue;
       // 如果值是ref，更新后会自动触发sub的更新，所以不需要执行后续代码
-      return res
+      return res;
     }
     // 触发依赖
-    const res = Reflect.set(target, key, newValue, recevier)
+    const res = Reflect.set(target, key, newValue, recevier);
     // 如果新值和旧值不同，则触发更新
-    if (hasChanged(newValue, oldValue)) triggerReactive(target, key, res)
-    return res
+    if (hasChanged(newValue, oldValue)) triggerReactive(target, key, res);
+    return res;
   },
-}
+};
 ```
 
 ## 总结
