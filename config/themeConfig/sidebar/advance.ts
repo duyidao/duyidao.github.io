@@ -81,7 +81,7 @@ const sharp = [
     collapsed: true,
     items: [
       { text: '创建项目', link: '/sharp/vite/' },
-      { text: '创建项目', link: '/sharp/vite/' },
+      { text: 'TS 和 CSS', link: '/sharp/vite/ts&css' },
     ],
   },
 ]
