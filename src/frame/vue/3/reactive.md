@@ -73,6 +73,8 @@ function triggerReactive(target, key) {
 
 在<word text="Vue" /> 官方源码中， `reactive` 会先创建一个 `WeakMap` 保存所有对象，值是一个对象；每一个对象是通过 `Map` 保存的，每一个属性值则是 `new Dep` 类实例对象。格式如下图所示：
 
+![格式](https://pic1.imgdb.cn/item/696a0024242c448284bce70c.png)
+
 ```js
 const obj = reactive({
   a: 1,
