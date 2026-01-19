@@ -56,6 +56,7 @@ const vue3 = [
           { text: "Computed实现", link: "/vue/3/compute_realize" },
           { text: "Computed优化", link: "/vue/3/computed_cache" },
           { text: "Watch实现", link: "/vue/3/watch" },
+          { text: "数组响应式", link: "/vue/3/array" },
         ],
       },
     ],
