@@ -57,6 +57,15 @@ const vue3 = [
           { text: "Computed优化", link: "/vue/3/computed_cache" },
           { text: "Watch实现", link: "/vue/3/watch" },
           { text: "数组响应式", link: "/vue/3/array" },
+          { text: "toRef、unRef、proxyRef", link: "/vue/3/toRef" },
+        ],
+      },
+      {
+        text: "浏览器运行时",
+        collapsed: true,
+        items: [
+          { text: "认识渲染器", link: "/vue/3/render" },
+          { text: "patchProp", link: "/vue/3/patchProp" },
         ],
       },
     ],
