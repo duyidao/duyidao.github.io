@@ -311,10 +311,4 @@ export const nodeOps = {
 };
 ```
 
-新建一个 `packages/runtime-dom/src/renderer.ts` 文件，把 `createRenderer` 方法导出。
 
-```ts [runtime-dom/src/renderer.ts]
-export const createRenderer = (options) => {
-  console.log(options);
-};
-```
