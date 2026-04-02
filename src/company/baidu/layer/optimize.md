@@ -25,6 +25,179 @@ tags: polygon,turf,animate
 
 ## 性能优化
 
+### 点聚合（MarkerClusterer）
+
+#### 定义
+
+当地图上有大量点位（比如1000个）时，如果全部渲染成 Marker，会导致：
+
+- 页面卡顿
+- 点位重叠看不清
+- 内存占用高
+
+点聚合的解决方案：
+
+- 把距离近的多个点合并成一个"聚合点"
+- 显示数字，比如"50"表示这个位置有50个点
+- 放大地图后，聚合点会拆分成更小的聚合点或单个点
+
+#### 实现代码
+
+```ts
+// 引入点聚合库（百度地图官方库）
+import { MarkerClusterer } from '@baidu/marker-clusterer'
+
+// 1. 准备数据
+const points = [
+  new BMapGL.Point(116.404, 39.915),
+  new BMapGL.Point(116.405, 39.916),
+  // ... 1000个点
+]
+
+// 2. 创建 Marker
+const markers = points.map(point => {
+  return new BMapGL.Marker(point)
+})
+
+// 3. 创建点聚合实例
+const clusterer = new MarkerClusterer(map, {
+  markers: markers,
+  gridSize: 60,          // 网格大小（像素），默认60
+  maxZoom: 18,           // 最大聚合级别，高于此级别就不聚合了
+  averageCenter: true,   // 聚合中心点是否为标记点的平均中心
+  styles: [              // 自定义聚合图标样式
+    {
+      url: '/images/cluster_small.png',
+      height: 40,
+      width: 40,
+      textColor: 'white',
+      textSize: 12
+    },
+    {
+      url: '/images/cluster_medium.png',
+      height: 50,
+      width: 50,
+      textColor: 'white',
+      textSize: 14
+    },
+    {
+      url: '/images/cluster_large.png',
+      height: 60,
+      width: 60,
+      textColor: 'white',
+      textSize: 16
+    }
+  ]
+})
+
+// 4. 监听聚合点击事件
+clusterer.addEventListener('clusterclick', (e) => {
+  const cluster = e.target
+  const markers = cluster.getMarkers()
+  console.log('点击的聚合点包含', markers.length, '个标记')
+  
+  // 可以放大地图查看细节
+  map.centerAndZoom(cluster.getCenter(), map.getZoom() + 2)
+})
+```
+
+### 视口裁剪
+
+#### 定义
+
+核心思想：只渲染用户当前屏幕可见区域内的点位，不可见的点不渲染。
+
+当地图有10万个点时：
+
+- 用户屏幕只能看到其中100个
+- 渲染剩下的99900个是浪费性能
+
+#### 实现
+
+```ts
+class ViewportCulling {
+  constructor(map, points) {
+    this.map = map
+    this.allPoints = points // 所有数据（10万个）
+    this.currentMarkers = []
+    this.timer = null
+    
+    // 初始化
+    this.renderVisiblePoints()
+    
+    // 监听地图事件
+    this.map.addEventListener('moveend', () => {
+      this.debounceRender()
+    })
+    this.map.addEventListener('zoomend', () => {
+      this.debounceRender()
+    })
+  }
+  
+  // 防抖：避免频繁渲染
+  debounceRender() {
+    if (this.timer) {
+      clearTimeout(this.timer)
+    }
+    this.timer = setTimeout(() => {
+      this.renderVisiblePoints()
+    }, 200) // 200ms 防抖
+  }
+  
+  // 渲染可见点
+  renderVisiblePoints() {
+    // 1. 清除旧标记
+    this.clearMarkers()
+    
+    // 2. 获取可视范围
+    const bounds = this.map.getBounds()
+    
+    // 3. 过滤可见点
+    const visiblePoints = this.filterPointsByBounds(bounds)
+    
+    // 4. 渲染新标记
+    this.renderMarkers(visiblePoints)
+    
+    console.log(`渲染 ${visiblePoints.length} 个点（总共 ${this.allPoints.length} 个）`)
+  }
+  
+  // 过滤点在可视范围内
+  filterPointsByBounds(bounds) {
+    const sw = bounds.getSouthWest()
+    const ne = bounds.getNorthEast()
+    
+    return this.allPoints.filter(point => {
+      return (
+        point.lng >= sw.lng && 
+        point.lng <= ne.lng &&
+        point.lat >= sw.lat && 
+        point.lat <= ne.lat
+      )
+    })
+  }
+  
+  // 渲染标记
+  renderMarkers(points) {
+    points.forEach(point => {
+      const marker = new BMapGL.Marker(point)
+      this.map.addOverlay(marker)
+      this.currentMarkers.push(marker)
+    })
+  }
+  
+  // 清除标记
+  clearMarkers() {
+    this.currentMarkers.forEach(marker => {
+      this.map.removeOverlay(marker)
+    })
+    this.currentMarkers = []
+  }
+}
+
+// 使用
+const culling = new ViewportCulling(map, 100000个点数据)
+```
+
 ### 数据抽稀
 
 有一个图层需求是渲染地图面，UI 效果如下所示：

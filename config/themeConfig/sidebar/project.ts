@@ -33,7 +33,10 @@ const shushuo = [
             items: [
               { text: '本地存储拿不到', link: '/shushuo/mobile/localstorage' },
               { text: 'Token丢失', link: '/shushuo/mobile/token' },
-              { text: 'Vant 数字键盘组件', link: '/shushuo/mobile/vant-number' },
+              {
+                text: 'Vant 数字键盘组件',
+                link: '/shushuo/mobile/vant-number',
+              },
               { text: '小红书分享', link: '/shushuo/mobile/xhsShare' },
             ],
           },
@@ -76,6 +79,7 @@ const lingsi = [
               { text: '支付', link: '/lingsi/APP/pay' },
               { text: '更新', link: '/lingsi/APP/update' },
               { text: '个人', link: '/lingsi/APP/userinfo' },
+              { text: '无感刷新', link: '/lingsi/APP/token' },
             ],
           },
           {
