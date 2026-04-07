@@ -146,6 +146,8 @@ export function createVNode(type, props?, children?) {
 
 3. 最后返回 `createVNode` 函数，将参数依顺序传入。
 
+::: code-group
+
 ```ts [@vue/runtime-core/src/h.ts]
 export function h(type, propsOrChildren?, children?) {
   let l = arguments.length
@@ -178,6 +180,18 @@ export function h(type, propsOrChildren?, children?) {
 }
 ```
 
+```ts [share/index.ts]
+export const isArray = Array.isArray // 判断是否是数组 // [!code ++]
+
+// 判断是否是字符串 // [!code ++]
+// [!code ++]
+export function isString(value) {
+  return typeof value === 'string' // [!code ++]
+} // [!code ++]
+```
+
+:::
+
 ## isVNode的实现
 
 `isVNode` 函数的实现比较简单，只需要判断 `type` 是否是对象，并且是否包含 `__v_isVNode` 属性即可。
@@ -196,7 +210,7 @@ export function isVNode(value: any) {
 `createVNode` 函数首先要先声明一个变量 `vnode`，类型为一个对象，包含以下几种属性：
 
 - `__v_isVNode`：表示这是一个虚拟节点。
-- `type`：表示虚拟节点的类型，可以是字符串、对象、函数等。
+- `type`：表示虚拟节点的类型，如 `div`、 `span` 等，可以是字符串、对象、函数等。
 - `props`：表示虚拟节点的属性，可以是对象、数组等。
 - `children`：表示虚拟节点的子节点，可以是字符串、数组、虚拟节点等。
 - `key`：表示虚拟节点的 `key`，用于 `diff` 算法。
@@ -207,4 +221,159 @@ export function isVNode(value: any) {
 
 如果没有加上 `shapeFlag`，则页面无效果，会报警告。这个 `shapeFlag` 有什么作用呢？
 
-`shapeFlag` 涉及到一些二进制的位运算。
+`shapeFlag` 涉及到一些二进制的位运算。如果 `shapeFlag` 为 9，表示 `type` 是一个<word text="DOM"/>元素，且它的 `children` 是一个字符串。
+
+类比于现实世界的身份证，身份证前6位是地区码，后6位是出生日期码，最后一位是校验码。`shapeFlag` 就是虚拟节点的身份证，它记录了虚拟节点的类型和属性。
+
+官方的 `shapeFlag` 定义如下：
+
+```ts
+// packages/shared/src/shapeFlags.ts
+export enum ShapeFlags {
+  // 表示 DOM 元素
+  ELEMENT = 1,
+  // 表示函数组件
+  FUNCTIONAL_COMPONENT = 1 << 1,
+  // 表示有状态组件（带有状态、生命周期等）
+  STATEFUL_COMPONENT = 1 << 2,
+  // 表示该节点的子节点是纯文本
+  TEXT_CHILDREN = 1 << 3,
+  // 表示该节点的子节点是数组形式（多个子节点）
+  ARRAY_CHILDREN = 1 << 4,
+  // 表示该节点的子节点是通过插槽（slots）传入的
+  SLOTS_CHILDREN = 1 << 5,
+  // 表示 Teleport 组件，用于将子节点传送到其他位置
+  TELEPORT = 1 << 6,
+  // 表示 Suspense 组件，用于处理异步加载组件时显示备用内容
+  SUSPENSE = 1 << 7,
+  // 表示该组件应当被 keep-alive（缓存）
+  COMPONENT_SHOULD_KEEP_ALIVE = 1 << 8,
+  // 表示该组件已经被 keep-alive（已缓存）
+  COMPONENT_KEPT_ALIVE = 1 << 9,
+  // 表示组件类型，有状态组件与无状态函数组件的组合
+  COMPONENT = ShapeFlags.STATEFUL_COMPONENT | ShapeFlags.FUNCTIONAL_COMPONENT
+}
+```
+
+下面是进行判断某一个虚拟节点的类型：
+
+```ts
+let shapeFlag = 0
+
+const vnode = {
+  __v_isVNode: true,
+  type: 'div',
+  children: 'hello world',
+  shapeFlag
+}
+
+if (typeof vnode.type === 'string') {
+  shapeFlag = ShapeFlags.ELEMENT // 1
+}
+
+if (typeof vnode.children === 'string') {
+  /**
+   * 或运算
+   * 0001
+   * 1000
+   * 1001
+   */
+  shapeFlag = shapeFlag | ShapeFlags.TEXT_CHILDREN // 1001
+}
+
+vnode.shapeFlag = shapeFlag
+
+if (vnode.shapeFlag & ShapeFlags.ELEMENT) {
+  /**
+   * 与运算
+   * 1001
+   * 0001
+   * 0001
+   */
+  console.log('是一个 dom 元素')
+}
+
+if (vnode.shapeFlag & ShapeFlags.TEXT_CHILDREN) {
+  /**
+   * 与运算 两个相同的位置，都是1，就是1
+   * 1001
+   * 1000
+   * 1000
+   */
+  console.log('子元素是一个纯文本节点')
+}
+
+if (vnode.shapeFlag & ShapeFlags.ARRAY_CHILDREN) {
+  /**
+   * 与运算
+   * 01001
+   * 10000
+   * 00000
+   */
+  console.log('子元素是一个数组')
+}
+```
+
+### shapeFlag 实现
+
+接下来，需要实现一下 `shapeFlag`，新建 `packages/runtime-core/src/vnode.ts` 文件，把之前写好的 `isVNode` 和 `createVNode` 两个函数放到这个文件中：
+
+```ts [packages/runtime-core/src/vnode.ts]
+// 判断是否是vnode
+export function isVNode(value) {
+  return value ? value.__v_isVNode : false
+}
+
+export function createVNode(type, props?, children?) {
+  const vnode = {
+    type,
+    props,
+    children,
+    key: props?.key, // 做diff用的
+    __v_isVNode: true,
+    el: null, // 虚拟节点要挂载的元素
+    shapeFlag,
+  }
+}
+```
+
+判断一下当前的 `type` 是否是字符串，如果是字符串，说明是一个普通的 `dom` 元素；然后判断一下 `children`，如果 `children` 是字符串，说明是纯文本节点；如果 `children` 是数组，说明是多个子节点：
+
+```ts [packages/runtime-core/src/vnode.ts]
+import { isString, ShapeFlags } from '@vue/shared' // [!code ++]
+
+// 判断是否是vnode
+export function isVNode(value) {
+  return value ? value.__v_isVNode : false
+}
+
+export function createVNode(type, props?, children?) {
+  let shapeFlag // [!code ++]
+
+  // 如果是字符串，说明是普通标签 // [!code ++]
+   // [!code ++]
+  if (isString(type)) {
+    shapeFlag = ShapeFlags.ELEMENT // [!code ++]
+  } // [!code ++]
+
+  // 子元素是字符串，说明是文本 // [!code ++]
+   // [!code ++]
+  if (isString(children)) {
+    shapeFlag |= ShapeFlags.TEXT_CHILDREN // [!code ++]
+  }  // [!code ++]
+  // 子元素是数组，说明是组件 // [!code ++]
+   // [!code ++]
+  else if (Array.isArray(children)) {
+    shapeFlag |= ShapeFlags.ARRAY_CHILDREN // [!code ++]
+  } // [!code ++]
+  const vnode = {
+    type,
+    props,
+    children,
+    key: props?.key, // 做diff用的
+    __v_isVNode: true,
+    el: null, // 虚拟节点要挂载的元素
+    shapeFlag,
+  }
+}
+```
