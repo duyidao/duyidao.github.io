@@ -80,6 +80,7 @@ const lingsi = [
               { text: '更新', link: '/lingsi/APP/update' },
               { text: '个人', link: '/lingsi/APP/userinfo' },
               { text: '无感刷新', link: '/lingsi/APP/token' },
+              { text: '分包', link: '/lingsi/APP/subpackage' },
             ],
           },
           {
