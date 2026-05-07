@@ -118,4 +118,27 @@ const study = [
   },
 ]
 
-export { myself, study }
+const ai = [
+  {
+    text: 'AI 应用开发实战',
+    collapsed: true,
+    items: [
+      {
+        text: '基础 AI 对话搭建',
+        collapsed: true,
+        items: [
+          { text: '大模型接口', link: '/ai/a/' },
+          { text: '搭建服务器', link: '/ai/a/create' },
+          { text: '提示词工程', link: '/ai/a/callword' },
+          { text: '上下文的威力', link: '/ai/a/context' },
+          { text: 'markdown 语法及渲染', link: '/ai/a/md' },
+          { text: 'token 消耗优化', link: '/ai/a/token' },
+          { text: '前端界面', link: '/ai/a/ui' },
+          { text: '流式传输', link: '/ai/a/flow' },
+        ],
+      },
+    ],
+  },
+]
+
+export { myself, study, ai }

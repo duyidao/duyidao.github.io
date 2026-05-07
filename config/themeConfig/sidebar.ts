@@ -3,7 +3,7 @@ import { vue2, vue3, react } from './sidebar/frame'
 import { shushuo, lingsi, baidu } from './sidebar/project'
 import { css, js } from './sidebar/base'
 import { chart, sharp, module } from './sidebar/advance'
-import { myself, study } from './sidebar/practice'
+import { myself, study, ai } from './sidebar/practice'
 import { vitepress, read } from './sidebar/foot'
 import { about } from './sidebar/about'
 
@@ -29,6 +29,7 @@ export default {
   '/sharp/': sharp,
   '/shushuo/': shushuo,
   '/study/': study,
+  '/ai/': ai,
   '/vitepress/': vitepress,
   '/vue/2/': vue2,
   '/vue/3/': vue3,

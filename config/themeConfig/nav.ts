@@ -55,7 +55,8 @@ export default [
         text: '📜 自学自练',
         items: [
           { text: '🔪 刀刀博客', link: '/myself/daodao/' },
-          { text: '📢 网上学习', link: '/study/inweb/' },
+          { text: '📢 Web项目', link: '/study/inweb/' },
+          { text: '🤖 AI学习', link: '/ai/a/' },
         ],
       },
     ],
