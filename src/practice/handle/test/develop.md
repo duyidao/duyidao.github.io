@@ -1,0 +1,162 @@
+---
+title: 前端部署与缓存管理
+author:
+  - 三十的前端课 前端部署和资源缓存管理实战&https://www.bilibili.com/video/BV1K1421t7BW/
+  - 远方os 前端玩转强缓存和协商缓存&https://www.douyin.com/user/MS4wLjABAAAAGUvGqSgUb8n2mLUU9SOa5wmdZy-Sj5_FUt-DK5Iu6PpxO1QgrJ1_vXy6ikzz_Q4h?from_tab_name=main&is_search=0&list_name=follow&modal_id=7371835338278374707&nt=0
+---
+
+# 前端部署与缓存管理
+
+## 学习目标
+
+1. <word text="Vue" />、<word text="React" />项目部署后如何工作
+2. 缓存如何工作（搭配 Node 服务器实践）
+3. <word text="JavaScript" />、<word text="CSS" />、<word text="HTML" />保证更新，又利用缓存
+
+## 前端部署到服务器如何工作
+
+![前端部署到服务器如何工作一图流](https://pic1.imgdb.cn/item/67e977260ba3d5a1d7e6ec2e.png)
+
+前端打包后把静态资源放到服务器上，用户访问时，浏览器会向服务器发送请求，服务器返回 `index.html` 文件，浏览器会解析这个 `html` 文件。`html` 文件中 `script` 和 `link` 引用了静态资源 `js` 和 `css` ，浏览器会再次向服务器发送请求，服务器返回静态资源，浏览器解析静态资源，最终渲染页面。
+
+下面可以新建一个<word text="Vue" />项目，打包；然后再新建一个<word text="Node" />项目，把前面打包好的 `dist` 文件夹放到<word text="Node" />项目中，目录结构如下：
+
+```
+|-server
+  |-dist
+    |-index.html
+    |-favicon.ico
+    |-assets
+      |-js
+      |-css
+  |-node_moudles
+  |-package.json
+  |-server.js
+```
+
+`server.js` 文件内容如下：
+
+```js [server.js]
+const express = require('express')
+const app = express()
+
+app.use(express.static('dist'))
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/dist/index.html')
+})
+
+app.listen(8000)
+```
+
+运行<word text="Node" />浏览器访问 `locahost:8000` 即可看到前面打包的<word text="Vue" />项目。F12 打开控制台，查看网络请求，可以看到 `js` 和 `css` 资源都是 200，表示向服务器发送请求下来的。
+
+![200](https://pic1.imgdb.cn/item/67ab02ecd0e0a243d4fe4fb5.png)
+
+刷新页面后再看看网络请求，会发现 `js` 和 `css` 资源都是 304 或者 200（来自内部缓存），表示浏览器缓存了这些资源，没有向服务器发送请求，而是从缓存中拿到资源。
+
+## 浏览缓存的两种机制
+
+众所周知，浏览器对于加载过的图片、`js` 、`css` 等文件资源都会有一个缓存，缓存又分为以下两种：
+
+- 强缓存
+- 协商缓存
+
+![缓存](https://pic1.imgdb.cn/item/67ab13f3d0e0a243d4fe5567.png)
+
+以上图为例，上图中 304 状态码缓存是走协商缓存，灰色 200 状态码、点击后显示来自内存是强缓存。
+
+而浏览器是如何决定资源是强制缓存还是协商缓存呢？最常见的是通过响应头的 `cache-control` 或 `expires` 来判断。前者前端更常用，后者是服务器设置的。
+
+![一图流](https://pic1.imgdb.cn/item/67ab14f1d0e0a243d4fe55d4.png)
+
+通过设置 `cache-control` ，可以决定资源的缓存类型。如上图，`cache-control` 设置为 `no-cache` 时，浏览器会走协商缓存；而设置为 `no-store` 时，浏览器不会缓存资源；设置为 `max-age` 时，浏览器会走强缓存。
+
+### 强缓存
+
+![强缓存](https://pic1.imgdb.cn/item/67ab15fcd0e0a243d4fe5601.png)
+
+强缓存如果本地之前有缓存，则直接不请求服务器，从本地缓存中读取资源，否则请求服务器，服务器返回资源，浏览器缓存资源。
+
+强缓存可以做一些配置，如喂 `max-age` 设置缓存过期时间，浏览器会根据这个时间判断资源是否过期，如果过期则重新请求服务器，否则直接从缓存中读取资源。
+
+![强缓存](https://pic1.imgdb.cn/item/685a6e7b58cb8da5c86b83c4.png)
+
+```js [server.js]
+const express = require('express')
+const app = express()
+
+app.use(
+  express.static('dist', {
+    // [!code focus]
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 7 天 // [!code focus]
+  })
+) // [!code focus]
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/dist/index.html')
+})
+
+app.listen(8000)
+```
+
+### 协商缓存
+
+![协商缓存](https://pic1.imgdb.cn/item/67ab163dd0e0a243d4fe5609.png)
+
+协商缓存会先给服务器发请求，服务器根据最后修改时间对比当前浏览器缓存的资源的最后修改时间，二者一致则使用浏览器缓存的数据，不一致才请求使用服务器的数据。
+
+![协商缓存](https://pic1.imgdb.cn/item/685a80f558cb8da5c86bcd33.png)
+
+打包测试一下，以一开始的项目为例，在不修改任何一行代码的前提下重新打一次包，放到 <word text="Node" /> 项目上，运行服务，F12 打开控制台，查看网络请求。
+
+此时代码没有任何变化，变化的只有最新修改时间，可以看到原本协商缓存的资源此时全部重新请求了，状态码变为 200；而原先强缓存资源还是灰色 200，从本地内存拿取资源。
+
+![打包测试](https://pic1.imgdb.cn/item/67ab1798d0e0a243d4fe5656.png)
+
+## 优缺点
+
+### 纯协商缓存方案
+
+- 优点：能够保证每次前端打包后丢上服务器，资源一定更新
+- 缺点：只要文件是新放的，即使文件内容没变，也不缓存
+
+### 强缓存加定时方案
+
+- 优点：一定期限内，根本不用向服务器访问，一定是拿到缓存，速度最快
+- 缺点：如何不配合 `hash` ，无法感知到文件更新
+
+## hash 的意义和策略
+
+强缓存是必然要做的，为了保证有变更时发生更新，可以给文件加 `hash` 值。目前的打包工具基本上都能做到这点。加了 `hash` 后可以局部更新，如<word text="Vue" />项目只更新了 `template` 内的代码，打包后相关模块的 `js` 文件 `hash` 值发生了改变，而 `css` 文件没有变化。
+
+`hash` 值最好的状态包括以下几点：
+
+1. 每个文件都有自己的 `hash` 值
+2. 尽量做到不同文件变更，不会互相影响
+
+### vite
+
+默认 `hash` 就是按文件分配，但是要做到最佳策略要做一些配置。如果项目是 `npm init vue@latest` 命令行创建的，即使只是一个 Hello World 项目，打包后它的体积也会非常大。这是因为它把<word text="Vue" />的代码也打包进去了。
+
+想要解决这个问题，需要做一些配置，去到 `vite.config.js` 文件，添加如下配置：
+
+```js [vite.config.js]
+build: {
+  rollupOptions: {
+    output: {
+      format: 'amd', // 打包输出格式为cjs
+      manualChunks (id) {
+        if (id.includes('node_modules')) {
+          // 正则匹配特定库，或者使用包名来分割
+          return 'vender'
+        }
+      }
+    }
+  }
+}
+```
+
+现在重新打包后发现 `index.js` 体积小了很多，<word text="Vue" /> 相关代码都被提取到 `vender.js` 中了，而 `vender.js` 不会发生改变，所以 `hash` 值也不会变，这样就可以利用强缓存了。
+
+### webpack-vue-cli
+
+创建的已经是最佳 `hash` 策略了，只需要知道一下原理，也就是需要把 `output` 输出的文件名说明是使用 `chunkHash`

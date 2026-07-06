@@ -12,8 +12,8 @@ export default [
       {
         text: '🧺 框架',
         items: [
-          { text: 'Vue2', link: '/vue/2/' },
-          { text: 'Vue3', link: '/vue/3/' },
+          { text: 'Vue2', link: '/vue/vue2/' },
+          { text: 'Vue3', link: '/vue/vue3/' },
           { text: 'React', link: '/react/' },
         ],
       },
@@ -30,11 +30,11 @@ export default [
         items: [
           {
             text: '概念知识',
-            link: '/learn/js/eat',
+            link: '/idea/js/eat',
           },
           {
             text: '实战训练',
-            link: '/learn/business/excel',
+            link: '/handle/business/excel',
           },
         ],
       },
@@ -49,14 +49,6 @@ export default [
           { text: '🧟 灵思', link: '/lingsi/' },
           { text: '⛷️ 百度', link: '/baidu/' },
           { text: '🔢 数说数字化', link: '/shushuo/' },
-        ],
-      },
-      {
-        text: '📜 自学自练',
-        items: [
-          { text: '🔪 刀刀博客', link: '/myself/daodao/' },
-          { text: '📢 Web项目', link: '/study/inweb/' },
-          { text: '🤖 AI学习', link: '/ai/a/' },
         ],
       },
     ],

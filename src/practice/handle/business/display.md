@@ -1,0 +1,160 @@
+---
+title: 元素不定大小隐藏做溢出隐藏
+author:
+  - 三十的前端课 元素大小不定，如何做溢出隐藏？&https://www.bilibili.com/video/BV1WSnZe7EQR/
+---
+
+# 元素不定大小隐藏做溢出隐藏
+
+## 学习目标
+
+1. 需求效果的实现
+2. <word text="JavaScript" />能力锻炼
+3. IntersectionObserver 的使用
+
+## 思路分析
+
+![一图流](https://pic1.imgdb.cn/item/67ac0d6dd0e0a243d4fe81e9.png)
+
+效果实现思路主要是找到最后一个显示在容器内的<word text="DOM" />元素，计算它后面的个数，加上它自己本身，然后隐藏后面的元素并显示 `+n` （`n` 为隐藏的元素个数 + 最后一个元素）。
+
+假设总数为 6，最后一个显示的元素是 3，那么容器就展示 2 个元素，最后一项显示 6-3+1 ，即显示 +4。
+
+## 流程
+
+### 壳子搭建
+
+![流程壳子](https://pic1.imgdb.cn/item/67e975710ba3d5a1d7e6ec01.png)
+
+第一个打开页面，因为无法确定哪个元素是最后一个显示的，因此先显示所有的数据，声明几个变量数组后续存储显示的数据和全部的数据循环生成几个高度不固定的元素。该组件最外层容器高度用一个随机数生成，模拟不固定高度的需求。
+
+::: code-group
+
+```js [App.js]
+const height = Math.floor(Math.random() * 400 + 50) + "px";
+const itemArr = reactive([]); // 最终在容器内展示的数据
+const itemAll = reactive([]); // 全部的数据
+for (let i = 0; i < 20; i++) {
+  let item = {
+    test: "item" + i,
+    height: Math.floor(Math.random() * 30 + 30) + "px",
+  };
+  itemAll.push(item);
+  itemArr.push(item);
+}
+```
+
+```vue [App.vue]
+<template>
+  <div
+    id="father"
+    class="father"
+    :style="{
+    width: '600px'
+    height: height + 'px'
+  }"
+  >
+    <div id="div1">
+      <div
+        v-for="item in itemArr"
+        class="item"
+        :style="{
+          height: item.height,
+        }"
+      >
+        {{ item.text }}
+      </div>
+    </div>
+  </div>
+
+  <div>总览： {{ itemAll.height }}</div>
+</template>
+```
+
+```css [App.css]
+.father {
+  border: 1px solid red;
+  overflow: hidden;
+}
+.item {
+  border: 1px solid blue;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #fff;
+}
+```
+
+:::
+
+### 判断最后一个元素
+
+接下来要找到最后一个显示在容器内的<word text="DOM" />元素，关键的<word text="API" />是<word text="IntersectionObserver" />，它是一个构造函数，接受两个参数，第一个参数是一个回调函数，第二个参数是一个配置对象。
+
+该<word text="API" />可以监听一个或多个元素，获取到该元素一系列属性，后续如果可见性改变会再次触发，并拿到改变的元素。
+
+在 `onMounted` 生命周期钩子函数中调用该<word text="API" />，需要给它两个函数，第一个函数是一个回调函数，该回调函数会收到所以观察到元素信息；
+
+获取到所有的元素，循环为它们绑上<word text="IntersectionObserver" />，通过 `isIntersecting` 属性监听当前元素是否可见；通过 `intersectionRate` 属性获取当前元素可见的比例，如果比例是 1，说明该元素完全可见，如果比例是 0.5，说明该元素一半内容可见。
+
+把溢出部分和最后一项从数组从截断，计算不显示的内容的数量，最后再渲染。
+
+```js [observer.js]
+const initObserver = () => {
+  let lastIndex = 0; // 最后一个显示的元素索引
+  const observer = new IntersectionObserver((entries) => {
+    console.log(entries); // 拿到所有观测的元素信息
+
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        lastIndex = index;
+      }
+    });
+
+    // 最后一个元素是否百分百显示
+    if (entries[lastIndex]?.intersectionRate === 1) {
+      lastIndex -= 1;
+    }
+
+    // 判断是否溢出
+    if (lastIndex < itemArr.length - 1) {
+      // 可显示的内容
+      const _arr = itemAll.slice(0, lastIndex);
+      // 计算不显示的内容的数量
+      const n = itemAll.length - lastIndex;
+      _arr.push({
+        text: "+" + n,
+        height: "40px",
+      });
+      itemArr = reactive(_arr);
+    }
+  });
+  const itemList = document.querySelectorAll(".item");
+  // 这里不能用 forEach，因为 document.querySelectorAll 拿到的是类数组，没有 forEach 方法
+  for (let i = 0; i < itemList.length; i++) {
+    // 观察列表每一项
+    observer.observe(itemList[i]);
+  }
+};
+onMounted(() => {
+  initObserver();
+});
+
+export default initObserver;
+```
+
+### 添加新元素
+
+新增一个新元素后，需要重新调用 `initObserver` 方法，重新计算。如果不调用，他是不会重新计算的。
+
+```js
+import initObserver from " observer.js";
+const addOne = () => {
+  const addItem = {
+    text: "new item",
+    height: Math.floor(Math.random() * 30 + 30) + "px",
+  };
+  itemAll.unshift(addItem);
+  itemArr.unshift(addItem);
+  initObserver();
+};
+```

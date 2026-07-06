@@ -1,0 +1,192 @@
+---
+title: 前端动图动效方案
+author:
+  - 三十的前端课 前端动图动效方案最佳实践汇总&https://www.bilibili.com/video/BV1rqTEzxExT/
+---
+
+# 前端动图动效方案
+
+## 图片方案
+
+| 名称 |        体积         |   质量   |               兼容性                | 透明底支持 |
+| :--: | :-----------------: | :------: | :---------------------------------: | :--------: |
+| GIF  |   同等质量下最大    |  质量低  |             基本全兼容              | 无法透明底 |
+| aPNG | 同等质量下小于 gif  |  质量高  |       兼容比较新的现代浏览器        | 支持透明底 |
+| WebP | 同等质量下小于 apng |  质量高  |   比 apng 好，但是 ios 比 apng 差   | 支持透明底 |
+| AVIF |   同等质量下最小    | 质量极高 | 非常差，chrome 需要 85+，ios 要 16+ | 支持透明底 |
+
+### 最佳实践
+
+优先使用 `webp` 作为首选，从大小和兼容性上都比 `apng` 好，而 `avif` 兼容性太差，不去考虑。
+
+同时还可以针对动图做一个降级方案，优先使用 `webp` ，如果浏览器不支持 `webp` ，则使用 `apng` ，如果 `apng` 也不支持，则使用保底方案 `gif` 。
+
+可以写一个 `js` 函数，用于处理动图降级处理。核心思路为：
+
+- `new Image` 创建一个 `img` 标签，分别加载 `avif` 和 `webp` ，哪个成功用哪个
+- 判断好支持哪个再去挂载<word text="DOM"/>，因此需要用到 `promise` 实现异步操作
+- 异步执行完毕后再去加载 `vue`
+
+::: code-group
+
+```js [imgSupport.js]
+export function imgSupport() {
+  return new Promise((resolve, reject) => {
+    window.picSupport = "low";
+    const imgAvif = new Image();
+    imgAvif.src = "data:image/avif;base64,YWN0aXZlL3d3dy5nb29nbGUuY29tCg==";
+    imgAvif.onload = () => {
+      // 支持avif
+      window.picSupport = "avif";
+      resolve();
+    };
+    imgAvif.onerror = () => {
+      // 不支持avif，试试加载webp
+      const imgWebp = new Image();
+      imgWebp.src =
+        "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA";
+      imgWebp.onload = () => {
+        // 支持webp
+        window.picSupport = "webp";
+        resolve();
+      };
+      imgWebp.onerror = () => {
+        // 也不支持webp，则默认low用gif
+        resolve();
+      };
+    };
+  });
+}
+```
+
+```js [main.js]
+import { imgSupport } from "./imgSupport.js";
+import App from "./App.vue";
+
+imgSupport().then(() => {
+  createApp(App).mount("#app");
+});
+```
+
+:::
+
+这里需要注意的是，要提前准备好三张非常小的 `avif`、`webp` 格式的图片（可以准备一个 1\*1 的 `png` 图片，然后格式转换），然后转为 `base64` ，直接写到代码中，用于判断浏览器是否支持 `avif` 和 `webp` ，速度能更快点。
+
+而且必须是真 `avif` 和 `webp` 图片，不能通过文件重命名修改后缀的方式。推荐使用网站 [ezgif](https://ezgif.com/) 进行格式转换。
+
+## 动画方案
+
+|    名称     |                 体积                 |         质量         |                                      兼容性                                      |            开发者麻烦程度            |   制作工具   |
+| :---------: | :----------------------------------: | :------------------: | :------------------------------------------------------------------------------: | :----------------------------------: | :----------: |
+|  css 动画   |               体积最小               |       高清无损       |               和 css3 兼容性一致，支持 keyframe 就能做，兼容性最好               |       麻烦，要写 html 配合 css       |    自己写    |
+| canvas 动画 |       体积一般不大，吃运算内存       | 高清无损，但可能会卡 |                       支持 canvas 就行，兼容性比 css 差点                        | 最麻烦，写大量 js 配合定时器更新动画 |    自己写    |
+|   lottie    | 体积一般，需要额外安装 lottie 播放库 | 高清无损，但可能会卡 | 需要支持 svg、css3、es5，要求稍微高点，chrome 45+，los9，andorid4 以下可能有问题 |          一键引入库直接使用          | AE，素材网站 |
+
+### lottie 的使用
+
+#### 使用
+
+1. 安装 `lottie-web` 库
+2. 写入 `div` 标签
+3. 引入 `lottie` 对应的 `json` 文件并使用
+
+::: code-group
+
+```vue [lottie.vue]
+<script setup>
+import lottie from "lottie-web";
+const container = ref(null);
+const { lottieUrl, fallback } = defineProps(["lottieUrl", "fallback"]);
+const canPlayerLottie = ref(true);
+onMounted(() => {
+  if (!canPlayerLottie) return;
+  // 不能直接拿来播放动画，而是要请求到json，拿json数据再去播放动画
+  axios.get(lottieUrl).then((res) => {
+    lottie.loadAnimation({
+      container: container.value, // 容器
+      renderer: "svg", // 渲染方式，svg、canvas、html
+      loop: true, // 是否循环
+      autoplay: true, // 是否自动播放
+      animationData: res.data, // json数据
+    });
+  });
+});
+</script>
+
+<template>
+  <!-- 可以播放lottie动画 -->
+  <div v-if="canPlayerLottie" ref="container"></div>
+  <!-- 不能播放用图片兜底 -->
+  <img v-else :src="fallback" />
+</template>
+```
+
+```vue [App.vue]
+<template>
+  <Lottie :lottieUrl="lottieUrl" :fallback="fallback" />
+</template>
+
+<script setup>
+import Lottie from "./components/lottie.vue";
+const lottieUrl = "https://assets10.lottiefiles.com/packages/lf20_4xqjvq.json";
+const fallback =
+  "https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8a4b6b8f7f9b4d4e8a6f4c5e6f4b6b8f~tplv-k3u1fbpfcp-zoom-crop-mark:3024:3024:3024:1702.awebp?";
+</script>
+```
+
+:::
+
+> [!WARNING] 注意
+> 这里最好不用 `id` 获取容器，而是用 `ref`，因为 `lottie` 只是一个小动画播放器，一个页面上可能会使用多个 `lottie` ，如果用 `id` 获取容器，会导致重复 `id` 。
+
+#### lottie 判断
+
+`lottie` 的判断和图片的判断类似，也是写一个函数，判断是否支持 `svg` 和 `requestAnimation`，如果都支持，则 `lottie` 可以播放，否则不能播放。
+
+而判断的时机不能写在组件内，因为组件可能会多次加载，因此需要写一个全局的 `js` 函数，在 `main.js` 中调用。
+
+::: code-group
+
+```js [lottieSupport.js]
+import MobileDetect from "mobile-detect";
+
+export function lottieSupport() {
+  return new Promise((resolve, reject) => {
+    window.canLottie = false;
+    const canSvg =
+      !!docuent.createElementNS &&
+      !!docuent.createElementNS("http://www.w3.org/2000/svg", "svg")
+        .createSVGRect;
+    const canRequestAnimation = !!window.requestAnimationFrame;
+    // ios的隐私策略，导致读取版本会有点困难，借助mobileDetect库帮助读取
+    const md = new MobileDetect(window.navigator.userAgent);
+    // 判断是否是低端机型
+    const isLowEndAndroid = /Android [2-4]/.test(navigator.userAgent());
+    const isOldIOS = md.is("iPhone") && parseFloat(md.version("iPhone")) < 10;
+
+    if (canSvg && canRequestAnimation && !isLowEndAndroid && !isOldIOS) {
+      window.canLottie = true;
+    }
+    resolve();
+  });
+}
+```
+
+```js [main.js]
+import { lottieSupport } from "./lottieSupport.js";
+import App from "./App.vue";
+
+lottieSupport().then(() => {
+  createApp(App).mount("#app");
+});
+```
+
+:::
+
+#### lottie 本质
+
+`lottie` 本质是 `svg` 动画，只不过是用 `json` 文件描述 `svg` 动画，然后通过 `lottie` 库解析 `json` 文件，生成 `svg` 动画。
+
+#### 降级建议
+
+`lottie` 建议如果不支持或者低端机型会引起卡顿，可以降级为 `png` 或 `gif` 。
