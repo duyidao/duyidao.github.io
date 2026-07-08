@@ -199,6 +199,15 @@ const ai = [
           { text: 'token 消耗优化', link: '/ai/a/token' },
           { text: '前端界面', link: '/ai/a/ui' },
           { text: '流式传输', link: '/ai/a/flow' },
+          { text: 'Function tool', link: '/ai/a/tool' },
+        ],
+      },
+      {
+        text: '进阶开发技巧',
+        collapsed: true,
+        items: [
+          { text: 'Function tool', link: '/ai/a/tool' },
+          { text: '前端工具卡片', link: '/ai/a/tool' },
         ],
       },
     ],

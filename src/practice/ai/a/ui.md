@@ -326,7 +326,7 @@ module.exports = {
 }
 ```
 
-```js [index.js]
+```js [server.js]
 // [!code ++]
 const {
   summaryMessage, // [!code ++]
