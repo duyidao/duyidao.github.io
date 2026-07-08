@@ -193,7 +193,7 @@ const css = [
     text: '功能效果',
     collapsed: true,
     items: [
-      { text: '倒影', link: '/css/effect/-webkit-box-reflect倒影' },
+      { text: '倒影', link: '/css/effect/-webkit-box-reflect实现倒影' },
       {
         text: '文字连续光影特效',
         link: '/css/effect/animation-delay实现文字连续光影特效',

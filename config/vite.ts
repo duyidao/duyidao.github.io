@@ -1,20 +1,23 @@
-import { groupIconVitePlugin } from 'vitepress-plugin-group-icons';
-import { customIcon } from './vite/index';
-import { 
-  GitChangelog, 
-  GitChangelogMarkdownSection, 
+import { groupIconVitePlugin } from 'vitepress-plugin-group-icons'
+import { customIcon } from './vite/index'
+import {
+  GitChangelog,
+  GitChangelogMarkdownSection,
 } from '@nolebase/vitepress-plugin-git-changelog/vite'
 
 export default {
   publicDir: '../public',
+  server: {
+    port: 8080,
+  },
   plugins: [
     groupIconVitePlugin({
       customIcon,
     }),
-    GitChangelog({ 
+    GitChangelog({
       // 填写在此处填写您的仓库链接
-      repoURL: () => 'https://github.com/duyidao/duyidao.github.io', 
-    }), 
+      repoURL: () => 'https://github.com/duyidao/duyidao.github.io',
+    }),
     GitChangelogMarkdownSection(),
   ],
 }

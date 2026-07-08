@@ -26,14 +26,13 @@ const read = [
     text: 'ES6标准入门',
     collapsed: true,
     items: [
-      { text: '前言', link: '/read/javascript/ES6标准入门/前言' },
       {
         text: 'ECMAScript6简介',
         link: '/read/javascript/ES6标准入门/ECMAScript6简介',
       },
       {
         text: 'Let 和 const 命令',
-        link: '/read/javascript/ES6标准入门/Let 和 const 命令',
+        link: '/read/javascript/ES6标准入门/Let%20和%20const%20命令',
       },
       {
         text: '变量的解构赋值',
@@ -95,7 +94,6 @@ const read = [
     text: 'Vue.js设计与实现',
     collapsed: true,
     items: [
-      { text: '前言', link: '/read/vue/Vue.js设计与实现/前言' },
       { text: '权衡的艺术', link: '/read/vue/Vue.js设计与实现/权衡的艺术' },
       {
         text: '框架设计的核心要素',
@@ -103,7 +101,7 @@ const read = [
       },
       {
         text: 'Vue.js 3 的设计思路',
-        link: '/read/vue/Vue.js设计与实现/Vue.js 3 的设计思路',
+        link: '/read/vue/Vue.js设计与实现/Vue.js%203%20的设计思路',
       },
       {
         text: '响应系统的作用与实现',

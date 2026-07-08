@@ -5,24 +5,24 @@ export default [
       {
         text: '🗡️ 基础',
         items: [
-          { text: 'CSS', link: '/css/effect/-webkit-box-reflect' },
-          { text: 'JavaScript', link: '/javascript/knowledge/' },
+          { text: 'CSS', link: '/css/effect/-webkit-box-reflect实现倒影' },
+          { text: 'JavaScript', link: '/javascript/knowledge/变量与严格模式' },
         ],
       },
       {
         text: '🧺 框架',
         items: [
-          { text: 'Vue2', link: '/vue/vue2/' },
-          { text: 'Vue3', link: '/vue/vue3/' },
-          { text: 'React', link: '/react/' },
+          { text: 'Vue2', link: '/vue/vue2/基本概念与Vue指令' },
+          { text: 'Vue3', link: '/vue/vue3/项目初始化' },
+          { text: 'React', link: '/react/无脚手架项目创建' },
         ],
       },
       {
         text: '⬆️ 进阶',
         items: [
-          { text: '图表', link: '/chart/svg/shadow' },
-          { text: '高级', link: '/sharp/node/' },
-          { text: '模块', link: '/module/browser/' },
+          { text: '图表', link: '/chart/svg/文字适应纹理' },
+          { text: '高级', link: '/sharp/node/node' },
+          { text: '模块', link: '/module/browser/浏览器渲染原理' },
         ],
       },
       {
@@ -57,7 +57,10 @@ export default [
     text: '💦 脚踏实地',
     items: [
       { text: '🧊 博客部署', link: '/vitepress/' },
-      { text: '📖 书香满屋', link: '/read/' },
+      {
+        text: '📖 书香满屋',
+        link: '/read/javascript/ES6标准入门/ECMAScript6简介',
+      },
     ],
   },
   {
