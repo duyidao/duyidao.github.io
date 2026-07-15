@@ -122,7 +122,7 @@ export default {
 
 优化决策流：
 
-<img src="../../images/vite/深入浅出Vite/06-优化决策流.png" alt="优化决策流" />
+![优化决策流](../../images/vite/深入浅出Vite/06-优化决策流.png)
 
 ### 图片自动化压缩 (vite-plugin-imagemin)
 

@@ -30,11 +30,11 @@ export default [
         items: [
           {
             text: '概念知识',
-            link: '/idea/js/eat',
+            link: '/idea/js/如何判断对象是否存在循环引用',
           },
           {
             text: '实战训练',
-            link: '/handle/business/excel',
+            link: '/handle/business/前端操作excel与word',
           },
         ],
       },

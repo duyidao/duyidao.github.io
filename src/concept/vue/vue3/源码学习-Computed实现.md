@@ -374,7 +374,7 @@ export function setActiveEffect(effect: ReactiveEffect) {
 
 ![报错提示](https://pic1.imgdb.cn/item/696b28a155fa3078186f13d5.png)
 
-在之前 [Effect 完善 scheduler 调度器](/vue/3/ref_start#scheduler-调度器) 时，`effect` 函数统一使用 `notify` 方法通知订阅者。而 `computed` 实例对象没有对应的属性方法，因此会报错。
+在之前 [Effect 完善 scheduler 调度器](/vue/vue3/源码学习-Ref基础实现#scheduler-调度器) 时，`effect` 函数统一使用 `notify` 方法通知订阅者。而 `computed` 实例对象没有对应的属性方法，因此会报错。
 
 这里先添加一个判断，判断当前的 `sub` 是否有 `update` 方法属性，如果有，说明是计算属性 `computed`，需要做额外处理。
 

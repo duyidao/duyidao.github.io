@@ -28,7 +28,7 @@
 </script>
 ```
 
-在 [前面的章节](/vue/3/ref_start#scheduler-调度器) 中，讲到 `effect` 可以接收第二个参数 `options`，其中包含 `scheduler` 函数。如果传了这个函数，那么 `effect` 会在 `scheduler` 函数中执行，不再执行第一个回调函数，该函数仅仅起一个收集依赖调度的作用。
+在 [前面的章节](/vue/vue3/源码学习-Ref基础实现#scheduler-调度器) 中，讲到 `effect` 可以接收第二个参数 `options`，其中包含 `scheduler` 函数。如果传了这个函数，那么 `effect` 会在 `scheduler` 函数中执行，不再执行第一个回调函数，该函数仅仅起一个收集依赖调度的作用。
 
 打印结果如下：
 
@@ -93,7 +93,7 @@ export const watch = (source, callback, options) => {
 
 如何实现停止监听 `source` 的变化呢？
 
-我们来回顾一下 [startTrack 和 endTrack](/vue/3/ref_advance#方法实现) 函数。
+我们来回顾一下 [startTrack 和 endTrack](/vue/vue3/源码学习-Ref进阶优化#方法实现) 函数。
 
 ```ts [system.ts]
 export function startTrack(sub) {
@@ -439,7 +439,7 @@ const stop = watch(
 
 提示栈溢出。
 
-而如何解决对象循环引用问题，可以参考文档 [如何判断对象是否存在循环引用](/learn/js/objectLoop) ，这里不做赘述，直接修改 `traverse` 函数。
+而如何解决对象循环引用问题，可以参考文档 [如何判断对象是否存在循环引用](/idea/js/如何判断对象是否存在循环引用) ，这里不做赘述，直接修改 `traverse` 函数。
 
 ```ts [watch.ts]
 // [!code ++]

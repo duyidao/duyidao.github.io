@@ -77,7 +77,7 @@ author:
 
 什么是 `require` ？是一个<word text="Node"/>方法，用于引入模块，<word text="JSON"/>或本地文件。
 
-[资源渲染](/learn/vue/require#资源渲染) 中已经提到，`webpack` 会将 `require` 引入的资源当成一个模块，并根据配置文件中的规则进行打包。因此 `require` 执行了什么操作？最后的示例代码中编译后的场景分为两种，一种是 `img` 文件夹下的图片路径，一种是 `base64` ，为什么会产生这种差异？
+[资源渲染](/idea/vue/图片动态引入使用require#资源渲染) 中已经提到，`webpack` 会将 `require` 引入的资源当成一个模块，并根据配置文件中的规则进行打包。因此 `require` 执行了什么操作？最后的示例代码中编译后的场景分为两种，一种是 `img` 文件夹下的图片路径，一种是 `base64` ，为什么会产生这种差异？
 
 <word text="Vue"/>最终是通过<word text="Webpack"/>打包，并且会在 `webpack.config.js` 配置文件中编写一系列打包规则。而<word text="Webpack"/>中的打包规则，针对的其实是一个一个模块，换而言之<word text="Webpack"/>只会对模块进行打包。
 

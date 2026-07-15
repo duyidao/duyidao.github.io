@@ -191,7 +191,7 @@ export function propagateSubs(sub) {
 
 ![依旧打印](https://pic1.imgdb.cn/item/696b44b555fa3078186f7293.png)
 
-在前面 [ref 和 reactive](/vue/3/reactive#新老属性值一样处理) 中，我们实现了调用 `hasChange` 方法，判断值是否发生改变，如果没改变，则不执行对应的 `trigger` 方法触发订阅者。
+在前面 [ref 和 reactive](/vue/vue3/源码学习-Reactive实现#新老属性值一样处理) 中，我们实现了调用 `hasChange` 方法，判断值是否发生改变，如果没改变，则不执行对应的 `trigger` 方法触发订阅者。
 
 因此，这里的解决方法也可以在 `propagateSubs` 方法中，判断计算属性的值在更新后是否和旧值相同，如果相同，则不执行 `propagate` 方法。
 

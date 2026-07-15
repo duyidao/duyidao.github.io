@@ -128,7 +128,7 @@ function changeRef(inputInstance) {
 
 :::
 
-此处子组件暴露方法可以一个个暴露，也可以通过 `getCurrentInstance` 获取到 `expose`，然后通过 `expose` 将方法暴露出去。具体的使用可以查看往期文档 [二次封装组件库组件](/learn/element/twice#proxy-代理暴露)。
+此处子组件暴露方法可以一个个暴露，也可以通过 `getCurrentInstance` 获取到 `expose`，然后通过 `expose` 将方法暴露出去。具体的使用可以查看往期文档 [二次封装组件库组件](/handle/element/二次封装组件库组件#proxy-代理暴露)。
 
 后续还能在父组件中添加提交按钮和重置按钮，分别调用表单子组件的 `validate` 和 `resetFields` 方法。
 
@@ -294,8 +294,8 @@ function changeRef(inputInstance) {
 
 > [!INFO] 备注
 >
-> 1. 关于 `index.vue` 中的 `useResetRefByObj` 方法，用来重置数据，具体可查看文档 [Vue 组件状态重置](/learn/vue/reset)
-> 2. 关于 `index.vue` 中的 `MyButton` 组件，是基于 `el-button` 二次封装 `loading` 方法，具体可查看文档 [二次封装 el-button 优雅实现 loading 效果](/learn/element/button)
+> 1. 关于 `index.vue` 中的 `useResetRefByObj` 方法，用来重置数据，具体可查看文档 [Vue 组件状态重置](/idea/vue/组件状态重置)
+> 2. 关于 `index.vue` 中的 `MyButton` 组件，是基于 `el-button` 二次封装 `loading` 方法，具体可查看文档 [二次封装 el-button 优雅实现 loading 效果](/handle/element/二次封装el-button实现优雅loading效果)
 
 ## 事件绑定
 

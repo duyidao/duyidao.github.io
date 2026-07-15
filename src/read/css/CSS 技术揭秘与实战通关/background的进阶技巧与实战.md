@@ -484,7 +484,7 @@ a::before {
 
 > 具体效果可查看 [多行文本渐隐消失](https://codepen.io/duyidao/pen/zxrErML)
 
-还能利用 `inline` 特性结合 `background-size` 实现下划线动画效果。这里就不做过多阐述，可以查看 [下划线动画](/css/effect/downline)。
+还能利用 `inline` 特性结合 `background-size` 实现下划线动画效果。这里就不做过多阐述，可以查看 [下划线动画](/css/effect/下划线动画)。
 
 ### background-attachment
 
