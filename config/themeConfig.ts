@@ -23,7 +23,7 @@ export default {
     next: '下一页 ⏭️',
   },
   search: {
-    // provider: 'local',
+    provider: 'local',
     // provider: 'algolia',
     // options: {
     //   appId: '7NYO59ARBT',
