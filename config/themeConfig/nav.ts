@@ -59,7 +59,7 @@ export default [
       { text: '🧊 博客部署', link: '/vitepress/' },
       {
         text: '📖 书香满屋',
-        link: '/read/javascript/ES6标准入门/ECMAScript6简介',
+        link: '/read/ES6标准入门/ECMAScript6简介',
       },
     ],
   },
