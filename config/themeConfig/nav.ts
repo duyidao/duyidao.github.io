@@ -46,9 +46,9 @@ export default [
       {
         text: '💼 工作项目',
         items: [
-          { text: '🧟 灵思', link: '/lingsi/' },
-          { text: '⛷️ 百度', link: '/baidu/' },
-          { text: '🔢 数说数字化', link: '/shushuo/' },
+          { text: '🧟 灵思', link: '/灵思/APP/登录' },
+          { text: '⛷️ 百度', link: '/百度/图业融合/公共组件封装' },
+          { text: '🔢 数说数字化', link: '/数说/AI报告/AI问答' },
         ],
       },
     ],

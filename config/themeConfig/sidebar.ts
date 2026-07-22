@@ -6,19 +6,19 @@ import { about } from './sidebar/about'
 
 export default {
   '/about/': about,
-  '/baidu/': baidu,
+  '/百度/': baidu,
   '/chart/': chart,
   '/css/': css,
   '/javascript/': js,
   '/ai/': ai,
   '/idea/': idea,
   '/handle/': handle,
-  '/lingsi/': lingsi,
+  '/灵思/': lingsi,
   '/module/': module,
   '/react/': react,
   '/read/': read,
   '/sharp/': sharp,
-  '/shushuo/': shushuo,
+  '/数说/': shushuo,
   '/vitepress/': vitepress,
   '/vue/': vue,
 }
