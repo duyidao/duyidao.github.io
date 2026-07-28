@@ -152,9 +152,7 @@ const baidu = [
         text: '图业',
         collapsed: true,
         items: [
-          { text: '公共组件封装', link: '/百度/图业融合/公共组件封装' },
           { text: '多人合作规范', link: '/百度/图业融合/多人合作规范' },
-          { text: '公共样式设置', link: '/百度/图业融合/公共样式设置' },
           {
             text: 'MapVThree地图组件',
             link: '/百度/图业融合/MapVThree地图组件',

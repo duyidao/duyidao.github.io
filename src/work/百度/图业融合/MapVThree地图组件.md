@@ -1,50 +1,81 @@
----
-title: 百度外包图层项目MapVThree
-titleTemplate: 百度外包图层项目MapVThree
-description: 地图 百度 图层 MapVThree
-head:
-  - - meta
-    - name: description
-      content: 百度外包图层项目MapVThree
-  - - meta
-    - name: keywords
-      content: 地图 百度 图层 MapVThree
-pageClass: baidu-layout-prod
-tags: mapvthree,GeoJSONDataSource,Icon,FatLine
----
+# MapVThree 地图组件
 
-# MapVThree
+## MapVThree 简介
 
-百度地图官方文档指路：[Mapvthree 开发文档 (baidu.com)](https://lbsyun.baidu.com/solutions/mapvthreedoc) 。地图方法每个图层都要使用，因此统一封装成公共方法，通过传值的形式设置不同的属性。下面从方法封装、使用入手。
+<word text="MapVThree" /> 是百度地图官方的三维可视化库，用于在百度地图上实现三维数据可视化。
 
-## 地图方法封装
+官方文档：[Mapvthree 开发文档](https://lbsyun.baidu.com/docs/jsapi?title=jsapithree/index)
 
-地图方法挑基础的点、线、模型和我负责封装的视野漫游动画详细聊聊。
+由于地图方法在每个图层都要使用，因此需要统一封装成公共方法，通过传值的形式设置不同的属性。
 
-### 点
+### 技术架构图
 
-根据官方文档，渲染点需要做到以下几步：
+![技术架构图](../../../images/work/百度/MapVThree-技术架构图.png)
 
-1. 引入 `Icon` 方法和 `GeoJSONDataSource` 方法，前者用于创建点，后者用于把传入的数据转换为渲染点需要的数据源
+### 地图方法封装
 
-2. 在渲染好的地图上通过调用地图实例的 `add()` 方法添加点，并传参宽度、高度、偏移量等参数
+#### 点的封装
 
-3. 调用 `GeoJSONDataSource` 方法获取数据源，入参可通过 f12 打开网络控制台查看，如下图：
+**实现原理**
 
-   ![参数示例](https://pic.imgdb.cn/item/658a4fe0c458853aef328e82.jpg)
+根据官方文档，渲染点需要完成以下步骤：
 
-   只有坐标 `coordinates` 、图标图片路径 `icon` 和尺寸大小 `size` 是自定义的，其余复制粘贴即可。
+![点的封装](../../../images/work/百度/MapVThree-点的封装.png)
 
-4. 返回创建好的点和该地图实例
+**核心步骤**
 
-5. 创建一个删除点的方法，调用地图实例的 `remove()` 方法实现删除
+1. 引入必要方法
 
-::: details 点击展开详细代码
+    - `Icon`：用于创建点标记
+    - `GeoJSONDataSource`：将数据转换为渲染所需的数据源
 
-```js
-// 添加icon
+2. 添加点到地图
+
+    - 调用地图实例的 `add()` 方法
+    - 传参：宽度、高度、偏移量等
+
+3. 获取数据源
+
+    - 调用 `GeoJSONDataSource` 方法
+    - 入参可通过 F12 打开网络控制台查看
+
+4. 删除点
+
+    - 调用地图实例的 `remove()` 方法
+
+**数据结构示例**
+
+```javascript
+// GeoJSON 数据结构
+const geoData = [
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [lng, lat, altitude], // 坐标
+    },
+    properties: {
+      icon: url,        // 图标图片路径
+      size: 40,         // 尺寸大小
+    },
+  },
+]
+```
+
+**代码实现**
+
+```javascript
+/**
+ * 添加图标点
+ * @param {Array} coordinates - 坐标数组 [lng, lat, altitude]
+ * @param {String} url - 图标图片路径
+ * @param {Object} info - 配置信息
+ * @returns {Object} { icon, _engine }
+ */
 export const addIcon = (coordinates, url, info) => {
+  // 确保坐标数组完整性
   coordinates = [coordinates?.[0], coordinates?.[1], coordinates?.[2] || 0]
+  
   const {
     width = 92,
     height = 118,
@@ -64,7 +95,8 @@ export const addIcon = (coordinates, url, info) => {
     ],
     _engine = engine.value,
   } = info || {}
-
+  
+  // 创建 Icon 实例
   const icon = _engine.add(
     new Icon({
       width,
@@ -76,50 +108,86 @@ export const addIcon = (coordinates, url, info) => {
       depthTest: false, // 深度检测
     })
   )
+  
+  // 加载数据源
   GeoJSONDataSource.fromGeoJSON(geoData).then((data) => {
     data.setAttribute('size').setAttribute('icon')
     icon.dataSource = data
   })
-
+  
   return {
     icon,
     _engine,
   }
 }
 
-// 删除icon
+/**
+ * 删除图标点
+ * @param {Object} icon - 图标实例
+ * @param {Object} _engine - 地图引擎实例
+ */
 export const removeIcon = (icon, _engine = engine.value) => {
   icon && _engine.remove(icon)
 }
 ```
 
-:::
+**参数说明表**
 
-### 线
+| 参数名        | 类型    | 默认值   | 说明             |
+| ------------- | ------- | -------- | ---------------- |
+| `width`       | Number  | 92       | 图标宽度（像素） |
+| `height`      | Number  | 118      | 图标高度（像素） |
+| `offset`      | Array   | [0, -50] | 偏移量           |
+| `vertexSizes` | Boolean | true     | 顶点大小         |
+| `vertexIcons` | Boolean | true     | 顶点图标         |
+| `transparent` | Boolean | true     | 是否透明         |
+| `depthTest`   | Boolean | false    | 深度检测         |
 
-根据官方文档，渲染线需要做到以下几步：
+#### 线的封装
 
-1. 引入 `FatLine` 方法和 `GeoJSONDataSource` 方法，前者用于创建线，后者用于把传入的数据转换为渲染线需要的数据源
+**实现原理**
 
-2. 在渲染好的地图上通过调用地图实例的 `add()` 方法添加点，并传参线宽、线的颜色、线的坐标等参数
+渲染线的流程与点类似，但使用的是 `FatLine` 方法。
 
-3. 调用 `GeoJSONDataSource` 方法获取数据源，入参可通过 f12 打开网络控制台查看，如下图：
+![线的封装](../../../images/work/百度/MapVThree-线的封装.png)
 
-   ![参数示例](https://pic.imgdb.cn/item/658a8c44c458853aef1cd007.jpg)
+**核心步骤**
 
-   只有坐标二维数组 `coordinates` 、线的颜色 `color` 是自定义的，其余复制粘贴即可。
+1. 引入必要方法
 
-4. 返回创建好的线和该地图实例
+    - `FatLine`：用于创建线
+    - `GeoJSONDataSource`：转换数据源
 
-5. 创建一个删除线的方法，调用地图实例的 `remove()` 方法实现删除
+2. 添加线到地图
 
-::: details 点击展开详细代码
+    - 调用地图实例的 `add()` 方法
+    - 传参：线宽、线的颜色、线的坐标等
 
-```js
-// 添加线
+3. 获取数据源
+
+    - 调用 `GeoJSONDataSource` 方法
+
+4. 删除线
+
+    - 调用地图实例的 `remove()` 方法
+
+**代码实现**
+
+```javascript
+/**
+ * 添加线
+ * @param {Array} coordinates - 坐标二维数组
+ * @param {Object} info - 配置信息
+ * @param {Object} _engine - 地图引擎实例
+ * @param {Function} callback - 回调函数
+ * @returns {Object} { line, _engine }
+ */
 export const addLine = (coordinates, info, _engine, callback) => {
   if (!_engine) _engine = engine.value
+  
   const { lineWidth, color, opacity } = info || {}
+  
+  // 创建 FatLine 实例
   const line = _engine.add(
     new FatLine({
       vertexColors: true,
@@ -129,6 +197,8 @@ export const addLine = (coordinates, info, _engine, callback) => {
       lineJoin: 'round',
     })
   )
+  
+  // 构建 GeoJSON 数据
   const geojson = {
     type: 'Feature',
     geometry: {
@@ -139,405 +209,236 @@ export const addLine = (coordinates, info, _engine, callback) => {
       color: color,
     },
   }
+  
+  // 加载数据源
   GeoJSONDataSource.fromGeoJSON(geojson).then((geoData) => {
     geoData.setAttribute('color')
     line.dataSource = geoData
     callback && callback(geojson)
   })
-
+  
   return { line, _engine }
 }
 
-// 删除线
+/**
+ * 删除线
+ * @param {Object} line - 线实例
+ * @param {Object} _engine - 地图引擎实例
+ */
 export const removeLine = (line, _engine = engine.value) => {
   line && _engine.remove(line)
 }
 ```
 
-:::
+**配置参数**
 
-### 模型
-
-根据官方文档，渲染模型需要做到以下几步：
-
-1. 使用 `GLTFLoader` 进行模型加载，加载的模型通过地图实例的 `add()` 方法添加到场景中
-2. 将单体模型添加到场景的特定位置，可以通过地图实例的 `map.projectPointArr(center)` 方法，根据场景中心点经纬度获取屏幕中心点坐标，然后设置模型的 `position`
-3. 在模型方法的 `load` 回调函数中获取到模型数据，并给模型设置坐标和大小
-4. 删除同理使用地图实例的 `remove()` 方法移除
-
-::: details 点击展开详细代码
-
-```js
-// 添加模型
-export const addModel = (
-  url = 'maplayer/assets/models/car-impact.glb',
-  position,
-  scale = 7,
-  callback
-) => {
-  const loader = new GLTFLoader()
-  const point = engine.value.map.projectPointArr(position)
-  let model = null
-  loader.load(url, (gltf) => {
-    model = gltf.scene
-    model.position.set(point[0], point[1], 0)
-    model.scale.setScalar(scale)
-    model.rotation.x = Math.PI / 2
-    engine.value.add(model)
-    callback && callback(model)
-  })
-}
-
-// 删除模型
-export const removeModel = (model) => {
-  model && engine.value.remove(model)
+```javascript
+// 线的配置示例
+const lineConfig = {
+  lineWidth: 15,          // 线宽
+  color: '#d0a63c',       // 线的颜色
+  opacity: 1,             // 透明度
+  vertexColors: true,     // 顶点颜色
+  keepSize: true,         // 保持大小
+  lineJoin: 'round',      // 线条连接方式
 }
 ```
 
-:::
+#### 模型的封装
 
-### 视野漫游动画
+**实现原理**
 
-根据官方文档，实现视野漫游动画需要做到以下几步：
+使用 `GLTFLoader` 加载三维模型，并通过地图实例添加到场景中。
 
-1. 引入 `PathTracker` 方法，用于实现视野漫游动画创建
-2. 在渲染好的地图上通过调用地图实例的 `add()` 方法添加视野漫游动画
-3. 使用创建好的视野漫游动画变化实例进行方向插值的距离点的阈值、赋值跟踪的路线和模型和视野漫游类型、开启动画
-4. 返回创建好的视野漫游动画和该地图实例
-5. 创建一个删除点的方法，调用地图实例的 `remove()` 方法实现删除
+![模型的封装](../../../images/work/百度/MapVThree-模型的封装.png)
 
-::: details 点击展开详细代码
+**核心步骤**
+加载模型
+使用 GLTFLoader 进行模型加载
+添加到场景
+通过地图实例的 add() 方法添加到场景
+设置位置
+使用 map.projectPointArr(center) 获取屏幕中心点坐标
+设置模型的 position
+load 回调
+获取模型数据
+设置坐标和大小
+删除模型
+使用地图实例的 remove() 方法移除
+代码实现
+javascript
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546
+模型变换说明
+变换类型
+方法
+说明
+位置
+model.position.set(x, y, z)
+设置模型在场景中的位置
+缩放
+model.scale.setScalar(value)
+统一缩放模型
+旋转
+model.rotation.x = Math.PI / 2
+绕X轴旋转90度（GLTF模型通常需要）
+视野漫游动画封装
+实现原理
+使用 PathTracker 实现相机沿路径移动的动画效果。
+mermaid
 
-```js
-// 添加视野漫游动画
-export const addPathTracker = (options) => {
-  const {
-    viewMode = 'unlock',
-    positions,
-    model,
-    duration = 10000,
-    distance = 50,
-    pitch = 70,
-    _engine = engine.value,
-  } = options
 
-  const pathTracker = _engine.add(new PathTracker())
-  pathTracker.interpolateDirectThreshold = 50 // 进行方向插值的距离点的阈值
-  pathTracker.track = positions // 跟踪的路线,为坐标数组或LineString类型的geojson数据
-  pathTracker.start({
-    duration,
-    distance,
-    pitch,
-    heading: 10,
-  })
-  pathTracker.object = model
-  pathTracker.viewMode = viewMode
 
-  return {
-    pathTracker,
-    _engine,
-  }
-}
 
-// 删除视野漫游动画
-export const removePathTracker = (name, _engine = engine.value) => {
-  name && _engine.remove(name)
-}
-```
 
-:::
+代码
+预览
+核心步骤
+引入方法
+PathTracker：实现视野漫游动画
+添加到地图
+调用地图实例的 add() 方法
+配置参数
+设置方向插值的距离点阈值
+赋值跟踪的路线和模型
+设置视野漫游类型
+开启动画
+删除动画
+调用地图实例的 remove() 方法
+代码实现
+javascript
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253
+参数详解
+参数名
+类型
+默认值
+说明
+viewMode
+String
+'unlock'
+视野模式（unlock/follow）
+positions
+Array
+-
+路径坐标数组
+model
+Object
+-
+跟踪的模型对象
+duration
+Number
+10000
+动画时长（毫秒）
+distance
+Number
+50
+相机与模型的距离
+pitch
+Number
+70
+相机俯仰角
+heading
+Number
+10
+相机航向角
+interpolateDirectThreshold
+Number
+50
+方向插值距离阈值
+地图方法使用
+封装策略
+直接使用函数调用虽然可行，但存在以下问题：
+无法直观知道当前渲染的地图数据来源和名称
+❌ 无法轻松删除对应位置的地图数据
+❌ 缺乏统一的管理机制
+解决方案：封装管理类
+mermaid
 
-## 地图方法使用
 
-方法有了，现在就是使用方法实现需求了。
 
-使用可以直接调用函数来使用，创建好后添加到地图实例上。但是这种方法会有一个问题：我们无法直观知道当前渲染的地图数据各自的来源和他们的名称，也无法轻松的删除对应位置的地图数据。还需要封装对应的类方法，其步骤如下：
 
-1. 创建一个类，每个类对应一个地图方法渲染，在各自的构造器 `constructure` 中定义映射表 `new Map()` 。
-2. 定义一个 `addXxxx()` 方法，方法接收地图函数方法需要的参数，调用前面写好的地图函数方法创建需要的地图数据，并在映射表中保存对应的映射
-3. 定义一个 `removeXxxx()` 方法，方法接收一个名称的参数，通过该名称获取映射表对应的映射，从映射表中删除对应的映射，并从地图上删除对应的数据
-4. 定义一个 `clear()` 方法，方法循环遍历映射表的 `key` 值，依次调用 `removeXxxx()` 方法删除地图
 
-下面从地图的扎点和视野漫游动画方法入手。
+代码
+预览
+管理类封装步骤
+mermaid
 
-### 扎点
 
-根据 UI 图，先来看看扎点的效果，如下图所示：
 
-![ui效果](https://pic.imgdb.cn/item/658aa954c458853aef6db8d0.jpg)
 
-可以看到，他主要分为三部分：左侧的扎点和其下方的气泡点；右侧的 `label` 。下面依次分析。
 
-扎点类型多种多样，主要有以下的区别：
+代码
+预览
+扎点组件
+需求分析
+根据 UI 图，扎点效果包含三个部分：
+mermaid
 
-- 扎点类型，有桥梁、边坡、隧道、路面等
-- 扎点状态，有正常（绿色）、告警病害等（红色）；以及其他排名类（UI 图有对应的其他颜色）
-- 扎点尺寸，有小尺寸、中尺寸和大尺寸
 
-因此需要根据类型获取需要的图片路径。图片资源放到 `public/assets/image` 文件夹里面。
 
-::: info 处理方式
-每一个图片都规范命名，命名格式为 `扎点类型_扎点大小_扎点状态` 。由于考虑到扎点数量与种类过多，因此扎点类型取该扎点到中文，如 `qiaoliang` 等；尺寸大小仿照开源组件库的取法， `normal` 、`small` 等；状态则取对应的颜色英文单词，这样也能有一定的语义化。
 
-由于图片都是放在 `public` 中，因此图片路径最终为 `public/assets/image/${扎点类型}_${扎点尺寸}_${扎点颜色}` 。
-:::
 
-右侧采用地图的自定义 `label` ，调用方法传入其需要的真实 `dom` 、坐标和偏移值即可。前两者在调用时参数传入，偏移值通过计算。
+代码
+预览
+扎点类型说明
+扎点具有多种维度的区别：
+维度
+类型
+说明
+扎点类型
+桥梁、边坡、隧道、路面等
+不同的结构物类型
+扎点状态
+正常（绿色）、告警病害（红色）等
+不同的业务状态
+扎点尺寸
+小尺寸、中尺寸、大尺寸
+不同的显示大小
+图片资源管理
+命名规范：扎点类型_扎点大小_扎点状态
+javascript
+1234
+类型映射表：
+javascript
+12345678
+偏移量计算
+javascript
+123456789101112131415161718192021222324252627
+图片路径生成
+javascript
+12345678910111213141516171819202122232425262728293031
+事件绑定
+javascript
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556
+LayerManager 完整实现
+javascript
+112113114115
+使用示例
+javascript
+1234567891011121314151617181920212223242526
+视野漫游动画组件
+组件构成
+视野漫游动画由三部分组成：
+mermaid
 
-底部的气泡图同理，调用方法传入其需要的尺寸大小、颜色、类型即可。
 
-::: details 点击展开详细代码
 
-```js
-import {
-  addBubble,
-  removeBubble,
-  addIcon,
-  removeIcon,
-  addDOMOverlay,
-  removeDOMOverlay,
-} from '../xxx.js'
 
-// 对象映射表，传入扎点类型中文获取对应扎点类型拼音
-const nameMap = {
-  桥梁: 'qiaoliang',
-  边坡: 'bianpo',
-  隧道: 'suidao',
-}
-// 计算icon的宽高，获取到label的偏移量
-const getLabelOffset = (labelDom, size) => {
-  if (!labelDom) {
-    return [0, 0]
-  }
-  const { width, height } = labelDom.getBoundingClientRect()
-  const iconWidth = size === 'normal' ? 48 : 32
-  const iconHeight = size === 'normal' ? 83 : 55
-  const gapLeft = size === 'normal' ? 10 : 5
-  const gapTop = size === 'nomal' ? 42 : 28
-  const offsetLeft = width / 2 + iconWidth / 2 + gapLeft
-  const offsetTop = -(height / 2 - (iconWidth + gapTop) / 2) - iconHeight
-  return [offsetLeft, offsetTop]
-}
 
-// 获取icon图片路径 'maplayer/assets/image/设备类型(中文拼音)_size_status.png
-const getIconUrl = (type, size = 'normal', status = 'normal', iconUrl) => {
-  if (iconUrl) {
-    return iconUrl
-  }
-  const getIconStatus = (status) => {
-    return `_${status}`
-  }
-  size = size === 'normal' ? '_normal' : '_small'
-  status = getIconStatus(status)
-  type = nameMap[type] || type
-  return `maplayer/assets/image/${type}${size}${status}.png`
-}
+代码
+预览
+PathTrackerManager 实现
+javascript
+88899091
+使用示例
+javascript
+12345678910111213141516171819202122
+执行流程图
+mermaid
 
-const removeMap = {
-  Icon: removeIcon,
-  DomOverlay: removeDOMOverlay,
-  Text: removeText,
-}
 
-// 支持绑定的事件
-const eventNameEnum = {
-  click: 'clickCallback',
-  mouseenter: 'onMouseenter',
-  mouseleave: 'onMouseleave',
-}
 
-// 扎点
-class LayerManager {
-  constructor(engine) {
-    this.layerDomMap = new Map()
-    this.engine = engine
-  }
-  addLayerDomPoint(name, point, options) {
-    if (this.warningeMap.has(name)) {
-      this.removeLaddLayerDomPointByName(name)
-    }
-    this.options = options
-    const {
-      labelDom,
-      type = '桥梁',
-      iconUrl,
-      customData,
-      bubbleColor,
-      clickCallback,
-      size = 'normal',
-      status = 'normal',
-    } = options || {}
 
-    // 气泡点
-    let { bubble } = addBubble(point, {
-      size: size === 'normal' ? 60 : 40,
-      color: bubbleColor,
-      type: 'Wave',
-      _engine: this.engine,
-    })
 
-    // 右侧label dom
-    let { domOverlay } = addDOMOverlay(point, labelDom, {
-      _engine: this.engine,
-      offset: getLabelOffset(labelDom, size),
-    })
-
-    // icon small: 32 * 55 normal: 48 * 83(默认)
-    let { icon, _engine } = addIcon(
-      point,
-      getIconUrl(type, size, status, iconUrl),
-      {
-        width: size === 'normal' ? 48 : 32,
-        height: size === 'normal' ? 83 : 55,
-        offset: size === 'normal' ? [0, -42] : [0, -28],
-        customData,
-        _engine: this.engine,
-      }
-    )
-
-    this.bind(options, icon)
-    this.layerDomMap.set(name, {
-      Bubble: bubble, // 气泡点
-      Label: domOverlay, // 文字 label
-      Icon: icon, // icon
-    })
-  }
-  removeLayerDomPointByName(name) {
-    const warning = this.warningeMap.get(name)
-    if (!warning) return
-    this.unbind(warning.Icon)
-    Object.keys(warning).forEach((key) => {
-      const remove = removeMap[key]
-      remove(warning[key], this.engine)
-    })
-    this.warning.delete(name)
-  }
-
-  // 绑定事件
-  bind(element, type) {
-    const addEventListener = (type) => {
-      const eventName = eventNameEnum[type]
-      const callback = this.options[eventName]
-      if (callback && typeof callback === 'function') {
-        element.receiveRaycast = true
-        element[type] = callback
-        element.engine.event.bind(element, type, callback)
-      }
-    }
-
-    if (type) {
-      addEventListener(type)
-      return
-    }
-    Object.keys(eventNameEnum).forEach((eventType) => {
-      addEventListener(eventType)
-    })
-  }
-
-  // 移除事件
-  unbind(element, type) {
-    const removeEventListener = (type) => {
-      element.engine.event.unbind(element, type, element[type])
-      element[type] = null
-    }
-
-    if (type) {
-      removeEventListener(type)
-      return
-    }
-    Object.keys(eventNameEnum).forEach((eventType) => {
-      removeEventListener(eventType)
-    })
-  }
-
-  clear() {
-    ;[...this.layerDomMap.keys()].forEach((macro) => {
-      this.removeLayerDomPointByName(macro)
-    })
-    this.layerDomMap.clear()
-  }
-}
-
-export { LayerManager }
-```
-
-:::
-
-### 视野漫游动画
-
-视野漫游动画也拆分一下，官网演示的效果如下图所示：
-
-![效果](https://pic.imgdb.cn/item/658b9b91c458853aef2c5aed.jpg)
-
-可以看到，视野漫游动画主要还是需要线（路径）、卡车等模型和动画效果三者。线、模型、动画方法前面都有封装到，因此直接获取使用即可。下面也来定义一个类方法：
-
-1. 创建一个类，每个类对应一个地图方法渲染，在各自的构造器 `constructure` 中定义映射表 `new Map()` 。
-2. 定义一个 `addPathTracker()` 方法，方法接收地图函数方法需要的参数（如模型路径、线路径二维数组等），调用前面封装好的相关方法创建地图数据并在映射表中保存对应的映射
-3. 定义一个 `removePathTrackerByName()` 方法，方法接收一个名称的参数，通过该名称获取映射表对应的映射，从映射表中删除对应的映射，并从地图上删除对应的数据
-4. 定义一个 `clear()` 方法，方法循环遍历映射表的 `key` 值，依次调用 `removeXxxx()` 方法删除地图
-
-::: details 点击展开详细代码
-
-```js
-import {
-  addPathTracker,
-  addLine,
-  addModel,
-  removePathTracker,
-  removeModel,
-  removeLine,
-} from '../xxx.js'
-// 是野蛮懂管理器
-class PathTrackerManager {
-  constructor(engine) {
-    this.pathTrackerMap = new Map()
-    this.engine = engine
-  }
-  addPathTracker(name, options) {
-    if (this.pathTrackerMap.has(name)) {
-      this.removePathTrackerByName(name)
-    }
-    const { position, positions } = options || {}
-    let { line } = addLine(
-      positions,
-      {
-        lineWidth: 15,
-        color: '#d0a63c',
-        opacity: 1,
-      },
-      null,
-      (geoData) => {
-        addModel('maplayer/assets/models/kache.glb', position, 150, (model) => {
-          addPathTracker({
-            positions: geoData,
-            position,
-            model,
-          })
-
-          this.pathTrackerMap.set(name, {
-            line: line,
-            model: model,
-          })
-        })
-      }
-    )
-  }
-  removePathTrackerByName(name) {
-    const pathTracker = this.pathTrackerMap.get(name)
-    pathTracker && removeModel(pathTracker.model, this.engine)
-    pathTracker && removeLine(pathTracker.line, this.engine)
-    this.pathTrackerMap.delete(name)
-  }
-
-  clear() {
-    ;[...this.pathTrackerMap.keys()].forEach((pathTracker) => {
-      this.removePathTrackerByName(pathTracker)
-    })
-    this.pathTrackerMap.clear()
-  }
-}
-
-export { PathTrackerManager }
-```
-
-:::
+代码
+预览
+总结
