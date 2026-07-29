@@ -1,172 +1,312 @@
----
-title: 百度外包图层项目BUG
-titleTemplate: 百度外包图层项目BUG
-description: 地图 百度 图层 BUG
-head:
-  - - meta
-    - name: description
-      content: 百度外包图层项目BUG
-  - - meta
-    - name: keywords
-      content: 地图 百度 图层 BUG
-pageClass: baidu-layout-bug
-tags: bug,vite-plugin-vue
----
+# BUG 修改与记录
 
-# 抓虫记录
+## JSON 相关错误
 
-## 与 JSON 有关
+### 错误信息
 
-### Uncaught (in promise) SyntaxError: Unterminated string in JSON at position 204800 (line 1 column 204801)
-
-- 报错原因：
-
-  这个错误通常表示在解析 JSON 数据时出现了语法错误。在你的情况下，JSON 字符串中存在一个未结束的字符串，在第 1 行第 204801 列（或者附近的位置）。
-
-  在解决这个问题之前，你需要确定你正在处理的是 JSON 格式的数据。如果是，请检查 JSON 字符串是否正确格式化并且所有双引号都有成对出现。
-
-  可以通过以下步骤来查看 JSON 字符串中的错误：
-
-  1. 打开浏览器的开发者工具，并切换到“控制台”选项卡。
-  2. 复制出现错误的 JSON 字符串。
-  3. 在控制台中输入 `JSON.parse(yourJsonString)`，其中 `yourJsonString` 是你复制的 JSON 字符串。
-  4. 如果存在语法错误，你将会看到类似于 "Uncaught SyntaxError: Unterminated string in JSON at position 123" 的错误信息，其中 `123` 表示 JSON 字符串中的错误位置。
-
-  根据错误信息所提供的位置，检查 JSON 字符串中的该位置，并确保所有字符串都被正确地结束。
-
-  注意：如果 JSON 数据太大，可能需要分段检查。
-
-- 排查复现：后端返回的数据是数组转 JSON 格式
-
-- 最终解决：等待后端返回正确的格式数据
-
-## 与组件库有关
-
-### 时间筛选组件样式修改不生效
-
-在开发的时候，引用了 `element-ui` 的时间筛选组件 `el-date-picker` ，在给下面的时间筛选部分通过 `deep` 穿透设置样式时未生效。
-
-经过排查发现该组件默认是设置在 `body` 下，而非组件内。组件样式做了 `scoped` 防污染后样式只在该组件内生效。因此无论怎么调试都不生效。
-
-其官方文档也写明，通过设置 `append-to-body` 为 `false` ，让其在组件内挂载，这样就能生效了。
-
-### vite-plugin-vue2 导致 el-table 等组件不生效
-
-在开发的时候发现表格位置空白，无表格<word text="DOM" />组件。主要依赖为 Vite +<word text="Vue2.7" />+ elementui2.15.10 + vite-plugin-vue2。
-
-查看 [vite 官网](https://cn.vitejs.dev/guide/features#vue) 发现<word text="Vue2.7" />有单独的支持包，更换成该包。
-
-![更换包](https://pic.imgdb.cn/item/670a1b93d29ded1a8c8848fe.png)
-
-现在开发模式有效果了，但是打包后还是空白。查看 vite-plugin-vue2 的 `issuess` 发现有相关问题，有人给出相关解答和问题原因，感兴趣可前往 [vite-plugin-vue2 does not support some components of ElementUI](https://github.com/vitejs/vite-plugin-vue2/issues/16) 。
-
-解决方法如下：
-
-```js
-export default defineConfig({
-  // ...
-  resolve: {
-    alias: {
-      // ...
-      vue: 'vue/dist/vue.esm.js',
-    },
-  },
-})
+```
+Uncaught (in promise) SyntaxError: Unterminated string in JSON at position 204800 (line 1 column 204801)
 ```
 
-## 与 Vue 相关
+### 错误原因分析
 
-### 变量修改导致的组件更新导致了扎点重新渲染
+这个错误通常表示在解析 JSON 数据时出现了语法错误。具体来说：
 
-有一个场景，一个父组件引用了公共扎点子组件，在地图上渲染扎点，其代码如下所示：
+- 错误类型：未结束的字符串（`Unterminated string`）
+- 错误位置：第 1 行第 204801 列（`position 204800`）
 
-```vue
-<template>
-	<marker-dom
-    v-for="(item, index) in list" :key="item.id"
-    :info="{
-      ...item,
-      :position="[item.lng, item.lat]"
-      :name="item.name"
-      :onClickCallback="() => clickCallbackFn(item)"
-      :onMouseenterCallback="() => mouseenterCallbackFn(index)"
-      :onMouseleaveCallback="() => mouseleaveCallbackFn(index)"
-    }"
-  >
-    <div v-show="showList[index]"> ... </div>
-  </marker-dom>
-</template>
+![错误原因分析](../../../images/work/百度/BUG修改与记录-错误原因分析.png)
 
-<script>
-  export default {
-    setup() {
-      const showList = ref([])
+### 排查步骤
 
-      const mouseenterCallbackFn = index => {
-        set(showList.value, index, true)
-      }
+**步骤 1：确认数据格式**
 
-      const mouseleaveCallbackFn = index => {
-        set(showList.value, index, false)
-      }
+首先需要确定你正在处理的是 JSON 格式的数据。
 
-      return {
-        showList,
-        mouseleaveCallbackFn, mouseenterCallbackFn
-      }
+**步骤 2：检查字符串引号**
+
+检查 JSON 字符串是否正确格式化，确保所有双引号都有成对出现。
+
+常见问题：
+
+- 字符串中包含未转义的双引号
+- 字符串中包含了非法字符
+- 字符串末尾缺少结束引号
+
+**步骤 3：使用控制台调试**
+
+```javascript
+// 1. 打开浏览器的开发者工具，切换到"控制台"选项卡
+
+// 2. 复制出现错误的 JSON 字符串
+const yourJsonString = '...' // 粘贴你的 JSON 字符串
+
+// 3. 在控制台中尝试解析
+try {
+  JSON.parse(yourJsonString)
+  console.log('JSON 格式正确')
+} catch (error) {
+  console.error('JSON 解析错误:', error.message)
+  console.error('错误位置:', error.message.match(/position (\d+)/)?.[1])
+}
+```
+
+**步骤 4：定位错误位置**
+
+根据错误信息提供的位置，检查 JSON 字符串中的该位置：
+
+```javascript
+// 获取错误位置附近的字符串
+const errorPosition = 204800
+const contextLength = 100
+
+const start = Math.max(0, errorPosition - contextLength)
+const end = Math.min(yourJsonString.length, errorPosition + contextLength)
+
+console.log('错误位置附近的字符串:')
+console.log(yourJsonString.substring(start, end))
+```
+
+**步骤 5：分段检查大数据**
+
+如果 JSON 数据太大，可能需要分段检查：
+
+```javascript
+// 分段检查函数
+const checkJsonInChunks = (jsonString, chunkSize = 10000) => {
+  for (let i = 0; i < jsonString.length; i += chunkSize) {
+    const chunk = jsonString.substring(i, i + chunkSize)
+    try {
+      // 尝试解析片段（注意：这只是语法检查）
+      JSON.parse(`[${chunk}]`)
+      console.log(`片段 ${i}-${i + chunkSize} 正常`)
+    } catch (error) {
+      console.error(`片段 ${i}-${i + chunkSize} 错误:`, error.message)
+      return i
     }
   }
-</script>
+  return -1
+}
 ```
 
-根据上述代码不难看出它主要做了循环数据，把每一项的数据和经纬度、点击、鼠标移入移出回调函数等放到对象中传递给子组件。鼠标移入把数组对应索引改为 `true` 展示对应的卡片；鼠标移出后隐藏。
+### 最终解决方案
 
-查看效果发现虽然鼠标移入展示了，但是页面上的扎点全部都重新渲染了一遍，且不触发鼠标移出方法。
+问题根源：后端返回的数据是数组转 JSON 格式时出现了错误
 
-然后开始排查问题，既然重新渲染，那么就去看哪里触发了子组件的渲染函数。在子组件中有两个地方用到了该方法，一个在 `onMounted` ，一个在 `watch` 。前者可以排除，生命周期只触发一次，`watch` 代码如下所示：
+解决方案：
 
-```js
-watch(
-  () => props.info,
-  (_, { name }) => {
-    removeIcon(name) // 删除旧扎点
-    addIcon() // 新建新扎点
-  },
-  { deep: true }
-)
-```
+1. 等待后端修复，返回正确的 JSON 格式数据
+2. 在前端增加数据验证机制
+3. 添加错误处理和降级方案
 
-打印 `props.info` ，控制台有相关打印，可以判断是子组件侦听到数据发生改变，因此重新渲染扎点图标。但是父组件并没有修改到 `list` 数组，`info` 内的数据不会被变动到。
-
-后面想起在学习组件封装时听到的一个知识点：修改了组件内的变量会让 `template` 重新加载一次。由于 `info` 变量是 `template` 内直接设置，因此每次重新加载，都会赋一个新的对象过去，子组件侦听到是新对象就会触发。
-
-找到问题所在后就好办了，通过计算属性格式化一下数据，这样数据不变动就不会触发子组件的侦听器了。代码如下：
-
-```vue
-<template>
-  <marker-dom v-for="(item, index) in markerList" :key="item.id" :info="item">
-    <div v-show="showList[index]">...</div>
-  </marker-dom>
-</template>
-
-<script>
-export default {
-  setup() {
-    const markerList = computed(() => {
-      return list.value.map(item => ({
-        ...item,
-        position="[item.lng, item.lat]"
-        name="item.name"
-        onClickCallback="() => clickCallbackFn(item)"
-        onMouseenterCallback="() => mouseenterCallbackFn(index)"
-        onMouseleaveCallback="() => mouseleaveCallbackFn(index)"
-      }))
-    })
-
-    return {
-      markerList
+```javascript
+// 前端增加数据验证
+const validateAndParseJSON = (data) => {
+  try {
+    const parsed = JSON.parse(data)
+    return { success: true, data: parsed }
+  } catch (error) {
+    console.error('JSON 解析失败:', error.message)
+    
+    // 尝试修复常见错误
+    const fixedData = attemptFixJSON(data)
+    if (fixedData) {
+      try {
+        return { success: true, data: JSON.parse(fixedData), warning: '已自动修复' }
+      } catch (e) {
+        return { success: false, error: '无法修复 JSON 错误' }
+      }
     }
+    
+    return { success: false, error: error.message }
   }
 }
-</script>
+
+// 尝试修复常见 JSON 错误
+const attemptFixJSON = (data) => {
+  // 修复未转义的双引号
+  // 修复缺失的逗号
+  // 修复尾部逗号
+  return data
+    .replace(/,\s*}/g, '}')  // 删除对象尾部逗号
+    .replace(/,\s*]/g, ']')  // 删除数组尾部逗号
+}
 ```
+
+## 组件库相关问题
+
+### 问题一：时间筛选组件样式修改不生效
+
+**问题描述**
+
+在开发时，引用了 <word text="element-ui" /> 的时间筛选组件 el-date-picker，在给下面的时间筛选部分通过 deep 穿透设置样式时未生效。
+问题原因
+mermaid
+
+
+
+
+
+代码
+预览
+核心原因：
+el-date-picker 组件默认是设置在 body 下，而非组件内
+组件样式做了 scoped 防污染后，样式只在该组件内生效
+因此无论怎么使用 deep 调试都不生效
+官方文档说明
+<word text="element-ui" /> 官方文档明确指出：日期选择器的下拉面板默认会被追加到 body 元素下。
+解决方案
+方法 1：设置 append-to-body 为 false
+vue
+12345678910111213141516
+方法 2：使用全局样式
+vue
+123456789101112131415
+方法 3：使用自定义类名
+vue
+12345678910111213141516
+对比说明
+方法
+优点
+缺点
+适用场景
+append-to-body="false"
+样式容易控制
+可能被父元素裁剪
+父容器空间充足
+全局样式
+简单直接
+可能影响其他组件
+全局统一样式
+popper-class
+精准控制
+需要额外类名
+推荐方案
+问题二：vite-plugin-vue2 导致 el-table 等组件不生效
+问题描述
+在开发时发现表格位置空白，无表格 <word text="DOM" /> 组件。
+技术栈：
+Vite
+<word text="Vue2.7" />
+element-ui 2.15.10
+vite-plugin-vue2
+问题排查
+mermaid
+
+
+
+
+
+代码
+预览
+第一次尝试：更换插件
+查看 <word text="Vite" /> 官网发现 <word text="Vue2.7" /> 有单独的支持包。
+官方文档：Vite Vue 插件
+修改前：
+javascript
+12345678
+修改后：
+javascript
+12345678
+结果：开发模式有效果了，但是打包后还是空白。
+第二次尝试：查看 issues
+查看 vite-plugin-vue2 的 issues 发现有相关问题：
+问题链接：vite-plugin-vue2 does not support some components of ElementUI
+问题原因：某些 <word text="ElementUI" /> 组件需要完整的 Vue 运行时版本，而不是仅包含编译器的版本。
+最终解决方案
+在 vite.config.js 中配置别名，使用完整的 Vue 版本：
+javascript
+1234567891011121314151617181920
+配置说明
+配置项
+说明
+vue: 'vue/dist/vue.esm.js'
+使用包含编译器和运行时的完整版本
+@vitejs/plugin-vue2
+Vue2.7 专用的 Vite 插件
+验证步骤
+mermaid
+
+
+
+
+
+代码
+预览
+Vue 相关问题
+问题：变量修改导致的组件更新导致了扎点重新渲染
+场景描述
+一个父组件引用了公共扎点子组件，在地图上渲染扎点。
+原始代码
+vue
+1234567891011121314151617181920212223242526272829303132333435363738
+问题分析
+mermaid
+
+
+
+
+
+代码
+预览
+现象：
+✅ 鼠标移入展示了卡片
+❌ 页面上的扎点全部都重新渲染了一遍
+不触发鼠标移出方法
+排查过程：
+检查子组件渲染触发点
+onMounted：生命周期只触发一次，排除
+watch：侦听 props.info，发现被触发
+查看 watch 代码
+javascript
+12345678
+打印 props.info
+控制台有相关打印
+判断是子组件侦听到数据发生改变，因此重新渲染扎点图标
+核心问题
+父组件并没有修改 list 数组
+info 内的数据不应该被变动
+但每次模板重新渲染，都会创建一个新的对象
+根本原因：
+修改了组件内的变量会让 template 重新加载一次。由于 info 变量是在 template 内直接设置的对象字面量，因此每次重新加载，都会赋一个新的对象过去。子组件侦听到是新对象（引用变化）就会触发。
+解决方案
+使用计算属性格式化数据，这样数据不变动就不会触发子组件的侦听器。
+优化后的代码：
+vue
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051
+优化对比
+mermaid
+
+
+
+
+
+代码
+预览
+方案
+对象创建时机
+引用稳定性
+性能影响
+原始方案
+每次模板渲染
+不稳定（新对象）
+高（频繁更新）
+优化方案
+依赖变化时
+稳定（缓存）
+低（按需更新）
+关键知识点
+计算属性的缓存特性
+计算属性会基于响应式依赖进行缓存
+只有在相关依赖发生改变时才会重新求值
+这意味只要 list 没有变化，markerList 就会返回之前的执行结果
+对象引用稳定性
+模板内直接创建对象字面量，每次渲染都会创建新对象
+计算属性返回的对象在依赖不变时保持引用稳定
+子组件更新触发条件
+浅层比较：对象引用变化
+深层比较：对象内部属性变化（需要 deep: true）
+最佳实践建议
+javascript
+1234567891011121314151617181920
+总
