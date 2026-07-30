@@ -1,152 +1,143 @@
 {
-  "MapVThree": {
-    "en": "MapVThree",
-    "cn": "MapVThree",
-    "descript": "百度地图官方的三维可视化库，用于在百度地图上实现三维数据可视化，支持点、线、面、模型等多种数据类型的渲染",
-    "tags": [
-      "map",
-      "visualization",
-      "3d"
-    ]
-  },
-  "Icon": {
-    "en": "Icon",
-    "cn": "图标标记",
-    "descript": "MapVThree 中用于创建点标记的类，可以设置宽度、高度、偏移量、透明度等属性，用于在地图上显示自定义图标",
-    "tags": [
-      "map",
-      "marker",
-      "point"
-    ]
-  },
-  "GeoJSONDataSource": {
-    "en": "GeoJSONDataSource",
-    "cn": "GeoJSON 数据源",
-    "descript": "MapVThree 提供的数据源转换工具，用于将 GeoJSON 格式的数据转换为地图渲染所需的数据源格式，支持点、线、面等几何类型",
-    "tags": [
-      "map",
-      "data",
-      "geojson"
-    ]
-  },
-  "FatLine": {
-    "en": "FatLine",
-    "cn": "粗线",
-    "descript": "MapVThree 中用于渲染线条的类，支持设置线宽、颜色、透明度、线条连接方式等属性，用于在地图上显示路径或边界线",
-    "tags": [
-      "map",
-      "line",
-      "path"
-    ]
-  },
-  "GLTFLoader": {
-    "en": "GLTFLoader",
-    "cn": "GLTF 模型加载器",
-    "descript": "Three.js 提供的 GLTF/GLB 格式三维模型加载器，用于加载和解析三维模型文件，支持设置模型的位置、缩放、旋转等变换属性",
-    "tags": [
-      "model",
-      "3d",
-      "loader"
-    ]
-  },
-  "PathTracker": {
-    "en": "PathTracker",
-    "cn": "路径跟踪器",
-    "descript": "MapVThree 提供的视野漫游动画类，用于实现相机沿指定路径移动的动画效果，支持设置动画时长、距离、俯仰角、航向角等参数",
-    "tags": [
-      "map",
-      "animation",
-      "camera"
-    ]
-  },
-  "Vue2.7": {
-    "en": "Vue2.7",
-    "cn": "Vue 2.7",
-    "descript": "Vue.js 2.x 系列的最终版本，向下兼容 Vue 3 的组合式 API（Composition API）和 setup 语法，是 Vue 2 到 Vue 3 的过渡版本",
-    "tags": [
-      "framework",
-      "vue",
-      "javascript"
-    ]
-  },
-  "element-ui": {
-    "en": "element-ui",
-    "cn": "Element UI",
-    "descript": "基于 Vue 2 的桌面端组件库，提供了一套美观、易用的 UI 组件，包括表单、表格、对话框、选择器等常用组件",
-    "tags": [
-      "ui",
-      "component",
-      "vue2"
-    ]
-  },
   "Vite": {
     "en": "Vite",
     "cn": "Vite",
-    "descript": "新一代前端构建工具，由 Vue.js 作者尤雨溪开发，提供快速的开发服务器启动和热更新，支持 Vue、React 等多种框架",
+    "descript": "下一代前端构建工具，提供快速的开发服务器和优化的生产构建，由 Vue.js 作者开发。",
     "tags": [
       "build",
       "tool",
       "frontend"
     ]
   },
+  "Vue3": {
+    "en": "Vue3",
+    "cn": "Vue3",
+    "descript": "Vue.js 框架的最新主要版本，引入组合式 API 和基于 Proxy 的响应式系统，性能与开发体验大幅提升。",
+    "tags": [
+      "framework",
+      "vue",
+      "javascript"
+    ]
+  },
+  "BMapGL": {
+    "en": "BMapGL",
+    "cn": "百度地图 GL 命名空间",
+    "descript": "百度地图 JavaScript API GL 版的全局命名空间，包含所有三维与二维地图的类、方法和常量。",
+    "tags": [
+      "bmap",
+      "api",
+      "namespace"
+    ]
+  },
+  "Polyline": {
+    "en": "Polyline",
+    "cn": "折线覆盖物",
+    "descript": "百度地图 API 中用于在地图上绘制折线的覆盖物类，支持设置颜色、宽度、透明度等样式属性。",
+    "tags": [
+      "bmap",
+      "overlay",
+      "line"
+    ]
+  },
+  "Label": {
+    "en": "Label",
+    "cn": "文本标注",
+    "descript": "百度地图 API 中用于在地图上添加文本标注的覆盖物类，支持自定义位置、偏移量及丰富的 CSS 样式。",
+    "tags": [
+      "bmap",
+      "overlay",
+      "text"
+    ]
+  },
+  "CustomHtmlLayer": {
+    "en": "CustomHtmlLayer",
+    "cn": "自定义 HTML 图层",
+    "descript": "百度地图 API 提供的自定义 HTML 图层类，允许使用原生 DOM 元素批量渲染覆盖物，适用于大量图标或标签的高性能渲染。",
+    "tags": [
+      "bmap",
+      "overlay",
+      "html",
+      "dom"
+    ]
+  },
+  "CustomOverlay": {
+    "en": "CustomOverlay",
+    "cn": "自定义覆盖物",
+    "descript": "百度地图 API 中用于自定义单个覆盖物的基类，需继承该类并实现 draw 等绘制方法，适用于高度定制化的单一元素。",
+    "tags": [
+      "bmap",
+      "overlay",
+      "class"
+    ]
+  },
   "DOM": {
     "en": "DOM",
     "cn": "文档对象模型",
-    "descript": "Document Object Model 的缩写，是 HTML 和 XML 文档的编程接口，提供了对文档的结构化表述，允许 JavaScript 操作页面元素",
+    "descript": "Document Object Model 的缩写，是 HTML 和 XML 文档的编程接口，提供了对文档的结构化表述，允许脚本动态操作页面元素。",
     "tags": [
       "web",
       "api",
       "browser"
     ]
   },
+  "HTML": {
+    "en": "HTML",
+    "cn": "超文本标记语言",
+    "descript": "HyperText Markup Language 的缩写，用于创建网页结构的标准标记语言，是 Web 开发的基础。",
+    "tags": [
+      "web",
+      "standard",
+      "markup"
+    ]
+  },
+  "CSS": {
+    "en": "CSS",
+    "cn": "层叠样式表",
+    "descript": "Cascading Style Sheets 的缩写，用于描述 HTML 文档的呈现效果，包括布局、颜色、字体等视觉样式。",
+    "tags": [
+      "web",
+      "style",
+      "frontend"
+    ]
+  },
   "JSON": {
     "en": "JSON",
     "cn": "JavaScript 对象表示法",
-    "descript": "JavaScript Object Notation 的缩写，是一种轻量级的数据交换格式，采用完全独立于编程语言的文本格式来存储和表示数据",
+    "descript": "JavaScript Object Notation 的缩写，是一种轻量级的数据交换格式，采用完全独立于编程语言的文本格式来存储和表示数据。",
     "tags": [
       "data",
       "format",
       "exchange"
     ]
   },
-  "LayerManager": {
-    "en": "LayerManager",
-    "cn": "图层管理器",
-    "descript": "用于统一管理地图上扎点元素的类，通过 Map 数据结构保存各个扎点的引用，提供添加、删除、清空等操作方法和事件绑定功能",
+  "GeoJSON": {
+    "en": "GeoJSON",
+    "cn": "地理空间数据交换格式",
+    "descript": "一种基于 JSON 格式的地理空间数据交换标准，用于编码各种地理数据结构，如点、线、面及属性信息。",
     "tags": [
-      "map",
-      "manager",
-      "class"
+      "geo",
+      "data",
+      "format"
     ]
   },
-  "PathTrackerManager": {
-    "en": "PathTrackerManager",
-    "cn": "视野漫游管理器",
-    "descript": "用于统一管理视野漫游动画的类，通过 Map 数据结构保存路径线、模型等元素的引用，提供添加、删除、清空等操作方法",
-    "tags": [
-      "map",
-      "manager",
-      "animation"
-    ]
-  },
-  "scoped": {
-    "en": "scoped",
-    "cn": "作用域样式",
-    "descript": "Vue 单文件组件中的样式属性，用于给组件样式添加唯一的数据属性选择器，实现样式隔离，防止样式污染其他组件",
+  "Pinia": {
+    "en": "Pinia",
+    "cn": "Pinia 状态管理库",
+    "descript": "Vue.js 的新一代状态管理库，被官方推荐为 Vuex 的替代品，提供类型安全、模块化及组合式 API 支持。",
     "tags": [
       "vue",
-      "style",
-      "css"
+      "state",
+      "management"
     ]
   },
-  "setup": {
-    "en": "setup",
-    "cn": "设置函数",
-    "descript": "Vue 3 和 Vue 2.7 中组合式 API 的入口函数，在组件初始化时执行，用于定义响应式数据、计算属性、方法和生命周期钩子",
+  "JavaScript API": {
+    "en": "JavaScript API",
+    "cn": "JavaScript 应用程序编程接口",
+    "descript": "百度地图提供给开发者的 JavaScript 接口集合，用于在 Web 页面中嵌入地图、添加覆盖物及实现交互功能。",
     "tags": [
-      "vue",
+      "bmap",
       "api",
-      "composition"
+      "javascript"
     ]
   }
 }

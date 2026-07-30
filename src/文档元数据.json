@@ -1,0 +1,60 @@
+{
+  "work/百度/佛开/LED大屏/打包": {
+    "title": "百度外包佛开项目大屏打包",
+    "description": "详细说明百度地图佛开项目大屏端在部署阶段的打包配置，涵盖环境变量定义与 Vite 基础路径加载。",
+    "tags": [
+      "vite",
+      "env",
+      "build",
+      "deploy"
+    ],
+    "authors": []
+  },
+  "work/百度/佛开/LED大屏/覆盖物": {
+    "title": "百度外包佛开项目大屏覆盖物",
+    "description": "阐述百度二维地图中折线、文本标注及自定义 HTML 图层的实现原理与代码封装。",
+    "tags": [
+      "bmap",
+      "overlay",
+      "polyline",
+      "label",
+      "customhtml"
+    ],
+    "authors": []
+  },
+  "work/百度/佛开/LED大屏/自定义样式": {
+    "title": "百度外包佛开项目大屏自定义样式",
+    "description": "介绍百度地图个性化样式的两种配置方案：样式 ID 与 JSON 文件，并提供对比分析。",
+    "tags": [
+      "bmap",
+      "style",
+      "setMapStyleV2",
+      "ui"
+    ],
+    "authors": []
+  },
+  "work/百度/佛开/平台端/3d跳转": {
+    "title": "百度外包佛开项目 3D 路由跳转",
+    "description": "详细阐述基于 CSS 3D 变换与 Vue3 计算属性实现科幻风 3D 路由切换效果的数学模型与代码封装。",
+    "tags": [
+      "css3d",
+      "transform",
+      "rotateY",
+      "vue3",
+      "router"
+    ],
+    "authors": []
+  },
+  "work/百度/佛开/平台端/子组件动态挂载": {
+    "title": "百度外包佛开项目子组件动态挂载",
+    "description": "介绍利用 Vite 的 import.meta.glob 与 Vue3 的 defineAsyncComponent 实现组件批量导入、字典驱动过滤及动态挂载动画的完整方案。",
+    "tags": [
+      "import.meta.glob",
+      "defineAsyncComponent",
+      "dynamic-component",
+      "vue3",
+      "vite"
+    ],
+    "authors": []
+  }
+}
