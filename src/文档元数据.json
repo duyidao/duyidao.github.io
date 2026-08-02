@@ -56,5 +56,64 @@
       "vite"
     ],
     "authors": []
+  },
+  "work/数说/需求洞察/代理配置": {
+    "title": "数说项目代理配置指南",
+    "description": "详细说明在数说项目中如何利用 whistle 与 SwitchyOmega 实现多环境本地代理配置，解决一套代码多环境运行的调试问题。",
+    "tags": [
+      "whistle",
+      "switchyomega",
+      "proxy",
+      "debug"
+    ],
+    "authors": []
+  },
+  "work/数说/需求洞察/tooltip无法显示": {
+    "title": "ECharts 组件 Tooltip 无法显示问题排查与解决",
+    "description": "深入剖析 Vue 中 ECharts 实例被响应式代理导致 Tooltip 等配置失效的问题，并提供基于 shallowRef 的标准解决方案。",
+    "tags": [
+      "echarts",
+      "vue3",
+      "shallowRef",
+      "proxy",
+      "bug"
+    ],
+    "authors": []
+  },
+  "work/数说/AI报告/路由自动化": {
+    "title": "数说项目自动化路由配置指南",
+    "description": "详细阐述基于 Vue3 与 TypeScript 环境，利用 UnpluginVueRouter 实现文件系统路由自动化、类型推导及全局 API 自动导入的完整方案。",
+    "tags": [
+      "unplugin-vue-router",
+      "typescript",
+      "vite",
+      "auto-import",
+      "vue3"
+    ],
+    "authors": []
+  },
+  "work/数说/AI报告/CXO畅写": {
+    "title": "数说项目 CXO 畅写编辑器集成方案",
+    "description": "深入解析 CXO 编辑器的异常状态拦截、基于隐藏 iframe 的字体预加载机制（解决 FOIT/FOUT），以及组件生命周期内的内存自动化清理策略。",
+    "tags": [
+      "cxo",
+      "iframe",
+      "font-preload",
+      "vueuse",
+      "memory-leak"
+    ],
+    "authors": []
+  },
+  "work/数说/AI报告/AI问答": {
+    "title": "数说项目 AI 问答模块流式交互与富文本复制方案",
+    "description": "拆解 AI 问答模块的 SSE 流式请求链路、工作流状态机解析，以及基于 Range 选区与 ClipboardItem 实现的高保真富文本跨格式复制方案。",
+    "tags": [
+      "sse",
+      "ant-design-x-vue",
+      "fetch",
+      "clipboard",
+      "vueuse"
+    ],
+    "authors": []
   }
 }
