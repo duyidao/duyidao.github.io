@@ -451,5 +451,87 @@
       "overlay",
       "class"
     ]
+  },
+  "FullCalendar": {
+    "en": "FullCalendar",
+    "cn": "FullCalendar 日历组件库",
+    "descript": "一款功能强大的开源 JavaScript 日历组件库，支持多种视图、拖拽交互及事件管理，提供 Vue、React 等框架的官方适配。",
+    "tags": [
+      "ui",
+      "component",
+      "calendar",
+      "javascript"
+    ]
+  },
+  "Git": {
+    "en": "Git",
+    "cn": "Git 版本控制系统",
+    "descript": "一个免费的、开源的分布式版本控制系统，支持快速高效的项目版本管理，适用于从小型到超大型项目的协作开发。",
+    "tags": [
+      "tool",
+      "version-control",
+      "devops"
+    ]
+  },
+  "Iframe": {
+    "en": "Iframe",
+    "cn": "内联框架",
+    "descript": "HTML 标签，用于在当前网页中嵌入另一个独立的网页或文档，实现页面内容的嵌套与隔离。",
+    "tags": [
+      "html",
+      "web",
+      "embed"
+    ]
+  },
+  "LocalStorage": {
+    "en": "LocalStorage",
+    "cn": "本地存储",
+    "descript": "Web Storage API 的一部分，允许在浏览器中持久化存储键值对数据，除非手动清除，否则数据不会过期。",
+    "tags": [
+      "web",
+      "api",
+      "storage"
+    ]
+  },
+  "Same-Origin Policy": {
+    "en": "Same-Origin Policy",
+    "cn": "同源策略",
+    "descript": "浏览器的核心安全机制，限制不同源（协议、域名、端口均相同）的文档或脚本之间的交互，防止恶意脚本窃取数据。",
+    "tags": [
+      "web",
+      "security",
+      "browser"
+    ]
+  },
+  "Vant": {
+    "en": "Vant",
+    "cn": "Vant 移动端组件库",
+    "descript": "由有赞团队开源的轻量、可靠的移动端 Vue 组件库，提供丰富的基础组件和业务组件，适用于移动端 H5 开发。",
+    "tags": [
+      "ui",
+      "component",
+      "vue",
+      "mobile"
+    ]
+  },
+  "SDK": {
+    "en": "SDK",
+    "cn": "软件开发工具包",
+    "descript": "Software Development Kit 的缩写，为特定的软件包、软件框架、硬件平台或操作系统提供开发工具集合。",
+    "tags": [
+      "tool",
+      "development",
+      "integration"
+    ]
+  },
+  "Token": {
+    "en": "Token",
+    "cn": "身份验证令牌",
+    "descript": "在身份验证和授权机制中，代表用户登录状态的加密字符串，常用于无状态的 API 鉴权（如 JWT）。",
+    "tags": [
+      "security",
+      "auth",
+      "network"
+    ]
   }
 }

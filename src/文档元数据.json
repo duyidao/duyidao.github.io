@@ -115,5 +115,89 @@
       "vueuse"
     ],
     "authors": []
+  },
+  "work/数说/nourseN次方/web端/日程表组件": {
+    "title": "基于 FullCalendar 的日程表组件封装与实践",
+    "description": "详细阐述基于 FullCalendar 与 Vue3 的日程表组件封装方案，涵盖插槽定制、数据驱动配置及跨组件日期联动机制。",
+    "tags": [
+      "fullcalendar",
+      "vue3",
+      "typescript",
+      "calendar",
+      "component"
+    ],
+    "authors": []
+  },
+  "work/数说/nourseN次方/web端/H5预览": {
+    "title": "基于 iframe 与 postMessage 的 H5 实时预览方案",
+    "description": "剖析基于 iframe 嵌入与 postMessage 跨窗口通信的 H5 实时预览架构，解决编辑态与预览态的数据同步及性能优化问题。",
+    "tags": [
+      "iframe",
+      "postmessage",
+      "vueuse",
+      "cross-window",
+      "preview"
+    ],
+    "authors": []
+  },
+  "work/数说/nourseN次方/web端/子模块导入": {
+    "title": "Git Submodule 子模块管理指南",
+    "description": "梳理 Git Submodule 的核心概念、常用命令矩阵及标准工作流，解决多仓库依赖管理与团队协同中的子模块同步问题。",
+    "tags": [
+      "git",
+      "submodule",
+      "monorepo",
+      "workflow",
+      "version-control"
+    ],
+    "authors": []
+  },
+  "work/数说/nourseN次方/移动端/本地存储拿不到": {
+    "title": "移动端跨域 Iframe 本地存储失效问题排查与解决",
+    "description": "记录移动端 H5 项目中，因同源策略限制导致 Iframe 子页面无法读取父页面 LocalStorage 数据的异常排查过程及全局状态管理替代方案。",
+    "tags": [
+      "iframe",
+      "localstorage",
+      "same-origin-policy",
+      "pinia",
+      "bug"
+    ],
+    "authors": []
+  },
+  "work/数说/nourseN次方/移动端/Vant数字键盘组件": {
+    "title": "Vant 数字键盘组件在 PC 端与移动端的兼容性适配",
+    "description": "剖析 Vant 数字键盘在 PC 端测试时物理键盘输入失效及虚拟键盘点击无响应的问题，提供基于事件监听与多端事件映射的兼容方案。",
+    "tags": [
+      "vant",
+      "mobile",
+      "pc",
+      "event-compatibility",
+      "bug"
+    ],
+    "authors": []
+  },
+  "work/数说/nourseN次方/移动端/小红书分享": {
+    "title": "移动端集成小红书 JS SDK 实现笔记分享",
+    "description": "梳理移动端 H5 接入小红书 JS SDK 的完整流程，详解 shareInfo 与 verifyConfig 核心参数配置及媒体资源地址限制。",
+    "tags": [
+      "sdk",
+      "xiaohongshu",
+      "share",
+      "mobile",
+      "integration"
+    ],
+    "authors": []
+  },
+  "work/数说/nourseN次方/移动端/Token丢失": {
+    "title": "移动端空间切换导致 Token 丢失问题排查",
+    "description": "分析移动端切换空间时因 router.go(0) 强制刷新导致 Pinia 内存 Token 丢失的缺陷，提供基于动态 key 触发组件重载的无刷新解决方案。",
+    "tags": [
+      "token",
+      "pinia",
+      "vue-router",
+      "state-management",
+      "bug"
+    ],
+    "authors": []
   }
 }
