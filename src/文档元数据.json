@@ -199,5 +199,18 @@
       "bug"
     ],
     "authors": []
+  },
+  "work/南网/无人机/无人机实时直播流接入实践": {
+    "title": "基于 WebRTC 的无人机实时直播流接入实践",
+    "description": "记录在 Vue3 项目中通过 RTCPeerConnection 对接 ZLMediaKit 实现无人机 WebRTC 直播流的完整方案，涵盖 SDP 交换、ICE 协商、媒体流绑定、连接状态管理及资源清理等核心环节。",
+    "tags": [
+      "webrtc",
+      "zlmediakit",
+      "rtcpeerconnection",
+      "sdp",
+      "streaming",
+      "vue3"
+    ],
+    "authors": []
   }
 }

@@ -1,4 +1,4 @@
-import { shushuo, lingsi, baidu } from './sidebar/work'
+import { shushuo, lingsi, baidu, nanwang } from './sidebar/work'
 import { chart, sharp, module, vue, react, css, js } from './sidebar/concept'
 import { idea, handle, ai } from './sidebar/practice'
 import { vitepress, read } from './sidebar/foot'
@@ -14,6 +14,7 @@ export default {
   '/idea/': idea,
   '/handle/': handle,
   '/灵思/': lingsi,
+  '/南网/': nanwang,
   '/module/': module,
   '/react/': react,
   '/read/': read,

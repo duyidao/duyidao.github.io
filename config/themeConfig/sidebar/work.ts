@@ -188,4 +188,34 @@ const baidu = [
   },
 ]
 
-export { shushuo, lingsi, baidu }
+const nanwang = [
+  {
+    text: '南方电网',
+    items: [
+      {
+        text: '无人机管理平台',
+        collapsed: true,
+        items: [
+          {
+            text: '公共表单组件的封装与拓展',
+            link: '/南网/无人机/公共表单组件的封装与拓展',
+          },
+          {
+            text: '公共表格组件的封装与拓展',
+            link: '/南网/无人机/公共表格组件的封装与拓展',
+          },
+          {
+            text: 'Leaflet地图封装与使用',
+            link: '/南网/无人机/Leaflet地图封装与使用',
+          },
+          {
+            text: '基于WebRTC的无人机实时视频监控系统实现',
+            link: '/南网/无人机/基于WebRTC的无人机实时视频监控系统实现',
+          },
+        ],
+      },
+    ],
+  },
+]
+
+export { shushuo, lingsi, baidu, nanwang }

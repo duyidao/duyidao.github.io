@@ -533,5 +533,77 @@
       "auth",
       "network"
     ]
+  },
+  "WebRTC": {
+    "en": "WebRTC",
+    "cn": "Web 实时通信",
+    "descript": "Web Real-Time Communication 的缩写，浏览器原生支持的点对点实时音视频通信与数据交换技术，无需安装插件即可实现低延迟媒体传输。",
+    "tags": [
+      "web",
+      "protocol",
+      "realtime",
+      "streaming"
+    ]
+  },
+  "RTCPeerConnection": {
+    "en": "RTCPeerConnection",
+    "cn": "RTCPeerConnection 接口",
+    "descript": "WebRTC 的核心 API，表示浏览器与远端对等节点之间的连接，负责管理媒体轨道、ICE 协商及 SDP 交换。",
+    "tags": [
+      "webrtc",
+      "api",
+      "browser"
+    ]
+  },
+  "SDP": {
+    "en": "SDP",
+    "cn": "会话描述协议",
+    "descript": "Session Description Protocol 的缩写，用于描述多媒体会话的协商信息，包括媒体类型、编解码器、网络地址等，是 WebRTC 信令交换的基础格式。",
+    "tags": [
+      "webrtc",
+      "protocol",
+      "signaling"
+    ]
+  },
+  "ICE": {
+    "en": "ICE",
+    "cn": "交互式连接建立",
+    "descript": "Interactive Connectivity Establishment 的缩写，WebRTC 中用于 NAT 穿透和候选地址收集的框架，通过 STUN/TURN 获取可达的通信路径。",
+    "tags": [
+      "webrtc",
+      "protocol",
+      "network"
+    ]
+  },
+  "ZLMediaKit": {
+    "en": "ZLMediaKit",
+    "cn": "ZLMediaKit 流媒体服务器",
+    "descript": "一款基于 C++ 的高性能开源流媒体服务器，支持 RTSP、RTMP、HLS、WebRTC 等多种协议，常用于视频监控与直播场景。",
+    "tags": [
+      "streaming",
+      "server",
+      "webrtc",
+      "tool"
+    ]
+  },
+  "STUN": {
+    "en": "STUN",
+    "cn": "STUN 穿透协议",
+    "descript": "Session Traversal Utilities for NAT 的缩写，用于帮助 WebRTC 端点发现自身的公网 IP 和端口，辅助 NAT 穿透。",
+    "tags": [
+      "webrtc",
+      "protocol",
+      "network"
+    ]
+  },
+  "TURN": {
+    "en": "TURN",
+    "cn": "TURN 中继协议",
+    "descript": "Traversal Using Relays around NAT 的缩写，当 STUN 穿透失败时，通过中继服务器转发媒体数据，保证 WebRTC 连接可达。",
+    "tags": [
+      "webrtc",
+      "protocol",
+      "network"
+    ]
   }
 }
