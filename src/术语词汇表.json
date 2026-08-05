@@ -605,5 +605,95 @@
       "protocol",
       "network"
     ]
+  },
+  "Composition API": {
+    "en": "Composition API",
+    "cn": "组合式 API",
+    "descript": "Vue 3 引入的基于函数的 API 集合，允许以逻辑关注点为粒度组织组件代码，相较选项式 API 具备更优的逻辑复用能力与类型推导支持。",
+    "tags": [
+      "vue3",
+      "api",
+      "framework"
+    ]
+  },
+  "Computed Property": {
+    "en": "Computed Property",
+    "cn": "计算属性",
+    "descript": "Vue 中基于响应式依赖派生的缓存值，仅在其依赖的响应式状态变更时重新求值，是声明式派生数据的核心机制。",
+    "tags": [
+      "vue",
+      "reactivity",
+      "performance"
+    ]
+  },
+  "State Machine": {
+    "en": "State Machine",
+    "cn": "状态机",
+    "descript": "由有限状态集合与状态迁移规则构成的计算模型，任意时刻仅处于单一活跃状态，常用于建模前端交互流程与异步任务推进逻辑。",
+    "tags": [
+      "architecture",
+      "design-pattern",
+      "frontend"
+    ]
+  },
+  "Progressive Rendering": {
+    "en": "Progressive Rendering",
+    "cn": "渐进式渲染",
+    "descript": "将内容划分为多个批次按时间片依次渲染的策略，优先呈现部分可用内容，降低单帧渲染压力并缩短用户感知等待时间。",
+    "tags": [
+      "rendering",
+      "performance",
+      "ux"
+    ]
+  },
+  "Race Condition": {
+    "en": "Race Condition",
+    "cn": "竞态条件",
+    "descript": "多个异步请求的响应顺序与发起顺序不一致时，旧请求响应覆盖新请求数据导致的状态不一致问题，常通过请求序号或 AbortController 防护。",
+    "tags": [
+      "async",
+      "concurrency",
+      "network"
+    ]
+  },
+  "Keep-Alive": {
+    "en": "Keep-Alive",
+    "cn": "组件缓存",
+    "descript": "Vue 内置的缓存机制，使非活跃组件实例保留在内存中，路由切换时避免重复创建与销毁，对应 activated 与 deactivated 生命周期。",
+    "tags": [
+      "vue",
+      "cache",
+      "lifecycle"
+    ]
+  },
+  "Lifecycle Hooks": {
+    "en": "Lifecycle Hooks",
+    "cn": "生命周期钩子",
+    "descript": "框架在组件挂载、更新、卸载等特定阶段注入的回调函数，如 onMounted、onUnmounted、onActivated 等，用于在精确时机执行副作用管理。",
+    "tags": [
+      "vue",
+      "lifecycle",
+      "api"
+    ]
+  },
+  "NextTick": {
+    "en": "NextTick",
+    "cn": "下一 DOM 更新周期",
+    "descript": "Vue 提供的异步等待机制，将回调延迟至本次响应式变更对应的 DOM 更新完成后执行，用于在数据变更后读取最新 DOM 状态。",
+    "tags": [
+      "vue",
+      "api",
+      "dom"
+    ]
+  },
+  "Memory Leak": {
+    "en": "Memory Leak",
+    "cn": "内存泄漏",
+    "descript": "已分配的内存因引用未释放而无法回收的现象，前端场景中多由未清理的定时器、悬挂的事件监听与脱离文档的 DOM 引用引起。",
+    "tags": [
+      "performance",
+      "memory",
+      "debugging"
+    ]
   }
 }
