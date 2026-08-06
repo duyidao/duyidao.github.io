@@ -212,5 +212,59 @@
       "vue3"
     ],
     "authors": []
+  },
+  "practice/handle/business/富文本编辑器": {
+    "title": "富文本编辑器集成与二次开发指南",
+    "description": "涵盖 Tinymce 与 vue-quill-editor 的安装配置、界面定制、插件开发及图片上传至服务器的完整实践方案。",
+    "tags": [
+      "tinymce",
+      "quill",
+      "rich-text",
+      "vue",
+      "image-upload"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV14s4y1V7oN/",
+        "title": "前端富文本编辑器指南，从使用到二次开发"
+      }
+    ]
+  },
+  "practice/handle/business/前端操作excel与word": {
+    "title": "前端解析与生成 Excel、Word 文件实践",
+    "description": "基于 xlsx、docx-preview、docxtemplater 等库实现前端文件解析、生成、模板填充及在线预览的完整方案。",
+    "tags": [
+      "xlsx",
+      "docx",
+      "file-saver",
+      "preview",
+      "template"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1ko4y1B7z2/",
+        "title": "前端玩转excel,word操作指南"
+      }
+    ]
+  },
+  "practice/handle/business/内嵌iframe与传递消息": {
+    "title": "内嵌 Iframe 通信与 DOM 操作实践",
+    "description": "分别基于 postMessage 跨窗口通信与 contentDocument 直接操作两种方案，解决 Iframe 内消息传递、光标插入及数据保存问题。",
+    "tags": [
+      "iframe",
+      "postmessage",
+      "dom",
+      "cross-window",
+      "communication"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1Ms4y1M78h/",
+        "title": "如何操作页面内嵌的iframe，和iframe传递消息？两个思路解决一切iframe相关需求"
+      }
+    ]
   }
 }
