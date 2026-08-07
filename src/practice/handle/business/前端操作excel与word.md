@@ -123,3 +123,151 @@ import vueofficeExcel from "@vue-office/excel";
 ```
 
 :::
+
+为组件的 src 属性赋值，支持以下三种数据源：
+
+1. 接口返回的文件地址
+
+   ```vue
+   <script setup>
+   const excelSrc = ref('')
+   axios.get('/api/excel').then((res) => {
+     excelSrc.value = res.data.file
+   })
+   </script>
+
+   <vueofficeExcel :src="excelSrc" />
+   ```
+
+2. `FileReader` 转为 `DataURL`
+
+   ```js
+   const file = res.data.file
+   const fr = new FileReader()
+   fr.readAsDataURL(file)
+   fr.onload = (e) => {
+     this.excelSrc = e.target.result
+   }
+   ```
+
+3. 直接导入静态资源
+
+   ```vue
+   <script setup>
+   import excelSrc from '@/assets/excel/test.xlsx'
+   </script>
+
+   <vueofficeExcel :src="excelSrc" />
+   ```
+
+### 总结
+
+无论 `Word` 还是 `Excel`，预览的数据源要么是线上地址，要么是 `DataURL`。若后端返回地址则直接使用；若返回 <word text="Blob" />，则通过 `readAsDataURL` 方法转为 `Base64` 格式。
+
+### 拓展
+
+<word text="React" /> 的第三方库 `fileviews` 支持多种文件格式预览，接收两个参数：
+
+- `filePath`：文件地址
+- `fileType`：文件类型
+
+## Word
+
+| 场景         | 通用                       | <word text="Vue" /> | <word text="React" /> |
+| ------------ | -------------------------- | ------------------- | --------------------- |
+| 解析内容操作 | `docxtemplater`            | `docxtemplater`     | `docxtemplater`       |
+| 预览         | `mammoth` / `docx-preview` | `@vue-office/docx`  | `react-file-viewer    |
+
+## 组件预览
+
+::: code-group
+
+```bash [安装]
+npm i @vue-office/docx
+```
+
+```js [使用.js]
+import vueofficedocx from '@vue-office/docx'
+```
+
+```vue [示例.vue]
+<template>
+  <vueofficedocx :src="wordSrc" />
+</template>
+
+<script>
+export default {
+  methods: {
+    changeFn(e) {
+      const file = e.target.files[0]
+      const fr = new FileReader()
+      fr.readAsDataURL(file)
+      fr.onload = (e) => {
+        this.wordSrc = e.target.result
+      }
+    },
+  },
+}
+</script>
+```
+
+:::
+
+## docx-preview 预览
+
+::: code-group
+
+```bash
+npm i docx-preview
+```
+
+```js
+import { renderAsync } from 'docx-preview'
+
+export default {
+  methods: {
+    change(e) {
+      const file = e.target.files[0]
+      renderAsync(file, this.$refs.docxPreview)
+    },
+  },
+}
+```
+
+:::
+
+## docxtemplater 模板填充
+
+处理流程：
+
+1. 获取文件二进制流
+2. 转为 `ArrayBuffer`
+3. 通过 `PizZip` 解析压缩包
+4. 使用 `Docxtemplater` 填充数据并渲染
+5. 生成 <word text="Blob" /> 并保存
+
+```js
+import PizZip from "pizzip";
+import Docxtemplater from "docxtemplater";
+import { saveAs } from "file-saver";
+
+export default {
+  methods: {
+    change(e) {
+      const file = e.target.files[0];
+      file.arrayBuffer().then((res) => {
+        const zip = new PizZip(res);
+        const doc = new Docxtemplater(zip);
+        doc.setData(data);
+        doc.render();
+        const output = doc.getZip().generate({
+          type: "blob",
+          mimeType:
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        });
+        saveAs(output, "test.docx");
+      });
+    },
+  },
+};
+```
