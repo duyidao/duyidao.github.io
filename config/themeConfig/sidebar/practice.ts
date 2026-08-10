@@ -172,8 +172,8 @@ const handle = [
       },
       { text: '富文本编辑器', link: '/handle/business/富文本编辑器' },
       {
-        text: '内嵌ifrname与传递消息',
-        link: '/handle/business/内嵌ifrname与传递消息',
+        text: '内嵌iframe与传递消息',
+        link: '/handle/business/内嵌iframe与传递消息',
       },
     ],
   },

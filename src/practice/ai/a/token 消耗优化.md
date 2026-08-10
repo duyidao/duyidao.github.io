@@ -1,4 +1,4 @@
-# <word text="Token" /> 消耗优化
+# Token 消耗优化
 
 ## 钱
 

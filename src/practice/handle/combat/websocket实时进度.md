@@ -1,27 +1,21 @@
----
-title: websocket实时进度
-author:
-  - 三十的前端课 websocket实战中的最佳实践&https://www.bilibili.com/video/BV1YzNCzVEmd
----
-
 # websocket 实时进度
 
 ## 场景复现
 
-现在有一个场景，在请求 `ws` 接口时，会分段展示当前的进度，比如执行中、执行完毕，并且展示最终的耗时。具体效果如下图所示：
+现在有一个场景，在请求 <word text="WebSocket"/> 接口时，会分段展示当前的进度，比如执行中、执行完毕，并且展示最终的耗时。效果如下：
 
 ![场景复现](https://pic1.imgdb.cn/item/68786ea058cb8da5c8bcb0f9.png)
 
-具体流程图如下所示：
+具体流程图如下：
 
 ![流程图](https://pic1.imgdb.cn/item/6878ac6c58cb8da5c8be54b4.png)
 
-## websocket 基本使用
+## WebSocket 基本使用
 
 1. `new` 浏览器自带的 `WebSocket` 对象，并传入 `ws` 接口地址，就可以发起对 `ws` 接口的请求。
 2. `WebSocket` 对象有多个事件，比如 `open` 连接、`message` 来消息、`error` 连接出错、`close` 连接中断等。
 
-就像前端请求接口，会把 `token` 放到请求头上，后端做验证，防止非法请求，`websocket` 也有类似的机制和做法，比如 `token`，`uid` 等。实现思路是通过 `ws` 接口地址，把 `token` 和 `uid` 一起传给后端，后端做验证。例如：
+就像前端请求接口，会把 `token` 放到请求头上，后端做验证，防止非法请求，`WebSocket` 也有类似的机制和做法，比如 `token`，`uid` 等。实现思路是通过 `ws` 接口地址，把 `token` 和 `uid` 一起传给后端，后端做验证。例如：
 
 ```js
 const ws = new WebSocket(`ws://localhost:3000?token=${token}&uid=${uuid}`);
@@ -29,7 +23,7 @@ const ws = new WebSocket(`ws://localhost:3000?token=${token}&uid=${uuid}`);
 
 ## 页面结构
 
-页面代码如下所示：
+页面代码如下：
 
 ```vue
 <template>
@@ -55,7 +49,7 @@ const ws = new WebSocket(`ws://localhost:3000?token=${token}&uid=${uuid}`);
 
 ## ws 传输
 
-前后端交互主要靠 `ws` ，所以需要定义一个 `ws` 对象，用于传输数据。具体代码如下所示：
+前后端交互主要靠 `ws` ，所以需要定义一个 `ws` 对象，用于传输数据。代码如下：
 
 ::: code-group
 
@@ -179,11 +173,11 @@ wss.on("connection", (ws, req) => {
 :::
 
 > [!IMPORTANT] 题外话
-> `ws` 服务是基于 `http` 服务的升级，因此需要先创建一个 `http` 服务，再创建一个 `ws` 服务，并且需要把 `ws` 服务绑定到 `http` 服务上，这样 `ws` 服务才能处理 `http` 请求。
+> `ws` 服务是基于 <word text="HTTP"/> 服务的升级，因此需要先创建一个 `http` 服务，再创建一个 `ws` 服务，并且需要把 `ws` 服务绑定到 `http` 服务上，这样 `ws` 服务才能处理 `http` 请求。
 
 ## 出错处理
 
-在 `ws` 传输过程中，可能会出现连接中断的情况，比如网络断开，此时需要重新连接。具体代码如下所示：
+在 `ws` 传输过程中，连接中断时，如网络断开，需要重新连接。代码如下：
 
 ```js
 function retryFn() {
@@ -206,7 +200,7 @@ function retryFn() {
 
 ## 定时探测
 
-如果 `websocket` 很长时间没有给你消息，前端需要主动发一个消息。如果后端没有回应就主动断开。
+如果 `WebSocket` 长时间没有消息推送，前端需要主动发一个消息。如果后端没有回应就主动断开。
 
 ::: code-group
 

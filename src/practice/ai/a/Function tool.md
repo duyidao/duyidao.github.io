@@ -75,11 +75,11 @@ app.get('/simple', async (req, res) => {
 
 ### function tool 解决
 
-意义：<word text="LLM" /> 只能做语言回答与逻辑推理，无法执行具体操作。通过 function tool 机制，提前声明可用工具，大模型在需要时返回工具调用指令，由代码层执行。
+意义：<word text="LLM" /> 只能做语言回答与逻辑推理，无法执行具体操作。通过 <word text="Function Tool" /> 机制，提前声明可用工具，大模型在需要时返回工具调用指令，由代码层执行。
 
-规范：所有大模型接口遵循统一的 function tool 定义与输出规范。告知大模型可用工具时使用同一种格式输入，大模型声明调用哪个工具也使用同一种格式输出。
+规范：所有大模型接口遵循统一的 <word text="Function Tool" /> 定义与输出规范。告知大模型可用工具时使用同一种格式输入，大模型声明调用哪个工具也使用同一种格式输出。
 
-区分：大模型调用 function tool 时使用独立字段，不与 `content` 混合；将执行结果反馈给大模型时，使用专门的 `role: tool`。
+区分：大模型调用 <word text="Function Tool" /> 时使用独立字段，不与 `content` 混合；将执行结果反馈给大模型时，使用专门的 `role: tool`。
 
 #### 定义 function tool
 
@@ -180,7 +180,7 @@ app.get('/simple', async (req, res) => {
 
 #### 加上流式
 
-生产环境的接口通常使用流式传输。大模型调用 function tool 时也会分片段返回，但**必须等全部返回后再处理，不可像文本那样边返回边处理**。
+生产环境的接口通常使用 <word text="SSE" /> 流式传输。大模型调用 <word text="Function Tool" /> 时也会分片段返回，但**必须等全部返回后再处理，不可像文本那样边返回边处理**。
 
 ```js [server.js]
 const { tools, toolMap } = require('./tools.js')

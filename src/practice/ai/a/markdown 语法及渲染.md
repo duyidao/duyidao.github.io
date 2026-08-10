@@ -111,9 +111,9 @@ _斜体文本_ _斜体文本_
 
 ## 推荐
 
-- Vue 前端：
-  - `@crazydos/vue-markdown`：基出展示 markdown
-  - `remark-gfm-GFM`：拓展，让 markdown 组件能支持渲染链接，table 等
+- <word text="Vue" /> 前端：
+  - `@crazydos/vue-markdown`：基出展示 <word text="Markdown" />
+  - `remark-gfm-GFM`：拓展，让 <word text="Markdown" /> 组件能支持渲染链接，table 等
 
   ```vue [App.vue]
   <script setup>
@@ -149,9 +149,9 @@ _斜体文本_ _斜体文本_
   </template>
   ```
 
-- React 前端：
-  - `react-markdown`：基础展示 markdown
-  - `remark-gfm-GFM`：拓展，让 markdown 组件能支持渲染链接，table 等
+- <word text="React" /> 前端：
+  - `react-markdown`：基础展示 <word text="Markdown" />
+  - `remark-gfm-GFM`：拓展，让 <word text="Markdown" /> 组件能支持渲染链接，table 等
 
 ## 代码高亮与自定义 UI
 
@@ -160,7 +160,7 @@ _斜体文本_ _斜体文本_
 - `rehype-highlight`：代码高亮插件，可以嵌入到 markdown 组件中
 - `highlight.js`：高亮样式
 
-自定义 UI 可通过组件的 `custom-attrs` 属性配置，配置后相关 DOM 节点就能添加上对应的类名。
+自定义 <word text="UI" /> 可通过组件的 `custom-attrs` 属性配置，配置后相关 <word text="DOM" /> 节点就能添加上对应的类名。
 
 ::: code-group
 

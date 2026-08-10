@@ -1,9 +1,3 @@
----
-title: 前端 Bug 调试指南
-author:
- - 三十的前端课 前端bug调试指南&https://www.bilibili.com/video/BV1Gb2nYqEkj/
----
-
 # 前端 Bug 调试指南
 
 ## 取值调用报错
@@ -37,7 +31,7 @@ fn(); // fn is not a function
 
 ### Expected xxx in JSON at position 1
 
-只见于 `JSON.parse` 解析 JSON 字符串时，`JSON` 字符串格式有问题，一般后端返回的数据，前端 `axios` 会自动试图解析，不一定是前端主动使用 `JSON.parse` 。
+只见于 `JSON.parse` 解析 <word text="JSON"/> 字符串时，`JSON` 字符串格式有问题，一般后端返回的数据，前端 <word text="Axios"/> 会自动试图解析，不一定是前端主动使用 `JSON.parse` 。
 
 解决方法：检查解析的数据是否有问题，是否标准的 `JSON` 数据，可以用 `JSON` 解析工具去校验。
 
@@ -98,7 +92,7 @@ while (true) {
 }
 ```
 
-解决方法：常见于递归，或者 `react` 中会常见组件导致的无限递归更新，或者写了一个无穷大的循环函数。
+解决方法：常见于递归，或者 <word text="React"/> 中会常见组件导致的无限递归更新，或者写了一个无穷大的循环函数。
 
 ### Identifer 'xxx' has already been declared
 
@@ -146,7 +140,7 @@ let a = 1;
 
 ### Access to XMLHttpRequest at 'xxx' from origin 'xxx' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 
-跨域问题，一般见于 `axios` 请求，`fetch` 请求，`html` 文件请求，`script` 标签请求等。跨域问题一般由后端解决，前端可以尝试使用 `cors-anywhere` 代理。
+跨域问题，一般见于 <word text="Axios"/> 请求，<word text="Fetch"/> 请求，`html` 文件请求，`script` 标签请求等。跨域问题一般由后端解决，前端可以尝试使用 `cors-anywhere` 代理。
 
 ## 排查 BUG 核心思想
 

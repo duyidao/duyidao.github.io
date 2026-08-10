@@ -906,106 +906,6 @@
       "spa"
     ]
   },
-  "v-model": {
-    "en": "v-model",
-    "cn": "v-model 指令",
-    "descript": "Vue.js 的双向数据绑定指令，用于在表单输入元素和组件上创建数据和视图之间的同步绑定，本质是 :value 和 @input 的语法糖。",
-    "tags": [
-      "vue",
-      "directive",
-      "data-binding"
-    ]
-  },
-  "props": {
-    "en": "props",
-    "cn": "组件属性",
-    "descript": "Vue/React 等框架中父组件向子组件传递数据的机制，子组件通过声明 props 接收外部传入的数据，遵循单向数据流原则。",
-    "tags": [
-      "vue",
-      "react",
-      "component"
-    ]
-  },
-  "slot": {
-    "en": "slot",
-    "cn": "插槽",
-    "descript": "Vue 提供的组件内容分发机制，允许父组件向子组件注入模板片段，支持默认插槽、具名插槽及作用域插槽三种模式。",
-    "tags": [
-      "vue",
-      "component",
-      "template"
-    ]
-  },
-  "defineExpose": {
-    "en": "defineExpose",
-    "cn": "defineExpose API",
-    "descript": "Vue 3 组合式 API 中用于显式暴露组件内部属性或方法给父组件的函数，配合 ref 可实现父组件调用子组件内部方法。",
-    "tags": [
-      "vue3",
-      "api",
-      "component"
-    ]
-  },
-  "v-for": {
-    "en": "v-for",
-    "cn": "v-for 指令",
-    "descript": "Vue.js 的列表渲染指令，基于源数据循环渲染元素或组件，支持数组、对象及整数的遍历，需配合 :key 使用以优化渲染性能。",
-    "tags": [
-      "vue",
-      "directive",
-      "rendering"
-    ]
-  },
-  "v-if": {
-    "en": "v-if",
-    "cn": "v-if 指令",
-    "descript": "Vue.js 的条件渲染指令，根据表达式的真假值决定是否渲染元素，与 v-show 不同，v-if 会真正销毁和重建 DOM 元素。",
-    "tags": [
-      "vue",
-      "directive",
-      "rendering"
-    ]
-  },
-  "reactive": {
-    "en": "reactive",
-    "cn": "reactive API",
-    "descript": "Vue 3 组合式 API 中用于创建响应式对象或数组的函数，基于 Proxy 实现深层响应式代理，是 Vue 3 响应式系统的核心 API。",
-    "tags": [
-      "vue3",
-      "api",
-      "reactivity"
-    ]
-  },
-  "watchEffect": {
-    "en": "watchEffect",
-    "cn": "watchEffect API",
-    "descript": "Vue 3 组合式 API 中的副作用监听函数，自动追踪回调中使用的响应式依赖，并在依赖变更时重新执行回调，无需手动指定监听源。",
-    "tags": [
-      "vue3",
-      "api",
-      "reactivity"
-    ]
-  },
-  "render": {
-    "en": "render",
-    "cn": "渲染函数",
-    "descript": "Vue 中用于编程式创建虚拟 DOM 的函数，接收 h 函数作为参数并返回 VNode 树，提供比模板更灵活的组件渲染控制能力。",
-    "tags": [
-      "vue",
-      "vnode",
-      "api"
-    ]
-  },
-  "h": {
-    "en": "h",
-    "cn": "h 函数",
-    "descript": "Vue 的虚拟 DOM 创建函数，接收标签名、属性对象和子节点三个参数，返回 VNode 节点，是 render 函数的核心构建工具。",
-    "tags": [
-      "vue",
-      "vnode",
-      "api"
-    ]
-  },
   "GIF": {
     "en": "GIF",
     "cn": "GIF 图像格式",
@@ -1046,8 +946,8 @@
       "animation"
     ]
   },
-  "lottie": {
-    "en": "lottie",
+  "Lottie": {
+    "en": "Lottie",
     "cn": "Lottie 动画",
     "descript": "Airbnb 开源的动画解决方案，通过解析 JSON 文件渲染矢量动画，支持 AE 导出、跨平台运行，体积小且高清无损。",
     "tags": [
@@ -1056,8 +956,8 @@
       "vector"
     ]
   },
-  "lottie-web": {
-    "en": "lottie-web",
+  "Lottie-web": {
+    "en": "Lottie-web",
     "cn": "lottie-web 库",
     "descript": "Lottie 动画的 Web 端播放库，支持 SVG、Canvas、HTML 三种渲染方式，可在浏览器中解析并播放 Lottie JSON 动画文件。",
     "tags": [
@@ -1066,8 +966,8 @@
       "web"
     ]
   },
-  "canvas": {
-    "en": "canvas",
+  "Canvas": {
+    "en": "Canvas",
     "cn": "Canvas 画布",
     "descript": "HTML5 引入的绘图元素，通过 JavaScript 脚本在网页上绘制图形、动画及游戏，支持 2D 和 WebGL 3D 渲染上下文。",
     "tags": [
@@ -1096,18 +996,8 @@
       "standard"
     ]
   },
-  "requestAnimationFrame": {
-    "en": "requestAnimationFrame",
-    "cn": "requestAnimationFrame API",
-    "descript": "浏览器提供的动画帧调度 API，在下次重绘前执行回调，相比 setInterval 能自动匹配屏幕刷新率，提供更流畅的动画效果。",
-    "tags": [
-      "browser",
-      "api",
-      "animation"
-    ]
-  },
-  "base64": {
-    "en": "base64",
+  "Base64": {
+    "en": "Base64",
     "cn": "Base64 编码",
     "descript": "一种基于 64 个可打印字符表示二进制数据的编码方式，常用于在文本中嵌入图片、字体等二进制资源，减少 HTTP 请求。",
     "tags": [
@@ -1116,24 +1006,144 @@
       "web"
     ]
   },
-  "computed": {
-    "en": "computed",
-    "cn": "computed 计算属性",
-    "descript": "Vue 组合式 API 中用于声明派生响应式状态的函数，返回只读 ref，仅在其依赖变更时重新计算，具备自动缓存能力。",
+  "Function Tool": {
+    "en": "Function Tool",
+    "cn": "Function Tool 函数工具机制",
+    "descript": "大模型 Function Call 机制中的工具定义单元，用于声明大模型可调用的函数工具，包含名称、描述及 JSON Schema 参数规范。",
     "tags": [
-      "vue3",
-      "api",
-      "reactivity"
+      "function-call",
+      "llm",
+      "ai"
     ]
   },
-  "ref": {
-    "en": "ref",
-    "cn": "ref API",
-    "descript": "Vue 3 组合式 API 中创建响应式引用的函数，将基本类型值包装为带 .value 属性的响应式对象，也用于获取 DOM 元素或组件实例的模板引用。",
+  "UI": {
+    "en": "UI",
+    "cn": "用户界面",
+    "descript": "User Interface 的缩写，指软件或应用中用户可见和交互的视觉界面层，包括布局、组件、样式等。",
     "tags": [
-      "vue3",
+      "frontend",
+      "design",
+      "interface"
+    ]
+  },
+  "Kimi": {
+    "en": "Kimi",
+    "cn": "Kimi 大模型",
+    "descript": "月之暗面（Moonshot AI）开发的国产大语言模型及智能助手，支持超长上下文处理，提供 API 接口供开发者调用。",
+    "tags": [
+      "llm",
+      "ai",
+      "api"
+    ]
+  },
+  "FileReader": {
+    "en": "FileReader",
+    "cn": "FileReader API",
+    "descript": "Web API 中用于异步读取用户文件内容的对象，支持将文件读取为文本、二进制数据、DataURL 或 Base64 等多种格式，读取完成后触发 load 事件。",
+    "tags": [
+      "web-api",
+      "javascript",
+      "file"
+    ]
+  },
+  "FormData": {
+    "en": "FormData",
+    "cn": "FormData API",
+    "descript": "Web API 中用于构建和处理表单数据的对象，可将文本、文件和二进制数据格式化为 multipart/form-data 格式，通过 XMLHttpRequest 或 Fetch API 发送到服务器。",
+    "tags": [
+      "web-api",
+      "javascript",
+      "form"
+    ]
+  },
+  "PostCSS": {
+    "en": "PostCSS",
+    "cn": "PostCSS 工具",
+    "descript": "基于 JavaScript 插件生态的 CSS 处理工具，通过插件实现 CSS 语法转换、自动添加浏览器前缀、px 转 rem/vw 等自动化任务，是前端工程化核心工具链之一。",
+    "tags": [
+      "css",
+      "tool",
+      "automation"
+    ]
+  },
+  "VSCode": {
+    "en": "VSCode",
+    "cn": "Visual Studio Code 编辑器",
+    "descript": "Microsoft 开发的轻量级跨平台代码编辑器，内置丰富的插件市场，支持语法高亮、智能提示、调试等开发功能，是前端开发的主流编辑器。",
+    "tags": [
+      "editor",
+      "tool",
+      "ide"
+    ]
+  },
+  "Axios": {
+    "en": "Axios",
+    "cn": "Axios 请求库",
+    "descript": "基于 Promise 的 HTTP 客户端，用于浏览器和 Node.js，支持请求拦截、响应拦截、自动 JSON 解析、取消请求等功能，是前端最常用的 HTTP 请求库。",
+    "tags": [
+      "http",
+      "library",
+      "javascript"
+    ]
+  },
+  "CORS": {
+    "en": "CORS",
+    "cn": "跨域资源共享",
+    "descript": "Cross-Origin Resource Sharing 的缩写，一种浏览器安全机制，允许服务器通过 HTTP 头声明哪些外部来源可以访问其资源，解决浏览器的同源策略限制。",
+    "tags": [
+      "http",
+      "security",
+      "browser"
+    ]
+  },
+  "Fetch": {
+    "en": "Fetch",
+    "cn": "Fetch API",
+    "descript": "浏览器原生提供的 HTTP 请求接口，基于 Promise 设计，替代传统的 XMLHttpRequest，提供更简洁的链式调用和流式处理能力。",
+    "tags": [
+      "http",
       "api",
-      "reactivity"
+      "browser"
+    ]
+  },
+  "ESLint": {
+    "en": "ESLint",
+    "cn": "ESLint 代码检查工具",
+    "descript": "JavaScript 代码静态分析工具，通过可配置的规则检查代码中的潜在问题与风格违规，支持自定义规则与插件扩展，是前端代码规范化的核心工具。",
+    "tags": [
+      "tool",
+      "code-style",
+      "javascript"
+    ]
+  },
+  "AST": {
+    "en": "AST",
+    "cn": "抽象语法树",
+    "descript": "Abstract Syntax Tree 的缩写，源代码的树状结构表示，将代码解析为结构化节点，是 ESLint、Babel、Webpack 等工具分析和转换代码的基础。",
+    "tags": [
+      "compiler",
+      "javascript",
+      "tool"
+    ]
+  },
+  "Puppeteer": {
+    "en": "Puppeteer",
+    "cn": "Puppeteer 无头浏览器",
+    "descript": "Google 开源的 Node.js 无头浏览器库，提供 API 模拟用户在浏览器中的操作，常用于网页截图、PDF 生成、自动化测试和爬虫等场景。",
+    "tags": [
+      "testing",
+      "browser",
+      "nodejs"
+    ]
+  },
+  "Nginx": {
+    "en": "Nginx",
+    "cn": "Nginx 服务器",
+    "descript": "高性能的 HTTP 和反向代理服务器，常用于前端静态资源部署、负载均衡、缓存管理和反向代理，是前端部署的主流服务器软件。",
+    "tags": [
+      "server",
+      "deploy",
+      "cache"
     ]
   }
 }
