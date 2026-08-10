@@ -266,5 +266,564 @@
         "title": "如何操作页面内嵌的iframe，和iframe传递消息？两个思路解决一切iframe相关需求"
       }
     ]
+  },
+  "practice/ai/a/Function tool": {
+    "title": "Function Tool 函数调用机制详解",
+    "description": "深入解析大模型 Function Call 机制，涵盖上下文方案缺陷、标准 Function Tool 定义与输出规范、流式 tool_calls 数据拼接、工具执行与结果回传的完整链路。",
+    "tags": [
+      "function-call",
+      "llm",
+      "openai",
+      "sse",
+      "streaming"
+    ],
+    "authors": []
+  },
+  "practice/ai/a/card": {
+    "title": "前端工具卡片实现方案",
+    "description": "阐述 AI 应用中前端预制 UI 卡片的变通实现方案，通过 Function Tool 声明与自定义 cardName 属性下发前端卡片渲染指令。",
+    "tags": [
+      "function-call",
+      "card",
+      "ui",
+      "llm"
+    ],
+    "authors": []
+  },
+  "practice/ai/a/markdown 语法及渲染": {
+    "title": "Markdown 语法及前端渲染实践",
+    "description": "梳理 Markdown 基础语法，介绍基于 VueMarkdown、remark-gfm、rehype-highlight 等插件实现代码高亮、自定义样式与插槽定制的完整渲染方案。",
+    "tags": [
+      "markdown",
+      "vue",
+      "highlight",
+      "rendering"
+    ],
+    "authors": []
+  },
+  "practice/ai/a/token 消耗优化": {
+    "title": "Token 消耗优化策略",
+    "description": "分析大模型 Token 消耗机制，提供限制对话长度、AI 总结截取内容、RAG 向量检索等优化方案，降低 API 调用成本。",
+    "tags": [
+      "token",
+      "llm",
+      "optimization",
+      "rag"
+    ],
+    "authors": []
+  },
+  "practice/ai/a/上下文的威力": {
+    "title": "上下文的威力：提示词工程实践",
+    "description": "阐述通过上下文提示词约束大模型回答的实践方法，涵盖违禁问题过滤、回答风格控制、幻觉约束、逻辑步骤约束等核心技巧。",
+    "tags": [
+      "prompt-engineering",
+      "llm",
+      "context",
+      "best-practice"
+    ],
+    "authors": []
+  },
+  "practice/ai/a/前端界面": {
+    "title": "AI 对话前端界面搭建与会话管理",
+    "description": "从零搭建 AI 聊天前端界面，涵盖数据定义、界面布局、增量更新优化、多用户会话管理及前后端接口联调的全链路实践。",
+    "tags": [
+      "chat",
+      "vue",
+      "ui",
+      "session-management"
+    ],
+    "authors": []
+  },
+  "practice/ai/a/大模型接口": {
+    "title": "大模型接口调用指南",
+    "description": "梳理国内大模型接口厂商类型、HTTP 请求与响应格式、role 与 content 结构、choices 解析及常见答疑，帮助快速上手大模型 API 调用。",
+    "tags": [
+      "llm",
+      "api",
+      "http",
+      "openai"
+    ],
+    "authors": []
+  },
+  "practice/ai/a/提示词工程": {
+    "title": "提示词工程实践指南",
+    "description": "系统介绍提示词工程的基本要素、高级要素及上下文文档编写方法，涵盖角色扮演、举例、分隔符、思考步骤等核心技巧。",
+    "tags": [
+      "prompt-engineering",
+      "llm",
+      "context",
+      "best-practice"
+    ],
+    "authors": []
+  },
+  "practice/ai/a/搭建服务器": {
+    "title": "AI 应用后端服务器搭建",
+    "description": "从零搭建 Node.js Express 服务器代理大模型 API 请求，涵盖 OpenAI SDK 使用、fetch 拦截调试、消息历史管理及流式传输基础。",
+    "tags": [
+      "nodejs",
+      "express",
+      "openai",
+      "server"
+    ],
+    "authors": []
+  },
+  "practice/ai/a/流式传输": {
+    "title": "SSE 流式传输实现方案",
+    "description": "对比原生 EventSource 与 fetch-event-source 两种 SSE 方案，详解流式接口定义、数据格式解析、前后端代码改造及生产环境最佳实践。",
+    "tags": [
+      "sse",
+      "streaming",
+      "llm",
+      "fetch"
+    ],
+    "authors": []
+  },
+  "practice/handle/business/元素不定大小溢出隐藏": {
+    "title": "元素不定大小溢出隐藏方案",
+    "description": "基于 IntersectionObserver API 实现不定高度元素的溢出检测与隐藏，动态计算可见元素数量并显示 +N 标记。",
+    "tags": [
+      "intersection-observer",
+      "dom",
+      "overflow",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1WSnZe7EQR/",
+        "title": "元素大小不定，如何做溢出隐藏？"
+      }
+    ]
+  },
+  "practice/handle/business/前端下载后端传输的文件": {
+    "title": "前端下载后端传输的文件方案",
+    "description": "覆盖直接打开、a 标签 download、file-saver 三种下载方案，详解 createObjectURL、msSaveBlob、download 属性等前置知识及代码实操。",
+    "tags": [
+      "download",
+      "blob",
+      "file",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1Ua4y1M7Xj/",
+        "title": "前端如何下载后端传输的文件？全方位指南"
+      }
+    ]
+  },
+  "practice/handle/business/前端文件上传与相关操作": {
+    "title": "前端文件上传与相关操作",
+    "description": "系统梳理前端文件上传的前置知识：files、Blob、FormData、FileReader 等核心对象，涵盖单多文件上传、切片上传、断点续传等实践方案。",
+    "tags": [
+      "upload",
+      "blob",
+      "formdata",
+      "filereader"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1424y1g7ma/",
+        "title": "吃透前端文件上传与文件相关操作"
+      }
+    ]
+  },
+  "practice/handle/business/前端滚动锚点注意事项": {
+    "title": "前端滚动锚点指南",
+    "description": "对比 scrollIntoView、scrollTo、scrollBy、a 锚点链接四种方案，分析 Vue/React 项目中滚动锚点的常见问题与注意事项。",
+    "tags": [
+      "scroll",
+      "anchor",
+      "vue",
+      "react"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV13yy5YLEeB/",
+        "title": "前端滚动锚点指南与常见错误"
+      }
+    ]
+  },
+  "practice/handle/business/权限控制": {
+    "title": "Vue 项目权限控制方案",
+    "description": "基于 Vue Router 动态路由与导航守卫，实现后端返回路由规则的权限控制，涵盖路由格式化、addRoute 动态添加、重置路由及按钮权限管理。",
+    "tags": [
+      "vue",
+      "router",
+      "permission",
+      "vuex"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1e8411F7Ds/",
+        "title": "保姆级搭建vue项目权限控制权限路由方案"
+      }
+    ]
+  },
+  "practice/handle/business/相似样式组件优雅实现": {
+    "title": "相似样式组件的优雅实现方案",
+    "description": "从一个商品推荐栏目需求出发，对比 v-if、函数返回、JSX 组件、修改源数据四种方案，分析各自优缺点及适用场景。",
+    "tags": [
+      "vue",
+      "jsx",
+      "component",
+      "optimization"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1Bc411X7bD/",
+        "title": "从一个常见前端需求，看如何更优雅的写代码"
+      }
+    ]
+  },
+  "practice/handle/business/自动引入依赖": {
+    "title": "自动引入依赖配置指南",
+    "description": "详解 unplugin-auto-import 与 unplugin-vue-components 的配置方法，涵盖本地工具方法、第三方库、Vue 组件及自定义组件库的自动引入规则。",
+    "tags": [
+      "vite",
+      "auto-import",
+      "vue",
+      "plugin"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1de411X73e/",
+        "title": "开发一个组件库怎么搭建项目结构"
+      }
+    ]
+  },
+  "practice/handle/element/vue动态表单实现原理": {
+    "title": "Vue 动态表单实现原理",
+    "description": "从基础封装到参数精简、事件绑定、组件自定义、插槽使用，逐步讲解 Vue 动态表单的完整实现方案。",
+    "tags": [
+      "vue",
+      "form",
+      "dynamic",
+      "element-plus"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV1Vy3tzjEZZ",
+        "title": "vue动态表单实现原理"
+      }
+    ]
+  },
+  "practice/handle/element/页码列表组件封装思路": {
+    "title": "页码列表组件封装思路",
+    "description": "以 Element Plus 表格和分页器为基础，讲解如何封装业务组件，涵盖翻页逻辑、表格子行、操作按钮等场景的简化方案。",
+    "tags": [
+      "element-plus",
+      "table",
+      "pagination",
+      "component"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1yj411Q7QC/",
+        "title": "如何在项目中思考封装组件，一节课教你"
+      }
+    ]
+  },
+  "practice/handle/element/组合式函数封装": {
+    "title": "组合式函数封装",
+    "description": "从事件绑定需求出发，逐步封装通用 useEvent 组合式函数，涵盖 v-if 场景、window 默认、手动销毁、函数重载等边界处理。",
+    "tags": [
+      "vue",
+      "composable",
+      "event",
+      "typescript"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV1UV2tBgEPK",
+        "title": "vue组合式函数封装"
+      },
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV1anqYBBEUx",
+        "title": "Vue 组合式函数类型重载"
+      }
+    ]
+  },
+  "practice/handle/element/二次封装组件库组件": {
+    "title": "Vue3 + TS 二次封装组件库组件",
+    "description": "从 props 穿透、插槽穿透、组件方法暴露三个维度，详解 Vue3 二次封装 Element Plus 组件的多种方案，包括 Proxy 代理、exposed 暴露等高级技巧。",
+    "tags": [
+      "vue3",
+      "typescript",
+      "element-plus",
+      "二次封装"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV1bDe1z1Eyr",
+        "title": "vue组件二次封装-究极版"
+      },
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV1soMtz4ExE",
+        "title": "vue组件二次封装-终极版"
+      },
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV1EJstecEbA",
+        "title": "二次封装组件如何暴漏子组件的方法"
+      }
+    ]
+  },
+  "practice/handle/element/二次封装el-dialog学习重复小组件处理经验": {
+    "title": "二次封装 el-dialog 学习 Vue 重复小组件处理经验",
+    "description": "对比 render、JSX、h 与 createApp 三种方案，讲解如何像 ElMessageBox 一样命令式调用弹窗组件，解决重复小组件的封装问题。",
+    "tags": [
+      "vue",
+      "dialog",
+      "jsx",
+      "createApp"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1RK4118727/",
+        "title": "vue项目中的重复小组件处理经验"
+      },
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV1J7NPe1EL7",
+        "title": "命令式弹框终极版"
+      }
+    ]
+  },
+  "practice/handle/element/二次封装el-button实现优雅loading效果": {
+    "title": "二次封装 el-button 优雅实现 loading 效果",
+    "description": "解决多按钮 loading 状态重复代码问题，通过 useAttrs 和 inheritAttrs 二次封装 el-button，实现点击事件自动 loading。",
+    "tags": [
+      "vue",
+      "element-plus",
+      "button",
+      "loading"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV1QtxQzLEu3",
+        "title": "vue中如何优雅的处理按钮loading"
+      }
+    ]
+  },
+  "practice/handle/element/组件设计技巧": {
+    "title": "Vue 组件设计技巧",
+    "description": "从样式、模板、行为、props 四个维度总结 Vue 组件设计经验，涵盖低权值 CSS、插槽分割、行为周期拆分、数据定义等实用技巧。",
+    "tags": [
+      "vue",
+      "component",
+      "design",
+      "slot"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1ik4y1h7PL/",
+        "title": "vue组件设计的经验和技巧"
+      }
+    ]
+  },
+  "practice/handle/element/组件库搭建": {
+    "title": "组件库搭建",
+    "description": "从零搭建一个 Vue3 组件库的完整流程，涵盖 Workspace 配置、全局注册、局部注册、Vite 打包配置及 npm 发布。",
+    "tags": [
+      "vue3",
+      "component-library",
+      "vite",
+      "npm"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1de411X73e/",
+        "title": "开发一个组件库怎么搭建项目结构"
+      }
+    ]
+  },
+  "practice/handle/element/第三方插件组合式函数封装": {
+    "title": "第三方插件封装组合式函数",
+    "description": "以 Sortable 拖拽插件为例，讲解如何将第三方插件封装为 Vue 组合式函数，支持数据同步更新、自定义配置和实例获取。",
+    "tags": [
+      "vue",
+      "composable",
+      "sortable",
+      "plugin"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV168tJzrE66",
+        "title": "第三方插件封装组合式函数"
+      }
+    ]
+  },
+  "practice/handle/element/二封el表格组件无限滚动": {
+    "title": "通过 el-table 实现多数据完美无限滚动",
+    "description": "对比触底加载与固定数量渲染两种方案，通过自定义指令实现 el-table 大数据量下的丝滑无限滚动体验。",
+    "tags": [
+      "element-plus",
+      "table",
+      "scroll",
+      "directive"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1cy4y1f7G5/",
+        "title": "el-table加载大量数据如何利用滚动加载优化"
+      }
+    ]
+  },
+  "practice/handle/element/二封el日历组件": {
+    "title": "二次封装 el 日历组件",
+    "description": "通过 CSS 改造和 JSX render 函数，对 el-calendar 进行 UI 和逻辑层面的二次封装，实现待办事项标记与展示。",
+    "tags": [
+      "element-plus",
+      "calendar",
+      "jsx",
+      "css"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV11s4y1976Q/",
+        "title": "看一个elementui日历二次修改案例"
+      }
+    ]
+  },
+  "practice/handle/element/二封el下拉自定义折叠数量": {
+    "title": "通过 el-select 实现自定义省略折叠数量",
+    "description": "面对 el-select 多选折叠不满足需求的问题，通过 CSS 隐藏和 JavaScript 原生 DOM 操作两种方案实现自定义折叠数量显示。",
+    "tags": [
+      "element-plus",
+      "select",
+      "css",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV19Y411e7vZ/",
+        "title": "从el-select如何做多个tag才省略"
+      }
+    ]
+  },
+  "practice/handle/combat/需求架构设计并优雅实现": {
+    "title": "需求架构设计并优雅实现",
+    "description": "从需求分析到模块拆分，以事件观察者模式为核心，设计可扩展的前端架构方案，涵盖模块职责划分与消息传递机制。",
+    "tags": [
+      "architecture",
+      "design-pattern",
+      "observer",
+      "vue"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1zc411B7fN/",
+        "title": "需求架构设计并优雅实现"
+      }
+    ]
+  },
+  "practice/handle/combat/状态思维应对多变页面": {
+    "title": "状态思维应对多变页面",
+    "description": "将复杂多变的页面通过状态归纳法简化为有限状态集，用数据驱动视图渲染，避免大量条件判断导致的代码膨胀。",
+    "tags": [
+      "state-machine",
+      "vue",
+      "data-driven",
+      "design-pattern"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1xN4y1f7Dr/",
+        "title": "状态思维应对多变页面"
+      }
+    ]
+  },
+  "practice/handle/combat/有用的TS项目技巧": {
+    "title": "TypeScript 项目实用技巧",
+    "description": "系统梳理 TypeScript 在实际项目中的实用技巧，涵盖第三方库类型提取、基于已有类型快速生成新类型、Omit/Pick 工具类型等。",
+    "tags": [
+      "typescript",
+      "utility-types",
+      "type-extraction",
+      "best-practice"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1Ju4y1c7Ax/",
+        "title": "有用的TS项目技巧"
+      }
+    ]
+  },
+  "practice/handle/combat/复杂联动表单": {
+    "title": "Vue 复杂联动表单",
+    "description": "以投放区域联动表单为案例，梳理数据流向与页面架构，通过单一数据源 formData 实现多模块联动，涵盖下拉框联动、表格数据同步、子组件数据暴露等核心技巧。",
+    "tags": [
+      "vue",
+      "form",
+      "data-flow",
+      "element-plus",
+      "defineExpose"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV14QkeYsESm",
+        "title": "vue复杂联动表单需求"
+      }
+    ]
+  },
+  "practice/handle/combat/动态列表学习数据思维": {
+    "title": "通过动态列表学习数据思维",
+    "description": "通过动态表格列显隐需求，讲解数据与视图分离的设计思维，对比数组配置与对象+状态两种方案，涵盖 render 函数、JSX 组件、本地存储持久化等实践。",
+    "tags": [
+      "vue",
+      "table",
+      "data-driven",
+      "render",
+      "localStorage"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1GUAwefEBa",
+        "title": "通过动态列表格,学习前端数据思维"
+      }
+    ]
+  },
+  "practice/handle/combat/动图动效方案": {
+    "title": "前端动图动效方案",
+    "description": "汇总前端动图与动效实现方案，图片方案对比 GIF、aPNG、WebP、AVIF 四种格式及降级策略，动画方案对比 CSS、Canvas、Lottie 的适用场景与兼容性。",
+    "tags": [
+      "animation",
+      "image",
+      "lottie",
+      "webp",
+      "css3"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1rqTEzxExT/",
+        "title": "前端动图动效方案最佳实践汇总"
+      }
+    ]
   }
 }

@@ -162,7 +162,7 @@ import vueofficeExcel from "@vue-office/excel";
 
 ### 总结
 
-无论 `Word` 还是 `Excel`，预览的数据源要么是线上地址，要么是 `DataURL`。若后端返回地址则直接使用；若返回 <word text="Blob" />，则通过 `readAsDataURL` 方法转为 `Base64` 格式。
+无论是 `Word` 还是 `Excel`，预览的数据源要么是线上地址，要么是 `DataURL`。若后端返回地址则直接使用；若返回 <word text="Blob" />，则通过 `readAsDataURL` 方法转为 `Base64` 格式。
 
 ### 拓展
 

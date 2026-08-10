@@ -695,5 +695,445 @@
       "memory",
       "debugging"
     ]
+  },
+  "LLM": {
+    "en": "LLM",
+    "cn": "大语言模型",
+    "descript": "Large Language Model 的缩写，基于海量文本数据训练的大规模神经网络模型，具备自然语言理解与生成能力，是 AI 对话应用的核心引擎。",
+    "tags": [
+      "ai",
+      "model",
+      "nlp"
+    ]
+  },
+  "Markdown": {
+    "en": "Markdown",
+    "cn": "Markdown 标记语言",
+    "descript": "一种轻量级标记语言，使用纯文本格式语法编写，可转换为结构化的 HTML 文档，广泛应用于文档编写与 AI 对话内容渲染。",
+    "tags": [
+      "format",
+      "markup",
+      "text"
+    ]
+  },
+  "JSON Schema": {
+    "en": "JSON Schema",
+    "cn": "JSON Schema 规范",
+    "descript": "一种用于描述 JSON 数据结构的规范，定义数据类型、必填字段、取值范围等约束，常用于 Function Call 工具参数定义。",
+    "tags": [
+      "json",
+      "schema",
+      "validation"
+    ]
+  },
+  "OpenAI": {
+    "en": "OpenAI",
+    "cn": "OpenAI 公司",
+    "descript": "一家人工智能研究公司，开发了 GPT 系列大语言模型，提供 Chat Completions API 等大模型调用接口，是 Function Call 规范的主要推动者之一。",
+    "tags": [
+      "ai",
+      "company",
+      "api"
+    ]
+  },
+  "Qwen": {
+    "en": "Qwen",
+    "cn": "通义千问模型",
+    "descript": "阿里云推出的大语言模型系列，提供 qwen-plus、qwen-max 等不同规格的模型版本，支持 Function Call、流式传输等能力。",
+    "tags": [
+      "ai",
+      "model",
+      "llm"
+    ]
+  },
+  "Function Call": {
+    "en": "Function Call",
+    "cn": "函数调用机制",
+    "descript": "大模型 API 提供的能力，允许提前声明工具函数及其参数 JSON Schema，大模型在需要时返回标准化的工具调用指令，由代码层执行具体操作。",
+    "tags": [
+      "ai",
+      "api",
+      "tool"
+    ]
+  },
+  "VueMarkdown": {
+    "en": "VueMarkdown",
+    "cn": "VueMarkdown 组件",
+    "descript": "基于 Vue 的 Markdown 渲染组件，支持 remark 与 rehype 插件体系，可实现代码高亮、自定义样式与插槽定制。",
+    "tags": [
+      "vue",
+      "markdown",
+      "component"
+    ]
+  },
+  "remark-gfm": {
+    "en": "remark-gfm",
+    "cn": "remark-gfm 插件",
+    "descript": "remark 的 GitHub Flavored Markdown 插件，扩展 Markdown 渲染能力，支持表格、删除线、任务列表等 GFM 语法。",
+    "tags": [
+      "markdown",
+      "plugin",
+      "remark"
+    ]
+  },
+  "rehype-highlight": {
+    "en": "rehype-highlight",
+    "cn": "rehype-highlight 插件",
+    "descript": "rehype 的代码高亮插件，基于 highlight.js 为 Markdown 代码块提供语法高亮渲染。",
+    "tags": [
+      "markdown",
+      "plugin",
+      "highlight"
+    ]
+  },
+  "highlight.js": {
+    "en": "highlight.js",
+    "cn": "highlight.js 高亮库",
+    "descript": "一款开源的 JavaScript 语法高亮库，支持 190+ 种编程语言，提供多种主题样式，常与 Markdown 渲染组件配合使用。",
+    "tags": [
+      "syntax",
+      "highlight",
+      "javascript"
+    ]
+  },
+  "React": {
+    "en": "React",
+    "cn": "React 框架",
+    "descript": "由 Facebook 开发的开源 JavaScript 库，用于构建用户界面，采用组件化与虚拟 DOM 的架构模式，拥有庞大的生态系统。",
+    "tags": [
+      "framework",
+      "frontend",
+      "javascript"
+    ]
+  },
+  "react-markdown": {
+    "en": "react-markdown",
+    "cn": "react-markdown 组件",
+    "descript": "基于 React 的 Markdown 渲染组件，支持 remark 与 rehype 插件体系，可将 Markdown 文本安全渲染为 React 组件树。",
+    "tags": [
+      "react",
+      "markdown",
+      "component"
+    ]
+  },
+  "RAG": {
+    "en": "RAG",
+    "cn": "检索增强生成",
+    "descript": "Retrieval-Augmented Generation 的缩写，结合信息检索与大语言模型生成的技术架构，先检索相关知识再交由大模型生成回答，有效减少幻觉并提升回答准确性。",
+    "tags": [
+      "ai",
+      "retrieval",
+      "llm"
+    ]
+  },
+  "DeepSeek": {
+    "en": "DeepSeek",
+    "cn": "DeepSeek 大模型",
+    "descript": "深度求索公司推出的大语言模型系列，支持 Function Call、流式传输等能力，以开源和高性价比著称。",
+    "tags": [
+      "ai",
+      "model",
+      "llm"
+    ]
+  },
+  "MCP": {
+    "en": "MCP",
+    "cn": "模型上下文协议",
+    "descript": "Model Context Protocol 的缩写，由 Anthropic 提出的开放协议，用于标准化 AI 模型与外部工具、数据源之间的交互方式。",
+    "tags": [
+      "ai",
+      "protocol",
+      "tool"
+    ]
+  },
+  "Node.js": {
+    "en": "Node.js",
+    "cn": "Node.js 运行时",
+    "descript": "基于 Chrome V8 引擎的 JavaScript 运行时环境，使 JavaScript 能够在服务器端运行，广泛应用于后端服务与工具链开发。",
+    "tags": [
+      "javascript",
+      "runtime",
+      "server"
+    ]
+  },
+  "IntersectionObserver": {
+    "en": "IntersectionObserver",
+    "cn": "交叉观察器 API",
+    "descript": "浏览器提供的 API，用于异步监听目标元素与祖先元素或视口的交叉状态变化，常用于懒加载、无限滚动、元素可见性检测等场景。",
+    "tags": [
+      "browser",
+      "api",
+      "dom"
+    ]
+  },
+  "Webpack": {
+    "en": "Webpack",
+    "cn": "Webpack 打包工具",
+    "descript": "现代 JavaScript 应用程序的静态模块打包器，将项目中的各类资源视为模块并构建依赖图，最终打包为浏览器可识别的静态文件。",
+    "tags": [
+      "build",
+      "tool",
+      "javascript"
+    ]
+  },
+  "HTML5": {
+    "en": "HTML5",
+    "cn": "HTML5 标准",
+    "descript": "HTML 的第五次重大修订版本，引入了语义化标签、音视频原生支持、Canvas 绘图、本地存储等新特性，是现代 Web 应用的基础标准。",
+    "tags": [
+      "html",
+      "standard",
+      "web"
+    ]
+  },
+  "FileSaver.js": {
+    "en": "FileSaver.js",
+    "cn": "FileSaver.js 库",
+    "descript": "一个用于在客户端保存文件的 JavaScript 库，提供了 saveAs 方法，可在浏览器中触发文件下载，兼容多种浏览器。",
+    "tags": [
+      "javascript",
+      "library",
+      "file"
+    ]
+  },
+  "VueRouter": {
+    "en": "VueRouter",
+    "cn": "Vue Router",
+    "descript": "Vue.js 官方路由管理器，用于构建单页面应用的路由系统，支持动态路由、导航守卫、路由元信息等核心功能。",
+    "tags": [
+      "vue",
+      "router",
+      "spa"
+    ]
+  },
+  "v-model": {
+    "en": "v-model",
+    "cn": "v-model 指令",
+    "descript": "Vue.js 的双向数据绑定指令，用于在表单输入元素和组件上创建数据和视图之间的同步绑定，本质是 :value 和 @input 的语法糖。",
+    "tags": [
+      "vue",
+      "directive",
+      "data-binding"
+    ]
+  },
+  "props": {
+    "en": "props",
+    "cn": "组件属性",
+    "descript": "Vue/React 等框架中父组件向子组件传递数据的机制，子组件通过声明 props 接收外部传入的数据，遵循单向数据流原则。",
+    "tags": [
+      "vue",
+      "react",
+      "component"
+    ]
+  },
+  "slot": {
+    "en": "slot",
+    "cn": "插槽",
+    "descript": "Vue 提供的组件内容分发机制，允许父组件向子组件注入模板片段，支持默认插槽、具名插槽及作用域插槽三种模式。",
+    "tags": [
+      "vue",
+      "component",
+      "template"
+    ]
+  },
+  "defineExpose": {
+    "en": "defineExpose",
+    "cn": "defineExpose API",
+    "descript": "Vue 3 组合式 API 中用于显式暴露组件内部属性或方法给父组件的函数，配合 ref 可实现父组件调用子组件内部方法。",
+    "tags": [
+      "vue3",
+      "api",
+      "component"
+    ]
+  },
+  "v-for": {
+    "en": "v-for",
+    "cn": "v-for 指令",
+    "descript": "Vue.js 的列表渲染指令，基于源数据循环渲染元素或组件，支持数组、对象及整数的遍历，需配合 :key 使用以优化渲染性能。",
+    "tags": [
+      "vue",
+      "directive",
+      "rendering"
+    ]
+  },
+  "v-if": {
+    "en": "v-if",
+    "cn": "v-if 指令",
+    "descript": "Vue.js 的条件渲染指令，根据表达式的真假值决定是否渲染元素，与 v-show 不同，v-if 会真正销毁和重建 DOM 元素。",
+    "tags": [
+      "vue",
+      "directive",
+      "rendering"
+    ]
+  },
+  "reactive": {
+    "en": "reactive",
+    "cn": "reactive API",
+    "descript": "Vue 3 组合式 API 中用于创建响应式对象或数组的函数，基于 Proxy 实现深层响应式代理，是 Vue 3 响应式系统的核心 API。",
+    "tags": [
+      "vue3",
+      "api",
+      "reactivity"
+    ]
+  },
+  "watchEffect": {
+    "en": "watchEffect",
+    "cn": "watchEffect API",
+    "descript": "Vue 3 组合式 API 中的副作用监听函数，自动追踪回调中使用的响应式依赖，并在依赖变更时重新执行回调，无需手动指定监听源。",
+    "tags": [
+      "vue3",
+      "api",
+      "reactivity"
+    ]
+  },
+  "render": {
+    "en": "render",
+    "cn": "渲染函数",
+    "descript": "Vue 中用于编程式创建虚拟 DOM 的函数，接收 h 函数作为参数并返回 VNode 树，提供比模板更灵活的组件渲染控制能力。",
+    "tags": [
+      "vue",
+      "vnode",
+      "api"
+    ]
+  },
+  "h": {
+    "en": "h",
+    "cn": "h 函数",
+    "descript": "Vue 的虚拟 DOM 创建函数，接收标签名、属性对象和子节点三个参数，返回 VNode 节点，是 render 函数的核心构建工具。",
+    "tags": [
+      "vue",
+      "vnode",
+      "api"
+    ]
+  },
+  "GIF": {
+    "en": "GIF",
+    "cn": "GIF 图像格式",
+    "descript": "Graphics Interchange Format 的缩写，一种支持多帧动画的位图图像格式，兼容性极好但色彩有限（256 色），不支持透明底。",
+    "tags": [
+      "image",
+      "format",
+      "animation"
+    ]
+  },
+  "aPNG": {
+    "en": "aPNG",
+    "cn": "aPNG 图像格式",
+    "descript": "Animated Portable Network Graphics 的缩写，PNG 的动画扩展格式，支持高质量动画与透明底，兼容现代浏览器但体积比 WebP 大。",
+    "tags": [
+      "image",
+      "format",
+      "animation"
+    ]
+  },
+  "WebP": {
+    "en": "WebP",
+    "cn": "WebP 图像格式",
+    "descript": "Google 开发的现代图像格式，同时支持有损和无损压缩，支持动画与透明底，在同等质量下体积显著小于 GIF 和 aPNG。",
+    "tags": [
+      "image",
+      "format",
+      "animation"
+    ]
+  },
+  "AVIF": {
+    "en": "AVIF",
+    "cn": "AVIF 图像格式",
+    "descript": "AV1 Image File Format 的缩写，基于 AV1 视频编码的新型图像格式，压缩率极高，质量极好，但浏览器兼容性较差。",
+    "tags": [
+      "image",
+      "format",
+      "animation"
+    ]
+  },
+  "lottie": {
+    "en": "lottie",
+    "cn": "Lottie 动画",
+    "descript": "Airbnb 开源的动画解决方案，通过解析 JSON 文件渲染矢量动画，支持 AE 导出、跨平台运行，体积小且高清无损。",
+    "tags": [
+      "animation",
+      "json",
+      "vector"
+    ]
+  },
+  "lottie-web": {
+    "en": "lottie-web",
+    "cn": "lottie-web 库",
+    "descript": "Lottie 动画的 Web 端播放库，支持 SVG、Canvas、HTML 三种渲染方式，可在浏览器中解析并播放 Lottie JSON 动画文件。",
+    "tags": [
+      "animation",
+      "library",
+      "web"
+    ]
+  },
+  "canvas": {
+    "en": "canvas",
+    "cn": "Canvas 画布",
+    "descript": "HTML5 引入的绘图元素，通过 JavaScript 脚本在网页上绘制图形、动画及游戏，支持 2D 和 WebGL 3D 渲染上下文。",
+    "tags": [
+      "html5",
+      "graphics",
+      "animation"
+    ]
+  },
+  "SVG": {
+    "en": "SVG",
+    "cn": "SVG 矢量图形",
+    "descript": "Scalable Vector Graphics 的缩写，基于 XML 的矢量图像格式，支持无损缩放、CSS 样式控制及 JavaScript 交互，是 Lottie 动画的底层渲染方式。",
+    "tags": [
+      "image",
+      "vector",
+      "xml"
+    ]
+  },
+  "CSS3": {
+    "en": "CSS3",
+    "cn": "CSS3 标准",
+    "descript": "CSS 的第三代标准，引入了动画（Animation）、过渡（Transition）、变换（Transform）、弹性布局（Flexbox）等新特性，是现代 Web 动效的基础。",
+    "tags": [
+      "css",
+      "animation",
+      "standard"
+    ]
+  },
+  "requestAnimationFrame": {
+    "en": "requestAnimationFrame",
+    "cn": "requestAnimationFrame API",
+    "descript": "浏览器提供的动画帧调度 API，在下次重绘前执行回调，相比 setInterval 能自动匹配屏幕刷新率，提供更流畅的动画效果。",
+    "tags": [
+      "browser",
+      "api",
+      "animation"
+    ]
+  },
+  "base64": {
+    "en": "base64",
+    "cn": "Base64 编码",
+    "descript": "一种基于 64 个可打印字符表示二进制数据的编码方式，常用于在文本中嵌入图片、字体等二进制资源，减少 HTTP 请求。",
+    "tags": [
+      "encoding",
+      "data",
+      "web"
+    ]
+  },
+  "computed": {
+    "en": "computed",
+    "cn": "computed 计算属性",
+    "descript": "Vue 组合式 API 中用于声明派生响应式状态的函数，返回只读 ref，仅在其依赖变更时重新计算，具备自动缓存能力。",
+    "tags": [
+      "vue3",
+      "api",
+      "reactivity"
+    ]
+  },
+  "ref": {
+    "en": "ref",
+    "cn": "ref API",
+    "descript": "Vue 3 组合式 API 中创建响应式引用的函数，将基本类型值包装为带 .value 属性的响应式对象，也用于获取 DOM 元素或组件实例的模板引用。",
+    "tags": [
+      "vue3",
+      "api",
+      "reactivity"
+    ]
   }
 }

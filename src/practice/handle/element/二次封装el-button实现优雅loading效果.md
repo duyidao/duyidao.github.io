@@ -1,14 +1,8 @@
----
-title: 二次封装 el-button 优雅实现 loading 效果
-author:
-  - 远方os vue中如何优雅的处理按钮loading&https://www.bilibili.com/video/BV1QtxQzLEu3
----
-
 # 二次封装 el-button 优雅实现 loading 效果
 
 ## 前言
 
-先来看看一个场景：
+先看一个场景：
 
 ```vue
 <template>
@@ -48,17 +42,17 @@ const clickFn3 = async () => {
 </script>
 ```
 
-可以看到，当有多个按钮时，想要实现按钮 `loading` 效果，就需要写很多重复的代码，而且如果以后需要修改 `loading` 的逻辑，那么就需要修改很多地方，这显然是不优雅的。
+可以看到，当有多个按钮时，想要实现按钮 `loading` 效果，就需要写很多重复代码，而且如果以后需要修改 `loading` 的逻辑，就需要修改很多地方，这显然不优雅。
 
-那么，如何二次封装一个 `el-button` 呢？
+那么，如何二次封装一个 `el-button`？
 
 ## 实现
 
-首先需要了解<word text="Vue" />提供的 `useAttrs` 这个组合式 API。这个 API 可以获取到组件上除了 `props` 以外的所有属性，比如 `class`、`style` 等属性，以及 `click` 等事件。可以打印一下，看看它都包含了啥。
+首先需要了解 <word text="Vue" /> 提供的 `useAttrs` 组合式 API。该 API 可获取组件上除 `props` 以外的所有属性，如 `class`、`style` 等属性，以及 `click` 等事件。
 
-因此可以利用 `useAttrs` 来获取到 `el-button` 上除了 `props` 以外的所有属性，然后通过 `v-bind` 绑定到 `el-button` 上。
+因此可利用 `useAttrs` 获取 `el-button` 上除 `props` 以外的所有属性，然后通过 `v-bind` 绑定到 `el-button` 上。
 
-`loading` 属性则在二封的组件内部处理，外部使用时，只需要传点击事件函数即可。
+`loading` 属性则在二封组件内部处理，外部使用时只需传点击事件函数即可。
 
 ::: code-group
 ```vue [App.vue]
@@ -110,9 +104,9 @@ const click = async () => {
 
 ### 多次绑定
 
-上方代码中，虽然实现了效果，但是给 `el-button` 绑定了两个 `click` 事件，一个是 `@click` 绑定的事件，另一个是 `v-bind="attr"` 包含的点击事件。
+上方代码中，虽实现了效果，但给 `el-button` 绑定了两个 `click` 事件，一个是 `@click` 绑定的事件，另一个是 `v-bind="attr"` 包含的点击事件。
 
-解决方法为，引入 `loadsh-es` 的 `omit` 方法，修改 `v-bind` 的参数，剔除 `attr` 中的 `onClick` 属性。当然也可以自己写一个方法剔除 `attr` 中的 `onClick` 属性。
+解决方法为，引入 `lodash-es` 的 `omit` 方法，修改 `v-bind` 的参数，剔除 `attr` 中的 `onClick` 属性。也可自己写一个方法剔除。
 
 ```vue [src/components/MyButton.vue]
 <script setup>

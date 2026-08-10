@@ -1,26 +1,20 @@
----
-title: vue动态表单实现原理
-author:
-  - 远方os vue动态表单实现原理&https://www.bilibili.com/video/BV1Vy3tzjEZZ
----
-
-# vue动态表单实现原理
+# <word text="Vue" /> 动态表单实现原理
 
 ## 基础封装
 
-首先实现一个基础封装，根据父组件传入的配置项 `formItem` 生成对应的表单项，再和父组件传入的 `formData` 进行双向绑定。
+首先实现基础封装，根据父组件传入的配置项 `formItem` 生成对应表单项，再与父组件传入的 `formData` 进行双向绑定。
 
 `formItem` 配置项：
 
-- `label`：表单项的标签
-- `type`：表单项的类型，如 `input`、`select`、`radio` 等
-- `key`：表单项的 key，用于和 `formData` 进行绑定
-- `rules`：表单项的校验规则
-- `props`：表单项的属性，如 `options`、`placeholder` 等
+- `label`：表单项标签
+- `type`：表单项类型，如 `input`、`select`、`radio` 等
+- `key`：表单项 key，用于与 `formData` 绑定
+- `rules`：表单项校验规则
+- `props`：表单项属性，如 `options`、`placeholder` 等
 
-在子组件中，通过 `v-for` 循环遍历 `formItem`，根据 `type` 使用 `component` 动态组件动态渲染对应的表单组件，并使用 `v-model` 进行双向绑定。用计算属性来提取出全部的校验规则。
+子组件中通过 `v-for` 循环遍历 `formItem`，根据 `type` 使用 `component` 动态组件渲染对应表单组件，并使用 `v-model` 进行双向绑定。用计算属性提取全部校验规则。
 
-最后如果有需要，可以将 `el-form` 组件的方法暴露出去给父组件使用。例如，可以提供一个 `validate` 方法，用于手动触发表单校验；或者提供一个 `resetFields` 方法，用于重置表单。
+最后若有需要，可将 `el-form` 组件的方法暴露给父组件使用。例如提供 `validate` 方法用于手动触发表单校验；或提供 `resetFields` 方法用于重置表单。
 
 ::: code-group
 
@@ -128,17 +122,17 @@ function changeRef(inputInstance) {
 
 :::
 
-此处子组件暴露方法可以一个个暴露，也可以通过 `getCurrentInstance` 获取到 `expose`，然后通过 `expose` 将方法暴露出去。具体的使用可以查看往期文档 [二次封装组件库组件](/handle/element/二次封装组件库组件#proxy-代理暴露)。
+此处子组件暴露方法可逐个暴露，也可通过 `getCurrentInstance` 获取 `expose`，然后通过 `expose` 将方法暴露出去。具体用法可参考 [二次封装组件库组件](/handle/element/二次封装组件库组件#proxy-代理暴露)。
 
-后续还能在父组件中添加提交按钮和重置按钮，分别调用表单子组件的 `validate` 和 `resetFields` 方法。
+后续还可在父组件中添加提交按钮和重置按钮，分别调用表单子组件的 `validate` 和 `resetFields` 方法。
 
 ## 参数精简
 
-在上面的代码中，我们使用了 `v-bind` 将 `props` 中的属性传递给表单组件，有时候一些表单只有一个 `placeholder` 属性需要绑定，但是还是写一个 `props` 对象显得有些多余。能不能直接写在外部呢？子组件里通过判断哪些是 `props` 属性，再 `v-bind` 传递呢？
+上述代码中使用 `v-bind` 将 `props` 属性传递给表单组件，有时表单只有一个 `placeholder` 属性需要绑定，写一个 `props` 对象显得多余。能否直接写在外部，子组件通过判断哪些是 `props` 属性再 `v-bind` 传递？
 
-查看所有的属性，不难发现规律，`label` 是 `form-item` 需要用来显示的属性；`key` 是 `form-item` 需要用来和 `form-data` 进行绑定的属性；`rules` 是 `form-item` 需要用来进行校验的属性；`type` 是用来表示要渲染的是啥组件。剩下的都是 `props` 属性。
+查看所有属性可发现规律：`label` 是 `form-item` 用于显示的属性；`key` 是用于与 `form-data` 绑定的属性；`rules` 是用于校验的属性；`type` 表示渲染哪个组件。其余均为 `props` 属性。
 
-因此，我们可以写一个属性白名单，将 `label`、`key`、`rules`、`type` 放入白名单，剔除掉这五个属性，剩下的就是 `props` 属性了。
+因此可写一个属性白名单，将 `label`、`key`、`rules`、`type` 放入白名单，剔除后剩余即为 `props` 属性。
 
 ::: code-group
 
@@ -299,9 +293,9 @@ function changeRef(inputInstance) {
 
 ## 事件绑定
 
-额外提一嘴如何给每一个表单绑定事件，比如 `blur`、`change` 等。<word text="Vue" />的底层源码中，事件都会被转换为 `on` 开头 + 事件名首字母大写的形式，比如 `blur` 事件，在 `Vue` 中会被转换为 `onBlur`。
+额外提一下如何给每个表单绑定事件，如 `blur`、`change` 等。<word text="Vue" /> 底层源码中，事件会被转换为 `on` 开头 + 事件名首字母大写的形式，如 `blur` 事件在 <word text="Vue" /> 中会被转为 `onBlur`。
 
-因此，在属性中添加对应的事件，子组件会通过 `v-bind` 把这些事件绑定到对应的组件上。
+因此，在属性中添加对应事件，子组件会通过 `v-bind` 将这些事件绑定到对应组件上。
 
 ```ts [index.vue]
 const formItems = [
@@ -347,9 +341,9 @@ const formItems = [
 
 ## 组件自定义与默认
 
-目前都是传的 `type`，在子组件中根据 `type` 来决定渲染什么组件。如果说有一些组件就一个页面需要使用，直接在子组件里的字典对象添加显得有点冗余。
+目前都是通过 `type` 决定子组件渲染什么。若某些组件仅一个页面使用，直接在子组件字典对象中添加显得冗余。
 
-父组件把自定义组件通过 `type` 属性传递给子组件，子组件判断一下 `type` 的类型，如果是字符串，就从字典对象里获取对应要渲染的组件；反之说明是自定义组件，直接渲染即可。
+父组件可将自定义组件通过 `type` 属性传递给子组件，子组件判断 `type` 类型：若为字符串，从字典对象获取对应组件；否则为自定义组件，直接渲染即可。
 
 ::: code-group
 
@@ -454,9 +448,9 @@ function changeRef(inputInstance) {
 
 :::
 
-还有一种情况，一般 `input` 组件比较常用，能不能不传让它默认展示 `input` 呢？
+还有另一种情况：`input` 组件比较常用，能否不传让它默认展示 `input`？
 
-修改一下 `formBuilder.vue` 中的 `getComponent` 方法，如果 `type` 为空，则默认返回 `input` 组件。
+修改 `formBuilder.vue` 中的 `getComponent` 方法，若 `type` 为空则默认返回 `input` 组件。
 
 ```ts
 const getComponent = (item) => {

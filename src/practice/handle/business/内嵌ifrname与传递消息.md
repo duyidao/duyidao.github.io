@@ -41,7 +41,7 @@ mounted() {
 
 ### 潜在问题
 
-页面渲染完毕后，开发服务器（如 `Webpack DevServer`）会自动发送一条 `{ type: 'webpackOk', data: undefined }` 消息。若直接使用 `e.data` 会导致逻辑异常。
+页面渲染完毕后，开发服务器（如 <word text="Webpack" /> DevServer）会自动发送一条 `{ type: 'webpackOk', data: undefined }` 消息。若直接使用 `e.data` 会导致逻辑异常。
 
 **解决方案：** 传递数据时封装为带 `type` 标识的对象，接收时通过 `type` 字段过滤：
 
