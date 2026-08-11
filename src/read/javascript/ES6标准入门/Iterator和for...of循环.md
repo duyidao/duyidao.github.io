@@ -1,16 +1,16 @@
 ## Iterator和for...of循环
 
-JavaScript 随着 ES6 的引入，`Iterator` 和 `for...of` 循环成为了处理集合数据的新宠。它们不仅提供了一种统一的接口来遍历各种数据结构，还使得代码更加简洁和高效。本文阮一峰老师深入探讨了 `Iterator` 的概念、默认 `Iterator` 接口的工作原理，以及 `for...of` 循环的实际应用。
+<word text="JavaScript"/> 随着 <word text="ES6"/> 的引入，`Iterator` 和 `for...of` 循环成为了处理集合数据的新方式。它们不仅提供了一种统一的接口来遍历各种数据结构，还使得代码更加简洁和高效。本文将深入探讨 `Iterator` 的概念、默认 `Iterator` 接口的工作原理，以及 `for...of` 循环的实际应用。
 
 ### Iterator（遍历器）的概念
-JavaScript 原有的表示“集合”的数据结构主要是数组（`Array`）和对象（`Object`），ES6 又添加了 `Map` 和 `Set`。这样就有了四种数据集合。这样就需要一种统一的接口机制，来处理所有不同的数据结构。
+<word text="JavaScript"/> 原有的表示"集合"的数据结构主要是数组（`Array`）和对象（`Object`），<word text="ES6"/> 又添加了 `Map` 和 `Set`。这样就有了四种数据集合。这样就需要一种统一的接口机制，来处理所有不同的数据结构。
 
 遍历器（`Iterator`）就是这样一种机制。它是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署 `Iterator` 接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）。
 
 `Iterator` 的作用有三个：
 1. 为各种数据结构，提供一个统一的、简便的访问接口
 2. 使得数据结构的成员能够按某种次序排列
-3. ES6 创造了一种新的遍历命令 `for...of` 循环，Iterator接口主要供 `for...of` 消费。
+3. <word text="ES6"/> 创造了一种新的遍历命令 `for...of` 循环，Iterator接口主要供 `for...of` 消费。
 
 `Iterator` 的遍历过程如下：
 1. 创建一个指针对象，指向当前数据结构的起始位置。也就是说，遍历器对象本质上，就是一个指针对象。
@@ -45,7 +45,7 @@ function makeIterator(array) {
 
 上面提到，`Iterator` 接口是为所有数据结构提供统一的访问机制，也就是说，只要数据结构部署了 `Iterator` 接口，就称这些数据结构为可遍历的（`iterable`）。
 
-ES6 规定，默认的 `Iterator` 接口部署在数据结构的 `Symbol.iterator` 属性。`Symbol.iterator` 属性本身是一个函数，就是当前数据结构默认的遍历器生成函数。执行这个函数，就会返回一个遍历器。
+<word text="ES6"/> 规定，默认的 `Iterator` 接口部署在数据结构的 `Symbol.iterator` 属性。`Symbol.iterator` 属性本身是一个函数，就是当前数据结构默认的遍历器生成函数。执行这个函数，就会返回一个遍历器。
 
 原生具备 `Iterator` 接口的数据结构如下：
 - `Array`
@@ -163,7 +163,7 @@ function readLinesSync(fileName) {
 
 ### for...of循环
 
-`for...of` 是 ES6引进的，用于遍历部署了 `Symbol.iterator` 接口的数据结构，它内部调用的是数据结构的 `Symbol.iterator` 方法。
+`for...of` 是 <word text="ES6"/>引进的，用于遍历部署了 `Symbol.iterator` 接口的数据结构，它内部调用的是数据结构的 `Symbol.iterator` 方法。
 
 使用范围包括 数组、`Set`、`Map`、类数组对象（`arguments`、`DOM NodeList` 对象）、`Generator` 对象，以及字符串。
 
@@ -326,10 +326,10 @@ for (let [key, value] of entries(obj)) {
 
 ### 总结
 
-`Iterator` 是 JavaScript ES6 引入的一种接口，用于统一访问不同数据结构的元素。它允许使用 `for...of` 循环遍历具有 `Iterator` 接口的数据结构，如数组、字符串、Map、Set 等。`Iterator` 对象通过 `next()` 方法返回包含 `value` 和 `done` 属性的对象，其中 `value` 是当前元素的值，`done` 指示遍历是否结束。
+`Iterator` 是 <word text="JavaScript"/> <word text="ES6"/> 引入的一种接口，用于统一访问不同数据结构的元素。它允许使用 `for...of` 循环遍历具有 `Iterator` 接口的数据结构，如数组、字符串、Map、Set 等。`Iterator` 对象通过 `next()` 方法返回包含 `value` 和 `done` 属性的对象，其中 `value` 是当前元素的值，`done` 指示遍历是否结束。
 
 默认的 `Iterator` 接口通过数据结构的 `Symbol.iterator` 属性访问。除了 `for...of` 循环，解构赋值、扩展运算符、`yield*` 等也会调用 `Iterator` 接口。字符串和类似数组的对象（如 `arguments` 和 `NodeList`）也具有 `Iterator` 接口。
 
 对于普通对象，需要手动部署 `Symbol.iterator` 方法以使其可遍历。遍历器对象除了 `next()` 方法外，还可以有 `return()` 和 `throw()` 方法，用于资源清理和错误处理。
 
-`for...of` 循环是 ES6 新增的语法，用于遍历具有 `Iterator` 接口的数据结构，它提供了一种简洁且统一的方式来访问数据结构中的元素，相比 `for...in` 和 `forEach` 方法有更多优势，如能与控制流语句配合使用，且不会遍历对象的非数字键。
+`for...of` 循环是 <word text="ES6"/> 新增的语法，用于遍历具有 `Iterator` 接口的数据结构，它提供了一种简洁且统一的方式来访问数据结构中的元素，相比 `for...in` 和 `forEach` 方法有更多优势，如能与控制流语句配合使用，且不会遍历对象的非数字键。

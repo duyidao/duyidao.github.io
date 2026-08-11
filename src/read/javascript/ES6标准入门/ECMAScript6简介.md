@@ -2,14 +2,14 @@
 
 ### 由来
 
-第一章第一节讲述了 ES6 这个名称的由来，首先需要理清 ECMAScript 和 Javascript 的关系。在最开始 Javascript 不叫 Javascript，而是叫 ECMAScript。因此，**ECMAScript 是 Javascript 的规格，Javascript 是 ECMAScript 的一种实现**。
+第一章第一节讲述了 <word text="ES6"/> 这个名称的由来，首先需要理清 <word text="ECMAScript"/> 和 <word text="JavaScript"/> 的关系。在最开始 JavaScript 不叫 JavaScript，而是叫 ECMAScript。因此，**ECMAScript 是 JavaScript 的规格，JavaScript 是 ECMAScript 的一种实现**。
 
 ### 含义
 
-2011年， ECMAScript 5.1 版本发布后，6.0 版本开始制定，这个版本改动较大，制定者希望能够6.1、6.2、6.3持续推进，最终决定每年6月更新发布一次标准版本。2016年6月，发布了 ECMAScript 6.0 版本。
+2011年，<word text="ECMAScript"/> 5.1 版本发布后，6.0 版本开始制定，这个版本改动较大，制定者希望能够6.1、6.2、6.3持续推进，最终决定每年6月更新发布一次标准版本。2016年6月，发布了 ECMAScript 6.0 版本。
 
 ::: info 🖇 拓展
-因此，ES6 既是一个历史名词，也是一个泛指，含义是 5.1 版本以后的 JavaScript 的下一代 标准，涵盖了 ES2015、 ES2016、 ES2017 等，而 ES2015 则是正式名称，特指当年发布的正式 版本的语言标准。
+因此，<word text="ES6"/> 既是一个历史名词，也是一个泛指，含义是 5.1 版本以后的 <word text="JavaScript"/> 的下一代标准，涵盖了 ES2015、ES2016、ES2017 等，而 ES2015 则是正式名称，特指当年发布的正式版本的语言标准。
 :::
 
 ### 提案批准流程
@@ -22,17 +22,17 @@
 
 ### 历史
 
-ES6从开始制定到最后发布用了整整15年。1997年发布的ES1.0是第一个版本，随后连续发布了ES2.0和ES3.0。ES3.0成为通行标准，奠定了JavaScript语言的基本语法。
+<word text="ES6"/> 从开始制定到最后发布用了整整15年。1997年发布的ES1.0是第一个版本，随后连续发布了ES2.0和ES3.0。ES3.0成为通行标准，奠定了 <word text="JavaScript"/> 语言的基本语法。
 
-在2000年，ES4.0开始酝酿，但最后没有通过。ES6制定的起点其实可以追溯到2000年。ES4.0没有通过是因为该版本对ES3.0做了彻底升级，导致标准委员会的一些成员不愿意接受。
+在2000年，ES4.0开始酝酿，但最后没有通过。<word text="ES6"/> 制定的起点其实可以追溯到2000年。ES4.0没有通过是因为该版本对ES3.0做了彻底升级，导致标准委员会的一些成员不愿意接受。
 
 2008年，ECMA决定中止ES4.0的开发，并将其中涉及现有功能改善的部分发布为ES3.1，其他激进设想放入以后的版本。
 
-2009年，ES5.0发布，而ES Harmony继续发展成为ES6。2015年，ES6正式通过成为国际标准。整个过程历时15年。
+2009年，<word text="ES5"/> 发布，而ES Harmony继续发展成为 <word text="ES6"/>。2015年，ES6正式通过成为国际标准。整个过程历时15年。
 
 ### Babel
 
-`babel.js` 是 ES6 转码器，在浏览器不支持 ES6 语法时转码为 ES5 ，这样就能执行了，下面是一个简单的例子：
+`babel.js` 是 <word text="ES6"/> 转码器，在浏览器不支持 ES6 语法时转码为 <word text="ES5"/>，这样就能执行了，下面是一个简单的例子：
 
 ::: code-group
   ```js [转码前]
@@ -51,7 +51,7 @@ ES6从开始制定到最后发布用了整整15年。1997年发布的ES1.0是第
 
 - 配置文件 `.babelrc` 
 
-  这是放置在项目根目录中，用于设置转码规则和插件，其基本包含 `presets` 和 `plugins` 两个参数。其中`presets` 用于设定转码规则，通过 `npm` 下载依赖，下载后在 `presets` 数组中添加对应的规则。例子如下：
+  这是放置在项目根目录中，用于设置转码规则和插件，其基本包含 `presets` 和 `plugins` 两个参数。其中 `presets` 用于设定转码规则，通过 <word text="NPM"/> 下载依赖，下载后在 `presets` 数组中添加对应的规则。例子如下：
 
   ::: code-group
   ```js [.babelrc]
@@ -72,11 +72,11 @@ ES6从开始制定到最后发布用了整整15年。1997年发布的ES1.0是第
   ```
   :::
   > [!WARNING] ⚠ 注意
-  > 要想使用以下所有 Babel 工具和模块，都必须先写好 .babelrc。
+  > 要想使用以下所有 <word text="Babel"/> 工具和模块，都必须先写好 .babelrc。
 
 - 命令行转码 `babel-cli` 
 
-  Babel 提供 `babel-cli` 工具，用于命令行转码 。使用方式如下：
+  <word text="Babel"/> 提供 `babel-cli` 工具，用于命令行转码。使用方式如下：
 
   1. 下载依赖
    
@@ -106,14 +106,14 @@ ES6从开始制定到最后发布用了整整15年。1997年发布的ES1.0是第
 
 - babel-node
 
-  这是 `babel-cli` 自带的命令，用于提供支持 ES6 的 REPL 环境，直接运行 ES6 代码。
+  这是 `babel-cli` 自带的命令，用于提供支持 <word text="ES6"/> 的 REPL 环境，直接运行 ES6 代码。
 
 - babel-register
 
-  修改 `require` 命令，后续使用 `require` 加载 `.js` 、`jsx` 、`.es` 和 `.es6` 文件时，会优先使用 `babel` 转码。
+  修改 `require` 命令，后续使用 `require` 加载 `.js`、`jsx`、`.es` 和 `.es6` 文件时，会优先使用 <word text="Babel"/> 转码。
 
   > [!WARNING] ⚠ 注意
-  > `babel-register` 只会对 `require` 命令加载的文件进行转码，而不会对当前文件进行转码 。 另外，由于它是实时转码，所以只适合在开发环境中使用 。
+  > `babel-register` 只会对 `require` 命令加载的文件进行转码，而不会对当前文件进行转码。另外，由于它是实时转码，所以只适合在开发环境中使用。
 
 - babel-core
 
@@ -131,14 +131,14 @@ ES6从开始制定到最后发布用了整整15年。1997年发布的ES1.0是第
 
 - babel-polyfill
 
-  Babel 默认只转换新的 `JavaScript` 句法( `syntax` )，而不转换新的 API，如 `Iterator`、 `Generator`、 `Set`、 `Maps` 、 `Proxy`、 `Reflect`、 `Symbol`、 `Promise` 等全局对象，以及一些 定义在全局对象上的方法(如 `Object.assign` )都不会转码。
+  <word text="Babel"/> 默认只转换新的 `JavaScript` 句法（`syntax`），而不转换新的 <word text="API"/>，如 `Iterator`、`Generator`、`Set`、`Maps`、`Proxy`、`Reflect`、`Symbol`、`Promise` 等全局对象，以及一些定义在全局对象上的方法（如 `Object.assign`）都不会转码。
 
   想让上述的方法运行，必须使用 `babel-polyfill` 为当前环境提供一个垫片。
 
 ### Traceur
 
-`Traceur` 是Google 公司的转码器 也可 以将 ES6 代码转为 ES5 代码。具体使用此处不做过多描述。
+`Traceur` 是 Google 公司的转码器，也可以将 <word text="ES6"/> 代码转为 <word text="ES5"/> 代码。具体使用此处不做过多描述。
 
 ### 总结
 
-第一章整体为我们讲解了 javascript 的历史和发展史，以及 ES6 广义和狭义的含义。在浏览器不支持 ES6 新语法时如何使用 babel 转成 ES5 等。
+本章讲解了 <word text="JavaScript"/> 的历史和发展史，以及 <word text="ES6"/> 广义和狭义的含义。在浏览器不支持 ES6 新语法时如何使用 <word text="Babel"/> 转成 <word text="ES5"/> 等。

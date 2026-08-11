@@ -330,6 +330,172 @@
     ],
     "authors": []
   },
+  "read/javascript/ES6标准入门/ECMAScript6简介": {
+    "title": "ECMAScript 6 简介",
+    "description": "介绍 ES6 的由来、含义、提案批准流程及发展历史，并讲解 Babel 和 Traceur 转码器的基本用法与配置。",
+    "tags": [
+      "es6",
+      "javascript",
+      "ecmascript",
+      "babel",
+      "traceur"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/Generator函数的异步应用": {
+    "title": "Generator 函数的异步应用",
+    "description": "梳理 Generator 函数在异步编程中的应用：协程概念、Thunk 函数、Thunkify 模块、co 模块自动执行器，以及与传统回调、Promise 的对比。",
+    "tags": [
+      "es6",
+      "javascript",
+      "generator",
+      "thunk",
+      "async"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/Generator函数的语法": {
+    "title": "Generator 函数的语法",
+    "description": "详解 Generator 函数的语法特性：基本概念、yield 表达式、next 方法参数、for...of 循环、throw/return 方法、yield* 表达式，以及 Generator 函数的 this 含义。",
+    "tags": [
+      "es6",
+      "javascript",
+      "generator",
+      "iterator",
+      "syntax"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/Symbol": {
+    "title": "Symbol",
+    "description": "讲解 ES6 第七种数据类型 Symbol 的定义、特性、作为属性名的用法、消除魔术字符串、Singleton 模块模式，以及 11 个内置 Symbol 值的用途。",
+    "tags": [
+      "es6",
+      "javascript",
+      "symbol",
+      "datatype",
+      "singleton"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/Set和Map数据结构": {
+    "title": "Set 和 Map 数据结构",
+    "description": "讲解 ES6 新增的 Set、Map 数据结构及其弱引用版本 WeakSet、WeakMap 的用法、遍历操作、数据类型转换，以及 WeakMap 在存储私有数据方面的应用。",
+    "tags": [
+      "es6",
+      "javascript",
+      "set",
+      "map",
+      "datastructure"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/Proxy": {
+    "title": "Proxy",
+    "description": "讲解 ES6 Proxy 代理机制：概述、13 种拦截方法（get/set/apply/has/construct 等）、Proxy.revocable 可撤销代理、this 问题，以及 Reflect 与 Proxy 的配合使用。",
+    "tags": [
+      "es6",
+      "javascript",
+      "proxy",
+      "metaprogramming",
+      "reflect"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/async函数": {
+    "title": "async 函数",
+    "description": "讲解 ES7 async/await 异步编程方案：含义、用法、语法、返回 Promise 对象、错误处理、实现原理、与其他异步方案的对比，以及异步遍历器 Async Iterator。",
+    "tags": [
+      "es7",
+      "javascript",
+      "async",
+      "await",
+      "promise"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/Reflect": {
+    "title": "Reflect",
+    "description": "讲解 ES6 Reflect 对象的概述、13 个静态方法（get/set/has/deleteProperty/construct/apply 等）的用法示例，以及与 Proxy 结合实现观察者模式的实例运用。",
+    "tags": [
+      "es6",
+      "javascript",
+      "reflect",
+      "metaprogramming"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/Promise对象": {
+    "title": "Promise 对象",
+    "description": "讲解 ES6 Promise 异步编程方案：含义、特点、基本用法、原型方法（then/catch/finally）、静态方法（all/race/resolve/reject/try）、部署附加方法 done 和 finally。",
+    "tags": [
+      "es6",
+      "javascript",
+      "promise",
+      "async"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/Iterator和for...of循环": {
+    "title": "Iterator 和 for...of 循环",
+    "description": "讲解 ES6 Iterator 遍历器概念、默认 Iterator 接口、调用场合、字符串的 Iterator 接口、与 Generator 函数的关系、return/throw 方法，以及 for...of 循环的用法和与其他遍历语法的比较。",
+    "tags": [
+      "es6",
+      "javascript",
+      "iterator",
+      "for-of",
+      "generator"
+    ],
+    "authors": []
+  },
+  "read/vite/深入浅出Vite/前端工程化与 Vite 核心精要：从模块化演进到现代构建实践": {
+    "title": "前端工程化与 Vite 核心精要",
+    "description": "从模块化演进史（IIFE/CommonJS/AMD/ESM）到 Vite 破局之道，详解前端工程四大痛点及 Vite 解决方案，对比 ESM/CommonJS/AMD 核心特性，规划系统化进阶路径。",
+    "tags": [
+      "vite",
+      "esm",
+      "commonjs",
+      "modularization",
+      "frontend-engineering"
+    ],
+    "authors": []
+  },
+  "read/vite/深入浅出Vite/快速上手：如何用 Vite 从零搭建前端项目": {
+    "title": "快速上手：如何用 Vite 从零搭建前端项目",
+    "description": "Vite 工程落地实践，从环境配置（pnpm）、脚手架初始化到 No-Bundle 核心运行原理与生产构建（Rollup）全流程，阐释开发/生产双环境工程化差异。",
+    "tags": [
+      "vite",
+      "no-bundle",
+      "esbuild",
+      "rollup",
+      "pnpm"
+    ],
+    "authors": []
+  },
+  "read/vite/深入浅出Vite/样式方案：在 Vite 中接入现代化的 CSS 工程化方案": {
+    "title": "样式方案：在 Vite 中接入现代化的 CSS 工程化方案",
+    "description": "系统梳理 5 类 CSS 工程化方案（Sass/Less/Stylus、CSS Modules、PostCSS、CSS in JS、Tailwind/Windi CSS），通过实战演示 Vite 零配置接入。",
+    "tags": [
+      "vite",
+      "css",
+      "sass",
+      "postcss",
+      "tailwind"
+    ],
+    "authors": []
+  },
+  "read/vite/深入浅出Vite/静态资源：在 Vite 中处理各种静态资源？": {
+    "title": "静态资源：在 Vite 中处理各种静态资源",
+    "description": "Vite 静态资源工程化全链路，涵盖图片/SVG/JSON/Worker/WASM 开发期加载与生产环境 CDN/内联/压缩/雪碧图优化策略。",
+    "tags": [
+      "vite",
+      "static-resources",
+      "svg",
+      "cdn",
+      "imagemin"
+    ],
+    "authors": []
+  },
   "work/百度/佛开/LED大屏/打包": {
     "title": "百度外包佛开项目大屏打包",
     "description": "详细说明百度地图佛开项目大屏端在部署阶段的打包配置，涵盖环境变量定义与 Vite 基础路径加载。",
@@ -1585,6 +1751,97 @@
         "author": "渡一教育",
         "link": "https://www.bilibili.com/video/BV1Nm421J7Yj/",
         "title": "实现元素平滑上升"
+      }
+    ]
+  },
+  "read/vue/Vue.js设计与实现/权衡的艺术": {
+    "title": "权衡的艺术",
+    "description": "剖析框架设计中命令式与声明式、性能与可维护性的权衡，对比虚拟 DOM 与 innerHTML 的性能差异，分析运行时/编译时架构选择。",
+    "tags": [
+      "vue",
+      "virtual-dom",
+      "framework",
+      "architecture",
+      "performance"
+    ],
+    "authors": [
+      {
+        "author": "霍春阳",
+        "link": "https://github.com/HcySunYang/vue-design",
+        "title": "Vue.js 设计与实现"
+      }
+    ]
+  },
+  "read/vue/Vue.js设计与实现/框架设计的核心要素": {
+    "title": "框架设计的核心要素",
+    "description": "讲解框架设计的核心要素：开发体验提升、代码体积控制、Tree-Shaking、构建产物输出、特性开关、错误处理及 TypeScript 类型支持。",
+    "tags": [
+      "vue",
+      "framework",
+      "tree-shaking",
+      "typescript",
+      "build"
+    ],
+    "authors": [
+      {
+        "author": "霍春阳",
+        "link": "https://github.com/HcySunYang/vue-design",
+        "title": "Vue.js 设计与实现"
+      }
+    ]
+  },
+  "read/vite/深入浅出Vite/代码规范-如何利用 Lint 工具链来保证代码风格和质量？": {
+    "title": "代码规范-如何利用 Lint 工具链来保证代码风格和质量？",
+    "description": "系统介绍前端代码规范工具链：ESLint 配置与原理、Prettier 格式化、Stylelint 样式检查、Husky+lint-staged Git 提交工作流及 Commitlint 提交信息规范。",
+    "tags": [
+      "vite",
+      "eslint",
+      "prettier",
+      "stylelint",
+      "husky",
+      "lint-staged"
+    ],
+    "authors": [
+      {
+        "author": "神三元",
+        "link": "https://juejin.cn/book/7050063811973218341",
+        "title": "深入浅出 Vite"
+      }
+    ]
+  },
+  "read/vue/Vue.js设计与实现/响应系统的作用与实现": {
+    "title": "响应系统的作用与实现",
+    "description": "深入讲解 Vue.js 响应系统的核心原理：响应式数据与副作用函数、Proxy 代理、WeakMap 依赖收集、分支切换与 cleanup 清理机制。",
+    "tags": [
+      "vue",
+      "reactivity",
+      "proxy",
+      "weakmap",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "霍春阳",
+        "link": "https://github.com/HcySunYang/vue-design",
+        "title": "Vue.js 设计与实现"
+      }
+    ]
+  },
+  "read/vue/Vue.js设计与实现/Vue.js 3 的设计思路": {
+    "title": "Vue.js 3 的设计思路",
+    "description": "讲解 Vue.js 3 声明式 UI 描述、虚拟 DOM、渲染器原理、组件本质、模板编译流程及编译器与渲染器的协作优化机制。",
+    "tags": [
+      "vue",
+      "virtual-dom",
+      "renderer",
+      "compiler",
+      "component"
+    ],
+    "authors": [
+      {
+        "author": "霍春阳",
+        "link": "https://github.com/HcySunYang/vue-design",
+        "title": "Vue.js 设计与实现"
       }
     ]
   }

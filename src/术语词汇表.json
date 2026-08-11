@@ -1156,5 +1156,1097 @@
       "react",
       "vue"
     ]
+  },
+  "JavaScript": {
+    "en": "JavaScript",
+    "cn": "JavaScript 编程语言",
+    "descript": "一种具有函数优先的轻量级解释型编程语言，作为 Web 页面的核心脚本语言，支持面向对象、命令式及声明式编程范式。",
+    "tags": [
+      "language",
+      "web",
+      "frontend"
+    ]
+  },
+  "ECMAScript": {
+    "en": "ECMAScript",
+    "cn": "ECMAScript 规范",
+    "descript": "由 Ecma International 标准化的脚本语言规范，JavaScript 是其最著名的实现，ES6（ES2015）是该规范的第 6 个版本。",
+    "tags": [
+      "standard",
+      "javascript",
+      "specification"
+    ]
+  },
+  "ES6": {
+    "en": "ES6",
+    "cn": "ES6/ES2015 标准",
+    "descript": "ECMAScript 的第 6 个版本，正式名称为 ECMAScript 2015，引入了类、模块、箭头函数、Promise 等重大特性，是现代 JavaScript 的基石。",
+    "tags": [
+      "standard",
+      "javascript",
+      "ecmascript"
+    ]
+  },
+  "ES5": {
+    "en": "ES5",
+    "cn": "ES5 标准",
+    "descript": "ECMAScript 的第 5 个版本，于 2009 年发布，引入了严格模式、JSON 支持、数组迭代方法等特性，是 ES6 之前最广泛使用的 JavaScript 标准。",
+    "tags": [
+      "standard",
+      "javascript",
+      "ecmascript"
+    ]
+  },
+  "Babel": {
+    "en": "Babel",
+    "cn": "Babel 转码器",
+    "descript": "一款开源的 JavaScript 编译器，用于将 ES6+ 代码转换为向后兼容的 JavaScript 版本，以便在当前和旧版浏览器或环境中运行。",
+    "tags": [
+      "tool",
+      "compiler",
+      "javascript",
+      "es6"
+    ]
+  },
+  "Traceur": {
+    "en": "Traceur",
+    "cn": "Traceur 转码器",
+    "descript": "Google 开发的 JavaScript 转码器，可将 ES6 代码转换为 ES5 代码，是早期 ES6 转码方案之一，现已被 Babel 取代。",
+    "tags": [
+      "tool",
+      "compiler",
+      "javascript",
+      "es6"
+    ]
+  },
+  "Generator": {
+    "en": "Generator",
+    "cn": "Generator 函数",
+    "descript": "ES6 引入的异步编程解决方案，通过 yield 表达式暂停和恢复函数执行，返回遍历器对象，是协程在 JavaScript 中的实现。",
+    "tags": [
+      "javascript",
+      "es6",
+      "async",
+      "iterator"
+    ]
+  },
+  "Thunk": {
+    "en": "Thunk",
+    "cn": "Thunk 函数",
+    "descript": "一种将多参数函数转换为单参数版本（仅接受回调函数）的编程模式，常用于 Generator 函数的自动流程管理。",
+    "tags": [
+      "javascript",
+      "pattern",
+      "async",
+      "generator"
+    ]
+  },
+  "Thunkify": {
+    "en": "Thunkify",
+    "cn": "Thunkify 模块",
+    "descript": "Node.js 的 NPM 模块，用于将符合 Node.js 回调风格的函数转换为 Thunk 函数，便于 Generator 函数的自动执行。",
+    "tags": [
+      "npm",
+      "nodejs",
+      "thunk",
+      "generator"
+    ]
+  },
+  "co": {
+    "en": "co",
+    "cn": "co 模块",
+    "descript": "Node.js 的 NPM 模块，用于自动执行 Generator 函数，内部封装了 Thunk 函数和 Promise 对象的自动执行逻辑。",
+    "tags": [
+      "npm",
+      "nodejs",
+      "generator",
+      "async"
+    ]
+  },
+  "V8": {
+    "en": "V8",
+    "cn": "V8 引擎",
+    "descript": "Google 开发的开源 JavaScript 和 WebAssembly 引擎，使用 C++ 编写，用于 Chrome 浏览器和 Node.js 运行时，具有即时编译（JIT）和高性能特性。",
+    "tags": [
+      "engine",
+      "javascript",
+      "chrome",
+      "nodejs"
+    ]
+  },
+  "ES5": {
+    "en": "ES5",
+    "cn": "ES5/ECMAScript 5 标准",
+    "descript": "ECMAScript 的第 5 个版本，于 2009 年发布，正式引入严格模式（strict mode）、JSON 支持、数组方法（forEach/map/filter 等），是 JavaScript 标准化的重要里程碑。",
+    "tags": [
+      "standard",
+      "javascript",
+      "ecmascript"
+    ]
+  },
+  "Symbol": {
+    "en": "Symbol",
+    "cn": "Symbol 数据类型",
+    "descript": "ES6 引入的第 7 种基本数据类型，通过 Symbol 函数生成唯一且不可变的值，主要用于对象属性名以避免属性名冲突，也可用于定义常量。",
+    "tags": [
+      "javascript",
+      "es6",
+      "datatype",
+      "primitive"
+    ]
+  },
+  "Singleton": {
+    "en": "Singleton",
+    "cn": "单例模式",
+    "descript": "一种创建型设计模式，确保一个类只有一个实例，并提供一个全局访问点。在 Node.js 模块系统中常用于保证模块实例的唯一性。",
+    "tags": [
+      "pattern",
+      "design-pattern",
+      "nodejs"
+    ]
+  },
+  "Set": {
+    "en": "Set",
+    "cn": "Set 数据结构",
+    "descript": "ES6 引入的集合数据结构，类似于数组但元素值唯一不重复，支持 add/delete/has/clear 方法及 keys/values/entries/forEach 遍历操作。",
+    "tags": [
+      "javascript",
+      "es6",
+      "datastructure",
+      "collection"
+    ]
+  },
+  "Map": {
+    "en": "Map",
+    "cn": "Map 数据结构",
+    "descript": "ES6 引入的键值对集合数据结构，键名不限于字符串，支持各种类型作为键，提供 set/get/has/delete/clear 方法及遍历操作。",
+    "tags": [
+      "javascript",
+      "es6",
+      "datastructure",
+      "collection"
+    ]
+  },
+  "WeakSet": {
+    "en": "WeakSet",
+    "cn": "WeakSet 数据结构",
+    "descript": "ES6 引入的弱引用集合，成员只能是对象且为弱引用（不影响垃圾回收），不可遍历，仅有 add/delete/has 方法。",
+    "tags": [
+      "javascript",
+      "es6",
+      "datastructure",
+      "weak-reference"
+    ]
+  },
+  "WeakMap": {
+    "en": "WeakMap",
+    "cn": "WeakMap 数据结构",
+    "descript": "ES6 引入的弱引用键值对集合，键名只能是对象且为弱引用，不可遍历，适用于存储私有数据或 DOM 节点关联数据以防止内存泄漏。",
+    "tags": [
+      "javascript",
+      "es6",
+      "datastructure",
+      "weak-reference"
+    ]
+  },
+  "Proxy": {
+    "en": "Proxy",
+    "cn": "Proxy 代理器",
+    "descript": "ES6 提供的对象代理机制，用于拦截和自定义对象的基本操作（如属性读取、赋值、函数调用等），支持 13 种拦截方法，可在不修改目标对象的情况下控制对对象的访问。",
+    "tags": [
+      "javascript",
+      "es6",
+      "proxy",
+      "metaprogramming"
+    ]
+  },
+  "ES7": {
+    "en": "ES7",
+    "cn": "ES7/ECMAScript 2016 标准",
+    "descript": "ECMAScript 的第 7 个版本，于 2016 年发布，引入 async/await 语法、Array.prototype.includes 方法、指数运算符（**），是 JavaScript 异步编程标准化的里程碑。",
+    "tags": [
+      "standard",
+      "javascript",
+      "ecmascript",
+      "async"
+    ]
+  },
+  "Reflect": {
+    "en": "Reflect",
+    "cn": "Reflect 反射对象",
+    "descript": "ES6 引入的内置对象，提供 13 个静态方法用于操作对象属性，与 Proxy 的方法一一对应，使 Object 操作变为函数行为，并为 Proxy 提供默认行为。",
+    "tags": [
+      "javascript",
+      "es6",
+      "reflect",
+      "metaprogramming"
+    ]
+  },
+  "ESM": {
+    "en": "ESM",
+    "cn": "ES Module 模块规范",
+    "descript": "ECMAScript 官方推出的语言级模块规范，支持 import/export 静态声明，编译期即可确定依赖树，天然支持 Tree Shaking，现代浏览器和 Node.js 双端原生支持。",
+    "tags": [
+      "javascript",
+      "module",
+      "standard",
+      "es6"
+    ]
+  },
+  "CommonJS": {
+    "en": "CommonJS",
+    "cn": "CommonJS 模块规范",
+    "descript": "Node.js 默认的模块规范，通过 module.exports 导出和 require() 同步加载，运行时动态解析，主要用于服务端。",
+    "tags": [
+      "javascript",
+      "module",
+      "nodejs",
+      "cjs"
+    ]
+  },
+  "AMD": {
+    "en": "AMD",
+    "cn": "AMD 异步模块定义规范",
+    "descript": "Asynchronous Module Definition，浏览器端的异步模块加载方案，通过 define() 声明依赖，配合 RequireJS 等 Loader 实现异步预加载，解决 CommonJS 的同步阻塞问题。",
+    "tags": [
+      "javascript",
+      "module",
+      "browser",
+      "amd"
+    ]
+  },
+  "CMD": {
+    "en": "CMD",
+    "cn": "CMD 通用模块定义规范",
+    "descript": "Common Module Definition，由 Sea.js 推广的模块规范，与 AMD 类似但强调就近依赖（用到时才 require），在国内前端社区曾广泛使用。",
+    "tags": [
+      "javascript",
+      "module",
+      "browser",
+      "cmd"
+    ]
+  },
+  "CJS": {
+    "en": "CJS",
+    "cn": "CommonJS 缩写",
+    "descript": "CommonJS 的简称，Node.js 默认模块规范，运行时同步加载模块。",
+    "tags": [
+      "javascript",
+      "module",
+      "nodejs",
+      "abbreviation"
+    ]
+  },
+  "Rollup": {
+    "en": "Rollup",
+    "cn": "Rollup 打包工具",
+    "descript": "基于 ES Module 的 JavaScript 模块打包器，以 Tree Shaking 为核心特性，生成更小、更高效的代码包，Vite 生产环境底层使用 Rollup 进行打包。",
+    "tags": [
+      "build-tool",
+      "javascript",
+      "bundler",
+      "vite"
+    ]
+  },
+  "Esbuild": {
+    "en": "Esbuild",
+    "cn": "Esbuild 构建工具",
+    "descript": "基于 Go 语言编写的极速 JavaScript/TypeScript 打包器与转译器，速度比传统工具快 10-100 倍，Vite 开发环境使用 Esbuild 进行依赖预编译。",
+    "tags": [
+      "build-tool",
+      "javascript",
+      "bundler",
+      "vite",
+      "go"
+    ]
+  },
+  "Sass": {
+    "en": "Sass",
+    "cn": "Sass CSS 预处理器",
+    "descript": "一种 CSS 预处理器，支持变量、嵌套、混入（Mixin）、继承等高级特性，通过编译生成标准 CSS 文件，是主流的前端样式工程化方案。",
+    "tags": [
+      "css",
+      "preprocessor",
+      "stylesheet",
+      "frontend"
+    ]
+  },
+  "Tree Shaking": {
+    "en": "Tree Shaking",
+    "cn": "Tree Shaking 摇树优化",
+    "descript": "一种基于 ES Module 静态结构的死代码消除（Dead Code Elimination）技术，编译期分析依赖树，移除未引用的代码，减小打包体积。",
+    "tags": [
+      "optimization",
+      "javascript",
+      "bundler",
+      "esm"
+    ]
+  },
+  "HMR": {
+    "en": "HMR",
+    "cn": "HMR 模块热替换",
+    "descript": "Hot Module Replacement，在应用运行时替换、添加或删除模块而无需刷新整个页面，是 Vite 和 Webpack 等构建工具提升开发体验的核心功能。",
+    "tags": [
+      "dev-server",
+      "javascript",
+      "bundler",
+      "vite"
+    ]
+  },
+  "SSR": {
+    "en": "SSR",
+    "cn": "SSR 服务端渲染",
+    "descript": "Server Side Rendering，在服务器端将页面组件渲染为 HTML 字符串发送给浏览器，可提升首屏加载速度和 SEO 效果，Vite 内置 SSR 支持。",
+    "tags": [
+      "rendering",
+      "server",
+      "seo",
+      "vite"
+    ]
+  },
+  "JIT": {
+    "en": "JIT",
+    "cn": "JIT 即时编译",
+    "descript": "Just In Time compilation，在程序运行时动态编译代码为机器码的技术，V8 引擎和 Tailwind CSS v3+ 均使用 JIT 模式提升性能。",
+    "tags": [
+      "compilation",
+      "performance",
+      "v8",
+      "engine"
+    ]
+  },
+  "SvelteKit": {
+    "en": "SvelteKit",
+    "cn": "SvelteKit 框架",
+    "descript": "基于 Svelte 的全栈 Web 应用框架，内置路由、SSR、代码分割等功能，深度集成 Vite 作为构建工具。",
+    "tags": [
+      "framework",
+      "svelte",
+      "vite",
+      "ssr"
+    ]
+  },
+  "Astro": {
+    "en": "Astro",
+    "cn": "Astro 框架",
+    "descript": "现代静态站点构建框架，默认输出零 JavaScript 的静态 HTML，支持按需加载交互组件（Islands Architecture），深度集成 Vite。",
+    "tags": [
+      "framework",
+      "ssg",
+      "vite",
+      "islands"
+    ]
+  },
+  "Terser": {
+    "en": "Terser",
+    "cn": "Terser 压缩工具",
+    "descript": "JavaScript 代码压缩与混淆工具，支持 ES6+ 语法，是 UglifyJS 的替代品，常被 Rollup 和 Webpack 用于生产环境代码压缩。",
+    "tags": [
+      "build-tool",
+      "javascript",
+      "minification",
+      "bundler"
+    ]
+  },
+  "RequireJS": {
+    "en": "RequireJS",
+    "cn": "RequireJS 模块加载器",
+    "descript": "浏览器端的 AMD 模块加载器，实现 JavaScript 文件的异步加载和依赖管理，解决了早期前端模块化加载问题。",
+    "tags": [
+      "javascript",
+      "module",
+      "browser",
+      "amd"
+    ]
+  },
+  "core-js": {
+    "en": "core-js",
+    "cn": "core-js 垫片库",
+    "descript": "JavaScript 标准库的 Polyfill（垫片）库，为旧版浏览器提供 ES6+ 新特性的实现，是 Babel 转译的重要配套工具。",
+    "tags": [
+      "javascript",
+      "polyfill",
+      "babel",
+      "compatibility"
+    ]
+  },
+  "TSC": {
+    "en": "TSC",
+    "cn": "TypeScript 编译器",
+    "descript": "TypeScript Compiler，将 TypeScript 代码编译为 JavaScript 代码的命令行工具，支持类型检查、ES 版本降级等。",
+    "tags": [
+      "typescript",
+      "compiler",
+      "javascript",
+      "tool"
+    ]
+  },
+  "Lint": {
+    "en": "Lint",
+    "cn": "Lint 代码检查",
+    "descript": "静态代码分析工具的总称，用于检查代码中的语法错误、风格问题和潜在 Bug，前端常用 ESLint（JavaScript）和 Stylelint（CSS）。",
+    "tags": [
+      "tool",
+      "code-quality",
+      "static-analysis",
+      "eslint"
+    ]
+  },
+  "pnpm": {
+    "en": "pnpm",
+    "cn": "pnpm 包管理器",
+    "descript": "高效的 Node.js 包管理器，通过硬链接和符号链接实现跨项目依赖共享，解决 npm/yarn 的磁盘冗余和幽灵依赖问题，已成为现代前端项目的标配。",
+    "tags": [
+      "nodejs",
+      "package-manager",
+      "tool",
+      "performance"
+    ]
+  },
+  "npm": {
+    "en": "npm",
+    "cn": "npm 包管理器",
+    "descript": "Node.js 默认包管理器，用于安装、管理和发布 JavaScript 包，存在幽灵依赖和磁盘冗余问题。",
+    "tags": [
+      "nodejs",
+      "package-manager",
+      "tool"
+    ]
+  },
+  "yarn": {
+    "en": "yarn",
+    "cn": "yarn 包管理器",
+    "descript": "Facebook 推出的 Node.js 包管理器，改进 npm 的性能和安全性，支持离线缓存和确定性安装。",
+    "tags": [
+      "nodejs",
+      "package-manager",
+      "tool"
+    ]
+  },
+  "Svelte": {
+    "en": "Svelte",
+    "cn": "Svelte 框架",
+    "descript": "编译时前端框架，在构建阶段将组件编译为高效的原生 JS 代码，无运行时虚拟 DOM，体积极小，已在 SvelteKit 框架中深度集成 Vite。",
+    "tags": [
+      "framework",
+      "javascript",
+      "compiler",
+      "vite"
+    ]
+  },
+  "CRA": {
+    "en": "CRA",
+    "cn": "Create React App 脚手架",
+    "descript": "React 官方脚手架工具，提供零配置的 React 项目创建体验，底层使用 Webpack，相较于 Vite 冷启动较慢。",
+    "tags": [
+      "react",
+      "scaffold",
+      "build-tool",
+      "webpack"
+    ]
+  },
+  "create-react-app": {
+    "en": "create-react-app",
+    "cn": "Create React App 完整名称",
+    "descript": "React 官方命令行工具（CRA 全称），一键生成 React 项目模板。",
+    "tags": [
+      "react",
+      "scaffold",
+      "tool",
+      "abbreviation"
+    ]
+  },
+  "TSX": {
+    "en": "TSX",
+    "cn": "TSX TypeScript JSX",
+    "descript": "TypeScript 版本的 JSX 文件扩展名，在 React/Vue 等框架中使用，Vite 通过 Esbuild 或插件直接支持 TSX 编译。",
+    "tags": [
+      "typescript",
+      "react",
+      "jsx",
+      "vite"
+    ]
+  },
+  "CDN": {
+    "en": "CDN",
+    "cn": "CDN 内容分发网络",
+    "descript": "Content Delivery Network，通过全球分布的边缘节点缓存和分发静态资源，降低用户访问延迟，Vite 通过 base 配置支持 CDN 部署。",
+    "tags": [
+      "network",
+      "deployment",
+      "performance",
+      "vite"
+    ]
+  },
+  "Less": {
+    "en": "Less",
+    "cn": "Less CSS 预处理器",
+    "descript": "CSS 预处理器，支持变量、嵌套、混入（Mixin）等特性，语法与 CSS 高度兼容，学习成本低。",
+    "tags": [
+      "css",
+      "preprocessor",
+      "stylesheet",
+      "frontend"
+    ]
+  },
+  "Stylus": {
+    "en": "Stylus",
+    "cn": "Stylus CSS 预处理器",
+    "descript": "CSS 预处理器，语法风格自由灵活，支持缩进式语法和函数式编程风格，可省略冒号、分号等符号。",
+    "tags": [
+      "css",
+      "preprocessor",
+      "stylesheet",
+      "frontend"
+    ]
+  },
+  "CSS Modules": {
+    "en": "CSS Modules",
+    "cn": "CSS Modules 样式模块化",
+    "descript": "CSS 模块化方案，通过哈希化类名实现样式隔离，防止全局污染，Vite 对 .module.css 文件开箱即用。",
+    "tags": [
+      "css",
+      "modularization",
+      "vite",
+      "frontend"
+    ]
+  },
+  "CSS in JS": {
+    "en": "CSS in JS",
+    "cn": "CSS in JS 在 JS 中写样式",
+    "descript": "在 JavaScript 中编写 CSS 样式的技术方案，代表库有 styled-components 和 emotion，支持动态样式和组件级隔离。",
+    "tags": [
+      "css",
+      "javascript",
+      "react",
+      "frontend"
+    ]
+  },
+  "Tailwind CSS": {
+    "en": "Tailwind CSS",
+    "cn": "Tailwind CSS 原子化框架",
+    "descript": "CSS 原子化框架，通过预定义的原子类名快速构建界面，v3 引入 JIT 模式实现按需生成，极大减小产物体积。",
+    "tags": [
+      "css",
+      "framework",
+      "utility-first",
+      "frontend"
+    ]
+  },
+  "Windi CSS": {
+    "en": "Windi CSS",
+    "cn": "Windi CSS 原子化框架",
+    "descript": "CSS 原子化框架，编译速度比 Tailwind CSS v2 快 20-100 倍，支持 Attributify 和 Shortcuts 高级功能，按需编译。",
+    "tags": [
+      "css",
+      "framework",
+      "utility-first",
+      "frontend"
+    ]
+  },
+  "autoprefixer": {
+    "en": "autoprefixer",
+    "cn": "autoprefixer 自动添加前缀",
+    "descript": "PostCSS 插件，根据 Can I Use 数据自动为 CSS 属性添加浏览器厂商前缀，解决跨浏览器兼容问题。",
+    "tags": [
+      "css",
+      "postcss",
+      "compatibility",
+      "plugin"
+    ]
+  },
+  "emotion": {
+    "en": "emotion",
+    "cn": "emotion CSS in JS 库",
+    "descript": "高性能 CSS in JS 库，支持 React 和 Vue，比 styled-components 更轻量，提供更好的 SSR 支持。",
+    "tags": [
+      "css",
+      "css-in-js",
+      "react",
+      "vue"
+    ]
+  },
+  "styled-components": {
+    "en": "styled-components",
+    "cn": "styled-components 样式组件库",
+    "descript": "基于标签模板语法的 CSS in JS 库，将样式与 React 组件绑定，通过 Babel 插件支持 SSR 和 DCE 优化。",
+    "tags": [
+      "css",
+      "css-in-js",
+      "react",
+      "babel"
+    ]
+  },
+  "babel-plugin-styled-components": {
+    "en": "babel-plugin-styled-components",
+    "cn": "babel-plugin-styled-components 插件",
+    "descript": "styled-components 的 Babel 插件，提供自动生成 displayName、SSR 支持和死代码消除等构建优化。",
+    "tags": [
+      "babel",
+      "plugin",
+      "css-in-js",
+      "optimization"
+    ]
+  },
+  "@emotion/babel-plugin": {
+    "en": "@emotion/babel-plugin",
+    "cn": "emotion Babel 插件",
+    "descript": "emotion 的 Babel 插件，提供源码映射、压缩优化和 SSR 支持，是 emotion 在 Vite 中的核心编译依赖。",
+    "tags": [
+      "babel",
+      "plugin",
+      "css-in-js",
+      "optimization"
+    ]
+  },
+  "postcss-pxtorem": {
+    "en": "postcss-pxtorem",
+    "cn": "postcss-pxtorem 插件",
+    "descript": "PostCSS 插件，自动将 px 单位转换为 rem 单位，常用于移动端适配方案。",
+    "tags": [
+      "css",
+      "postcss",
+      "mobile",
+      "plugin"
+    ]
+  },
+  "postcss-preset-env": {
+    "en": "postcss-preset-env",
+    "cn": "postcss-preset-env 插件",
+    "descript": "PostCSS 插件，通过 stage 配置支持最新的 CSS 草案语法，并自动降级为兼容写法。",
+    "tags": [
+      "css",
+      "postcss",
+      "compatibility",
+      "plugin"
+    ]
+  },
+  "cssnano": {
+    "en": "cssnano",
+    "cn": "cssnano CSS 压缩工具",
+    "descript": "PostCSS 生态的 CSS 压缩优化工具，用于生产环境智能压缩 CSS 代码，移除冗余样式和注释。",
+    "tags": [
+      "css",
+      "postcss",
+      "minification",
+      "optimization"
+    ]
+  },
+  "pxtorem": {
+    "en": "pxtorem",
+    "cn": "px 转 rem 方案",
+    "descript": "将 CSS 中的 px 单位自动转换为 rem 单位的方案，常见于 PostCSS 插件 postcss-pxtorem，用于移动端响应式适配。",
+    "tags": [
+      "css",
+      "mobile",
+      "responsive",
+      "postcss"
+    ]
+  },
+  "SourceMap": {
+    "en": "SourceMap",
+    "cn": "SourceMap 源码映射",
+    "descript": "源码映射文件，将编译、压缩后的代码映射回原始源码，便于开发调试，Babel 和 Vite 均支持生成 SourceMap。",
+    "tags": [
+      "debugging",
+      "devtool",
+      "babel",
+      "vite"
+    ]
+  },
+  "vite-plugin-svgr": {
+    "en": "vite-plugin-svgr",
+    "cn": "vite-plugin-svgr 插件",
+    "descript": "Vite 插件，将 SVG 文件转换为 React 函数式组件，支持通过 props 动态修改样式属性。",
+    "tags": [
+      "vite",
+      "plugin",
+      "svg",
+      "react"
+    ]
+  },
+  "vite-plugin-imagemin": {
+    "en": "vite-plugin-imagemin",
+    "cn": "vite-plugin-imagemin 插件",
+    "descript": "Vite 插件，构建时自动调用 imagemin 引擎压缩图片产物（PNG/JPEG/SVG），通常可缩减 30%60% 体积。",
+    "tags": [
+      "vite",
+      "plugin",
+      "image",
+      "optimization"
+    ]
+  },
+  "vite-plugin-svg-icons": {
+    "en": "vite-plugin-svg-icons",
+    "cn": "vite-plugin-svg-icons 插件",
+    "descript": "Vite 插件，将指定目录下的 SVG 图标合并为雪碧图（Sprite），通过 <use> 标签引用，将 N 次请求降为 1 次。",
+    "tags": [
+      "vite",
+      "plugin",
+      "svg",
+      "optimization"
+    ]
+  },
+  "WebAssembly": {
+    "en": "WebAssembly",
+    "cn": "WebAssembly 浏览器汇编",
+    "descript": "WASM 的全称，一种可在浏览器中运行的低级字节码格式，支持 C/C++/Rust 等语言编译后在 Web 端高性能运行，Vite 支持直接 import WASM 文件。",
+    "tags": [
+      "browser",
+      "performance",
+      "wasm",
+      "vite"
+    ]
+  },
+  "Web Worker": {
+    "en": "Web Worker",
+    "cn": "Web Worker 浏览器线程",
+    "descript": "浏览器提供的多线程 API，可在后台线程执行 JS 代码而不阻塞主线程，Vite 通过 ?worker 后缀支持直接导入 Worker 脚本。",
+    "tags": [
+      "browser",
+      "javascript",
+      "performance",
+      "vite"
+    ]
+  },
+  "WASM": {
+    "en": "WASM",
+    "cn": "WASM WebAssembly 缩写",
+    "descript": "WebAssembly 的缩写，一种可在浏览器中高效运行的低级字节码格式，Vite 支持直接 import .wasm 文件。",
+    "tags": [
+      "browser",
+      "performance",
+      "abbreviation",
+      "vite"
+    ]
+  },
+  "imagemin": {
+    "en": "imagemin",
+    "cn": "imagemin 图片压缩引擎",
+    "descript": "Node.js 图片压缩引擎，支持 PNG、JPEG、GIF、SVG 等多种格式的压缩优化，Vite 通过 vite-plugin-imagemin 集成。",
+    "tags": [
+      "image",
+      "optimization",
+      "nodejs",
+      "vite"
+    ]
+  },
+  "Sprite": {
+    "en": "Sprite",
+    "cn": "Sprite 雪碧图",
+    "descript": "CSS 雪碧图技术，将多个小图标合并为一张大图，通过 background-position 定位显示，减少 HTTP 请求数，SVG 场景下通过 <use> 标签引用。",
+    "tags": [
+      "css",
+      "optimization",
+      "svg",
+      "performance"
+    ]
+  },
+  "SVGO": {
+    "en": "SVGO",
+    "cn": "SVGO SVG 优化工具",
+    "descript": "SVG Optimizer，用于清理 SVG 文件中冗余的元数据、注释和隐藏元素，减小文件体积，可集成到 imagemin 或 Vite 构建流程中。",
+    "tags": [
+      "svg",
+      "optimization",
+      "tool",
+      "vite"
+    ]
+  },
+  "ESLint": {
+    "en": "ESLint",
+    "cn": "ESLint 代码检查工具",
+    "descript": "插件化的 JavaScript/TypeScript 代码静态检查工具，通过 AST 解析分析代码格式，支持自定义规则和插件扩展，已成为前端项目标配。",
+    "tags": [
+      "lint",
+      "javascript",
+      "typescript",
+      "tool"
+    ]
+  },
+  "Prettier": {
+    "en": "Prettier",
+    "cn": "Prettier 代码格式化工具",
+    "descript": "专注于代码格式化的工具，支持 JS/TS/CSS/HTML 等多种语言，通过统一格式规则消除代码风格争议，常与 ESLint 集成使用。",
+    "tags": [
+      "format",
+      "javascript",
+      "css",
+      "tool"
+    ]
+  },
+  "Stylelint": {
+    "en": "Stylelint",
+    "cn": "Stylelint 样式检查工具",
+    "descript": "强大的现代化样式 Lint 工具，内置 170+ CSS 规则，支持 Sass/Less 预处理器，提供插件化扩展机制，用于统一 CSS/SCSS 代码风格。",
+    "tags": [
+      "lint",
+      "css",
+      "scss",
+      "tool"
+    ]
+  },
+  "SCSS": {
+    "en": "SCSS",
+    "cn": "SCSS 样式预处理器",
+    "descript": "Sass 的 CSS 超集语法，完全兼容 CSS3，提供变量、嵌套、混入等特性，通过 Dart Sass 编译器编译为原生 CSS。",
+    "tags": [
+      "css",
+      "preprocessor",
+      "sass"
+    ]
+  },
+  "Husky": {
+    "en": "Husky",
+    "cn": "Husky Git 钩子工具",
+    "descript": "Git 钩子管理工具，用于在 git commit/push 等操作前自动执行脚本，配合 lint-staged 实现提交前代码检查，保障代码质量。",
+    "tags": [
+      "git",
+      "tool",
+      "workflow"
+    ]
+  },
+  "lint-staged": {
+    "en": "lint-staged",
+    "cn": "lint-staged 增量检查工具",
+    "descript": "只对 Git 暂存区文件执行 Lint 检查的工具，避免全量扫描，显著提升 commit 阶段的检查速度，常与 Husky 配合使用。",
+    "tags": [
+      "lint",
+      "git",
+      "tool",
+      "workflow"
+    ]
+  },
+  "Commitlint": {
+    "en": "Commitlint",
+    "cn": "Commitlint 提交信息规范工具",
+    "descript": "用于检查 Git commit message 格式的工具，基于 conventional commits 规范，保证提交信息的一致性和可读性。",
+    "tags": [
+      "git",
+      "convention",
+      "tool",
+      "workflow"
+    ]
+  },
+  "VSCode": {
+    "en": "VSCode",
+    "cn": "Visual Studio Code 编辑器",
+    "descript": "微软推出的开源代码编辑器，拥有丰富的插件生态，支持 ESLint/Prettier/Stylelint 等工具集成，是目前最流行的前端开发 IDE。",
+    "tags": [
+      "editor",
+      "ide",
+      "tool"
+    ]
+  },
+  "Vue.js": {
+    "en": "Vue.js",
+    "cn": "Vue.js 框架",
+    "descript": "渐进式 JavaScript 框架，采用声明式渲染和组件化架构，Vue3 使用 Proxy 实现响应式系统，支持 Composition API 和 Options API。",
+    "tags": [
+      "framework",
+      "javascript",
+      "vue"
+    ]
+  },
+  "虚拟DOM": {
+    "en": "Virtual DOM",
+    "cn": "虚拟 DOM",
+    "descript": "用 JavaScript 对象模拟真实 DOM 树的技术，通过 Diff 算法找出最小变更集，减少直接操作 DOM 的开销，提升渲染性能。",
+    "tags": [
+      "dom",
+      "javascript",
+      "framework",
+      "performance"
+    ]
+  },
+  "Diff": {
+    "en": "Diff",
+    "cn": "Diff 差异算法",
+    "descript": "比较新旧虚拟 DOM 树差异的算法，找出最小更新操作集，是声明式框架实现高性能渲染的核心技术。",
+    "tags": [
+      "algorithm",
+      "dom",
+      "framework",
+      "performance"
+    ]
+  },
+  "jQuery": {
+    "en": "jQuery",
+    "cn": "jQuery 库",
+    "descript": "经典的 JavaScript DOM 操作库，简化了 DOM 遍历、事件处理和 AJAX 调用，命令式风格，曾是前端开发标配。",
+    "tags": [
+      "library",
+      "javascript",
+      "dom"
+    ]
+  },
+  "innerHTML": {
+    "en": "innerHTML",
+    "cn": "innerHTML 属性",
+    "descript": "DOM 元素属性，用于获取或设置元素内部的 HTML 字符串，更新时需销毁重建所有 DOM，性能较差，常与虚拟 DOM 对比。",
+    "tags": [
+      "dom",
+      "html",
+      "javascript"
+    ]
+  },
+  "Tree-Shaking": {
+    "en": "Tree-Shaking",
+    "cn": "Tree-Shaking 摇树优化",
+    "descript": "消除 dead code 的打包优化技术，依赖 ESM 静态结构分析模块依赖，只保留实际使用的代码，减少打包体积。Rollup、Webpack 等工具原生支持。",
+    "tags": [
+      "optimization",
+      "build",
+      "esm",
+      "javascript"
+    ]
+  },
+  "IIFE": {
+    "en": "IIFE",
+    "cn": "IIFE 立即执行函数",
+    "descript": "Immediately Invoked Function Expression，定义后立即执行的 JavaScript 函数表达式，常用于创建独立作用域和 UMD 格式打包。",
+    "tags": [
+      "javascript",
+      "pattern",
+      "build"
+    ]
+  },
+  "Rollup": {
+    "en": "Rollup",
+    "cn": "Rollup 打包工具",
+    "descript": "基于 ESM 的 JavaScript 打包工具，以 Tree-Shaking 为核心优势，适合库和框架打包，Vue.js 和 Vite 均使用 Rollup 进行生产构建。",
+    "tags": [
+      "build",
+      "javascript",
+      "esm",
+      "tool"
+    ]
+  },
+  "Terser": {
+    "en": "Terser",
+    "cn": "Terser 压缩工具",
+    "descript": "JavaScript 代码压缩和混淆工具，支持 ES6+ 语法，可识别 /*#__PURE__*/ 注释进行 Tree-Shaking，常用于生产构建的代码压缩阶段。",
+    "tags": [
+      "optimization",
+      "javascript",
+      "build",
+      "tool"
+    ]
+  },
+  "Composition API": {
+    "en": "Composition API",
+    "cn": "Composition API 组合式 API",
+    "descript": "Vue.js 3 引入的 API 风格，通过 setup 函数组织组件逻辑，支持逻辑复用和 TypeScript 类型推导，与 Options API 可共存。",
+    "tags": [
+      "vue",
+      "api",
+      "typescript",
+      "framework"
+    ]
+  },
+  "Espree": {
+    "en": "Espree",
+    "cn": "Espree 解析器",
+    "descript": "ESLint 默认的 JavaScript 解析器，基于 Acorn，将 JS 代码解析为 ESTree 格式的 AST，支持 ECMAScript 标准语法。",
+    "tags": [
+      "parser",
+      "javascript",
+      "ast",
+      "eslint"
+    ]
+  },
+  "Acorn": {
+    "en": "Acorn",
+    "cn": "Acorn 解析器",
+    "descript": "轻量级 JavaScript 解析器，将 JS 代码解析为 AST，Espree 和 Webpack 均基于 Acorn 构建，速度快但本身不支持 TypeScript 语法。",
+    "tags": [
+      "parser",
+      "javascript",
+      "ast"
+    ]
+  },
+  "Estree": {
+    "en": "Estree",
+    "cn": "Estree AST 规范",
+    "descript": "ECMAScript AST 标准规范，定义 JavaScript 抽象语法树节点格式，Espree 和 @typescript-eslint/parser 均遵循此规范。",
+    "tags": [
+      "ast",
+      "javascript",
+      "specification"
+    ]
+  },
+  "Object.defineProperty": {
+    "en": "Object.defineProperty",
+    "cn": "Object.defineProperty API",
+    "descript": "ES5 提供的对象属性定义方法，可精确控制属性描述符（writable/enumerable/configurable），Vue2 基于此实现响应式系统，但无法监听数组索引和新增属性。",
+    "tags": [
+      "javascript",
+      "es5",
+      "api",
+      "vue"
+    ]
+  },
+  "UI": {
+    "en": "UI",
+    "cn": "用户界面",
+    "descript": "User Interface，用户与软件交互的视觉界面，前端开发中通过 HTML/CSS/JavaScript 构建，声明式框架通过描述 UI 状态自动生成界面。",
+    "tags": [
+      "frontend",
+      "design"
+    ]
+  },
+  "渲染器": {
+    "en": "Renderer",
+    "cn": "渲染器",
+    "descript": "将虚拟 DOM 转换为真实 DOM 的函数，负责创建元素、设置属性、绑定事件和递归渲染子节点，是声明式框架的核心模块之一。",
+    "tags": [
+      "dom",
+      "virtual-dom",
+      "framework",
+      "vue"
+    ]
+  },
+  "编译器": {
+    "en": "Compiler",
+    "cn": "编译器",
+    "descript": "将模板编译为渲染函数的工具，在构建或运行时将 HTML 模板转换为 JavaScript 代码，编译阶段可提取动态内容以优化渲染性能。",
+    "tags": [
+      "build",
+      "framework",
+      "vue",
+      "template"
+    ]
+  },
+  "响应式数据": {
+    "en": "Reactive Data",
+    "cn": "响应式数据",
+    "descript": "能够自动追踪依赖并在值变化时触发相关副作用函数重新执行的数据，基于 Proxy 或 Object.defineProperty 实现，是 Vue 响应系统的核心概念。",
+    "tags": [
+      "vue",
+      "javascript",
+      "proxy",
+      "reactivity"
+    ]
+  },
+  "副作用函数": {
+    "en": "Side Effect Function",
+    "cn": "副作用函数",
+    "descript": "执行时会影响外部状态（如修改全局变量、操作 DOM）的函数，在响应式系统中被自动收集为依赖，数据变化时重新执行以更新视图。",
+    "tags": [
+      "javascript",
+      "reactivity",
+      "vue"
+    ]
+  },
+  "模板": {
+    "en": "Template",
+    "cn": "模板",
+    "descript": "基于 HTML 的声明式 UI 描述语法，通过编译器编译为渲染函数，支持插值、指令（v-bind/v-on/v-if/v-for）等特性，是 Vue 组件的主要写法。",
+    "tags": [
+      "vue",
+      "html",
+      "compiler",
+      "frontend"
+    ]
   }
 }

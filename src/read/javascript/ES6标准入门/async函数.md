@@ -2,7 +2,7 @@
 
 ### 含义
 
-ES7 引入了 `async` 函数，使得异步操作变得更加方便。`async` 可以看作 `Generator` 函数的语法糖，将 `Generator` 函数的星号（*）替换成 `async`，将 `yield` 替换成 `await`，仅此而已。
+<word text="ES7"/> 引入了 `async` 函数，使得异步操作变得更加方便。`async` 可以看作 `Generator` 函数的语法糖，将 `Generator` 函数的星号（*）替换成 `async`，将 `yield` 替换成 `await`，仅此而已。
 
 具体改进体现在以下4点：
 1. 内置执行器
@@ -210,8 +210,8 @@ Iterator 接口是数据遍历协议，调用 `next` 方法就能获取指针指
 
 ### 总结
 
-ES7 引入的 `async` 函数是 JavaScript 异步编程的重大进步，它简化了异步操作的写法，让异步代码看起来像同步代码一样直观。`async` 函数是基于 `Promise` 的语法糖，它内置执行器，无需像 `Generator` 函数那样需要外部执行器来控制执行流程。使用 `async` 函数时，只需在函数前加上 `async` 关键字，函数内部的异步操作前加上 `await` 关键字即可。`await` 后面可以跟 `Promise` 对象，也可以跟原始类型的值，它会暂停函数执行直到 `Promise` 完成，然后返回 `Promise` 的结果。如果 `await` 后面的 `Promise` 被 reject，它会抛出错误，这可以通过 `try...catch` 语句捕获。`async` 函数返回的总是 `Promise` 对象，可以用 `then` 和 `catch` 方法处理异步操作的结果和错误。
+<word text="ES7"/> 引入的 `async` 函数是 <word text="JavaScript"/> 异步编程的重大进步，它简化了异步操作的写法，让异步代码看起来像同步代码一样直观。`async` 函数是基于 `Promise` 的语法糖，它内置执行器，无需像 `Generator` 函数那样需要外部执行器来控制执行流程。使用 `async` 函数时，只需在函数前加上 `async` 关键字，函数内部的异步操作前加上 `await` 关键字即可。`await` 后面可以跟 `Promise` 对象，也可以跟原始类型的值，它会暂停函数执行直到 `Promise` 完成，然后返回 `Promise` 的结果。如果 `await` 后面的 `Promise` 被 reject，它会抛出错误，这可以通过 `try...catch` 语句捕获。`async` 函数返回的总是 `Promise` 对象，可以用 `then` 和 `catch` 方法处理异步操作的结果和错误。
 
 `async` 函数的实现原理是将 `Generator` 函数和自动执行器封装在一起。它通过创建一个 `Promise` 对象，然后在内部使用一个递归函数来处理 `yield` 表达式的结果，从而实现异步操作的自动执行。这种设计使得 `async` 函数的执行流程更加清晰，也避免了手动编写复杂的执行器代码。
 
-与传统的回调函数、Promise 链式调用以及 `Generator` 函数相比，`async` 函数提供了更简洁、更易读的异步编程方式，且不需要额外的库或工具来实现。它使得异步编程的语义更加明确，代码组织更加合理，是目前 JavaScript 异步编程的首选方式。此外，随着语言的发展，异步遍历器 `Async Iterator` 也被提出，它允许在异步操作中使用 `for await...of` 语句进行遍历，进一步扩展了 `async` 函数的应用场景。
+与传统的回调函数、Promise 链式调用以及 `Generator` 函数相比，`async` 函数提供了更简洁、更易读的异步编程方式，且不需要额外的库或工具来实现。它使得异步编程的语义更加明确，代码组织更加合理，是目前 <word text="JavaScript"/> 异步编程的首选方式。此外，随着语言的发展，异步遍历器 `Async Iterator` 也被提出，它允许在异步操作中使用 `for await...of` 语句进行遍历，进一步扩展了 `async` 函数的应用场景。

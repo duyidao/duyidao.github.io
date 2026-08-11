@@ -1,12 +1,12 @@
 ## 第十二章 Proxy
 
-在 JavaScript 中，`Proxy` 对象提供了一种全新的能力，允许拦截和自定义对象的基本操作。这种代理机制使得开发者能够精确控制对象的行为，从属性读取到函数调用。
+在 <word text="JavaScript"/> 中，`Proxy` 对象提供了一种全新的能力，允许拦截和自定义对象的基本操作。这种代理机制使得开发者能够精确控制对象的行为，从属性读取到函数调用。
 
 ### 概述
 
 `Proxy` 用于修改某些操作的默认行为，可以理解为在目标对象之前架设一层拦截，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。
 
-`Proxy` 这个词的中文意思是代理，用在这里表示由它来 “代理” 某些操作，可以译为 “代理器”。
+<word text="Proxy"/> 这个词的中文意思是代理，用在这里表示由它来 “代理” 某些操作，可以译为 “代理器”。
 
 ```javascript
 var obj = new Proxy({},{
@@ -38,15 +38,15 @@ obj.count = 1; // getting count
 ++obj.count; // getting count // setting count
 ```
 
-`Proxy` 实际上重载了 `overload` 点运算符，即用自己的定义覆盖了语言的原始定义。
+<word text="Proxy"/> 实际上重载了 `overload` 点运算符，即用自己的定义覆盖了语言的原始定义。
 
 ### 实例方法
 
-`Proxy` 支持的所有拦截操作如下。如果没有设置拦截，那么默认的行为就是原来语言的行为，以 `get()` 为例，如果没有设置 `get()` 拦截，访问对象属性会返回对象的属性值。
+<word text="Proxy"/> 支持的所有拦截操作如下。如果没有设置拦截，那么默认的行为就是原来语言的行为，以 `get()` 为例，如果没有设置 `get()` 拦截，访问对象属性会返回对象的属性值。
 
 #### get()
 
-`get()` 方法用于拦截某个属性的读取操作，可以接受三个参数，依次为目标对象、属性名和 proxy 实例本身（严格地说，是操作行为所针对的对象），其中最后一个参数可选。
+`get()` 方法用于拦截某个属性的读取操作，可以接受三个参数，依次为目标对象、属性名和 <word text="Proxy"/> 实例本身（严格地说，是操作行为所针对的对象），其中最后一个参数可选。
 
 ```javascript
 var person = {
@@ -171,7 +171,7 @@ var handler = {
 }
 ```
 
-下面举个例子🌰：
+下面举个例子：
 
 ```javascript
 function fn(){
@@ -280,7 +280,7 @@ var handler = {
 }
 ```
 
-下面举个例子🌰：
+下面举个例子：
 
 ```javascript
 let p = new Proxy(function(){}, {
@@ -408,7 +408,7 @@ Object.getPrototypeOf(p) === proto // true
 - `Object.getOwnPropertySymbols()`
 - `Object.keys()`
 
-举个例子🌰：
+举个例子：
 
 ```js
 let obj = {
@@ -612,7 +612,7 @@ proxy.getTime() // 1488488835657
 
 ### 总结
 
-`Proxy` 是 JavaScript 中用于拦截和修改对象操作的代理器，它允许在访问对象属性或方法时进行自定义行为。
+`Proxy` 是 <word text="JavaScript"/> 中用于拦截和修改对象操作的代理器，它允许在访问对象属性或方法时进行自定义行为。
 
 `Proxy` 接受两个参数：目标对象和处理程序对象，后者定义了拦截操作的行为。拦截操作包括属性读取（`get`）、属性赋值（`set`）、函数调用（`apply`）、属性存在性检查（`has`）、构造函数调用（`construct`）、属性删除（`deleteProperty`）、属性描述符获取（`getOwnPropertyDescriptor`）、原型链获取（`getPrototypeOf`）、自身属性读取（`ownKeys`）、对象扩展性检查（`isExtensible`）和原型设置（`setPrototypeOf`）等。
 

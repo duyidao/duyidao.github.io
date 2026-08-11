@@ -1,10 +1,10 @@
 ## Reflect
 
-`Reflect` 对象不仅提供了一种更加清晰和一致的方式来操作对象属性，还与 `Proxy` 对象紧密协作，为开发者提供了强大的元编程能力。本文阮一峰老师将深入探讨 `Reflect` 的静态方法、其与 `Proxy` 的关系以及实际应用，揭示如何在 JavaScript 中更有效地使用这些强大的工具。
+`Reflect` 对象不仅提供了一种更加清晰和一致的方式来操作对象属性，还与 `Proxy` 对象紧密协作，为开发者提供了强大的元编程能力。本文将深入探讨 `Reflect` 的静态方法、其与 `Proxy` 的关系以及实际应用，揭示如何在 <word text="JavaScript"/> 中更有效地使用这些强大的工具。
 
 ### 概述
 
-`Reflect`对象与`Proxy`对象一样，也是 ES6 为了操作对象而提供的新 API。`Reflect`对象的设计目的有以下几个。
+`Reflect`对象与`Proxy`对象一样，也是 <word text="ES6"/> 为了操作对象而提供的新 API。`Reflect`对象的设计目的有以下几个。
 
 1. 将`Object`对象的一些明显属于语言内部的方法（比如`Object.defineProperty`），放到`Reflect`对象上。现阶段，某些方法同时在`Object`和`Reflect`对象上部署，未来的新方法将只部署在`Reflect`对象上，即语言内部的方法最好从`Reflect`对象上拿。
 2. 修改某些方法返回的结果。如 `Object.defineProperty(obj,name,desc)`在无法定义属性时，会抛出一个错误，为了解决错误不得不用 `try...catch` 捕获；而`Reflect.defineProperty(obj,name,desc)`则会返回`false`，只需要 `if...else` 判断。
@@ -220,7 +220,7 @@ Object.preventExtensions(obj) // object {}
 Reflect.isExtensible(obj) // true
 ```
 
-二者的区别在于，如果参数不是对象，ES5环境下的 `Object.preventExtensions` 会报错，ES6环境下会返回原对象；而 `Reflect.preventExtensions` 会报错。
+二者的区别在于，如果参数不是对象，<word text="ES5"/>环境下的 `Object.preventExtensions` 会报错，<word text="ES6"/>环境下会返回原对象；而 `Reflect.preventExtensions` 会报错。
 
 #### Reflect.ownKeys(target)
 
@@ -266,7 +266,7 @@ person.age = 30
 
 ### 总结
 
-`Reflect`对象是 ES6 引入的新 API，用于操作对象。`Reflect` 对象有以下几个设计目的：
+`Reflect`对象是 <word text="ES6"/> 引入的新 API，用于操作对象。`Reflect` 对象有以下几个设计目的：
 
 1. 将`Object`对象的一些内部方法转移到 `Reflect` 对象上
 2. 修改某些方法的返回结果，使其更加友好

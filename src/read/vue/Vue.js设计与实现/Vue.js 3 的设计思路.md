@@ -2,22 +2,22 @@
 
 ### 声明式地描述 UI
 
-用户在使用 Vue.js 的时候，只需要声明式地描述 UI，而不需要关心 DOM 的操作，Vue.js 会根据用户提供的声明式描述自动生成对应的 DOM。它设计需要考虑到编写前端页面时涉及到的几个方面：
+用户在使用 <word text="Vue.js"/> 的时候，只需要声明式地描述 <word text="UI"/>，而不需要关心 <word text="DOM"/> 的操作，<word text="Vue.js"/> 会根据用户提供的声明式描述自动生成对应的 <word text="DOM"/>。它设计需要考虑到编写前端页面时涉及到的几个方面：
 
-- DOM 元素，是 `div` 还是 `a` 标签
+- <word text="DOM"/> 元素，是 `div` 还是 `a` 标签
 - 属性，`class` 类名或者 `id` 、超链接的 `href` 等
 - 事件，比如点击事件 `click`、鼠标移入事件 `mouseover` 等
 - 层级结构，比如 `div` 包含 `a` 标签等是否有子元素
 
-Vue.js 的相应解决方案是：
+<word text="Vue.js"/> 的相应解决方案是：
 
-- 和 HTML 一样，采取一致的方式描述 DOM 元素，如 `<div></div>`
-- 和 HTML 一样，采取一致的方式描述属性，如 `<div id="div1"></div>`
+- 和 <word text="HTML"/> 一样，采取一致的方式描述 <word text="DOM"/> 元素，如 `<div></div>`
+- 和 <word text="HTML"/> 一样，采取一致的方式描述属性，如 `<div id="div1"></div>`
 - 使用 `v-bind` 或 `:` 指令描述*动态的*属性和事件，如 `<div :id="id"></div>`
 - 使用 `v-on` 或 `@` 指令描述事件，如 `<div @click="handleClick"></div>`
-- 和 HTML 一样，使用标签嵌套描述层级结构，如 `<div><a></a></div>`
+- 和 <word text="HTML"/> 一样，使用标签嵌套描述层级结构，如 `<div><a></a></div>`
 
-除了使用模版来声明 UI 之外，Vue.js 还支持使用 JavaScript 对象来描述 UI。
+除了使用模版来声明 <word text="UI"/> 之外，<word text="Vue.js"/> 还支持使用 <word text="JavaScript"/> 对象来描述 <word text="UI"/>。
 
 ```js [vnode.js]
 const vnode = {
@@ -45,7 +45,7 @@ const vnode = {
 };
 ```
 
-与使用模版创建 UI 相比，使用 JavaScript 对象创建 UI 的好处是，描述 UI 更灵活。举个例子，根据一个变量 `level` 渲染对应的 `<h>` 标签，使用模版需要写多个标签，而使用 JavaScript 对象则只需要一个对象：
+与使用模版创建 <word text="UI"/> 相比，使用 <word text="JavaScript"/> 对象创建 <word text="UI"/> 的好处是，描述 <word text="UI"/> 更灵活。举个例子，根据一个变量 `level` 渲染对应的 `<h>` 标签，使用模版需要写多个标签，而使用 <word text="JavaScript"/> 对象则只需要一个对象：
 
 ::: code-group
 ```js [vnode.js]
@@ -65,7 +65,7 @@ const vnode = {
 ```
 :::
 
-通过对比可以看出，使用 JavaScript 对象描述 UI 更加灵活，而且可以和 JavaScript 代码无缝结合，比如可以很方便地使用 JavaScript 表达式。而这种方式就是虚拟 DOM，Vue.js 封装了一个 `h` 函数让使用者更轻松地创建虚拟 DOM。
+通过对比可以看出，使用 <word text="JavaScript"/> 对象描述 <word text="UI"/> 更加灵活，而且可以和 <word text="JavaScript"/> 代码无缝结合，比如可以很方便地使用 <word text="JavaScript"/> 表达式。而这种方式就是<word text="虚拟DOM"/>，<word text="Vue.js"/> 封装了一个 `h` 函数让使用者更轻松地创建<word text="虚拟DOM"/>。
 
 ::: code-group
 ```js [h.js]
@@ -94,11 +94,11 @@ const vnode = {
 
 ### 初识渲染器
 
-渲染器的作用是将虚拟 DOM 渲染为真实 DOM。渲染器是一个函数，接收两个参数：
-1. 虚拟 DOM
-2. 挂载 DOM 的容器
+渲染器的作用是将<word text="虚拟DOM"/> 渲染为真实 <word text="DOM"/>。渲染器是一个函数，接收两个参数：
+1. <word text="虚拟DOM"/>
+2. 挂载 <word text="DOM"/> 的容器
 
-渲染器会根据虚拟 DOM 创建真实 DOM，然后将真实 DOM 插入到挂载 DOM 的容器中。
+渲染器会根据<word text="虚拟DOM"/> 创建真实 <word text="DOM"/>，然后将真实 <word text="DOM"/> 插入到挂载 <word text="DOM"/> 的容器中。
 
 ::: code-group
 ```js [vnode.js]
@@ -174,7 +174,7 @@ function renderer(vnode, container) {
 
 ### 组件的本质
 
-虚拟 DOM 的本质是描述真实 DOM 的 JavaScript 对象，渲染器是把虚拟 DOM 渲染为真实 DOM 的函数，而组件是一组 DOM 元素的封装，这组 DOMM 元素就是组件要渲染的内容。
+<word text="虚拟DOM"/> 的本质是描述真实 <word text="DOM"/> 的 <word text="JavaScript"/> 对象，渲染器是把<word text="虚拟DOM"/> 渲染为真实 <word text="DOM"/> 的函数，而组件是一组 <word text="DOM"/> 元素的封装，这组 <word text="DOM"/> 元素就是组件要渲染的内容。
 
 此时可以定义一个函数来代表组件，该函数的返回值就是组件要渲染的内容。判断 `vnode.tag` 是否是函数，如果不是，说明是普通标签，调用 `mountElement` 函数（和前面的渲染器函数一致）直接创建真实 DOM；反之，则说明该节点是一个组件，递归调用 `mountComponent` 函数获取组件要渲染的内容，将组件渲染为真实 DOM。
 
@@ -230,7 +230,7 @@ function mountComponent(vnode, container) {
 
 ### 模版的工作原理
 
-无论是手写虚拟 DOM 渲染函数还是使用模板，都是声明式代码，Vue.js 同时支持这两种方式。使用模板会通过编译器编译为渲染函数，然后用渲染器把渲染函数返回的虚拟 DOM 转为真实 DOM。
+无论是手写<word text="虚拟DOM"/> 渲染函数还是使用模板，都是声明式代码，<word text="Vue.js"/> 同时支持这两种方式。使用模板会通过编译器编译为渲染函数，然后用渲染器把渲染函数返回的<word text="虚拟DOM"/> 转为真实 <word text="DOM"/>。
 
 ::: code-group
 ```vue [转换前模板template.vue]
@@ -263,9 +263,9 @@ export default {
 ```
 :::
 
-### Vue.js是各个模块组成的有机整体
+### <word text="Vue.js"/>是各个模块组成的有机整体
 
-综上所述，组件模板依赖编译器编译成渲染函数返回虚拟 DOM，虚拟 DOM 通过渲染器渲染为真实 DOM。Vue.js 是一个有机整体，各个模块相互协作，共同完成工作。从编译器和渲染器两个关键模块出发，看看 Vue.js 是如何配合工作并实现性能优化的。
+综上所述，组件模板依赖编译器编译成渲染函数返回<word text="虚拟DOM"/>，<word text="虚拟DOM"/> 通过渲染器渲染为真实 <word text="DOM"/>。<word text="Vue.js"/> 是一个有机整体，各个模块相互协作，共同完成工作。从编译器和渲染器两个关键模块出发，看看 <word text="Vue.js"/> 是如何配合工作并实现性能优化的。
 
 ::: code-group
 ```vue [模板template.vue]
@@ -288,13 +288,13 @@ render() {
 ```
 :::
 
-在上方代码中，类名 `cls` 是一个变量，可能会发生变化，前文也提到过，渲染器越快找到需要更新的节点，性能越好。所以，Vue.js 在编译阶段把动态内容提取出来交给渲染器，这样渲染器就不需要花费时间寻找变更点，从而提升性能。
+在上方代码中，类名 `cls` 是一个变量，可能会发生变化，前文也提到过，渲染器越快找到需要更新的节点，性能越好。所以，<word text="Vue.js"/> 在编译阶段把动态内容提取出来交给渲染器，这样渲染器就不需要花费时间寻找变更点，从而提升性能。
 
 ### 总结
 
-Vue.js 3 是由编译器、渲染器等模块组成的有机整体，各模块相互协作，共同实现高效、灵活的前端开发体验。采用声明式编程，让用户通过模板或 JavaScript 对象描述 UI，无需手动操作 DOM。
+<word text="Vue.js"/> 3 是由编译器、渲染器等模块组成的有机整体，各模块相互协作，共同实现高效、灵活的前端开发体验。采用声明式编程，让用户通过模板或 <word text="JavaScript"/> 对象描述 <word text="UI"/>，无需手动操作 <word text="DOM"/>。
 
-- 声明式 UI 描述：通过模板或虚拟 DOM 对象（如使用 `h` 函数创建）来声明 UI，包括 DOM 元素、属性、事件和层级结构等。
-- 渲染器渲染虚拟 DOM：渲染器接收虚拟 DOM 和挂载容器两个参数，将虚拟 DOM 转换为真实 DOM 并插入容器。渲染器会处理元素创建、属性设置、事件绑定和子元素递归渲染等操作。
-- 组件封装与渲染：组件是一组 DOM 元素的封装，通过函数定义组件，返回要渲染的虚拟 DOM。渲染器根据 `vnode.tag` 是否为函数判断是否为组件，进而调用相应函数进行渲染。
-- 模板编译：模板会被编译器编译成渲染函数，渲染函数返回虚拟 DOM，再由渲染器渲染为真实 DOM。编译阶段会提取动态内容，为渲染器提供性能优化依据，使其能快速找到更新点。
+- 声明式 UI 描述：通过模板或<word text="虚拟DOM"/> 对象（如使用 `h` 函数创建）来声明 <word text="UI"/>，包括 <word text="DOM"/> 元素、属性、事件和层级结构等。
+- 渲染器渲染虚拟 DOM：渲染器接收<word text="虚拟DOM"/> 和挂载容器两个参数，将<word text="虚拟DOM"/> 转换为真实 <word text="DOM"/> 并插入容器。渲染器会处理元素创建、属性设置、事件绑定和子元素递归渲染等操作。
+- 组件封装与渲染：组件是一组 <word text="DOM"/> 元素的封装，通过函数定义组件，返回要渲染的<word text="虚拟DOM"/>。渲染器根据 `vnode.tag` 是否为函数判断是否为组件，进而调用相应函数进行渲染。
+- 模板编译：模板会被编译器编译成渲染函数，渲染函数返回<word text="虚拟DOM"/>，再由渲染器渲染为真实 <word text="DOM"/>。编译阶段会提取动态内容，为渲染器提供性能优化依据，使其能快速找到更新点。

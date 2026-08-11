@@ -4,14 +4,14 @@
 
 ### 概述
 
-在 ES5 时，如果使用了他人的数据对象，但又想添加自己的数据，很容易会因为属性名冲突而导致数据覆盖。因为 ES5 对象的属性名都是字符串型。
+在 <word text="ES5"/> 时，如果使用了他人的数据对象，但又想添加自己的数据，很容易会因为属性名冲突而导致数据覆盖。因为 ES5 对象的属性名都是字符串型。
 
-为了解决这个问题，ES6 推出了 Symbol，他是第7种数据类型。
+为了解决这个问题，<word text="ES6"/> 推出了 <word text="Symbol"/>，他是第7种数据类型。
 
 > [!NOTE] 🖇 拓展
 > 前6种数据类型分别是 undefined、null、布尔值（boolean）、字符串（string）、数值（number）、对象（object）。
 
-通过 Symbol 函数生成，是第一无二的，不会与其他属性名造成冲突。可以接收一个字符串，主要用于控制台打印区分。
+通过 <word text="Symbol"/> 函数生成，是第一无二的，不会与其他属性名造成冲突。可以接收一个字符串，主要用于控制台打印区分。
 
 ```js
 let s = Symbol()
@@ -24,7 +24,7 @@ console.log(typeof b) // symbol(bar)
 > [!WARNING] ⚠️ 注意
 > Symbol 函数前不能使用 new 命令，否则会报错 这是因为生成的 Symbol 是一个原始类型的值，不是对象。也就是说，由于 Symbol 值不是对象，所以不能添加属性。基本上，它是 一种类似于字符串的数据类型。
 
-若 Symbol 的参数是一个对象，则会调用对象的 toString 方法转为字符串后再生成 Symbol 值。
+若 <word text="Symbol"/> 的参数是一个对象，则会调用对象的 toString 方法转为字符串后再生成 Symbol 值。
 
 ```js
 const obj = {
@@ -37,7 +37,7 @@ const sym = Symbol(obj)
 console.log(sym) // Symbol(abc)
 ```
 
-Symbol 函数的参数只表示对当前 Symbol 值的描述，因此相同参数的 Symbol 函数的返回值是不相等的。
+<word text="Symbol"/> 函数的参数只表示对当前 Symbol 值的描述，因此相同参数的 Symbol 函数的返回值是不相等的。
 
 ```js
 const s1 = Symbol()
@@ -51,7 +51,7 @@ const b2 = Symbol('bar')
 b1 === b2 // false
 ```
 
-Symbol 不可以参与运算，可以转为布尔值和字符串，不可转为数值。
+<word text="Symbol"/> 不可以参与运算，可以转为布尔值和字符串，不可转为数值。
 
 ```js
 const sym = Symbol('abc')
@@ -71,9 +71,9 @@ Number(sym) // Uncaught TypeError: Cannot convert a Symbol value to a number
 
 ### 作为属性名的Symbol
 
-在ES6中，Symbol（符号）是一种新的基本数据类型，它的主要特点是其值是唯一且不可变的。这使得Symbol特别适合作为对象属性名，用于解决属性名冲突的问题，保证属性不会被意外修改或覆盖。
+在<word text="ES6"/>中，<word text="Symbol"/>（符号）是一种新的基本数据类型，它的主要特点是其值是唯一且不可变的。这使得<word text="Symbol"/>特别适合作为对象属性名，用于解决属性名冲突的问题，保证属性不会被意外修改或覆盖。
 
-使用Symbol作为对象属性名的几种写法：
+使用<word text="Symbol"/>作为对象属性名的几种写法：
 
 1. 方括号结构
 
@@ -111,9 +111,9 @@ Number(sym) // Uncaught TypeError: Cannot convert a Symbol value to a number
 
 注意事项：
 
-1. **点运算符无法使用Symbol作为属性名**
+1. **点运算符无法使用<word text="Symbol"/>作为属性名**
 
-   因为点运算符后面总是字符串，不会将Symbol作为标识符，而是将其转换为字符串。同理，在对象的 使用 Symbol 值定义属性时， mbol 值必须放在方括号中。
+   因为点运算符后面总是字符串，不会将<word text="Symbol"/>作为标识符，而是将其转换为字符串。同理，在对象的使用 Symbol 值定义属性时，Symbol 值必须放在方括号中。
 
    ```js
    var mySymbol = Symbol();
@@ -129,11 +129,11 @@ Number(sym) // Uncaught TypeError: Cannot convert a Symbol value to a number
    }
    ```
 
-2. **Symbol作为属性名是公开属性**
+2. **<word text="Symbol"/>作为属性名是公开属性**
 
-   使用Symbol作为属性名时，并不会使属性成为私有属性，仍然可以通过其他方式访问到这些属性。
+   使用<word text="Symbol"/>作为属性名时，并不会使属性成为私有属性，仍然可以通过其他方式访问到这些属性。
 
-Symbol还可以用于定义一组唯一且不可变的常量，确保不同常量之间不会发生值相等的情况，例如日志级别或颜色常量。
+<word text="Symbol"/>还可以用于定义一组唯一且不可变的常量，确保不同常量之间不会发生值相等的情况，例如日志级别或颜色常量。
 
 ```js
 const LOG_LEVELS = {
@@ -150,9 +150,9 @@ log(LOG_LEVELS.DEBUG, 'Debug message');
 log(LOG_LEVELS.INFO, 'Info message');
 ```
 
-这种方式保证了每个常量都是独一无二的Symbol，可以用于标识不同的日志级别或其他场景下的常量。
+这种方式保证了每个常量都是独一无二的<word text="Symbol"/>，可以用于标识不同的日志级别或其他场景下的常量。
 
-`Symbol` 作为 ES6 引入的一种新的基本数据类型，用于创建唯一的标识符，适合作为对象属性名或常量的定义。它的唯一性可以有效地防止属性名冲突，并且保证了常量值的独特性。
+`Symbol` 作为 <word text="ES6"/> 引入的一种新的基本数据类型，用于创建唯一的标识符，适合作为对象属性名或常量的定义。它的唯一性可以有效地防止属性名冲突，并且保证了常量值的独特性。
 
 ### 实例：消除魔术字符串
 
@@ -208,9 +208,9 @@ log(LOG_LEVELS.INFO, 'Info message');
 
    `shapeType` 对象中的 `triangle` 属性存储了字符串 `'Triangle'`，在 `getArea` 函数中使用 `shapeType.triangle` 来替代原始的魔术字符串。
 
-3. 使用Symbol作为属性值
+3. 使用<word text="Symbol"/>作为属性值
 
-   如果确保每个属性的值唯一且不变是关键，可以考虑使用Symbol作为属性值：
+   如果确保每个属性的值唯一且不变是关键，可以考虑使用<word text="Symbol"/>作为属性值：
 
    ```js
    // 使用Symbol作为属性值
@@ -232,15 +232,15 @@ log(LOG_LEVELS.INFO, 'Info message');
    getArea(shapeType.triangle, { width: 100, height: 100 });
    ```
 
-   由于 shapeType.triangle` 的值是一个Symbol，保证了它的唯一性。这种做法适用于需要确保属性值不与其他任何值冲突的情况，同时能有效地消除魔术字符串。
+   由于 shapeType.triangle 的值是一个<word text="Symbol"/>，保证了它的唯一性。这种做法适用于需要确保属性值不与其他任何值冲突的情况，同时能有效地消除魔术字符串。
 
-消除魔术字符串可以通过使用命名的常量、对象属性或 Symbol 来实现。这些方法可以提高代码的可读性和可维护性，减少由于字符串拼写错误或修改时遗漏更新导致的 bug。
+消除魔术字符串可以通过使用命名的常量、对象属性或 <word text="Symbol"/> 来实现。这些方法可以提高代码的可读性和可维护性，减少由于字符串拼写错误或修改时遗漏更新导致的 bug。
 
 ### 属性名的遍历
 
 `Symbol` 并不是私有属性，而是公有属性，但是不会被 `for...of` 、`for...in` 、`Object.keys()` 、`Object.getOwnPropertyNames()` 等方法遍历返回。
 
-若需要获取某个对象的 `Symbol` 属性名，则需要通过 `Object.getOwnPropertySymbols` 方法获取。该方法返回的是一个数组，每一项是当前对象所有用作属性名的 `Symbol` 值。
+若需要获取某个对象的 <word text="Symbol"/> 属性名，则需要通过 `Object.getOwnPropertySymbols` 方法获取。该方法返回的是一个数组，每一项是当前对象所有用作属性名的 <word text="Symbol"/> 值。
 
 ```js
 let a = Symbol('a')
@@ -304,7 +304,7 @@ Symbol.keyFor(s2) // undefined
 
 ### 实例：模块的Singleton模式
 
-Singleton 模式确保一个类只有一个实例，并提供一个全局访问点。在 Node.js 中，模块文件可以视作一个类，如何保证每次加载模块时都返回同一个实例呢？
+<word text="Singleton"/> 模式确保一个类只有一个实例，并提供一个全局访问点。在 <word text="Node.js"/> 中，模块文件可以视作一个类，如何保证每次加载模块时都返回同一个实例呢？
 
 - 方法一：使用全局变量 `_foo`。
 
@@ -325,7 +325,7 @@ Singleton 模式确保一个类只有一个实例，并提供一个全局访问�
 
   **问题：** 全局变量 `_foo` 可被其他模块修改，可能导致实例失真。
 
-- 方法二：使用 Symbol 作为键名
+- 方法二：使用 <word text="Symbol"/> 作为键名
 
   ```js
   // mod.js
@@ -344,11 +344,11 @@ Singleton 模式确保一个类只有一个实例，并提供一个全局访问�
   console.log(a.foo); // 输出 'hello'
   ```
 
-  **优点：** 使用 `Symbol.for('foo')` 作为键名，外部无法直接引用到该 Symbol，可以避免意外覆盖。
+  **优点：** 使用 `Symbol.for('foo')` 作为键名，外部无法直接引用到该 <word text="Symbol"/>，可以避免意外覆盖。
 
   **问题：** 全局变量依然可以被改写，例如 `global[Symbol.for('foo')] = 123;`。
 
-- 方法三：使用局部 Symbol
+- 方法三：使用局部 <word text="Symbol"/>
 
   ```js
   // mod.js
@@ -367,18 +367,18 @@ Singleton 模式确保一个类只有一个实例，并提供一个全局访问�
   console.log(a.foo); // 输出 'hello'
   ```
 
-  **优点：** 使用局部 Symbol，其他脚本无法引用到 `FOO_KEY`，避免外部修改。
+  **优点：** 使用局部 <word text="Symbol"/>，其他脚本无法引用到 `FOO_KEY`，避免外部修改。
 
-  **问题：** 多次执行模块时，每次得到的 `FOO_KEY` 都不同，不过一般情况下 Node.js 会缓存模块的执行结果，不会多次执行同一个脚本。
+  **问题：** 多次执行模块时，每次得到的 `FOO_KEY` 都不同，不过一般情况下 <word text="Node.js"/> 会缓存模块的执行结果，不会多次执行同一个脚本。
 
 > [!TIP] 💡 总结
 > - **全局变量方法**容易被意外覆盖，不安全。
-> - **Symbol 作为键名**可以保证键名不被外部轻易修改，但仍可能被改写。
-> - **局部 Symbol**可以防止外部修改，但多次执行脚本时每次得到的 Symbol 不同，不过 Node.js 通常会缓存模块执行结果，一般不会影响单例实例的创建。
+> - **<word text="Symbol"/> 作为键名**可以保证键名不被外部轻易修改，但仍可能被改写。
+> - **局部 <word text="Symbol"/>**可以防止外部修改，但多次执行脚本时每次得到的 <word text="Symbol"/> 不同，不过 <word text="Node.js"/> 通常会缓存模块执行结果，一般不会影响单例实例的创建。
 
 ### 内置的Symbol值
 
-ES6 还提供了 11个内置的 `Symbol` 值，指向语言内部使用的方法。
+<word text="ES6"/> 还提供了 11个内置的 `Symbol` 值，指向语言内部使用的方法。
 
 - `Symbol.hasInstance` 
 
@@ -555,8 +555,8 @@ ES6 还提供了 11个内置的 `Symbol` 值，指向语言内部使用的方法
 - `Symbol.unscopables`
   
 ### 总结
-`Symbol` 是ES6引入的第七种数据类型，通过 `Symbol` 函数生成，具有唯一性，不会与其他属性名冲突，适合用作对象属性名以避免冲突。`Symbol` 可以接收一个字符串作为描述，但这个描述并不影响 `Symbol` 的相等性比较。`Symbol` 值不能参与运算，可以转为布尔值和字符串，但不能转为数值。
+`Symbol` 是<word text="ES6"/>引入的第七种数据类型，通过 `Symbol` 函数生成，具有唯一性，不会与其他属性名冲突，适合用作对象属性名以避免冲突。`Symbol` 可以接收一个字符串作为描述，但这个描述并不影响 `Symbol` 的相等性比较。`Symbol` 值不能参与运算，可以转为布尔值和字符串，但不能转为数值。
 
 `Symbol` 作为属性名时，不会被常规的属性遍历方法发现，只能通过 `Object.getOwnPropertySymbols()` 获取。此外，`Symbol.for()` 和 `Symbol.keyFor()` 用于全局 `Symbol` 的创建和查找。`Symbol` 的这些特性使其在消除魔术字符串、实现`Singleton` 模式等方面非常有用。
 
-ES6还提供了11个内置的 `Symbol` 值，用于语言内部的方法，如 `Symbol.iterator`、`Symbol.toStringTag` 等，这些内置 `Symbol` 值影响对象默认行为和内置方法的实现。
+<word text="ES6"/>还提供了11个内置的 `Symbol` 值，用于语言内部的方法，如 `Symbol.iterator`、`Symbol.toStringTag` 等，这些内置 `Symbol` 值影响对象默认行为和内置方法的实现。

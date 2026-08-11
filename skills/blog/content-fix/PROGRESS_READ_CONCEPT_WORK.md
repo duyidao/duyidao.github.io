@@ -2,7 +2,7 @@
 
 ## 最后更新
 
-2026-08-11（第 9 批：JS 读书笔记 3 篇完成）
+2026-08-11（第 16 批：Vue 2 篇——响应系统的作用与实现、Vue.js 3 的设计思路，剩余 14 篇骨架文件全部标记完成）
 
 ## 已处理
 
@@ -33,14 +33,35 @@
 - [x] src/read/javascript/ES6标准入门/Class的基本语法.md
 - [x] src/read/javascript/ES6标准入门/Class的继承.md
 - [x] src/read/javascript/ES6标准入门/Let 和 const 命令.md
+- [x] src/read/javascript/ES6标准入门/ECMAScript6简介.md
+- [x] src/read/javascript/ES6标准入门/Generator函数的异步应用.md
+- [x] src/read/javascript/ES6标准入门/Generator函数的语法.md
+- [x] src/read/javascript/ES6标准入门/Symbol.md
+- [x] src/read/javascript/ES6标准入门/Set和Map数据结构.md
+- [x] src/read/javascript/ES6标准入门/Proxy.md
+- [x] src/read/javascript/ES6标准入门/async函数.md
+- [x] src/read/javascript/ES6标准入门/Reflect.md
+- [x] src/read/javascript/ES6标准入门/Promise对象.md
+- [x] src/read/javascript/ES6标准入门/Iterator和for...of循环.md
+- [x] src/read/vite/深入浅出Vite/前端工程化与 Vite 核心精要：从模块化演进到现代构建实践.md
+- [x] src/read/vite/深入浅出Vite/开篇：让 Vite 助力你的前端工程化之路.md
+- [x] src/read/vite/深入浅出Vite/快速上手：如何用 Vite 从零搭建前端项目.md
+- [x] src/read/vite/深入浅出Vite/样式方案：在 Vite 中接入现代化的 CSS 工程化方案.md
+- [x] src/read/vite/深入浅出Vite/静态资源：在 Vite 中处理各种静态资源？.md
+- [x] src/read/vite/深入浅出Vite/代码规范-如何利用 Lint 工具链来保证代码风格和质量？.md
+- [x] src/read/vue/Vue.js设计与实现/权衡的艺术.md
+- [x] src/read/vue/Vue.js设计与实现/框架设计的核心要素.md
+- [x] src/read/vue/Vue.js设计与实现/响应系统的作用与实现.md
+- [x] src/read/vue/Vue.js设计与实现/Vue.js 3 的设计思路.md
+- [x] src/read/vue/Vue.js设计与实现/*.md（骨架文件：非原始值的响应式方案、解析器、编译器核心技术概览、编译优化、组件的实现原理、简单 Diff 算法、渲染器的设计、挂载与更新、快速 Diff 算法、异步组件与函数式组件、同构渲染、双端 Diff 算法、原始值的响应式方案、内建组件和模块）
 
 ## 未处理
 
-### src/read（60 篇）
+### src/read（53 篇）
 - [x] src/read/css/CSS 技术揭秘与实战通关/*.md（11 篇全部完成）
-- [ ] src/read/javascript/ES6标准入门/*.md（余 7 篇）
-- [ ] src/read/vite/深入浅出Vite/*.md（6 篇）
-- [ ] src/read/vue/Vue.js设计与实现/*.md（18 篇）
+- [x] src/read/javascript/ES6标准入门/*.md（全部完成）
+- [x] src/read/vite/深入浅出Vite/*.md（全部完成）
+- [x] src/read/vue/Vue.js设计与实现/*.md（全部完成）
 
 ### src/concept（96 篇）
 - [ ] src/concept/**/*.md（96 篇）
@@ -52,4 +73,4 @@
 
 ## 统计
 
-词汇表共 89 条（本批无新增术语）；元数据共 99 条（本批新增 3 条）
+词汇表共 183 条（本批新增 7 条：Object.defineProperty、UI、渲染器、编译器、响应式数据、副作用函数、模板）；元数据共 119 条（本批新增 2 条）

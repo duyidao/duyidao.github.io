@@ -4,7 +4,7 @@
 
 #### 基本概念
 
-`Generator` 函数是 ES6 提供的一种异步编程解决方案，从语法角度，他是一个状态机，封装了多个内部状态。执行后会返回一个遍历器对象，可以依次遍历 `Generator` 函数内部的每一个状态。也就是说他还是一个遍历器对象生成函数。
+`Generator` 函数是 <word text="ES6"/> 提供的一种异步编程解决方案，从语法角度，他是一个状态机，封装了多个内部状态。执行后会返回一个遍历器对象，可以依次遍历 `Generator` 函数内部的每一个状态。也就是说他还是一个遍历器对象生成函数。
 
 形式上，他是一个普通函数，但是有两个特征。一是，`function` 关键字与函数名之间有一个星号；二是，函数体内部使用 `yield` 表达式，定义不同的内部状态。
 
@@ -36,7 +36,7 @@ hw.next()
 
 上面代码中，`Generator` 函数 `helloWorldGenerator` 有三个状态：`hello`，`world` 和 `return` 语句（即函数结束）。调用 `next` 方法，指针会从函数头部或上一次停下来的地方开始执行，直到遇到下一个 `yield` 表达式或 `return` 语句为止。换言之，`Generator` 函数是分段执行的，`yield` 表达式是暂停执行的标记，而 `next` 方法可以恢复执行。直到遇到 `return` 语句或函数结束，才会结束执行。后续再调用 `return`，也只会返回 `{ value: undefined, done: true }`。
 
-ES6没有规定 `*` 号写在哪，以下几种方式都能通过：
+<word text="ES6"/>没有规定 `*` 号写在哪，以下几种方式都能通过：
 - `function* foo() {}`
 - `function *foo() {}`
 - `function*foo() {}`
@@ -54,7 +54,7 @@ ES6没有规定 `*` 号写在哪，以下几种方式都能通过：
 4. 如果该函数没有 `return` 语句，则返回的对象的 `value` 属性值为 `undefined`。
 
 > [!WARNING] ⚠ 注意
-> `yield` 表达式后面的表达式，只有当调用 `next` 方法，内部指针指向该语句时才会执行，因此等于为 JavaScript 提供了手动的“惰性求值”（Lazy Evaluation）的语法功能。
+> `yield` 表达式后面的表达式，只有当调用 `next` 方法，内部指针指向该语句时才会执行，因此等于为 <word text="JavaScript"/> 提供了手动的"惰性求值"（Lazy Evaluation）的语法功能。
 > ```js
 > fucntion* add() {
 >   yield 1 + 2 * 3
@@ -156,7 +156,7 @@ f.next('c') // { value: undefined, done: true } f3 = 'c'
 这使得 `Generator` 函数可以通过 `next` 方法的参数在开始运行后继续向函数内部注入值，从而调整函数行为。
 
 > [!WARNING] ⚠ 注意
-> 由于 `next` 方法的参数表示上一条 yield 语句的返回值，所以第一次使用 `next` 方法时，传递参数是无效的。V8 引擎直接忽略第一次使用 `next` 方法时的参数，只有从第二次使用 `next` 方法开始，参数才是有效的。从语义上讲，第一个 `next` 方法用来启动遍历器对象，所以不用带有参数。
+> 由于 `next` 方法的参数表示上一条 yield 语句的返回值，所以第一次使用 `next` 方法时，传递参数是无效的。<word text="V8"/> 引擎直接忽略第一次使用 `next` 方法时的参数，只有从第二次使用 `next` 方法开始，参数才是有效的。从语义上讲，第一个 `next` 方法用来启动遍历器对象，所以不用带有参数。
 
 ### for...of循环
 
@@ -180,7 +180,7 @@ for (var f of fn()) {
 > [!WARNING] ⚠ 注意
 > `for...of` 会在 `next` 方法返回对象的 `done` 为 `true` 时停止循环，因此 `return` 语句的返回值不会遍历到。
 
-JavaScript 原生对象没有遍历接口，可以通过 `Generator` 函数为它加上遍历器接口或者给对象的 `Symbol.iterator` 属性绑定 `Generator` 函数，这样就能使用 `for...of` 循环遍历对象了。
+<word text="JavaScript"/> 原生对象没有遍历接口，可以通过 `Generator` 函数为它加上遍历器接口或者给对象的 `Symbol.iterator` 属性绑定 `Generator` 函数，这样就能使用 `for...of` 循环遍历对象了。
 
 ```js
 /**
@@ -428,7 +428,7 @@ let obj = {
 
 ### Generator函数的this
 
-`Generator` 函数总是返回一个遍历器，ES6 规定这个遍历器是 `Generator` 函数的实例，也继承了 `Generator` 函数的 `prototype` 对象上的方法。`Generator` 函数的 `this` 是不继承的。
+`Generator` 函数总是返回一个遍历器，<word text="ES6"/> 规定这个遍历器是 `Generator` 函数的实例，也继承了 `Generator` 函数的 `prototype` 对象上的方法。`Generator` 函数的 `this` 是不继承的。
 
 ```js
 function* g() {}
@@ -460,9 +460,9 @@ obj.a // undefined
 
 ### 总结
 
-`Generator` 函数是 ES6 引入的一种异步编程解决方案，它允许函数在执行过程中被暂停和恢复。这种函数在形式上是普通函数，但有两个特征：一是在 `function` 关键字和函数名之间有一个星号（*），二是函数体内部使用 `yield` 表达式来定义不同的内部状态。
+`Generator` 函数是 <word text="ES6"/> 引入的一种异步编程解决方案，它允许函数在执行过程中被暂停和恢复。这种函数在形式上是普通函数，但有两个特征：一是在 `function` 关键字和函数名之间有一个星号（*），二是函数体内部使用 `yield` 表达式来定义不同的内部状态。
 
-`Generator` 函数执行后返回一个遍历器对象，可以通过调用该对象的 `next` 方法来遍历函数内部的每一个状态。`yield`表达式用于暂停函数执行，直到下一次调用 `next` 方法时才继续执行。此外，`yield` 表达式后面的表达式只有在调用 `next` 方法，内部指针指向该语句时才会执行，这为 JavaScript 提供了手动的 “惰性求值” 功能。
+`Generator` 函数执行后返回一个遍历器对象，可以通过调用该对象的 `next` 方法来遍历函数内部的每一个状态。`yield`表达式用于暂停函数执行，直到下一次调用 `next` 方法时才继续执行。此外，`yield` 表达式后面的表达式只有在调用 `next` 方法，内部指针指向该语句时才会执行，这为 <word text="JavaScript"/> 提供了手动的 "惰性求值" 功能。
 
 `Generator` 函数与 `Iterator` 接口紧密相关，可以将 `Generator` 函数赋值给对象的`Symbol.iterator`属性，使其具有 `Iterator` 接口。这样，对象就可以被 `for...of` 循环遍历，或者使用扩展运算符(...)和 `Array.from` 方法。
 
