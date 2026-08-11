@@ -36,7 +36,7 @@ useEffect(() => { document.getElementById('img').src = logoSrc; }, []);
 
 :::
 
-机制解析：<word text="Vite"/> Dev Server 拦截图片请求，读取文件后返回 `/assets/xxx-xxx.png` 路径。<word text="CSS"/> 中的 `url('@assets/...')` 与 <word text="JS"/> import 享受同一套路径解析与热更新逻辑。
+机制解析：<word text="Vite"/> Dev Server 拦截图片请求，读取文件后返回 `/assets/xxx-xxx.png` 路径。<word text="CSS"/> 中的 `url('@assets/...')` 与 <word text="JavaScript"/> import 享受同一套路径解析与热更新逻辑。
 
 ### <word text="SVG"/> 组件化加载 (<word text="vite-plugin-svgr"/>)
 
@@ -181,7 +181,7 @@ export default function SvgIcon({ name, prefix = 'icon', color = '#333', ...prop
 ## 小结与最佳实践
 
 本节完整覆盖了 <word text="Vite"/> 静态资源从开发加载到生产优化的全链路。核心要点如下：
-- 开发期零配置：图片、<word text="JSON"/>、Worker、<word text="WASM"/> 均可直接 `import`，配合 `?url`/`?raw`/`?inline` 满足多态需求，别名配置贯穿 <word text="JS"/>/<word text="CSS"/>。
+- 开发期零配置：图片、<word text="JSON"/>、Worker、<word text="WASM"/> 均可直接 `import`，配合 `?url`/`?raw`/`?inline` 满足多态需求，别名配置贯穿 <word text="JavaScript"/>/<word text="CSS"/>。
 - 生产环境自动化：通过 base 与环境变量实现 <word text="CDN"/> 域名无缝替换；合理设置 `assetsInlineLimit` 平衡产物体积与 HTTP 请求数。
 - 性能优化组合拳：引入 <word text="imagemin"/> 压缩图片产物，利用 <word text="vite-plugin-svg-icons"/> 插件生成雪碧图，配合 `import.meta.globEager` 批量管理图标模块。
 - 工程化思维：静态资源不是"孤立文件"，而是构建流水线中的一环。理解 <word text="Vite"/> 的解析、转换、打包逻辑，才能在复杂业务中做出正确的架构选型。

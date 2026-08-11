@@ -184,7 +184,7 @@ point.__proto__ === Point.prototype // true
 上述代码中，`x` 和 `y` 属性定义在实例对象 `point` 上。`toString` 方法定义在 `Point` 类的原型上。
 
 > [!WARNING] ⚠ 注意
-> `__porto__` 并不是语言本身的特性，而是各大厂商具体实现时添加的私有属性，虽然目前很多现代浏览器的 JS 引擎都提供这个私有属性，但依旧不建议在生产中使用，避免对环境产生依赖。生产环境中，可以使用 `Object.getPrototypeOf()` 方法来获取实例对象的原型，然后使用 `Object.prototype.hasOwnProperty()` 方法来判断属性是定义在实例对象上还是定义在原型上。
+> `__porto__` 并不是语言本身的特性，而是各大厂商具体实现时添加的私有属性，虽然目前很多现代浏览器的 <word text="JavaScript"/> 引擎都提供这个私有属性，但依旧不建议在生产中使用，避免对环境产生依赖。生产环境中，可以使用 `Object.getPrototypeOf()` 方法来获取实例对象的原型，然后使用 `Object.prototype.hasOwnProperty()` 方法来判断属性是定义在实例对象上还是定义在原型上。
 > ```js
 > var p1 = new Point(1, 2)
 > var p2 = new Point(5, 2)

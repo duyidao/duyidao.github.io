@@ -37,13 +37,13 @@
 
 ### 五大解决方案对比矩阵
 
-| 方案类型                    | 代表工具                                                      | 核心优势                             | 解决的问题              | 适用场景                            |
-| --------------------------- | ------------------------------------------------------------- | ------------------------------------ | ----------------------- | ----------------------------------- |
-| <word text="CSS"/> 预处理器 | <word text="Sass"/>/<word text="Less"/>/<word text="Stylus"/> | 变量、嵌套、逻辑控制                 | 开发体验、代码复用      | 传统项目、需要样式复用              |
-| <word text="CSS Modules"/>  | 内置支持                                                      | 类名哈希化                           | 样式污染、命名冲突      | 组件化开发、隔离样式                |
-| <word text="PostCSS"/>      | <word text="autoprefixer"/>/<word text="pxtorem"/>            | <word text="AST"/> 解析与转换        | 浏览器兼容、单位转换    | 跨浏览器适配、移动端                |
-| <word text="CSS in JS"/>    | <word text="styled-components"/>/<word text="emotion"/>       | <word text="JS"/> 中写样式、动态样式 | 开发体验、样式隔离、DCE | <word text="React"/> 项目、动态主题 |
-| <word text="CSS"/> 原子化   | <word text="Tailwind CSS"/>/<word text="Windi CSS"/>          | 原子类名、按需生成                   | 开发效率、产物体积      | 快速原型、设计系统                  |
+| 方案类型                    | 代表工具                                                      | 核心优势                                     | 解决的问题              | 适用场景                            |
+| --------------------------- | ------------------------------------------------------------- | -------------------------------------------- | ----------------------- | ----------------------------------- |
+| <word text="CSS"/> 预处理器 | <word text="Sass"/>/<word text="Less"/>/<word text="Stylus"/> | 变量、嵌套、逻辑控制                         | 开发体验、代码复用      | 传统项目、需要样式复用              |
+| <word text="CSS Modules"/>  | 内置支持                                                      | 类名哈希化                                   | 样式污染、命名冲突      | 组件化开发、隔离样式                |
+| <word text="PostCSS"/>      | <word text="autoprefixer"/>/<word text="pxtorem"/>            | <word text="AST"/> 解析与转换                | 浏览器兼容、单位转换    | 跨浏览器适配、移动端                |
+| <word text="CSS in JS"/>    | <word text="styled-components"/>/<word text="emotion"/>       | <word text="JavaScript"/> 中写样式、动态样式 | 开发体验、样式隔离、DCE | <word text="React"/> 项目、动态主题 |
+| <word text="CSS"/> 原子化   | <word text="Tailwind CSS"/>/<word text="Windi CSS"/>          | 原子类名、按需生成                           | 开发效率、产物体积      | 快速原型、设计系统                  |
 
 ##  CSS 预处理器实战：Sass/Less/Stylus
 

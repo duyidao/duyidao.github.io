@@ -58,7 +58,7 @@ pnpm i eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @types
     }
     ```
 
-    工作原理： <word text="@typescript-eslint/parser"/> 将 <word text="TS"/> 代码转换为 <word text="Espree"/> 能够识别的 <word text="Estree"/> 格式，然后在 <word text="ESLint"/> 下进行格式检查。
+    工作原理： <word text="@typescript-eslint/parser"/> 将 <word text="TypeScript"/> 代码转换为 <word text="Espree"/> 能够识别的 <word text="Estree"/> 格式，然后在 <word text="ESLint"/> 下进行格式检查。
 
 2. parserOptions - 解析器选项
 
@@ -593,14 +593,14 @@ npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAM
 
 ### 工具链概览
 
-| 工具                       | 作用                                         | 检查内容                                              |
-| -------------------------- | -------------------------------------------- | ----------------------------------------------------- |
-| <word text="ESLint"/>      | <word text="JS"/>/<word text="TS"/> 代码规范 | 语法错误、代码风格、最佳实践                          |
-| <word text="Prettier"/>    | 代码格式化                                   | 缩进、引号、分号等格式统一                            |
-| <word text="Stylelint"/>   | 样式代码规范                                 | <word text="CSS"/>/<word text="SCSS"/> 语法和风格检查 |
-| <word text="Husky"/>       | <word text="Git"/> 钩子管理                  | 在 commit 前执行检查脚本                              |
-| <word text="lint-staged"/> | 增量检查                                     | 只对暂存区文件进行检查                                |
-| <word text="Commitlint"/>  | 提交信息规范                                 | 检查 commit message 格式                              |
+| 工具                       | 作用                                                         | 检查内容                                              |
+| -------------------------- | ------------------------------------------------------------ | ----------------------------------------------------- |
+| <word text="ESLint"/>      | <word text="JavaScript"/>/<word text="TypeScript"/> 代码规范 | 语法错误、代码风格、最佳实践                          |
+| <word text="Prettier"/>    | 代码格式化                                                   | 缩进、引号、分号等格式统一                            |
+| <word text="Stylelint"/>   | 样式代码规范                                                 | <word text="CSS"/>/<word text="SCSS"/> 语法和风格检查 |
+| <word text="Husky"/>       | <word text="Git"/> 钩子管理                                  | 在 commit 前执行检查脚本                              |
+| <word text="lint-staged"/> | 增量检查                                                     | 只对暂存区文件进行检查                                |
+| <word text="Commitlint"/>  | 提交信息规范                                                 | 检查 commit message 格式                              |
 
 ### 完整的工作流程
 ```
@@ -618,7 +618,7 @@ npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAM
     ↓
 <word text="lint-staged"/> 扫描暂存区文件
     ↓
-对 <word text="JS"/>/<word text="TS"/> 文件执行 <word text="ESLint"/> + <word text="Prettier"/>
+对 <word text="JavaScript"/>/<word text="TypeScript"/> 文件执行 <word text="ESLint"/> + <word text="Prettier"/>
 对 <word text="CSS"/>/<word text="SCSS"/> 文件执行 <word text="Stylelint"/>
     ↓
 <word text="Husky"/> 触发 commit-msg 钩子

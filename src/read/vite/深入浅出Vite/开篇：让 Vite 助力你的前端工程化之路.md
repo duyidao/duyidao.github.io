@@ -15,7 +15,7 @@
 <word text="Vite"/> 以超 98% 的开发者满意度及在 <word text="SvelteKit"/>、<word text="Astro"/> 等主流框架中的深度集成，成为当前首选方案。其优势精准对应四大痛点：
 1. 极致开发效率：打破传统全量递归打包模式，开发期基于浏览器原生 <word text="ESM"/> 实现 No-Bundle 架构，配合 <word text="Esbuild"/> 极速预编译第三方依赖，实现冷启动提速与毫秒级热更新。
 2. 无缝模块化：开发期原生支持 <word text="ESM"/>，开发/生产环境均能自动将 <word text="CommonJS"/> 等格式统一转换为 <word text="ESM"/>。
-3. 开箱即用的语法支持：内置 <word text="TS"/>、<word text="JSX"/>、<word text="Sass"/> 等转译能力，原生支持图片、Worker 等各类静态资源加载。
+3. 开箱即用的语法支持：内置 <word text="TypeScript"/>、<word text="JSX"/>、<word text="Sass"/> 等转译能力，原生支持图片、Worker 等各类静态资源加载。
 4. 可靠的生产质量：生产环境基于工业级打包工具 <word text="Rollup"/>，无缝衔接 <word text="Terser"/>、<word text="Babel"/> 等生态工具，全方位保障构建产物的性能与安全。
 
 ## Vite 学习的常见瓶颈与破局思路

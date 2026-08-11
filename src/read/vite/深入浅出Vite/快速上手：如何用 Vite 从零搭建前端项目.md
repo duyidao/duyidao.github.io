@@ -25,7 +25,7 @@ pnpm config set registry https://registry.npmmirror.com/
 pnpm create vite
 ```
 
-- 交互路径：输入项目名 → 选择框架（<word text="React"/>/<word text="Vue"/>/<word text="Svelte"/> 等） → 选择语言（<word text="JS"/>/<word text="TS"/>）。
+- 交互路径：输入项目名 → 选择框架（<word text="React"/>/<word text="Vue"/>/<word text="Svelte"/> 等） → 选择语言（<word text="JavaScript"/>/<word text="TypeScript"/>）。
 - 性能对比：相较于传统的 <word text="CRA"/>（<word text="create-react-app"/>），<word text="Vite"/> 脚手架在模板下载与依赖安装阶段速度提升近 6 倍，显著降低冷启动等待时间，提供"轻量、快速、简洁"的初体验。
 
 ## 核心运行机制：入口加载与 No-Bundle 理念

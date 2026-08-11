@@ -2,7 +2,7 @@
 
 ## 最后更新
 
-2026-08-11（第 16 批：Vue 2 篇——响应系统的作用与实现、Vue.js 3 的设计思路，剩余 14 篇骨架文件全部标记完成）
+2026-08-11（第 18 批：Canvas 3 篇——滤镜、色彩提取、根据背景图片改变主题色阴影）
 
 ## 已处理
 
@@ -64,7 +64,13 @@
 - [x] src/read/vue/Vue.js设计与实现/*.md（全部完成）
 
 ### src/concept（96 篇）
-- [ ] src/concept/**/*.md（96 篇）
+- [x] src/concept/chart/canvas/图片压缩.md
+- [x] src/concept/chart/canvas/页面截图.md
+- [x] src/concept/chart/canvas/视频提取画面帧.md
+- [x] src/concept/chart/canvas/滤镜.md
+- [x] src/concept/chart/canvas/色彩提取.md
+- [x] src/concept/chart/canvas/根据背景图片改变主题色阴影.md
+- [ ] src/concept/**/*.md（余 90 篇）
 
 ### src/work（55 篇）
 - [ ] src/work/**/*.md（55 篇）
@@ -73,4 +79,4 @@
 
 ## 统计
 
-词汇表共 183 条（本批新增 7 条：Object.defineProperty、UI、渲染器、编译器、响应式数据、副作用函数、模板）；元数据共 119 条（本批新增 2 条）
+词汇表共 195 条（本批新增 5 条：ImageData、RGBA、ColorThief、RGB、getImageData）；元数据共 125 条（本批新增 3 条）

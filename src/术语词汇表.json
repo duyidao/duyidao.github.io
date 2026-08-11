@@ -2248,5 +2248,131 @@
       "compiler",
       "frontend"
     ]
+  },
+  "MIME": {
+    "en": "MIME",
+    "cn": "MIME 类型",
+    "descript": "Multipurpose Internet Mail Extensions，互联网媒体类型标准，用于标识文件格式和内容类型，如 image/png、text/html、application/json 等。",
+    "tags": [
+      "http",
+      "web",
+      "browser"
+    ]
+  },
+  "DataURL": {
+    "en": "Data URL",
+    "cn": "Data URL 方案",
+    "descript": "一种将资源内嵌到文档中的方案，格式为 data:[<mediatype>][;base64],<data>，可将图片等文件直接编码为字符串嵌入 HTML 或 CSS。",
+    "tags": [
+      "html",
+      "css",
+      "base64",
+      "web"
+    ]
+  },
+  "file-saver": {
+    "en": "file-saver",
+    "cn": "file-saver 库",
+    "descript": "前端文件保存工具库，提供 saveAs 方法将 Blob 或 File 对象保存到本地，广泛用于图片下载、文档导出等场景。",
+    "tags": [
+      "javascript",
+      "browser",
+      "file"
+    ]
+  },
+  "base64": {
+    "en": "base64",
+    "cn": "Base64 编码",
+    "descript": "一种用 64 个可打印字符表示二进制数据的编码方式，常用于在 URL、HTML 中嵌入图片等二进制资源，数据量比原始二进制约增加 33%。",
+    "tags": [
+      "encoding",
+      "web",
+      "data-url"
+    ]
+  },
+  "html2canvas": {
+    "en": "html2canvas",
+    "cn": "html2canvas 库",
+    "descript": "JavaScript 截图库，可将 HTML 元素渲染为 Canvas 对象，支持将网页内容保存为图片。",
+    "tags": [
+      "javascript",
+      "canvas",
+      "screenshot",
+      "browser"
+    ]
+  },
+  "URL.createObjectURL": {
+    "en": "URL.createObjectURL",
+    "cn": "URL.createObjectURL API",
+    "descript": "浏览器 API，用于为 File 或 Blob 对象创建临时 URL（blob: 协议），可用于预览本地文件，使用后需调用 URL.revokeObjectURL 释放内存。",
+    "tags": [
+      "javascript",
+      "browser",
+      "api",
+      "blob"
+    ]
+  },
+  "axios": {
+    "en": "axios",
+    "cn": "axios 库",
+    "descript": "基于 Promise 的 HTTP 客户端，支持浏览器和 Node.js，提供请求拦截、响应拦截、取消请求等功能，是前端最流行的 HTTP 请求库之一。",
+    "tags": [
+      "http",
+      "javascript",
+      "promise",
+      "ajax"
+    ]
+  },
+  "ImageData": {
+    "en": "ImageData",
+    "cn": "图像数据对象",
+    "descript": "Canvas API 提供的接口，表示 Canvas 元素指定矩形区域的底层像素数据，通过 data 属性（Uint8ClampedArray）访问每个像素的 RGBA 通道值。",
+    "tags": [
+      "canvas",
+      "api",
+      "pixel"
+    ]
+  },
+  "RGBA": {
+    "en": "RGBA",
+    "cn": "RGBA 颜色模型",
+    "descript": "Red Green Blue Alpha 的缩写，在 RGB 颜色模型基础上增加 Alpha 通道表示透明度，每个通道取值范围 0-255，是 Canvas 像素操作的基础颜色编码。",
+    "tags": [
+      "color",
+      "canvas",
+      "pixel"
+    ]
+  },
+  "ColorThief": {
+    "en": "ColorThief",
+    "cn": "ColorThief 色彩提取库",
+    "descript": "一个 JavaScript 库，用于从图像中提取主导颜色或调色板，支持浏览器和 Node.js 环境，采用智能采样算法确保提取的颜色具有代表性。",
+    "tags": [
+      "color",
+      "javascript",
+      "canvas",
+      "library"
+    ]
+  },
+  "RGB": {
+    "en": "RGB",
+    "cn": "RGB 颜色模型",
+    "descript": "Red Green Blue 的缩写，一种加色模型，通过红、绿、蓝三原色以不同强度叠加来呈现各种颜色，每通道取值范围 0-255，是数字图像处理的基础。",
+    "tags": [
+      "color",
+      "image",
+      "standard"
+    ]
+  },
+  "getImageData": {
+    "en": "getImageData",
+    "cn": "获取图像数据方法",
+    "descript": "Canvas 2D 渲染上下文的方法，用于获取画布上指定矩形区域的像素数据，返回 ImageData 对象，其 data 属性包含每个像素的 RGBA 通道值。",
+    "tags": [
+      "canvas",
+      "api",
+      "method",
+      "pixel"
+    ]
   }
 }

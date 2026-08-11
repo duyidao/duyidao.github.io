@@ -1827,21 +1827,99 @@
       }
     ]
   },
-  "read/vue/Vue.js设计与实现/Vue.js 3 的设计思路": {
-    "title": "Vue.js 3 的设计思路",
-    "description": "讲解 Vue.js 3 声明式 UI 描述、虚拟 DOM、渲染器原理、组件本质、模板编译流程及编译器与渲染器的协作优化机制。",
+  "concept/chart/canvas/图片压缩": {
+    "title": "图片压缩",
+    "description": "讲解前端使用 Canvas 实现图片压缩：通过 FileReader 读取图片、drawImage 绘制、toBlob 压缩导出，结合 file-saver 保存本地。",
     "tags": [
-      "vue",
-      "virtual-dom",
-      "renderer",
-      "compiler",
-      "component"
+      "canvas",
+      "blob",
+      "image-compress",
+      "file-saver"
     ],
     "authors": [
       {
-        "author": "霍春阳",
-        "link": "https://github.com/HcySunYang/vue-design",
-        "title": "Vue.js 设计与实现"
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1vu4y1f7Sq"
+      }
+    ]
+  },
+  "concept/chart/canvas/页面截图": {
+    "title": "页面截图",
+    "description": "介绍前端页面截图方案：Canvas 原生截图及 html2canvas 库的使用，处理 div、document.body 等 DOM 元素的截图需求。",
+    "tags": [
+      "canvas",
+      "screenshot",
+      "html2canvas",
+      "blob"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1vu4y1f7Sq"
+      }
+    ]
+  },
+  "concept/chart/canvas/视频提取画面帧": {
+    "title": "视频提取画面帧",
+    "description": "讲解通过 Canvas 提取视频画面帧：使用 URL.createObjectURL 加载视频，定格到指定帧，drawImage 绘制到 Canvas 后导出为 Blob。",
+    "tags": [
+      "canvas",
+      "video",
+      "blob",
+      "frame"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1wt42157Dk"
+      }
+    ]
+  },
+  "concept/chart/canvas/滤镜": {
+    "title": "滤镜",
+    "description": "讲解使用 Canvas 的 getImageData、clearRect、putImageData 方法操作像素数据实现图片滤镜效果，通过修改 RGBA 通道值改变图片色调。",
+    "tags": [
+      "canvas",
+      "filter",
+      "getImageData",
+      "pixel"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1vu4y1f7Sq"
+      }
+    ]
+  },
+  "concept/chart/canvas/色彩提取": {
+    "title": "色彩提取",
+    "description": "介绍使用 ColorThief 库从图片中提取主要色彩调色板，实现鼠标悬浮图片时页面背景随图片主色调动态变化的效果。",
+    "tags": [
+      "canvas",
+      "color",
+      "colorthief",
+      "palette"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1k4oQYvEUo"
+      }
+    ]
+  },
+  "concept/chart/canvas/根据背景图片改变主题色阴影": {
+    "title": "根据背景图片改变主题色阴影",
+    "description": "讲解利用 Canvas 读取图片像素数据计算平均 RGB 值，据此动态设置内阴影边框颜色，实现根据背景图主色调自动适配主题色阴影。",
+    "tags": [
+      "canvas",
+      "shadow",
+      "color",
+      "theme"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1U2wce7EHY"
       }
     ]
   }
