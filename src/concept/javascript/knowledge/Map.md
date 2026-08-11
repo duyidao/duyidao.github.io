@@ -1,21 +1,6 @@
----
-layout: doc
-title: JavaScript知识点——Set
-titleTemplate: JavaScript知识点——Set
-description: JavaScript 知识点 Set
-head:
-  - - meta
-    - name: description
-      content: JavaScript知识点——Set
-  - - meta
-    - name: keywords
-      content: JavaScript 知识点 Set
-pageClass: javascript-knowledge-map
----
-
 # Map
 
-Map 是一组键值对的结构，用于解决以往不能用对象做为键的问题
+Map 是一组键值对的结构，用于解决不能用对象作为键的问题
 
 - 具有极快的查找速度
 - 函数、对象、基本类型都可以作为键或值
@@ -46,7 +31,7 @@ map.set(obj, "daodao.com").set("name", "duyidao");
 console.log(map.entries()); //MapIterator {{…} => "daodao.com", "name" => "duyidao"}
 ```
 
-使用构造函数 `new Map` 创建的原理如下
+构造函数 `new Map` 创建原理
 
 ```js
 const hd = new Map();
@@ -208,7 +193,7 @@ console.log(...hd.keys()); // 刀刀
 
 ### 节点集合
 
-Map 的 `key` 可以为任意类型，下面使用DOM节点做为键来记录数据。
+Map 的 `key` 可以为任意类型，使用 DOM 节点作为键来记录数据。
 
 ```html
 <body>

@@ -1,11 +1,3 @@
----
-title: resize函数封装
-description: JavaScript 实现resize函数封装
-keywords: resize
-author:
-  - 渡一教育 封装resize指令&https://www.bilibili.com/video/BV17N4y1Z7m7
----
-
 # resize 函数封装
 
 ## 前置知识

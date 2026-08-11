@@ -1,18 +1,3 @@
----
-layout: doc
-title: JavaScript知识点——Set
-titleTemplate: JavaScript知识点——Set
-description: JavaScript 知识点 Set
-head:
-  - - meta
-    - name: description
-      content: JavaScript知识点——Set
-  - - meta
-    - name: keywords
-      content: JavaScript 知识点 Set
-pageClass: javascript-knowledge-set
----
-
 # Set
 
 用于存储任何类型的唯一值，无论是基本类型还是对象引用。
@@ -26,7 +11,7 @@ pageClass: javascript-knowledge-set
 
 ### 基本使用
 
-对象可以属性最终都会转为字符串。使用对象做为键名时，会将对象转为字符串后使用。可以使用数组做初始数据。Set 中是严格类型约束的，下面的数值`1`与字符串`1`属于两个不同的值。使用 `add` 添加元素，不允许重复添加 `duyidao` 值。
+对象属性最终都会转为字符串。使用对象做为键名时，会将对象转为字符串后使用。可以使用数组做初始数据。Set 中是严格类型约束的，下面的数值`1`与字符串`1`属于两个不同的值。使用 `add` 添加元素，不允许重复添加 `duyidao` 值。
 
 ::: code-group
 ```js [转字符串.js]
@@ -176,7 +161,7 @@ for (const iterator of set) {
 
 ### 搜索实例
 
-下面通过历史搜索的示例体验`Set` 类型
+通过历史搜索示例体验 `Set` 类型
 
 ::: details 查看代码
 ```html

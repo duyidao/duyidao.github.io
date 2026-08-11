@@ -1,23 +1,8 @@
----
-layout: doc
-title: JavaScript知识点——Symbol
-titleTemplate: JavaScript知识点——Symbol
-description: JavaScript 知识点 Symbol
-head:
-  - - meta
-    - name: description
-      content: JavaScript知识点——Symbol
-  - - meta
-    - name: keywords
-      content: JavaScript 知识点 Symbol
-pageClass: javascript-knowledge-symbol
----
-
 # Symbol
 
-`Symbol` 用于防止属性名冲突而产生的，比如向第三方对象中添加属性时。
+`Symbol` 用于防止属性名冲突，比如向第三方对象中添加属性时。
 
-`Symbol` 的值是唯一的，独一无二的不会重复的
+`Symbol` 的值是唯一的，独一无二、不会重复
 
 ## 基础知识
 
@@ -97,7 +82,7 @@ console.log(Symbol.keyFor(edu)); //undefined
 - `Symbol` 声明和访问使用 `[]`（变量）形式操作
 - 也不能使用 `.` 语法因为 `.`语法是操作字符串属性的。
 
-下面写法是错误的，会将 `symbol` 当成字符串 `symbol` 处理
+下面写法错误，会将 `symbol` 当成字符串 `symbol` 处理
 
 ```js
 let symbol = Symbol("daodao");
@@ -107,7 +92,7 @@ let obj = {
 console.log(obj);
 ```
 
-正确写法是以 `[]` 变量形式声明和访问
+正确写法以 `[]` 变量形式声明和访问
 
 ```js
 let symbol = Symbol("daodao");
@@ -121,7 +106,7 @@ console.log(obj[symbol]); //daodao.com
 
 ### 缓存操作
 
-使用 `Symbol` 可以解决在保存数据时由于名称相同造成的耦合覆盖问题。
+使用 `Symbol` 可解决在保存数据时由于名称相同造成的耦合覆盖问题。
 
 ::: details 查看代码
 ```js

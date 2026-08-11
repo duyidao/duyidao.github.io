@@ -1,15 +1,10 @@
----
-title: filter 实现滤镜
-keyword: filter,滤镜
----
-
 # filter 实现滤镜
 
 ## 前置知识
 
 [filter](https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter) 属性将模糊或颜色偏移等图形效果应用于元素自身。滤镜通常用于调整图像、背景和边框的渲染。
 
-下面简单罗列一下它所有的属性语法：
+罗列它所有的属性语法：
 
 ```css
 /* <filter-function> 值 */
@@ -44,15 +39,15 @@ filter: unset;
 
 ## 实现
 
-下面针对部分函数方法做详细说明。
+针对部分函数方法做详细说明。
 
 ### drop-shadow
 
 使用 `<shadow>` 参数沿图像的轮廓生成阴影效果。阴影语法类似于 `<box-shadow>`（在 [CSS 背景和边框模块](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_backgrounds_and_borders)中定义），但不允许使用 `inset` 关键字以及 `spread` 参数。与所有 `filter` 属性值一样，任何在 `drop-shadow()` 后的滤镜同样会应用在阴影上。
 
-使用场景为在 `box-shadow` 只能给整个盒子添加盒子阴影，但效果只是想给盒子内的透明图片添加阴影时使用。效果如下：
+使用场景：在 `box-shadow` 只能给整个盒子添加盒子阴影，但效果只是给盒子内的透明图片添加阴影时使用。效果如下：
 
-代码如下：
+代码：
 
 ```css
 filter: drop-shadow(10px 10px 10px orange);
@@ -64,7 +59,7 @@ filter: drop-shadow(10px 10px 10px orange);
 
 将高斯模糊应用于输入图像。括号内输入像素单位的值，该值表示需要做模糊处理时的参考半径范围，值越大处理的结果越模糊。
 
-代码如下所示：
+代码：
 
 ```css
 filter: blur(5px);
@@ -94,7 +89,7 @@ filter: contrast(200%);
 
 将图像转换为灰度图。值为 `100%` 则完全转为灰度图像，若为初始值 `0%` 则图像无变化。值在 `0%` 到 `100%` 之间，则是该效果的线性乘数。
 
-在特殊纪念日里网站变灰就是用了这个属性，代码如下：
+在特殊纪念日里网站变灰就使用了这个属性，代码：
 
 ```css
 filter: grayscale(1);

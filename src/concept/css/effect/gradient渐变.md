@@ -1,16 +1,6 @@
----
-title: 渐变
-keyword: linear-gradient,radial-gradient,conic-gradient,repeating-linear-gradient,repeating-conic-gradient
-author:
-  - 渡一教育 线性渐变&https://www.bilibili.com/video/BV1Gh4y1Y7pU
-  - 渡一教育 径向渐变&https://www.bilibili.com/video/BV1Hm4y157xa
-  - 渡一教育 锥形渐变，你了解多少？&https://www.bilibili.com/video/BV1GP411C7mQ
-  - 渡一教育 弧形边框选项卡&https://www.bilibili.com/video/BV18F411S7cL
----
-
 # 渐变
 
-说起渐变，想必大家都不陌生，通过 `background-image` 设置渐变效果，可以在任何使用 `background-image` 的容器盒子内使用。
+渐变，通过 `background-image` 设置渐变效果，可以在任何使用 `background-image` 的容器盒子内使用。
 
 渐变包含以下几种类型：
 
@@ -19,7 +9,7 @@ author:
 - 锥形渐变 `conic-gradient()`
 - 重复渐变 `repeating-linear-gradient()` 和 `repeating-conic-gradient()`
 
-下面依次来详谈这些渐变。
+依次详谈这些渐变。
 
 ## 线性渐变
 
@@ -35,7 +25,7 @@ author:
 
 `linear-gradient` 线性渐变是一种两个以上颜色之间的平滑过渡效果。线性渐变为某一方向指向的渐变效果，如由左到右，上到下，左上到右下等。和径向渐变不同的是，径向渐变是一中心点向周围扩散的渐变，径向渐变为某一线性指向方向的渐变。
 
-想要实现最基础的线性渐变效果，只需要指定两个及以上的颜色即可。
+实现最基础的线性渐变效果，只需要指定两个及以上的颜色即可。
 
 基础效果：
 
@@ -151,7 +141,7 @@ div {
 
 ##### 硬过渡
 
-如果不想要平滑过渡，想要硬线过渡效果，可以将相邻的颜色停止设置为相同的位置。
+不需要平滑过渡，要硬线过渡效果，可以将相邻的颜色停止设置为相同的位置。
 
 ```css
 div {
@@ -174,7 +164,7 @@ div2 {
 }
 ```
 
-下面查看一下对比效果：
+对比效果：
 
 ![duibitu](https://pic.imgdb.cn/item/663f30a30ea9cb1403e4ef43.png)
 
@@ -236,7 +226,7 @@ div {
 
 ![diejia](https://pic.imgdb.cn/item/663f34810ea9cb1403ed5e44.png)
 
-还可以将渐变与其他的渐变堆叠起来。只要顶部的渐变不是完全不透明的，那么下面的渐变就会依然可见。
+还可以将渐变与其他渐变堆叠起来。只要顶部的渐变不是完全不透明的，那么下面的渐变就会依然可见。
 
 ```css
 div {

@@ -2,7 +2,7 @@
 
 ## 最后更新
 
-2026-08-11（第 18 批：Canvas 3 篇——滤镜、色彩提取、根据背景图片改变主题色阴影）
+2026-08-11（第 36 批：webapi 3 篇——地图数据展示、复制粘贴与内容设置、数字转中文）
 
 ## 已处理
 
@@ -70,7 +70,61 @@
 - [x] src/concept/chart/canvas/滤镜.md
 - [x] src/concept/chart/canvas/色彩提取.md
 - [x] src/concept/chart/canvas/根据背景图片改变主题色阴影.md
-- [ ] src/concept/**/*.md（余 90 篇）
+- [x] src/concept/chart/canvas/图片裁剪.md
+- [x] src/concept/chart/canvas/文件签名与画板功能.md
+- [x] src/concept/chart/svg/图片故障动画.md
+- [x] src/concept/chart/svg/文字适应纹理.md
+- [x] src/concept/chart/echart/图表菜单项自定义.md
+- [x] src/concept/chart/echart/柱状图封装.md
+- [x] src/concept/chart/echart/柱状图悬停文本自定义.md
+- [x] src/concept/chart/echart/横向柱状图参数数量设置.md
+- [x] src/concept/chart/echart/饼图中部内容自定义，点击图例修改中间内容.md
+- [x] src/concept/chart/echart/饼图轮播，hover图例后修改中间内容.md
+- [x] src/concept/css/effect/-webkit-box-reflect实现倒影.md
+- [x] src/concept/css/effect/animation-delay实现文字连续光影特效.md
+- [x] src/concept/css/effect/backdrop-filter实现背景滤镜.md
+- [x] src/concept/css/effect/border-image实现图片边框.md
+- [x] src/concept/css/effect/clip-path实现裁剪.md
+- [x] src/concept/css/effect/filter实现滤镜.md
+- [x] src/concept/css/effect/fit-content实现宽度适配内容.md
+- [x] src/concept/css/effect/gradient渐变.md
+- [x] src/concept/css/effect/mix-blend-mode实现文字适配背景.md
+- [x] src/concept/css/effect/scroll-snap实现吸附.md
+- [x] src/concept/css/effect/var变量.md
+- [x] src/concept/css/effect/瀑布流.md
+- [x] src/concept/css/expand/BEM.md
+- [x] src/concept/css/expand/空白节点.md
+- [x] src/concept/css/expand/粘性定位.md
+- [x] src/concept/javascript/knowledge/Map.md
+- [x] src/concept/javascript/knowledge/Promise.md
+- [x] src/concept/javascript/knowledge/Set.md
+- [x] src/concept/javascript/knowledge/Symbol.md
+- [x] src/concept/javascript/knowledge/事件循环.md
+- [x] src/concept/javascript/knowledge/任务管理与Promise核心.md
+- [x] src/concept/javascript/knowledge/作用域与闭包.md
+- [x] src/concept/javascript/knowledge/函数.md
+- [x] src/concept/javascript/knowledge/原型与原型链.md
+- [x] src/concept/javascript/knowledge/变量与严格模式.md
+- [x] src/concept/javascript/knowledge/对象.md
+- [x] src/concept/javascript/knowledge/数据类型.md
+- [x] src/concept/javascript/knowledge/数组.md
+- [x] src/concept/javascript/knowledge/模块化.md
+- [x] src/concept/javascript/knowledge/类.md
+- [x] src/concept/javascript/knowledge/运算符与流程控制.md
+- [x] src/concept/css/effect/vmin与vmax.md
+- [x] src/concept/css/effect/下划线动画.md
+- [x] src/concept/css/effect/主题过渡动画.md
+- [x] src/concept/css/effect/文字立起效果.md
+- [x] src/concept/css/effect/*.md（effect 全部完成！16/16）
+- [x] src/concept/css/expand/*.md（expand 全部完成！3/3）
+- [x] src/concept/chart/**/*.md（chart 全部完成！16/16）
+- [x] src/concept/javascript/knowledge/*.md（knowledge 全部完成！16/16）
+- [x] src/concept/javascript/webapi/resize函数封装.md
+- [x] src/concept/javascript/webapi/取色器封装.md
+- [x] src/concept/javascript/webapi/地图数据展示.md
+- [x] src/concept/javascript/webapi/复制粘贴与内容设置.md
+- [x] src/concept/javascript/webapi/数字转中文.md
+- [ ] src/concept/**/*.md（余 38 篇）
 
 ### src/work（55 篇）
 - [ ] src/work/**/*.md（55 篇）
@@ -79,4 +133,4 @@
 
 ## 统计
 
-词汇表共 195 条（本批新增 5 条：ImageData、RGBA、ColorThief、RGB、getImageData）；元数据共 125 条（本批新增 3 条）
+词汇表共 196 条（本批无新增）；元数据共 178 条（本批新增 3 条）

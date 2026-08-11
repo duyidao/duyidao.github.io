@@ -1,11 +1,3 @@
----
-title: backdrop-filter 实现背景滤镜
-keyword: backdrop-filter,背景滤镜
-author:
-  - 渡一教育 一分钟了解backdrop-filter背面滤镜&https://www.bilibili.com/video/BV1KBsZe8ELg
-  - 渡一教育 黑白滤镜&https://www.bilibili.com/video/BV1cShhefEcv
----
-
 # backdrop-filter 实现背景滤镜
 
 ## 前置知识
@@ -47,7 +39,7 @@ backdrop-filter: unset;
 
 ### 磨砂玻璃
 
-使用 `blur` 让元素背景模糊，实现磨砂玻璃效果。注意：想要实现效果，元素自身需要部分透明。
+使用 `blur` 让元素背景模糊，实现磨砂玻璃效果。注意：实现效果，元素自身需要部分透明。
 
 ```css
 .blur {

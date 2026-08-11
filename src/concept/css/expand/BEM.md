@@ -1,16 +1,8 @@
----
-title: BEM
-keyword: BEM
-author:
-  - 西南_张家辉&article CSS—BEM命名规范&https://juejin.cn/post/6844903672162304013
-  - 前端达人- CSSBEM命名法：前端开发者必备技能&https://www.bilibili.com/video/BV12b421v7Mh
----
-
 # BEM
 
-官网指路：[BEM](https://getbem.com/introduction/) 。
+官网：[BEM](https://getbem.com/introduction/) 。
 
-<word text="CSS" />命名十分重要，另外如有重名的情况，就会发生样式覆盖，导致最终效果显示错乱。
+<word text="CSS" />命名十分重要，如有重名，就会发生样式覆盖，导致最终效果显示错乱。
 
 对于命名，市面上有一些民间组织指定的命名规则，例如 BEM，SMACSS 和 OOCSS。
 
@@ -22,7 +14,7 @@ BEM 命名规则比较常见，其中：
 - E 代表 `Element` 元素，是块的一部分，它没有独立的意义，在语义上与其块绑定在一起。如 `header title` , `menu content` , `nav item` 等。
 - M 代表 `Modifer` 限定，是块或元素上的标志。用它们来改变外表或行为。如 `nav item active` , `input focus` 等。
 
-用一个例子来说明，我们可以在通常情况下有一个正常的按钮，在不同的情况下有两个状态。因为我们使用 `BEM` 通过类选择器对块进行样式化，所以我们可以使用任何我们想要的标签( `button` 、`a` 甚至 `div` )来实现它们。命名规则告诉我们使用 **块-元素-标志** 的语法。
+举例，可以在通常情况下有一个正常的按钮，在不同的情况下有两个状态。使用 `BEM` 通过类选择器对块进行样式化，所以可以使用任何我们想要的标签( `button` 、`a` 甚至 `div` )来实现它们。命名规则使用 **块-元素-标志** 的语法。
 
 ```html
 <button class="button">Normal button</button>

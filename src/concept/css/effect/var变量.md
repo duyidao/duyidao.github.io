@@ -1,11 +1,3 @@
----
-title: var 实现样式变量
-keywords: var
-author:
-  - 渡一教育 CSS变量的妙用&https://www.bilibili.com/video/BV11h4y1r7g3
-  - 渡一教育 妙用CSS变量&https://www.bilibili.com/video/BV1Qhb6zsEMi
----
-
 # var 实现样式变量
 
 一个父盒子内有一个子盒子小圆，该小圆在父盒子内做动画左右来回平移。
@@ -26,18 +18,18 @@ calc(父元素宽度 - 子元素宽度)
 
 子元素宽度可以获取到，自身 `100%` 即可；父元素的宽度无法通过 CSS 获取到，需要依赖 JS，而 JS 做动画不够 CSS 方便。
 
-二者能不能结合一下呢？ JS 获取到父元素宽度后告诉 CSS 来使用。
+二者结合：JS 获取到父元素宽度后告诉 CSS 来使用。
 
 ## 实现
 
-首先 JS 获取父盒子的宽度：
+JS 获取父盒子的宽度：
 
 ```js
 const container = document.querySelector('.container')
 const w = container.clientWidth
 ```
 
-拿到之后该如何告诉 CSS 呢？通过 `container.style.setProperty()` 方法设置，代码如下：
+通过 `container.style.setProperty()` 方法设置，代码：
 
 ```js
 container.style.setProperty('--w', w + 'px')
@@ -45,7 +37,7 @@ container.style.setProperty('--w', w + 'px')
 
 后续即使父元素宽度改变，也能通过该方法实时获取最新的数据。
 
-现在 CSS 可以通过 `var` 获取变量值，设置动画。代码如下：
+现在 CSS 可以通过 `var` 获取变量值，设置动画。代码：
 
 ```css
 @keyframes move {
@@ -61,7 +53,7 @@ container.style.setProperty('--w', w + 'px')
 
 ## 说在最后
 
-其实不一定要在 `js` 获取父元素宽度，也可以先设置一个变量，然后在 `template` 中使用动态样式设置，最后通过 `css` 的 `var()` 方法来获取。
+不一定在 `js` 获取父元素宽度，可以先设置一个变量，然后在 `template` 中使用动态样式设置，最后通过 `css` 的 `var()` 方法来获取。
 
 ```vue
 <script setup>

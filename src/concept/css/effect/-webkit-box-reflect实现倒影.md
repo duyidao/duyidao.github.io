@@ -1,10 +1,3 @@
----
-title: -webkit-box-reflect 实现倒影
-keyword: -webkit-box-reflect,倒影,CSS
-author:
-  - 渡一教育 元素倒影&https://www.bilibili.com/video/BV1bm411f7rb
----
-
 # -webkit-box-reflect 实现倒影
 
 ## 前置知识
@@ -22,7 +15,7 @@ author:
 
 ## 实现
 
-为一个文本标签或图片标签设置反射样式，添加渐变蒙版即可。代码如下：
+为一个文本标签或图片标签设置反射样式，添加渐变蒙版即可。代码：
 
 ```html
 <!DOCTYPE html>

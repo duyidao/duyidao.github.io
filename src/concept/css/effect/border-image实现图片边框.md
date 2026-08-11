@@ -1,10 +1,3 @@
----
-title: border-image 实现图片边框
-keyword: border-image,图片边框
-author:
-  - 渡一教育 图片边框&https://www.bilibili.com/video/BV1H642137Wb
----
-
 # border-image 实现图片边框
 
 ## 前值知识
@@ -33,13 +26,13 @@ author:
 
   ![重复](https://pic.imgdb.cn/item/670f76f5d29ded1a8c0639c0.png)
 
-  重复 `repeat` 的效果和环绕 `round` 的效果咋一看很相似，但是 `repeat` 设置的边框他是以中心点为原点，如果有超出的部分，两侧与角的交界处会对不齐。因此上方的效果图可以看出四个角附近有一点不连贯的感觉。
+  重复 `repeat` 的效果和环绕 `round` 的效果乍一看很相似，但是 `repeat` 设置的边框他是以中心点为原点，如果有超出的部分，两侧与角的交界处会对不齐。因此上方的效果图可看出四个角附近有一点不连贯的感觉。
 
 ## 效果实现
 
-首先设置边框 `border` ，然后设置边框图片 `border-image` ，接收三个参数，图片的 SVG 路径，图片剪切距离，图片的裁剪效果。
+设置边框 `border` ，然后设置边框图片 `border-image` ，接收三个参数，图片的 SVG 路径，图片剪切距离，图片的裁剪效果。
 
-代码如下所示：
+代码：
 
 ```css
 div {

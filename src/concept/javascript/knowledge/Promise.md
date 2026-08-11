@@ -1,21 +1,6 @@
----
-layout: doc
-title: JavaScript知识点——Promise
-titleTemplate: JavaScript知识点——Promise
-description: JavaScript 知识点 Promise
-head:
-  - - meta
-    - name: description
-      content: JavaScript知识点——Promise
-  - - meta
-    - name: keywords
-      content: JavaScript 知识点 Promise
-pageClass: javascript-knowledge-promise
----
-
 # Promise
 
-JavaScript 中存在很多异步操作, `Promise` 将异步操作队列化，按照期望的顺序执行，返回符合预期的结果。可以通过链式调用多个 `Promise` 达到我们的目的。
+JavaScript 存在很多异步操作, `Promise` 将异步操作队列化，按照期望的顺序执行，返回符合预期的结果。可以通过链式调用多个 `Promise` 达到目的。
 
 `Promise` 在各种开源库中已经实现，现在标准化后被浏览器默认支持。
 
@@ -23,11 +8,11 @@ JavaScript 中存在很多异步操作, `Promise` 将异步操作队列化，按
 
 ## 问题探讨
 
-下面通过多个示例来感受一下不使用 `promise` 时，处理相应问题的不易，及生成了不便阅读的代码。
+下面通过多个示例感受不使用 `promise` 时，处理相应问题的不易，及生成了不便阅读的代码。
 
 ### 定时嵌套
 
-下面是一个定时器执行结束后，执行另一个定时器，这种嵌套造成代码不易阅读
+定时器执行结束后，执行另一个定时器，这种嵌套造成代码不易阅读
 
 ```html
 <style>
@@ -66,7 +51,7 @@ JavaScript 中存在很多异步操作, `Promise` 将异步操作队列化，按
 
 ### 图片加载
 
-下面是图片后设置图片边框，也需要使用回调函数处理，代码嵌套较复杂
+图片加载后设置图片边框，也需要使用回调函数处理，代码嵌套较复杂
 
 ```js
 function loadImage(file, resolve, reject) {
@@ -94,7 +79,7 @@ loadImage(
 
 ### 加载文件
 
-下面是异步加载外部`JS`文件，需要使用回调函数执行，并设置的错误处理的回调函数
+异步加载外部 `JS` 文件，需要使用回调函数执行，并设置错误处理的回调函数
 
 ```js
 function load(file, resolve, reject) {
@@ -116,7 +101,7 @@ load(
 );
 ```
 
-实例中用到的 `fn.js` 与 `daodao.js` 内容如下
+实例中用到的 `fn.js` 与 `daodao.js` 内容
 
 ::: code-group
 ```js [fn.js]
@@ -132,7 +117,7 @@ function daodao() {
 ```
 :::
 
-如果要加载多个脚本时需要嵌套使用，下面 `daodao.js` 依赖 `fn.js`，需要先加载 `fn.js` 后加载 `daodao.js` 。
+加载多个脚本时需要嵌套使用，`daodao.js` 依赖 `fn.js`，需要先加载 `fn.js` 后加载 `daodao.js` 。
 
 > 不断的回调函数操作将产生回调地狱，使代码很难维护
 
@@ -158,7 +143,7 @@ load(
 
 ### 异步请求
 
-使用传统的异步请求也会产生回调嵌套的问题，下在是获取成绩，需要经过以下两步
+使用传统的异步请求也会产生回调嵌套的问题，下面是获取成绩，需要经过以下两步
 
 1. 根据用户名取得 `id`
 2. 根据 `id` 获取成绩
@@ -189,7 +174,7 @@ ajax("接口路径", user => {
 
 ### 肯德基
 
-下面是模拟肯德基吃饭的事情，使用 `promise` 操作异步的方式每个阶段会很清楚
+模拟肯德基吃饭，使用 `promise` 操作异步，每个阶段很清楚
 
 ```js
 let kfc = new Promise((resolve, reject) => {
@@ -219,7 +204,7 @@ let ma = son.then(msg => {
 });
 ```
 
-而使用以往的回调方式，就会让人苦不堪言
+使用以往的回调方式则会让人苦不堪言
 
 ```js
 function notice(msg, then) {

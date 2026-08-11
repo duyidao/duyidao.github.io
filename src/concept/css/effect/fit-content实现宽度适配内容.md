@@ -1,10 +1,3 @@
----
-title: fit-content 实现宽度适配内容
-keyword: fit-content,max-content,min-content
-author:
-  - 渡一教育 宽度适应内容&https://www.bilibili.com/video/BV18i4y1Y7Xs
----
-
 # fit-content 实现宽度适配内容
 
 ## 效果实现
@@ -13,7 +6,7 @@ author:
 
 ![案例](https://pic.imgdb.cn/item/651fd61bc458853aefb2dcd8.jpg)
 
-我们希望蓝色背景盒子宽度为内容的宽度，此时只需要设置其宽度属性。代码如下：
+若蓝色背景盒子宽度为内容的宽度，此时只需要设置其宽度属性。代码：
 
 ```css
 .title {
@@ -25,7 +18,7 @@ author:
 
 ![修改后的效果](https://pic.imgdb.cn/item/651fd85dc458853aefb4127d.jpg)
 
-且该方法没有任何兼容问题。MDN 文档解释指路：[fit-content](https://developer.mozilla.org/zh-CN/docs/Web/CSS/fit-content) 。
+该方法无兼容问题。MDN 文档：[fit-content](https://developer.mozilla.org/zh-CN/docs/Web/CSS/fit-content) 。
 
 ## 区别
 

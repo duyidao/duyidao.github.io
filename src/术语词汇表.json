@@ -2374,5 +2374,16 @@
       "method",
       "pixel"
     ]
+  },
+  "GSAP": {
+    "en": "GSAP",
+    "cn": "GSAP 动画库",
+    "descript": "GreenSock Animation Platform，一个高性能 JavaScript 动画库，提供 to/from/fromTo 等动画函数以及 Timeline 时间轴功能，支持对任意可读写属性做流畅动画。",
+    "tags": [
+      "javascript",
+      "animation",
+      "library",
+      "svg"
+    ]
   }
 }

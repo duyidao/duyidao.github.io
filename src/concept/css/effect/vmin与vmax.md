@@ -1,10 +1,3 @@
----
-title: vmin 与 vmax
-keyword: vmin,vmax
-author:
-  - 渡一教育 css新单位vmin和vmax&https://www.bilibili.com/video/BV1UF411k7y3
----
-
 # vmin 与 vmax
 
 在做移动端项目时，经常有一个要求是某张图片必须是全屏展示，且不能出现滚动条。这就说明这张图片必须是占满视口最短边。

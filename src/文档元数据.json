@@ -1922,5 +1922,688 @@
         "link": "https://www.bilibili.com/video/BV1U2wce7EHY"
       }
     ]
+  },
+  "concept/chart/canvas/图片裁剪": {
+    "title": "图片裁剪",
+    "description": "讲解使用 Canvas 的 drawImage 方法实现图片裁剪功能，通过等比计算裁剪区域尺寸后绘制到指定画布区域。",
+    "tags": [
+      "canvas",
+      "image",
+      "crop",
+      "drawImage"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1vu4y1f7Sq"
+      }
+    ]
+  },
+  "concept/chart/canvas/文件签名与画板功能": {
+    "title": "文件签名与画板功能",
+    "description": "讲解使用 Canvas 实现在线签名与画板功能，涵盖签名绘制、橡皮擦、笔型号切换、画板拖拽、保存导出等完整交互流程。",
+    "tags": [
+      "canvas",
+      "signature",
+      "drawboard",
+      "drag",
+      "export"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1nn4y197rh"
+      }
+    ]
+  },
+  "concept/chart/svg/图片故障动画": {
+    "title": "SVG 滤镜实现图片故障动画",
+    "description": "讲解使用 SVG feTurbulence 湍流滤镜与 feDisplacementMap 置换滤镜搭配 GSAP 动画库实现图片故障抖动效果。",
+    "tags": [
+      "svg",
+      "filter",
+      "animation",
+      "feTurbulence",
+      "feDisplacementMap",
+      "gsap"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1kv421r7BQ"
+      }
+    ]
+  },
+  "concept/chart/svg/文字适应纹理": {
+    "title": "svg 实现文字适应纹理",
+    "description": "讲解使用 SVG feImage、feColorMatrix、feDisplacementMap、feBlend 等滤镜组合实现文字适应背景图片纹理的效果，并支持文本颜色自定义。",
+    "tags": [
+      "svg",
+      "filter",
+      "text",
+      "feImage",
+      "feDisplacementMap",
+      "feBlend"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1T1421U7i6"
+      }
+    ]
+  },
+  "concept/chart/echart/图表菜单项自定义": {
+    "title": "图表菜单项自定义",
+    "description": "讲解 ECharts 图例（legend）的自定义配置，包括图例圆圈样式、formatter 文字内容自定义、rich 富文本样式设置。",
+    "tags": [
+      "echart",
+      "legend",
+      "formatter",
+      "rich"
+    ],
+    "authors": []
+  },
+  "concept/chart/echart/柱状图封装": {
+    "title": "柱状图封装",
+    "description": "讲解 ECharts 柱状图的公共组件封装方案，涵盖动态数据传入、柱体颜色配置、图例设置、Y 轴单位、鼠标悬停自定义等可配置参数。",
+    "tags": [
+      "echart",
+      "bar",
+      "chart",
+      "component",
+      "encapsulation"
+    ],
+    "authors": []
+  },
+  "concept/chart/echart/柱状图悬停文本自定义": {
+    "title": "柱状图悬停文本自定义",
+    "description": "讲解 ECharts 柱状图悬停文本的自定义配置，包括纵轴整数、轴线样式、轴文本格式化、柱体颜色宽度、tooltip 同组数据显示等。",
+    "tags": [
+      "echart",
+      "bar",
+      "tooltip",
+      "formatter",
+      "axis"
+    ],
+    "authors": []
+  },
+  "concept/chart/echart/横向柱状图参数数量设置": {
+    "title": "横向柱状图参数数量设置",
+    "description": "讲解 ECharts 横向柱状图的实现，包括圆角渐变柱体样式、重叠多柱体渲染、鼠标悬停自定义、柱体上方数据显示等。",
+    "tags": [
+      "echart",
+      "bar",
+      "horizontal",
+      "gradient",
+      "label"
+    ],
+    "authors": []
+  },
+  "concept/chart/echart/饼图中部内容自定义，点击图例修改中间内容": {
+    "title": "饼图中部内容自定义，点击图例修改中间内容",
+    "description": "讲解 ECharts 饼图中间内容自定义（formatter + rich 富文本）以及通过 legendselectchanged 事件实现点击图例动态修改中间内容。",
+    "tags": [
+      "echart",
+      "pie",
+      "legend",
+      "formatter",
+      "rich"
+    ],
+    "authors": []
+  },
+  "concept/chart/echart/饼图轮播，hover图例后修改中间内容": {
+    "title": "饼图轮播，hover 图例后修改中间内容",
+    "description": "讲解 ECharts 饼图使用 highlight/downplay dispatchAction 实现轮播，以及通过 on('highlight') 事件实现 hover 图例后动态修改中间内容。",
+    "tags": [
+      "echart",
+      "pie",
+      "carousel",
+      "highlight",
+      "downplay",
+      "hover"
+    ],
+    "authors": []
+  },
+  "concept/css/effect/-webkit-box-reflect实现倒影": {
+    "title": "-webkit-box-reflect 实现倒影",
+    "description": "讲解使用 CSS -webkit-box-reflect 属性实现元素倒影反射效果，包括方向、偏移、渐变蒙版等配置。",
+    "tags": [
+      "css",
+      "-webkit-box-reflect",
+      "reflection",
+      "gradient"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1bm411f7rb"
+      }
+    ]
+  },
+  "concept/css/effect/animation-delay实现文字连续光影特效": {
+    "title": "animation-delay 实现文字连续光影特效",
+    "description": "讲解使用 CSS animation 和 animation-delay 实现文字颜色与阴影的连续光影特效，配合 SCSS 循环生成逐字延迟动画。",
+    "tags": [
+      "css",
+      "animation",
+      "animation-delay",
+      "text-shadow",
+      "scss"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1pXHreNEFm"
+      }
+    ]
+  },
+  "concept/css/effect/backdrop-filter实现背景滤镜": {
+    "title": "backdrop-filter 实现背景滤镜",
+    "description": "讲解 CSS backdrop-filter 属性的使用，包括磨砂玻璃（blur）和黑白滤镜（grayscale）等效果实现。",
+    "tags": [
+      "css",
+      "backdrop-filter",
+      "blur",
+      "grayscale",
+      "filter"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1KBsZe8ELg"
+      },
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1cShhefEcv"
+      }
+    ]
+  },
+  "concept/css/effect/border-image实现图片边框": {
+    "title": "border-image 实现图片边框",
+    "description": "讲解 CSS border-image 复合属性的使用，包括 border-image-source、border-image-slice、border-image-repeat 三个子属性及图片边框效果实现。",
+    "tags": [
+      "css",
+      "border-image",
+      "border",
+      "slice",
+      "repeat"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1H642137Wb"
+      }
+    ]
+  },
+  "concept/css/effect/clip-path实现裁剪": {
+    "title": "clip-path 实现裁剪",
+    "description": "讲解 CSS clip-path 属性的使用，包括 polygon、ellipse、inset 等裁剪形状，实现相框显示、眨眼效果、文字下落、水平位移等动画效果。",
+    "tags": [
+      "css",
+      "clip-path",
+      "polygon",
+      "ellipse",
+      "inset",
+      "animation"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1be41197iL"
+      }
+    ]
+  },
+  "concept/css/effect/filter实现滤镜": {
+    "title": "filter 实现滤镜",
+    "description": "讲解 CSS filter 属性的使用，包括 drop-shadow、blur、hue-rotate、contrast、grayscale 等滤镜函数及效果实现。",
+    "tags": [
+      "css",
+      "filter",
+      "drop-shadow",
+      "blur",
+      "grayscale",
+      "contrast"
+    ],
+    "authors": []
+  },
+  "concept/css/effect/fit-content实现宽度适配内容": {
+    "title": "fit-content 实现宽度适配内容",
+    "description": "讲解 CSS width 属性中 fit-content、max-content、min-content 三种尺寸关键字的区别与使用场景，实现宽度适配内容的效果。",
+    "tags": [
+      "css",
+      "fit-content",
+      "max-content",
+      "min-content",
+      "width"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV18i4y1Y7Xs"
+      }
+    ]
+  },
+  "concept/css/effect/gradient渐变": {
+    "title": "渐变",
+    "description": "讲解 CSS 渐变的使用，包括线性渐变 linear-gradient、径向渐变 radial-gradient、锥形渐变 conic-gradient、重复渐变，以及色标位置、硬过渡、条纹、叠加等高级技巧。",
+    "tags": [
+      "css",
+      "gradient",
+      "linear-gradient",
+      "radial-gradient",
+      "conic-gradient",
+      "background"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1Gh4y1Y7pU"
+      },
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1Hm4y157xa"
+      },
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1GP411C7mQ"
+      },
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV18F411S7cL"
+      }
+    ]
+  },
+  "concept/css/effect/mix-blend-mode实现文字适配背景": {
+    "title": "mix-blend-mode 实现文字适配背景",
+    "description": "讲解 CSS mix-blend-mode 混合模式属性的使用，通过 difference 差值模式实现文字颜色智能适配黑白背景的效果。",
+    "tags": [
+      "css",
+      "mix-blend-mode",
+      "difference",
+      "blend",
+      "text"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV11N4y1e7Lc"
+      }
+    ]
+  },
+  "concept/css/effect/scroll-snap实现吸附": {
+    "title": "scroll-snap 实现吸附",
+    "description": "讲解 CSS scroll-snap-type 和 scroll-snap-align 属性实现滚动吸附效果，包括 x/y 轴方向、mandatory/proximity 吸附程度等配置。",
+    "tags": [
+      "css",
+      "scroll-snap",
+      "scroll-snap-type",
+      "scroll-snap-align",
+      "scroll"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV18841127Qi"
+      }
+    ]
+  },
+  "concept/css/effect/var变量": {
+    "title": "var 实现样式变量",
+    "description": "讲解 CSS 自定义属性（var）与 JS setProperty 配合使用，实现父元素宽度动态计算动画，以及 Vue 动态样式绑定方式。",
+    "tags": [
+      "css",
+      "var",
+      "custom-property",
+      "setProperty",
+      "animation",
+      "vue"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV11h4y1r7g3"
+      },
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1Qhb6zsEMi"
+      }
+    ]
+  },
+  "concept/css/effect/下划线动画": {
+    "title": "下划线动画",
+    "description": "讲解使用 background 配合 linear-gradient 实现下划线动画效果，包括背景定位、尺寸控制、hover 过渡以及方向细节优化。",
+    "tags": [
+      "css",
+      "background",
+      "linear-gradient",
+      "underline",
+      "animation",
+      "transition"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1aKZGY6EHY"
+      }
+    ]
+  },
+  "concept/css/effect/主题过渡动画": {
+    "title": "主题过渡动画",
+    "description": "讲解使用 View Transition API（document.startViewTransition）实现主题切换时的圆形扩散过渡动画，通过 clip-path 和 animate 实现。",
+    "tags": [
+      "css",
+      "view-transition",
+      "startViewTransition",
+      "clip-path",
+      "theme",
+      "animation"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.douyin.com/video/7359864000764448038"
+      }
+    ]
+  },
+  "concept/css/effect/瀑布流": {
+    "title": "瀑布流",
+    "description": "讲解纯 CSS 实现瀑布流布局的三种方法：grid 布局（masonry）、column-count 分列布局、flex 布局（纵轴+换行），并对比优劣。",
+    "tags": [
+      "css",
+      "waterfall",
+      "grid",
+      "column-count",
+      "flex",
+      "masonry",
+      "layout"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1z5b6zTEtR"
+      }
+    ]
+  },
+  "concept/css/effect/vmin与vmax": {
+    "title": "vmin 与 vmax",
+    "description": "讲解 CSS 新单位 vmin 和 vmax，用于实现移动端全屏图片适配，自动取视口最短/最长边。",
+    "tags": [
+      "css",
+      "vmin",
+      "vmax",
+      "viewport",
+      "responsive"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1UF411k7y3"
+      }
+    ]
+  },
+  "concept/css/effect/下划线动画": {
+    "title": "下划线动画",
+    "description": "讲解使用 background 配合 linear-gradient 实现下划线动画效果，包括动画过渡和细节优化（hover 方向控制）。",
+    "tags": [
+      "css",
+      "background",
+      "linear-gradient",
+      "animation",
+      "underline"
+    ],
+    "authors": []
+  },
+  "concept/css/effect/文字立起效果": {
+    "title": "文字立起效果",
+    "description": "讲解使用 mask 和 filter 实现文字立起阴影效果，通过伪元素 + transform + mask 渐变实现立体文字阴影。",
+    "tags": [
+      "css",
+      "mask",
+      "filter",
+      "pseudo-element",
+      "transform"
+    ],
+    "authors": []
+  },
+  "concept/javascript/webapi/resize函数封装": {
+    "title": "resize 函数封装",
+    "description": "讲解 ResizeObserver API 封装自定义 resize 指令，实现监听 DOM 元素尺寸变化并执行回调。",
+    "tags": [
+      "javascript",
+      "ResizeObserver",
+      "resize",
+      "webapi",
+      "directive"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV17N4y1Z7m7"
+      }
+    ]
+  },
+  "concept/javascript/webapi/地图数据展示": {
+    "title": "地图数据展示",
+    "description": "讲解使用 ECharts 实现地图数据可视化展示，包括地图边界数据加载、注册地图、配置可视区域与交互数据。",
+    "tags": [
+      "javascript",
+      "echarts",
+      "map",
+      "visualization",
+      "geojson"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1Vh4y1r7oX"
+      }
+    ]
+  },
+  "concept/javascript/webapi/复制粘贴与内容设置": {
+    "title": "复制粘贴与内容设置",
+    "description": "讲解 Clipboard API 实现复制粘贴控制，包括禁止复制、写入自定义内容、追加来源信息、粘贴图片文件等场景。",
+    "tags": [
+      "javascript",
+      "clipboard",
+      "copy",
+      "paste",
+      "webapi"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1Fa4y1r79g"
+      }
+    ]
+  },
+  "concept/javascript/webapi/数字转中文": {
+    "title": "数字转中文",
+    "description": "讲解 JavaScript 实现数字转中文的函数封装，包括四位分割、零的处理、万/亿单位添加等完整逻辑。",
+    "tags": [
+      "javascript",
+      "number",
+      "chinese",
+      "algorithm",
+      "conversion"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV16g4y1174z"
+      }
+    ]
+  },
+  "concept/css/expand/BEM": {
+    "title": "BEM",
+    "description": "介绍 CSS BEM 命名规范（Block、Element、Modifier），通过块-元素-标志语法提高样式可维护性，避免命名冲突。",
+    "tags": [
+      "css",
+      "BEM",
+      "naming",
+      "convention"
+    ],
+    "authors": [
+      {
+        "author": "西南_张家辉",
+        "link": "https://juejin.cn/post/6844903672162304013"
+      },
+      {
+        "author": "前端达人",
+        "link": "https://www.bilibili.com/video/BV12b421v7Mh"
+      }
+    ]
+  },
+  "concept/css/expand/粘性定位": {
+    "title": "粘性定位",
+    "description": "讲解 CSS position sticky 粘性定位的底层概念，包括包含块、最近可滚动元素的关系，以及吸附、脱离的滚动行为。",
+    "tags": [
+      "css",
+      "sticky",
+      "position",
+      "scroll",
+      "containing-block"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV12N4y1S7mx"
+      }
+    ]
+  },
+  "concept/javascript/knowledge/Map": {
+    "title": "Map",
+    "description": "讲解 JavaScript Map 数据结构的使用，包括声明定义、增删改查、遍历、数组转换、DOM 节点作为键等操作。",
+    "tags": [
+      "javascript",
+      "Map",
+      "data-structure",
+      "key-value"
+    ],
+    "authors": []
+  },
+  "concept/javascript/knowledge/Set": {
+    "title": "Set",
+    "description": "讲解 JavaScript Set 数据结构，用于存储唯一值，包括基本使用、增删改查、数组转换、去重、遍历、交集等操作。",
+    "tags": [
+      "javascript",
+      "Set",
+      "data-structure",
+      "unique",
+      "collection"
+    ],
+    "authors": []
+  },
+  "concept/javascript/knowledge/Symbol": {
+    "title": "Symbol",
+    "description": "讲解 JavaScript Symbol 类型，用于防止属性名冲突，包括唯一性、描述参数、Symbol.for/keyFor、对象属性保护与遍历。",
+    "tags": [
+      "javascript",
+      "Symbol",
+      "unique",
+      "metadata",
+      "property"
+    ],
+    "authors": []
+  },
+  "concept/javascript/knowledge/任务管理与Promise核心": {
+    "title": "任务管理与Promise核心",
+    "description": "讲解 JavaScript 任务管理机制，包括事件循环、宏任务与微任务、脚本加载、定时器、任务分解、进度条示例和 Promise 核心原理。",
+    "tags": [
+      "javascript",
+      "event-loop",
+      "macro-task",
+      "micro-task",
+      "Promise",
+      "setTimeout"
+    ],
+    "authors": []
+  },
+  "concept/javascript/knowledge/作用域与闭包": {
+    "title": "作用域与闭包",
+    "description": "讲解 JavaScript 作用域（全局、局部、块级）与闭包概念，包括变量查找规则、let/const 块级作用域、闭包在回调与动画中的应用。",
+    "tags": [
+      "javascript",
+      "scope",
+      "closure",
+      "let",
+      "const",
+      "var"
+    ],
+    "authors": []
+  },
+  "concept/javascript/knowledge/原型与原型链": {
+    "title": "原型与原型链",
+    "description": "讲解 JavaScript 原型与原型链机制，包括 prototype、__proto__、constructor、原型检测（instanceof/isPrototypeOf）、属性遍历与继承。",
+    "tags": [
+      "javascript",
+      "prototype",
+      "prototype-chain",
+      "inheritance",
+      "constructor"
+    ],
+    "authors": []
+  },
+  "concept/javascript/knowledge/变量与严格模式": {
+    "title": "变量与严格模式",
+    "description": "讲解 JavaScript 变量声明、弱类型、变量提升、临时性死区（TDZ）、作用域（var/let/const 区别）以及严格模式的使用。",
+    "tags": [
+      "javascript",
+      "variable",
+      "let",
+      "const",
+      "var",
+      "TDZ",
+      "strict-mode"
+    ],
+    "authors": []
+  },
+  "concept/javascript/knowledge/数据类型": {
+    "title": "数据类型",
+    "description": "讲解 JavaScript 数据类型判断（typeof/instanceof）、基本数据类型（字符串、模板字面量、标签模板）以及值类型与对象的区别。",
+    "tags": [
+      "javascript",
+      "type",
+      "typeof",
+      "instanceof",
+      "string",
+      "template-literal"
+    ],
+    "authors": []
+  },
+  "concept/javascript/knowledge/数组": {
+    "title": "数组",
+    "description": "讲解 JavaScript 数组基础，包括创建数组、Array.of、类型检测、类型转换、展开语法、函数参数和节点转换等操作。",
+    "tags": [
+      "javascript",
+      "array",
+      "spread",
+      "Array.from",
+      "Array.of"
+    ],
+    "authors": []
+  },
+  "concept/javascript/knowledge/类": {
+    "title": "类",
+    "description": "讲解 JavaScript 类（class）语法，包括声明定义、构造函数、原理分析、属性定义、严格模式、静态属性和方法。",
+    "tags": [
+      "javascript",
+      "class",
+      "constructor",
+      "static",
+      "OOP"
+    ],
+    "authors": []
+  },
+  "concept/javascript/knowledge/运算符与流程控制": {
+    "title": "运算符与流程控制",
+    "description": "讲解 JavaScript 运算符与流程控制，包括算术运算符、复合运算符、一元运算符、比较运算符、逻辑运算符及短路运算。",
+    "tags": [
+      "javascript",
+      "operator",
+      "arithmetic",
+      "logical",
+      "comparison"
+    ],
+    "authors": []
   }
 }
