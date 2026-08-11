@@ -4,7 +4,7 @@
 
 ### 简介
 
-ES6 的 `class` 可以看作只是一个语法糖，它的绝大部分功能，ES5 都可以做到，新的 `class` 写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。
+ES6 的 `class` 可以看作一个语法糖，它的绝大部分功能，ES5 都可以做到，新的 `class` 写法让对象原型的写法更加清晰。
 
 ```js
 class Point {
@@ -20,11 +20,11 @@ class Point {
 ```
 
 > [!WARNING] ⚠ 注意
-> 定义类时，前面不需要加 `function` ，直接将函数定义放进去就可以了。另外注意构造函数的名称和类名需要相同，且不需要加 `function` 关键字。
+> 定义类时，前面不需要加 `function` ，直接将函数定义放进去即可。构造函数的名称和类名需要相同，且不需要加 `function` 关键字。
 
 类的数据类型就是函数，类本身就指向构造函数。使用的时候，也是直接对类使用 `new` 命令，跟构造函数的用法完全一致。
 
-构造函数的 `prototype` 属性在 ES6 的 “类”上面继续存在。事实上，类的所有方法都定义在类的 `prototype` 属性上面。由于类的方法都是定义在 `prototype` 对象上面，所以类的新方法可以添加在 `prototype` 对象上面。`Object.assign()` 方法可以很方便地一次向类添加多个方法。
+构造函数的 `prototype` 属性在 ES6 的 “类”上面继续存在。事实上，类的所有方法都定义在类的 `prototype` 属性上面。由于类的方法都是定义在 `prototype` 对象上面，所以类的新方法可以添加在 `prototype` 对象上面。`Object.assign()` 方法可以一次向类添加多个方法。
 
 ```js
 class Point {
@@ -122,7 +122,7 @@ class Point {
 }
 ```
 
-`constructor` 方法默认返回实例对象（即 `this` ），不过完全可以指定返回另外一个对象。
+`constructor` 方法默认返回实例对象（即 `this` ），也可以指定返回另外一个对象。
 
 ```js
 class Foo {
@@ -181,7 +181,7 @@ point.__proto__ === Point.prototype // true
 ```
 :::
 
-上方代码中，`x` 和 `y` 属性定义在实例对象 `point` 上。`toString` 方法定义在 `Point` 类的原型上。
+上述代码中，`x` 和 `y` 属性定义在实例对象 `point` 上。`toString` 方法定义在 `Point` 类的原型上。
 
 > [!WARNING] ⚠ 注意
 > `__porto__` 并不是语言本身的特性，而是各大厂商具体实现时添加的私有属性，虽然目前很多现代浏览器的 JS 引擎都提供这个私有属性，但依旧不建议在生产中使用，避免对环境产生依赖。生产环境中，可以使用 `Object.getPrototypeOf()` 方法来获取实例对象的原型，然后使用 `Object.prototype.hasOwnProperty()` 方法来判断属性是定义在实例对象上还是定义在原型上。
@@ -214,7 +214,7 @@ inst.getClassName() // Me
 Me.name // Error: Me is not defined
 ```
 
-上面的代码表明，`Me` 只在 Class 的内部可用，指代当前 Class。如果内部没有使用到，则可以省略。
+上述代码表明，`Me` 只在 Class 的内部可用，指代当前 Class。如果内部没有使用到，则可以省略。
 
 ```js
 const MyClass = class { /* ... */ };

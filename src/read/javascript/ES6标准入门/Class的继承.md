@@ -2,7 +2,7 @@
 
 ### 简介
 
-比起 ES5 修改原型链实现继承的方式，ES6 的 `class` 通过 `extends` 关键字实现继承，更加清晰和方便。子类继承父类的所有属性和方法，需要用 `super` 方法，继承父类的 `this` 对象，否则会因为得不到 `this` 对象新建实例报错。
+比起 ES5 修改原型链实现继承的方式，ES6 的 `class` 通过 `extends` 关键字实现继承，子类继承父类的所有属性和方法，需要用 `super` 方法，继承父类的 `this` 对象，否则会因为得不到 `this` 对象新建实例报错。
 
 ```js
 class A {
@@ -27,7 +27,7 @@ let c = new C() // Uncaught ReferenceError: Must call super constructor in deriv
 
 ES5 继承实质是先创建子类的实例对象 `this`，然后再将父类的方法添加到 `this` 上（`Parent.apply(this)`）。ES6 继承实质是先创建父类的实例对象 `this`（所以必须先调用 `super` 方法），然后再用子类的构造函数修改 `this`。
 
-如果子类没有定义 `constructor` 方法，这个方法会被默认添加，代码如下。也就是说，不管有没有显式定义，任何一个子类都有 `constructor` 方法。且只有调用了 `super` 方法，子类实例的 `this` 才会被初始化，才能使用 `this` 。
+如果子类没有定义 `constructor` 方法，这个方法会被默认添加，代码如下。不管有没有显式定义，任何一个子类都有 `constructor` 方法。且只有调用了 `super` 方法，子类实例的 `this` 才会被初始化，才能使用 `this` 。
 
 ```js
 class A {}
@@ -146,7 +146,7 @@ class B extends A {
 let b = new B()
 ```
 
-上方代码中，用 `super` 赋值相当于 `this.x = 3` ，当读取 `super.x` 时，读的是 `A.prototype.x` ，所以结果为 `undefined` 。
+上述代码中，用 `super` 赋值相当于 `this.x = 3` ，当读取 `super.x` 时，读的是 `A.prototype.x` ，所以结果为 `undefined` 。
 
 如果 `super` 作为对象用在静态方法中，`super` 会指向父类，而不是父类的原型对象。
 
@@ -198,7 +198,7 @@ B.__proto__ === A // true
 B.prototype.__proto__ === A.prototype // true
 ```
 
-上面代码中，子类 `B` 的 `__proto__` 属性指向父类 `A` ，子类 `B` 的 `prototype` 属性的 `__proto__` 属性指向父类 `A` 的 `prototype` 属性。
+上述代码中，子类 `B` 的 `__proto__` 属性指向父类 `A` ，子类 `B` 的 `prototype` 属性的 `__proto__` 属性指向父类 `A` 的 `prototype` 属性。
 
 #### extends的继承目标
 
@@ -208,7 +208,7 @@ B.prototype.__proto__ === A.prototype // true
 class B extends A {}
 ```
 
-上面代码的 `A` 可以是任意值。只要这个值有 `prototype` 属性即可。由于函数都有 `prototype` 属性，因此 `A` 可以是任意函数。
+上述代码的 `A` 可以是任意值。只要这个值有 `prototype` 属性即可。由于函数都有 `prototype` 属性，因此 `A` 可以是任意函数。
 
 不过，有三种特殊情况：
 1. 子类继承 `Object` 类

@@ -17,7 +17,7 @@
 1. 通过 `hue-rotate` 滤镜实现渐变动画
 2. 通过 `CSS @property` 实现背景色渐变动画
 
-下面依次看它们的实现方式。
+依次看它们的实现方式。
 
 #### 通过 background-position 模拟渐变动画
 
@@ -148,7 +148,7 @@ div::before {
 
 > 具体效果可查看 [transform 模拟渐变动画](https://codepen.io/duyidao/pen/YPwrzWr)
 
-上面只是其中一种移动方法，还有更多其他的移动方法可以自行尝试搭配。
+这只是其中一种移动方法，还有更多移动方法可以自行尝试搭配。
 
 #### 通过滤镜 hue-rotate 实现渐变动画
 
@@ -242,7 +242,7 @@ div {
 }
 ```
 
-上方的例子利用了 CSS Houdini 自定义属性，将原本定义在 `background` 的过渡效果嫁接到了 `color` 之上，而<word text="CSS" />是支持一个颜色变换到另外一个颜色的，巧妙地实现了渐变背景色的过渡动画。
+该例子利用了 CSS Houdini 自定义属性，将原本定义在 `background` 的过渡效果嫁接到了 `color` 之上，而<word text="CSS" />是支持一个颜色变换到另外一个颜色的，巧妙地实现了渐变背景色的过渡动画。
 
 > 具体效果可查看 [CSS @property 实现背景色渐变动画](https://codepen.io/duyidao/pen/yyezLrO)
 
@@ -250,7 +250,7 @@ div {
 
 #### background-clip 的基础使用
 
-`background-clip` 的作用就是设置元素的背景（背景图片或颜色）的填充规则，默认属性是 `border-box`，下面分别介绍它们的属性和区别。
+`background-clip` 的作用是设置元素的背景（背景图片或颜色）的填充规则，默认属性是 `border-box`，分别介绍它们的属性和区别。
 
 - `border-box`：背景绘制在边框盒子内。
 - `padding-box`：背景绘制在内容盒子内（包含内边距）。
@@ -317,7 +317,7 @@ div {
 > [!IMPORTANT] 拓展
 >
 > 1. `background-clip: text` 不仅能使用渐变背景实现渐变文字，还能把图片背景实现任意风格的文字效果，可以任意搭配。
-> 2. 渐变背景不仅可以是静态的，还能是动态的，加上前面的 `hue-rotate` 滤镜，就可以实现渐变文字的动态效果。
+> 2. 渐变背景不仅可以是静态的，还能是动态的，加上 `hue-rotate` 滤镜，就可以实现渐变文字的动态效果。
 >
 >    ```css
 >    div {
@@ -357,7 +357,7 @@ div {
 
 ### background 与 display: inline
 
-`background` 属性在 `display: inline` 和 `display: block` 元素上有不同的表现，展示的方式不一样。下面来试验一下：
+`background` 属性在 `display: inline` 和 `display: block` 元素上有不同的表现，展示的方式不一样。试验一下：
 
 ::: code-group
 
@@ -402,7 +402,7 @@ a {
 
 核心原因是：**`inline` 元素的背景只作用于“内容区域”（`content area`），而 `block` 元素的背景作用于“整个盒模型区域”（包括 `padding`、`border`）**。
 
-再给它添加前面用到的 `background-size` 实现动画效果，看看他们的差异。
+再给它添加用到的 `background-size` 实现动画效果，看看他们的差异。
 
 ```css
 body {
@@ -533,7 +533,7 @@ section {
 
 所以这里借助 background-attachment: srcoll 和 background-attachment: local 两个属性，在滚动初始的时候，利用两层背景叠加在一起隐藏阴影背景，真正滚动的时候，将叠加的部分移走，只漏出阴影部分即可。
 
-下面看三种情况不同的样式效果：
+三种情况不同的样式效果：
 
 ::: code-group
 

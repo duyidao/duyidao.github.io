@@ -4,7 +4,7 @@
 
 ### drop-shadow 与 box-shadow 的异同
 
-先来看看 `box-shadow` 和 `drop-shadow` 的不同之处。
+来看 `box-shadow` 和 `drop-shadow` 的不同之处。
 
 #### 作用范围的差异
 
@@ -15,7 +15,7 @@
 
 ![效果比较](https://pic1.imgdb.cn/item/692698be3203f7be0033d83c.png)
 
-上图是 `box-shadow` 和 `drop-shadow` 的效果对比，可以看到 `box-shadow` 的阴影是矩形，而 `drop-shadow` 的阴影是符合元素形状的。
+`box-shadow` 和 `drop-shadow` 的效果对比，可以看到 `box-shadow` 的阴影是矩形，而 `drop-shadow` 的阴影是符合元素形状的。
 
 #### 语法层面的差异：扩散半径与内阴影
 
@@ -26,4 +26,4 @@
 
 #### 都支持多重阴影
 
-还有一点需要特别注意，`box-shadow` 和 `drop-shadow` 都是支持多重阴影的。这一点在前面滤镜的第一个章节中也提过的。
+`box-shadow` 和 `drop-shadow` 都支持多重阴影。这在滤镜的章节中已提过。

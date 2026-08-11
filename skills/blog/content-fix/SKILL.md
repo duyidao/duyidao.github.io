@@ -1,6 +1,6 @@
 ---
 name: content-fix
-description: duyidao.github.io 博客 md 文档内容优化规范（术语打标签、词汇表/元数据同步、去AI化改写、frontmatter 迁移、文件名优化与路由链接同步、Windows 终端命令约束、进度落盘与中断接管）。当用户要求"优化/修订/润色博客文档"，或编辑 src/**/*.md 时使用。
+description: duyidao.github.io 博客 md 文档内容优化规范（术语强制打标签、代码块不可变、词汇表/元数据同步、去AI化改写、frontmatter 迁移、文件名优化与路由链接同步、递归枚举文档、Windows 终端命令约束、进度落盘与中断接管）。当用户要求"优化/修订/润色博客文档"，或编辑 src/**/*.md 时使用。
 ---
 
 # 博客文档内容优化 Skill
@@ -8,35 +8,41 @@ description: duyidao.github.io 博客 md 文档内容优化规范（术语打标
 ## 适用范围
 
 - 目标：`src/read/`、`src/concept/`、`src/work/` 下所有 `.md` 文档（其他目录仅在用户明确指定时处理）。
+- **文档枚举必须递归**（含任意层级子目录）：
+  `Get-ChildItem -Path 'src/read','src/concept','src/work' -Recurse -Filter *.md`，
+  或编辑器 glob `**/*.md`；不得以单层目录结果判定"无文档"。
 - 联动数据/配置文件（改文档必须同步维护）：
   - 术语词汇表：`src/术语词汇表.json`
   - 文档元数据：`src/文档元数据.json`
   - 侧边栏路由配置：`config/themeConfig/sidebar/` 下各 ts（about/concept/foot/practice/work/nav/sidebar.ts）
   - VitePress 路由映射：`config/vite/rewrites.ts`、导航配置 `config/themeConfig.ts` / `nav.ts`
-- 进度文件：`skills/blog/content-fix/PROGRESS.md`（见「进度落盘与中断恢复」）。
+- 进度文件：`skills/blog/content-fix/` 下按目录分 `PROGRESS.md` 与
+  `PROGRESS_READ_CONCEPT_WORK.md` 两份，接管时全部读取（见「进度落盘与中断恢复」）。
 
 ## 执行流程（逐篇按序，完成一篇再下一篇）
 
-0. 接管检查：会话开始时先读 `PROGRESS.md` 并运行 `git status`，核对并汇报断点
+0. 接管检查：会话开始时先读全部 PROGRESS 文件并运行 `git status`，核对并汇报断点
    （未处理文档、半成品 JSON、未同步改名）；文件不存在则盘点后创建。
-1. 读取目标文档与各联动 JSON/配置，**以 JSON 现有字段结构为准**，不得自创新字段。
+1. 递归枚举目标文档确认处理范围；读取各联动 JSON/配置，
+   **以 JSON 现有字段结构为准**，不得自创新字段。
 2. 文件名优化：不符合规范者按「文件名优化规范」改名，并完成四项同步
    （改名/搜索等 shell 操作必须使用 PowerShell 命令，见「终端环境约束」）。
 3. 迁移 frontmatter：文档头部若存在 `--- ... ---` 块，将其字段按现有条目结构
    写入 `文档元数据.json`（以文档路径为键，已存在则合并更新），随后从文档中删除该块。
-4. 改写正文：遵守「去AI化与表达规范」。
-5. 术语打标签：遵守「术语标注规范」，并同步写入词汇表。
+4. 改写正文：遵守「去AI化与表达规范」（不可变区域一律不动）。
+5. 术语打标签：遵守「术语标注规范」——**先识别不可变区域，再仅在自然语言正文中
+   逐处打标签**（强制动作，不得按目录/风格豁免），并同步写入词汇表。
 6. 补充结构：遵守「结构补充规范」。
 7. 对照「禁止事项」「自检清单」逐项检查。
-8. 每批结束按「进度落盘与中断恢复」回写 PROGRESS.md，并向用户建议提交。
+8. 每批结束按「进度落盘与中断恢复」回写对应 PROGRESS 文件，并向用户建议提交。
 9. 全部完成后输出变更摘要（文档数 / 改名文档 / 新增术语 / 新增元数据条目），
-   并将 PROGRESS.md 标记为已完结。
+   并将 PROGRESS 文件标记为已完结。
 
 ## 进度落盘与中断恢复
 
-聊天历史不随会话保留，接管唯一依据是 PROGRESS.md 与 git 状态：
+聊天历史不随会话保留，接管唯一依据是 PROGRESS 文件与 git 状态：
 
-1. 每批结束必须更新 `skills/blog/content-fix/PROGRESS.md`，模板：
+1. 每批结束必须更新对应 PROGRESS 文件，模板：
 
    ```md
    # content-fix 进度
@@ -47,11 +53,11 @@ description: duyidao.github.io 博客 md 文档内容优化规范（术语打标
 
    ## 已处理
 
-   - [x] src/practice/xxx.md（含改名/同步说明）
+   - [x] src/read/xxx.md（含改名/同步说明）
 
    ## 未处理
 
-   - [ ] src/practice/aaa.md
+   - [ ] src/concept/aaa.md
 
    ## 待办事项
 
@@ -65,7 +71,7 @@ description: duyidao.github.io 博客 md 文档内容优化规范（术语打标
 2. 新会话必须先执行流程第 0 步，不得重复处理「已处理」文档、不得遗漏「未处理」文档。
 3. 用户未禁止 git 时，每批结束建议执行：
    `git add -A && git commit -m "content-fix: 第 N 批完成"`
-4. 正常结束会话前，先回写 PROGRESS.md 再结束。
+4. 正常结束会话前，先回写 PROGRESS 文件再结束。
 
 ## 文件名优化规范
 
@@ -82,23 +88,36 @@ description: duyidao.github.io 博客 md 文档内容优化规范（术语打标
 
 ## 术语标注规范
 
-1. 术语范围（仅这些才打标签并入表）：产品、框架、协议、算法、文件格式、行业专有名词
-   （如 WebSocket、Kubernetes、VitePress、WebP、SVG、Lottie）。
-2. **排除清单（不打标签、不入词汇表）**：
+1. **不可变区域（一个字符都不得修改：不打标签、不改大小写、不改写）**：
+   - 围栏代码块（``` 起止之间的全部内容，含代码、注释、输出示例）；
+   - 行内代码（`...` 反引号包裹的文本）；
+   - 任意层级标题（`#` ~ `######`）；
+   - 链接文本与链接地址。
+     同一个词在自然语言正文中是应打标签的术语（如 Proxy），
+     在不可变区域中是代码标识符（如 `new Proxy(`、`proxy.time`），**一律不动**。
+2. **打标签为强制动作**：目标范围内所有文档均须按本规范打标签并入表；
+   不得以「该目录/该风格既有文档没有标签」为由跳过。
+3. **禁止全局批量替换**：每一处出现都必须按上下文判断，仅当处于自然语言正文时才打标签；
+   不得用全局查找替换一次性插入标签或改大小写。确需批量处理时，
+   先将代码块替换为占位符（如 `<!--CODE_1-->`），操作完正文后再还原占位符。
+4. 术语范围（仅这些才打标签并入表）：产品、框架、协议、算法、文件格式、行业专有名词
+   （如 WebSocket、Kubernetes、VitePress、WebP、SVG、Lottie、JavaScript、Proxy）。
+5. **排除清单（不打标签、不入词汇表）**：
    - Vue 指令与语法：`v-model`、`v-for`、`v-if`、`v-else`、`v-show` 等；
    - Vue/JS API、hooks、组件语法：`ref`、`reactive`、`computed`、`watch`、`watchEffect`、
      `onMounted`、`props`、`slot`、`emit`、`defineExpose`、`defineProps`、`render`、`h` 等；
    - Web 平台方法/API 标识符：`requestAnimationFrame` 等函数名；
    - 通用编程词汇与普通英文单词。
-3. **首字母大写规则**：所有术语统一首字母大写（lottie→Lottie、canvas→Canvas、
-   base64→Base64）；官方写法本身首字母大写且含固定大小写的（WebP、TypeScript）保持官方写法。
-   正文中的术语写法必须与词汇表条目完全一致（同一字符串）。
-4. 标签写法：先全局搜索仓库中 `<word` 的既有用法，属性与闭合风格与其保持完全一致；
+6. **首字母大写规则**：所有术语统一首字母大写（lottie→Lottie、canvas→Canvas、
+   base64→Base64）；官方写法本身首字母大写且含固定大小写的（WebP、TypeScript、JavaScript）
+   保持官方写法。正文中的术语写法必须与词汇表条目完全一致（同一字符串）。
+   大小写修正同样只作用于自然语言正文，不可变区域不改。
+7. 标签语法：先全局搜索仓库中 `<word` 的既有用法，**仅借用其属性与闭合风格**
+   （既有用法只决定"标签怎么写"，不决定"打不打"）；
    若仓库无既有用法，统一使用 `<word text="术语" />`。
-5. **标题豁免：任意层级标题（`#` ~ `######`）中的术语一律不打标签**，标题保持纯文本。
-6. 每个术语同步写入 `src/术语词汇表.json`：按术语去重，已存在则跳过，不存在才追加。
-7. 其他不打标签的位置：代码块内、链接文本内；同一段落同一术语只打一次；
-   已打过标签的术语保持原样，但首字母不符合第 3 条时须修正写法并同步词汇表。
+8. 每个术语同步写入 `src/术语词汇表.json`：按术语去重，已存在则跳过，不存在才追加。
+9. 同一段落同一术语只打一次；已打过标签的术语保持原样，
+   但首字母不符合第 6 条时须修正写法并同步词汇表（仍须避开不可变区域）。
 
 ## 去AI化与表达规范
 
@@ -110,7 +129,8 @@ description: duyidao.github.io 博客 md 文档内容优化规范（术语打标
 
 ## 结构补充规范
 
-1. 代码：统一带语言标签的围栏代码块（ts / bash / vue 等），代码必须完整可运行。
+1. 代码：统一带语言标签的围栏代码块（ts / bash / vue / javascript 等），代码必须完整可运行；
+   补语言标签只允许改围栏起始行，不得改动代码块内部任何字符。
 2. 表格：三项以上的对比（方案对比、参数说明、优劣）必须用表格。
 3. 流程图：统一 Mermaid 语法（仅 flowchart / sequenceDiagram）；
    若站点未集成 Mermaid，则改为编号步骤的文字描述。
@@ -118,40 +138,50 @@ description: duyidao.github.io 博客 md 文档内容优化规范（术语打标
 
 ## 终端环境约束（Windows PowerShell）
 
-当前开发机终端为 **Windows PowerShell**，一切需要执行 shell 的操作（改名、搜索、删除等）
+当前开发机终端为 **Windows PowerShell**，一切需要执行 shell 的操作（改名、搜索、删除、枚举等）
 只允许使用 PowerShell 语法：
 
 1. 重命名：`Rename-Item -LiteralPath '旧路径' -NewName '新文件名.md'`
    （或 `Move-Item -LiteralPath '旧路径' -Destination '新路径'`）；
 2. 全仓查引用：`Select-String -Path 'src','config' -Pattern '旧名' -Recurse`，
    或改用编辑器内置全仓搜索，优先后者；
-3. 中文文件名一律加引号；路径分隔符不得混用；
-4. **禁止** Linux/bash 专属命令与路径：`mv`、`cat`、`export`、`grep`、`ln`、
+3. **枚举文档必须递归**：`Get-ChildItem -Path 'src' -Recurse -Filter *.md`，
+   不得遗漏多层子目录；
+4. 中文文件名一律加引号；路径分隔符不得混用；
+5. **禁止** Linux/bash 专属命令与路径：`mv`、`cat`、`export`、`grep`、`ln`、
    `~/.Trash`、`~/.bash_history` 等；
-5. 提交：`git add -A && git commit -m "信息"`；
-6. 对命令是否为 PowerShell 语法没有把握时，**先向用户确认再执行**，不得擅自运行。
+6. 提交：`git add -A && git commit -m "信息"`；
+7. 对命令是否为 PowerShell 语法没有把握时，**先向用户确认再执行**，不得擅自运行。
 
 ## 禁止事项
 
+- 不得修改代码块/行内代码内任何字符（插标签、改大小写、改写均禁止）。
+- 不得用全局查找替换批量打标签或改大小写。
 - 不得移动文档所在目录（目录调整须用户确认）；文件名允许优化但必须完成同步流程。
-- 不处理 `src/practice/` 之外的 md（除非用户指定）。
+- 不得以「既有风格 / 参考笔记型」为由跳过任何目录文档的术语打标签。
+- 不得用非递归搜索断定某目录无 md 文档。
+- 不处理 `src/read/`、`src/concept/`、`src/work/` 之外的 md（除非用户指定）。
 - 不臆造 JSON 字段、不删除 JSON 既有条目。
 - 不得将排除清单中的标识符写入词汇表。
 - 不得在标题中插入 `<word` 标签。
 - 不得在终端执行 Linux/bash 专属命令（见「终端环境约束」）。
-- 正常结束会话前不得跳过 PROGRESS.md 回写。
+- 正常结束会话前不得跳过 PROGRESS 回写。
 - 不确定的技术事实保留原文，不得编造。
 
 ## 自检清单
 
-- [ ] 会话开始已执行接管检查（PROGRESS.md + git status）
+- [ ] 会话开始已执行接管检查（全部 PROGRESS 文件 + git status）
+- [ ] 目标文档已递归枚举，多层子目录无遗漏
+- [ ] 正文术语均已打标签（标题/代码块/行内代码/链接内除外），无任何目录以"风格"为由豁免
+- [ ] 代码块/行内代码内无 `<word` 标签、无任何大小写或字符改动
+- [ ] 打标签均逐处按上下文判断，未使用全局批量替换（或已用占位符法并还原）
 - [ ] 文件名为语义化中文且与主题一致；若改名，元数据、sidebar、rewrites/nav、文内链接四处已同步且旧名全仓零残留
 - [ ] 头部无残留 `---` frontmatter 块
 - [ ] 词汇表无 `v-*` / `ref` / `computed` / `requestAnimationFrame` 等排除清单标识符
 - [ ] 术语全部首字母大写，正文与词汇表写法完全一致，无重复条目
 - [ ] 所有标题中均无 `<word` 标签
 - [ ] 无去AI化黑名单词残留
-- [ ] 代码块语言标签齐全
+- [ ] 代码块语言标签齐全（仅改围栏起始行）
 - [ ] `文档元数据.json` 中本文档条目存在且路径正确
 - [ ] 本次执行的所有终端命令均为 PowerShell 语法，无 bash 专属命令
-- [ ] 批次结束已回写 PROGRESS.md，内容与 git 状态一致
+- [ ] 批次结束已回写对应 PROGRESS 文件，内容与 git 状态一致

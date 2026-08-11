@@ -1,4 +1,335 @@
 {
+  "read/css/CSS 技术揭秘与实战通关/background的8种核心技巧": {
+    "title": "CSS 最强大属性 background 的 8 种核心技巧",
+    "description": "系统梳理 CSS background 的 8 种核心技巧，涵盖线性渐变、径向渐变、锥形渐变及重复渐变的实用场景与代码示例。",
+    "tags": [
+      "css",
+      "background",
+      "gradient",
+      "linear-gradient",
+      "radial-gradient",
+      "conic-gradient"
+    ],
+    "authors": []
+  },
+  "read/css/CSS 技术揭秘与实战通关/background的进阶技巧与实战": {
+    "title": "background 属性进阶技巧讲解及实战演练",
+    "description": "深入讲解 background 渐变动画、background-clip 文字渐变、background-attachment 滚动视差等进阶技巧与实战案例。",
+    "tags": [
+      "css",
+      "background",
+      "animation",
+      "background-clip",
+      "background-attachment",
+      "parallax"
+    ],
+    "authors": []
+  },
+  "read/css/CSS 技术揭秘与实战通关/blur模糊滤镜使用技巧及搭配contrast元素边缘处理": {
+    "title": "blur 模糊滤镜使用技巧及搭配 contrast 元素边缘处理",
+    "description": "介绍 CSS blur 模糊滤镜的毛玻璃、彩色阴影、3D 视差、主题色提取等应用技巧，以及 blur 与 contrast 滤镜融合的燃熔效果。",
+    "tags": [
+      "css",
+      "filter",
+      "blur",
+      "contrast",
+      "backdrop-filter",
+      "fusion"
+    ],
+    "authors": []
+  },
+  "read/css/CSS 技术揭秘与实战通关/css 阴影": {
+    "title": "CSS 阴影",
+    "description": "系统讲解 CSS 阴影基础语法、单侧阴影、立体阴影、浮雕阴影等实用技巧，涵盖 box-shadow、text-shadow 与 filter:drop-shadow 的对比分析。",
+    "tags": [
+      "css",
+      "box-shadow",
+      "text-shadow",
+      "drop-shadow",
+      "shadow"
+    ],
+    "authors": []
+  },
+  "read/css/CSS 技术揭秘与实战通关/filter的三种滤镜模式": {
+    "title": "filter 在 CSS 中的三种滤镜模式及其特殊性介绍",
+    "description": "介绍 CSS filter 的三种使用方式（filter、backdrop-filter、SVG 滤镜），对比作用对象差异，深入分析 Backdrop Root 导致 3D 失效与 fixed 定位失效的原理。",
+    "tags": [
+      "css",
+      "filter",
+      "backdrop-filter",
+      "svg",
+      "backdrop-root"
+    ],
+    "authors": []
+  },
+  "read/css/CSS 技术揭秘与实战通关/shadow的高级技巧": {
+    "title": "shadow 的高级技巧",
+    "description": "讲解 box-shadow 复制自身图形、绘制曲线、遮罩模拟、氖灯效果、hover 过渡动画等高级技巧，并对比阴影动画中重绘与重排的性能差异。",
+    "tags": [
+      "css",
+      "box-shadow",
+      "shadow",
+      "animation",
+      "performance",
+      "neon"
+    ],
+    "authors": []
+  },
+  "read/css/CSS 技术揭秘与实战通关/mask实现高阶动画效果": {
+    "title": "mask 实现高阶动画效果",
+    "description": "介绍利用 CSS @property 与 mask 实现渐变切换动画、图片转场动画等高级技巧，并结合雪碧图实现逐帧转场效果。",
+    "tags": [
+      "css",
+      "mask",
+      "css-property",
+      "animation",
+      "transition",
+      "sprite"
+    ],
+    "authors": []
+  },
+  "read/css/CSS 技术揭秘与实战通关/巧用遮罩解决各类视觉难题": {
+    "title": "mask：巧用遮罩解决各类视觉难题",
+    "description": "系统讲解 CSS mask 属性在裁剪、内切圆、渐变显隐、融合效果、内容切换等场景中的应用，并介绍 mask-composite 的叠加技巧。",
+    "tags": [
+      "css",
+      "mask",
+      "mask-composite",
+      "clip",
+      "gradient"
+    ],
+    "authors": []
+  },
+  "read/css/CSS 技术揭秘与实战通关/clip-path实现形态及区域变化等高级动画效果": {
+    "title": "clip-path：实现形态及区域变化等高级动画效果",
+    "description": "讲解 clip-path 形变动画、图形变换动画、边框动画的实现方法，分析顶点数不一致导致的逐帧动画问题及解决方案。",
+    "tags": [
+      "css",
+      "clip-path",
+      "animation",
+      "polygon",
+      "inset",
+      "shape"
+    ],
+    "authors": []
+  },
+  "read/css/CSS 技术揭秘与实战通关/clip-path实现不规则图形及溢出场景": {
+    "title": "clip-path 实现不规则图形及溢出场景",
+    "description": "介绍 clip-path 基本用法，通过 polygon 实现不规则图形裁剪，并利用 drop-shadow 解决裁剪后边框缺失的问题。",
+    "tags": [
+      "css",
+      "clip-path",
+      "polygon",
+      "drop-shadow",
+      "border"
+    ],
+    "authors": []
+  },
+  "read/css/CSS 技术揭秘与实战通关/filter中比阴影更强大的drop-shadow阴影技巧": {
+    "title": "filter 中比阴影更强大的 drop-shadow 阴影技巧",
+    "description": "对比 drop-shadow 与 box-shadow 在作用范围、语法层面的差异，展示 drop-shadow 在非矩形边框、多重阴影、不规则形状等场景中的优势。",
+    "tags": [
+      "css",
+      "filter",
+      "drop-shadow",
+      "box-shadow",
+      "shadow"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/数组的扩展": {
+    "title": "数组的扩展",
+    "description": "梳理 ES6 数组扩展的核心特性：扩展运算符、Array.from、Array.of、copyWithin、find/findIndex、fill、entries/keys/values、includes 等方法的语法与使用场景。",
+    "tags": [
+      "es6",
+      "javascript",
+      "array",
+      "spread",
+      "array-from"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/对象的扩展": {
+    "title": "对象的扩展",
+    "description": "梳理 ES6 对象扩展的核心特性：属性简洁表示法、属性名表达式、方法 name 属性、Object.is、Object.assign 的语法与使用场景。",
+    "tags": [
+      "es6",
+      "javascript",
+      "object",
+      "object-assign",
+      "object-is"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/数值的扩展": {
+    "title": "数值的扩展",
+    "description": "梳理 ES6 数值扩展的核心特性：二进制与八进制表示法、Number 新增方法、Math 对象扩展、指数运算符、Integer 数据类型。",
+    "tags": [
+      "es6",
+      "javascript",
+      "number",
+      "math",
+      "integer"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/函数的扩展": {
+    "title": "函数的扩展",
+    "description": "梳理 ES6 函数扩展的核心特性：参数默认值、rest 参数、严格模式、name 属性、箭头函数、this 绑定、尾调用优化。",
+    "tags": [
+      "es6",
+      "javascript",
+      "function",
+      "arrow-function",
+      "default-parameters"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/正则的扩展": {
+    "title": "正则的扩展",
+    "description": "梳理 ES6 正则扩展的核心特性：RegExp 构造函数、u/y/s 修饰符、sticky/flags 属性、后行断言等。",
+    "tags": [
+      "es6",
+      "javascript",
+      "regexp",
+      "unicode",
+      "dotall"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/字符串的扩展": {
+    "title": "字符串的扩展",
+    "description": "梳理 ES6 字符串扩展的核心特性：Unicode 表示法、codePointAt、遍历器接口、includes/startsWith/endsWith、repeat、padStart/padEnd、模板字符串等。",
+    "tags": [
+      "es6",
+      "javascript",
+      "string",
+      "unicode",
+      "template-literal"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/读懂ECMAScript规格": {
+    "title": "读懂 ECMAScript 规格",
+    "description": "通过相等运算符、数组空位、数组 map 方法的规格解读，展示如何阅读 ECMAScript 语言规范。",
+    "tags": [
+      "ecmascript",
+      "javascript",
+      "specification",
+      "array",
+      "map"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/变量的解构赋值": {
+    "title": "变量的解构赋值",
+    "description": "梳理 ES6 解构赋值的核心特性：数组解构、对象解构、字符串解构、数值和布尔值解构、函数参数解构、圆括号问题及常见用途。",
+    "tags": [
+      "es6",
+      "javascript",
+      "destructuring",
+      "array",
+      "object"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/ArrayBuffer": {
+    "title": "ArrayBuffer",
+    "description": "梳理 JavaScript 二进制数组的核心概念：ArrayBuffer 对象、TypedArray 视图、DataView 视图的用法与区别。",
+    "tags": [
+      "javascript",
+      "arraybuffer",
+      "typedarray",
+      "dataview",
+      "binary"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/编程风格": {
+    "title": "编程风格",
+    "description": "整理 ES6 推荐的编程风格指南，涵盖块级作用域、字符串、解构赋值、对象、数组、函数、Map、Class、Module 等模块的最佳实践。",
+    "tags": [
+      "es6",
+      "javascript",
+      "style-guide",
+      "best-practices"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/Module的语法": {
+    "title": "Module 的语法",
+    "description": "梳理 ES6 Module 的核心语法：export/import 命令、严格模式、模块整体加载、export default、export 与 import 的复合写法。",
+    "tags": [
+      "es6",
+      "javascript",
+      "module",
+      "export",
+      "import"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/Module的加载实现": {
+    "title": "Module 的加载实现",
+    "description": "梳理 ES6 模块在浏览器和 Node.js 中的加载实现：浏览器异步加载、ES6 与 CommonJS 差异、循环加载的处理机制。",
+    "tags": [
+      "es6",
+      "javascript",
+      "module",
+      "commonjs",
+      "node"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/修饰器": {
+    "title": "修饰器",
+    "description": "梳理 ES6 修饰器的核心用法：类的修饰、方法的修饰、core-decorators.js 第三方模块的常用修饰器。",
+    "tags": [
+      "es6",
+      "javascript",
+      "decorator",
+      "class",
+      "core-decorators"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/Class的基本语法": {
+    "title": "Class 的基本语法",
+    "description": "梳理 ES6 Class 的核心语法：简介、constructor 方法、类的实例对象、Class 表达式、不存在变量提升、私有方法与私有属性、this 指向、静态方法、new.target 属性。",
+    "tags": [
+      "es6",
+      "javascript",
+      "class",
+      "constructor",
+      "prototype"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/Class的继承": {
+    "title": "Class 的继承",
+    "description": "梳理 ES6 Class 继承机制：extends 关键字、super 关键字、类的 prototype 和 __proto__ 属性、extends 的继承目标、原生构造函数的继承。",
+    "tags": [
+      "es6",
+      "javascript",
+      "class",
+      "inheritance",
+      "extends",
+      "super"
+    ],
+    "authors": []
+  },
+  "read/javascript/ES6标准入门/Let 和 const 命令": {
+    "title": "Let 和 const 命令",
+    "description": "梳理 ES6 的 let 和 const 声明命令：基础用法、变量提升、暂时性死区、重复声明、块级作用域、do 表达式。",
+    "tags": [
+      "es6",
+      "javascript",
+      "let",
+      "const",
+      "scope",
+      "tdz"
+    ],
+    "authors": []
+  },
   "work/百度/佛开/LED大屏/打包": {
     "title": "百度外包佛开项目大屏打包",
     "description": "详细说明百度地图佛开项目大屏端在部署阶段的打包配置，涵盖环境变量定义与 Vite 基础路径加载。",
@@ -1200,6 +1531,60 @@
         "author": "远方os",
         "link": "https://www.douyin.com/user/MS4wLjABAAAAGUvGqSgUb8n2mLUU9SOa5wmdZy-Sj5_FUt-DK5Iu6PpxO1QgrJ1_vXy6ikzz_Q4h",
         "title": "vue中如何监听子组件的生命周期"
+      }
+    ]
+  },
+  "practice/idea/vue/组件内的模板复用": {
+    "title": "Vue 组件内的模板复用",
+    "description": "不封装子组件的情况下实现模板复用，通过 DefineTemplate 保存插槽内容、UseTemplate 渲染，支持传参和自定义命名。",
+    "tags": [
+      "vue",
+      "component",
+      "template",
+      "slot",
+      "reuse"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.douyin.com/user/MS4wLjABAAAAGUvGqSgUb8n2mLUU9SOa5wmdZy-Sj5_FUt-DK5Iu6PpxO1QgrJ1_vXy6ikzz_Q4h?modal_id=7517630905150737727",
+        "title": "vue组件内的模板复用"
+      }
+    ]
+  },
+  "practice/idea/vue/组件状态重置": {
+    "title": "Vue 组件状态重置",
+    "description": "封装 useResettableRef 和 useResettableReactive 工具函数，支持函数式/对象式传入默认值，自定义深拷贝策略，优雅重置组件状态。",
+    "tags": [
+      "vue",
+      "ref",
+      "reactive",
+      "reset",
+      "state-management"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.douyin.com/user/MS4wLjABAAAAGUvGqSgUb8n2mLUU9SOa5wmdZy-Sj5_FUt-DK5Iu6PpxO1QgrJ1_vXy6ikzz_Q4h?modal_id=7436373870610795814",
+        "title": "如何重置vue组件的状态"
+      }
+    ]
+  },
+  "practice/idea/vue/自定义事件封装": {
+    "title": "自定义事件封装",
+    "description": "封装 Vue 自定义事件，利用 IntersectionObserver 监听元素视口可见性，结合 Web Animation API 实现元素平滑上升动画。",
+    "tags": [
+      "vue",
+      "custom-directive",
+      "intersectionobserver",
+      "animation",
+      "web-api"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1Nm421J7Yj/",
+        "title": "实现元素平滑上升"
       }
     ]
   }

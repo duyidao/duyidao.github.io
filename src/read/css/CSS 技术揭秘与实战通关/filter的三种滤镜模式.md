@@ -8,7 +8,7 @@
 
 ### filter 滤镜基础扫盲
 
-首先来了解一下 `filter` 滤镜，看看它的每一个属性值的作用：
+`filter` 滤镜各个属性值的作用：
 
 :::code-group
 ```html
@@ -149,7 +149,7 @@ div p {
   
     通常而言，在 `filter: drop-shadow()` 的使用过程中，可以给同个元素，同时定义多个相同的滤镜。
 
-    例如，先画一个三角形：
+    例如，画一个三角形：
 
     ```css
     div {
@@ -189,15 +189,11 @@ div p {
    
    - `filter` 作用对象：应用于元素本身及其所有子元素。
 
-       它影响的是元素内容区域（包括元素的背景、边框、文字、子元素等）。
-       
-       可以把它理解为：给这个元素“戴上”一个滤镜眼镜，所有看到的东西都经过这副眼镜。
+       它影响的是元素内容区域（包括元素的背景、边框、文字、子元素等）。相当于给元素"戴上"一个滤镜眼镜，所有看到的东西都经过这副眼镜。
 
    - `backdrop-filter` 作用对象：应用于元素背后的内容区域。
    
-      它影响的是元素后面的一切，包括背景、其他元素、甚至是视口背景。
-      
-      可以把它理解为：在元素后面加了一层滤镜玻璃，透过这层玻璃看后面的景物。
+      它影响的是元素后面的一切，包括背景、其他元素、甚至是视口背景。相当于在元素后面加了一层滤镜玻璃，透过这层玻璃看后面的景物。
 
 2. 关键要求
    
@@ -235,7 +231,7 @@ div p {
 
     - `backdrop-filter` 虽然在现代浏览器中支持良好，但在一些旧版本浏览器中可能不支持，需要考虑降级方案。
 
-下面挑几点来深入交流一下。
+挑几点来深入交流一下。
 
 #### 作用对象的差异
 
@@ -244,7 +240,7 @@ div p {
 > [!INFO] 拓展
 > 毛玻璃效果是一种视觉效果，通常用于美化设计或增加隐私保护。它通过模糊化图像的某些区域来达到这种效果，使图像看起来有一层轻微的模糊，同时仍然清晰可见。毛玻璃效果可以应用于图像、文本、按钮等各种 UI 元素上，为用户提供更加优雅和良好的视觉体验。
 
-下面用正常无效果、使用 `filter` 和使用 `backdrop-filter` 三种方式来对比一下：
+用正常无效果、使用 `filter` 和使用 `backdrop-filter` 三种方式来对比：
 
 ::: code-group
 ```html
@@ -370,7 +366,7 @@ body {
 
 而生成了 Backdrop Root 的元素会使 CSS 3D 失效！
 
-下面来看一个没设置 `backdrop-filter` 的 3d 旋转动画：
+来看一个没设置 `backdrop-filter` 的 3d 旋转动画：
 
 ![3d旋转动画](https://pic1.imgdb.cn/item/691ae7333203f7be000f2d89.gif)
 
@@ -378,7 +374,7 @@ body {
 
 ![2d旋转动画](https://pic1.imgdb.cn/item/691d28713203f7be0014d527.gif)
 
-这个是浏览器内核的老问题了，15 年就有一个 `issuse` [BUG -CSS mix-blend-mode turns off CSS perspective.](https://bugs.chromium.org/p/chromium/issues/detail?id=543445)。下面有一个回答：
+这个是浏览器内核的老问题了，15 年就有一个 `issuse` [BUG -CSS mix-blend-mode turns off CSS perspective.](https://bugs.chromium.org/p/chromium/issues/detail?id=543445)。一个回答：
 
 > When we have mix-blend-mode, the closest ancestor that creates stacking context will isolate blending. We create a render surface at the root of this isolated group and because render surfaces don't support preserve-3d(because they render into separate FBO), we see a flattened result.
 >
@@ -395,13 +391,13 @@ body {
 
 ### 作用了 `filter` 和 `backdrop-filter` 的元素会使内部的 fixed 定位失效
 
-下面这个特性并不能被视为 Bug，它是 CSS 中的一个独特表现。
+这个特性并不能被视为 Bug，它是 CSS 中的一个独特表现。
 
 通常，CSS 中的 `position: fixed` 是相对于屏幕视口进行定位的。但是，对于应用了 `filter`和 `backdrop-filter` 的元素，其内部的 `position: fixed` 元素将不再相对于屏幕视口进行定位，而是相对于 Backdrop Root 元素进行定位。
 
 这意味着，`position: fixed` 定位的元素会退化变成 `position: absolute`的表现形式。
 
-下面来看一个例子：
+来看一个例子：
 
 ::: code-group
 ```html

@@ -2,7 +2,7 @@
 
 ## 最后更新
 
-2026-08-11（第 4 批：idea/vue 第 10-12 篇完成）
+2026-08-11（第 5 批：idea/vue 第 13-15 篇完成）
 
 ## 已处理
 
@@ -23,12 +23,12 @@
 - [x] src/practice/idea/vue/更新机制和优化.md
 - [x] src/practice/idea/vue/模板自动解包Ref.md
 - [x] src/practice/idea/vue/父组件监听子组件生命周期.md
+- [x] src/practice/idea/vue/组件内的模板复用.md
+- [x] src/practice/idea/vue/组件状态重置.md
+- [x] src/practice/idea/vue/自定义事件封装.md
 
 ## 未处理
 
-- [ ] src/practice/idea/vue/组件内的模板复用.md
-- [ ] src/practice/idea/vue/组件状态重置.md
-- [ ] src/practice/idea/vue/自定义事件封装.md
 - [ ] src/practice/idea/vue/项目对render和jsx的妙用.md
 - [ ] src/practice/idea/vue/项目中TS意义与麻烦.md
 - [ ] src/practice/idea/optimize/*.md（5 篇）
@@ -45,4 +45,4 @@
 
 ## 统计
 
-词汇表共 89 条（本批无新增术语）；元数据共 69 条（本批新增 3 条 idea/vue）
+词汇表共 89 条（本批无新增术语）；元数据共 72 条（本批新增 3 条 idea/vue）

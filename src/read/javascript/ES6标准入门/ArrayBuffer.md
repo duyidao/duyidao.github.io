@@ -7,8 +7,7 @@ ArrayBuffer 对象是 JavaScript 操作二进制数据的接口之一，以数�
 2. TypedArray 视图：共包括 9 种类型的视图，比如 Uint8Array（无符号 8 位整数）数组视图，Int16Array（16 位整数）数组视图，Float32Array（32 位浮点数）数组视图等等
 3. DataView 视图：可以自定义复合格式的视图，比如第一个字节是 Uint8（无符号 8 位整数）、第二、三个字节是 Int16（16 位整数）、第四个字节开始是 Float32（32 位浮点数）等等，此外还可以自定义字节序
 
-简而言之， ArrayBuffer 对象代表原始的 进制数据， TypedArray 视图用于读／写简单类型的
-进制数据， DataView 视图用于读／写复杂类型的二进制数据
+ArrayBuffer 对象代表原始的二进制数据，TypedArray 视图用于读/写简单类型的二进制数据，DataView 视图用于读/写复杂类型的二进制数据。
 
 ### ArrayBuffer对象
 
@@ -23,7 +22,7 @@ ArrayBuffer 的参数（即内存大小）单位是字节（byte），1 个字�
 const buffer = new ArrayBuffer(8);
 ```
 
-上面代码生成了一段 8 字节的内存，每个字节的值默认都是 0。
+以上代码生成了一段 8 字节的内存，每个字节的值默认都是 0。
 
 ArrayBuffer 实例的 byteLength 属性，表示该对象所包含的二进制数据的大小（即字节长度）。
 
@@ -32,7 +31,7 @@ const buffer = new ArrayBuffer(32);
 buffer.byteLength // 32
 ```
 
-想要读写这个ArrayBuffer 对象，需要指定一个视图，创建 DataView 视图，需要提供 ArrayBuffer 对象实例作为参数。
+读写 ArrayBuffer 对象需要指定一个视图，创建 DataView 视图时，需要提供 ArrayBuffer 对象实例作为参数。
 
 ```javascript
 const buffer = new ArrayBuffer(32);
@@ -51,7 +50,7 @@ const x2 = new Uint8Array(buffer);
 // 创建一个指向该 ArrayBuffer 的 Uint8Array 视图
 ```
 
-上面代码对同一段内存，分别创建了两种视图。注意，同一个 ArrayBuffer 实例，可以根据不同的数据类型，生成不同的视图。
+以上代码对同一段内存，分别创建了两种视图。同一个 ArrayBuffer 实例，可以根据不同的数据类型，生成不同的视图。
 
 TypedArray 视图的构造函数可以接受一个表示长度的数值，或者一个类数组对象（array-like object）作为参数，直接分配内存生成底层的 ArrayBuffer 实例，同时完成对这段内存的赋值。
 。
