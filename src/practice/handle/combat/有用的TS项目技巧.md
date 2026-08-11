@@ -1,9 +1,3 @@
----
-title: 实战中有用的 TypeScript 项目技巧
-author:
-  - 三十的前端课 实战中很有用的Typescript技巧&https://www.bilibili.com/video/BV1W6PjesEe8/
----
-
 # 实战中有用的 TypeScript 项目技巧
 
 ## 第三方库处理技巧

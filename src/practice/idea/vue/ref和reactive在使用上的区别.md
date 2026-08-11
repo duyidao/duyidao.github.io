@@ -1,26 +1,19 @@
----
-title: ref和reactive在使用上的区别
-author:
-  - 三十的前端课 vue3的ref和reactive深度透析&https://www.bilibili.com/video/BV1cC411b76D
-  - 远方os 什么时候用ref，什么时候用reactive&https://www.bilibili.com/video/BV1ZwakeWEze
----
-
 # ref 和 reactive 在使用上的区别
 
 ## 区别
 
-在面试题八股文上关于这个问题的解答，大部分都是在说 `reactive` 一般用来定义对象或者数组这类复杂数据变量，不能定义基本类型。定义数字，字符串这些基本类型一般用 `ref` 。
+常见面试解答：`reactive` 用于定义对象或数组等复杂数据，不能定义基本类型；数字、字符串等基本类型用 `ref`。
 
-这么回答，对也不对，下面采用一个话题来展开讨论。
+这个回答不完全准确，下面从实际场景展开。
 
-目前网上有一个吵得沸沸扬扬的话题：`ref` 和 `reactive` 都可以声明对象和数组，那么是使用 `ref` 还是使用 `reactive` ？
+社区有一个争议：`ref` 和 `reactive` 都能声明对象和数组，该用哪个？
 
-在项目中试验一下，用 `reactive` 声明一个对象，定时器延时一秒后直接赋值。
+写一段代码验证：用 `reactive` 声明一个对象，定时器延时一秒后直接赋值。
 
 ```vue
 <script setup>
 const obj = reactive({});
-console.log(obj); // Proxy {}
+console.log(obj); // Proxy {}
 
 setTimeout(() => {
   obj = { a: 1, b: 2 };
@@ -33,10 +26,10 @@ setTimeout(() => {
 </template>
 ```
 
-运行这段代码，一秒后页面没有发生改变。查看控制台，发现有打印了，只不过在赋值前打印是一个 `Proxy` 的空对象，赋值后打印的是一个有值的普通对象。对于 `reactive` 声明的变量，直接赋值会让它失去 `Proxy` 代理。
+运行后，一秒后页面没有变化。控制台显示：赋值前打印的是 `Proxy` 空对象，赋值后打印的是普通对象。`reactive` 声明的变量，直接赋值会丢失 `Proxy` 代理。
 
 > [!IMPORTANT] 总结
-> 由赋值方式来决定。如果在业务中是直接赋值的方式，采用 `ref` 来声明变量；如果是修改值的方式，则采用 `reactive` 。使用 `ref` 和 `reactive` 并不是取决于声明什么数据类型，而是该类型的改变方式是直接赋值替换还是修改属性。
+> 由赋值方式决定。业务中采用直接赋值的方式，用 `ref`；采用修改属性值的方式，用 `reactive`。`ref` 和 `reactive` 的选择不取决于数据类型，而取决于该类型的改变方式是直接赋值替换还是修改属性。
 
 ## 一图流了解 Ref 源码
 
@@ -44,28 +37,28 @@ setTimeout(() => {
 
 ![Ref原理](https://pic1.imgdb.cn/item/689d903a58cb8da5c824324c.png)
 
-从图中不难看出，`ref` 的主要原理是：
+`ref` 的主要原理：
 
-1. 调用 `ref` 方法声明对象时，会调用一个 `RefImpl` 类，`new` 这个类创建一个实例对象
+1. 调用 `ref` 方法时，会 `new` 一个 `RefImpl` 类创建实例对象
 
-2. 判断当前参数是否是复杂数据类型（如数组、对象）。如果是，它会调用 `reactive` 方法把对象包装为 `Proxy` 对象，如果是数组还会把数组包装为类数组，再给到 `._value` ；如果是简单数据类型（如数字、字符串等）则直接给到 `._value`
+2. 判断参数是否是复杂数据类型（数组、对象）。如果是，调用 `reactive` 方法把对象包装为 `Proxy` 对象；数组还会包装为类数组，再给到 `._value`；简单数据类型（数字、字符串）直接给到 `._value`
 
    > [!WARNING] 注意
    >
-   > 1. 类数组是通过包装后把数组如 `[0, 1, 2]` 变成一个对象 `{0: 1, 1: 2, 2: 3}`，以索引为键名，值为键值
-   > 2. `shallowRef` 不会把复杂数据类型包裹到 `Proxy` 对象内，直接放到 `._value` 下。因此通过 `shallowRef` 声明的对象，修改值不会触发更新，直接赋值才会，这样在特殊场景下会有一定的性能优化。
+   > 1. 类数组是把数组如 `[0, 1, 2]` 变成 `{0: 1, 1: 2, 2: 3}`，以索引为键名，值为键值
+   > 2. `shallowRef` 不会把复杂数据类型包裹到 `Proxy` 对象内，直接放到 `._value` 下。因此通过 `shallowRef` 声明的对象，修改值不会触发更新，直接赋值才会，特定场景下有一定性能优化。
 
-3. 通过 ES6 中 `class` 的写法，通过 `get` 和 `set` 给对象一个 `value` 属性，当访问 `value` 属性时，会触发 `get` ，返回 `this._value` ，当给 `value` 赋值时，会触发 `set` ，修改 `this._value` 的值，并触发依赖更新
+3. 通过 ES6 `class` 的 `get` 和 `set` 给对象一个 `value` 属性。访问 `value` 触发 `get`，返回 `this._value`；给 `value` 赋值触发 `set`，修改 `this._value` 并触发依赖更新
 
    > [!INFO] 提示
    >
-   > 1. 通过打印也可以看到，`._value` 是高亮的，`.value` 是灰的。因为前者是实打实的赋值，后者没有赋值，而是通过 `get` 收集依赖，返回 `this._value` ，触发 `set` 后更新依赖。
+   > 1. 打印对象时 `._value` 是高亮的，`.value` 是灰的。前者是实打实的赋值，后者通过 `get` 收集依赖、返回 `this._value`，触发 `set` 后更新依赖。
    >
-   > 2. 如果替换整个 `ref` 对象，是触发整个 `ref` 对象其本身的 `set` ；如果修改对象属性，本质上触发的是 `Proxy` 的 `get` 和 `set` 。
+   > 2. 替换整个 `ref` 对象触发的是 `ref` 对象本身的 `set`；修改对象属性触发的是 `Proxy` 的 `get` 和 `set`。
 
 ### 源码
 
-下面通过阅读源码的方式看一下他做了什么处理。打开项目的 `node_modules` 文件夹，找到 `vue` 依赖的 `dist` 文件夹下的 `vue.global.js` 文件，在 1440 行左右有这么段代码：
+打开项目 `node_modules` 中 `vue` 依赖的 `dist/vue.global.js`，约 1440 行：
 
 ```js
 function isRef(r) {
@@ -85,11 +78,11 @@ function createRef(rawValue, shallow) {
 }
 ```
 
-可以看到 `shallowRef` 和 `ref` 都调用了 `createRef` 这个方法，区别是第二个参数传了不一样的布尔值。
+`shallowRef` 和 `ref` 都调用了 `createRef`，区别是第二个参数传了不同的布尔值。
 
-在 `createRef` 函数中首先判断该数据是否是 `ref` 了，如果是则不做处理，直接原样返回参数；不是 `ref` ，则 `new` 一个 `RefImpl` ，传入两个参数：变量和是否 `shallowRef` 。
+`createRef` 中先判断数据是否已是 `ref`，是则原样返回；否则 `new` 一个 `RefImpl`，传入变量和 `shallow` 标志。
 
-然后看看 `RefImpl` 类，代码如下：
+`RefImpl` 类：
 
 ```js
 class RefImpl {
@@ -117,23 +110,24 @@ class RefImpl {
 }
 ```
 
-重点的几个代码处理如下：
+关键逻辑：
 
-1. 保存接收的 `isShallowRef` 参数保存到 `this` 内
-2. 判断是否是通过 `shallowRef` 声明的变量，如果是直接把 `value` 赋值给 `this._value` ，否则调用 `toReactive` 方法
-3. 没有直接给 `.value` 赋值。而是通过 `get` 部分收集依赖，返回 `this._value` ； `set` 部分判断新赋值的键是否是对象，如果是对象就包装为 `Proxy` ，不是直接赋值。然后更新依赖
+1. 保存 `shallow` 标志到 `this`
+2. 判断是否 `shallowRef`：是则直接把 `value` 赋值给 `this._value`，否则调用 `toReactive` 方法
+3. 没有直接给 `.value` 赋值。通过 `get` 收集依赖、返回 `this._value`；`set` 判断新值是否是对象，是则包装为 `Proxy`，不是则直接赋值，然后更新依赖
 
 ### 总结
 
-1. `ref` 得到变量必须 `.value` 赋值，不然等于把 `ref` 变成了普通的数据，失去响应式
-2. `ref` 的值如果是对象，里面的对象可以是响应式的，因为引用类型会先包装成 `Proxy` 再赋值。所以 `ref` 的值如果是对象，可以修改其中的属性而引发响应式
-3. 如果是浅拷贝则对象不会被包装成 `Proxy`
+1. `ref` 变量必须 `.value` 赋值，否则等于把 `ref` 变成普通数据，失去响应式
+2. `ref` 的值如果是对象，内部对象可以响应式，因为引用类型会先包装成 `Proxy` 再赋值。所以 `ref` 的值如果是对象，可以修改其属性而引发响应式
+3. 浅拷贝则对象不会被包装成 `Proxy`
 
 ## 一图了解 Reactive 原理
 
 ![Reactive原理](https://pic1.imgdb.cn/item/689d92a158cb8da5c824369c.png)
 
-下面直接从源码入手搭配看看。还是 `vue.global.js` 文件，第 1245 行左右，代码如下：
+从源码入手。`vue.global.js` 约 1245 行：
+
 ::: code-group
 
 ```js [vue.global.js]

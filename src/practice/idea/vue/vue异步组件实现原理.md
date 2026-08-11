@@ -1,16 +1,8 @@
----
-title: Vue 异步组件实现原理
-author:
-  - 远方os vue异步组件实现原理&https://www.bilibili.com/video/BV12N8qzzE9R
----
-
 # Vue 异步组件实现原理
 
-## 前言
+在<word text="Vue" />中，`defineAsyncComponent` 方法用于定义异步组件，实现按需加载，减少初始加载时间，提高性能。
 
-在<word text="Vue"/>中，提供了一个 `defineAsyncComponent` 方法，用于定义异步组件，其作用是按需加载组件，从而减少初始加载时间，提高性能。
-
-使用方法为，传入一个函数，返回一个 `new Promise`，在 `Promise` 中返回组件对象，即可实现异步加载。
+传入一个返回 `Promise` 的函数，`Promise` 中返回组件对象即可异步加载。
 
 ```vue
 <script setup>
@@ -32,13 +24,11 @@ const AsyncComponent = defineAsyncComponent(() => {
 </script>
 ```
 
-这个功能是怎么实现的呢？
-
 ## 初步实现
 
 ### 占位符渲染
 
-先来实现一个简单的功能，调用自己写的 `defineAsyncComponent`，不考虑传参，返回一个占用符并能成功渲染在页面上。
+实现一个简单的 `defineAsyncComponent`，不考虑传参，返回占位符并渲染在页面上。
 
 ::: code-group
 
@@ -78,9 +68,9 @@ export const defineAsyncComponent = () => {
 
 ### 异步函数加载
 
-接下来接收一个参数，类型为函数，返回一个 `Promise`，在 `Promise` 中返回组件对象。
+接收一个参数，类型为函数，返回 `Promise`，`Promise` 中返回组件对象。
 
-在 `defineAsyncComponent` 中调用该函数，函数执行完毕，也就是 `.then` 方法中，将返回的组件对象赋值给 `component.value`，从而实现异步加载。
+在 `defineAsyncComponent` 中调用该函数，函数执行完毕后在 `.then` 中将返回的组件对象赋值给 `component.value`，实现异步加载。
 
 ::: code-group
 
@@ -132,20 +122,20 @@ export const defineAsyncComponent = (loader) => {
 
 :::
 
-再把占位符文本删掉，刷新查看效果，能看到页面一开始为空，2s 后出现 `hello world`。
+去掉占位符文本，刷新查看效果：页面一开始为空，2s 后出现 `hello world`。
 
 ## 需求增加
 
 ### 传参适配
 
-下面进一步增加需求，不单单能传递一个函数，还能传递一个对象，对象包含两个属性：
+增加需求：不仅能传递函数，还能传递对象，对象包含两个属性：
 
-- `loader`：即一开始的函数，返回一个 `Promise`，在 `Promise` 中返回组件对象。
-- `loadingComponent`：加载中的组件，用于在异步组件加载过程中渲染。
+- `loader`：返回 `Promise` 的函数，`Promise` 中返回组件对象。
+- `loadingComponent`：加载中组件，异步加载过程中渲染。
 
-那么在 `defineAsyncComponent` 中，需要判断传入的参数类型，如果是函数，则把传参修改为对象，原本的回调函数赋值给对象的 `loader` 属性；如果是对象，则直接调用。
+在 `defineAsyncComponent` 中判断参数类型：如果是函数，转换为对象，将回调函数赋值给 `loader` 属性；如果是对象，直接使用。
 
-后续的使用过程中，只需要把 `loader` 和 `loadingComponent` 解构出来使用即可，无需考虑传参类型，代码无需改动。
+后续使用只需解构 `loader` 和 `loadingComponent`，无需关心传参类型。
 
 ::: code-group
 
@@ -212,15 +202,15 @@ export const defineAsyncComponent = (options) => {
 
 :::
 
-还能自定义一个默认的占位符组件，用户没传 `loadingComponent` 时，渲染默认的占位符组件。
+还能自定义默认占位符组件，用户未传 `loadingComponent` 时渲染默认占位符。
 
 ### 错误处理
 
-目前只考虑到组件加载成功的情况，如果加载失败，页面就一直处于 `loadingComponent` 的状态。因此需要处理一下加载失败的情况。
+当前只处理了加载成功的情况。如果加载失败，页面一直停留在 `loadingComponent` 状态。需要处理加载失败。
 
-解决方法为传参的对象中再添加一个属性 `errorComponent`，用于处理加载失败的情况。在 `defineAsyncComponent` 中，如果加载失败，则把 `errorComponent` 赋值给 `component.value`。
+传参对象中新增 `errorComponent` 属性，用于加载失败。`defineAsyncComponent` 中加载失败时将 `errorComponent` 赋值给 `component.value`。
 
-和 `loadingComponent` 一样，如果没有传 `errorComponent`，则渲染默认的占位符组件。
+和 `loadingComponent` 一样，未传 `errorComponent` 时渲染默认占位符。
 
 ::: code-group
 
@@ -290,17 +280,15 @@ export const defineAsyncComponent = (options) => {
 
 ### 超时处理
 
-如果组件加载时间过长，比如 10s，那么页面就会一直处于 `loadingComponent` 的状态。因此需要处理一下超时的情况。
+组件加载时间过长（如 10s），页面一直停留在 `loadingComponent` 状态。需要处理超时。
 
-解决方法为传参的对象中再添加一个属性 `timeout`，用于处理加载超时的情况。在 `defineAsyncComponent` 中，如果加载超时，则把 `errorComponent` 赋值给 `component.value`。
+传参对象中新增 `timeout` 属性。在 `defineAsyncComponent` 中加载超时后将 `errorComponent` 赋值给 `component.value`。
 
-但是直接在外部写一个 `setTimeout` 是不行的，假设超时时间设置为 3s，而 `new Promise` 在 4s 执行成功，那么就无法因为超时而修改 `new Promise` 的状态，导致组件从 `errorComponent` 变为 `loader`。
+直接在外部写 `setTimeout` 不可行。假设超时 3s，`Promise` 在 4s 执行成功，则无法因超时修改 `Promise` 状态，导致组件从 `errorComponent` 变为 `loader`。
 
-那么，该怎么实现呢？
+回顾当前代码，`defineAsyncComponent` 本质是根据不同状态渲染不同组件：`pending` → `loadingComponent`；`fulfilled` → `loader` 返回的组件；`rejected` → `errorComponent`。
 
-回顾目前写的代码，`defineAsyncComponent` 无外乎就做了一件事情，根据不同的状态渲染不同的组件。`pending` 状态下，渲染 `loadingComponent`；`fulfilled` 状态下，渲染 `loader` 返回的组件；`rejected` 状态下，渲染 `errorComponent`。
-
-因此，我们可不可以自己写一个函数，返回一个 `new Promise` 呢？这个 `new Promise` 在 `loader` 执行成功后修改为 `fulfilled` 状态，在 `loader` 执行失败后修改为 `rejected` 状态。这样就能在超时后手动修改为 `rejected` 状态。
+可以封装一个函数返回 `Promise`，在 `loader` 执行成功后变为 `fulfilled`，失败后变为 `rejected`。这样就能在超时后手动改为 `rejected`。
 
 ```ts
 import { h, shallowRef } from 'vue'
@@ -349,17 +337,17 @@ export const defineAsyncComponent = (options) => {
 
 ### import、props 与 slot
 
-一般情况下，用户不会写一个函数作为 `loader`，而是会写一个 `import` 语句，引入自己写好的组件。因此，需要支持 `import` 语句，不然会报错。
+一般用户不会写函数作为 `loader`，而是写 `import` 语句引入组件。因此需要支持 `import` 语句。
 
-那么，要怎么判断用户传的是不是一个 `import` 语句呢？
+如何判断用户传的是 `import` 语句？
 
 ![import导入的打印](https://pic1.imgdb.cn/item/695b66eaa728265c64c381ff.png)
 
-打印一下，发现它有一个 `Symbol.toStringTag` 属性，值为 `Module`。因此，可以通过判断 `Symbol.toStringTag` 是否为 `Module` 来判断用户传的是不是一个 `import` 语句。
+打印发现它有一个 `Symbol.toStringTag` 属性，值为 `Module`。可通过判断 `Symbol.toStringTag` 是否为 `Module` 来判断。
 
-如果是一个 `import` 语句，那么它的 `default` 才是我们需要的组件。
+如果是 `import` 语句，它的 `default` 才是需要的组件。
 
-`h` 函数还能接收两个参数，第二个参数是 `props`，第三个参数是 `slots`。而这两个都可以在 `setup` 函数的第二个函数中获取到。
+`h` 函数还能接收第二个参数 `props` 和第三个参数 `slots`，两者都可在 `setup` 的第二个参数中获取。
 
 ::: code-group
 

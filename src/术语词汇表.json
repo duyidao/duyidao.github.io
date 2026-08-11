@@ -1145,5 +1145,16 @@
       "deploy",
       "cache"
     ]
+  },
+  "JSX": {
+    "en": "JSX",
+    "cn": "JSX 语法扩展",
+    "descript": "JavaScript 的语法扩展，允许在 JavaScript 中编写类似 HTML 的结构，常用于 React 和 Vue 的 render 函数中描述 UI。",
+    "tags": [
+      "javascript",
+      "syntax",
+      "react",
+      "vue"
+    ]
   }
 }

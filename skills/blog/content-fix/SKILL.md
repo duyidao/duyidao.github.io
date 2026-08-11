@@ -7,7 +7,7 @@ description: duyidao.github.io 博客 md 文档内容优化规范（术语打标
 
 ## 适用范围
 
-- 目标：`src/practice/` 下所有 `.md` 文档（其他目录仅在用户明确指定时处理）。
+- 目标：`src/read/`、`src/concept/`、`src/work/` 下所有 `.md` 文档（其他目录仅在用户明确指定时处理）。
 - 联动数据/配置文件（改文档必须同步维护）：
   - 术语词汇表：`src/术语词汇表.json`
   - 文档元数据：`src/文档元数据.json`

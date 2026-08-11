@@ -1,14 +1,8 @@
----
-title: customRef 实现全局 loading 封装
-author:
-  - 远方os customRef实现全局loading&https://www.bilibili.com/video/BV1Yqj3zyECy
----
-
 # customRef 实现全局 loading 封装
 
-## 前言
+## 问题
 
-在实现全局 `loading` 效果时，一般情况下会通过 `v-loading` 指令来实现，在请求接口时 `loading` 设置为 `true` ，请求完毕后设置为 `false` 。
+全局 `loading` 通常通过 `v-loading` 指令实现：请求时设为 `true`，完成后设为 `false`。
 
 ```js
 export async function request(url: string, params: Record<string, string>) {
@@ -20,13 +14,13 @@ export async function request(url: string, params: Record<string, string>) {
 }
 ```
 
-但是这么做有一个问题，如果两个请求并发，第一个请求返回了，`loading` 就变为了 `false`；但是第二个请求还没返回，此时全局 `loading` 状态已经消失了，这显然是不符合预期的。
+并发请求时会有问题：第一个请求返回后 `loading` 变为 `false`，但第二个请求尚未返回，全局 loading 状态提前消失。
 
 ## 解决方案
 
-可以转变一下思路，不单纯直接设置 `loading` 的值，而是设置 `loadingCount` 的值表示当前正在请求多少个接口，每调用了一个接口，就让数值 +1，请求完毕后让数值 -1，当数值为 0 时，表示没有接口在请求，此时 `loading` 为 `false`；只要数值不为 0，`loading` 就为 `true`。
+不直接设置 `loading` 的布尔值，改用 `loadingCount` 计数器。每发起一个请求 +1，每完成一个请求 -1，计数为 0 时 `loading` 为 `false`，否则为 `true`。
 
-怎么实现呢？可以借助 `customRef` 来实现。`customRef` 接收一个函数，这个函数接收两个参数 `track` 和 `trigger`，分别用于通知<word text="Vue" />追踪和触发更新。需要 `return` 一个对象，这个对象需要包含 `get` 和 `set` 方法。其中，`get` 方法在 `ref` 被读取时调用，`set` 方法在 `ref` 被修改时调用。
+借助 `customRef` 实现：`customRef` 接收一个回调函数，参数为 `track`（追踪依赖）和 `trigger`（触发更新），返回一个包含 `get` 和 `set` 的对象。`get` 在读取时调用，`set` 在修改时调用。
 
 ```js
 export const loading = customRef((track, trigger) => {
@@ -39,7 +33,7 @@ export const loading = customRef((track, trigger) => {
     },
     set(value) {
       loadingCount += value ? 1 : -1;
-      loadingCount = Math.max(loadingCount, 0); // 如果用户多写了几个 -1，就会被设置为负数
+      loadingCount = Math.max(loadingCount, 0);
       trigger();
     },
   };

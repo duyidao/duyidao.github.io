@@ -1,22 +1,8 @@
----
-title: 模板自动解包 Ref
-author:
-  - 远方os vue模板自动解包Ref&https://www.bilibili.com/video/BV1WABuBdEn2
----
-
 # 模板自动解包 Ref
-
-## 前言
 
 在<word text="Vue" />中，用 `ref` 声明的响应式变量，在 `script` 中使用时，需要通过 `.value` 来访问其值；而在模板 `template` 中，却可以直接访问其值。这是因为在模板中，<word text="Vue" />会自动解包 `ref`，使其可以直接访问其值。
 
-那么，在模板中，是如何实现自动解包 `ref` 呢？
-
-## 思路
-
-查看源码，可以看到底层逻辑调用了一个 `proxyRefs` 函数，该函数的作用就是将 `ref` 自动解包。
-
-下面查看一下它的源码。
+模板自动解包 Ref 是通过底层调用 `proxyRefs` 函数实现的。
 
 ::: code-group
 
@@ -61,7 +47,7 @@ export function proxyRefs<T extends object>(
 
 :::
 
-可以看到，`proxyRefs` 函数接收一个对象，并返回一个新的对象。这个新的对象是一个代理对象，它的 `get` 和 `set` 方法都被重写了。
+`proxyRefs` 函数接收一个对象，并返回一个新的 Proxy 对象，它的 `get` 和 `set` 方法都被重写了。
 
 在 `get` 方法中，如果访问的属性是 `ReactiveFlags.RAW`，则直接返回原对象；否则，调用 `unref` 函数，将 `ref` 自动解包，并返回其值。
 
@@ -89,7 +75,7 @@ export function proxyRefs<T extends object>(
 
 ## 使用
 
-模拟一下 `proxyRefs` 函数的使用。
+`proxyRefs` 函数的使用示例：
 
 ```ts [component.ts]
 const HelloWorld = {

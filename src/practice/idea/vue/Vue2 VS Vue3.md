@@ -1,9 +1,3 @@
----
-title: Vue2 VS Vue3
-author:
-  - 三十的前端课 高频问题！vue2和3有什么区别?如何回答才能体现水平&https://www.bilibili.com/video/BV1484y1m7av/
----
-
 # Vue2 VS Vue3
 
 ## Vue2
@@ -24,7 +18,7 @@ data() {
 }
 ```
 
-在页面上通过 `for...in...` 循环该对象，能够看到数据 `a` 。现在为对象 `obj` 添加一个属性 `b` ：
+页面上通过 `for...in...` 循环该对象，能看到数据 `a`。为对象 `obj` 添加属性 `b`：
 
 ```js
 mounted() {
@@ -33,11 +27,11 @@ mounted() {
 }
 ```
 
-可以看到控制台能够输出 `b` ，但是页面还是只有 `a` 没有 `b` ，也就意味着属性 `b` 没有响应式。
+控制台能输出 `b`，但页面只有 `a` 没有 `b`，属性 `b` 没有响应式。
 
 #### 无法监听到数组下标和 length 长度的变化
 
-Vue2 内部重写部分数组 API，让他们能够保持响应式：
+<word text="Vue2" />内部重写了部分数组 API 使其保持响应式：
 
 - `array.pop()`
 - `array.push()`
@@ -47,7 +41,7 @@ Vue2 内部重写部分数组 API，让他们能够保持响应式：
 - `arry.reverse()`
 - `array.splice()`
 
-而通过数组索引的方式修改数据不会响应式修改：
+通过数组索引修改数据不会响应式修改：
 
 ```js
 fn() {
@@ -55,7 +49,7 @@ fn() {
 }
 ```
 
-直接修改数组的长度也不会生效：
+直接修改数组长度也不会生效：
 
 ```js
 fn() {
@@ -65,34 +59,34 @@ fn() {
 
 #### 原因
 
-利用 `defineReactive` 方法，通过 `defineProperty` 对属性进行劫持，数组则是通过重写其方法来进行劫持，每个属性值都拥有自己的 `dep` 属性，用来存取所依赖的 `watch` ，当数据发生改变时，触发相应的 `watch` 去更新数据。
+利用 `defineReactive` 方法，通过 `Object.defineProperty` 对属性进行劫持，数组则通过重写方法进行劫持。每个属性值拥有自己的 `dep` 属性，用来存取所依赖的 `watch`，数据改变时触发相应的 `watch` 更新数据。
 
-但是呢，**Vue2 的响应式还存在一些缺陷**：1.对象新增属性，删除属性界面不会更新 2.通过数组下标修改数组内容界面不会更新
+**<word text="Vue2" />的响应式存在两个缺陷**：1. 对象新增属性、删除属性界面不会更新；2. 通过数组下标修改数组内容界面不会更新。
 
 > 原因：
 >
-> 1. <word text="Vue"/>无法检测 `property` 的添加或移除。由于<word text="Vue"/>会在初始化实例时对 `property` 执行 `getter/setter` 转化，所以 `property` 必须在 `data` 对象上存在才能让<word text="Vue"/>将它转换为响应式的
-> 2. 通过数组下标修改数组不会触发响应，尤雨溪也在 `github` 上说过，由于数组的长度可能会很大，通过索引修改数据的方式会造成很大的性能消耗，因此不对索引方法作额外处理
+> 1. <word text="Vue" />无法检测 `property` 的添加或移除。由于<word text="Vue" />在初始化实例时对 `property` 执行 `getter/setter` 转化，所以 `property` 必须在 `data` 对象上存在才能让<word text="Vue" />将其转换为响应式。
+> 2. 通过数组下标修改数组不会触发响应式。尤雨溪在 GitHub 上说明过，由于数组长度可能很大，通过索引修改数据的方式会造成很大的性能消耗，因此不对索引方法作额外处理。
 
 ### 数组响应式
 
-在对象中增加或者删除属性的时候，数据的响应式原理是不奏效的，因为<word text="Vue2"/>是用的 `Object.definedProperty` 方法进行数据劫持。
-因此在进行添加元素的时候，应该用 `$set` 来进行添加属性。使用 `$remove` 进行删除属性。
+对象中增加或删除属性时，数据响应式不生效，因为<word text="Vue2" />使用 `Object.defineProperty` 方法进行数据劫持。
+添加元素时应用 `$set` 添加属性，用 `$remove` 删除属性。
 
-对于数组，因为数组也是一对象，但我们在使用数组的 API 进行操作数组(添加元素或者是删除元素)的时候，视图是有更新的。这个的原因是为什么呢？
+数组也是对象，但使用数组 API 操作数组（添加或删除元素）时视图有更新。原因：
 
-原本上，数组的一些方法比如 `push`、`pop` 是不会触发 `getter/setter` 的。不会触发的原因是因为这是 Array 原型上的方法，并没有在 Array 本身上面。
+`push`、`pop` 等方法不会触发 `getter/setter`，因为它们是 Array 原型上的方法，不在 Array 本身上面。
 
-<word text="Vue"/>可以使用这些方法的原因是因为<word text="Vue"/>重写了这些方法。就可以使用 `push,pop,shift,unshift,splice,sort,reserve` 操作数组，并且进行响应式。
+<word text="Vue" />重写了这些方法，使 `push`、`pop`、`shift`、`unshift`、`splice`、`sort`、`reverse` 操作数组时能响应式。
 
-实现的思路：大体上就是说，是使用了拦截器覆盖了 `Array.prototype` 上的方法，在执行原型上的方法之外去做数据的响应式。
+实现思路：使用拦截器覆盖 `Array.prototype` 上的方法，在执行原型方法之外做数据响应式。
 
 - 将数组的原型存到对象 `arrayMethods` 中
-- 找到 Array 上能够改变数组自身的 7 个方法 push, pop, shift,unshift, splice, sort, reverse
+- 找到 Array 上能改变数组自身的 7 个方法：`push`、`pop`、`shift`、`unshift`、`splice`、`sort`、`reverse`
 - 将这 7 个方法进行响应式处理
-- 处理完成后，用它们把 `arrayMethods` 中对应的方法覆盖掉
-- 将需要进行响应式处理的数组 arr 的**proto**指向 `arrayMethods`，如果浏览器不支持访问**proto**，则直接将响应式处理后的 7 个方法添加到数组 arr 上
-- 如果要将一个数组完全实现响应式，需要遍历该数组，将数组中的数组使用该方法进行响应式处理，将对象使用 walk 方法进行响应式处理
+- 处理完成后，用它们覆盖 `arrayMethods` 中对应的方法
+- 将需要响应式处理的数组 arr 的 `__proto__` 指向 `arrayMethods`，如果浏览器不支持访问 `__proto__`，则直接将响应式处理后的 7 个方法添加到数组 arr 上
+- 如果要将数组完全实现响应式，需要遍历该数组，将数组中的数组使用该方法进行响应式处理，将对象使用 walk 方法进行响应式处理
 
 #### 定义拦截器
 
@@ -222,13 +216,11 @@ function observe(val, asRootData) {
 
 ### 响应式原理
 
-在<word text="Vue3"/>响应式原理主要是通过 `Proxy` 和 `Reflect` 方法实现。
+<word text="Vue3" />响应式原理主要通过 `Proxy` 和 `Reflect` 实现。
 
-`Proxy` 是 ES6 提出的新语法，他直接代理对象，而无需像 `Object.definePropetry` 方法那样重新代理，因此性能方面会更佳。
+`Proxy` 是 ES6 的新语法，直接代理对象，无需像 `Object.defineProperty` 那样重新代理，性能更佳。
 
-`Reflect` 方法可以对源对象的属性进行操作
-
-简单的方法如下所示：
+`Reflect` 可以对源对象的属性进行操作。
 
 ```js
 let person = {
@@ -262,11 +254,11 @@ console.log(person);
 
 ### hook
 
-在<word text="Vue"/>中的 `hook` 通常被称为 `Composition API`，是<a class="self_icon" href="https://cn.vuejs.org/" data-title="Vue" target="_blank">Vue</a>框架中的一个重要特性。它们的本质是一些可以在**组件内部使用的函数**，这些函数能够让你在不影响组件逻辑的情况下，增强和扩展组件的功能。
+<word text="Vue" />中的 `hook` 通常称为 `Composition API`，是<a class="self_icon" href="https://cn.vuejs.org/" data-title="Vue" target="_blank">Vue</a>框架的重要特性。本质是**组件内部使用的函数**，能在不影响组件逻辑的情况下增强和扩展组件功能。
 
-`Hook`的主要作用是**允许在组件之间重用状态逻辑**。举个例子，如果你有一个处理异步请和管理请求状态的功能，那么你可能会在多个组件中需要这个功能。在<word text="Vue2.x"/>中，你可能需要使用 `mixins` 或者 `HOC`（高阶组件）来抽象和重用这些逻辑，但这通常会导致命名冲突和逻辑混乱。
+`Hook` 的主要作用是**允许在组件之间重用状态逻辑**。例如，处理异步请求和管理请求状态的功能，可能在多个组件中都需要。在<word text="Vue2.x" />中，需要使用 `mixins` 或 `HOC`（高阶组件）来抽象和重用这些逻辑，但容易导致命名冲突和逻辑混乱。
 
-而使用<word text="Vue3"/>中的或者说 `Composition API`，就无需担心上述问题。你可以通过调用 `useFetch` 这样的自定义 `hook`，来在任何组件中很容易地重用异步请求逻辑。例如：
+使用<word text="Vue3" />的 `Composition API`，可以避免上述问题。通过调用 `useFetch` 这样的自定义 `hook`，在任何组件中重用异步请求逻辑：
 
 ```javascript
 import { reactive, onMounted } from "vue";
@@ -298,7 +290,7 @@ function useFetch(url) {
 export default useFetch;
 ```
 
-这样，在其他组件中，我们可以很简单地使用这个状态：
+在其他组件中使用：
 
 ```javascript
 import useFetch from "./useFetch";
@@ -314,33 +306,33 @@ export default {
 };
 ```
 
-这里的 `useFetch` 就是一个自定义的 `hook`（或者说是 `Composition API` ），它可以在各个组件之间重用。
+`useFetch` 就是一个自定义 `hook`（`Composition API`），可在各组件间重用。
 
 #### Vue3 中的 hook 和 mixin 的对比
 
-<word text="Vue3"/>中的 `hook`（复用性函数）和 `mixin`（混入）都是<word text="Vue"/>中为实现逻辑复用和代码组织提供的机制。不过，这两种方式有一些不同之处。以下是部分对比：
+<word text="Vue3" />的 `hook`（复用性函数）和 `mixin`（混入）都是<word text="Vue" />中实现逻辑复用和代码组织的机制。以下是区别：
 
-1.**复用性**：`mixin` 允许多个<word text="Vue"/>组件共享<word text="JavaScript"/>功能，但 `mixin` 内的生命周期函数不易理解，容易导致命名冲突。<word text="Vue3"/>的 `hook` 则是以函数形式将可复用性内容提取出来，可解决命名冲突的问题。
+1. **复用性**：`mixin` 允许多个<word text="Vue" />组件共享<word text="JavaScript" />功能，但 `mixin` 内的生命周期函数不易理解，容易导致命名冲突。<word text="Vue3" />的 `hook` 以函数形式提取可复用内容，可解决命名冲突。
 
-2.**逻辑相关性**：，由于 `mixin` 混入方法、生命周期函数中的逻辑可能散落在一整块的代码中，不方便管理与维护；而在<word text="Vue3"/>中，`hook` 更容易形成一块独立的、能够根据功能集中管理的代码。
+2. **逻辑相关性**：`mixin` 混入的方法、生命周期函数中的逻辑可能散落在整块代码中，不便管理与维护；<word text="Vue3" />的 `hook` 更容易形成独立、按功能集中管理的代码。
 
-3.**类型支持**：通过`mixin`混入的属性或方法，在类型系统中很难得到良好的支持。<word text="Vue3"/>通过 `Composition API` 的 `hook`，因其都是通过函数返回值主动暴露出来的，因此在`TypeScript`环境下有更好的类型推导支持。
+3. **类型支持**：通过 `mixin` 混入的属性或方法，在类型系统中很难得到良好支持。<word text="Vue3" />通过 `Composition API` 的 `hook`，因其通过函数返回值主动暴露，在<word text="TypeScript" />环境下有更好的类型推导支持。
 
-4.**逻辑组织**：`mixin` 无法将一个大的组件拆分为使用 `mixin` 的更小函数单元，而<word text="Vue3"/>中的 `hook` 能够轻松实现这一点。
+4. **逻辑组织**：`mixin` 无法将大组件拆分为更小的函数单元，<word text="Vue3" />的 `hook` 可以轻松实现。
 
-|                | Hooks                                                                                              | Mixins                                                                                                                  |
-| -------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| 定义           | hook 是通过 Composition API 引入的一种新特性，类似于 React 的 hook。                               | mixin 是一种对 Vue 组件进行扩展的方式。                                                                                 |
-| 功能           | 它可以组织和重用逻辑。在组件中，我们可以创建和重用复杂的逻辑代码，使得组件的逻辑更加清晰和可维护。 | 它可以将组件の代码封装到一个可复用的模块。常用于将公用的代码片段进行抽离，实现复用，使得组件的逻辑更加清晰和可维护。    |
-| 使用           | 使用 setup 方法，可以组织和复用各类逻辑.                                                           | 使用 mixin 属性，加载公用的代码片段。                                                                                   |
-| 组织代码效果   | 使用 Hooks，我们可以让组件的逻辑函数按功能组织，使得组件的逻辑结构更加清晰。                       | 使用 Mixins，我们可以将组件的各个生命周期的相关函数统一放在一起，但这样做可能会使得组件的逻辑函数分散在各个生命周期中。 |
-| 冲突问题       | Hooks 允许我们命名冲突的功能，从而避免了各种命名冲突。                                             | Mixins 可能会导致函数名冲突。如果两个 mixin 中包含相同的函数，会导致后一个 mixin 的函数覆盖先前的函数。                 |
-| 难以追踪的来源 | Hooks 使用的是函数，所以如果不加注释，可能不太容易找到其来源。                                     | 在 Mixin 中，我们可以在每个使用了公用代码片段的地方都用注释表明这段代码の来源，有助于我们更好地追踪和维护代码。         |
-| Debug 困难度   | Hooks 有更好的 Stack Trace，可以提供更优秀的 debug 体验。                                          | 对 mixins 的支持可能会出现在运行时错误的情况下，无法找到那块代码が出错的问题，从而导致调试困难。                        |
+|                | Hooks                                                                        | Mixins                                                                                                   |
+| -------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| 定义           | hook 是通过 Composition API 引入的新特性，类似于 React 的 hook。             | mixin 是一种对 Vue 组件进行扩展的方式。                                                                  |
+| 功能           | 组织和重用逻辑。在组件中创建和重用复杂的逻辑代码，使组件逻辑更清晰和可维护。 | 将组件的代码封装到可复用的模块。常用于抽离公用代码片段，实现复用，使组件逻辑更清晰和可维护。             |
+| 使用           | 使用 setup 方法组织和复用各类逻辑。                                          | 使用 mixin 属性加载公用代码片段。                                                                        |
+| 组织代码效果   | 使用 Hooks 可以让组件的逻辑函数按功能组织，使组件的逻辑结构更清晰。          | 使用 Mixins 可以将组件的各个生命周期的相关函数统一放在一起，但可能使组件的逻辑函数分散在各个生命周期中。 |
+| 冲突问题       | Hooks 允许命名冲突的功能，从而避免各种命名冲突。                             | Mixins 可能导致函数名冲突。如果两个 mixin 包含相同函数，后一个 mixin 的函数会覆盖先前的函数。            |
+| 难以追踪的来源 | Hooks 使用的是函数，如果不加注释，可能不太容易找到其来源。                   | 在 Mixin 中，可以在每个使用了公用代码片段的地方用注释表明代码来源，有助于更好地追踪和维护代码。          |
+| Debug 困难度   | Hooks 有更好的 Stack Trace，可以提供更优秀的 debug 体验。                    | 对 mixins 的支持可能在运行时错误的情况下无法找到出错的代码，导致调试困难。                               |
 
-举个例子说明这两者的区别：
+示例对比：
 
-使用 mixin 的部分：
+使用 mixin：
 
 ```javascript
 //定义一个mixin
@@ -361,9 +353,9 @@ var Component = Vue.extend({
 });
 ```
 
-这里"hello"方法是被添加到该组件的 `methods` 属性中的，并且在组件的 `created` 生命周期钩子被调用后，也调用了 `mixin` 中的 `created`。
+这里 "hello" 方法被添加到组件的 `methods` 属性中，组件的 `created` 生命周期钩子被调用后，也调用了 `mixin` 中的 `created`。
 
-使用 `hook` 的部分：
+使用 `hook`：
 
 ```javascript
 //定义一个hook
@@ -390,20 +382,21 @@ const Component = {
 };
 ```
 
-在这里，使用 "`onMounted`" 函数代替了 "`created`" 生命周期钩子，并且 "`hello`" 函数是从 `hook` 中解构出来的。相比之下，<word text="Vue3"/>的`hook`将逻辑保持在一个独立的函数中，使得组件代码保持清晰。
+这里用 `onMounted` 函数代替了 `created` 生命周期钩子，"hello" 函数从 `hook` 中解构出来。<word text="Vue3" />的 `hook` 将逻辑保持在独立函数中，使组件代码保持清晰。
 
-注意 ：<word text="Vue3"/>中可以继续使用 `mixin`。但是，<word text="Vue3"/>推荐使用 `Composition API` 来组合和重用逻辑，这使得逻辑组合和重用变得更加方便和灵活，而且可读性和可维护性也更好。根据<word text="Vue3"/>的官方文档，`Mixin` 在<word text="Vue3"/>已经被认为是一种过时的 API，而将来可能会被 `Composition API` 完全取代
+> [!NOTE]
+> <word text="Vue3" />可继续使用 `mixin`。但推荐使用 `Composition API` 来组合和重用逻辑，使逻辑组合和重用更方便、灵活，可读性和可维护性更好。根据<word text="Vue3" />官方文档，`Mixin` 在<word text="Vue3" />中已被标记为不推荐，将来可能被 `Composition API` 完全取代。
 
 ## Vue2 与 Vue3 区别
 
 1. 改成组合式 API 没有 `this`
-2. 生命周期没有 `create` ，`setup` 等同于 `create` ，卸载 `destroyed` 改成 `unmounted`
-3. Vue3 中 `v-if` 优先级高于 `v-for`
+2. 生命周期没有 `create`，`setup` 等同于 `create`，卸载 `destroyed` 改成 `unmounted`
+3. <word text="Vue3" />中 `v-if` 优先级高于 `v-for`
 4. 根实例创建从 `new app` 变为 `createApp` 方法
-5. 全局注册「如 `mixin`、全局组件、`use` 」改成用 `App` 实例调用，而不是 Vue 类调用
+5. 全局注册（如 `mixin`、全局组件、`use`）改成用 `App` 实例调用，而不是 Vue 类调用
 6. 新增传送门组件 `teleport`
 7. `template` 模版可不包在根 `div` 里
-8. Vue3 新增了静态节点，在对比更新时，如果发现节点是静态的，那么会跳过对比，从而提升性能
+8. <word text="Vue3" />新增了静态节点，在对比更新时，如果节点是静态的，会跳过对比，提升性能
 
    ::: code-group
 
@@ -433,11 +426,11 @@ const Component = {
 
    :::
 
-   不难看出，如果是模版字符串这种文本动态，会有一个标记「1」，类名这种属性动态，会有一个标记「2」，而静态节点，则没有标记。
+   模板字符串这种文本动态会有标记「1」，类名这种属性动态有标记「2」，静态节点没有标记。
 
 ### mixin 与 hook
 
-在<word text="Vue2"/>中，对于公共方法可以使用 `mixin` 混入方法。
+在<word text="Vue2" />中，公共方法可以使用 `mixin` 混入。
 
 ```js
 app.mixin({
@@ -455,7 +448,7 @@ app.mixin({
 });
 ```
 
-但是 `mixin` 是选项式 API，在<word text="Vue3"/>中，推荐使用 `Composition API`，`mixin` 不适用，更推荐使用 `hook` 。
+`mixin` 是选项式 API，在<word text="Vue3" />中推荐使用 `Composition API`，`mixin` 不适用，更推荐使用 `hook`。
 
 ```js
 import { ref, onMounted } from "vue";
@@ -478,8 +471,8 @@ export function useHello() {
 
 ### 根节点
 
-- <word text="Vue2"/>只能有一个根节点，多个根节点存在他会报错
-- <word text="Vue3"/>允许拥有多个根节点
+- <word text="Vue2" />只能有一个根节点，多个根节点会报错
+- <word text="Vue3" />允许拥有多个根节点
 
 ### 生命周期
 
@@ -498,21 +491,20 @@ export function useHello() {
 
 ### v-if 与 v-for 的优先级
 
-- 在<word text="Vue2"/>中，`v-for` 的优先级会高于 `v-if` ，因此会每循环一次就判断一次，造成极大的性能消耗和浪费
-- 在<word text="Vue3"/>中，`v-if` 优先级会高于 `v-for` ，因此当判断不生效，不渲染该 DOM 节点时，该节点的 `v-for` 会失效，不生成循环 DOM 节点
+- 在<word text="Vue2" />中，`v-for` 优先级高于 `v-if`，每循环一次就判断一次，造成性能消耗
+- 在<word text="Vue3" />中，`v-if` 优先级高于 `v-for`，当判断不生效、不渲染该 DOM 节点时，该节点的 `v-for` 失效，不生成循环 DOM 节点
 
-> 题外话
+> [!TIP]
+> 无论<word text="Vue2" />还是<word text="Vue3" />，都不建议在同一 DOM 节点中同时使用 `v-if` 和 `v-for`。
 >
-> 无论是<word text="Vue2"/>还是<word text="Vue3"/>，都不建议同时在一个 DOM 节点中使用 `v-if` 和 `v-for` 。
+> 如需实现该效果，可根据业务做不同处理：
 >
-> 如果想要实现这个效果，可以根据业务来做不同的处理，如：
->
-> - 事先使用 `filter` 过滤出需要的数组数据，再通过 `v-for` 循环遍历
-> - `v-for` 遍历后再在内部设置 `template` 标签包裹内容，在 `template` 上使用 `v-if` 判断即可
+> - 使用 `filter` 过滤出需要的数组数据，再通过 `v-for` 循环遍历
+> - `v-for` 遍历后在内部设置 `template` 标签包裹内容，在 `template` 上使用 `v-if` 判断
 
 ### API
 
-- 在<word text="Vue2"/>中，使用的是选项式 API，优点是初学者简单易懂，缺点是相关模块十分分散，不易于大型项目的维护。代码如下：
+- 在<word text="Vue2" />中，使用选项式 API，优点是初学者简单易懂，缺点是相关模块分散，不利于大型项目维护：
 
   ```vue
   <template>
@@ -533,7 +525,7 @@ export function useHello() {
   </script>
   ```
 
-- 在<word text="Vue3"/>中，使用的组合式 API，代码如下：
+- 在<word text="Vue3" />中，使用组合式 API：
 
   ```vue
   <script setup>
@@ -541,7 +533,7 @@ export function useHello() {
   </script>
   ```
 
-因为改成了组合式 API ，因此没有 `this` 。
+改为组合式 API 后，没有 `this`。
 
 ### Diff 算法
 
@@ -573,19 +565,19 @@ diff算法在初始化的时候会给每个虚拟节点添加一个patchFlags，
 | ------------------------------------------------------------------------------------------------ | ------------------------------------ |
 | 利用 ES5 的一个 API Object.defineProperty() 对数据进行劫持，结合发布者订阅者模式的方式来实现的。 | 使用了 ES6 的 Proxy API 对数据代理。 |
 
-<word text="Vue3"/>发生了改变，使用 `proxy` 替换 `Object.defineProperty`，使用 Proxy 的优势如下：
+<word text="Vue3" />使用 `Proxy` 替换 `Object.defineProperty`，优势：
 
 1. 可直接监听数组类型的数据变化
-2. 性能的提升
-3. 监听的目标为对象本身，不需要像 `Object.defineProperty` 一样遍历每个属性，有一定的性能提升
+2. 性能提升
+3. 监听的目标为对象本身，不需要像 `Object.defineProperty` 一样遍历每个属性
 4. 可直接实现对象属性的新增/删除
 
 ### 组件 v-model
 
-在<word text="Vue2"/>中，组件使用 `v-model` 实际上是为组件动态绑定 `value` ，监听 `chang` 或 `input` 事件。
+在<word text="Vue2" />中，组件使用 `v-model` 实际是为组件动态绑定 `value`，监听 `change` 或 `input` 事件。
 
-在<word text="Vue3"/>中，组件使用 `v-model` 实际上是为组件动态绑定 `modelValue` ，监听 `update:modelValue` 事件。
+在<word text="Vue3" />中，组件使用 `v-model` 实际是为组件动态绑定 `modelValue`，监听 `update:modelValue` 事件。
 
 ## Vite VS Webpack
 
-这里推荐一个文章 [Vite VS Webpack](https://zhuanlan.zhihu.com/p/568721196) 。
+参考 [Vite VS Webpack](https://zhuanlan.zhihu.com/p/568721196)。

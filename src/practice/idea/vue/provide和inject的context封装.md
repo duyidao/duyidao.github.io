@@ -1,16 +1,12 @@
----
-title: provide和inject的context封装
----
-
 # provide 和 inject 的 context 封装
 
 ## provide 和 inject
 
-`provide` 和 `inject` 是 Vue 提供的依赖注入 API，允许一个祖先组件向其所有子孙组件注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。
+`provide` 和 `inject` 是<word text="Vue" />提供的依赖注入 API，允许祖先组件向所有子孙组件注入依赖，无论组件层次多深，在上下游关系成立期间始终生效。
 
-`provide` 选项允许你指定你想要提供给后代组件的数据/方法。
+`provide` 用于指定要提供给后代组件的数据或方法。
 
-`inject` 选项允许你开始使用一个可以被提供的依赖。
+`inject` 用于接收祖先组件提供的依赖。
 
 ::: code-group
 ```js [父组件App.vue]
@@ -29,18 +25,18 @@ console.log(theme.color) // 'red'
 
 ## 为什么需要封装 context
 
-在传统的实现方式中，开发者通常需要在上级组件中使用 `provide` 提供数据，在它的子孙组件中使用 `inject` 来获取数据。但是这种方式存在一些问题：
+直接使用 `provide` 和 `inject` 有两个问题：
 
 1. `key` 容易写错，导致数据无法正确注入。
-2. 每次用都需要引入 `provide` 和 `inject`。
+2. 每次使用都需要引入 `provide` 和 `inject`。
 
-为了解决以上的问题，可以通过封装 `provide` 和 `inject` 来简化开发者的使用。
+封装后可解决上述问题。
 
 ## 封装 context
 
 ### 学习 reka-ui
 
-学习 [rake-ui](https://github.com/unovue/reka-ui/blob/v2/packages/core/src/shared/createContext.ts) 对 `createContext` 的封装实现，首先来看看它的代码：
+[reka-ui](https://github.com/unovue/reka-ui/blob/v2/packages/core/src/shared/createContext.ts) 的 `createContext` 实现：
 
 ```ts
 import type { InjectionKey } from 'vue'
@@ -95,13 +91,11 @@ export function createContext<ContextValue>(
 }
 ```
 
-去除 TypeScript 类型定义后，来具体分析这段代码的实现逻辑：
+去除<word text="TypeScript" />类型定义后，分析实现逻辑：
 
-这段代码主要导出了一个 `createContext` 函数，它接受两个参数：`providerComponentName` 和 `contextName`。
+`createContext` 接受两个参数：`providerComponentName`（提供上下文的组件名称，字符串或数组）和 `contextName`（上下文名称）。
 
-`providerComponentName` 是一个字符串或字符串数组，表示提供上下文的组件名称；`contextName` 是上下文的名称。接着做判断：
-
-- 如果 `providerComponentName` 是字符串且 `contextName` 不存在，则使用 `${providerComponentName}Context` 作为描述
+- 若 `providerComponentName` 是字符串且 `contextName` 不存在，用 `${providerComponentName}Context` 作为描述
 - 否则使用 `contextName` 作为描述
 
 ```ts
@@ -111,17 +105,17 @@ const symbolDescription
     : contextName
 ```
 
-得到的 `symbolDescription` 在内部用 `Symbol` 函数生成一个唯一的 `InjectionKey`，这个 `InjectionKey` 会被用来在 `provide` 和 `inject` 中使用。
+用 `Symbol` 函数生成唯一的 `InjectionKey`，供 `provide` 和 `inject` 使用。
 
 ```ts
 const injectionKey = Symbol(symbolDescription)
 ```
 
-然后封装两个函数：`provideContext` 和 `injectContext`。
+封装两个函数：`provideContext` 和 `injectContext`。
 
-`provideContext` 接受一个 `contextValue` 参数，调用 `provide` 函数将 `contextValue` 提供给子孙组件，`key` 直接使用前面生成的 `InjectionKey`。
+`provideContext` 接收 `contextValue`，调用 `provide` 将值注入子孙组件，`key` 使用前面生成的 `InjectionKey`。
 
-`injectContext` 接受一个 `fallback` 参数，调用 `inject` 函数获取上下文，`fallback` 作为如果获取不到上下文时的默认值，得到结果 `context`。如果结果 `context` 存在，则返回结果；如果结果为空，则直接原样返回；否则抛出错误提示。
+`injectContext` 接收 `fallback` 作为默认值，调用 `inject` 获取上下文。结果存在则返回；结果为 `null` 则原样返回；否则抛出错误提示。
 
 ```ts
 const injectContext = (fallback) => {
@@ -146,11 +140,11 @@ const provideContext = (contextValue) => {
 }
 ```
 
-最后返回一个元组，包含 `injectContext` 和 `provideContext`。
+返回一个元组 `[injectContext, provideContext]`。
 
 ### 学习 ant-design-vue
 
-再来学习一下组件库 [ant-design-vue](https://github.com/vueComponent/ant-design-vue/blob/main/components/form/context.ts) 在实现 `Form` 组件时，如何灵活封装运用 `provide` 和 `inject`。
+[ant-design-vue](https://github.com/vueComponent/ant-design-vue/blob/main/components/form/context.ts) 在 `Form` 组件中封装 `provide` 和 `inject` 的实现：
 
 ```ts
 import type { InjectionKey, ComputedRef } from 'vue';
@@ -232,15 +226,15 @@ export const useInjectFormItemPrefix = () => {
 };
 ```
 
-去除 TypeScript 类型定义后，来具体分析这段代码的实现逻辑：
+去除<word text="TypeScript" />类型定义后，分析实现逻辑：
 
-首先定义一个 `formContext` 的 `InjectionKey`，用于 `Form` 组件的上下文注入和获取。依旧是使用了 `Symbol` 来生成唯一的 `key`。
+先定义 `FormContextKey` 作为 `Form` 组件的上下文 `InjectionKey`，用 `Symbol` 生成唯一 `key`。
 
 ```ts
 export const FormContextKey = Symbol('formContextKey');
 ```
 
-接着导出封装好的 `provide` 和 `inject` 函数，凭借 `FormContextKey` ，用于 `Form` 组件的上下文注入和获取。同 `reka-ui` 一样，`inject` 会传入第二个参数，作为默认值。
+导出封装好的 `provide` 和 `inject` 函数，凭借 `FormContextKey` 实现 `Form` 组件的上下文注入和获取。与 `reka-ui` 一样，`inject` 传入第二个参数作为默认值。
 
 ::: code-group
 ```ts [provide]
@@ -272,13 +266,13 @@ export const useInjectForm = () => {
 ```
 :::
 
-然后定义一个 `FormItemPrefixContextKey`，用于 `FormItem` 组件的上下文注入和获取。
+再定义 `FormItemPrefixContextKey`，用于 `FormItem` 组件的上下文注入和获取。
 
 ```ts
 export const FormItemPrefixContextKey = Symbol('formItemPrefixContextKey');
 ```
 
-接着导出封装好的 `provide` 和 `inject` 函数，凭借 `FormItemPrefixContextKey` ，用于 `FormItem` 组件的上下文注入和获取。
+导出封装好的 `provide` 和 `inject` 函数，凭借 `FormItemPrefixContextKey` 实现 `FormItem` 组件的上下文注入和获取。
 
 ::: code-group
 ```ts [provide]
@@ -297,10 +291,10 @@ export const useInjectFormItemPrefix = () => {
 
 ## 总结
 
-总结一下，学习了两个组件库的上下文注入和获取，发现它们在实现上有一些共通点：
+两个组件库的上下文封装有共通点：
 
-1. 使用 `Symbol` 生成唯一的 `key`，用于 `provide` 和 `inject`，避免重复，保证唯一性。
-2. 用户不再需要考虑使用什么 `key` ，只需要调用封装好的 `provide` 和 `inject` 函数即可。`key` 值在内部就已经定义好，用户只需要关注上下文状态即可。
-3. 封装 `provide` 和 `inject` 函数，便于使用。还做了 `inject` 的默认值处理，防止 `inject` 失败。
+1. 用 `Symbol` 生成唯一 `key`，避免重复，保证唯一性。
+2. 用户无需关心 `key` 值，只需调用封装好的 `provide` 和 `inject` 函数。`key` 在内部定义，用户只需关注上下文状态。
+3. 封装 `provide` 和 `inject` 函数，并做 `inject` 默认值处理，防止 `inject` 失败。
 
-当然二者也有不同的地方，比如 `reka-ui` 更偏向于通用性，而 `ant-design-vue` 更偏向于 `Form` 组件内部使用。
+不同之处：`reka-ui` 偏向通用性，`ant-design-vue` 偏向 `Form` 组件内部使用。

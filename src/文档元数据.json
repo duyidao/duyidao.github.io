@@ -981,5 +981,226 @@
         "title": "websocket实战中的最佳实践"
       }
     ]
+  },
+  "practice/idea/vue/customRef封装全局loading": {
+    "title": "customRef 实现全局 loading 封装",
+    "description": "利用 Vue 的 customRef API 实现并发请求安全的全局 loading 状态管理，通过 loadingCount 计数器解决多请求并发时 loading 状态提前消失的问题。",
+    "tags": [
+      "vue",
+      "customRef",
+      "loading",
+      "composable"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV1Yqj3zyECy",
+        "title": "customRef实现全局loading"
+      }
+    ]
+  },
+  "practice/idea/vue/nextTick": {
+    "title": "$nextTick 实现原理",
+    "description": "深入剖析 Vue 的 $nextTick 异步更新机制，从源码层面解读宏任务与微任务的选择策略，涵盖 Promise、setImmediate、MessageChannel 等异步调度方案。",
+    "tags": [
+      "vue",
+      "nextTick",
+      "async",
+      "dom",
+      "source-code"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV1xwpme4EJk/",
+        "title": "vue的异步更新原理和nextTick的实现"
+      },
+      {
+        "author": "大骆",
+        "link": "https://juejin.cn/post/6891309786290192391",
+        "title": "Vue源码——nextTick实现原理"
+      }
+    ]
+  },
+  "practice/idea/vue/provide和inject的context封装": {
+    "title": "provide 和 inject 的 context 封装",
+    "description": "借鉴 reka-ui 和 ant-design-vue 的源码实现，封装类型安全的 provide/inject 上下文工具函数，通过 Symbol 生成唯一 InjectionKey 解决 key 冲突与类型推导问题。",
+    "tags": [
+      "vue",
+      "provide",
+      "inject",
+      "context",
+      "typescript"
+    ],
+    "authors": []
+  },
+  "practice/idea/vue/ref和reactive在使用上的区别": {
+    "title": "ref 和 reactive 在使用上的区别",
+    "description": "从源码层面深入剖析 ref 与 reactive 的实现原理，涵盖 RefImpl 类、Proxy 代理、toReactive 转换、shallowRef 浅层响应式等核心机制，给出直接赋值与修改属性的选择策略。",
+    "tags": [
+      "vue3",
+      "ref",
+      "reactive",
+      "reactivity",
+      "source-code"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1cC411b76D",
+        "title": "vue3的ref和reactive深度透析"
+      },
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV1ZwakeWEze",
+        "title": "什么时候用ref，什么时候用reactive"
+      }
+    ]
+  },
+  "practice/idea/vue/useTemplateRef实现原理": {
+    "title": "useTemplateRef 实现原理",
+    "description": "拆解 Vue 3.5 新增的 useTemplateRef API 实现原理，从 getCurrentInstance 获取组件实例、Object.defineProperty 劫持 refs 对象到 Object.freeze 冻结优化，逐步实现自定义版本并解决多实例 bug。",
+    "tags": [
+      "vue3",
+      "useTemplateRef",
+      "ref",
+      "dom",
+      "source-code"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV16mJHzbEB8",
+        "title": "useTemplateRef 实现原理"
+      }
+    ]
+  },
+  "practice/idea/vue/Vue2 VS Vue3": {
+    "title": "Vue2 VS Vue3 响应式原理对比",
+    "description": "对比 Vue2 与 Vue3 的响应式系统差异，涵盖 Vue2 的 Object.defineProperty 局限性、数组重写机制、$set/$remove 等补丁方案，以及 Vue3 的 Proxy 代理优势。",
+    "tags": [
+      "vue2",
+      "vue3",
+      "reactivity",
+      "proxy",
+      "defineProperty"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1484y1m7av/",
+        "title": "vue2和3有什么区别"
+      }
+    ]
+  },
+  "practice/idea/vue/vue异步组件实现原理": {
+    "title": "Vue 异步组件实现原理",
+    "description": "从零实现 defineAsyncComponent，涵盖占位符渲染、异步函数加载、loadingComponent 传参适配、errorComponent 错误处理、suspend 超时控制等异步组件核心机制。",
+    "tags": [
+      "vue3",
+      "defineAsyncComponent",
+      "async",
+      "component",
+      "source-code"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV12N8qzzE9R",
+        "title": "vue异步组件实现原理"
+      }
+    ]
+  },
+  "practice/idea/vue/全局状态管理": {
+    "title": "全局状态管理",
+    "description": "通过闭包和 effectScope 从零实现轻量级全局状态管理，替代 Pinia/Vuex 等重型库，适用于小项目或对体积敏感的场景。",
+    "tags": [
+      "vue3",
+      "state-management",
+      "effectScope",
+      "composable"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV1jBKbzrEZd/",
+        "title": "vue实现全局状态管理"
+      }
+    ]
+  },
+  "practice/idea/vue/图片动态引入使用require": {
+    "title": "Vue 图片动态引入使用 require",
+    "description": "解析 Vue 项目中动态引入图片为何需要 require，对比静态资源与动态资源的编译差异，以及 Webpack 和 Vite 两种构建工具下的不同处理方式。",
+    "tags": [
+      "vue",
+      "require",
+      "webpack",
+      "vite",
+      "image",
+      "assets"
+    ],
+    "authors": [
+      {
+        "author": "Silence",
+        "link": "https://zhuanlan.zhihu.com/p/622465389",
+        "title": "在vue中动态的引入图片为什么要使用require"
+      }
+    ]
+  },
+  "practice/idea/vue/更新机制和优化": {
+    "title": "Vue 的更新机制和优化",
+    "description": "梳理 Vue2 与 Vue3 中常见的组件不更新场景，从 Object.defineProperty 和 Proxy 两个层面解析响应式更新机制，并提供拆分组件和原生 DOM 操作两种性能优化方案。",
+    "tags": [
+      "vue",
+      "vue2",
+      "vue3",
+      "reactivity",
+      "performance",
+      "proxy",
+      "object-defineproperty"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1qS411c7oW",
+        "title": "vue项目不更新问题总结和背后源码"
+      }
+    ]
+  },
+  "practice/idea/vue/模板自动解包Ref": {
+    "title": "模板自动解包 Ref",
+    "description": "解析 Vue 模板自动解包 Ref 的底层实现，通过 proxyRefs 函数创建 Proxy 代理，拦截 get/set 操作，实现模板中无需 .value 即可访问 ref 值。",
+    "tags": [
+      "vue3",
+      "ref",
+      "proxy",
+      "template",
+      "reactivity"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV1WABuBdEn2",
+        "title": "vue模板自动解包Ref"
+      }
+    ]
+  },
+  "practice/idea/vue/父组件监听子组件生命周期": {
+    "title": "父组件监听子组件生命周期",
+    "description": "对比 Vue2 的 @hook 和 Vue3 的 @vue 事件监听子组件生命周期，包括普通 DOM 节点生命周期监听。",
+    "tags": [
+      "vue2",
+      "vue3",
+      "lifecycle",
+      "component",
+      "hook"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.douyin.com/user/MS4wLjABAAAAGUvGqSgUb8n2mLUU9SOa5wmdZy-Sj5_FUt-DK5Iu6PpxO1QgrJ1_vXy6ikzz_Q4h",
+        "title": "vue中如何监听子组件的生命周期"
+      }
+    ]
   }
 }
