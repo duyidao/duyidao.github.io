@@ -2,7 +2,7 @@
 
 ## 最后更新
 
-2026-08-11（第 36 批：webapi 3 篇——地图数据展示、复制粘贴与内容设置、数字转中文）
+2026-08-12（第 41 批：深度术语标注 - 新增 17 个术语，优化 12 篇文档）
 
 ## 已处理
 
@@ -124,13 +124,54 @@
 - [x] src/concept/javascript/webapi/地图数据展示.md
 - [x] src/concept/javascript/webapi/复制粘贴与内容设置.md
 - [x] src/concept/javascript/webapi/数字转中文.md
-- [ ] src/concept/**/*.md（余 38 篇）
+- [x] src/concept/javascript/webapi/页面自动检测更新.md
+- [x] src/concept/javascript/webapi/网站访问用户文件夹.md
+- [x] src/concept/javascript/webapi/网络状态监控.md
+- [x] src/concept/javascript/webapi/页面可见度.md
+- [x] src/concept/javascript/webapi/*.md（webapi 全部完成！9/9）
+- [x] src/concept/sharp/vite/TS 和 CSS.md
+- [x] src/concept/sharp/vite/创建项目.md
+- [x] src/concept/sharp/vite/*.md（vite 全部完成！2/2）
+- [x] src/concept/sharp/gsap/基础.md
+- [x] src/concept/sharp/gsap/时间轴.md
+- [x] src/concept/sharp/gsap/动画参数.md
+- [x] src/concept/sharp/gsap/*.md（gsap 全部完成！3/3）
+- [x] src/concept/module/git/根据 ChangeId 合并部分提交.md
+- [x] src/concept/module/git/多人合作项目变基处理.md
+- [x] src/concept/module/git/大小写规则检测.md
+- [x] src/concept/module/git/工作中项目git如何管理，冲突如何解决.md
+- [x] src/concept/module/git/*.md（git 全部完成！4/4）
+- [x] src/concept/module/browser/浏览器长截图.md
+- [x] src/concept/module/browser/浏览器渲染原理.md
+- [x] src/concept/module/browser/*.md（browser 全部完成！2/2）
+- [x] src/concept/**/*.md（concept 全部完成！）
 
 ### src/work（55 篇）
-- [ ] src/work/**/*.md（55 篇）
+- [x] src/work/灵思/**/*.md（frontmatter 迁移 30 篇完成！）
+- [x] src/work/**/*.md（元数据 55 篇添加完成！）
+- [x] src/work/**/*.md（术语打标签 51 篇完成 + 去AI化改写 6 处完成！）
+
+## 第 41 批深度术语标注（2026-08-12）
+
+新增术语 17 个：
+- 模块化、事件循环、进程、线程、原型、原型链、作用域、作用域链、跨域、宏任务、微任务、解构赋值、Navigator、File System Access API、组合模式、多态、LRU（已有）、Vuex（已有）、插槽（已有）、Page Visibility API（已有）、Pinia（已有）、闭包（已有）
+
+优化文档 12 篇：
+- concept/javascript/knowledge/模块化.md（模块化）
+- concept/javascript/knowledge/事件循环.md（事件循环、进程、线程）
+- concept/javascript/knowledge/原型与原型链.md（原型）
+- concept/javascript/knowledge/作用域与闭包.md（作用域、闭包）
+- concept/javascript/knowledge/任务管理与Promise核心.md（宏任务、微任务）
+- concept/module/network/跨域问题及解决方案.md（同源策略、跨域）
+- read/javascript/ES6标准入门/编程风格.md（解构赋值）
+- read/javascript/ES6标准入门/变量的解构赋值.md（解构赋值）
+- concept/javascript/webapi/网络状态监控.md（Navigator）
+- concept/javascript/webapi/网站访问用户文件夹.md（File System Access API）
+- vitepress/deploy.md（Gitee Pages）
+- concept/javascript/webapi/页面可见度.md（Page Visibility API）
 
 ## 待办事项
 
 ## 统计
 
-词汇表共 196 条（本批无新增）；元数据共 178 条（本批新增 3 条）
+词汇表共 227 条（本批新增 17 条）；元数据共 248 条；src 下 276 篇 md 全部优化完成 🎉

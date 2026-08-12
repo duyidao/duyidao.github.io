@@ -1,9 +1,3 @@
----
-title: 请求取消
-author:
-  - 远方os 什么？发出去的请求还想取消？&https://www.douyin.com/video/7415960942363561235
----
-
 # 请求取消
 
 请求可否取消呢？询问 AI 都说 `axios`、`fetch` 发起的请求可以通过 `abort` 方法取消，代码如下：

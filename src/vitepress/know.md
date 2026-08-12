@@ -1,16 +1,4 @@
----
-title: 拓展学习
-titleTemplate: Vitepress拓展学习
-description: VitePress拓展学习
-head:
-  - - meta
-    - name: description
-      content: vitepress拓展学习
-  - - meta
-    - name: keywords
-      content: vitepress 拓展 rewrite 组件
-pageClass: vitepress-know-class
----
+
 
 # 拓展学习
 

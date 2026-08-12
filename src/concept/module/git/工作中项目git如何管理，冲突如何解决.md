@@ -1,9 +1,3 @@
----
-title: 工作中项目git如何管理，冲突如何解决
-author:
-  - 三十的前端课 工作中项目git都如何管理，冲突，push不上去如何解决&https://www.bilibili.com/video/BV1XF411D7mq
----
-
 # 工作中项目 git 如何管理，冲突如何解决
 
 > 涉及知识点

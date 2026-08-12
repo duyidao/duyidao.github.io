@@ -1,18 +1,4 @@
----
-layout: doc
-title: 职技网 Vant组件二次封装
-titleTemplate: 职技网 项目创建
-description: 职技网 公众号 Vant组件 二次封装
-head:
-  - - meta
-    - name: description
-      content: 职技网 Vant组件二次封装
-  - - meta
-    - name: keywords
-      content: 职技网 公众号 Vant组件 二次封装
-pageClass: lingsi-job-establish
-tags: uploader,navbar
----
+
 
 # vant 组件二次封装
 

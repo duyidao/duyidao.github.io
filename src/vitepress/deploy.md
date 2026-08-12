@@ -1,16 +1,4 @@
----
-title: 部署
-titleTemplate: Vitepress部署
-description: VitePress部署
-head:
-  - - meta
-    - name: description
-      content: vitepress部署
-  - - meta
-    - name: keywords
-      content: vitepress 部署
-pageClass: vitepress-deploy-class
----
+
 
 # 部署
 
@@ -31,7 +19,7 @@ pageClass: vitepress-deploy-class
 
 ### 选择 Gitee Pages 服务
 
-1. 点击服务选择 `Gitee Pages` 服务。
+1. 点击服务选择 <word text="Gitee Pages" /> 服务。
 
    ![选择服务](https://s1.ax1x.com/2023/02/01/pSBvp9A.png)
 

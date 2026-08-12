@@ -18,11 +18,11 @@ export default defineConfig({
 
 ## Algolia
 
-Algolia 是一个提供搜索服务的云平台，它可以帮助你快速地构建强大的搜索功能。比起本地搜索它最大的优点就是速度更快。
+<word text="Algolia" /> 是一个提供搜索服务的云平台，它可以帮助你快速地构建强大的搜索功能。比起本地搜索它最大的优点就是速度更快。
 
 实现 Algolia 搜索需要以下步骤：
 
-1. 为 VitePress 项目申请 Algolia 内容抓取申请
+1. 为 <word text="VitePress" /> 项目申请 Algolia 内容抓取申请
 
    [地址](https://docsearch.algolia.com/apply/)。打开链接，填写自己的 VitePress 项目 URL 地址、电子邮箱、VitePress 项目 Github 地址（选填），然后点击提交申请。
 

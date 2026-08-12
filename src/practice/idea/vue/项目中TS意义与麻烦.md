@@ -1,9 +1,3 @@
----
-title: Vue项目中TS意义与麻烦
-author:
-  - 三十的前端课 ts项目经验分享，vue项目中ts的用途和问题&https://www.bilibili.com/video/BV18g4y1Z778/
----
-
 # Vue 项目中 TS 意义与麻烦
 
 ## TS 作用

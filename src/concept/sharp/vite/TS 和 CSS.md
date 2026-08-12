@@ -1,9 +1,3 @@
----
-title: ts css 相关问题
-author:
-  - 小猿_Eric 【手把手带你玩转Vite】ts css 相关问题&https://www.bilibili.com/video/BV1V8jEzYEGA/
----
-
 # TS CSS 相关问题
 
 ## TS

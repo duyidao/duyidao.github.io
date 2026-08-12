@@ -1,10 +1,3 @@
----
-title: 静态方法 resolve、reject、try、all
-author:
-  - 远方os Promise静态方法resolve、reject、try&https://www.douyin.com/video/7426379475899665705
-  - 远方os 手写Promise静态方法Promise.all&https://www.douyin.com/video/7447140062283762955
----
-
 # 静态方法
 
 与 `catch` 和 `finally` 类似，<word text="Promise A+" />的标准只包含了 `.then`，并没有包含其余的方法，这些方法都是 ES6 标准中新增的，因此 A+ 规范的文档没有这些事件的描述。推荐去 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve) 查看。

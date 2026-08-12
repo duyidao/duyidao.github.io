@@ -1,16 +1,4 @@
----
-title: 评论功能添加
-titleTemplate: Vitepress评论功能添加
-description: VitePress评论功能添加
-head:
-  - - meta
-    - name: description
-      content: vitepress评论功能添加
-  - - meta
-    - name: keywords
-      content: vitepress 评论功能 giscus
-pageClass: vitepress-review-class
----
+
 
 # 评论功能添加
 

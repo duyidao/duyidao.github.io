@@ -1,14 +1,8 @@
----
-title: LRU 缓存算法
-author:
-  - 渡一教育 LRU缓存算法&https://www.bilibili.com/video/BV1y3vbB3Ev3
----
-
 # LRU 缓存算法
 
 ## 前言
 
-LRU（Least Recently Used）是一种常用的页面置换算法，选择最近最久未使用的页面予以淘汰。
+<word text="LRU" />（Least Recently Used）是一种常用的页面置换算法，选择最近最久未使用的页面予以淘汰。
 
 该算法赋予每个属性一个访问字段，用来记录一个属性自上次被访问以来所经历的时间 `t`，当须淘汰一个属性时，选择现有属性中其 `t` 值最大的，即最近最久未使用的属性予以淘汰。
 

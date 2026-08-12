@@ -1,18 +1,4 @@
----
-layout: doc
-title: 视频分销token刷新
-titleTemplate: 视频分销token刷新
-description: 视频分销 项目 token刷新
-head:
-  - - meta
-    - name: description
-      content: 视频分销token刷新
-  - - meta
-    - name: keywords
-      content: 视频分销 项目 token刷新
-pageClass: lingsi-sale-token
-tags: token,uni.request
----
+
 
 # 刷新 token
 
@@ -26,22 +12,22 @@ tags: token,uni.request
    调用接口不能使用封装后的方法，因为调用刷新 `token` 的接口已经封装好了，如果继续调用封装好的方法会一直判断时间戳，调用接口，判断时间戳......进入死循环。
    :::
 
-不要用了框架就忘记原生方法。`UniApp` 提供一个方法 [uni.request](https://uniapp.dcloud.net.cn/api/request/request.html#request) 发起网络请求，参数说明如下：
+不要用了框架就忘记原生方法。<word text="UniApp" /> 提供一个方法 [uni.request](https://uniapp.dcloud.net.cn/api/request/request.html#request) 发起网络请求，参数说明如下：
 
 **参数说明**
 
-|    参数名    |           类型            | 必填 | 默认值 |                        说明                        |
-| :----------: | :-----------------------: | :--: | :----: | :------------------------------------------------: |
-|     url      |          String           |  是  |        |                开发者服务器接口地址                |
-|     data     | Object/String/ArrayBuffer |  否  |        |                     请求的参数                     |
-|    header    |          Object           |  否  |        |    设置请求的 header，header 中不能设置 Referer    |
-|    method    |          String           |  否  |  GET   |                 有效值详见下方说明                 |
-|   timeout    |          Number           |  否  | 60000  |                 超时时间，单位 ms                  |
-|   dataType   |          String           |  否  |  json  | 如果设为 json，会尝试对返回的数据做一次 JSON.parse |
-| responseType |          String           |  否  |  text  |   设置响应的数据类型。合法值：text、arraybuffer    |
-|   success    |         Function          |  否  |        |         收到开发者服务器成功返回的回调函数         |
-|     fail     |         Function          |  否  |        |               接口调用失败的回调函数               |
-|   complete   |         Function          |  否  |        |  接口调用结束的回调函数（调用成功、失败都会执行）  |
+|    参数名    |           类型            | 必填  | 默认值 |                        说明                        |
+| :----------: | :-----------------------: | :---: | :----: | :------------------------------------------------: |
+|     url      |          String           |  是   |        |                开发者服务器接口地址                |
+|     data     | Object/String/ArrayBuffer |  否   |        |                     请求的参数                     |
+|    header    |          Object           |  否   |        |    设置请求的 header，header 中不能设置 Referer    |
+|    method    |          String           |  否   |  GET   |                 有效值详见下方说明                 |
+|   timeout    |          Number           |  否   | 60000  |                 超时时间，单位 ms                  |
+|   dataType   |          String           |  否   |  json  | 如果设为 json，会尝试对返回的数据做一次 JSON.parse |
+| responseType |          String           |  否   |  text  |   设置响应的数据类型。合法值：text、arraybuffer    |
+|   success    |         Function          |  否   |        |         收到开发者服务器成功返回的回调函数         |
+|     fail     |         Function          |  否   |        |               接口调用失败的回调函数               |
+|   complete   |         Function          |  否   |        |  接口调用结束的回调函数（调用成功、失败都会执行）  |
 
 整体代码如下所示：
 

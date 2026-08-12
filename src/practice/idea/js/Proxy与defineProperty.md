@@ -1,11 +1,3 @@
----
-title: Proxy与defineProperty
-isReship: true
-author:
-  - 渡一教育 Proxy和DefineProperty&https://www.bilibili.com/video/BV1b8M7zNEJL/
-  - 渡一教育 Proxy比defineProperty到底好在哪&https://www.bilibili.com/video/BV1jeoPYxEz9/
----
-
 # Proxy 与 defineProperty
 
 ## Proxy 与 defineProperty 的区别

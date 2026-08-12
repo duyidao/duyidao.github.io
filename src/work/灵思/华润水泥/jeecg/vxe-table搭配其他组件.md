@@ -1,22 +1,8 @@
----
-layout: doc
-title: 华润水泥 j-vxe-table搭配其他组件
-titleTemplate: 华润水泥 j-vxe-table搭配其他组件
-description: 华润水泥 jeecg 后台管理 低代码 j-vxe-table
-head:
-  - - meta
-    - name: description
-      content: 华润水泥 j-vxe-table搭配其他组件
-  - - meta
-    - name: keywords
-      content: 华润水泥 jeecg 后台管理 低代码 j-vxe-table
-pageClass: lingsi-jeecg-vxe
-tags: vxe,slot
----
+
 
 # j-vxe-table 搭配其他组件
 
-`j-vxe-table` 是 `jeecg-boot` 基于`vxe-table`组件开发的自定义组件，在弹窗组件中引入一个子表单。
+`j-vxe-table` 是 <word text="JeecgBoot" /> 基于 <word text="vxe-table" /> 组件开发的自定义组件，在弹窗组件中引入一个子表单。
 
 官方文档指路：[JVXETable 文档](https://doc.jeecg.com/2043991) 。
 
@@ -78,7 +64,7 @@ tags: vxe,slot
 
 :::
 
-阅读更深层次的源码，发现其通过 `mixins` 封装保存每一列的数据到 `props` 对象内，依据同名变量中本地文件的变量优先级高于 `mixins` 文件内的变量，可以设置一个变量对象 `props` ，把修改后的值保存到 `props` 内。
+阅读更深层次的源码，发现其通过 <word text="Mixin" /> 封装保存每一列的数据到 `props` 对象内，依据同名变量中本地文件的变量优先级高于 `mixins` 文件内的变量，可以设置一个变量对象 `props` ，把修改后的值保存到 `props` 内。
 
 ::: tip 提示
 保存到 `props` 变量内而不是直接保存到传参内还有一个好处，如果用户点击新增多行，然后修改非最后一行的数据，修改的数据只会保存到最后一行中。

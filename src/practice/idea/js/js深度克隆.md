@@ -1,12 +1,6 @@
----
-title: js深度克隆
-author:
-  - 渡一教育 深度克隆的一般实现&https://www.bilibili.com/video/BV1ZJ4m1M7go/
----
-
 # js 深度克隆
 
-有一个需求，需要写一个函数，调用该函数后实现深度克隆并返回一样的数据。下面来想该怎么实现。
+有一个需求，需要写一个函数，调用该函数后实现<word text="深度克隆" />并返回一样的数据。下面来想该怎么实现。
 
 ```js
 function deepClone(v) {}

@@ -1,9 +1,3 @@
----
-title: LocalStorage封装
-author:
-  - 林三心不学挖掘机&article 如何严谨二次封装localStorage&https://mp.weixin.qq.com/s?__biz=Mzg2NjY2NTcyNg==&mid=2247493293&idx=2&sn=fa43d7d9e9bcf6508635c188657016f5&chksm=ce45f33cf9327a2a0c94d63ce61f5a14708c8a18503238a2e201184d482054e843fc6dabcf5a&mpshare=1&scene=23&srcid=0312jkC9TAzjUKEZbE1QKIVM&sharer_shareinfo=8f0b65f4be9fef825c45924b4d315278&sharer_shareinfo_first=8f0b65f4be9fef825c45924b4d315278#rd
----
-
 # LocalStorage 封装
 
 ## 基础封装

@@ -1,9 +1,3 @@
----
-title: Vue项目对render和jsx的妙用
-author:
-  - 三十的前端课 vue项目中对于render和jsx的妙用&https://www.bilibili.com/video/BV1rX4y1p7jv/
----
-
 # Vue 项目对 render 和 jsx 的妙用
 
 ## Vue 组件的本质

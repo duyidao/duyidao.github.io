@@ -1,12 +1,4 @@
----
-title: 类与.then
-author:
-  - 远方os 手写Promise第一章&https://www.douyin.com/video/7425599022020300086
-  - 远方os 手写Promise第二章-then方法&https://www.douyin.com/video/7425619248216542483
-  - 远方os 手写Promise第三章-细节处理&https://www.douyin.com/video/7425984894938959115
----
-
-# 类与.then
+# 类与 .then
 
 ## Promise 标准
 

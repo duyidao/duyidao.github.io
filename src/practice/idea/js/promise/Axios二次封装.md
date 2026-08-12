@@ -1,13 +1,3 @@
----
-title: Axios二次封装
-isReship: true
-author:
-  - 三十的前端课 axios请求二次封装都做些什么?&https://www.bilibili.com/video/BV1fg4y1M7pe/
-  - 三十的前端课 提升代码思维，从一个案例看如何提高代码质量&https://www.bilibili.com/video/BV1is4y117ow/
-  - 远方os 前端请求应该如何封装&https://www.douyin.com/video/7433832678895422783
-  - 三十的前端课 前端的请求错误处理，一节课搞通透&https://www.bilibili.com/video/BV16JQ2YTEoL/
----
-
 # Axios 二次封装
 
 ## 基本封装部分
@@ -31,7 +21,7 @@ let request = axios.create({
 
 ### 密钥
 
-`Token` ，密钥等出于权限和安全性考虑的密钥请求头设置。一般设置在请求拦截器上，做额外的处理。
+`Token` ，密钥等出于权限和安全性考虑的密钥请求头设置。一般设置在请求<word text="拦截器" />上，做额外的处理。
 
 ```js
 let whileList = ["/a"]; // 不需要验证token的白名单接口
@@ -100,7 +90,7 @@ request.intercepetors.response.use(
 );
 ```
 
-但是如果 `code` 后续如果多新增几个情况，`switch` 需要写很多，代码冗余不好维护，可以修改为策略模式。业务错误代码和浏览器错误码分开处理。还支持函数传参，做特殊提示定制。
+但是如果 `code` 后续如果多新增几个情况，`switch` 需要写很多，代码冗余不好维护，可以修改为<word text="策略模式" />。业务错误代码和浏览器错误码分开处理。还支持函数传参，做特殊提示定制。
 
 最后考虑一些特殊接口如 `blob` 数据的，接口，可以判断当前的类型是不是一个 `blob` 类型，如果是，则直接返回 `res` 即可。
 

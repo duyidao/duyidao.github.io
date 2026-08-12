@@ -1,10 +1,3 @@
----
-title: toFixed 结果因精确度产生 bug
-isReship: true
-author:
-  - 渡一教育 toFixed的结果可能会欺骗你&https://www.bilibili.com/video/BV12i4y1i7Lv/
----
-
 # toFixed 结果因精确度产生 bug
 
 ## 前情提要
@@ -16,7 +9,7 @@ author:
 (2.45).toFixed(1); // 2.5
 ```
 
-可以看到，`toFixed` 返回的结果是错误的。这是因为计算机计算浮点数存在精度错误的情况。
+可以看到，`toFixed` 返回的结果是错误的。这是因为计算机计算<word text="浮点数" />存在精度错误的情况。
 
 如果想要深入了解，必须先了解为什么计算机会存在精度问题。
 

@@ -1,9 +1,3 @@
----
-title: console.log 对象时需要注意的坑
-author:
-  - 三十的前端课 console.log对象时，一定要注意的坑&https://www.bilibili.com/video/BV1XdxxeQE3s/
----
-
 # console.log 对象时需要注意的坑
 
 ## 坑点
@@ -28,7 +22,7 @@ console.log(obj); // { a: 1, b: 2 }
 ## 原理
 
 1. `console.log` 输出的是内存地址上的东西
-2. 引用类型是按照内存地址改值的
+2. <word text="引用类型" />是按照内存地址改值的
 
 对象数组赋值存储引用类型的步骤如下：
 

@@ -1,16 +1,4 @@
----
-title: 构建
-titleTemplate: Vitepress构建
-description: VitePress构建
-head:
-  - - meta
-    - name: description
-      content: vitepress构建
-  - - meta
-    - name: keywords
-      content: vitepress 构建
-pageClass: vitepress-dev-class
----
+
 
 # 搭建
 

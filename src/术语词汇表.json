@@ -2385,5 +2385,566 @@
       "library",
       "svg"
     ]
+  },
+  "UniApp": {
+    "en": "UniApp",
+    "cn": "UniApp 跨端框架",
+    "descript": "基于 Vue.js 的跨端开发框架，一套代码可编译到 iOS、Android、Web 及各类小程序平台，提供统一的 API 和组件体系。",
+    "tags": [
+      "framework",
+      "vue",
+      "cross-platform",
+      "uniapp"
+    ]
+  },
+  "SKU": {
+    "en": "SKU",
+    "cn": "SKU 库存量单位",
+    "descript": "Stock Keeping Unit 的缩写，电商系统中用于标识商品规格的最小库存单位，每个 SKU 对应一组唯一的商品属性组合。",
+    "tags": [
+      "ecommerce",
+      "inventory"
+    ]
+  },
+  "微信小程序": {
+    "en": "WeChat Mini Program",
+    "cn": "微信小程序",
+    "descript": "微信生态内的轻量级应用，无需下载安装即可使用，支持通过微信 API 调用支付、授权、分享等原生能力。",
+    "tags": [
+      "wechat",
+      "miniprogram",
+      "platform"
+    ]
+  },
+  "Alipay": {
+    "en": "Alipay",
+    "cn": "支付宝",
+    "descript": "阿里巴巴旗下的第三方支付平台，为移动端应用提供 SDK 和 API 支持在线支付、转账等功能。",
+    "tags": [
+      "payment",
+      "platform",
+      "sdk"
+    ]
+  },
+  "Access Token": {
+    "en": "Access Token",
+    "cn": "访问令牌",
+    "descript": "用于访问受保护资源的凭证令牌，通常为短时效，客户端在请求 API 时携带此令牌以证明身份和授权。",
+    "tags": [
+      "auth",
+      "token",
+      "security"
+    ]
+  },
+  "Refresh Token": {
+    "en": "Refresh Token",
+    "cn": "刷新令牌",
+    "descript": "用于获取新 Access Token 的长效凭证令牌，当 Access Token 过期时，客户端使用 Refresh Token 换取新的 Access Token，无需用户重新登录。",
+    "tags": [
+      "auth",
+      "token",
+      "security"
+    ]
+  },
+  "JeecgBoot": {
+    "en": "JeecgBoot",
+    "cn": "JeecgBoot 低代码平台",
+    "descript": "基于 SpringBoot 和 Ant Design Vue 的低代码开发平台，提供在线表单设计、代码生成器等功能，支持快速搭建企业级后台管理系统。",
+    "tags": [
+      "low-code",
+      "java",
+      "vue",
+      "backend"
+    ]
+  },
+  "vxe-table": {
+    "en": "vxe-table",
+    "cn": "vxe-table 表格组件",
+    "descript": "基于 Vue 的企业级表格组件库，支持虚拟滚动、树形表格、可编辑单元格、导出导入等高级功能，JeecgBoot 基于此封装了 j-vxe-table 组件。",
+    "tags": [
+      "vue",
+      "table",
+      "component",
+      "grid"
+    ]
+  },
+  "uView": {
+    "en": "uView",
+    "cn": "uView UI 组件库",
+    "descript": "UniApp 生态下的多端兼容 UI 组件库，提供丰富的组件和工具函数，支持微信小程序、APP、H5 等多平台。",
+    "tags": [
+      "ui",
+      "vue",
+      "uniapp",
+      "component"
+    ]
+  },
+  "HBuilder": {
+    "en": "HBuilder",
+    "cn": "HBuilder 开发工具",
+    "descript": "DCloud 推出的前端开发 IDE，深度集成 UniApp 框架，支持代码提示、真机调试、云打包等功能。",
+    "tags": [
+      "ide",
+      "uniapp",
+      "tool"
+    ]
+  },
+  "微信网页授权": {
+    "en": "WeChat Web Authorization",
+    "cn": "微信网页授权",
+    "descript": "微信公众平台提供的 OAuth2.0 授权机制，允许公众号在网页中获取用户基本信息（如 openid、昵称），用于免登录和身份识别。",
+    "tags": [
+      "wechat",
+      "auth",
+      "oauth"
+    ]
+  },
+  "vue-color": {
+    "en": "vue-color",
+    "cn": "vue-color 颜色选择器",
+    "descript": "基于 Vue 的颜色选择器组件，提供 Sketch、Photoshop、Chrome 等多种取色器风格，支持颜色格式转换和双向绑定。",
+    "tags": [
+      "vue",
+      "color",
+      "component",
+      "picker"
+    ]
+  },
+  "natapp": {
+    "en": "natapp",
+    "cn": "natapp 内网穿透工具",
+    "descript": "基于 ngrok 的内网穿透服务，可将本地开发环境映射到公网域名，用于微信开发调试等需要公网访问的场景。",
+    "tags": [
+      "network",
+      "tunnel",
+      "debug",
+      "tool"
+    ]
+  },
+  "Element Plus": {
+    "en": "Element Plus",
+    "cn": "Element Plus 组件库",
+    "descript": "基于 Vue 3 的桌面端 UI 组件库，是 Element UI 的 Vue 3 升级版本，提供表单、表格、弹窗等丰富的企业级组件。",
+    "tags": [
+      "vue",
+      "ui",
+      "component",
+      "vue3"
+    ]
+  },
+  "Ant Design Vue": {
+    "en": "Ant Design Vue",
+    "cn": "Ant Design Vue 组件库",
+    "descript": "基于 Ant Design 设计规范的 Vue 组件库，提供表格、树形控件、表单等企业级 UI 组件，常用于中后台管理系统开发。",
+    "tags": [
+      "vue",
+      "ui",
+      "component",
+      "ant-design"
+    ]
+  },
+  "VitePress": {
+    "en": "VitePress",
+    "cn": "VitePress 静态站点生成器",
+    "descript": "基于 Vite 和 Vue 的静态站点生成器（SSG），专为文档和博客设计，支持 Markdown 编写、Vue 组件嵌入和主题定制。",
+    "tags": [
+      "vitepress",
+      "ssg",
+      "vue",
+      "vite",
+      "documentation"
+    ]
+  },
+  "Gitee Pages": {
+    "en": "Gitee Pages",
+    "cn": "Gitee Pages 静态托管",
+    "descript": "码云（Gitee）提供的静态网站托管服务，支持将仓库中的 HTML/CSS/JS 文件自动部署为可访问的网站。",
+    "tags": [
+      "gitee",
+      "hosting",
+      "deploy",
+      "static"
+    ]
+  },
+  "Giscus": {
+    "en": "Giscus",
+    "cn": "Giscus 评论系统",
+    "descript": "基于 GitHub Discussions 的评论系统插件，通过 GitHub OAuth 登录，评论数据存储在仓库的 Discussions 中，常用于 VitePress 等静态博客。",
+    "tags": [
+      "comment",
+      "github",
+      "plugin",
+      "vitepress"
+    ]
+  },
+  "Algolia": {
+    "en": "Algolia",
+    "cn": "Algolia 搜索服务",
+    "descript": "提供搜索即服务（Search-as-a-Service）的云平台，为网站和文档提供快速、实时的全文搜索能力，是 VitePress 官方推荐的搜索方案之一。",
+    "tags": [
+      "search",
+      "cloud",
+      "vitepress",
+      "service"
+    ]
+  },
+  "GitHub Actions": {
+    "en": "GitHub Actions",
+    "cn": "GitHub Actions 自动化流水线",
+    "descript": "GitHub 提供的 CI/CD 自动化平台，通过 YAML 配置定义工作流，支持代码推送时自动触发构建、测试和部署等任务。",
+    "tags": [
+      "github",
+      "ci-cd",
+      "automation",
+      "deploy"
+    ]
+  },
+  "闭包": {
+    "en": "Closure",
+    "cn": "闭包",
+    "descript": "JavaScript 中的核心概念，指函数能够访问其定义时所在作用域中的变量，即使该函数在作用域之外执行。常用于数据封装、模块化和回调函数。",
+    "tags": [
+      "javascript",
+      "scope",
+      "function"
+    ]
+  },
+  "垃圾回收": {
+    "en": "Garbage Collection",
+    "cn": "垃圾回收",
+    "descript": "自动管理内存的机制，由垃圾回收器（GC）定期查找并释放不再被引用的内存空间，JavaScript 引擎（如 V8）使用标记清除等算法实现。",
+    "tags": [
+      "memory",
+      "javascript",
+      "v8",
+      "performance"
+    ]
+  },
+  "原型链": {
+    "en": "Prototype Chain",
+    "cn": "原型链",
+    "descript": "JavaScript 实现继承的核心机制，每个对象都有一个内部 [[Prototype]] 链接指向其原型对象，形成一条链式查找路径，是 instanceof 和属性查找的基础。",
+    "tags": [
+      "javascript",
+      "inheritance",
+      "prototype"
+    ]
+  },
+  "instanceof": {
+    "en": "instanceof",
+    "cn": "instanceof 运算符",
+    "descript": "JavaScript 二元运算符，用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上，常用于判断对象类型。",
+    "tags": [
+      "javascript",
+      "operator",
+      "type-check",
+      "prototype"
+    ]
+  },
+  "拦截器": {
+    "en": "Interceptor",
+    "cn": "拦截器",
+    "descript": "Axios 等 HTTP 客户端提供的中间件机制，在请求发送前或响应返回后拦截并处理，常用于统一添加 Token、日志记录、错误处理等。",
+    "tags": [
+      "axios",
+      "http",
+      "middleware",
+      "request"
+    ]
+  },
+  "观察者模式": {
+    "en": "Observer Pattern",
+    "cn": "观察者模式",
+    "descript": "一种行为设计模式，定义对象间的一对多依赖关系，当被观察对象状态改变时，所有依赖它的观察者都会收到通知并自动更新，常用于事件处理系统。",
+    "tags": [
+      "design-pattern",
+      "behavioral",
+      "event",
+      "javascript"
+    ]
+  },
+  "策略模式": {
+    "en": "Strategy Pattern",
+    "cn": "策略模式",
+    "descript": "一种行为设计模式，定义一系列算法并将每个算法封装起来使其可以互相替换，策略模式让算法的变化独立于使用算法的客户端，常用于替代多重条件分支。",
+    "tags": [
+      "design-pattern",
+      "behavioral",
+      "algorithm",
+      "javascript"
+    ]
+  },
+  "组合模式": {
+    "en": "Composite Pattern",
+    "cn": "组合模式",
+    "descript": "一种结构型设计模式，将对象组合成树状结构以表示"部分-整体"的层次关系，使客户端对单个对象和组合对象的使用具有一致性，常用于 UI 组件嵌套。",
+    "tags": [
+      "design-pattern",
+      "structural",
+      "component",
+      "tree"
+    ]
+  },
+  "多态": {
+    "en": "Polymorphism",
+    "cn": "多态",
+    "descript": "面向对象编程的核心特性之一，指父类中定义的属性和方法被子类继承后可以有不同的实现，通过方法重写实现同一接口的不同行为。",
+    "tags": [
+      "oop",
+      "class",
+      "inheritance",
+      "typescript"
+    ]
+  },
+  "LRU": {
+    "en": "LRU",
+    "cn": "LRU 缓存算法",
+    "descript": "Least Recently Used 的缩写，一种常用的缓存淘汰策略，当缓存容量满时优先淘汰最近最少使用的数据，常用于浏览器缓存、数据库缓存、操作系统页面置换等场景。",
+    "tags": [
+      "algorithm",
+      "cache",
+      "data-structure"
+    ]
+  },
+  "Vuex": {
+    "en": "Vuex",
+    "cn": "Vuex 状态管理库",
+    "descript": "Vue.js 的官方状态管理库，采用集中式存储管理应用的所有组件的状态，包含 State、Getter、Mutation、Action 和 Module 五大核心概念。",
+    "tags": [
+      "vue",
+      "state-management",
+      "store"
+    ]
+  },
+  "插槽": {
+    "en": "Slot",
+    "cn": "插槽",
+    "descript": "Vue 组件的内容分发机制，允许父组件向子组件指定位置插入模板片段，包括默认插槽、具名插槽和作用域插槽，是实现组件灵活组合的核心 API。",
+    "tags": [
+      "vue",
+      "component",
+      "template"
+    ]
+  },
+  "循环引用": {
+    "en": "Circular Reference",
+    "cn": "循环引用",
+    "descript": "指对象内部某个属性直接或间接引用对象自身，形成引用闭环，在 JSON 序列化、深拷贝、垃圾回收等场景中需要特殊处理。",
+    "tags": [
+      "javascript",
+      "object",
+      "memory"
+    ]
+  },
+  "浮点数": {
+    "en": "Floating-Point Number",
+    "cn": "浮点数",
+    "descript": "计算机中用于表示小数的数值类型，遵循 IEEE 754 标准，由于二进制存储精度限制，部分十进制小数无法精确表示，会产生精度误差。",
+    "tags": [
+      "computer-science",
+      "number",
+      "ieee754"
+    ]
+  },
+  "引用类型": {
+    "en": "Reference Type",
+    "cn": "引用类型",
+    "descript": "JavaScript 中通过内存地址存储和访问的数据类型，包括 Object、Array、Function 等，赋值时传递的是内存地址而非值本身，修改会相互影响。",
+    "tags": [
+      "javascript",
+      "data-type",
+      "memory"
+    ]
+  },
+  "深度克隆": {
+    "en": "Deep Clone",
+    "cn": "深度克隆",
+    "descript": "创建对象或数组的完整副本，递归复制所有嵌套层级，新对象与原对象完全独立，修改互不影响，与浅拷贝（Shallow Copy）相对。",
+    "tags": [
+      "javascript",
+      "object",
+      "algorithm"
+    ]
+  },
+  "纯函数": {
+    "en": "Pure Function",
+    "cn": "纯函数",
+    "descript": "函数式编程的核心概念，指对于相同的输入永远返回相同的输出，且不产生任何可观察的副作用（如修改外部变量、发送网络请求等），具有可预测性和可测试性。",
+    "tags": [
+      "functional-programming",
+      "javascript",
+      "design"
+    ]
+  },
+  "副作用": {
+    "en": "Side Effect",
+    "cn": "副作用",
+    "descript": "函数在执行过程中除了返回值之外，还对函数外部环境产生的额外影响，如修改全局变量、DOM 操作、网络请求、写入文件等，在函数式编程中应尽量避免。",
+    "tags": [
+      "functional-programming",
+      "javascript",
+      "design"
+    ]
+  },
+  "并发": {
+    "en": "Concurrency",
+    "cn": "并发",
+    "descript": "计算机科学中同时处理多个任务的能力，在 JavaScript 中通过事件循环和异步机制实现，多个任务交替执行而非同时执行，区别于并行（Parallelism）。",
+    "tags": [
+      "computer-science",
+      "async",
+      "javascript"
+    ]
+  },
+  "Page Visibility API": {
+    "en": "Page Visibility API",
+    "cn": "页面可见度 API",
+    "descript": "浏览器提供的 Web API，通过 visibilitychange 事件和 visibilityState 属性检测页面的可见状态，用于优化资源消耗（如暂停动画、降低定时器频率等）。",
+    "tags": [
+      "web-api",
+      "browser",
+      "performance"
+    ]
+  },
+  "模块化": {
+    "en": "Modularization",
+    "cn": "模块化",
+    "descript": "将程序按功能拆分为独立模块的开发方式，每个模块隐藏内部实现并对外暴露接口，可解决全局变量污染、提高代码复用性和可维护性，常见规范有 AMD、CMD、CommonJS、ES Module。",
+    "tags": [
+      "javascript",
+      "architecture",
+      "commonjs",
+      "esmodule"
+    ]
+  },
+  "事件循环": {
+    "en": "Event Loop",
+    "cn": "事件循环",
+    "descript": "JavaScript 的运行机制，负责协调同步任务、异步任务（微任务和宏任务）的执行顺序，主线程通过不断从任务队列中取出任务执行来实现非阻塞 I/O。",
+    "tags": [
+      "javascript",
+      "async",
+      "browser"
+    ]
+  },
+  "进程": {
+    "en": "Process",
+    "cn": "进程",
+    "descript": "操作系统资源分配的基本单位，每个进程拥有独立的内存空间，进程之间相互隔离，一个程序的运行至少需要一个进程，浏览器是多进程架构的典型应用。",
+    "tags": [
+      "computer-science",
+      "os",
+      "browser"
+    ]
+  },
+  "线程": {
+    "en": "Thread",
+    "cn": "线程",
+    "descript": "操作系统调度的最小执行单元，一个进程可包含多个线程，线程共享进程的内存空间，主线程是进程启动时自动创建的线程，JavaScript 在浏览器中运行在主线程上。",
+    "tags": [
+      "computer-science",
+      "os",
+      "browser"
+    ]
+  },
+  "原型": {
+    "en": "Prototype",
+    "cn": "原型",
+    "descript": "JavaScript 中每个对象都有一个内部属性指向其原型对象，原型对象上的属性和方法可被实例共享，通过 prototype 和 __proto__ 实现继承关系，是 JavaScript 原型继承机制的基础。",
+    "tags": [
+      "javascript",
+      "oop",
+      "inheritance"
+    ]
+  },
+  "原型链": {
+    "en": "Prototype Chain",
+    "cn": "原型链",
+    "descript": "JavaScript 中对象通过 __proto__ 指针逐级向上查找属性和方法的链条，终点是 Object.prototype（其 __proto__ 为 null），是实现属性继承和共享的核心机制。",
+    "tags": [
+      "javascript",
+      "oop",
+      "inheritance"
+    ]
+  },
+  "作用域": {
+    "en": "Scope",
+    "cn": "作用域",
+    "descript": "变量和函数可被访问的范围，分为全局作用域、函数作用域和块级作用域（ES6 引入 let/const），作用域决定了变量的生命周期和可见性，是 JavaScript 闭包机制的基础。",
+    "tags": [
+      "javascript",
+      "closure",
+      "variable"
+    ]
+  },
+  "作用域链": {
+    "en": "Scope Chain",
+    "cn": "作用域链",
+    "descript": "JavaScript 中变量查找的机制，当访问一个变量时，先从当前作用域查找，若未找到则逐级向上层作用域查找，直到全局作用域，这一层层嵌套的作用域形成作用域链。",
+    "tags": [
+      "javascript",
+      "closure",
+      "variable"
+    ]
+  },
+  "跨域": {
+    "en": "Cross-Origin",
+    "cn": "跨域",
+    "descript": "浏览器同源策略下的安全限制，当页面源与请求目标源的协议、域名或端口任一不同时即为跨域，需通过 CORS、JSONP、代理等方式解决。",
+    "tags": [
+      "network",
+      "browser",
+      "security"
+    ]
+  },
+  "宏任务": {
+    "en": "Macro Task",
+    "cn": "宏任务",
+    "descript": "JavaScript 事件循环中的一类任务，包括 script 整体代码、setTimeout、setInterval、I/O、UI 渲染等，每个事件循环周期执行一个宏任务。",
+    "tags": [
+      "javascript",
+      "async",
+      "event-loop"
+    ]
+  },
+  "微任务": {
+    "en": "Micro Task",
+    "cn": "微任务",
+    "descript": "JavaScript 事件循环中优先级高于宏任务的一类任务，包括 Promise.then/catch/finally、MutationObserver、queueMicrotask 等，在当前宏任务执行完毕后立即执行清空微任务队列。",
+    "tags": [
+      "javascript",
+      "async",
+      "event-loop"
+    ]
+  },
+  "解构赋值": {
+    "en": "Destructuring Assignment",
+    "cn": "解构赋值",
+    "descript": "ES6 引入的语法，允许按模式匹配从数组或对象中提取值并赋值给变量，支持默认值设置和嵌套解构，简化了从复杂数据结构中提取数据的操作。",
+    "tags": [
+      "javascript",
+      "es6",
+      "syntax"
+    ]
+  },
+  "Navigator": {
+    "en": "Navigator",
+    "cn": "Navigator 接口",
+    "descript": "浏览器提供的 Web API 接口，代表用户代理的状态和身份，通过 window.navigator 访问，可获取浏览器信息、网络连接状态、剪贴板、地理位置等用户环境信息。",
+    "tags": [
+      "web-api",
+      "browser",
+      "network"
+    ]
+  },
+  "File System Access API": {
+    "en": "File System Access API",
+    "cn": "文件系统访问 API",
+    "descript": "浏览器提供的 Web API，允许网页在用户授权后直接读取和写入用户本地文件系统中的文件和文件夹，通过 showDirectoryPicker 和 showOpenFilePicker 等方法实现。",
+    "tags": [
+      "web-api",
+      "browser",
+      "file-system"
+    ]
   }
 }

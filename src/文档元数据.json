@@ -1323,6 +1323,780 @@
       }
     ]
   },
+  "practice/idea/js/promise/write/手写Promise静态方法": {
+    "title": "静态方法",
+    "description": "手写实现 Promise.resolve、Promise.reject、Promise.try、Promise.all 等静态方法，对照 MDN 规范逐步实现并说明核心逻辑。",
+    "tags": [
+      "promise",
+      "javascript",
+      "handwriting"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.douyin.com/video/7426379475899665705",
+        "title": "Promise静态方法resolve、reject、try"
+      },
+      {
+        "author": "远方os",
+        "link": "https://www.douyin.com/video/7447140062283762955",
+        "title": "手写Promise静态方法Promise.all"
+      }
+    ]
+  },
+  "practice/idea/js/promise/write/手写Promise类与.then": {
+    "title": "类与.then",
+    "description": "手写实现 Promise 类与 .then 方法，对照 Promise A+ 规范逐步实现核心逻辑，涵盖状态管理、thenable 处理等细节。",
+    "tags": [
+      "promise",
+      "javascript",
+      "handwriting"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.douyin.com/video/7425599022020300086",
+        "title": "手写Promise第一章"
+      },
+      {
+        "author": "远方os",
+        "link": "https://www.douyin.com/video/7425619248216542483",
+        "title": "手写Promise第二章-then方法"
+      },
+      {
+        "author": "远方os",
+        "link": "https://www.douyin.com/video/7425984894938959115",
+        "title": "手写Promise第三章-细节处理"
+      }
+    ]
+  },
+  "practice/idea/js/promise/write/手写Promise方法catch与finally": {
+    "title": ".catch 与 .finally",
+    "description": "手写实现 Promise.prototype.catch 与 Promise.prototype.finally 方法，在已有 Promise 类基础上扩展，对照 ES6 规范说明实现细节。",
+    "tags": [
+      "promise",
+      "javascript",
+      "handwriting"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.douyin.com/video/7426379475899665705",
+        "title": "手写Promise第四章-catch和finally"
+      }
+    ]
+  },
+  "practice/idea/js/promise/高量级任务执行优化": {
+    "title": "高量级任务执行优化",
+    "description": "分析高量级任务阻塞主线程的问题，通过时间切片、requestIdleCallback 等方案优化任务执行，避免页面卡顿。",
+    "tags": [
+      "performance",
+      "javascript",
+      "optimization"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1rc411b7Pz/",
+        "title": "高量级任务执行优化"
+      }
+    ]
+  },
+  "practice/idea/js/promise/请求取消abort": {
+    "title": "请求取消",
+    "description": "介绍通过 AbortController 取消 Axios 与 Fetch 请求的方法，说明请求取消的底层原理与应用场景。",
+    "tags": [
+      "axios",
+      "fetch",
+      "abort",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.douyin.com/video/7415960942363561235",
+        "title": "什么？发出去的请求还想取消？"
+      }
+    ]
+  },
+  "practice/idea/js/promise/消除异步传染性": {
+    "title": "消除异步传染性",
+    "description": "分析 async/await 的传染性问题，探讨如何在不改变函数签名的情况下消除异步传染，实现同步化调用。",
+    "tags": [
+      "async",
+      "promise",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1hp4y1A71j/",
+        "title": "消除异步传染性"
+      }
+    ]
+  },
+  "practice/idea/js/promise/并发请求封装": {
+    "title": "并发请求封装",
+    "description": "介绍前端并发请求的封装方法，涵盖并发控制、失败重试等场景，实现多个请求同时发送并统一处理结果。",
+    "tags": [
+      "promise",
+      "concurrency",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1Ya4y1o7ur/",
+        "title": "常见面试题学知识，前端并发多个请求并失败重发?"
+      }
+    ]
+  },
+  "practice/idea/js/promise/并发任务控制": {
+    "title": "并发任务控制",
+    "description": "介绍前端并发任务控制的方法，通过 Promise 实现任务队列，控制同时执行的任务数量，避免资源过载。",
+    "tags": [
+      "promise",
+      "concurrency",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1Pw411i7co/",
+        "title": "并发任务控制"
+      },
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1Ya4y1o7ur/",
+        "title": "前端并发多个请求并失败重发"
+      }
+    ]
+  },
+  "practice/idea/js/promise/如何避免相同的请求重复发送": {
+    "title": "如何避免相同的请求重复发送",
+    "description": "介绍如何通过缓存请求结果避免相同请求重复发送，实现多个组件共享同一请求结果，减少资源浪费。",
+    "tags": [
+      "axios",
+      "cache",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV1WRp7ezExP",
+        "title": "如何避免相同的请求重复发送"
+      }
+    ]
+  },
+  "practice/idea/js/promise/Axios二次封装": {
+    "title": "Axios 二次封装",
+    "description": "介绍 Axios 二次封装的常见实践，涵盖全局配置、请求拦截、响应拦截、错误处理等，提升代码复用性与可维护性。",
+    "tags": [
+      "axios",
+      "http",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1fg4y1M7pe/",
+        "title": "axios请求二次封装都做些什么?"
+      },
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1is4y117ow/",
+        "title": "提升代码思维，从一个案例看如何提高代码质量"
+      },
+      {
+        "author": "远方os",
+        "link": "https://www.douyin.com/video/7433832678895422783",
+        "title": "前端请求应该如何封装"
+      },
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV16JQ2YTEoL/",
+        "title": "前端的请求错误处理，一节课搞通透"
+      }
+    ]
+  },
+  "practice/idea/vue/项目对render和jsx的妙用": {
+    "title": "Vue 项目对 render 和 jsx 的妙用",
+    "description": "介绍 Vue 组件中 render 函数与 JSX 语法的使用场景，说明在 template 难以表达复杂逻辑时，如何用 render/jsx 实现更灵活的组件渲染。",
+    "tags": [
+      "vue",
+      "render",
+      "jsx"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1rX4y1p7jv/",
+        "title": "vue项目中对于render和jsx的妙用"
+      }
+    ]
+  },
+  "practice/idea/vue/项目中TS意义与麻烦": {
+    "title": "Vue 项目中 TS 意义与麻烦",
+    "description": "分享 TypeScript 在 Vue 项目中的实际价值与常见问题，涵盖公共方法类型提示、组件 Props 类型校验、第三方库类型检测等场景。",
+    "tags": [
+      "vue",
+      "typescript",
+      "type"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV18g4y1Z778/",
+        "title": "ts项目经验分享，vue项目中ts的用途和问题"
+      }
+    ]
+  },
+  "practice/idea/vue/自定义事件封装": {
+    "title": "自定义事件封装",
+    "description": "介绍 Vue 项目中封装自定义事件的实践，以元素平滑上升滚动效果为例，结合 Element.animate 与 IntersectionObserver 实现视口动画。",
+    "tags": [
+      "vue",
+      "animation",
+      "intersection-observer"
+    ],
+    "authors": []
+  },
+  "practice/idea/vue/组件状态重置": {
+    "title": "Vue 组件状态重置",
+    "description": "介绍 Vue 组件状态重置的几种方式，包括浅拷贝初始值、key 强制重新渲染等方法，对比各方案的适用场景。",
+    "tags": [
+      "vue",
+      "state",
+      "component"
+    ],
+    "authors": []
+  },
+  "practice/idea/vue/组件内的模板复用": {
+    "title": "Vue 组件内的模板复用",
+    "description": "介绍 Vue 组件内模板复用的方式，通过 v-for 遍历或组件封装减少重复模板代码，提升代码可维护性。",
+    "tags": [
+      "vue",
+      "template",
+      "component"
+    ],
+    "authors": []
+  },
+  "practice/idea/vue/父组件监听子组件生命周期": {
+    "title": "父组件监听子组件生命周期",
+    "description": "介绍 Vue2 的 @hook 事件与 Vue3 的生命周期事件机制，实现在父组件中监听子组件的生命周期钩子。",
+    "tags": [
+      "vue",
+      "lifecycle",
+      "component"
+    ],
+    "authors": []
+  },
+  "practice/idea/vue/模板自动解包Ref": {
+    "title": "模板自动解包 Ref",
+    "description": "分析 Vue 模板自动解包 Ref 的底层原理，通过源码解读 proxyRefs 函数，说明 script 中 .value 与 template 中自动解包的区别。",
+    "tags": [
+      "vue",
+      "ref",
+      "reactivity"
+    ],
+    "authors": []
+  },
+  "practice/idea/vue/更新机制和优化": {
+    "title": "Vue 的更新机制和优化",
+    "description": "分析 Vue2 与 Vue3 更新机制的差异，列举常见不更新原因及排查方法，涵盖对象新增属性、数组下标修改、DOM 操作等场景。",
+    "tags": [
+      "vue",
+      "reactivity",
+      "optimization"
+    ],
+    "authors": []
+  },
+  "practice/idea/vue/图片动态引入使用require": {
+    "title": "Vue 图片动态引入使用 require",
+    "description": "分析 Vue 项目中动态图片引入失效的原因，区分静态资源与动态资源，说明 Webpack 中 require 编译静态资源路径的原理。",
+    "tags": [
+      "vue",
+      "webpack",
+      "image"
+    ],
+    "authors": []
+  },
+  "practice/idea/vue/全局状态管理": {
+    "title": "全局状态管理",
+    "description": "介绍不依赖 Pinia/Vuex 的轻量级全局状态管理方案，通过闭包与响应式 API 实现简单的状态共享，适合小项目或对体积有要求的场景。",
+    "tags": [
+      "vue",
+      "state",
+      "reactive"
+    ],
+    "authors": []
+  },
+  "practice/idea/vue/vue异步组件实现原理": {
+    "title": "Vue 异步组件实现原理",
+    "description": "分析 Vue 中 defineAsyncComponent 的实现原理，从源码角度解读异步组件的加载、等待、错误处理及超时机制。",
+    "tags": [
+      "vue",
+      "async",
+      "component"
+    ],
+    "authors": []
+  },
+  "practice/idea/vue/useTemplateRef实现原理": {
+    "title": "useTemplateRef 实现原理",
+    "description": "介绍 Vue 3.5 新增的 useTemplateRef API 的实现原理，对比传统 ref 属性方式获取 DOM 元素的差异。",
+    "tags": [
+      "vue",
+      "ref",
+      "template"
+    ],
+    "authors": []
+  },
+  "practice/idea/vue/ref和reactive在使用上的区别": {
+    "title": "ref 和 reactive 在使用上的区别",
+    "description": "从实际场景出发对比 ref 与 reactive 的差异，包括类型支持、替换行为、解构响应式等方面，给出使用建议。",
+    "tags": [
+      "vue",
+      "ref",
+      "reactive",
+      "reactivity"
+    ],
+    "authors": []
+  },
+  "practice/idea/vue/provide和inject的context封装": {
+    "title": "provide 和 inject 的 context 封装",
+    "description": "介绍 Vue 中 provide/inject 的使用方式，以及如何封装为 context 模式实现更安全的依赖注入，避免直接修改导致的数据混乱。",
+    "tags": [
+      "vue",
+      "provide",
+      "inject",
+      "context"
+    ],
+    "authors": []
+  },
+  "practice/idea/vue/nextTick": {
+    "title": "$nextTick",
+    "description": "分析 Vue 中 $nextTick 的执行原理，包括异步更新队列、宏任务与微任务的选择策略，以及 callback 回调的执行时机。",
+    "tags": [
+      "vue",
+      "nexttick",
+      "async"
+    ],
+    "authors": []
+  },
+  "practice/idea/vue/customRef封装全局loading": {
+    "title": "customRef 实现全局 loading 封装",
+    "description": "介绍使用 Vue 的 customRef API 封装全局 loading 状态，解决并发请求时 loading 提前消失的问题，实现请求计数管理。",
+    "tags": [
+      "vue",
+      "customref",
+      "loading",
+      "reactivity"
+    ],
+    "authors": []
+  },
+  "practice/idea/vue/Vue2 VS Vue3": {
+    "title": "Vue2 VS Vue3",
+    "description": "对比 Vue2 与 Vue3 在响应式系统、API 设计、性能优化等方面的差异，分析 Vue2 响应式缺陷及 Vue3 的改进方案。",
+    "tags": [
+      "vue",
+      "comparison",
+      "reactivity"
+    ],
+    "authors": []
+  },
+  "practice/idea/optimize/项目速度优化": {
+    "title": "优化项目速度",
+    "description": "介绍通过 requestAnimationFrame 时间切片与 Web Worker 多线程两种方案优化项目速度，避免长任务阻塞渲染。",
+    "tags": [
+      "performance",
+      "optimization",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1F94y1i7iq/",
+        "title": "前端如何用时间切片优化项目速度"
+      },
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1z2421P7Qm/",
+        "title": "前端webworker提示性能实战案例"
+      }
+    ]
+  },
+  "practice/idea/optimize/页面加载优化": {
+    "title": "页面加载与反应慢排查与解决方案",
+    "description": "以网易云音乐为例，介绍通过 Chrome Performance 面板排查页面加载速度的方法，分析资源加载、代码执行、页面绘制三阶段耗时。",
+    "tags": [
+      "performance",
+      "debugging",
+      "chrome"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV16j411877x/",
+        "title": "页面加载和反应慢?实用的排查和解决方案教给你"
+      }
+    ]
+  },
+  "practice/idea/optimize/资源加载优化": {
+    "title": "资源加载优化",
+    "description": "介绍首屏资源加载优化策略，涵盖异步加载、prefetch 预加载、图片优化等方案，从资源大小与网速两方面加速页面加载。",
+    "tags": [
+      "performance",
+      "optimization",
+      "lazy-load"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV11T41167vf/",
+        "title": "项目加载慢？教你从资源加载优化角度加速项目"
+      },
+      {
+        "author": "李钟意讲前端",
+        "link": "https://docs.ffffee.com/frontend/240410-%E5%89%8D%E7%AB%AF%E5%9B%BE%E7%89%87%E4%BC%98%E5%8C%96.html",
+        "title": "前端图片优化"
+      }
+    ]
+  },
+  "practice/idea/optimize/打包优化": {
+    "title": "打包优化",
+    "description": "介绍项目构建速度优化方法，从减少处理内容数量与提高处理效率两方面入手，涵盖 include/exclude 配置、DLL 优化等策略。",
+    "tags": [
+      "webpack",
+      "build",
+      "optimization"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1fm4y1N7dP/",
+        "title": "vue-cli项目实战中优化打包速度,实用技巧分享"
+      }
+    ]
+  },
+  "practice/idea/optimize/性能优化": {
+    "title": "性能优化",
+    "description": "汇总前端性能优化方案，涵盖首屏加载优化、缓存优化、渲染优化、长任务拆分四大方向，总结实用优化策略。",
+    "tags": [
+      "performance",
+      "optimization",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1YC411a7PR/",
+        "title": "前端性能优化实用方案总结"
+      },
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1ph411A7uZ/",
+        "title": "js巧妙设计数据，结构提高性能"
+      }
+    ]
+  },
+  "practice/idea/js/异步数据竞态取消": {
+    "title": "异步数据竞态取消",
+    "description": "分析异步数据竞态问题的成因与解决方案，通过封装取消函数实现请求切换时自动抛弃旧请求，确保展示最新数据。",
+    "tags": [
+      "async",
+      "abort",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.douyin.com/video/7480970814741843227",
+        "title": "异步数据竞态问题如何解决"
+      }
+    ]
+  },
+  "practice/idea/js/属性描述符": {
+    "title": "属性描述符",
+    "description": "介绍 JavaScript 对象属性描述符的概念，涵盖 value、writable、enumerable、configurable 四大属性及 getter/setter 访问器。",
+    "tags": [
+      "javascript",
+      "object"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1XN411v7PK/",
+        "title": "如何获取对象中属性的描述符"
+      },
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1ph4y1m7NJ/",
+        "title": "set和get来控制参数取值范围"
+      }
+    ]
+  },
+  "practice/idea/js/如何判断对象是否存在循环引用": {
+    "title": "如何判断对象是否存在循环引用",
+    "description": "介绍循环引用的概念与判断方法，通过 WeakMap 或 Set 记录已访问对象，检测对象属性是否引用了自身。",
+    "tags": [
+      "javascript",
+      "object",
+      "circular"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV18E7Nz4E9E",
+        "title": "如何判断对象是否存在循环引用"
+      }
+    ]
+  },
+  "practice/idea/js/垃圾回收与内存泄漏": {
+    "title": "垃圾回收与内存泄漏",
+    "description": "介绍 JavaScript 垃圾回收机制与常见内存泄漏场景，涵盖引用计数、标记清除算法及 console.log、闭包等导致泄漏的排查方法。",
+    "tags": [
+      "javascript",
+      "memory",
+      "gc"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1fH4y137Sz/",
+        "title": "垃圾回收与内存泄露"
+      },
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV16Q4y1p7bZ/",
+        "title": "console.log导致的内存泄露"
+      }
+    ]
+  },
+  "practice/idea/js/判断是否是数组": {
+    "title": "判断是否是数组",
+    "description": "对比 Object.prototype.toString、instanceof、Array.isArray 三种数组判断方法的差异与适用场景。",
+    "tags": [
+      "javascript",
+      "array"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1az421r7uh/",
+        "title": "判断是不是数组"
+      }
+    ]
+  },
+  "practice/idea/js/toFixed因精确度产生bug": {
+    "title": "toFixed 结果因精确度产生 bug",
+    "description": "分析 toFixed 方法因浮点数精度问题产生错误结果的原理，说明 IEEE 754 标准下计算机存储浮点数的局限性。",
+    "tags": [
+      "javascript",
+      "number",
+      "precision"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV12i4y1i7Lv/",
+        "title": "toFixed的结果可能会欺骗你"
+      }
+    ]
+  },
+  "practice/idea/js/log对象时需要注意的坑": {
+    "title": "console.log 对象时需要注意的坑",
+    "description": "说明 console.log 打印对象时显示最终状态而非打印时状态的问题，并给出 JSON.stringify 等解决方案。",
+    "tags": [
+      "javascript",
+      "debugging",
+      "console"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1XdxxeQE3s/",
+        "title": "console.log对象时，一定要注意的坑"
+      }
+    ]
+  },
+  "practice/idea/js/js深度克隆": {
+    "title": "js 深度克隆",
+    "description": "逐步实现深度克隆函数，从原始值到引用类型，处理数组、对象、循环引用、特殊类型等边界情况。",
+    "tags": [
+      "javascript",
+      "object",
+      "clone"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1ZJ4m1M7go/",
+        "title": "深度克隆的一般实现"
+      }
+    ]
+  },
+  "practice/idea/js/js执行顺序和异步实战技巧": {
+    "title": "吃透 js 执行顺序以及异步实战管理技巧",
+    "description": "梳理 JavaScript 事件循环、宏任务与微任务的执行顺序，总结异步编程的实战管理技巧。",
+    "tags": [
+      "javascript",
+      "event-loop",
+      "async"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1KX4y1o7E7/",
+        "title": "吃透js执行顺序及异步实战管理技巧经验"
+      }
+    ]
+  },
+  "practice/idea/js/Proxy与defineProperty": {
+    "title": "Proxy 与 defineProperty",
+    "description": "对比 Proxy 与 Object.defineProperty 的差异，说明 Proxy 在拦截能力、数组监听、性能等方面的优势，以及 Vue3 选择 Proxy 的原因。",
+    "tags": [
+      "javascript",
+      "proxy",
+      "vue"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1b8M7zNEJL/",
+        "title": "Proxy和DefineProperty"
+      },
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1jeoPYxEz9/",
+        "title": "Proxy比defineProperty到底好在哪"
+      }
+    ]
+  },
+  "practice/idea/js/LocalStorage封装": {
+    "title": "LocalStorage 封装",
+    "description": "介绍二次封装 LocalStorage 的实践，涵盖 Key 命名防污染、时效性设置、敏感信息加密、版本更替、SSR 兼容等设计要点。",
+    "tags": [
+      "javascript",
+      "storage",
+      "encapsulation"
+    ],
+    "authors": [
+      {
+        "author": "林三心不学挖掘机",
+        "link": "https://mp.weixin.qq.com/s?__biz=Mzg2NjY2NTcyNg==&mid=2247493293&idx=2&sn=fa43d7d9e9bcf6508635c188657016f5",
+        "title": "如何严谨二次封装localStorage"
+      }
+    ]
+  },
+  "practice/idea/js/algorithm/LRU缓存算法": {
+    "title": "LRU 缓存算法",
+    "description": "介绍 LRU（最近最少使用）缓存淘汰算法的原理与实现，通过数组模拟缓存读写过程，说明淘汰策略与访问字段更新机制。",
+    "tags": [
+      "algorithm",
+      "cache",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1y3vbB3Ev3",
+        "title": "LRU缓存算法"
+      }
+    ]
+  },
+  "practice/idea/js/class/类的多态": {
+    "title": "类的多态",
+    "description": "介绍面向对象多态的含义与使用场景，以钉钉登录与微信登录为例，展示父类定义抽象方法、子类各自实现的多态模式。",
+    "tags": [
+      "oop",
+      "class",
+      "typescript"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.douyin.com/video/7451645225144962367",
+        "title": "什么？面相对象多态可以这样用？"
+      }
+    ]
+  },
+  "practice/idea/js/design/设计模式": {
+    "title": "设计模式",
+    "description": "汇总常见设计模式的概念与实践，涵盖工厂模式、观察者模式、发布订阅模式等，说明各模式在代码稳定性、维护性与规范性方面的价值。",
+    "tags": [
+      "design-pattern",
+      "javascript",
+      "architecture"
+    ],
+    "authors": [
+      {
+        "author": "Sunshine_Lin",
+        "link": "https://juejin.cn/post/7205401322111500344",
+        "title": "面试官问我设计模式？我是这么回答的！"
+      },
+      {
+        "author": "远方os",
+        "link": "https://www.douyin.com/video/7444172880142716169",
+        "title": "发布订阅模式如何触发未来事件？"
+      },
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1hubUzkEti/",
+        "title": "用发布订阅模式解耦"
+      }
+    ]
+  },
+  "practice/idea/js/design/观察者模式实现视频列表只允许单个视频播放": {
+    "title": "优化案例：视频列表只允许单个视频播放",
+    "description": "以多人协作的视频列表项目为例，展示如何用观察者模式实现视频互斥播放，在不引入 Pinia/Vuex 等状态管理库的前提下，实现跨组件通信。",
+    "tags": [
+      "design-pattern",
+      "observer",
+      "vue",
+      "video"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1PD5MzHE4d",
+        "title": "分享一个前端使用设计模式的案例"
+      }
+    ]
+  },
+  "practice/idea/js/design/组合模式实现商品卡不同类型": {
+    "title": "优化案例：商品卡不同类型代码如何实现",
+    "description": "以多类型商品卡片为例，展示如何用组合模式设计组件结构，在保证复用性的同时兼顾可扩展性，应对类型不断增加的需求。",
+    "tags": [
+      "design-pattern",
+      "composite",
+      "vue",
+      "component"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1gztjebEEt/",
+        "title": "前端中的设计模式应用"
+      }
+    ]
+  },
+  "practice/idea/js/design/单例模式实现请求的复用与兼容": {
+    "title": "优化案例：请求的复用与兼容",
+    "description": "以 APP 混合开发场景为例，展示如何用单例模式和适配器模式实现请求模块的复用与兼容，统一不同环境下的请求接口。",
+    "tags": [
+      "design-pattern",
+      "adapter",
+      "singleton",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1cf2oYXE59/",
+        "title": "从项目中的前端需求，学两个设计模式"
+      }
+    ]
+  },
   "practice/handle/test/图片预加载插件": {
     "title": "图片预加载",
     "description": "介绍图片预加载的实现方式，包括 HTML link preload 标签与 JavaScript Image 对象两种方案，并说明其作为性能优化手段的应用场景。",
@@ -2433,6 +3207,74 @@
       }
     ]
   },
+  "concept/javascript/webapi/页面自动检测更新": {
+    "title": "页面自动检测更新",
+    "description": "讲解前端如何通过 fetch 获取首页 HTML 并对比 JS 文件指纹（hash），实现页面版本自动检测与更新提示。",
+    "tags": [
+      "javascript",
+      "webapi",
+      "fetch",
+      "version",
+      "hash"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1AM4y1W7b8"
+      }
+    ]
+  },
+  "concept/javascript/webapi/网站访问用户文件夹": {
+    "title": "网站访问用户文件夹",
+    "description": "介绍 showDirectoryPicker API 的使用方法，实现网页端读取用户本地文件夹及文件内容的功能。",
+    "tags": [
+      "javascript",
+      "webapi",
+      "showDirectoryPicker",
+      "file",
+      "security"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1rN411v7oQ"
+      }
+    ]
+  },
+  "concept/javascript/webapi/网络状态监控": {
+    "title": "网络状态监控",
+    "description": "讲解 Navigator.connection API 的使用，实现前端监控用户网络状态、延迟（rtt）和带宽（downlink）等数据。",
+    "tags": [
+      "javascript",
+      "webapi",
+      "navigator",
+      "network",
+      "monitor"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1dN4y1b7cM"
+      }
+    ]
+  },
+  "concept/javascript/webapi/页面可见度": {
+    "title": "页面可见度",
+    "description": "讲解 Page Visibility API 的使用，通过 visibilitychange 事件监听页面可见性变化，实现页面隐藏时暂停任务、可见时恢复等优化。",
+    "tags": [
+      "javascript",
+      "webapi",
+      "visibility",
+      "performance",
+      "optimization"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV13n4y197WE"
+      }
+    ]
+  },
   "concept/css/expand/BEM": {
     "title": "BEM",
     "description": "介绍 CSS BEM 命名规范（Block、Element、Modifier），通过块-元素-标志语法提高样式可维护性，避免命名冲突。",
@@ -2467,6 +3309,89 @@
       {
         "author": "渡一教育",
         "link": "https://www.bilibili.com/video/BV12N4y1S7mx"
+      }
+    ]
+  },
+  "concept/sharp/vite/TS 和 CSS": {
+    "title": "TS 和 CSS 相关问题",
+    "description": "讲解 Vite 项目中 TypeScript 和 CSS 的配置与使用，包括 TS 引入、CSS 模块化、scoped 样式等。",
+    "tags": [
+      "vite",
+      "typescript",
+      "css",
+      "scoped",
+      "module"
+    ],
+    "authors": [
+      {
+        "author": "小猿_Eric",
+        "link": "https://www.bilibili.com/video/BV1V8jEzYEGA/"
+      }
+    ]
+  },
+  "concept/sharp/vite/创建项目": {
+    "title": "Vite 的 SPA 模式",
+    "description": "对比 Vite 创建的项目与传统构建工具（Vue Cli）的差异，包括入口文件、SPA 模式、多页面应用配置等。",
+    "tags": [
+      "vite",
+      "spa",
+      "vue",
+      "react",
+      "project"
+    ],
+    "authors": [
+      {
+        "author": "小猿_Eric",
+        "link": "https://www.bilibili.com/video/BV1whEXzmExw/"
+      }
+    ]
+  },
+  "concept/sharp/gsap/基础": {
+    "title": "GSAP",
+    "description": "介绍 GSAP 动画库的基础使用，包括引入方式、to/from/fromTo 方法、set 方法等核心 API。",
+    "tags": [
+      "gsap",
+      "animation",
+      "javascript",
+      "library"
+    ],
+    "authors": [
+      {
+        "author": "MiuMiu8802",
+        "link": "https://www.bilibili.com/video/BV1724y1R76e"
+      }
+    ]
+  },
+  "concept/sharp/gsap/时间轴": {
+    "title": "GSAP 时间轴",
+    "description": "讲解 GSAP Timeline 时间轴的使用，包括动画编排、第三个参数控制执行时机、标签管理等。",
+    "tags": [
+      "gsap",
+      "timeline",
+      "animation",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "MiuMiu8802",
+        "link": "https://www.bilibili.com/video/BV1724y1R76e"
+      }
+    ]
+  },
+  "concept/sharp/gsap/动画参数": {
+    "title": "GSAP 动画参数",
+    "description": "详细介绍 GSAP 动画参数，包括 repeat、yoyo、ease 缓动函数、stagger 交错动画等高级配置。",
+    "tags": [
+      "gsap",
+      "animation",
+      "easing",
+      "stagger",
+      "javascript"
+    ],
+    "authors": [
+      {
+        "author": "MiuMiu8802",
+        "link": "https://www.bilibili.com/video/BV1724y1R76e"
       }
     ]
   },
@@ -2603,6 +3528,1482 @@
       "arithmetic",
       "logical",
       "comparison"
+    ],
+    "authors": []
+  },
+  "concept/module/git/根据 ChangeId 合并部分提交": {
+    "title": "根据 ChangeId 合并部分提交",
+    "description": "讲解 Git 中通过 ChangeId 挑选特定提交合并到其他分支的方法，解决多人协作中只合并部分提交的需求。",
+    "tags": [
+      "git",
+      "changeid",
+      "cherry-pick",
+      "merge",
+      "branch"
+    ],
+    "authors": []
+  },
+  "concept/module/git/多人合作项目变基处理": {
+    "title": "多人合作项目变基处理",
+    "description": "讲解多人合作开发中 Git rebase 变基的使用场景与操作步骤，保持分支与主分支同步。",
+    "tags": [
+      "git",
+      "rebase",
+      "merge",
+      "branch",
+      "collaboration"
+    ],
+    "authors": []
+  },
+  "concept/module/git/大小写规则检测": {
+    "title": "大小写规则检测",
+    "description": "讲解 Git 默认忽略文件名大小写导致的问题，以及配置 core.ignorecase 避免大小写相关错误。",
+    "tags": [
+      "git",
+      "case-sensitive",
+      "filename",
+      "configuration"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1mV411G7CB"
+      }
+    ]
+  },
+  "concept/module/git/工作中项目git如何管理，冲突如何解决": {
+    "title": "工作中项目 git 如何管理，冲突如何解决",
+    "description": "讲解公司项目中 Git 仓库管理方式、代码 push 失败的原因分析以及冲突解决方案。",
+    "tags": [
+      "git",
+      "conflict",
+      "push",
+      "merge",
+      "workflow"
+    ],
+    "authors": [
+      {
+        "author": "三十的前端课",
+        "link": "https://www.bilibili.com/video/BV1XF411D7mq"
+      }
+    ]
+  },
+  "concept/module/browser/浏览器长截图": {
+    "title": "浏览器长截图",
+    "description": "介绍浏览器自带截图功能实现长截图的方法，无需安装额外插件。",
+    "tags": [
+      "browser",
+      "screenshot",
+      "devtools",
+      "tool"
+    ],
+    "authors": [
+      {
+        "author": "远方os",
+        "link": "https://www.bilibili.com/video/BV1JB1vBVEJH"
+      }
+    ]
+  },
+  "concept/module/browser/浏览器渲染原理": {
+    "title": "浏览器渲染原理",
+    "description": "讲解浏览器渲染页面的完整流程，包括 HTML 解析、CSS 计算、布局、绘制、合成等关键步骤。",
+    "tags": [
+      "browser",
+      "render",
+      "html",
+      "css",
+      "layout"
+    ],
+    "authors": [
+      {
+        "author": "渡一教育",
+        "link": "https://www.bilibili.com/video/BV1Eh4y1c7CJ"
+      }
+    ]
+  },
+  "concept/vue/vue2/基本概念与Vue指令": {
+    "title": "Vue 基本概念与指令",
+    "description": "讲解 Vue 基本概念、渐进式框架特点，以及 v-bind、v-model、v-on 等核心指令的使用方法。",
+    "tags": [
+      "vue",
+      "directive",
+      "javascript",
+      "framework"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue2/核心源码及设计思想": {
+    "title": "Vue2 核心源码及设计思想",
+    "description": "使用 Rollup 搭建 Vue2 开发环境，讲解 Vue2 核心源码及设计思想。",
+    "tags": [
+      "vue2",
+      "source-code",
+      "rollup",
+      "design-pattern"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue2/手写Router及Vuex": {
+    "title": "手写 Router 及 Vuex",
+    "description": "手写实现 Vue Router 和 Vuex 的核心功能，深入理解路由和状态管理原理。",
+    "tags": [
+      "vue2",
+      "router",
+      "vuex",
+      "state-management"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue2/动态绑定": {
+    "title": "动态绑定",
+    "description": "讲解 Vue2 中动态绑定 class、style 等属性的方法，以及对象和数组语法的使用。",
+    "tags": [
+      "vue2",
+      "binding",
+      "class",
+      "style"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue2/动态组件": {
+    "title": "动态组件",
+    "description": "讲解 Vue2 动态组件的使用，包括 component 标签、keep-alive 缓存等。",
+    "tags": [
+      "vue2",
+      "dynamic-component",
+      "keep-alive"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue2/组件": {
+    "title": "Vue2 组件",
+    "description": "讲解 Vue2 组件化开发，包括组件注册、props、事件、插槽等核心概念。",
+    "tags": [
+      "vue2",
+      "component",
+      "props",
+      "events",
+      "slot"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue2/阅读框架源码方法": {
+    "title": "阅读框架源码方法",
+    "description": "介绍阅读 Vue2 框架源码的方法和技巧，帮助理解框架底层实现。",
+    "tags": [
+      "vue2",
+      "source-code",
+      "reading"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/3.5增加的特性": {
+    "title": "Vue3.5 特性",
+    "description": "介绍 Vue3.5 新增特性，包括 defineProps 更好的 TypeScript 提示、响应式 Props 解构等。",
+    "tags": [
+      "vue3",
+      "typescript",
+      "new-features"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/项目初始化": {
+    "title": "Vue3 项目初始化",
+    "description": "讲解 Vue3 项目初始化，包括 CDN、脚手架、ES 模块三种创建方式，以及样式、修饰符等配置。",
+    "tags": [
+      "vue3",
+      "project-setup",
+      "vite",
+      "cdn"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/路由与状态管理": {
+    "title": "Vue3 内置组件",
+    "description": "讲解 Vue3 内置组件 Teleport、KeepAlive 的使用方法和应用场景。",
+    "tags": [
+      "vue3",
+      "teleport",
+      "keepalive",
+      "built-in-components"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/组件": {
+    "title": "Vue3 组件",
+    "description": "讲解 Vue3 组件通讯、透传 Attributes、模板 ref、动态组件、依赖注入、异步组件等核心机制。",
+    "tags": [
+      "vue3",
+      "component",
+      "props",
+      "provide-inject",
+      "async-component"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/插槽": {
+    "title": "Vue3 插槽",
+    "description": "讲解 Vue3 插槽的使用，包括默认插槽、具名插槽、作用域插槽等。",
+    "tags": [
+      "vue3",
+      "slot",
+      "named-slot",
+      "scoped-slot"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/指令": {
+    "title": "Vue3 指令",
+    "description": "讲解 Vue3 自定义指令的创建和使用方法。",
+    "tags": [
+      "vue3",
+      "directive",
+      "custom-directive"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/源码学习-项目搭建": {
+    "title": "Vue3 源码学习：项目搭建",
+    "description": "Vue3 源码学习系列，搭建源码调试环境，包括初始化、依赖下载、esbuild 配置。",
+    "tags": [
+      "vue3",
+      "source-code",
+      "esbuild",
+      "monorepo"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/源码学习-认识渲染器": {
+    "title": "Vue3 源码学习：认识渲染器",
+    "description": "Vue3 源码学习系列，讲解渲染器的基本概念和 createRenderer 的实现。",
+    "tags": [
+      "vue3",
+      "source-code",
+      "renderer",
+      "createRenderer"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/源码学习-数组响应式": {
+    "title": "Vue3 源码学习：数组响应式",
+    "description": "Vue3 源码学习系列，讲解数组响应式处理，包括长度修改、隐式更新 length 等场景。",
+    "tags": [
+      "vue3",
+      "source-code",
+      "reactive",
+      "array"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/源码学习-打包配置": {
+    "title": "Vue3 源码学习：打包配置",
+    "description": "Vue3 源码学习系列，讲解打包配置，包括命令参数获取、入口地址、输出结果、iife 格式。",
+    "tags": [
+      "vue3",
+      "source-code",
+      "build",
+      "rollup"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/源码学习-Watch实现": {
+    "title": "Vue3 源码学习：Watch 实现",
+    "description": "Vue3 源码学习系列，讲解 watch 的实现原理，包括依赖收集和回调触发机制。",
+    "tags": [
+      "vue3",
+      "source-code",
+      "watch",
+      "reactive"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/源码学习-Ref基础实现": {
+    "title": "Vue3 源码学习：Ref 基础实现",
+    "description": "Vue3 源码学习系列，讲解 ref 的基础实现原理，包括 getter/setter 和依赖追踪。",
+    "tags": [
+      "vue3",
+      "source-code",
+      "ref",
+      "reactive"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/源码学习-Computed实现": {
+    "title": "Vue3 源码学习：Computed 实现",
+    "description": "Vue3 源码学习系列，讲解 computed 的实现原理，包括缓存机制和依赖追踪。",
+    "tags": [
+      "vue3",
+      "source-code",
+      "computed",
+      "cache"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/源码学习-Computed优化": {
+    "title": "Vue3 源码学习：Computed 优化",
+    "description": "Vue3 源码学习系列，讲解 computed 的优化实现，包括脏检查、调度器等优化策略。",
+    "tags": [
+      "vue3",
+      "source-code",
+      "computed",
+      "optimization"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/源码学习-toRef、unRef、proxyRef": {
+    "title": "Vue3 源码学习：toRef、unRef、proxyRef",
+    "description": "Vue3 源码学习系列，讲解 toRef、unRef、proxyRef 的实现原理和使用场景。",
+    "tags": [
+      "vue3",
+      "source-code",
+      "ref",
+      "toRef",
+      "proxyRef"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/源码学习-patchProp": {
+    "title": "Vue3 源码学习：patchProp",
+    "description": "Vue3 源码学习系列，讲解 patchProp 的实现，包括 class、style、事件等属性的处理。",
+    "tags": [
+      "vue3",
+      "source-code",
+      "patchProp",
+      "dom"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/源码学习-h和createVNode的实现": {
+    "title": "Vue3 源码学习：h 和 createVNode 的实现",
+    "description": "Vue3 源码学习系列，讲解 h 函数和 createVNode 的实现原理，了解虚拟 DOM 的创建过程。",
+    "tags": [
+      "vue3",
+      "source-code",
+      "vnode",
+      "h",
+      "createVNode"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/源码学习-Ref进阶优化": {
+    "title": "Vue3 源码学习：Ref 进阶优化",
+    "description": "Vue3 源码学习系列，讲解 ref 的进阶优化实现，包括性能优化和边界处理。",
+    "tags": [
+      "vue3",
+      "source-code",
+      "ref",
+      "optimization"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/源码学习-Reactive实现": {
+    "title": "Vue3 源码学习：Reactive 实现",
+    "description": "Vue3 源码学习系列，讲解 reactive 的实现原理，包括 Proxy 拦截和依赖收集。",
+    "tags": [
+      "vue3",
+      "source-code",
+      "reactive",
+      "proxy"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/源码学习-Monorepo管理": {
+    "title": "Vue3 源码学习：Monorepo 管理",
+    "description": "Vue3 源码学习系列，讲解 Vue3 的 Monorepo 项目管理方式，包括包结构和依赖关系。",
+    "tags": [
+      "vue3",
+      "source-code",
+      "monorepo",
+      "package"
+    ],
+    "authors": []
+  },
+  "concept/react/脚手架项目创建": {
+    "title": "React 脚手架项目创建",
+    "description": "讲解使用 create-react-app 脚手架创建 React 项目的方法和目录结构。",
+    "tags": [
+      "react",
+      "create-react-app",
+      "project-setup"
+    ],
+    "authors": []
+  },
+  "concept/react/无脚手架项目创建": {
+    "title": "React 无脚手架项目创建",
+    "description": "讲解不依赖脚手架手动创建 React 项目的方法，包括 Webpack 配置和 Babel 设置。",
+    "tags": [
+      "react",
+      "webpack",
+      "babel",
+      "project-setup"
+    ],
+    "authors": []
+  },
+  "concept/react/拓展": {
+    "title": "React 拓展",
+    "description": "讲解 React 拓展知识，包括 Hooks 进阶、Context 高级用法、性能优化等。",
+    "tags": [
+      "react",
+      "hooks",
+      "context",
+      "optimization"
+    ],
+    "authors": []
+  },
+  "concept/react/Redux": {
+    "title": "Redux",
+    "description": "讲解 Redux 状态管理库的使用，包括 store、reducer、action、dispatch 等核心概念。",
+    "tags": [
+      "react",
+      "redux",
+      "state-management",
+      "store"
+    ],
+    "authors": []
+  },
+  "concept/react/ReactRouter6": {
+    "title": "React Router 6",
+    "description": "讲解 React Router 6 的使用方法，包括路由配置、嵌套路由、路由参数、导航守卫等。",
+    "tags": [
+      "react",
+      "router",
+      "react-router",
+      "navigation"
+    ],
+    "authors": []
+  },
+  "concept/react/ReactRouter5": {
+    "title": "React Router 5",
+    "description": "讲解 React Router 5 的使用方法，并与 React Router 6 进行对比。",
+    "tags": [
+      "react",
+      "router",
+      "react-router",
+      "navigation"
+    ],
+    "authors": []
+  },
+  "concept/react/Diff算法": {
+    "title": "React Diff 算法",
+    "description": "讲解 React 的 Diff 算法原理，包括 tree diff、component diff、element diff 三个策略。",
+    "tags": [
+      "react",
+      "diff",
+      "virtual-dom",
+      "algorithm"
+    ],
+    "authors": []
+  },
+  "concept/sharp/typescript/环境配置": {
+    "title": "TypeScript 环境配置",
+    "description": "讲解 TypeScript 开发环境配置，包括 tsconfig.json 配置项说明和编译选项。",
+    "tags": [
+      "typescript",
+      "environment",
+      "tsconfig",
+      "compiler"
+    ],
+    "authors": []
+  },
+  "concept/sharp/typescript/类型": {
+    "title": "TypeScript 类型",
+    "description": "讲解 TypeScript 基础类型系统，包括原始类型、数组、元组、枚举、any、unknown、void 等。",
+    "tags": [
+      "typescript",
+      "types",
+      "enum",
+      "tuple",
+      "array"
+    ],
+    "authors": []
+  },
+  "concept/sharp/typescript/类与接口": {
+    "title": "TypeScript 类与接口",
+    "description": "讲解 TypeScript 中类与接口的使用，包括继承、抽象类、接口实现、implements 等。",
+    "tags": [
+      "typescript",
+      "class",
+      "interface",
+      "abstract",
+      "implements"
+    ],
+    "authors": []
+  },
+  "concept/sharp/typescript/泛型": {
+    "title": "TypeScript 泛型",
+    "description": "讲解 TypeScript 泛型的使用，包括泛型函数、泛型接口、泛型约束等。",
+    "tags": [
+      "typescript",
+      "generics",
+      "constraint",
+      "interface"
+    ],
+    "authors": []
+  },
+  "concept/sharp/typescript/断言与枚举": {
+    "title": "TypeScript 断言与枚举",
+    "description": "讲解 TypeScript 类型断言和枚举的使用，包括 as 断言、const 枚举、反向映射等。",
+    "tags": [
+      "typescript",
+      "assertion",
+      "enum",
+      "const"
+    ],
+    "authors": []
+  },
+  "concept/sharp/typescript/装饰器": {
+    "title": "TypeScript 装饰器",
+    "description": "讲解 TypeScript 装饰器的使用，包括类装饰器、方法装饰器、属性装饰器、参数装饰器。",
+    "tags": [
+      "typescript",
+      "decorator",
+      "class",
+      "method",
+      "property"
+    ],
+    "authors": []
+  },
+  "concept/sharp/node/node": {
+    "title": "Node.js 基础",
+    "description": "讲解 Node.js 基本概念，包括模块系统、全局对象、事件循环等核心知识。",
+    "tags": [
+      "nodejs",
+      "module",
+      "global",
+      "event-loop"
+    ],
+    "authors": []
+  },
+  "concept/sharp/node/模块化": {
+    "title": "Node.js 模块化",
+    "description": "讲解 Node.js 模块化机制，包括 CommonJS、ES Module、模块导出与导入等。",
+    "tags": [
+      "nodejs",
+      "module",
+      "commonjs",
+      "esmodule"
+    ],
+    "authors": []
+  },
+  "concept/sharp/node/path": {
+    "title": "Node.js Path 模块",
+    "description": "讲解 Node.js path 模块的使用，包括路径拼接、解析、格式化等常用方法。",
+    "tags": [
+      "nodejs",
+      "path",
+      "module",
+      "filesystem"
+    ],
+    "authors": []
+  },
+  "concept/sharp/node/npm": {
+    "title": "npm",
+    "description": "讲解 npm 包管理工具的使用，包括 package.json、依赖管理、脚本配置等。",
+    "tags": [
+      "nodejs",
+      "npm",
+      "package-manager",
+      "dependency"
+    ],
+    "authors": []
+  },
+  "concept/sharp/node/http": {
+    "title": "Node.js HTTP 模块",
+    "description": "讲解 Node.js http 模块的使用，包括创建服务器、处理请求与响应等。",
+    "tags": [
+      "nodejs",
+      "http",
+      "server",
+      "request",
+      "response"
+    ],
+    "authors": []
+  },
+  "concept/sharp/node/fs": {
+    "title": "Node.js fs 模块",
+    "description": "讲解 Node.js fs 文件系统模块的使用，包括文件读写、目录操作、流操作等。",
+    "tags": [
+      "nodejs",
+      "fs",
+      "filesystem",
+      "stream"
+    ],
+    "authors": []
+  },
+  "concept/sharp/node/express": {
+    "title": "Express",
+    "description": "讲解 Express 框架的使用，包括路由、中间件、模板引擎等核心功能。",
+    "tags": [
+      "nodejs",
+      "express",
+      "middleware",
+      "router"
+    ],
+    "authors": []
+  },
+  "concept/module/reg/正则表达式": {
+    "title": "正则表达式",
+    "description": "讲解正则表达式的基础知识，包括创建方式、修饰符、边界符、量词、范围符等。",
+    "tags": [
+      "regex",
+      "pattern",
+      "javascript",
+      "string"
+    ],
+    "authors": []
+  },
+  "concept/module/reg/元子字符": {
+    "title": "正则表达式：元子字符",
+    "description": "讲解正则表达式中元字符的使用，包括 \\d、\\w、\\s 等预定义字符类。",
+    "tags": [
+      "regex",
+      "metacharacter",
+      "pattern",
+      "javascript"
+    ],
+    "authors": []
+  },
+  "concept/module/reg/原子": {
+    "title": "正则表达式：原子",
+    "description": "讲解正则表达式中原子和原子组的概念与使用。",
+    "tags": [
+      "regex",
+      "atom",
+      "group",
+      "pattern"
+    ],
+    "authors": []
+  },
+  "concept/module/reg/模式修饰": {
+    "title": "正则表达式：模式修饰",
+    "description": "讲解正则表达式模式修饰符的使用，包括 g、i、m、s、u 等修饰符的作用。",
+    "tags": [
+      "regex",
+      "modifier",
+      "flag",
+      "global",
+      "pattern"
+    ],
+    "authors": []
+  },
+  "concept/module/reg/方法": {
+    "title": "正则表达式：方法",
+    "description": "讲解正则表达式相关方法，包括 test、exec、match、replace、search、split 等。",
+    "tags": [
+      "regex",
+      "method",
+      "test",
+      "exec",
+      "match"
+    ],
+    "authors": []
+  },
+  "concept/module/reg/匹配": {
+    "title": "正则表达式：匹配",
+    "description": "讲解正则表达式匹配规则，包括字符匹配、位置匹配、分组匹配等。",
+    "tags": [
+      "regex",
+      "match",
+      "pattern",
+      "group"
+    ],
+    "authors": []
+  },
+  "concept/module/reg/正则中的lastIndex": {
+    "title": "正则表达式：lastIndex",
+    "description": "讲解正则表达式 lastIndex 属性的作用，以及全局匹配下的索引变化机制。",
+    "tags": [
+      "regex",
+      "lastIndex",
+      "global",
+      "exec"
+    ],
+    "authors": []
+  },
+  "concept/module/reg/运用前瞻实现密码强度检测": {
+    "title": "正则表达式：前瞻实现密码强度检测",
+    "description": "讲解正则表达式前瞻断言的使用，实现密码强度检测的实战案例。",
+    "tags": [
+      "regex",
+      "lookahead",
+      "password",
+      "validation"
+    ],
+    "authors": []
+  },
+  "concept/module/network/网络分层模型": {
+    "title": "网络分层模型",
+    "description": "讲解网络分层模型，包括 OSI 七层模型和 TCP/IP 四层模型的结构与各层功能。",
+    "tags": [
+      "network",
+      "osi",
+      "tcp",
+      "ip",
+      "model"
+    ],
+    "authors": []
+  },
+  "concept/module/network/应用协议": {
+    "title": "应用协议",
+    "description": "讲解应用层网络协议，包括 HTTP、HTTPS、WebSocket、DNS 等协议的原理与特点。",
+    "tags": [
+      "network",
+      "http",
+      "https",
+      "websocket",
+      "dns"
+    ],
+    "authors": []
+  },
+  "concept/module/network/跨域问题及解决方案": {
+    "title": "跨域问题及解决方案",
+    "description": "讲解跨域问题的产生原因及解决方案，包括 CORS、JSONP、代理、postMessage 等。",
+    "tags": [
+      "network",
+      "cors",
+      "jsonp",
+      "proxy",
+      "cross-origin"
+    ],
+    "authors": []
+  },
+  "concept/module/network/xhr与fetch": {
+    "title": "XHR 与 Fetch",
+    "description": "讲解 XMLHttpRequest 和 Fetch API 的使用方法，对比两者的区别和适用场景。",
+    "tags": [
+      "network",
+      "xhr",
+      "fetch",
+      "ajax",
+      "api"
+    ],
+    "authors": []
+  },
+  "concept/module/miniProgram/两个线程": {
+    "title": "小程序双线程架构",
+    "description": "讲解微信小程序的双线程架构设计，包括渲染线程和逻辑线程的分离与通信机制。",
+    "tags": [
+      "miniprogram",
+      "thread",
+      "architecture",
+      "wechat"
+    ],
+    "authors": []
+  },
+  "work/百度/图业融合/项目优化": {
+    "title": "项目优化",
+    "description": "讲解百度图业融合项目的性能优化方案，包括点聚合、视口裁剪、数据抽稀、接口缓存、动画效果等。",
+    "tags": [
+      "baidu",
+      "map",
+      "optimization",
+      "performance",
+      "vue"
+    ],
+    "authors": []
+  },
+  "work/百度/图业融合/多人合作规范": {
+    "title": "项目规范",
+    "description": "讲解百度图业融合项目的多人合作开发规范，包括文件夹结构、代码风格约定等。",
+    "tags": [
+      "baidu",
+      "collaboration",
+      "code-style",
+      "project"
+    ],
+    "authors": []
+  },
+  "work/百度/图业融合/MapVThree地图组件": {
+    "title": "MapVThree 地图组件",
+    "description": "讲解 MapVThree 地图组件的封装，包括点、线、模型、视野漫游动画的封装策略和使用方法。",
+    "tags": [
+      "baidu",
+      "map",
+      "MapVThree",
+      "threejs",
+      "component"
+    ],
+    "authors": []
+  },
+  "work/百度/图业融合/Bug修改与记录": {
+    "title": "BUG 修改与记录",
+    "description": "记录百度图业融合项目中的 Bug 排查与修复，包括 JSON 解析错误、组件库问题、Vue 响应式问题等。",
+    "tags": [
+      "baidu",
+      "bug",
+      "debug",
+      "vue",
+      "element-ui"
+    ],
+    "authors": []
+  },
+  "work/百度/佛开/平台端/3d跳转": {
+    "title": "3D 路由跳转",
+    "description": "讲解百度佛开项目平台端 3D 路由跳转动画的实现原理和完整代码。",
+    "tags": [
+      "baidu",
+      "3d",
+      "router",
+      "animation",
+      "vue"
+    ],
+    "authors": []
+  },
+  "work/百度/佛开/平台端/子组件动态挂载": {
+    "title": "子组件动态挂载",
+    "description": "讲解百度佛开项目平台端子组件动态挂载方案，包括批量导入、字典驱动、逐个挂载动画等。",
+    "tags": [
+      "baidu",
+      "dynamic-component",
+      "vue",
+      "animation"
+    ],
+    "authors": []
+  },
+  "work/百度/佛开/LED大屏/自定义样式": {
+    "title": "大屏自定义样式",
+    "description": "讲解百度佛开 LED 大屏的自定义样式配置，包括样式 ID 和 JSON 文件两种配置方式。",
+    "tags": [
+      "baidu",
+      "led",
+      "style",
+      "custom",
+      "map"
+    ],
+    "authors": []
+  },
+  "work/百度/佛开/LED大屏/打包": {
+    "title": "项目大屏打包",
+    "description": "讲解百度佛开 LED 大屏项目的打包配置，包括环境变量、Vite 配置、基础路径等。",
+    "tags": [
+      "baidu",
+      "build",
+      "vite",
+      "env",
+      "deploy"
+    ],
+    "authors": []
+  },
+  "work/百度/佛开/LED大屏/覆盖物": {
+    "title": "大屏覆盖物",
+    "description": "讲解百度佛开 LED 大屏的覆盖物实现，包括折线、文本标注、自定义 HTML 图层等。",
+    "tags": [
+      "baidu",
+      "led",
+      "overlay",
+      "map",
+      "baidu-map"
+    ],
+    "authors": []
+  },
+  "work/灵思/音果云音/APP/支付": {
+    "title": "支付",
+    "description": "讲解音果云音项目中微信支付和支付宝支付的集成实现，包括 manifest.json 配置和注意事项。",
+    "tags": [
+      "lingsi",
+      "payment",
+      "wechat",
+      "alipay",
+      "uniapp"
+    ],
+    "authors": []
+  },
+  "work/灵思/音果云音/APP/登录": {
+    "title": "登录页",
+    "description": "讲解音果云音项目登录页的实现，包括手机号登录、验证码、微信授权登录等。",
+    "tags": [
+      "lingsi",
+      "login",
+      "uniapp",
+      "wechat",
+      "auth"
+    ],
+    "authors": []
+  },
+  "work/灵思/音果云音/APP/详情": {
+    "title": "详情",
+    "description": "讲解音果云音项目详情页的实现，包括商品详情、音乐详情等页面功能。",
+    "tags": [
+      "lingsi",
+      "detail",
+      "uniapp",
+      "product"
+    ],
+    "authors": []
+  },
+  "work/灵思/音果云音/APP/测试": {
+    "title": "测试页",
+    "description": "讲解音果云音项目测试页的实现，用于开发调试和功能验证。",
+    "tags": [
+      "lingsi",
+      "test",
+      "uniapp",
+      "debug"
+    ],
+    "authors": []
+  },
+  "work/灵思/音果云音/APP/无感刷新": {
+    "title": "无感刷新",
+    "description": "讲解音果云音项目中 Token 无感刷新的实现方案。",
+    "tags": [
+      "lingsi",
+      "token",
+      "refresh",
+      "auth",
+      "uniapp"
+    ],
+    "authors": []
+  },
+  "work/灵思/音果云音/APP/更新": {
+    "title": "更新",
+    "description": "讲解音果云音项目应用更新的实现，包括版本检测和热更新机制。",
+    "tags": [
+      "lingsi",
+      "update",
+      "version",
+      "uniapp"
+    ],
+    "authors": []
+  },
+  "work/灵思/音果云音/APP/操作": {
+    "title": "操作",
+    "description": "讲解音果云音项目通用操作功能的实现，包括分享、收藏、下载等。",
+    "tags": [
+      "lingsi",
+      "operation",
+      "uniapp",
+      "share"
+    ],
+    "authors": []
+  },
+  "work/灵思/音果云音/APP/分享": {
+    "title": "分享",
+    "description": "讲解音果云音项目分享功能的实现，包括微信分享、朋友圈分享等。",
+    "tags": [
+      "lingsi",
+      "share",
+      "wechat",
+      "uniapp"
+    ],
+    "authors": []
+  },
+  "work/灵思/音果云音/APP/分包": {
+    "title": "分包",
+    "description": "讲解音果云音项目分包策略的实现，优化小程序加载性能。",
+    "tags": [
+      "lingsi",
+      "subpackage",
+      "miniprogram",
+      "uniapp"
+    ],
+    "authors": []
+  },
+  "work/灵思/音果云音/APP/商品": {
+    "title": "SKU 商品规格",
+    "description": "讲解音果云音项目 SKU 商品规格选择的实现，包括多规格联动和价格计算。",
+    "tags": [
+      "lingsi",
+      "sku",
+      "product",
+      "uniapp",
+      "ecommerce"
+    ],
+    "authors": []
+  },
+  "work/灵思/音果云音/APP/Tabbar": {
+    "title": "Tabbar 页",
+    "description": "讲解音果云音项目底部导航栏和 Tabbar 页面的实现。",
+    "tags": [
+      "lingsi",
+      "tabbar",
+      "uniapp",
+      "navigation"
+    ],
+    "authors": []
+  },
+  "work/灵思/音果云音/APP/个人": {
+    "title": "证件照裁剪",
+    "description": "讲解音果云音项目个人中心证件照裁剪功能的实现。",
+    "tags": [
+      "lingsi",
+      "image",
+      "crop",
+      "uniapp",
+      "profile"
+    ],
+    "authors": []
+  },
+  "work/灵思/音果云音/H5/海报页": {
+    "title": "海报页",
+    "description": "讲解音果云音项目 H5 海报页的实现，包括 Canvas 绘制和分享功能。",
+    "tags": [
+      "lingsi",
+      "poster",
+      "canvas",
+      "h5",
+      "share"
+    ],
+    "authors": []
+  },
+  "work/灵思/视频分销/视频轮播": {
+    "title": "视频轮播",
+    "description": "讲解视频分销项目视频轮播组件的实现。",
+    "tags": [
+      "lingsi",
+      "video",
+      "carousel",
+      "swiper"
+    ],
+    "authors": []
+  },
+  "work/灵思/视频分销/请求封装": {
+    "title": "请求封装",
+    "description": "讲解视频分销项目请求封装的设计，包括拦截器、错误处理、Token 管理等。",
+    "tags": [
+      "lingsi",
+      "request",
+      "axios",
+      "interceptor",
+      "api"
+    ],
+    "authors": []
+  },
+  "work/灵思/视频分销/附件下载": {
+    "title": "附件下载",
+    "description": "讲解视频分销项目附件下载功能的实现，包括文件下载和进度管理。",
+    "tags": [
+      "lingsi",
+      "download",
+      "file",
+      "attachment"
+    ],
+    "authors": []
+  },
+  "work/灵思/视频分销/图片上传组件封装": {
+    "title": "图片上传组件封装",
+    "description": "讲解视频分销项目图片上传组件的封装，包括多图上传、压缩、预览等功能。",
+    "tags": [
+      "lingsi",
+      "upload",
+      "image",
+      "component",
+      "compress"
+    ],
+    "authors": []
+  },
+  "work/灵思/视频分销/微信授权快捷登录": {
+    "title": "微信快捷登录",
+    "description": "讲解视频分销项目微信授权快捷登录的实现。",
+    "tags": [
+      "lingsi",
+      "wechat",
+      "login",
+      "auth",
+      "oauth"
+    ],
+    "authors": []
+  },
+  "work/灵思/视频分销/关注公众号": {
+    "title": "关注公众号",
+    "description": "讲解视频分销项目引导用户关注公众号的实现。",
+    "tags": [
+      "lingsi",
+      "wechat",
+      "official-account",
+      "follow"
+    ],
+    "authors": []
+  },
+  "work/灵思/视频分销/分享": {
+    "title": "分享",
+    "description": "讲解视频分销项目分享功能的实现，包括微信分享和朋友圈分享。",
+    "tags": [
+      "lingsi",
+      "share",
+      "wechat",
+      "social"
+    ],
+    "authors": []
+  },
+  "work/灵思/视频分销/商城": {
+    "title": "商城",
+    "description": "讲解视频分销项目商城模块的实现，包括商品列表、购物车、订单等功能。",
+    "tags": [
+      "lingsi",
+      "shop",
+      "ecommerce",
+      "cart",
+      "order"
+    ],
+    "authors": []
+  },
+  "work/灵思/视频分销/token刷新": {
+    "title": "刷新 Token",
+    "description": "讲解视频分销项目 Token 刷新机制的实现方案。",
+    "tags": [
+      "lingsi",
+      "token",
+      "refresh",
+      "auth",
+      "security"
+    ],
+    "authors": []
+  },
+  "work/灵思/职技网/下载附件": {
+    "title": "下载附件",
+    "description": "讲解职技网项目下载附件功能的实现。",
+    "tags": [
+      "lingsi",
+      "download",
+      "file",
+      "attachment"
+    ],
+    "authors": []
+  },
+  "work/灵思/职技网/微信授权": {
+    "title": "微信授权",
+    "description": "讲解职技网项目微信授权登录的实现。",
+    "tags": [
+      "lingsi",
+      "wechat",
+      "auth",
+      "login",
+      "oauth"
+    ],
+    "authors": []
+  },
+  "work/灵思/职技网/Vant组件二次封装": {
+    "title": "Vant 组件二次封装",
+    "description": "讲解职技网项目中对 Vant 组件的二次封装实践。",
+    "tags": [
+      "lingsi",
+      "vant",
+      "component",
+      "encapsulation",
+      "vue"
+    ],
+    "authors": []
+  },
+  "work/灵思/华润水泥/图片对比可拖拽封装": {
+    "title": "图片可拖拽对比",
+    "description": "讲解华润水泥项目中图片可拖拽对比组件的封装实现。",
+    "tags": [
+      "lingsi",
+      "image",
+      "compare",
+      "drag",
+      "component"
+    ],
+    "authors": []
+  },
+  "work/灵思/华润水泥/Vue Color": {
+    "title": "Vue-color 的使用",
+    "description": "讲解华润水泥项目中 vue-color 颜色选择器的集成与使用。",
+    "tags": [
+      "lingsi",
+      "vue-color",
+      "color-picker",
+      "vue"
+    ],
+    "authors": []
+  },
+  "work/灵思/华润水泥/jeecg/表格行选中": {
+    "title": "表格行选中",
+    "description": "讲解华润水泥项目中 JEECG 表格行选中功能的实现。",
+    "tags": [
+      "lingsi",
+      "jeecg",
+      "table",
+      "selection",
+      "vue"
+    ],
+    "authors": []
+  },
+  "work/灵思/华润水泥/jeecg/树组件默认展开": {
+    "title": "树组件默认展开",
+    "description": "讲解华润水泥项目中 JEECG 树组件默认展开节点的实现。",
+    "tags": [
+      "lingsi",
+      "jeecg",
+      "tree",
+      "expand",
+      "vue"
+    ],
+    "authors": []
+  },
+  "work/灵思/华润水泥/jeecg/vxe-table搭配其他组件": {
+    "title": "vxe-table 搭配其他组件",
+    "description": "讲解华润水泥项目中 vxe-table 与 JEECG 其他组件搭配使用的方案。",
+    "tags": [
+      "lingsi",
+      "jeecg",
+      "vxe-table",
+      "table",
+      "vue"
+    ],
+    "authors": []
+  },
+  "work/数说/需求洞察/代理配置": {
+    "title": "代理配置指南",
+    "description": "讲解数说需求洞察项目的代理配置，包括 Whistle 和 SwitchyOmega 的使用。",
+    "tags": [
+      "shushuo",
+      "proxy",
+      "whistle",
+      "debug",
+      "network"
+    ],
+    "authors": []
+  },
+  "work/数说/需求洞察/tooltip无法显示": {
+    "title": "ECharts Tooltip 无法显示问题排查",
+    "description": "排查和解决 ECharts 组件 Tooltip 无法显示的问题，涉及 Vue3 响应式与 ECharts 实例冲突。",
+    "tags": [
+      "shushuo",
+      "echarts",
+      "tooltip",
+      "vue3",
+      "debug"
+    ],
+    "authors": []
+  },
+  "work/数说/nourseN次方/移动端/本地存储拿不到": {
+    "title": "移动端跨域 Iframe 本地存储失效问题",
+    "description": "排查移动端跨域 Iframe 导致 localStorage 无法获取的问题，分析根因并给出解决方案。",
+    "tags": [
+      "shushuo",
+      "iframe",
+      "localStorage",
+      "cross-origin",
+      "mobile"
+    ],
+    "authors": []
+  },
+  "work/数说/nourseN次方/移动端/Token丢失": {
+    "title": "移动端空间切换导致 Token 丢失",
+    "description": "排查移动端切换空间时 Token 丢失的问题，分析原因并给出解决方案。",
+    "tags": [
+      "shushuo",
+      "token",
+      "mobile",
+      "auth",
+      "debug"
+    ],
+    "authors": []
+  },
+  "work/数说/nourseN次方/移动端/Vant 数字键盘组件": {
+    "title": "Vant 数字键盘组件 PC 端与移动端兼容性适配",
+    "description": "讲解 Vant 数字键盘组件在 PC 端和移动端的兼容性适配方案。",
+    "tags": [
+      "shushuo",
+      "vant",
+      "keyboard",
+      "compatibility",
+      "mobile"
+    ],
+    "authors": []
+  },
+  "work/数说/nourseN次方/移动端/小红书分享": {
+    "title": "移动端集成小红书 JS SDK 实现笔记分享",
+    "description": "讲解移动端集成小红书 JS SDK 实现笔记分享功能的方法。",
+    "tags": [
+      "shushuo",
+      "xiaohongshu",
+      "sdk",
+      "share",
+      "mobile"
+    ],
+    "authors": []
+  },
+  "work/数说/nourseN次方/web端/H5预览": {
+    "title": "基于 iframe 与 postMessage 的 H5 实时预览方案",
+    "description": "讲解利用 iframe 和 postMessage 实现 H5 页面实时预览的方案。",
+    "tags": [
+      "shushuo",
+      "iframe",
+      "postMessage",
+      "h5",
+      "preview"
+    ],
+    "authors": []
+  },
+  "work/数说/nourseN次方/web端/日程表组件": {
+    "title": "基于 FullCalendar 的日程表组件封装",
+    "description": "讲解基于 FullCalendar 封装的日程表组件，包括数据驱动、参数配置、跨组件联动等。",
+    "tags": [
+      "shushuo",
+      "FullCalendar",
+      "calendar",
+      "component",
+      "schedule"
+    ],
+    "authors": []
+  },
+  "work/数说/nourseN次方/web端/子模块导入": {
+    "title": "Git Submodule 子模块管理指南",
+    "description": "讲解 Git Submodule 子模块的管理方法，包括添加、更新、删除等操作。",
+    "tags": [
+      "shushuo",
+      "git",
+      "submodule",
+      "version-control"
+    ],
+    "authors": []
+  },
+  "work/数说/AI报告/AI问答": {
+    "title": "AI 问答模块流式交互与富文本复制方案",
+    "description": "讲解 AI 报告项目中 AI 问答模块的流式交互实现和富文本复制方案。",
+    "tags": [
+      "shushuo",
+      "ai",
+      "stream",
+      "richtext",
+      "clipboard"
+    ],
+    "authors": []
+  },
+  "work/数说/AI报告/CXO畅写": {
+    "title": "CXO 畅写编辑器集成方案",
+    "description": "讲解 AI 报告项目中集成 CXO 畅写编辑器的方案。",
+    "tags": [
+      "shushuo",
+      "cxo",
+      "editor",
+      "richtext",
+      "integration"
+    ],
+    "authors": []
+  },
+  "work/数说/AI报告/路由自动化": {
+    "title": "自动化路由配置指南",
+    "description": "讲解 AI 报告项目中自动化路由配置的实现方案。",
+    "tags": [
+      "shushuo",
+      "router",
+      "automation",
+      "vue",
+      "config"
+    ],
+    "authors": []
+  },
+  "work/南网/无人机/基于WebRTC的无人机实时视频监控系统实现": {
+    "title": "基于 WebRTC 的无人机实时直播流接入实践",
+    "description": "讲解基于 WebRTC 和 ZLMediaKit 实现无人机实时视频流接入的完整方案，包括信令交互、SDP 交换等。",
+    "tags": [
+      "nangwang",
+      "webRTC",
+      "ZLMediaKit",
+      "drone",
+      "video"
+    ],
+    "authors": []
+  },
+  "work/南网/无人机/公共表格组件的封装与拓展": {
+    "title": "Vue3 + Element Plus 企业级动态表格组件",
+    "description": "讲解基于 Vue3 和 Element Plus 封装的企业级动态表格组件，支持动态列、搜索、分页等功能。",
+    "tags": [
+      "nangwang",
+      "vue3",
+      "element-plus",
+      "table",
+      "component"
+    ],
+    "authors": []
+  },
+  "work/南网/无人机/公共表单组件的封装与拓展": {
+    "title": "Vue3 + Element Plus 通用搜索表单组件",
+    "description": "讲解基于 Vue3 和 Element Plus 封装的通用搜索表单组件，支持动态表单配置。",
+    "tags": [
+      "nangwang",
+      "vue3",
+      "element-plus",
+      "form",
+      "component"
+    ],
+    "authors": []
+  },
+  "work/南网/无人机/Leaflet地图封装与使用": {
+    "title": "Leaflet 地图封装与使用",
+    "description": "讲解南网无人机项目中 Leaflet 地图的封装与使用，包括地图初始化、图层管理、标注等。",
+    "tags": [
+      "nangwang",
+      "leaflet",
+      "map",
+      "drone",
+      "gis"
+    ],
+    "authors": []
+  },
+  "work/南网/无人机/公共视频播放组件的封装与拓展": {
+    "title": "公共视频播放组件封装",
+    "description": "讲解南网无人机项目中公共视频播放组件的封装与拓展实现。",
+    "tags": [
+      "nangwang",
+      "video",
+      "player",
+      "component",
+      "vue"
+    ],
+    "authors": []
+  },
+  "vitepress/index": {
+    "title": "引言",
+    "description": "VitePress 博客搭建系列引言，介绍刀刀博客从搭建到部署的整体历程与经验总结。",
+    "tags": [
+      "vitepress",
+      "blog",
+      "guide"
+    ],
+    "authors": []
+  },
+  "vitepress/know": {
+    "title": "拓展学习",
+    "description": "VitePress 拓展学习模块，收集路由重写、组件使用等知识点与功能使用技巧。",
+    "tags": [
+      "vitepress",
+      "knowledge",
+      "rewrite"
+    ],
+    "authors": []
+  },
+  "vitepress/review": {
+    "title": "评论功能添加",
+    "description": "讲解 VitePress 博客中集成 Giscus 评论系统的完整步骤，包括 GitHub 仓库配置与主题集成。",
+    "tags": [
+      "vitepress",
+      "giscus",
+      "comment"
+    ],
+    "authors": []
+  },
+  "vitepress/build": {
+    "title": "打包",
+    "description": "讲解 VitePress 项目的打包配置，包括 base 路径设置、打包命令与常见问题处理。",
+    "tags": [
+      "vitepress",
+      "build",
+      "deploy"
+    ],
+    "authors": []
+  },
+  "vitepress/deploy": {
+    "title": "部署",
+    "description": "讲解 VitePress 博客部署到 Gitee Pages 和 GitHub Pages 的完整流程与注意事项。",
+    "tags": [
+      "vitepress",
+      "deploy",
+      "gitee",
+      "github"
+    ],
+    "authors": []
+  },
+  "vitepress/dev": {
+    "title": "构建",
+    "description": "讲解 VitePress 项目的搭建步骤，包括依赖安装、配置初始化与项目结构介绍。",
+    "tags": [
+      "vitepress",
+      "setup",
+      "guide"
     ],
     "authors": []
   }

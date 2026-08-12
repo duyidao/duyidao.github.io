@@ -1,16 +1,4 @@
----
-title: 引言
-titleTemplate: Vitepress首页
-description: VitePress首页
-head:
-  - - meta
-    - name: description
-      content: vitepress首页
-  - - meta
-    - name: keywords
-      content: vitepress 引言
-pageClass: vitepress-index-class
----
+
 
 # 关于此模块
 

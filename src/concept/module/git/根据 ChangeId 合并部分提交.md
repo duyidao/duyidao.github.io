@@ -1,7 +1,3 @@
----
-title: 根据ChangeId合并部分提交
----
-
 # 根据 ChangeId 合并部分提交
 
 ## 背景

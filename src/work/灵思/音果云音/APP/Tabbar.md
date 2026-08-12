@@ -1,18 +1,4 @@
----
-layout: doc
-title: 音果云音项目tabbar组件
-titleTemplate: 音果云音项目tabbar组件
-description: 音果云音 项目 sku
-head:
-  - - meta
-    - name: description
-      content: 音果云音项目tabbar组件
-  - - meta
-    - name: keywords
-      content: 音果云音 项目 tabbar
-pageClass: lingsi-music-tabbar
-tags: tabbar,webview,hideTabBar
----
+
 
 # tabbar 页
 
