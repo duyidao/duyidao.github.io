@@ -323,11 +323,13 @@
   },
   "Proxy": {
     "en": "Proxy",
-    "cn": "代理对象",
-    "descript": "JavaScript ES6 引入的内置对象，用于创建一个对象的代理，实现基本操作的拦截和自定义，是 Vue3 响应式系统的核心。",
+    "cn": "Proxy 代理器",
+    "descript": "ES6 提供的对象代理机制，用于拦截和自定义对象的基本操作（如属性读取、赋值、函数调用等），支持 13 种拦截方法，可在不修改目标对象的情况下控制对对象的访问，是 Vue3 响应式系统的核心。",
     "tags": [
       "javascript",
       "es6",
+      "proxy",
+      "metaprogramming",
       "vue3"
     ]
   },
@@ -394,11 +396,12 @@
   "NPM": {
     "en": "NPM",
     "cn": "NPM 包管理器",
-    "descript": "Node.js 的默认包管理器，用于安装、发布和管理 JavaScript 项目依赖包，是全球最大的开源库生态系统。",
+    "descript": "Node.js 的默认包管理器，用于安装、发布和管理 JavaScript 项目依赖包，是全球最大的开源库生态系统；存在幽灵依赖和磁盘冗余问题。",
     "tags": [
       "nodejs",
       "package",
-      "tool"
+      "tool",
+      "package-manager"
     ]
   },
   "BMapGL": {
@@ -609,11 +612,13 @@
   "Composition API": {
     "en": "Composition API",
     "cn": "组合式 API",
-    "descript": "Vue 3 引入的基于函数的 API 集合，允许以逻辑关注点为粒度组织组件代码，相较选项式 API 具备更优的逻辑复用能力与类型推导支持。",
+    "descript": "Vue 3 引入的基于函数的 API 集合，通过 setup 函数组织组件逻辑，允许以逻辑关注点为粒度组织组件代码，相较选项式 API 具备更优的逻辑复用能力与 TypeScript 类型推导支持。",
     "tags": [
       "vue3",
       "api",
-      "framework"
+      "framework",
+      "vue",
+      "typescript"
     ]
   },
   "Computed Property": {
@@ -889,7 +894,7 @@
   "FileSaver.js": {
     "en": "FileSaver.js",
     "cn": "FileSaver.js 库",
-    "descript": "一个用于在客户端保存文件的 JavaScript 库，提供了 saveAs 方法，可在浏览器中触发文件下载，兼容多种浏览器。",
+    "descript": "一个用于在客户端保存文件的 JavaScript 库，提供 saveAs 方法将 Blob 或 File 对象保存到本地，可在浏览器中触发文件下载，兼容多种浏览器，广泛用于图片下载、文档导出等场景。",
     "tags": [
       "javascript",
       "library",
@@ -999,11 +1004,12 @@
   "Base64": {
     "en": "Base64",
     "cn": "Base64 编码",
-    "descript": "一种基于 64 个可打印字符表示二进制数据的编码方式，常用于在文本中嵌入图片、字体等二进制资源，减少 HTTP 请求。",
+    "descript": "一种基于 64 个可打印字符表示二进制数据的编码方式，常用于在文本中嵌入图片、字体等二进制资源，减少 HTTP 请求；数据量比原始二进制约增加 33%。",
     "tags": [
       "encoding",
       "data",
-      "web"
+      "web",
+      "data-url"
     ]
   },
   "Function Tool": {
@@ -1069,11 +1075,11 @@
   "VSCode": {
     "en": "VSCode",
     "cn": "Visual Studio Code 编辑器",
-    "descript": "Microsoft 开发的轻量级跨平台代码编辑器，内置丰富的插件市场，支持语法高亮、智能提示、调试等开发功能，是前端开发的主流编辑器。",
+    "descript": "微软推出的开源代码编辑器，拥有丰富的插件生态，支持 ESLint/Prettier/Stylelint 等工具集成，是目前最流行的前端开发 IDE。",
     "tags": [
       "editor",
-      "tool",
-      "ide"
+      "ide",
+      "tool"
     ]
   },
   "Axios": {
@@ -1083,7 +1089,9 @@
     "tags": [
       "http",
       "library",
-      "javascript"
+      "javascript",
+      "promise",
+      "ajax"
     ]
   },
   "CORS": {
@@ -1109,11 +1117,13 @@
   "ESLint": {
     "en": "ESLint",
     "cn": "ESLint 代码检查工具",
-    "descript": "JavaScript 代码静态分析工具，通过可配置的规则检查代码中的潜在问题与风格违规，支持自定义规则与插件扩展，是前端代码规范化的核心工具。",
+    "descript": "插件化的 JavaScript/TypeScript 代码静态检查工具，通过 AST 解析分析代码格式，支持自定义规则和插件扩展，已成为前端项目标配。",
     "tags": [
+      "lint",
+      "javascript",
+      "typescript",
       "tool",
-      "code-style",
-      "javascript"
+      "code-style"
     ]
   },
   "AST": {
@@ -1189,8 +1199,8 @@
   },
   "ES5": {
     "en": "ES5",
-    "cn": "ES5 标准",
-    "descript": "ECMAScript 的第 5 个版本，于 2009 年发布，引入了严格模式、JSON 支持、数组迭代方法等特性，是 ES6 之前最广泛使用的 JavaScript 标准。",
+    "cn": "ES5/ECMAScript 5 标准",
+    "descript": "ECMAScript 的第 5 个版本，于 2009 年发布，正式引入严格模式（strict mode）、JSON 支持、数组方法（forEach/map/filter 等），是 JavaScript 标准化的重要里程碑。",
     "tags": [
       "standard",
       "javascript",
@@ -1274,16 +1284,6 @@
       "nodejs"
     ]
   },
-  "ES5": {
-    "en": "ES5",
-    "cn": "ES5/ECMAScript 5 标准",
-    "descript": "ECMAScript 的第 5 个版本，于 2009 年发布，正式引入严格模式（strict mode）、JSON 支持、数组方法（forEach/map/filter 等），是 JavaScript 标准化的重要里程碑。",
-    "tags": [
-      "standard",
-      "javascript",
-      "ecmascript"
-    ]
-  },
   "Symbol": {
     "en": "Symbol",
     "cn": "Symbol 数据类型",
@@ -1347,17 +1347,6 @@
       "es6",
       "datastructure",
       "weak-reference"
-    ]
-  },
-  "Proxy": {
-    "en": "Proxy",
-    "cn": "Proxy 代理器",
-    "descript": "ES6 提供的对象代理机制，用于拦截和自定义对象的基本操作（如属性读取、赋值、函数调用等），支持 13 种拦截方法，可在不修改目标对象的情况下控制对对象的访问。",
-    "tags": [
-      "javascript",
-      "es6",
-      "proxy",
-      "metaprogramming"
     ]
   },
   "ES7": {
@@ -1440,12 +1429,14 @@
   "Rollup": {
     "en": "Rollup",
     "cn": "Rollup 打包工具",
-    "descript": "基于 ES Module 的 JavaScript 模块打包器，以 Tree Shaking 为核心特性，生成更小、更高效的代码包，Vite 生产环境底层使用 Rollup 进行打包。",
+    "descript": "基于 ES Module 的 JavaScript 模块打包器，以 Tree Shaking 为核心特性，生成更小、更高效的代码包，Vite 生产环境底层使用 Rollup 进行打包，Vue.js 也使用 Rollup 进行生产构建。",
     "tags": [
       "build-tool",
       "javascript",
       "bundler",
-      "vite"
+      "vite",
+      "esm",
+      "build"
     ]
   },
   "Esbuild": {
@@ -1540,12 +1531,14 @@
   "Terser": {
     "en": "Terser",
     "cn": "Terser 压缩工具",
-    "descript": "JavaScript 代码压缩与混淆工具，支持 ES6+ 语法，是 UglifyJS 的替代品，常被 Rollup 和 Webpack 用于生产环境代码压缩。",
+    "descript": "JavaScript 代码压缩与混淆工具，支持 ES6+ 语法，是 UglifyJS 的替代品，可识别 /*#__PURE__*/ 注释进行 Tree-Shaking，常被 Rollup 和 Webpack 用于生产环境代码压缩。",
     "tags": [
       "build-tool",
       "javascript",
       "minification",
-      "bundler"
+      "bundler",
+      "optimization",
+      "build"
     ]
   },
   "RequireJS": {
@@ -1601,16 +1594,6 @@
       "package-manager",
       "tool",
       "performance"
-    ]
-  },
-  "npm": {
-    "en": "npm",
-    "cn": "npm 包管理器",
-    "descript": "Node.js 默认包管理器，用于安装、管理和发布 JavaScript 包，存在幽灵依赖和磁盘冗余问题。",
-    "tags": [
-      "nodejs",
-      "package-manager",
-      "tool"
     ]
   },
   "yarn": {
@@ -1953,17 +1936,6 @@
       "vite"
     ]
   },
-  "ESLint": {
-    "en": "ESLint",
-    "cn": "ESLint 代码检查工具",
-    "descript": "插件化的 JavaScript/TypeScript 代码静态检查工具，通过 AST 解析分析代码格式，支持自定义规则和插件扩展，已成为前端项目标配。",
-    "tags": [
-      "lint",
-      "javascript",
-      "typescript",
-      "tool"
-    ]
-  },
   "Prettier": {
     "en": "Prettier",
     "cn": "Prettier 代码格式化工具",
@@ -2026,16 +1998,6 @@
       "convention",
       "tool",
       "workflow"
-    ]
-  },
-  "VSCode": {
-    "en": "VSCode",
-    "cn": "Visual Studio Code 编辑器",
-    "descript": "微软推出的开源代码编辑器，拥有丰富的插件生态，支持 ESLint/Prettier/Stylelint 等工具集成，是目前最流行的前端开发 IDE。",
-    "tags": [
-      "editor",
-      "ide",
-      "tool"
     ]
   },
   "Vue.js": {
@@ -2111,39 +2073,6 @@
       "build"
     ]
   },
-  "Rollup": {
-    "en": "Rollup",
-    "cn": "Rollup 打包工具",
-    "descript": "基于 ESM 的 JavaScript 打包工具，以 Tree-Shaking 为核心优势，适合库和框架打包，Vue.js 和 Vite 均使用 Rollup 进行生产构建。",
-    "tags": [
-      "build",
-      "javascript",
-      "esm",
-      "tool"
-    ]
-  },
-  "Terser": {
-    "en": "Terser",
-    "cn": "Terser 压缩工具",
-    "descript": "JavaScript 代码压缩和混淆工具，支持 ES6+ 语法，可识别 /*#__PURE__*/ 注释进行 Tree-Shaking，常用于生产构建的代码压缩阶段。",
-    "tags": [
-      "optimization",
-      "javascript",
-      "build",
-      "tool"
-    ]
-  },
-  "Composition API": {
-    "en": "Composition API",
-    "cn": "Composition API 组合式 API",
-    "descript": "Vue.js 3 引入的 API 风格，通过 setup 函数组织组件逻辑，支持逻辑复用和 TypeScript 类型推导，与 Options API 可共存。",
-    "tags": [
-      "vue",
-      "api",
-      "typescript",
-      "framework"
-    ]
-  },
   "Espree": {
     "en": "Espree",
     "cn": "Espree 解析器",
@@ -2184,15 +2113,6 @@
       "es5",
       "api",
       "vue"
-    ]
-  },
-  "UI": {
-    "en": "UI",
-    "cn": "用户界面",
-    "descript": "User Interface，用户与软件交互的视觉界面，前端开发中通过 HTML/CSS/JavaScript 构建，声明式框架通过描述 UI 状态自动生成界面。",
-    "tags": [
-      "frontend",
-      "design"
     ]
   },
   "渲染器": {
@@ -2270,26 +2190,6 @@
       "web"
     ]
   },
-  "file-saver": {
-    "en": "file-saver",
-    "cn": "file-saver 库",
-    "descript": "前端文件保存工具库，提供 saveAs 方法将 Blob 或 File 对象保存到本地，广泛用于图片下载、文档导出等场景。",
-    "tags": [
-      "javascript",
-      "browser",
-      "file"
-    ]
-  },
-  "base64": {
-    "en": "base64",
-    "cn": "Base64 编码",
-    "descript": "一种用 64 个可打印字符表示二进制数据的编码方式，常用于在 URL、HTML 中嵌入图片等二进制资源，数据量比原始二进制约增加 33%。",
-    "tags": [
-      "encoding",
-      "web",
-      "data-url"
-    ]
-  },
   "html2canvas": {
     "en": "html2canvas",
     "cn": "html2canvas 库",
@@ -2310,17 +2210,6 @@
       "browser",
       "api",
       "blob"
-    ]
-  },
-  "axios": {
-    "en": "axios",
-    "cn": "axios 库",
-    "descript": "基于 Promise 的 HTTP 客户端，支持浏览器和 Node.js，提供请求拦截、响应拦截、取消请求等功能，是前端最流行的 HTTP 请求库之一。",
-    "tags": [
-      "http",
-      "javascript",
-      "promise",
-      "ajax"
     ]
   },
   "ImageData": {
@@ -2627,7 +2516,8 @@
     "tags": [
       "javascript",
       "inheritance",
-      "prototype"
+      "prototype",
+      "oop"
     ]
   },
   "instanceof": {
@@ -2677,7 +2567,7 @@
   "组合模式": {
     "en": "Composite Pattern",
     "cn": "组合模式",
-    "descript": "一种结构型设计模式，将对象组合成树状结构以表示"部分-整体"的层次关系，使客户端对单个对象和组合对象的使用具有一致性，常用于 UI 组件嵌套。",
+    "descript": "一种结构型设计模式，将对象组合成树状结构以表示「部分-整体」的层次关系，使客户端对单个对象和组合对象的使用具有一致性，常用于 UI 组件嵌套。",
     "tags": [
       "design-pattern",
       "structural",
@@ -2857,16 +2747,6 @@
       "inheritance"
     ]
   },
-  "原型链": {
-    "en": "Prototype Chain",
-    "cn": "原型链",
-    "descript": "JavaScript 中对象通过 __proto__ 指针逐级向上查找属性和方法的链条，终点是 Object.prototype（其 __proto__ 为 null），是实现属性继承和共享的核心机制。",
-    "tags": [
-      "javascript",
-      "oop",
-      "inheritance"
-    ]
-  },
   "作用域": {
     "en": "Scope",
     "cn": "作用域",
@@ -2945,6 +2825,58 @@
       "web-api",
       "browser",
       "file-system"
+    ]
+  },
+  "App": {
+    "en": "App",
+    "cn": "App 应用",
+    "descript": "Application 的缩写，泛指移动端原生应用程序，通过 Uniapp 等跨端框架可同时编译为 iOS 和 Android 平台的 App。",
+    "tags": [
+      "mobile",
+      "uniapp",
+      "cross-platform"
+    ]
+  },
+  "H5": {
+    "en": "H5",
+    "cn": "H5 页面",
+    "descript": "HTML5 的简称，在移动端开发语境中泛指运行在移动浏览器或 WebView 中的网页应用，是 Uniapp 等跨端框架支持的编译目标之一。",
+    "tags": [
+      "mobile",
+      "html",
+      "uniapp",
+      "cross-platform"
+    ]
+  },
+  "HBuilderX": {
+    "en": "HBuilderX",
+    "cn": "HBuilderX 开发工具",
+    "descript": "DCloud 推出的新一代前端开发 IDE，是 HBuilder 的升级版本，深度集成 Uniapp 框架，支持代码提示、真机调试、云打包和多端编译发布。",
+    "tags": [
+      "ide",
+      "uniapp",
+      "tool",
+      "cross-platform"
+    ]
+  },
+  "AI": {
+    "en": "AI",
+    "cn": "人工智能",
+    "descript": "Artificial Intelligence 的缩写，指通过计算机模拟人类智能的技术，在前端开发中可用于代码生成、智能问答、内容推荐等场景。",
+    "tags": [
+      "artificial-intelligence",
+      "tool",
+      "assistant"
+    ]
+  },
+  "3D": {
+    "en": "3D",
+    "cn": "三维可视化",
+    "descript": "Three-Dimensional 的缩写，指在二维平面上模拟三维空间效果的技术，前端可通过 WebGL、Three.js 等实现 3D 模型渲染和交互。",
+    "tags": [
+      "visualization",
+      "webgl",
+      "rendering"
     ]
   }
 }

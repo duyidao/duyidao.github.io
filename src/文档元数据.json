@@ -496,220 +496,6 @@
     ],
     "authors": []
   },
-  "work/百度/佛开/LED大屏/打包": {
-    "title": "百度外包佛开项目大屏打包",
-    "description": "详细说明百度地图佛开项目大屏端在部署阶段的打包配置，涵盖环境变量定义与 Vite 基础路径加载。",
-    "tags": [
-      "vite",
-      "env",
-      "build",
-      "deploy"
-    ],
-    "authors": []
-  },
-  "work/百度/佛开/LED大屏/覆盖物": {
-    "title": "百度外包佛开项目大屏覆盖物",
-    "description": "阐述百度二维地图中折线、文本标注及自定义 HTML 图层的实现原理与代码封装。",
-    "tags": [
-      "bmap",
-      "overlay",
-      "polyline",
-      "label",
-      "customhtml"
-    ],
-    "authors": []
-  },
-  "work/百度/佛开/LED大屏/自定义样式": {
-    "title": "百度外包佛开项目大屏自定义样式",
-    "description": "介绍百度地图个性化样式的两种配置方案：样式 ID 与 JSON 文件，并提供对比分析。",
-    "tags": [
-      "bmap",
-      "style",
-      "setMapStyleV2",
-      "ui"
-    ],
-    "authors": []
-  },
-  "work/百度/佛开/平台端/3d跳转": {
-    "title": "百度外包佛开项目 3D 路由跳转",
-    "description": "详细阐述基于 CSS 3D 变换与 Vue3 计算属性实现科幻风 3D 路由切换效果的数学模型与代码封装。",
-    "tags": [
-      "css3d",
-      "transform",
-      "rotateY",
-      "vue3",
-      "router"
-    ],
-    "authors": []
-  },
-  "work/百度/佛开/平台端/子组件动态挂载": {
-    "title": "百度外包佛开项目子组件动态挂载",
-    "description": "介绍利用 Vite 的 import.meta.glob 与 Vue3 的 defineAsyncComponent 实现组件批量导入、字典驱动过滤及动态挂载动画的完整方案。",
-    "tags": [
-      "import.meta.glob",
-      "defineAsyncComponent",
-      "dynamic-component",
-      "vue3",
-      "vite"
-    ],
-    "authors": []
-  },
-  "work/数说/需求洞察/代理配置": {
-    "title": "数说项目代理配置指南",
-    "description": "详细说明在数说项目中如何利用 whistle 与 SwitchyOmega 实现多环境本地代理配置，解决一套代码多环境运行的调试问题。",
-    "tags": [
-      "whistle",
-      "switchyomega",
-      "proxy",
-      "debug"
-    ],
-    "authors": []
-  },
-  "work/数说/需求洞察/tooltip无法显示": {
-    "title": "ECharts 组件 Tooltip 无法显示问题排查与解决",
-    "description": "深入剖析 Vue 中 ECharts 实例被响应式代理导致 Tooltip 等配置失效的问题，并提供基于 shallowRef 的标准解决方案。",
-    "tags": [
-      "echarts",
-      "vue3",
-      "shallowRef",
-      "proxy",
-      "bug"
-    ],
-    "authors": []
-  },
-  "work/数说/AI报告/路由自动化": {
-    "title": "数说项目自动化路由配置指南",
-    "description": "详细阐述基于 Vue3 与 TypeScript 环境，利用 UnpluginVueRouter 实现文件系统路由自动化、类型推导及全局 API 自动导入的完整方案。",
-    "tags": [
-      "unplugin-vue-router",
-      "typescript",
-      "vite",
-      "auto-import",
-      "vue3"
-    ],
-    "authors": []
-  },
-  "work/数说/AI报告/CXO畅写": {
-    "title": "数说项目 CXO 畅写编辑器集成方案",
-    "description": "深入解析 CXO 编辑器的异常状态拦截、基于隐藏 iframe 的字体预加载机制（解决 FOIT/FOUT），以及组件生命周期内的内存自动化清理策略。",
-    "tags": [
-      "cxo",
-      "iframe",
-      "font-preload",
-      "vueuse",
-      "memory-leak"
-    ],
-    "authors": []
-  },
-  "work/数说/AI报告/AI问答": {
-    "title": "数说项目 AI 问答模块流式交互与富文本复制方案",
-    "description": "拆解 AI 问答模块的 SSE 流式请求链路、工作流状态机解析，以及基于 Range 选区与 ClipboardItem 实现的高保真富文本跨格式复制方案。",
-    "tags": [
-      "sse",
-      "ant-design-x-vue",
-      "fetch",
-      "clipboard",
-      "vueuse"
-    ],
-    "authors": []
-  },
-  "work/数说/nourseN次方/web端/日程表组件": {
-    "title": "基于 FullCalendar 的日程表组件封装与实践",
-    "description": "详细阐述基于 FullCalendar 与 Vue3 的日程表组件封装方案，涵盖插槽定制、数据驱动配置及跨组件日期联动机制。",
-    "tags": [
-      "fullcalendar",
-      "vue3",
-      "typescript",
-      "calendar",
-      "component"
-    ],
-    "authors": []
-  },
-  "work/数说/nourseN次方/web端/H5预览": {
-    "title": "基于 iframe 与 postMessage 的 H5 实时预览方案",
-    "description": "剖析基于 iframe 嵌入与 postMessage 跨窗口通信的 H5 实时预览架构，解决编辑态与预览态的数据同步及性能优化问题。",
-    "tags": [
-      "iframe",
-      "postmessage",
-      "vueuse",
-      "cross-window",
-      "preview"
-    ],
-    "authors": []
-  },
-  "work/数说/nourseN次方/web端/子模块导入": {
-    "title": "Git Submodule 子模块管理指南",
-    "description": "梳理 Git Submodule 的核心概念、常用命令矩阵及标准工作流，解决多仓库依赖管理与团队协同中的子模块同步问题。",
-    "tags": [
-      "git",
-      "submodule",
-      "monorepo",
-      "workflow",
-      "version-control"
-    ],
-    "authors": []
-  },
-  "work/数说/nourseN次方/移动端/本地存储拿不到": {
-    "title": "移动端跨域 Iframe 本地存储失效问题排查与解决",
-    "description": "记录移动端 H5 项目中，因同源策略限制导致 Iframe 子页面无法读取父页面 LocalStorage 数据的异常排查过程及全局状态管理替代方案。",
-    "tags": [
-      "iframe",
-      "localstorage",
-      "same-origin-policy",
-      "pinia",
-      "bug"
-    ],
-    "authors": []
-  },
-  "work/数说/nourseN次方/移动端/Vant数字键盘组件": {
-    "title": "Vant 数字键盘组件在 PC 端与移动端的兼容性适配",
-    "description": "剖析 Vant 数字键盘在 PC 端测试时物理键盘输入失效及虚拟键盘点击无响应的问题，提供基于事件监听与多端事件映射的兼容方案。",
-    "tags": [
-      "vant",
-      "mobile",
-      "pc",
-      "event-compatibility",
-      "bug"
-    ],
-    "authors": []
-  },
-  "work/数说/nourseN次方/移动端/小红书分享": {
-    "title": "移动端集成小红书 JS SDK 实现笔记分享",
-    "description": "梳理移动端 H5 接入小红书 JS SDK 的完整流程，详解 shareInfo 与 verifyConfig 核心参数配置及媒体资源地址限制。",
-    "tags": [
-      "sdk",
-      "xiaohongshu",
-      "share",
-      "mobile",
-      "integration"
-    ],
-    "authors": []
-  },
-  "work/数说/nourseN次方/移动端/Token丢失": {
-    "title": "移动端空间切换导致 Token 丢失问题排查",
-    "description": "分析移动端切换空间时因 router.go(0) 强制刷新导致 Pinia 内存 Token 丢失的缺陷，提供基于动态 key 触发组件重载的无刷新解决方案。",
-    "tags": [
-      "token",
-      "pinia",
-      "vue-router",
-      "state-management",
-      "bug"
-    ],
-    "authors": []
-  },
-  "work/南网/无人机/基于WebRTC的无人机实时视频监控系统实现": {
-    "title": "基于 WebRTC 的无人机实时直播流接入实践",
-    "description": "记录在 Vue3 项目中通过 RTCPeerConnection 对接 ZLMediaKit 实现无人机 WebRTC 直播流的完整方案，涵盖 SDP 交换、ICE 协商、媒体流绑定、连接状态管理及资源清理等核心环节。",
-    "tags": [
-      "webrtc",
-      "zlmediakit",
-      "rtcpeerconnection",
-      "sdp",
-      "streaming",
-      "vue3"
-    ],
-    "authors": []
-  },
   "practice/handle/business/富文本编辑器": {
     "title": "富文本编辑器集成与二次开发指南",
     "description": "涵盖 Tinymce 与 vue-quill-editor 的安装配置、界面定制、插件开发及图片上传至服务器的完整实践方案。",
@@ -1550,159 +1336,6 @@
         "title": "ts项目经验分享，vue项目中ts的用途和问题"
       }
     ]
-  },
-  "practice/idea/vue/自定义事件封装": {
-    "title": "自定义事件封装",
-    "description": "介绍 Vue 项目中封装自定义事件的实践，以元素平滑上升滚动效果为例，结合 Element.animate 与 IntersectionObserver 实现视口动画。",
-    "tags": [
-      "vue",
-      "animation",
-      "intersection-observer"
-    ],
-    "authors": []
-  },
-  "practice/idea/vue/组件状态重置": {
-    "title": "Vue 组件状态重置",
-    "description": "介绍 Vue 组件状态重置的几种方式，包括浅拷贝初始值、key 强制重新渲染等方法，对比各方案的适用场景。",
-    "tags": [
-      "vue",
-      "state",
-      "component"
-    ],
-    "authors": []
-  },
-  "practice/idea/vue/组件内的模板复用": {
-    "title": "Vue 组件内的模板复用",
-    "description": "介绍 Vue 组件内模板复用的方式，通过 v-for 遍历或组件封装减少重复模板代码，提升代码可维护性。",
-    "tags": [
-      "vue",
-      "template",
-      "component"
-    ],
-    "authors": []
-  },
-  "practice/idea/vue/父组件监听子组件生命周期": {
-    "title": "父组件监听子组件生命周期",
-    "description": "介绍 Vue2 的 @hook 事件与 Vue3 的生命周期事件机制，实现在父组件中监听子组件的生命周期钩子。",
-    "tags": [
-      "vue",
-      "lifecycle",
-      "component"
-    ],
-    "authors": []
-  },
-  "practice/idea/vue/模板自动解包Ref": {
-    "title": "模板自动解包 Ref",
-    "description": "分析 Vue 模板自动解包 Ref 的底层原理，通过源码解读 proxyRefs 函数，说明 script 中 .value 与 template 中自动解包的区别。",
-    "tags": [
-      "vue",
-      "ref",
-      "reactivity"
-    ],
-    "authors": []
-  },
-  "practice/idea/vue/更新机制和优化": {
-    "title": "Vue 的更新机制和优化",
-    "description": "分析 Vue2 与 Vue3 更新机制的差异，列举常见不更新原因及排查方法，涵盖对象新增属性、数组下标修改、DOM 操作等场景。",
-    "tags": [
-      "vue",
-      "reactivity",
-      "optimization"
-    ],
-    "authors": []
-  },
-  "practice/idea/vue/图片动态引入使用require": {
-    "title": "Vue 图片动态引入使用 require",
-    "description": "分析 Vue 项目中动态图片引入失效的原因，区分静态资源与动态资源，说明 Webpack 中 require 编译静态资源路径的原理。",
-    "tags": [
-      "vue",
-      "webpack",
-      "image"
-    ],
-    "authors": []
-  },
-  "practice/idea/vue/全局状态管理": {
-    "title": "全局状态管理",
-    "description": "介绍不依赖 Pinia/Vuex 的轻量级全局状态管理方案，通过闭包与响应式 API 实现简单的状态共享，适合小项目或对体积有要求的场景。",
-    "tags": [
-      "vue",
-      "state",
-      "reactive"
-    ],
-    "authors": []
-  },
-  "practice/idea/vue/vue异步组件实现原理": {
-    "title": "Vue 异步组件实现原理",
-    "description": "分析 Vue 中 defineAsyncComponent 的实现原理，从源码角度解读异步组件的加载、等待、错误处理及超时机制。",
-    "tags": [
-      "vue",
-      "async",
-      "component"
-    ],
-    "authors": []
-  },
-  "practice/idea/vue/useTemplateRef实现原理": {
-    "title": "useTemplateRef 实现原理",
-    "description": "介绍 Vue 3.5 新增的 useTemplateRef API 的实现原理，对比传统 ref 属性方式获取 DOM 元素的差异。",
-    "tags": [
-      "vue",
-      "ref",
-      "template"
-    ],
-    "authors": []
-  },
-  "practice/idea/vue/ref和reactive在使用上的区别": {
-    "title": "ref 和 reactive 在使用上的区别",
-    "description": "从实际场景出发对比 ref 与 reactive 的差异，包括类型支持、替换行为、解构响应式等方面，给出使用建议。",
-    "tags": [
-      "vue",
-      "ref",
-      "reactive",
-      "reactivity"
-    ],
-    "authors": []
-  },
-  "practice/idea/vue/provide和inject的context封装": {
-    "title": "provide 和 inject 的 context 封装",
-    "description": "介绍 Vue 中 provide/inject 的使用方式，以及如何封装为 context 模式实现更安全的依赖注入，避免直接修改导致的数据混乱。",
-    "tags": [
-      "vue",
-      "provide",
-      "inject",
-      "context"
-    ],
-    "authors": []
-  },
-  "practice/idea/vue/nextTick": {
-    "title": "$nextTick",
-    "description": "分析 Vue 中 $nextTick 的执行原理，包括异步更新队列、宏任务与微任务的选择策略，以及 callback 回调的执行时机。",
-    "tags": [
-      "vue",
-      "nexttick",
-      "async"
-    ],
-    "authors": []
-  },
-  "practice/idea/vue/customRef封装全局loading": {
-    "title": "customRef 实现全局 loading 封装",
-    "description": "介绍使用 Vue 的 customRef API 封装全局 loading 状态，解决并发请求时 loading 提前消失的问题，实现请求计数管理。",
-    "tags": [
-      "vue",
-      "customref",
-      "loading",
-      "reactivity"
-    ],
-    "authors": []
-  },
-  "practice/idea/vue/Vue2 VS Vue3": {
-    "title": "Vue2 VS Vue3",
-    "description": "对比 Vue2 与 Vue3 在响应式系统、API 设计、性能优化等方面的差异，分析 Vue2 响应式缺陷及 Vue3 的改进方案。",
-    "tags": [
-      "vue",
-      "comparison",
-      "reactivity"
-    ],
-    "authors": []
   },
   "practice/idea/optimize/项目速度优化": {
     "title": "优化项目速度",
@@ -3114,18 +2747,6 @@
         "link": "https://www.bilibili.com/video/BV1UF411k7y3"
       }
     ]
-  },
-  "concept/css/effect/下划线动画": {
-    "title": "下划线动画",
-    "description": "讲解使用 background 配合 linear-gradient 实现下划线动画效果，包括动画过渡和细节优化（hover 方向控制）。",
-    "tags": [
-      "css",
-      "background",
-      "linear-gradient",
-      "animation",
-      "underline"
-    ],
-    "authors": []
   },
   "concept/css/effect/文字立起效果": {
     "title": "文字立起效果",
@@ -5004,6 +4625,361 @@
       "vitepress",
       "setup",
       "guide"
+    ],
+    "authors": []
+  },
+  "about/project": {
+    "title": "关于项目",
+    "description": "介绍刀刀博客项目内容，涵盖面试亮点、难点、经验总结、项目介绍和项目优化等方面。",
+    "tags": [
+      "about",
+      "project",
+      "interview"
+    ],
+    "authors": []
+  },
+  "about/furtrue": {
+    "title": "关于技术提升",
+    "description": "分享技术提升的方向与思路，包括前端技术广度、深度以及学习路径规划。",
+    "tags": [
+      "about",
+      "skill",
+      "growth"
+    ],
+    "authors": []
+  },
+  "about/prev": {
+    "title": "关于前司",
+    "description": "介绍前司工作经历，包括 Vue2、UniApp、App、H5 等技术栈的项目经验总结。",
+    "tags": [
+      "about",
+      "experience",
+      "vue2",
+      "uniapp"
+    ],
+    "authors": []
+  },
+  "about/blog": {
+    "title": "关于刀刀博客",
+    "description": "介绍刀刀博客的搭建历程、技术选型与内容规划，涵盖 VitePress 博客搭建经验。",
+    "tags": [
+      "about",
+      "blog",
+      "vitepress"
+    ],
+    "authors": []
+  },
+  "about/index": {
+    "title": "关于我",
+    "description": "个人介绍页面，包含技术栈、工作经历和博客导航等信息。",
+    "tags": [
+      "about",
+      "resume"
+    ],
+    "authors": []
+  },
+  "concept/sharp/vite/创建项目": {
+    "title": "Vite 的 SPA 模式",
+    "description": "讲解 Vite 创建项目的 SPA 模式配置与使用，涵盖项目初始化、开发服务器和构建流程。",
+    "tags": [
+      "vite",
+      "spa",
+      "init"
+    ],
+    "authors": []
+  },
+  "concept/sharp/gsap/基础": {
+    "title": "GSAP",
+    "description": "GSAP 动画库基础入门，介绍 GSAP 的核心概念、基本用法和常用动画参数。",
+    "tags": [
+      "gsap",
+      "animation",
+      "basics"
+    ],
+    "authors": []
+  },
+  "concept/javascript/knowledge/模块化": {
+    "title": "模块化",
+    "description": "讲解 JavaScript 模块化的发展历程，包括 CommonJS、AMD、ES Module 等模块化方案的对比与实践。",
+    "tags": [
+      "javascript",
+      "module",
+      "commonjs",
+      "esmodule"
+    ],
+    "authors": []
+  },
+  "concept/javascript/knowledge/事件循环": {
+    "title": "事件循环",
+    "description": "深入讲解 JavaScript 事件循环机制，包括宏任务、微任务、任务队列和浏览器渲染时机的关系。",
+    "tags": [
+      "javascript",
+      "event-loop",
+      "async",
+      "microtask"
+    ],
+    "authors": []
+  },
+  "concept/javascript/knowledge/对象": {
+    "title": "对象",
+    "description": "讲解 JavaScript 对象的基础概念与操作，包括对象创建、属性描述符、原型链和常用 API。",
+    "tags": [
+      "javascript",
+      "object",
+      "prototype",
+      "basics"
+    ],
+    "authors": []
+  },
+  "concept/javascript/knowledge/函数": {
+    "title": "函数",
+    "description": "讲解 JavaScript 函数的核心概念，包括函数声明、作用域、闭包、this 指向和箭头函数等。",
+    "tags": [
+      "javascript",
+      "function",
+      "closure",
+      "scope"
+    ],
+    "authors": []
+  },
+  "concept/javascript/knowledge/Promise": {
+    "title": "Promise",
+    "description": "讲解 Promise 的核心概念与使用，包括链式调用、静态方法、错误处理和异步编程模式。",
+    "tags": [
+      "javascript",
+      "promise",
+      "async"
+    ],
+    "authors": []
+  },
+  "concept/javascript/webapi/取色器封装": {
+    "title": "取色器封装",
+    "description": "讲解基于 EyeDropper API 或 Canvas 实现取色器功能的封装方法，支持从页面任意位置提取颜色。",
+    "tags": [
+      "javascript",
+      "webapi",
+      "eyedropper",
+      "color"
+    ],
+    "authors": []
+  },
+  "concept/css/expand/空白节点": {
+    "title": "空白节点",
+    "description": "讲解 CSS 中空白节点的概念与处理方式，包括 whitespace 属性、inline-block 间隙等问题。",
+    "tags": [
+      "css",
+      "whitespace",
+      "inline-block"
+    ],
+    "authors": []
+  },
+  "concept/vue/vue3/路由与状态管理": {
+    "title": "内置组件",
+    "description": "讲解 Vue3 内置组件的使用，包括 KeepAlive、Teleport、Transition 等核心内置组件的原理与实践。",
+    "tags": [
+      "vue3",
+      "builtin",
+      "component",
+      "keepalive",
+      "teleport"
+    ],
+    "authors": []
+  },
+  "read/vue/Vue.js设计与实现/Vue.js 3 的设计思路": {
+    "title": "Vue.js 3 的设计思路",
+    "description": "从整体架构角度阐述 Vue.js 3 的设计思路，包括声明式渲染、虚拟 DOM、编译器与渲染器的协作机制。",
+    "tags": [
+      "vue3",
+      "design",
+      "architecture",
+      "virtual-dom"
+    ],
+    "authors": []
+  },
+  "read/vue/Vue.js设计与实现/简单 Diff 算法": {
+    "title": "简单 Diff 算法",
+    "description": "讲解 Vue.js 中简单 Diff 算法的实现原理，通过遍历新旧子节点找出可复用 DOM 节点的核心逻辑。",
+    "tags": [
+      "vue",
+      "diff",
+      "algorithm",
+      "virtual-dom"
+    ],
+    "authors": []
+  },
+  "read/vue/Vue.js设计与实现/渲染器的设计": {
+    "title": "渲染器的设计",
+    "description": "讲解 Vue.js 渲染器的设计原理，包括渲染器与响应系统的关系、虚拟 DOM 到真实 DOM 的挂载流程。",
+    "tags": [
+      "vue",
+      "renderer",
+      "virtual-dom",
+      "mount"
+    ],
+    "authors": []
+  },
+  "read/vue/Vue.js设计与实现/挂载与更新": {
+    "title": "挂载与更新",
+    "description": "讲解 Vue.js 中挂载与更新的核心流程，包括首次渲染、更新策略和 DOM 操作优化。",
+    "tags": [
+      "vue",
+      "mount",
+      "update",
+      "dom"
+    ],
+    "authors": []
+  },
+  "read/vue/Vue.js设计与实现/非原始值的响应式方案": {
+    "title": "非原始值的响应式方案",
+    "description": "讲解 Vue.js 3 中非原始值（对象、数组）的响应式实现方案，基于 Proxy 的拦截与依赖收集机制。",
+    "tags": [
+      "vue3",
+      "reactivity",
+      "proxy",
+      "object"
+    ],
+    "authors": []
+  },
+  "read/vue/Vue.js设计与实现/原始值的响应式方案": {
+    "title": "原始值的响应式方案",
+    "description": "讲解 Vue.js 3 中原始值（ref）的响应式实现方案，通过 getter/setter 和 Refimpl 对象实现响应式。",
+    "tags": [
+      "vue3",
+      "reactivity",
+      "ref",
+      "primitive"
+    ],
+    "authors": []
+  },
+  "read/vue/Vue.js设计与实现/编译优化": {
+    "title": "编译优化",
+    "description": "讲解 Vue.js 编译优化策略，包括静态提升、补丁标志、Block Tree 等编译时优化技术。",
+    "tags": [
+      "vue",
+      "compiler",
+      "optimization",
+      "static-hoisting"
+    ],
+    "authors": []
+  },
+  "read/vue/Vue.js设计与实现/同构渲染": {
+    "title": "同构渲染",
+    "description": "讲解 Vue.js 同构渲染的实现原理，包括服务端渲染（SSR）、客户端激活（hydration）及注意事项。",
+    "tags": [
+      "vue",
+      "ssr",
+      "hydration",
+      "isomorphic"
+    ],
+    "authors": []
+  },
+  "read/vue/Vue.js设计与实现/解析器": {
+    "title": "解析器",
+    "description": "讲解 Vue.js 模板解析器的实现原理，包括词法分析、语法分析、AST 构建和指令解析。",
+    "tags": [
+      "vue",
+      "parser",
+      "ast",
+      "compiler"
+    ],
+    "authors": []
+  },
+  "read/vue/Vue.js设计与实现/编译器核心技术概览": {
+    "title": "编译器核心技术概览",
+    "description": "全面讲解 Vue.js 编译器的核心技术，包括模板编译流程、AST 转换、代码生成和优化策略。",
+    "tags": [
+      "vue",
+      "compiler",
+      "ast",
+      "codegen"
+    ],
+    "authors": []
+  },
+  "read/vue/Vue.js设计与实现/组件的实现原理": {
+    "title": "组件的实现原理",
+    "description": "讲解 Vue.js 组件的实现原理，包括组件注册、渲染、生命周期、插槽和事件机制。",
+    "tags": [
+      "vue",
+      "component",
+      "lifecycle",
+      "slot"
+    ],
+    "authors": []
+  },
+  "read/vue/Vue.js设计与实现/异步组件与函数式组件": {
+    "title": "异步组件与函数式组件",
+    "description": "讲解 Vue.js 异步组件（defineAsyncComponent）与函数式组件的实现原理、加载策略和适用场景。",
+    "tags": [
+      "vue",
+      "async",
+      "functional",
+      "component"
+    ],
+    "authors": []
+  },
+  "read/vue/Vue.js设计与实现/内建组件和模块": {
+    "title": "内建组件和模块",
+    "description": "讲解 Vue.js 内建组件（KeepAlive、Teleport、Transition）和模块的实现原理与使用方式。",
+    "tags": [
+      "vue",
+      "builtin",
+      "keepalive",
+      "teleport",
+      "transition"
+    ],
+    "authors": []
+  },
+  "read/vue/Vue.js设计与实现/快速 Diff 算法": {
+    "title": "快速 Diff 算法",
+    "description": "讲解 Vue.js 3 中快速 Diff 算法的实现原理，通过预处理和最长递增子序列优化虚拟 DOM 对比性能。",
+    "tags": [
+      "vue3",
+      "diff",
+      "algorithm",
+      "lis"
+    ],
+    "authors": []
+  },
+  "read/vue/Vue.js设计与实现/双端 Diff 算法": {
+    "title": "双端 Diff 算法",
+    "description": "讲解 Vue.js 2 中双端 Diff 算法的实现原理，通过新旧首尾指针双向比较优化虚拟 DOM 对比。",
+    "tags": [
+      "vue2",
+      "diff",
+      "algorithm",
+      "virtual-dom"
+    ],
+    "authors": []
+  },
+  "read/vite/深入浅出Vite/开篇": {
+    "title": "开篇 ：让 Vite 助力你的前端工程化之路",
+    "description": "深入浅出 Vite 系列开篇，介绍 Vite 的诞生背景、核心优势以及前端工程化的发展历程。",
+    "tags": [
+      "vite",
+      "engineering",
+      "intro",
+      "build"
+    ],
+    "authors": []
+  },
+  "vitepress/dev": {
+    "title": "搭建",
+    "description": "VitePress 博客搭建指南，涵盖项目初始化、目录结构、配置文件和开发服务器启动。",
+    "tags": [
+      "vitepress",
+      "dev",
+      "setup"
+    ],
+    "authors": []
+  },
+  "vitepress/css": {
+    "title": "样式美化",
+    "description": "VitePress 博客样式美化指南，包括自定义主题、CSS 变量覆盖和响应式布局调整。",
+    "tags": [
+      "vitepress",
+      "css",
+      "theme",
+      "style"
     ],
     "authors": []
   }

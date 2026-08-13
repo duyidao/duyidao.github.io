@@ -1,15 +1,3 @@
----
-title: 如何提交 PR
-titleTemplate: 如何给element-plus和ant-design-vue提交PR
-head:
-  - - meta
-    - name: description
-      content: 如何给element-plus和ant-design-vue提交PR
-  - - meta
-    - name: keywords
-      content: element-plus ant-design-vue pr fork
----
-
 # 如何提交 PR
 
 ## 我的 PR
@@ -54,7 +42,7 @@ head:
 
 然后 `pnpm i` 安装依赖，安装完毕后就可以开始运行项目修改代码了。
 
-有一些项目的 PR 是需要先提交到一个临时用于合并的分支，统一时间后再一起合并到 `dev` 分支或主分支，此时即使在 Github 点击 `Sync fork` 按钮更新分支也没用，需要输入以下命令行：
+有一些项目的 PR 是需要先提交到一个临时用于合并的分支，统一时间后再一起合并到 `dev` 分支或主分支，此时即使在 <word text="GitHub"/> 点击 `Sync fork` 按钮更新分支也没用，需要输入以下命令行：
 
 ```bash
 git checkout -b docs/xxx upstream/merge
@@ -147,7 +135,7 @@ git checkout -b docs/xxx upstream/merge
 
 ### 创建 PR
 
-提交完代码后，查看 Github 仓库，上方有一个 `Compare & pull request` 按钮，点击后，填写标题和描述，然后点击 `Create pull request` 按钮，提交 PR。
+提交完代码后，查看 <word text="GitHub"/> 仓库，上方有一个 `Compare & pull request` 按钮，点击后，填写标题和描述，然后点击 `Create pull request` 按钮，提交 PR。
 
 不同的是 `ant-design-vue` 在创建 PR 后，需要在 `markdown` 中，按照规范详细描述自己改动了啥。具体的规范可以参考：[feat[cssvar]: switch support cssvar](https://github.com/vueComponent/ant-design-vue/pull/7940)。参考这个 PR 的模板作为提交
 

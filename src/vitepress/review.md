@@ -10,7 +10,7 @@
 
 ![配置](https://pic.imgdb.cn/item/676d187ad0e0a243d4ead8bc.png)
 
-### Github 账号下载插件
+### <word text="GitHub"/> 账号下载插件
 
 点击右上角的个人头像，选择`Setting` 设置，左侧导航栏下拉找到 `Applications` 。点击 `New OAuth App` 新建一个应用。搜索 [giscus](https://giscus.app/zh-CN)，选择刚刚新建好的新公开仓库。
 
