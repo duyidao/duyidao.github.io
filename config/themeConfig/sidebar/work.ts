@@ -6,12 +6,15 @@ const shushuo = [
         text: '智能报告',
         collapsed: true,
         items: [
-          { text: 'AI问答', link: '/数说/AI报告/AI问答' },
           {
-            text: '路由自动化',
-            link: '/数说/AI报告/路由自动化',
+            text: 'AI问答',
+            link: '/数说/AI报告/AI问答模块流式交互与富文本复制方案',
           },
-          { text: 'CXO畅写', link: '/数说/AI报告/CXO畅写' },
+          {
+            text: '自动化路由配置指南',
+            link: '/数说/AI报告/自动化路由配置指南',
+          },
+          { text: 'CXO畅写', link: '/数说/AI报告/CXO畅写编辑器集成方案' },
         ],
       },
       {
@@ -20,8 +23,8 @@ const shushuo = [
         items: [
           { text: '代理配置', link: '/数说/需求洞察/代理配置' },
           {
-            text: 'tooltip无法显示',
-            link: '/数说/需求洞察/tooltip无法显示',
+            text: 'Tooltip无法显示',
+            link: '/数说/需求洞察/Tooltip无法显示',
           },
         ],
       },
@@ -34,24 +37,39 @@ const shushuo = [
             collapsed: true,
             items: [
               {
-                text: '本地存储拿不到',
-                link: '/数说/移动端/本地存储拿不到',
+                text: '本地存储',
+                link: '/数说/移动端/移动端跨域Iframe本地存储失效问题排查与解决',
               },
-              { text: 'Token丢失', link: '/数说/移动端/Token丢失' },
               {
-                text: 'Vant 数字键盘组件',
-                link: '/数说/移动端/Vant%20数字键盘组件',
+                text: 'Token丢失',
+                link: '/数说/移动端/移动端空间切换导致Token丢失问题排查',
               },
-              { text: '小红书分享', link: '/数说/移动端/小红书分享' },
+              {
+                text: 'Vant数字键盘',
+                link: '/数说/移动端/Vant数字键盘组件在PC端与移动端的兼容性适配',
+              },
+              {
+                text: '小红书分享',
+                link: '/数说/移动端/移动端集成小红书JSSDK实现笔记分享',
+              },
             ],
           },
           {
             text: 'web端',
             collapsed: true,
             items: [
-              { text: '子模块导入', link: '/数说/web端/子模块导入' },
-              { text: 'H5预览', link: '/数说/web端/H5预览' },
-              { text: '日程表组件', link: '/数说/web端/日程表组件' },
+              {
+                text: 'Git Submodule',
+                link: '/数说/web端/GitSubmodule子模块管理指南',
+              },
+              {
+                text: 'H5预览',
+                link: '/数说/web端/基于iframe与postMessage的H5实时预览方案',
+              },
+              {
+                text: '日程表组件',
+                link: '/数说/web端/基于FullCalendar的日程表组件封装与实践',
+              },
             ],
           },
         ],
@@ -107,7 +125,7 @@ const lingsi = [
         collapsed: true,
         items: [
           { text: '请求封装', link: '/灵思/视频分销/请求封装' },
-          { text: 'token刷新', link: '/灵思/视频分销/token刷新' },
+          { text: '刷新token', link: '/灵思/视频分销/刷新token' },
           { text: '微信授权快捷登录', link: '/灵思/视频分销/微信授权快捷登录' },
           { text: '附件下载', link: '/灵思/视频分销/附件下载' },
           { text: '分享', link: '/灵思/视频分销/分享' },
@@ -125,7 +143,7 @@ const lingsi = [
             text: '图片对比可拖拽封装',
             link: '/灵思/华润水泥/图片对比可拖拽封装',
           },
-          { text: 'Vue Color', link: '/灵思/华润水泥/Vue Color' },
+          { text: 'Vue-color的使用', link: '/灵思/华润水泥/Vue-color的使用' },
           {
             text: 'Jeecg',
             collapsed: true,
@@ -152,13 +170,13 @@ const baidu = [
         text: '图业',
         collapsed: true,
         items: [
-          { text: '多人合作规范', link: '/百度/图业融合/多人合作规范' },
+          { text: '项目规范', link: '/百度/图业融合/项目规范' },
           {
             text: 'MapVThree地图组件',
             link: '/百度/图业融合/MapVThree地图组件',
           },
           { text: '项目优化', link: '/百度/图业融合/项目优化' },
-          { text: 'Bug修改与记录', link: '/百度/图业融合/Bug修改与记录' },
+          { text: 'BUG修改与记录', link: '/百度/图业融合/BUG修改与记录' },
         ],
       },
       {
@@ -170,16 +188,16 @@ const baidu = [
             collapsed: true,
             items: [
               { text: '子组件动态挂载', link: '/百度/平台端/子组件动态挂载' },
-              { text: '3d跳转', link: '/百度/平台端/3d跳转' },
+              { text: '3D路由跳转', link: '/百度/平台端/3D路由跳转' },
             ],
           },
           {
             text: 'LED大屏',
             collapsed: true,
             items: [
-              { text: '自定义样式', link: '/百度/LED大屏/自定义样式' },
-              { text: '覆盖物', link: '/百度/LED大屏/覆盖物' },
-              { text: '打包', link: '/百度/LED大屏/打包' },
+              { text: '大屏自定义样式', link: '/百度/LED大屏/大屏自定义样式' },
+              { text: '大屏覆盖物', link: '/百度/LED大屏/大屏覆盖物' },
+              { text: '项目大屏打包', link: '/百度/LED大屏/项目大屏打包' },
             ],
           },
         ],
@@ -209,8 +227,8 @@ const nanwang = [
             link: '/南网/无人机/Leaflet地图封装与使用',
           },
           {
-            text: '基于WebRTC的无人机实时视频监控系统实现',
-            link: '/南网/无人机/基于WebRTC的无人机实时视频监控系统实现',
+            text: 'WebRTC直播流',
+            link: '/南网/无人机/基于WebRTC的无人机实时直播流接入实践',
           },
         ],
       },

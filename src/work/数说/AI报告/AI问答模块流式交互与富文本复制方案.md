@@ -63,7 +63,7 @@ AI 问答模块是数说项目的核心交互链路，涉及 <word text="SSE" />
 
 1. 基于 <word text="VueUse" /> 的智能滚动
 
-    利用 `useScroll` 监听容器滚动状态，实现“用户阅读时暂停滚动，触底时恢复自动滚动”的交互逻辑。
+    利用 `useScroll` 监听容器滚动状态，实现"用户阅读时暂停滚动，触底时恢复自动滚动"的交互逻辑。
 
     ```typescript
     import { useScroll } from '@vueuse/core'
@@ -80,7 +80,7 @@ AI 问答模块是数说项目的核心交互链路，涉及 <word text="SSE" />
 
 2. 富文本跨格式复制方案
 
-    AI 生成的结果包含 Markdown 文本、<word text="ECharts" /> 图表及数据表格。为实现“一键复制至 Word/飞书”且保留富文本格式，采用 `Range` 选区与 `ClipboardItem` 方案。
+    AI 生成的结果包含 Markdown 文本、<word text="ECharts" /> 图表及数据表格。为实现"一键复制至 Word/飞书"且保留富文本格式，采用 `Range` 选区与 `ClipboardItem` 方案。
 
 ## 执行流程
 

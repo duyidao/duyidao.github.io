@@ -16,7 +16,7 @@ pnpm i @fullcalendar/core @fullcalendar/daygrid @fullcalendar/interaction @fullc
 
 ### 组件挂载与插槽定制
 
-通过 <word text="FullCalendar" /> 提供的具名插槽，可深度定制“更多日程”提示及单个日程卡片的渲染逻辑。
+通过 <word text="FullCalendar" /> 提供的具名插槽，可深度定制"更多日程"提示及单个日程卡片的渲染逻辑。
 
 ```vue
 <template>
@@ -25,7 +25,7 @@ pnpm i @fullcalendar/core @fullcalendar/daygrid @fullcalendar/interaction @fullc
     class="demo-app-calendar flex-1 h-0"
     :options="calendarOptions"
   >
-    <!-- 定制“还有 X 个日程”的展示 -->
+    <!-- 定制"还有 X 个日程"的展示 -->
     <template #moreLinkContent="arg">
       <span class="text-major text-12px font-400">
         还有{{ arg.num }}个日程

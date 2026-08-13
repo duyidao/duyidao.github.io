@@ -61,7 +61,7 @@ const sharp = [
       { text: 'http', link: '/sharp/node/http' },
       { text: 'module', link: '/sharp/node/模块化' },
       { text: 'express', link: '/sharp/node/express' },
-      { text: 'npm', link: '/sharp/node/npm' },
+      { text: 'NPM', link: '/sharp/node/NPM' },
     ],
   },
   {
@@ -89,8 +89,8 @@ const sharp = [
     text: 'Vite',
     collapsed: true,
     items: [
-      { text: '创建项目', link: '/sharp/vite/创建项目' },
-      { text: 'TS 和 CSS', link: '/sharp/vite/TS 和 CSS' },
+      { text: 'Vite的SPA模式', link: '/sharp/vite/Vite的SPA模式' },
+      { text: 'TS和CSS相关问题', link: '/sharp/vite/TS和CSS相关问题' },
     ],
   },
 ]
@@ -205,13 +205,13 @@ const css = [
       { text: '滤镜', link: '/css/effect/filter实现滤镜' },
       { text: '文字立起效果', link: '/css/effect/文字立起效果' },
       { text: '宽度适配内容', link: '/css/effect/fit-content实现宽度适配内容' },
-      { text: '渐变', link: '/css/effect/gradient渐变' },
+      { text: '渐变', link: '/css/effect/渐变' },
       {
         text: '文字适配背景',
         link: '/css/effect/mix-blend-mode实现文字适配背景',
       },
       { text: '吸附', link: '/css/effect/scroll-snap实现吸附' },
-      { text: '变量', link: '/css/effect/var变量' },
+      { text: '变量', link: '/css/effect/var实现样式变量' },
       { text: '主题过渡动画', link: '/css/effect/主题过渡动画' },
       { text: 'vmin与vmax', link: '/css/effect/vmin与vmax' },
       { text: '瀑布流', link: '/css/effect/瀑布流' },

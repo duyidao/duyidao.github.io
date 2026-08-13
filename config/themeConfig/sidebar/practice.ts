@@ -273,11 +273,11 @@ const ai = [
           { text: '搭建服务器', link: '/ai/a/搭建服务器' },
           { text: '提示词工程', link: '/ai/a/提示词工程' },
           { text: '上下文的威力', link: '/ai/a/上下文的威力' },
-          { text: 'markdown 语法及渲染', link: '/ai/a/markdown%20语法及渲染' },
-          { text: 'token 消耗优化', link: '/ai/a/token%20消耗优化' },
+          { text: 'Markdown 语法及渲染', link: '/ai/a/Markdown%20语法及渲染' },
+          { text: 'Token 消耗优化', link: '/ai/a/Token%20消耗优化' },
           { text: '前端界面', link: '/ai/a/前端界面' },
           { text: '流式传输', link: '/ai/a/流式传输' },
-          { text: 'Function tool', link: '/ai/a/Function%20tool' },
+          { text: 'Function Tool', link: '/ai/a/Function%20Tool' },
         ],
       },
       {
@@ -285,7 +285,7 @@ const ai = [
         collapsed: true,
         items: [
           { text: 'Function tool', link: '/ai/a/tool' },
-          { text: '前端工具卡片', link: '/ai/a/tool' },
+          { text: '前端工具卡片', link: '/ai/a/前端工具卡片' },
         ],
       },
     ],

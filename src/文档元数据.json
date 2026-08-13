@@ -550,7 +550,7 @@
       }
     ]
   },
-  "practice/ai/a/Function tool": {
+  "practice/ai/a/Function Tool": {
     "title": "Function Tool 函数调用机制详解",
     "description": "深入解析大模型 Function Call 机制，涵盖上下文方案缺陷、标准 Function Tool 定义与输出规范、流式 tool_calls 数据拼接、工具执行与结果回传的完整链路。",
     "tags": [
@@ -562,7 +562,7 @@
     ],
     "authors": []
   },
-  "practice/ai/a/card": {
+  "practice/ai/a/前端工具卡片": {
     "title": "前端工具卡片实现方案",
     "description": "阐述 AI 应用中前端预制 UI 卡片的变通实现方案，通过 Function Tool 声明与自定义 cardName 属性下发前端卡片渲染指令。",
     "tags": [
@@ -584,7 +584,7 @@
     ],
     "authors": []
   },
-  "practice/ai/a/token 消耗优化": {
+  "practice/ai/a/Token 消耗优化": {
     "title": "Token 消耗优化策略",
     "description": "分析大模型 Token 消耗机制，提供限制对话长度、AI 总结截取内容、RAG 向量检索等优化方案，降低 API 调用成本。",
     "tags": [
@@ -2590,7 +2590,7 @@
       }
     ]
   },
-  "concept/css/effect/gradient渐变": {
+  "concept/css/effect/渐变": {
     "title": "渐变",
     "description": "讲解 CSS 渐变的使用，包括线性渐变 linear-gradient、径向渐变 radial-gradient、锥形渐变 conic-gradient、重复渐变，以及色标位置、硬过渡、条纹、叠加等高级技巧。",
     "tags": [
@@ -2654,7 +2654,7 @@
       }
     ]
   },
-  "concept/css/effect/var变量": {
+  "concept/css/effect/var实现样式变量": {
     "title": "var 实现样式变量",
     "description": "讲解 CSS 自定义属性（var）与 JS setProperty 配合使用，实现父元素宽度动态计算动画，以及 Vue 动态样式绑定方式。",
     "tags": [
@@ -2933,7 +2933,7 @@
       }
     ]
   },
-  "concept/sharp/vite/TS 和 CSS": {
+  "concept/sharp/vite/TS和CSS相关问题": {
     "title": "TS 和 CSS 相关问题",
     "description": "讲解 Vite 项目中 TypeScript 和 CSS 的配置与使用，包括 TS 引入、CSS 模块化、scoped 样式等。",
     "tags": [
@@ -2950,7 +2950,7 @@
       }
     ]
   },
-  "concept/sharp/vite/创建项目": {
+  "concept/sharp/vite/Vite的SPA模式": {
     "title": "Vite 的 SPA 模式",
     "description": "对比 Vite 创建的项目与传统构建工具（Vue Cli）的差异，包括入口文件、SPA 模式、多页面应用配置等。",
     "tags": [
@@ -3717,7 +3717,7 @@
     ],
     "authors": []
   },
-  "concept/sharp/node/npm": {
+  "concept/sharp/node/NPM": {
     "title": "npm",
     "description": "讲解 npm 包管理工具的使用，包括 package.json、依赖管理、脚本配置等。",
     "tags": [
@@ -3923,7 +3923,7 @@
     ],
     "authors": []
   },
-  "work/百度/图业融合/多人合作规范": {
+  "work/百度/图业融合/项目规范": {
     "title": "项目规范",
     "description": "讲解百度图业融合项目的多人合作开发规范，包括文件夹结构、代码风格约定等。",
     "tags": [
@@ -3946,7 +3946,7 @@
     ],
     "authors": []
   },
-  "work/百度/图业融合/Bug修改与记录": {
+  "work/百度/图业融合/BUG修改与记录": {
     "title": "BUG 修改与记录",
     "description": "记录百度图业融合项目中的 Bug 排查与修复，包括 JSON 解析错误、组件库问题、Vue 响应式问题等。",
     "tags": [
@@ -3958,7 +3958,7 @@
     ],
     "authors": []
   },
-  "work/百度/佛开/平台端/3d跳转": {
+  "work/百度/佛开/平台端/3D路由跳转": {
     "title": "3D 路由跳转",
     "description": "讲解百度佛开项目平台端 3D 路由跳转动画的实现原理和完整代码。",
     "tags": [
@@ -3993,7 +3993,7 @@
     ],
     "authors": []
   },
-  "work/百度/佛开/LED大屏/打包": {
+  "work/百度/佛开/LED大屏/项目大屏打包": {
     "title": "项目大屏打包",
     "description": "讲解百度佛开 LED 大屏项目的打包配置，包括环境变量、Vite 配置、基础路径等。",
     "tags": [
@@ -4258,7 +4258,7 @@
     ],
     "authors": []
   },
-  "work/灵思/视频分销/token刷新": {
+  "work/灵思/视频分销/刷新token": {
     "title": "刷新 Token",
     "description": "讲解视频分销项目 Token 刷新机制的实现方案。",
     "tags": [
@@ -4317,7 +4317,7 @@
     ],
     "authors": []
   },
-  "work/灵思/华润水泥/Vue Color": {
+  "work/灵思/华润水泥/Vue-color的使用": {
     "title": "Vue-color 的使用",
     "description": "讲解华润水泥项目中 vue-color 颜色选择器的集成与使用。",
     "tags": [
@@ -4376,7 +4376,7 @@
     ],
     "authors": []
   },
-  "work/数说/需求洞察/tooltip无法显示": {
+  "work/数说/需求洞察/Tooltip无法显示": {
     "title": "ECharts Tooltip 无法显示问题排查",
     "description": "排查和解决 ECharts 组件 Tooltip 无法显示的问题，涉及 Vue3 响应式与 ECharts 实例冲突。",
     "tags": [
@@ -4388,7 +4388,7 @@
     ],
     "authors": []
   },
-  "work/数说/nourseN次方/移动端/本地存储拿不到": {
+  "work/数说/nourseN次方/移动端/移动端跨域Iframe本地存储失效问题排查与解决": {
     "title": "移动端跨域 Iframe 本地存储失效问题",
     "description": "排查移动端跨域 Iframe 导致 localStorage 无法获取的问题，分析根因并给出解决方案。",
     "tags": [
@@ -4400,7 +4400,7 @@
     ],
     "authors": []
   },
-  "work/数说/nourseN次方/移动端/Token丢失": {
+  "work/数说/nourseN次方/移动端/移动端空间切换导致Token丢失问题排查": {
     "title": "移动端空间切换导致 Token 丢失",
     "description": "排查移动端切换空间时 Token 丢失的问题，分析原因并给出解决方案。",
     "tags": [
@@ -4412,7 +4412,7 @@
     ],
     "authors": []
   },
-  "work/数说/nourseN次方/移动端/Vant 数字键盘组件": {
+  "work/数说/nourseN次方/移动端/Vant数字键盘组件在PC端与移动端的兼容性适配": {
     "title": "Vant 数字键盘组件 PC 端与移动端兼容性适配",
     "description": "讲解 Vant 数字键盘组件在 PC 端和移动端的兼容性适配方案。",
     "tags": [
@@ -4424,7 +4424,7 @@
     ],
     "authors": []
   },
-  "work/数说/nourseN次方/移动端/小红书分享": {
+  "work/数说/nourseN次方/移动端/移动端集成小红书JSSDK实现笔记分享": {
     "title": "移动端集成小红书 JS SDK 实现笔记分享",
     "description": "讲解移动端集成小红书 JS SDK 实现笔记分享功能的方法。",
     "tags": [
@@ -4436,7 +4436,7 @@
     ],
     "authors": []
   },
-  "work/数说/nourseN次方/web端/H5预览": {
+  "work/数说/nourseN次方/web端/基于iframe与postMessage的H5实时预览方案": {
     "title": "基于 iframe 与 postMessage 的 H5 实时预览方案",
     "description": "讲解利用 iframe 和 postMessage 实现 H5 页面实时预览的方案。",
     "tags": [
@@ -4448,7 +4448,7 @@
     ],
     "authors": []
   },
-  "work/数说/nourseN次方/web端/日程表组件": {
+  "work/数说/nourseN次方/web端/基于FullCalendar的日程表组件封装与实践": {
     "title": "基于 FullCalendar 的日程表组件封装",
     "description": "讲解基于 FullCalendar 封装的日程表组件，包括数据驱动、参数配置、跨组件联动等。",
     "tags": [
@@ -4460,7 +4460,7 @@
     ],
     "authors": []
   },
-  "work/数说/nourseN次方/web端/子模块导入": {
+  "work/数说/nourseN次方/web端/GitSubmodule子模块管理指南": {
     "title": "Git Submodule 子模块管理指南",
     "description": "讲解 Git Submodule 子模块的管理方法，包括添加、更新、删除等操作。",
     "tags": [
@@ -4471,7 +4471,7 @@
     ],
     "authors": []
   },
-  "work/数说/AI报告/AI问答": {
+  "work/数说/AI报告/AI问答模块流式交互与富文本复制方案": {
     "title": "AI 问答模块流式交互与富文本复制方案",
     "description": "讲解 AI 报告项目中 AI 问答模块的流式交互实现和富文本复制方案。",
     "tags": [
@@ -4483,7 +4483,7 @@
     ],
     "authors": []
   },
-  "work/数说/AI报告/CXO畅写": {
+  "work/数说/AI报告/CXO畅写编辑器集成方案": {
     "title": "CXO 畅写编辑器集成方案",
     "description": "讲解 AI 报告项目中集成 CXO 畅写编辑器的方案。",
     "tags": [
@@ -4495,7 +4495,7 @@
     ],
     "authors": []
   },
-  "work/数说/AI报告/路由自动化": {
+  "work/数说/AI报告/自动化路由配置指南": {
     "title": "自动化路由配置指南",
     "description": "讲解 AI 报告项目中自动化路由配置的实现方案。",
     "tags": [
@@ -4507,7 +4507,7 @@
     ],
     "authors": []
   },
-  "work/南网/无人机/基于WebRTC的无人机实时视频监控系统实现": {
+  "work/南网/无人机/基于WebRTC的无人机实时直播流接入实践": {
     "title": "基于 WebRTC 的无人机实时直播流接入实践",
     "description": "讲解基于 WebRTC 和 ZLMediaKit 实现无人机实时视频流接入的完整方案，包括信令交互、SDP 交换等。",
     "tags": [
@@ -4678,26 +4678,6 @@
     ],
     "authors": []
   },
-  "concept/sharp/vite/创建项目": {
-    "title": "Vite 的 SPA 模式",
-    "description": "讲解 Vite 创建项目的 SPA 模式配置与使用，涵盖项目初始化、开发服务器和构建流程。",
-    "tags": [
-      "vite",
-      "spa",
-      "init"
-    ],
-    "authors": []
-  },
-  "concept/sharp/gsap/基础": {
-    "title": "GSAP",
-    "description": "GSAP 动画库基础入门，介绍 GSAP 的核心概念、基本用法和常用动画参数。",
-    "tags": [
-      "gsap",
-      "animation",
-      "basics"
-    ],
-    "authors": []
-  },
   "concept/javascript/knowledge/模块化": {
     "title": "模块化",
     "description": "讲解 JavaScript 模块化的发展历程，包括 CommonJS、AMD、ES Module 等模块化方案的对比与实践。",
@@ -4770,18 +4750,6 @@
       "css",
       "whitespace",
       "inline-block"
-    ],
-    "authors": []
-  },
-  "concept/vue/vue3/路由与状态管理": {
-    "title": "内置组件",
-    "description": "讲解 Vue3 内置组件的使用，包括 KeepAlive、Teleport、Transition 等核心内置组件的原理与实践。",
-    "tags": [
-      "vue3",
-      "builtin",
-      "component",
-      "keepalive",
-      "teleport"
     ],
     "authors": []
   },
@@ -4959,16 +4927,6 @@
       "engineering",
       "intro",
       "build"
-    ],
-    "authors": []
-  },
-  "vitepress/dev": {
-    "title": "搭建",
-    "description": "VitePress 博客搭建指南，涵盖项目初始化、目录结构、配置文件和开发服务器启动。",
-    "tags": [
-      "vitepress",
-      "dev",
-      "setup"
     ],
     "authors": []
   },
