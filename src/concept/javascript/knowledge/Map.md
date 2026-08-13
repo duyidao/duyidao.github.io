@@ -121,7 +121,7 @@ map.set(obj2, {
 
 console.log(map.size); // 2
 console.log(map.clear());
-console.log(map.size); // 2
+console.log(map.size); // 0
 ```
 
 ### 遍历数据
@@ -167,7 +167,7 @@ hd.forEach((value, key) => {
 
 ### 数组转换
 
-可以使用 `展开语法` 或 `Array.form` 静态方法将Set类型转为数组，这样就可以使用数组处理函数了
+可以使用 `展开语法` 或 `Array.from` 静态方法将Set类型转为数组，这样就可以使用数组处理函数了
 
 ```js
 let hd = new Map([["daodao", "刀刀"], ["duyidao", "刀刀小窝"]]);

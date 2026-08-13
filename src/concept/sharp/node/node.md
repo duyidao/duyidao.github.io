@@ -14,11 +14,11 @@
 
 **Nodejs vs Browser**
 
-- <word text="Node" />是开源、跨平台的<word text="JavaScript" />运行时环境，它是运行时，不时语言或框架，是在浏览器之外的 Javascript 使用
+- <word text="Node" />是开源、跨平台的<word text="JavaScript" />运行时环境，它是运行时，不是语言或框架，是在浏览器之外的 Javascript 使用
 - <word text="Node" />可以使用<word text="JavaScript" />调用 c++，实现计算底层操作
 - <word text="Node" />运行时包含 [v8 引擎 (opens new window)](https://github.com/nodejs/node/tree/main/deps/v8)（解析 javascript）、[libuv (opens new window)](https://github.com/nodejs/node/tree/main/deps/uv)(进行计算机文件、网络等底层操作) 等等。通过查看[Node源码 (opens new window)](https://github.com/nodejs/node/tree/main/src)，我们会知道<word text="Node" />使用 c++进行文件或网络操作
 - <word text="Node" />使用 libuv 库，让开发者使用[JavaScript (opens new window)](https://github.com/nodejs/node/tree/main/lib)调用 c++程序
-- <word text="Node" />没有基于浏览器的<word text="JavaScript" />的 DOM、BOM 等概念这与但是拥有文件系统操作功能
+- <word text="Node" />没有基于浏览器的<word text="JavaScript" />的 DOM、BOM 等概念，但拥有文件系统操作功能
 - <word text="Node" />我们可以随意选择版本，但浏览器的<word text="JavaScript" />运行在众多用户电脑中，所以版本不是由我们决定的
 
 ### 运行环境

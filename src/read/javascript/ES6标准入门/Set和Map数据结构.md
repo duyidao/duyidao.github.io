@@ -75,7 +75,7 @@
 
 - 属性
   1. `Set.prototype.constructor`：构造函数，默认是 `Set` 函数
-  2. `Set.protptype.size`：返回 `Set` 实例的成员数量
+  2. `Set.prototype.size`：返回 `Set` 实例的成员数量
 - 方法
   1. `add`：添加某个值，返回添加后的 `Set` 结构
   2. `delete`：删除某个值，返回布尔值表示是否删除成功
@@ -216,9 +216,10 @@ console.log(obj['[object HTMLDivElement]']) // content
 
    ```js
    let m = new Map()
-   m.set([1, 2], 'array')
-   m.get([1, 2]) // array
-   m.has([1, 2]) // true
+   let arrKey = [1, 2]
+   m.set(arrKey, 'array')
+   m.get(arrKey) // array
+   m.has(arrKey) // true
    ```
 
 2. 接收一个二维数组作为参数，第二维的数组第一项是键名，第二项是键值
@@ -270,7 +271,7 @@ console.log(obj['[object HTMLDivElement]']) // content
    let m2 = new Map(m1)
    
    m2.get('n') // 1
-   m2.get('n') // 2
+m2.get('m') // 2
    ```
 
 > [!WARNING] ⚠ 注意
@@ -416,7 +417,7 @@ let map = new Map([
   [2, 'b']
 ])
 
-let ojb = {
+let obj = {
   sayLog: (v, k, e) => {
     console.log(v, k, e)
   }
@@ -580,8 +581,8 @@ map.forEach((value, key, item) => {
     const _action= new WeakMap(); 
     class Countdown {
       constructor(counter, action) { 
-        counter.set(this, counter); 
-        action.set (this, action);
+    _counter.set(this, counter); 
+    _action.set(this, action);
       }
       dec() { 
         let counter= _counter.get(this); 
@@ -593,9 +594,9 @@ map.forEach((value, key, item) => {
           }
         }
     }
-    const c ＝ new Countdown(2, () => console.log('DONE ')); 
-    c.dec() 
-    c.dee() 
+    const c = new Countdown(2, () => console.log('DONE ')); 
+c.dec() 
+c.dec() 
   ```
 
 ### 总结

@@ -6,7 +6,7 @@
 
 ### 含义
 
-2011年，<word text="ECMAScript"/> 5.1 版本发布后，6.0 版本开始制定，这个版本改动较大，制定者希望能够6.1、6.2、6.3持续推进，最终决定每年6月更新发布一次标准版本。2016年6月，发布了 ECMAScript 6.0 版本。
+2011年，<word text="ECMAScript"/> 5.1 版本发布后，6.0 版本开始制定，这个版本改动较大，制定者希望能够6.1、6.2、6.3持续推进，最终决定每年6月更新发布一次标准版本。2015年6月，发布了 ECMAScript 6.0 版本。
 
 ::: info 🖇 拓展
 因此，<word text="ES6"/> 既是一个历史名词，也是一个泛指，含义是 5.1 版本以后的 <word text="JavaScript"/> 的下一代标准，涵盖了 ES2015、ES2016、ES2017 等，而 ES2015 则是正式名称，特指当年发布的正式版本的语言标准。
@@ -121,11 +121,11 @@
 
   ::: code-group
   ```shell [下载依赖]
-  npm install babel- core --save
+  npm install babel-core --save
   ```
   ```js [使用示例]
   var es6Code = 'let x = n => n + 1' 
-  var esSCode = require('babel-core').transform (es6Code, { presets: [' latest']}).code;
+  var es5Code = require('babel-core').transform(es6Code, { presets: ['latest']}).code;
   ```
   :::
 

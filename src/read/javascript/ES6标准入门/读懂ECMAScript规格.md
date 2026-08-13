@@ -65,14 +65,14 @@ arr2.map(n => 1) // [, ,]
 7. 生成一个新的数组 A，跟当前数组的 `length` 属性保持一致。
 8. 如果报错就返回。
 9. 设定 `k` 等于 0
-10. 只要 小于当前数组的 `length` 属性，就重复下面步骤
+10. 只要 k 小于当前数组的 `length` 属性，就重复下面步骤
     1. 设定 `Pk` 等于 `ToString(k)` 即将 `K` 转为字符串
-    2. 设定 `kPresent` 等于 `HasProperty(O Pk)`，即求当前数组有没有指定属性
+    2. 设定 `kPresent` 等于 `HasProperty(O, Pk)`，即求当前数组有没有指定属性
     3. 如果报错就返回
     4. 如果 `kPresent` 等于 `true` 则进行下面步骤
-       1. 设定 `kValue` 等于 `Get(0, Pk)`，取出当前数组的指定属性
+       1. 设定 `kValue` 等于 `Get(O, Pk)`，取出当前数组的指定属性
        2. 如果报错就返回
-       3. 设定 `mappedValue` 等于 `Call(callbackfn T, < kValue , k , O>>)`，即执行回调函数。
+       3. 设定 `mappedValue` 等于 `Call(callbackfn, T, <<kValue, k, O>>)`，即执行回调函数。
        4. 如果报错就返回
        5. 设定 `status` 等于 `CreateDataPropertyOrThrow(A, Pk, mappedValue)`，即将回调函数的值放入 `A` 数组的指定位置。
        6. 如果报错就返回
@@ -83,7 +83,7 @@ arr2.map(n => 1) // [, ,]
 
 ECMAScript 规格详细定义了 JavaScript 语言的各个方面，包括语法、类型、语句等。理解规格对于深入掌握语言特性至关重要。
 
-相等运算符：规格详细描述了 `===` 相等运算符的行为，它涉及类型转换和一系列比较步骤。例如，`null == undefined` 返回 `true`，而不同类型的值之间会进行类型转换后再比较。
+相等运算符：规格详细描述了 `==` 相等运算符的行为，它涉及类型转换和一系列比较步骤。例如，`null == undefined` 返回 `true`，而不同类型的值之间会进行类型转换后再比较。
 
 数组空位：数组的空位（sparse）影响 `length` 属性，但不显示在索引上。空位处的值是 `undefined`，但不作为对象的属性存在，因此 `hasOwnProperty` 返回 `false`。
 

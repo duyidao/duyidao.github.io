@@ -1,6 +1,6 @@
 ## 第一章 CSS 最强大属性 background 的 8 种核心技巧
 
-<word text="CSS" />的 `backgroud` 除了设置背景色和背景图，还能设置渐变。渐变包含以下四种：
+<word text="CSS" />的 `background` 除了设置背景色和背景图，还能设置渐变。渐变包含以下四种：
 
 - 线性渐变：`linear-gradient`
 - 径向渐变：`radial-gradient`
@@ -377,7 +377,7 @@ div {
 
 ![效果](https://pic1.imgdb.cn/item/68ecaae9c5157e1a886c1a58.png)
 
-之所以能实现这个效果，是因为 `background-position` 默认值为 `0 0`，即左上角，所以 `background-position: -12px -12px` 实际上向右偏移 12px，向下偏移了 12px。
+之所以能实现这个效果，是因为 `background-position` 默认值为 `0 0`，即左上角，所以 `background-position: -12px -12px` 实际上向左偏移 12px，向上偏移了 12px。
 
 > 具体效果可查看 [锥形渐变实现四个角](https://codepen.io/duyidao/pen/NPxvYGo)
 

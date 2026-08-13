@@ -132,7 +132,7 @@ console.log(path.resolve("./src", "module", "app.ts")); /// Users/hd/code/test/s
 
 ## 案例
 
-把一个包含内敛式 css 和 js 的 html 文件拆分其 css 样式和 js。
+把一个包含内联式 css 和 js 的 html 文件拆分其 css 样式和 js。
 
 案例代码：
 

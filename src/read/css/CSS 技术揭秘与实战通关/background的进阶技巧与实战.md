@@ -6,7 +6,7 @@
 
 想要实现渐变色动画效果，不能直接在 `@keyframes` 中使用渐变属性，因为 `background` 属性只有单色背景色才支持动画效果。如果想要在 `@keyframes` 设置渐变动画，最后的效果只能是生硬的渐变色变换，没有动画效果可言。
 
-在传统的<word text="CSS" />中，想要实现效果，需要另寻僻径。有以下几种方式可以实现效果：
+在传统的<word text="CSS" />中，想要实现效果，需要另寻蹊径。有以下几种方式可以实现效果：
 
 1. 通过 `background-position` 移动模拟渐变动画
 2. 通过 `background-size` 缩放大小模拟渐变动画
@@ -531,7 +531,7 @@ section {
 
 ![Antd Vue 组件库的表格滚动阴影](https://pic1.imgdb.cn/item/68ee1fd4c5157e1a886e6fdf.png)
 
-所以这里借助 background-attachment: srcoll 和 background-attachment: local 两个属性，在滚动初始的时候，利用两层背景叠加在一起隐藏阴影背景，真正滚动的时候，将叠加的部分移走，只漏出阴影部分即可。
+所以这里借助 background-attachment: scroll 和 background-attachment: local 两个属性，在滚动初始的时候，利用两层背景叠加在一起隐藏阴影背景，真正滚动的时候，将叠加的部分移走，只漏出阴影部分即可。
 
 三种情况不同的样式效果：
 
@@ -590,7 +590,7 @@ section {
   2.  `background-position` 移动实现动画。
   3.  `transform` 平移实现动画。
   4.  `hue-rotate` 色相旋转实现动画。
-  5.  `CSS @properties` 嫁接到 `color` 实现动画。
+  5.  `CSS @property` 嫁接到 `color` 实现动画。
 - `background-clip` 属性可以用来实现文字渐变效果。如果文字不是纯色背景，那么就能用到这个属性。无论是渐变色还是背景图，都可以使用该属性来实现效果
 - `background` 在 `inline` 和 `block` 元素上的表现是不同的，可以利用这个特性实现一些有趣的效果，比如多行文本的渐隐消失。
 - `background-attachment` 属性用来设置背景图片是固定还是随着页面滚动而滚动。可以用来做视差滚动，或者滚动阴影效果。

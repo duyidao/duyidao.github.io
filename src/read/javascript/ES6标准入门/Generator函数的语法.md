@@ -34,7 +34,7 @@ hw.next()
 // { value: undefined, done: true }
 ```
 
-上面代码中，`Generator` 函数 `helloWorldGenerator` 有三个状态：`hello`，`world` 和 `return` 语句（即函数结束）。调用 `next` 方法，指针会从函数头部或上一次停下来的地方开始执行，直到遇到下一个 `yield` 表达式或 `return` 语句为止。换言之，`Generator` 函数是分段执行的，`yield` 表达式是暂停执行的标记，而 `next` 方法可以恢复执行。直到遇到 `return` 语句或函数结束，才会结束执行。后续再调用 `return`，也只会返回 `{ value: undefined, done: true }`。
+上面代码中，`Generator` 函数 `helloWorldGenerator` 有三个状态：`hello`，`world` 和 `return` 语句（即函数结束）。调用 `next` 方法，指针会从函数头部或上一次停下来的地方开始执行，直到遇到下一个 `yield` 表达式或 `return` 语句为止。换言之，`Generator` 函数是分段执行的，`yield` 表达式是暂停执行的标记，而 `next` 方法可以恢复执行。直到遇到 `return` 语句或函数结束，才会结束执行。后续再调用 `next`，也只会返回 `{ value: undefined, done: true }`。
 
 <word text="ES6"/>没有规定 `*` 号写在哪，以下几种方式都能通过：
 - `function* foo() {}`
@@ -56,7 +56,7 @@ hw.next()
 > [!WARNING] ⚠ 注意
 > `yield` 表达式后面的表达式，只有当调用 `next` 方法，内部指针指向该语句时才会执行，因此等于为 <word text="JavaScript"/> 提供了手动的"惰性求值"（Lazy Evaluation）的语法功能。
 > ```js
-> fucntion* add() {
+> function* add() {
 >   yield 1 + 2 * 3
 > }
 > ```
@@ -84,7 +84,7 @@ setTimeout(() => {
 1. `yield` 表达式只能用在 `Generator` 函数里面，它的外层必须是 `Generator` 函数，用在其他地方都会报错。
    ```js
    function* fn(arr) {
-      arr.forEach(item = {
+      arr.forEach(item => {
         yield item * 2 // 报错
       })
    }
@@ -95,7 +95,7 @@ setTimeout(() => {
    ```js
    function* fn() {
       console.log('Hello' + yield) // 报错
-      console.log('Hello' + yield 123) // 不报错
+      console.log('Hello' + yield 123) // 报错
 
       console.log('Hello' + (yield)) // 不报错
       console.log('Hello' + (yield 123)) // 不报错
@@ -269,7 +269,7 @@ g.throw('a') // Uncaught a 循环终止
 
 这种函数体内捕获错误的机制大大方便了对错误的处理。对于多个 `yield` 表达式，可以
 只用 `try...catch` 代码块来捕获错误。如果使用回调函数的写法想要捕获多个错误，
-就不得不每个函数写←个错误处理语句，而现在只在 `Generator` 函数内部写 `catch` 语句
+就不得不每个函数写一个错误处理语句，而现在只在 `Generator` 函数内部写 `catch` 语句
 就可以了。
 
 ### Generator.prototype.return()
@@ -306,7 +306,7 @@ function* fn() {
 var g = fn()
 
 g.next() // { value: 1, done: false }
-g.return('foo') // { value: unde2fined, done: false }
+g.return('foo') // { value: 2, done: false }
 g.next() // { value: 3, done: false }
 g.next() // { value: 'foo', done: true }
 ```

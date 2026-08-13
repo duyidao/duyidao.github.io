@@ -4,10 +4,10 @@
 
 JavaScript 一直没有模块（`module`）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代现有的 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决方案。
 
-ES6之前，最主要的方法有 CommonJs（用于服务器） 和 AMD（用于浏览器） 两种，ES6 后在语言规格层面实现了模块功能，可以取代 CommonJs 和 AMD，成为主流解决方案。
+ES6之前，最主要的方法有 CommonJS（用于服务器） 和 AMD（用于浏览器） 两种，ES6 后在语言规格层面实现了模块功能，可以取代 CommonJS 和 AMD，成为主流解决方案。
 
 ```js
-// CommonJs
+// CommonJS
 let { stat, exists, readFile } = require('fs');
 
 // 等价于
@@ -24,7 +24,7 @@ let readfile = _fs.readfile;
 import { stat, exists, readFile } from 'fs';
 ```
 
-这个方法属于 “编译时加载” 或者静态加载，即 ES6 可以在编译时就完成模块加载，效率要比 CommonJs 高，当然这也导致了没法引用 ES6 模块本身，因为它不是对象。
+这个方法属于 “编译时加载” 或者静态加载，即 ES6 可以在编译时就完成模块加载，效率要比 CommonJS 高，当然这也导致了没法引用 ES6 模块本身，因为它不是对象。
 
 除了静态加载，ES6 模块还有以下好处：
 
@@ -105,7 +105,7 @@ var n = 1;
 export {n};
 ```
 
-`export` 输出的接口与值是对应关系，可以获取模块内部的实时值。这与 `CommonJs` 不同，`CommonJs` 输出的值是模块内部的值的缓存，不存在动态更新。
+`export` 输出的接口与值是对应关系，可以获取模块内部的实时值。这与 `CommonJS` 不同，`CommonJS` 输出的值是模块内部的值的缓存，不存在动态更新。
 
 ```js
 export var foo = 1

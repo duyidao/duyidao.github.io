@@ -9,52 +9,50 @@
 直接使用 `linear-gradient` 的写法如下：
 
 ```less
-div {
-  html,
-  body {
-    width: 100%;
-    height: 100%;
-    display: flex;
-  }
+html,
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
 
-  div {
-    margin: auto;
-    position: relative;
-    width: 300px;
-    height: 400px;
+div {
+  margin: auto;
+  position: relative;
+  width: 300px;
+  height: 400px;
+  background: url(https://picsum.photos/200/100) no-repeat;
+  background-size: cover;
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: url(https://picsum.photos/200/100) no-repeat;
     background-size: cover;
-
-    &::before {
-      position: absolute;
-      content: '';
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url(https://picsum.photos/200/100) no-repeat;
-      background-size: cover;
-      z-index: 1;
-      animation: maskRotate 4s ease-in-out infinite; // [!code ++]
-    }
+    z-index: 1;
+    animation: maskRotate 4s ease-in-out infinite; // [!code ++]
   }
-
-  // [!code ++]
-  @keyframes maskRotate {
-    // [!code ++]
-    0% {
-      mask: linear-gradient(45deg, #000 0%, transparent 5%); // [!code ++]
-    } // [!code ++]
-    // [!code ++]
-    50% {
-      mask: linear-gradient(45deg, #000 50%, transparent 55%); // [!code ++]
-    } // [!code ++]
-    // [!code ++]
-    100% {
-      mask: linear-gradient(45deg, #000 100%, transparent 105%); // [!code ++]
-    } // [!code ++]
-  } // [!code ++]
 }
+
+// [!code ++]
+@keyframes maskRotate {
+  // [!code ++]
+  0% {
+    mask: linear-gradient(45deg, #000 0%, transparent 5%); // [!code ++]
+  } // [!code ++]
+  // [!code ++]
+  50% {
+    mask: linear-gradient(45deg, #000 50%, transparent 55%); // [!code ++]
+  } // [!code ++]
+  // [!code ++]
+  100% {
+    mask: linear-gradient(45deg, #000 100%, transparent 105%); // [!code ++]
+  } // [!code ++]
+} // [!code ++]
 ```
 
 保存后效果并没有平滑的过渡，而是生硬的从 0% 到 50% 再到 100% 的三个阶段。`linear-gradient` 不支持动画效果，因此，如果想要用上面的代码实现效果，需要从 0% 到 100% 每个阶段都设置一次 `mask`，这样虽然可以实现效果，但是代码量会非常庞大，维护也不方便。
@@ -238,10 +236,11 @@ div {
 ::: code-group
 
 ```html
-div class="g-yasuo"
+<div class="g-yasuo"></div>
 
 <div class="g-barrage-container">
-  - for(var i=0; i<30; i++) .g-barrage 我是弹幕iii
+  <div class="g-barrage">我是弹幕iii</div>
+  <!-- 共 30 个弹幕元素，由 SCSS @for 循环生成 -->
 </div>
 ```
 

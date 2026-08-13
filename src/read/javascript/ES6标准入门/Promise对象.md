@@ -109,9 +109,9 @@ new Promise((resolve, reject) => {
 new Promise((resolve, reject) => {
   resolve();
 }).then((value) => {
-  // some ode
+  // some code
 }).then((value) => {
-  // some ode
+  // some code
 }).catch((error) => {
   console.log(error);
 })
@@ -135,10 +135,10 @@ new Promise((resolve, reject) => {
 })
 ```
 
-### Promose.all()
+### Promise.all()
 `Promise.all` 方法用于将多个 `Promise` 实例，包装成一个新的 `Promise` 实例。其参数一般接受一个数组，如果不是数组则要求必须具有 `Iterator` 接口，且每一项都必须是 `Promise` 实例。如果不是，则会调用 `Promise.resolve` 方法，将参数转为 `Promise` 实例，再进一步处理。
 
-`Promise.all` 方法返回的新的 `Promise` 实例，该实例的状态由数组内每一项 `PRomise` 决定，分为两种情况：
+`Promise.all` 方法返回的新的 `Promise` 实例，该实例的状态由数组内每一项 `Promise` 决定，分为两种情况：
 1. 只有当参数中的所有 `Promise` 实例都变为 `fulfilled` 状态，才会变为 `fulfilled` 状态
 2. 只要有一个变为 `rejected` 状态，就会变为 `rejected` 状态，第一个变为 `rejected` 状态的实例的返回值，会传递给 `Promise.all` 方法返回的新实例的回调函数
 
@@ -258,7 +258,7 @@ console.log('console')
    ```
    通过 `new Promise` 将函数包裹起来，如果是同步的则同步执行，如果是异步的则 `.then` 执行后续。最后通过 `.catch` 捕获错误
 
-基于此，目前有一个提案提供了 `PRomise.try()` 方法代替上面的写法。
+基于此，目前有一个提案提供了 `Promise.try()` 方法代替上面的写法。
 
 ```js
 const fn = () => console.log('fn')

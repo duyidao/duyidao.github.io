@@ -12,7 +12,7 @@ BEM 命名规则比较常见，其中：
 
 - B 代表 `Block` 块，如 `header`, `container`, `menu`, `checkbox`, `input`, `nav` 等 。
 - E 代表 `Element` 元素，是块的一部分，它没有独立的意义，在语义上与其块绑定在一起。如 `header title` , `menu content` , `nav item` 等。
-- M 代表 `Modifer` 限定，是块或元素上的标志。用它们来改变外表或行为。如 `nav item active` , `input focus` 等。
+- M 代表 `Modifier` 限定，是块或元素上的标志。用它们来改变外表或行为。如 `nav item active` , `input focus` 等。
 
 举例，可以在通常情况下有一个正常的按钮，在不同的情况下有两个状态。使用 `BEM` 通过类选择器对块进行样式化，所以可以使用任何我们想要的标签( `button` 、`a` 甚至 `div` )来实现它们。命名规则使用 **块-元素-标志** 的语法。
 

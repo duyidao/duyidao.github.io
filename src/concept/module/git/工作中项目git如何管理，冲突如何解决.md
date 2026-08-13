@@ -12,7 +12,7 @@
 
 进入一家公司，领导会给你分配一个 `git` 账号以及项目代码仓库，此时可以去到仓库地址，基于 `master` 主分支新建一个自己的代码分支，可以用 `git checkout -b` 命令，也可以在线上仓库新建分支，本案例选择在线上仓库新建一个名为 `daodao-new` 分支。
 
-新建完毕后 `git clone` 克隆代码到本地，此时需要注意克隆下来的是在主分支，且 `git bransh` 查看所有分支时也只有 `master` 主分支，因此需要 `git checkout -b daodao-new` 切换到对应的分支，注意分支名要和之前创建的一样。切换完毕后 `git status` 查看状态，提示 `On bransh daodao-new` 即为成功。
+新建完毕后 `git clone` 克隆代码到本地，此时需要注意克隆下来的是在主分支，且 `git branch` 查看所有分支时也只有 `master` 主分支，因此需要 `git checkout -b daodao-new` 切换到对应的分支，注意分支名要和之前创建的一样。切换完毕后 `git status` 查看状态，提示 `On branch daodao-new` 即为成功。
 
 写完代码后，`git add .` 提交代码，`git commit -m '提交信息'` 提交到本地仓库，此时不能直接 `git push` 提交远程仓库，这会报错，因为 `git push` 默认提交到 `master` 主分支，应该要 `git push origin daodao-new` 提交到远程仓库。
 

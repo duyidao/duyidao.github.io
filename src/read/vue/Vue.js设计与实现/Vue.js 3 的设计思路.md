@@ -61,7 +61,7 @@ const vnode = {
 <h3 v-else-if="level === 3">Hello, world</h3>
 <h4 v-else-if="level === 4">Hello, world</h4>
 <h5 v-else-if="level === 5">Hello, world</h5>
-<h5 v-else="level === 6">Hello, world</h5>
+<h5 v-else-if="level === 6">Hello, world</h5>
 ```
 :::
 
@@ -257,7 +257,7 @@ export default {
    * 或者
    */
   render() {
-    eturn h('div', { onClick: this.handleClick }, 'hello world');
+    return h('div', { onClick: this.handleClick }, 'hello world');
   }
 }
 ```

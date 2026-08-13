@@ -58,11 +58,11 @@ TypedArray 视图的构造函数可以接受一个表示长度的数值，或者
 ```javascript
 var typedArray = new Uint8Array([0, 1, 2]); 
 typedArray.length // 3 
-typedArray[O] = 5; 
+typedArray[0] = 5; 
 typedArray // [5 , 1, 2 ] 
 ```
 
-#### ArrayBuffer.prototype.bytelength
+#### ArrayBuffer.prototype.byteLength
 
 ArrayBuffer 实例的 `byteLength` 属性返回分配的内存区域的字节长度。可以通过这个属性检查内存分配是否成功。
 
@@ -113,20 +113,20 @@ TypedArray 提供多种构造函数，可以通过 ArrayBuffer 创建视图，�
 - TypedArray.prototype.fill(value, start=O, end=this.length) 
 - TypedArray.pototype.filter(callbackfn, thisArg?) 
 - TypedArray.prototype.find(predicate, thisArg?) 
-- TypedArray.prototype.findindex(predicate, thisArg?) 
+- TypedArray.prototype.findIndex(predicate, thisArg?) 
 - TypedArray.prototype.forEach(callbackfn, thisArg?) 
-- TypedArray.prototype.indexOf(searchElement, fromindex=O) 
+- TypedArray.prototype.indexOf(searchElement, fromIndex=0) 
 - TypedArray.prototype.join(separator) 
 - TypedArray.prototype.keys() 
-- TypedArray.prototype.lastindexOf(searchElement, fromindex?) 
-- TypedArray.prototype map(callbackf thisArg?)
+- TypedArray.prototype.lastIndexOf(searchElement, fromIndex?) 
+- TypedArray.prototype.map(callbackfn, thisArg?)
 - TypedArray.prototype.reduce(callbackfn, initialValue?) 
 - TypedArray.prototype.reduceRight(callbackfn, initialValue?) 
 - TypedArray.prototype.reverse() 
 - TypedArray.prototype.slice(start=O, end=this.length) 
 - TypedArray.prototype.some(callbackfn, thisArg?) 
 - TypedArray.prototype.sort(comparefn) 
-- TypedArray.prototype.toLocaleString(reservedl?, reserved2?) 
+- TypedArray.prototype.toLocaleString(reserved1?, reserved2?) 
 - TypedArray.prototype.toString() 
 - TypedArray.prototype.values() 
 
@@ -224,7 +224,7 @@ var usernameView = new Uint8Array(buffer, 4, 16);
 var amountDueView = new Float32Array(buffer, 20, 1);
 ```
 
-### DateView视图
+### DataView视图
 
 DataView 是一个构造函数，接受一个 ArrayBuffer 对象作为参数，并可以指定字节起始位置和长度。与 TypedArray 视图不同，DataView 允许你指定字节序（大端或小端），这使得它非常适合处理来自网络或文件的二进制数据。
 

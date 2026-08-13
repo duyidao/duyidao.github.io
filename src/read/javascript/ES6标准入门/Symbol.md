@@ -260,13 +260,13 @@ for (let i in obj) {
   console.log(i) // 无输出
 }
 
-Object.getOwnPropertyNaames(obj) // []
+Object.getOwnPropertyNames(obj) // []
 
 let objSym = Object.getOwnPropertySymbols(obj)
 console.log(objSym) // [Symbol(a), Symbol(b), Symbol(f)]
 ```
 
-另外，`Reflect.ownKwys` 方法可以返回所有类型的键名，代码如下：
+另外，`Reflect.ownKeys` 方法可以返回所有类型的键名，代码如下：
 
 ```js
 let obj = {
@@ -274,7 +274,7 @@ let obj = {
   value: 'daodao'
 }
 
-Reflect.ownKwys(obj) // ['value', Symbol('key')]
+Reflect.ownKeys(obj) // ['value', Symbol('key')]
 ```
 
 由于用 `Symbol` 定义的属性不会被常规方法遍历，因此可以利用其这一特性来定义一些非私有但只希望内部使用的方法。
@@ -284,7 +284,7 @@ Reflect.ownKwys(obj) // ['value', Symbol('key')]
 `Symbol` 与 `Symbol.for()` 都会生成新的 `Symbol` ，二者的区别是 `Symbol` 每次生成都是返回新的 `Symbol` 值；而 `Symbol.for()` 会在全局中提供搜索，如果全局中存在该 `key` 值的 `Symbol` 值，则会返回同一个 `Symbol` 值。
 
 ```js
-Symmbol.for('bar') === Symmbol.for('bar') // true
+Symbol.for('bar') === Symbol.for('bar') // true
 
 Symbol('foo') === Symbol('foo') // false
 ```
@@ -478,7 +478,7 @@ Symbol.keyFor(s2) // undefined
 
 - `Symbol.match`
 
-  对象的 Symbol match 属性指向 个函数 str match myObject ）时 ，如果该 属性存在 会调用它返回该方法的返回值。
+  对象的 `Symbol.match` 属性指向一个函数，当 `str.match(myObject)` 时，如果该属性存在，会调用它返回该方法的返回值。
 
   ```js
   String.prototype.match(regexp) //等同于 regexp[Symbol.match](this)
@@ -544,7 +544,7 @@ Symbol.keyFor(s2) // undefined
 
 - `Symbol.split`
 
-  当对象被 `String.propertype.split` 方法调用时会返回该方法的返回值。
+  当对象被 `String.prototype.split` 方法调用时会返回该方法的返回值。
 
 - `Symbol.iterator`
 

@@ -67,7 +67,7 @@ VueRouter.install = function (Vue) {
 export default VueRouter;
 ```
 
-因为 VueRouter 会调用插件的 `install` 方法。在源码中，它会去判断是否有 `nstall` 方法，如果有则调用，没有才执行函数。
+因为 VueRouter 会调用插件的 `install` 方法。在源码中，它会去判断是否有 `install` 方法，如果有则调用，没有才执行函数。
 
 方法 `install` 会拿到<word text="Vue" />构造函数，为了能够每个文件都可使用，在 `install` 方法中保存到全局属性上。代码如下：
 
@@ -94,7 +94,7 @@ export default VueRouter;
 const routes = [
     {
       path: '/',
-      component: import() => './home.vue',
+      component: () => import('./home.vue'),
       children: [
       	{
       		path: 'a',

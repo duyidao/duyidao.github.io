@@ -230,7 +230,7 @@ let stu1 = {name: 'aa', age: 18}
 
 let handler = {
   has(target,key) {
-    if(key === 'age' &&& target[key] < 30){
+    if(key === 'age' && target[key] < 30){
       return 'young'
     }
     return 'old'
@@ -250,7 +250,7 @@ let stu2 = {name: 'bb', age: 88}
 
 let handler = {
   has(target,key) {
-    if(key === 'age' &&& target[key] < 30){
+    if(key === 'age' && target[key] < 30){
       return 'young'
     }
     return 'old'

@@ -54,16 +54,16 @@ ES6模块与 CommonJS 模块具体两大差异如下：
 
 - CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。
   
-  CommonJs 模块输出的是值的复制，也就意味着内部值发生改变，不会影响到已输出的值，模块不会同步更新。ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。
+  CommonJS 模块输出的是值的复制，也就意味着内部值发生改变，不会影响到已输出的值，模块不会同步更新。ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。
 
 - CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。
   
-  这是因为 CommonJs 模块加载的是一个对象，该对象只有在脚本运行完才会生成。而 ES6 模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。
+  这是因为 CommonJS 模块加载的是一个对象，该对象只有在脚本运行完才会生成。而 ES6 模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。
 
-ES6 模块的运行机制与 CommonJS 不一样。 擎对脚本静态分析的时候，遇到模块加载命令 `import` 就会生成 个只读引用。等到脚本真正执行时 ，再根据这个只读引用到被加载的模块中取值。换句话说，ES6 `import` 有点像 Unix 系统的 “符号连接”，原始值变了，`import` 加载的值也会跟着变。因此， ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。
+ES6 模块的运行机制与 CommonJS 不一样。 引擎对脚本静态分析的时候，遇到模块加载命令 `import` 就会生成 个只读引用。等到脚本真正执行时 ，再根据这个只读引用到被加载的模块中取值。换句话说，ES6 `import` 有点像 Unix 系统的 “符号链接”，原始值变了，`import` 加载的值也会跟着变。因此， ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。
 
 ::: code-group
-```js [CommonJs]
+```js [CommonJS]
 var num = 1
 function changeNum() {
   num++
@@ -92,7 +92,7 @@ console.log(num) // 2
 ```
 :::
 
-由于 ES6 输入的模块变量只是一个"符号连接"，所以这个变量是只读的，对它进行重新赋值会报错。
+由于 ES6 输入的模块变量只是一个"符号链接"，所以这个变量是只读的，对它进行重新赋值会报错。
 
 ```js
 import { a } from './myModule.js'
@@ -110,16 +110,16 @@ a = 123 // Syntax Error : 'a' is read-only
 
 在静态分析阶段，一个模块脚本只要有一行 `import` 或者 `export` ，`Node.js` 就会认为该脚本为 ES6 模块，否则为 CommonJS 模块。如果不想输出任何语句，但是希望被 `Node.js` 将其视为 ES6 模块，可以在脚本中添加一行 `export {}` 。
 
-如果不加后缀，Node 加载 ES6 模块会和 `reqiure` 一样按照以下顺序寻找脚本：
+如果不加后缀，Node 加载 ES6 模块会和 `require` 一样按照以下顺序寻找脚本：
 - `import './foo'`
   - `./foo.js`
   - `./foo/package.json`
   - `./foo/index.js`
 - `import 'bar'`
-  - `./mode_modules/bar.js`
-  - `./mode_modules/bar/package.json`
-  - `./mode_modules/bar/index.js`
-  - 继续网上级查找
+  - `./node_modules/bar.js`
+  - `./node_modules/bar/package.json`
+  - `./node_modules/bar/index.js`
+  - 继续往上级查找
 
 ES6 模块之中，顶层的 `this` 指向 `undefined`, CommonJS 模块的顶层 `this` 指向当前模块，这是两者的 个重大差异。
 
@@ -173,7 +173,7 @@ es_namespace.f() // 'my-f'
 
 循环加载指的是 a 脚本依赖 b 脚本，吧、脚本的执行又依赖 a 脚本。通常情况下循环加载存在较强的耦合性。如果处理不好会导致递归加载，使得程序陷入死循环。但实际上该情况很难避免，尤其大型项目很容易出现这种情况。
 
-目前最常见的两种模块 CommonJs 和 ES6 在处理方法也是不同的，返回的值也不一样。
+目前最常见的两种模块 CommonJS 和 ES6 在处理方法也是不同的，返回的值也不一样。
 
 #### CommonJS模块的循环加载
 
@@ -184,7 +184,7 @@ CommonJS 模块的重要特性是加载时执行，即脚本代码在 `require` 
 ::: code-group
 ```js [a.js]
 exports.done = false
-var b = require('.b.js')
+var b = require('./b.js')
 console.log('a', b.done)
 exports.done = true
 console.log('a.js执行完毕')
@@ -214,7 +214,7 @@ a.js执行完毕
 a、b都执行完毕 true true
 ```
 
-另外，由于 CommonJs 模块遇到循环加载时返回的是当前已经执行的部分的值，而不是代码全部执行后的值，导致循环加载时，取到的值是不完整的，所以输入变量时要谨慎。
+另外，由于 CommonJS 模块遇到循环加载时返回的是当前已经执行的部分的值，而不是代码全部执行后的值，导致循环加载时，取到的值是不完整的，所以输入变量时要谨慎。
 
 ```js
 var a = require('a') // safe

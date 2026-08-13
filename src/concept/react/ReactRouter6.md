@@ -47,9 +47,9 @@ ReactDOM.render(
 
 ### `<Routes/>` 与 `<Route/>`
 
-在 `ReactRouter5` 版本，路由通过 `switch` 组件包裹 `router` 组件，`router` 组件通过设置 `path` 路径和 `component` 匹配的路由组件实现路由。
+在 `ReactRouter5` 版本，路由通过 `Switch` 组件包裹 `router` 组件，`router` 组件通过设置 `path` 路径和 `component` 匹配的路由组件实现路由。
 
-在 `ReactRouter6` 版本，`switch` 已移除，用 `routers` 替代。而 `route` 也不再用 `component` 的方式，取而代之的是 `element` ，设置一个组件而不是单纯的组件名称。
+在 `ReactRouter6` 版本，`Switch` 已移除，用 `Routes` 替代。而 `route` 也不再用 `component` 的方式，取而代之的是 `element` ，设置一个组件而不是单纯的组件名称。
 
 示例代码如下所示：
 

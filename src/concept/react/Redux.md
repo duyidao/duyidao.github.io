@@ -43,7 +43,7 @@ function reduxer(preState = 12, action) {
       return preState + data
     case 'decrement':
       return preState - data
-    case 'chen':
+    case 'cheng':
       return preState * data
     case 'chu':
       return preState / data
@@ -126,7 +126,7 @@ export default reduxer
 
 ## redux 的核心 API
 
-### createstore()
+### createStore()
 
 作用：创建包含指定 `reducer` 的 `store` 对象
 
@@ -157,7 +157,7 @@ export default reduxer
   ```
 - 引入 `applyMiddleware` 方法与 `redux-thunk` 方法
   ```jsx
-  import { applyMiddleware } from 'react'
+  import { applyMiddleware } from 'redux'
   import thunk from 'redux-thunk'
   ```
 - 注册方法
@@ -227,7 +227,7 @@ export default reduxer
 
 - `Provider` ：让所有组件都可以得到 `state` 数据
 - `connect` ：用于包装 UI 组件生成容器组件
-- `mapStateToprops` ：将外部的数据（即 `state` 对象）转换为 UI 组件的标签属性
+- `mapStateToProps` ：将外部的数据（即 `state` 对象）转换为 UI 组件的标签属性
 - `mapDispatchToProps` ：将分发 `action` 的函数转换为 UI 组件的标签属性
 
 ### 容器组件的创建

@@ -1,6 +1,6 @@
 # border-image 实现图片边框
 
-## 前值知识
+## 前置知识
 
 [border-image](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-image) 是一个复合属性，它拆分为以下三个属性：
 
@@ -36,7 +36,7 @@
 
 ```css
 div {
-  border: 50px soild #fff;
+  border: 50px solid #fff;
   border-image: url('./xxx.svg') 50 round;
 }
 ```

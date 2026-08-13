@@ -209,26 +209,26 @@ service.listen(3000)
 import { createServer } from 'http'
 
 const service = createServer((req, res) => {
-  const content = ''
+  let content = ''
   res.statusCode = 200
   res.setHeader('Content-Type', 'text/html;charset=utf8')
   switch (req.url) {
     case '/':
     case '/index.html':
-      const = '<h1>首页</h1>'
+      content = '<h1>首页</h1>'
       break
     case '/about.html':
-      const = '<h1>关于</h1>'
+      content = '<h1>关于</h1>'
       break
     case '/user.html':
       res.setHeader('Content-Type', 'application/json') // 单独修改该页面的请求头
-      const = '<h1>我的</h1>'
+      content = '<h1>我的</h1>'
       break
     default:
-      const = '<h1>404 Not Found</h1>'
+      content = '<h1>404 Not Found</h1>'
       break;
   }
-  res.end()
+  res.end(content)
 })
 
 service.listen(3000, () => {
@@ -472,4 +472,3 @@ server.listen(80, () => {
   console.log('已启动');
 })
 ```
-

@@ -27,7 +27,7 @@ for (let i = 0; i < 10; i ++) {
   };
 }
 a[6]() // 5
-console.log(i) // i is not defind
+console.log(i) // i is not defined
 ```
 
 #### 变量提升
@@ -69,7 +69,7 @@ while (true) {
 有一些死区比较隐蔽，如：
 
 ```js
-function (x = y, y = 2) {
+function fn(x = y, y = 2) {
   console.log(x); // ReferenceError。因为x用到了y变量赋值，而y变量在其后面声明，因此是死区
 }
 

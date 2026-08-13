@@ -284,7 +284,7 @@ body {
 
 div {
   font-size: 105px;
-  font-weight: blod;
+  font-weight: bold;
   color: #999;
 }
 

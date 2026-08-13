@@ -128,10 +128,10 @@ function F(){
 }
 
 // 旧写法
-let instance = new F()
+let instance1 = new F()
 
 // 新写法
-let instance = Reflect.construct(F,[])
+let instance2 = Reflect.construct(F,[])
 ```
 
 #### Reflect.getPrototypeOf(target)
@@ -217,7 +217,7 @@ Reflect.isExtensible(obj) // true
 ```js
 const obj = {}
 Object.preventExtensions(obj) // object {}
-Reflect.isExtensible(obj) // true
+Reflect.isExtensible(obj) // false
 ```
 
 二者的区别在于，如果参数不是对象，<word text="ES5"/>环境下的 `Object.preventExtensions` 会报错，<word text="ES6"/>环境下会返回原对象；而 `Reflect.preventExtensions` 会报错。

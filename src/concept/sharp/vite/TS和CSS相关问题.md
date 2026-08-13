@@ -4,7 +4,7 @@
 
 如果是一个新建的项目，那么在选择是否需要使用<word text="TypeScript" />的时候，可以选择使用<word text="TypeScript" />，这样项目就能支持<word text="TypeScript" />。
 
-而如果之前已经创建了一个使用<word text="JavaScript" />的项目，那么就需要在项目中 `pnpm i typescript` 引入<word text="TypeScript" />，并在根目录新建一个 `tsconfig.json`，`init` 获取网上复制一个即可。
+而如果之前已经创建了一个使用<word text="JavaScript" />的项目，那么就需要在项目中 `pnpm i typescript` 引入<word text="TypeScript" />，并在根目录新建一个 `tsconfig.json`，`init` 或网上复制一个即可。
 
 ## CSS
 

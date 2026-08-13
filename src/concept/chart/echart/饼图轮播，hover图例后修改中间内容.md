@@ -6,7 +6,7 @@
 
 梳理实现方式。
 
-轮播方面，查阅官方文档，找到 `EChart` 有两个事件方法 [`highlight`](https://echarts.apache.org/zh/api.html#action.highlight) 和 [`downplay`](https://echarts.apache.org/zh/api.html#action.downplay) 。其中：
+轮播方面，查阅官方文档，找到 `ECharts` 有两个事件方法 [`highlight`](https://echarts.apache.org/zh/api.html#action.highlight) 和 [`downplay`](https://echarts.apache.org/zh/api.html#action.downplay) 。其中：
 
 - `highlight` 用于高亮指定的图形，用法如下：
 
@@ -36,7 +36,7 @@
 为 `echart` 绑定 `highlight` 方法后，能够在内容激活后触发该事件。
 
 ```js
-const myChart = documment.querySelector('.echart');
+const myChart = document.querySelector('.echart');
 
 myChart.on('highlight', (e) => {
   console.log(e);
@@ -74,8 +74,7 @@ watch(
     (val) => {
         if (val.length > 0) {
             option.value.series[0].data = val;
-            option.value.series[0].label.normal.formatter = '{title|' + val[0].value + '%}' + '
-' + '{car|' + val[0].name + val[0].flowValue + '辆}';
+            option.value.series[0].label.normal.formatter = '{title|' + val[0].value + '%}' + '\n' + '{car|' + val[0].name + val[0].flowValue + '辆}';
         }
     },
     { immediate: true, deep: true }
@@ -105,8 +104,7 @@ const intervalStartFn = () => {
 
         // 中部自定义内容调整
         const obj = props.data[highlightIndex.value];
-        option.value.series[0].label.normal.formatter = '{title|' + obj.value + '%}' + '
-' + '{car|' + obj.name + obj.value + '辆}';
+        option.value.series[0].label.normal.formatter = '{title|' + obj.value + '%}' + '\n' + '{car|' + obj.name + obj.value + '辆}';
 
         // 激活与非激活索引自增1
         highlightIndex.value = highlightIndex.value >= props.data.length - 1 ? 0 : highlightIndex.value + 1;
@@ -156,8 +154,7 @@ const pieChartAddEventFn = () => {
                     });
                 }
                 else {
-                    option.value.series[0].label.normal.formatter = '{title|' + item.value + '%}' + '
-' + '{car|' + item.name + item.value + '辆}';
+                    option.value.series[0].label.normal.formatter = '{title|' + item.value + '%}' + '\n' + '{car|' + item.name + item.value + '辆}';
                 }
             });
         }

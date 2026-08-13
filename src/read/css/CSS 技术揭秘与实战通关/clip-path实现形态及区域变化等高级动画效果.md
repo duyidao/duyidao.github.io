@@ -47,14 +47,14 @@
 ```
 
 ```css
-.box-nomre {
+.box-nomore {
   width: 100px;
   height: 100px;
   background: pink;
   animation: polygon-change-nomore 3s linear infinite;
 }
 
-@keyframes polygon-change {
+@keyframes polygon-change-nomore {
   5% {
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   }
@@ -534,13 +534,13 @@ div::before {
       transform: scale(1.2);
   }
   47.5% {
-      clip-path: inset(20 0 20px);
+      clip-path: inset(20px 0 20px);
       left: 13%;
       transform: scale(1.3);
       filter: invert(0);
   }
   48% {
-      clip-path: inset(120 0 120px);
+      clip-path: inset(120px 0 120px);
       left: 15%;
       transform: scale(1.1);
   }

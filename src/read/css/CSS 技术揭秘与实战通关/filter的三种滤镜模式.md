@@ -362,7 +362,7 @@ body {
 
 作用了 `filter` 和 `backdrop-filter` 的元素（值不为 `none`），都会生成 Backdrop Root。
 
-什么是 Backdrop Root 呢？简单来说，他就是堆叠上下文，根据 [W3C文档](https://drafts.fxtf.org/filter-effects-2/#BackdropRoot) 的描述，它是 `backdrop-filter` 属性的背景参考边界，决定了哪个区域会被模糊处理。理解它有助于更好地控制毛玻璃效果的实现范围。
+什么是 Backdrop Root 呢？简单来说，它就是堆叠上下文，根据 [W3C文档](https://drafts.fxtf.org/filter-effects-2/#BackdropRoot) 的描述，它是 `backdrop-filter` 属性的背景参考边界，决定了哪个区域会被模糊处理。理解它有助于更好地控制毛玻璃效果的实现范围。
 
 而生成了 Backdrop Root 的元素会使 CSS 3D 失效！
 
@@ -470,7 +470,7 @@ CSS 中，能够生成堆叠上下文的方法有非常多，方法如下（参�
 -   -webkit-overflow-scrolling 属性被设置 "touch" 的元素；
 -   backdrop-filter 值不为 “none” 的元素。
 
-但是，除了 `filter` 和 `backdrop-filter` 之外，并非所有能够生成**堆叠上下文或者包含块**的属性，都会导`position: fixed` 失效。
+但是，除了 `filter` 和 `backdrop-filter` 之外，并非所有能够生成**堆叠上下文或者包含块**的属性，都会导致`position: fixed` 失效。
 
 在 CSS 中，目前一共有 7 种方式可以让元素内部的 `position: fixed` 基于该元素定位：
 

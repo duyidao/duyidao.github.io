@@ -44,7 +44,7 @@ getStockPriceByName('goog').then(function (result) {
 `async` 函数 `return` 返回的值，会成为 `then` 方法回调函数的参数；`throw` 抛出的错误，能够变成 `reject` 状态，被 `catch` 方法回调函数接收到。
 
 ```js
-async fn1 = () => {
+const fn1 = async () => {
   return 'hello world';
 }
 
@@ -133,8 +133,8 @@ async function f() {
 
 ```js
 async function fn() {
-  let i = 0, MAX_MUN = 3;
-  for (i = 0; i < MAX_MUN; ++i) {
+  let i = 0, MAX_NUM = 3;
+  for (i = 0; i < MAX_NUM; ++i) {
     try {
       await something();
       break;

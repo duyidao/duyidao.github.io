@@ -167,8 +167,9 @@ var gen = function* () {
   var f2 = yield readFile('/etc/shells'); // 读取文件2
 };
 
-let result1 = gen().next()
-let result2 = gen().next()
+let g = gen();
+let result1 = g.next();
+let result2 = g.next();
 
 result1.value.then(data => {
   console.log(data);

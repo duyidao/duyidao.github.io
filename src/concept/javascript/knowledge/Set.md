@@ -84,7 +84,7 @@ console.log(hd.delete("daodao")); // true
 console.log(hd.size); // 1  删了一个，还剩一个
 
 console.log(hd.values()); // SetIterator {"duyidao"}
-console.log(hd.has("daodao")); // false 没有改元素可删
+console.log(hd.has("daodao")); // false 没有该元素可删
 ```
 
 使用 `clear` 删除所有元素
@@ -99,7 +99,7 @@ console.log(hd.values()); // SetIterator {}
 
 ### 数组转换
 
-可以使用 `点语法` 或 `Array.form` 静态方法将Set类型转为数组，这样就可以使用数组处理函数了
+可以使用 `点语法` 或 `Array.from` 静态方法将Set类型转为数组，这样就可以使用数组处理函数了
 
 ```js
 const set = new Set(["daodao", "duyidao"]);

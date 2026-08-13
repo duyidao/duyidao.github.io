@@ -89,7 +89,7 @@ yarn add react-router-dom@5
 
 ![pCAsUh9.png](https://s1.ax1x.com/2023/06/09/pCAsUh9.png)
 
-根据提示需要我们报一个 `Router` 来监管 `Link` ，尝试一下，依旧报错，报错信息如下：
+根据提示需要我们包一个 `Router` 来监管 `Link` ，尝试一下，依旧报错，报错信息如下：
 
 ![pCAyA3R.png](https://s1.ax1x.com/2023/06/09/pCAyA3R.png)
 
@@ -128,7 +128,7 @@ ReactDOM.render(
 )
 ```
 
-现在运行，效果实现，接下来实现动态样式激活的效果。<word text="React" />中除了 `Link` 标签以外，还有一个 `NavLink` ，当路由匹配后它会添加一个 `active` 类名给自身，表名处于激活状态。也可通过 `activeClassName` 设置激活的类名。
+现在运行，效果实现，接下来实现动态样式激活的效果。<word text="React" />中除了 `Link` 标签以外，还有一个 `NavLink` ，当路由匹配后它会添加一个 `active` 类名给自身，表明处于激活状态。也可通过 `activeClassName` 设置激活的类名。
 
 ```jsx
 <NavLink activeClassName="activeClass" className="list-group-item" to="/about">About</NavLink>
