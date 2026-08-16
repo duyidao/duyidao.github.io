@@ -1,6 +1,6 @@
 # h和createVNode的实现
 
-## render
+## Vue3 render
 
 在 `@vue/runtime-core/src/renderer.ts` 文件，导出一个函数 `createRenderer`，用于创建渲染器。该函数 `return` 返回一个对象，包含 `render` 和 `createApp` 两个方法。
 
@@ -47,25 +47,25 @@ export { renderOptions }
 
 接下来思考一下 `h` 函数应该如何封装。
 
-## h 函数创建
+## Vue3 h 函数创建
 
 众所周知，`h` 函数有以下几种使用方式：
 
 1. 单纯元素文本
-   
+
    ```ts
    h('div', 'hello world')
    ```
 
 2. 元素内嵌套子元素
-      
+
    ```ts
    h('div', h('span', 'hello world'))
    h('div', [h('span', 'hello'), h('span', 'vue')])
    ```
 
 3. 元素有自定义属性
-   
+
    ```ts
    h('div', { class: 'container' })
    h('div', { class: 'container' }, 'hello world')
@@ -88,13 +88,12 @@ export { renderOptions }
 3. `children`：子元素，可选
 
 ```ts [@vue/runtime-core/src/h.ts]
-export function h(type, propsOrChildren?, children?) {
-}
+export function h(type, propsOrChildren?, children?) {}
 ```
 
 `h` 函数主要作用时对 `createVNode` 做一个参数标准化（归一化），它不创建虚拟<word text="DOM"/>。
 
-## createVNode 函数创建
+## Vue3 createVNode 函数创建
 
 `createVNode` 函数接收三个参数：
 
@@ -105,20 +104,17 @@ export function h(type, propsOrChildren?, children?) {
 它与 `h` 函数的区别是，`h` 函数第二个参数可以是 `props` 属性对象或文本内容，而 `createVNode` 函数第二个参数只能是 `props` 属性对象。
 
 ```ts [@vue/runtime-core/src/h.ts]
-export function createVNode(type, props?, children?) {
-}
+export function createVNode(type, props?, children?) {}
 ```
 
-## h和createVNode的实现
+## Vue3 h和createVNode的实现
 
 接下来就是实现这两个函数，首先判断 `h` 函数的形参长度。
 
 如果长度为 2，则需要做以下处理：
 
 1. 判断第二个参数是否是对象。
-   
    - 是对象，需要再判断是否是 `vnode` 节点。
-  
      - 是 `vnode` 节点，调用并返回 `createVNode` 函数，将第二个参数 `propsOrChildren` 作为 `children` 传入，需要包裹为数组。
      - 不是 `vnode` 节点，调用并返回 `createVNode` 函数，将第二个参数 `propsOrChildren` 作为 `props` 传入。
 
@@ -129,17 +125,25 @@ export function createVNode(type, props?, children?) {
 如果长度不为 2，则需要做如下处理：
 
 1. 判断长度是否大于 3。大于 3 则用 `slice` 截取参数，把截取到的参数用数组包裹。
-   
+
    ```ts
-   h('div', { class: 'container' }, h('div', 'hello world'), h('div', 'hello vue'))
+   h(
+     'div',
+     { class: 'container' },
+     h('div', 'hello world'),
+     h('div', 'hello vue'),
+   )
    /**
     * 转换为
     */
-   h('div', { class: 'container' }, [h('div', 'hello world'), h('div', 'hello vue')])
+   h('div', { class: 'container' }, [
+     h('div', 'hello world'),
+     h('div', 'hello vue'),
+   ])
    ```
 
 2. 不大于 3，判断它是否是 `vnode` 节点，是则把 `children` 参数包裹为数组。
-   
+
    ```ts
    h('div', { class: 'container' }, h('div', 'hello world'))
    ```
@@ -192,7 +196,7 @@ export function isString(value) {
 
 :::
 
-## isVNode的实现
+## Vue3 isVNode的实现
 
 `isVNode` 函数的实现比较简单，只需要判断 `type` 是否是对象，并且是否包含 `__v_isVNode` 属性即可。
 
@@ -205,7 +209,7 @@ export function isVNode(value: any) {
 > [!important] 总结
 > 综上而言，`h` 函数并不参与虚拟节点的创建，它只是将参数整理成 `createVNode` 函数所需要的格式，然后调用 `createVNode` 函数。
 
-## createVNode的实现
+## Vue3 createVNode的实现
 
 `createVNode` 函数首先要先声明一个变量 `vnode`，类型为一个对象，包含以下几种属性：
 
@@ -217,7 +221,7 @@ export function isVNode(value: any) {
 - `el`：表示虚拟节点对应的真实 DOM 元素。
 - `shapeFlag`：表示虚拟节点的类型，用于优化渲染。
 
-### shapeFlag是什么
+### Vue3 shapeFlag是什么
 
 如果没有加上 `shapeFlag`，则页面无效果，会报警告。这个 `shapeFlag` 有什么作用呢？
 
@@ -251,7 +255,7 @@ export enum ShapeFlags {
   // 表示该组件已经被 keep-alive（已缓存）
   COMPONENT_KEPT_ALIVE = 1 << 9,
   // 表示组件类型，有状态组件与无状态函数组件的组合
-  COMPONENT = ShapeFlags.STATEFUL_COMPONENT | ShapeFlags.FUNCTIONAL_COMPONENT
+  COMPONENT = ShapeFlags.STATEFUL_COMPONENT | ShapeFlags.FUNCTIONAL_COMPONENT,
 }
 ```
 
@@ -264,7 +268,7 @@ const vnode = {
   __v_isVNode: true,
   type: 'div',
   children: 'hello world',
-  shapeFlag
+  shapeFlag,
 }
 
 if (typeof vnode.type === 'string') {
@@ -314,7 +318,7 @@ if (vnode.shapeFlag & ShapeFlags.ARRAY_CHILDREN) {
 }
 ```
 
-### shapeFlag 实现
+### Vue3 shapeFlag 实现
 
 接下来，需要实现一下 `shapeFlag`，新建 `packages/runtime-core/src/vnode.ts` 文件，把之前写好的 `isVNode` 和 `createVNode` 两个函数放到这个文件中：
 
@@ -351,18 +355,18 @@ export function createVNode(type, props?, children?) {
   let shapeFlag // [!code ++]
 
   // 如果是字符串，说明是普通标签 // [!code ++]
-   // [!code ++]
+  // [!code ++]
   if (isString(type)) {
     shapeFlag = ShapeFlags.ELEMENT // [!code ++]
   } // [!code ++]
 
   // 子元素是字符串，说明是文本 // [!code ++]
-   // [!code ++]
+  // [!code ++]
   if (isString(children)) {
     shapeFlag |= ShapeFlags.TEXT_CHILDREN // [!code ++]
-  }  // [!code ++]
+  } // [!code ++]
   // 子元素是数组，说明是组件 // [!code ++]
-   // [!code ++]
+  // [!code ++]
   else if (Array.isArray(children)) {
     shapeFlag |= ShapeFlags.ARRAY_CHILDREN // [!code ++]
   } // [!code ++]

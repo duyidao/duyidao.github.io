@@ -20,33 +20,36 @@
 
 1. 物理键盘适配
 
-    为输入框绑定 `keyup` 事件，并过滤非数字字符（`keyCode` 48-57 及小键盘 96-105）。
+   为输入框绑定 `keyup` 事件，并过滤非数字字符（`keyCode` 48-57 及小键盘 96-105）。
 
-    ```javascript
-    function handlePhysicalKeyboard(event) {
-      const { keyCode, key } = event
-      // 仅允许数字输入
-      if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105)) {
-        appendCode(key)
-      }
-    }
-    ```
+   ```javascript
+   function handlePhysicalKeyboard(event) {
+     const { keyCode, key } = event
+     // 仅允许数字输入
+     if (
+       (keyCode >= 48 && keyCode <= 57) ||
+       (keyCode >= 96 && keyCode <= 105)
+     ) {
+       appendCode(key)
+     }
+   }
+   ```
 
 2. 虚拟键盘兼容
 
-    在 `Vant` 数字键盘的按键元素上，同时绑定 `click` 事件以兼容 PC 端鼠标点击。
+   在 `Vant` 数字键盘的按键元素上，同时绑定 `click` 事件以兼容 PC 端鼠标点击。
 
-    ```vue
-    <template>
-      <div 
-        class="keyboard-key" 
-        @touchend.prevent="handleKeyTouch" 
-        @click="handleKeyClick"
-      >
-        {{ key }}
-      </div>
-    </template>
-    ```
+   ```vue
+   <template>
+     <div
+       class="keyboard-key"
+       @touchend.prevent="handleKeyTouch"
+       @click="handleKeyClick"
+     >
+       {{ key }}
+     </div>
+   </template>
+   ```
 
 ## 知识拓展：PC 端与移动端事件映射
 
@@ -56,4 +59,4 @@
 | `touchend`                                                                                                                                | 手指触摸后抬起 | 鼠标点击    | 移动端浏览器会将 `touch` 映射为 `click` |
 | `pointerdown`                                                                                                                             | 手指触摸屏幕   | 鼠标点击    | 无                                      |
 | `pointerup`                                                                                                                               | 手指触摸后抬起 | 鼠标点击    | click                                   |
-| 在跨端组件开发中，建议采用 `pointerdown` / `pointerup` 等 Pointer Events 统一处理交互，或显式绑定 `touch` 与 `click` 事件以保障全平台兼容 |                |             |
+| 在跨端组件开发中，建议采用 `pointerdown` / `pointerup` 等 Pointer Events 统一处理交互，或显式绑定 `touch` 与 `click` 事件以保障全平台兼容 |                |             |                                         |

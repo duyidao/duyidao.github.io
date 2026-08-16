@@ -1,6 +1,6 @@
 # border-image 实现图片边框
 
-## 前置知识
+## CSS 前置知识
 
 [border-image](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-image) 是一个复合属性，它拆分为以下三个属性：
 
@@ -28,7 +28,7 @@
 
   重复 `repeat` 的效果和环绕 `round` 的效果乍一看很相似，但是 `repeat` 设置的边框他是以中心点为原点，如果有超出的部分，两侧与角的交界处会对不齐。因此上方的效果图可看出四个角附近有一点不连贯的感觉。
 
-## 效果实现
+## CSS 效果实现
 
 设置边框 `border` ，然后设置边框图片 `border-image` ，接收三个参数，图片的 SVG 路径，图片剪切距离，图片的裁剪效果。
 
@@ -41,6 +41,6 @@ div {
 }
 ```
 
-## 总体效果
+## CSS 总体效果
 
 <myIframe url="https://duyidao.github.io/blogweb/#/detail/css/imageBorder" />

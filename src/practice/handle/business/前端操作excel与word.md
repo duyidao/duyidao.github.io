@@ -247,27 +247,27 @@ export default {
 5. 生成 <word text="Blob" /> 并保存
 
 ```js
-import PizZip from "pizzip";
-import Docxtemplater from "docxtemplater";
-import { saveAs } from "file-saver";
+import PizZip from 'pizzip'
+import Docxtemplater from 'docxtemplater'
+import { saveAs } from 'file-saver'
 
 export default {
   methods: {
     change(e) {
-      const file = e.target.files[0];
+      const file = e.target.files[0]
       file.arrayBuffer().then((res) => {
-        const zip = new PizZip(res);
-        const doc = new Docxtemplater(zip);
-        doc.setData(data);
-        doc.render();
+        const zip = new PizZip(res)
+        const doc = new Docxtemplater(zip)
+        doc.setData(data)
+        doc.render()
         const output = doc.getZip().generate({
-          type: "blob",
+          type: 'blob',
           mimeType:
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        });
-        saveAs(output, "test.docx");
-      });
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        })
+        saveAs(output, 'test.docx')
+      })
     },
   },
-};
+}
 ```

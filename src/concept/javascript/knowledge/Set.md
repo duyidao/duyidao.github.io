@@ -7,134 +7,143 @@
 - 值是唯一的
 - 遍历顺序是添加的顺序，方便保存回调函数
 
-## 使用
+## Set 基本使用
 
-### 基本使用
+### Set 基本使用
 
 对象属性最终都会转为字符串。使用对象做为键名时，会将对象转为字符串后使用。可以使用数组做初始数据。Set 中是严格类型约束的，下面的数值`1`与字符串`1`属于两个不同的值。使用 `add` 添加元素，不允许重复添加 `duyidao` 值。
 
 ::: code-group
-```js [转字符串.js]
-let obj = { 1: "刀刀", "1": "daodao" };
-console.table(obj); // {1:"daodao"}
-```
-```js [对象做键名.js]
-let obj = { 1: "刀刀", "1": "daodao" };
-console.table(obj);
 
-let hd = { [obj]: "duyidao" };
-console.table(hd);
+```js [转字符串.js]
+let obj = { 1: '刀刀', 1: 'daodao' }
+console.table(obj) // {1:"daodao"}
+```
+
+```js [对象做键名.js]
+let obj = { 1: '刀刀', 1: 'daodao' }
+console.table(obj)
+
+let hd = { [obj]: 'duyidao' }
+console.table(hd)
 
 // 对象obj转为字符串打印出来是[object Object]
-console.log(hd[obj.toString()]); // duyidao
-console.log(hd["[object Object]"]); // duyidao
+console.log(hd[obj.toString()]) // duyidao
+console.log(hd['[object Object]']) // duyidao
 ```
-```js [数组做初始数据.js]
-let hd = new Set(['daodao', 'duyidao']);
-console.log(hd.values()); //{"daodao", "duyidao"}
-```
-```js [严格类型约束.js]
-let set = new Set();
-set.add(1);
-set.add("1");
-console.log(set); //Set(2) {1, "1"}
-```
-```js [add添加元素.js]
-let hd = new Set();
 
-hd.add('daodao');
-hd.add('duyidao');
+```js [数组做初始数据.js]
+let hd = new Set(['daodao', 'duyidao'])
+console.log(hd.values()) //{"daodao", "duyidao"}
+```
+
+```js [严格类型约束.js]
+let set = new Set()
+set.add(1)
+set.add('1')
+console.log(set) //Set(2) {1, "1"}
+```
+
+```js [add添加元素.js]
+let hd = new Set()
+
+hd.add('daodao')
+hd.add('duyidao')
 hd.add('duyidao')
 
-console.log(hd.values()); // SetIterator {"daodao", "duyidao"}
+console.log(hd.values()) // SetIterator {"daodao", "duyidao"}
 ```
+
 :::
 
-### 获取数量
+### Set 获取数量
 
 获取元素数量
 
 ```js
-let hd = new Set(['daodao', '刀刀']);
-console.log(hd.size); // 2
+let hd = new Set(['daodao', '刀刀'])
+console.log(hd.size) // 2
 ```
 
-### 元素检测
+### Set 元素检测
 
 检测元素是否存在
 
 ```js
-let hd = new Set();
-hd.add('daodao');
-console.log(hd.has('daodao')); // true
-console.log(hd.has('duyidao')); // false
+let hd = new Set()
+hd.add('daodao')
+console.log(hd.has('daodao')) // true
+console.log(hd.has('duyidao')) // false
 ```
 
-### 删除元素
+### Set 删除元素
 
 使用 `delete` 方法删除单个元素，返回值为 `boolean` 类型
 
 ```js
-let hd = new Set();
-hd.add("daodao");
-hd.add("duyidao");
-console.log(hd.size); // 2
+let hd = new Set()
+hd.add('daodao')
+hd.add('duyidao')
+console.log(hd.size) // 2
 
-console.log(hd.delete("daodao")); // true
-console.log(hd.size); // 1  删了一个，还剩一个
+console.log(hd.delete('daodao')) // true
+console.log(hd.size) // 1  删了一个，还剩一个
 
-console.log(hd.values()); // SetIterator {"duyidao"}
-console.log(hd.has("daodao")); // false 没有该元素可删
+console.log(hd.values()) // SetIterator {"duyidao"}
+console.log(hd.has('daodao')) // false 没有该元素可删
 ```
 
 使用 `clear` 删除所有元素
 
 ```js
-let hd = new Set();
-hd.add('daodao');
-hd.add('duyidao');
-hd.clear();
-console.log(hd.values()); // SetIterator {}
+let hd = new Set()
+hd.add('daodao')
+hd.add('duyidao')
+hd.clear()
+console.log(hd.values()) // SetIterator {}
 ```
 
-### 数组转换
+### Set 数组转换
 
 可以使用 `点语法` 或 `Array.from` 静态方法将Set类型转为数组，这样就可以使用数组处理函数了
 
 ```js
-const set = new Set(["daodao", "duyidao"]);
-console.log([...set]); // ["daodao", "duyidao"]
-console.log(Array.from(set)); // ["daodao", "duyidao"]
+const set = new Set(['daodao', 'duyidao'])
+console.log([...set]) // ["daodao", "duyidao"]
+console.log(Array.from(set)) // ["daodao", "duyidao"]
 ```
 
 移除Set中大于5的数值
 
 ```js
-let hd = new Set("123456789");
-hd = new Set([...hd].filter(item => item < 5));
-console.log(hd); // Set(4) {'1', '2', '3', '4'}
+let hd = new Set('123456789')
+hd = new Set([...hd].filter((item) => item < 5))
+console.log(hd) // Set(4) {'1', '2', '3', '4'}
 ```
 
-### 去除重复
+### Set 去除重复
 
 ::: code-group
+
 ```js [去除字符串重复.js]
-console.log([...new Set("daodao")].join("")); // dao
+console.log([...new Set('daodao')].join('')) // dao
 ```
+
 ```js [去除数组重复.js]
-console.log([...new Set([1,2,2,4,5,3,4,2])].join("")); // 12453
+console.log([...new Set([1, 2, 2, 4, 5, 3, 4, 2])].join('')) // 12453
 ```
+
 :::
 
-### 遍历数据
+### Set 遍历数据
 
 使用 `keys()/values()/entries()` 都可以返回迭代对象，因为 `set` 类型只有值所以 `keys与values` 方法结果一致。
 
 ```js
-const hd = new Set(["daodao", "duyidao"]);
-console.log(hd.values()); //SetIterator {"daodao", "duyidao"}
-console.log(hd.keys()); //SetIterator {"daodao", "duyidao"}
-console.log(hd.entries()); //SetIterator {"daodao" => "daodao", "duyidao" => "duyidao"}
+const hd = new Set(['daodao', 'duyidao'])
+console.log(hd.values()) //SetIterator {"daodao", "duyidao"}
+console.log(hd.keys()) //SetIterator {"daodao", "duyidao"}
+console.log(hd.entries()) //SetIterator {"daodao" => "daodao", "duyidao" => "duyidao"}
 ```
 
 可以使用 `forEach` 遍历Set数据，默认使用 `values` 方法创建迭代器。
@@ -142,102 +151,102 @@ console.log(hd.entries()); //SetIterator {"daodao" => "daodao", "duyidao" => "du
 为了保持和遍历数组参数统一，函数中的 `value` 与 `key` 是一样的。
 
 ```js
-let arr = [7, 6, 2, 8, 2, 6];
-let set = new Set(arr);
+let arr = [7, 6, 2, 8, 2, 6]
+let set = new Set(arr)
 //使用forEach遍历
-set.forEach((item,key) => console.log(item,key));
+set.forEach((item, key) => console.log(item, key))
 ```
 
 也可以使用 `forof` 遍历Set数据，默认使用 `values` 方法创建迭代器
 
 ```js
 //使用for/of遍历
-let set = new Set([7, 6, 2, 8, 2, 6]);
+let set = new Set([7, 6, 2, 8, 2, 6])
 
 for (const iterator of set) {
-	console.log(iterator); // 7   8   6   2
+  console.log(iterator) // 7   8   6   2
 }
 ```
 
-### 搜索实例
+### Set 搜索实例
 
 通过历史搜索示例体验 `Set` 类型
 
 ::: details 查看代码
+
 ```html
 <style>
   body {
-      padding: 200px;
+    padding: 200px;
   }
 
   * {
-      padding: 0;
-      margin: 0;
+    padding: 0;
+    margin: 0;
   }
 
   input {
-      width: 200px;
-      border: solid 1px #d63031;
-      outline: none;
-      padding: 10px;
-      box-sizing: border-box;
+    width: 200px;
+    border: solid 1px #d63031;
+    outline: none;
+    padding: 10px;
+    box-sizing: border-box;
   }
 
   ul {
-      list-style: none;
-      width: 200px;
-      padding-top: 20px;
+    list-style: none;
+    width: 200px;
+    padding-top: 20px;
   }
 
   ul li {
-      border: solid 1px #ddd;
-      padding: 10px;
-      margin-bottom: -1px;
+    border: solid 1px #ddd;
+    padding: 10px;
+    margin-bottom: -1px;
   }
 
   ul li:nth-of-type(odd) {
-      background: #00b894;
+    background: #00b894;
   }
 </style>
 
 <body>
-  <input type="js">
+  <input type="js" />
   <ul></ul>
 </body>
 <script>
   let obj = {
-      words: new Set(),
-      set keyword(word) {
-          this.words.add(word);
-      },
-      show() {
-          let ul = document.querySelector('ul');
-          ul.innerHTML = '';
-          this.words.forEach((item) => {
-              ul.innerHTML += ('<li>' + item + '</li>');
-          })
-      }
+    words: new Set(),
+    set keyword(word) {
+      this.words.add(word)
+    },
+    show() {
+      let ul = document.querySelector('ul')
+      ul.innerHTML = ''
+      this.words.forEach((item) => {
+        ul.innerHTML += '<li>' + item + '</li>'
+      })
+    },
   }
 
   document.querySelector('input').addEventListener('blur', function () {
-      obj.keyword = this.value;
-      obj.show();
-  });
+    obj.keyword = this.value
+    obj.show()
+  })
 </script>
 ```
+
 :::
 
-### 交集
+### Set 交集
 
 获取两个集合中共同存在的元素
 
 ```js
-let hd = new Set(['daodao', 'duyidao']);
-let cms = new Set(['daodao', '刀刀']);
-let newSet = new Set(
-	[...hd].filter(item => cms.has(item))
-);
-console.log(newSet); // {"daodao"}
+let hd = new Set(['daodao', 'duyidao'])
+let cms = new Set(['daodao', '刀刀'])
+let newSet = new Set([...hd].filter((item) => cms.has(item)))
+console.log(newSet) // {"daodao"}
 ```
 
 ### 差集
@@ -245,12 +254,12 @@ console.log(newSet); // {"daodao"}
 在集合a中出现但不在集合b中出现元素集合
 
 ```js
-let hd = new Set(['daodao', 'duyidao']);
-let cms = new Set(['刀刀', 'daodao']);
+let hd = new Set(['daodao', 'duyidao'])
+let cms = new Set(['刀刀', 'daodao'])
 let newSet = new Set(
-	[...hd].filter(item => !cms.has(item)) // 数组cms包含的内容取反
-);
-console.log(newSet); // {"duyidao"}
+  [...hd].filter((item) => !cms.has(item)), // 数组cms包含的内容取反
+)
+console.log(newSet) // {"duyidao"}
 ```
 
 ### 并集
@@ -258,10 +267,10 @@ console.log(newSet); // {"duyidao"}
 将两个集合合并成一个新的集合，由于Set特性当然也不会产生重复元素。
 
 ```js
-let hd = new Set(['daodao', 'duyidao']);
-let cms = new Set(['刀刀', 'daodao']);
-let newSet = [...hd, ...cms];
-console.log(newSet);
+let hd = new Set(['daodao', 'duyidao'])
+let cms = new Set(['刀刀', 'daodao'])
+let newSet = [...hd, ...cms]
+console.log(newSet)
 ```
 
 ## WeakSet
@@ -278,21 +287,21 @@ console.log(newSet);
 以下操作由于数据不是对象类型将产生错误
 
 ```js
-new WeakSet(["daodao", "duyidao"]); //Invalid value used in weak set
+new WeakSet(['daodao', 'duyidao']) //Invalid value used in weak set
 
-new WeakSet("daodao"); //Invalid value used in weak set
+new WeakSet('daodao') //Invalid value used in weak set
 ```
 
 WeakSet的值必须为对象类型
 
 ```js
-new WeakSet([["daodao"], ["duyidao"]]);
+new WeakSet([['daodao'], ['duyidao']])
 ```
 
 将DOM节点保存到`WeakSet`
 
 ```js
-document.querySelectorAll("button").forEach(item => Wset.add(item));
+document.querySelectorAll('button').forEach((item) => Wset.add(item))
 ```
 
 ### 基本操作
@@ -300,17 +309,17 @@ document.querySelectorAll("button").forEach(item => Wset.add(item));
 下面是WeakSet的常用指令
 
 ```js
-const hd = new WeakSet();
-const arr = ["daodao"];
+const hd = new WeakSet()
+const arr = ['daodao']
 //添加操作
-hd.add(arr);
-console.log(hd.has(arr));
+hd.add(arr)
+console.log(hd.has(arr))
 
 //删除操作
-hd.delete(arr);
+hd.delete(arr)
 
 //检索判断
-console.log(hd.has(arr));
+console.log(hd.has(arr))
 ```
 
 ### 垃圾回收
@@ -323,22 +332,23 @@ console.log(hd.has(arr));
 - 当垃圾回收时对象被删除，这时 `WakeSet` 也就没有记录了
 
 ```js
-const hd = new WeakSet();
-let arr = ["daodao"];
-hd.add(arr);
-console.log(hd.has(arr));
+const hd = new WeakSet()
+let arr = ['daodao']
+hd.add(arr)
+console.log(hd.has(arr))
 
-arr = null;
-console.log(hd); //WeakSet {Array(1)}
+arr = null
+console.log(hd) //WeakSet {Array(1)}
 
 setTimeout(() => {
-  console.log(hd); //WeakSet {}
-}, 1000);
+  console.log(hd) //WeakSet {}
+}, 1000)
 ```
 
 ### 案例操作
 
 ::: details 查看代码
+
 ```html
 <style>
   * {
@@ -401,31 +411,32 @@ setTimeout(() => {
   class Todos {
     constructor() {}
     run() {
-      this.items = document.querySelectorAll("ul>li");
-      this.lists = new WeakSet();
-      this.record();
-      this.addEvent();
+      this.items = document.querySelectorAll('ul>li')
+      this.lists = new WeakSet()
+      this.record()
+      this.addEvent()
     }
     addEvent() {
-      this.items.forEach(item => {
-        item.querySelector("a").addEventListener("click", event => {
+      this.items.forEach((item) => {
+        item.querySelector('a').addEventListener('click', (event) => {
           //检测WakeSet中是否存在Li元素
-          const parentElement = event.target.parentElement;
+          const parentElement = event.target.parentElement
           if (!this.lists.has(parentElement)) {
-            alert("已经删除此TODO");
+            alert('已经删除此TODO')
           } else {
             //删除后从记录的WakeSet中移除
-            parentElement.classList.add("remove");
-            this.lists.delete(parentElement);
+            parentElement.classList.add('remove')
+            this.lists.delete(parentElement)
           }
-        });
-      });
+        })
+      })
     }
     record() {
-      this.items.forEach(item => this.lists.add(item));
+      this.items.forEach((item) => this.lists.add(item))
     }
   }
-  new Todos().run();
+  new Todos().run()
 </script>
 ```
+
 :::

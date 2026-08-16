@@ -1,6 +1,6 @@
 # fit-content 实现宽度适配内容
 
-## 效果实现
+## CSS 效果实现
 
 先看一个案例：
 
@@ -20,7 +20,7 @@
 
 该方法无兼容问题。MDN 文档：[fit-content](https://developer.mozilla.org/zh-CN/docs/Web/CSS/fit-content) 。
 
-## 区别
+## CSS 区别
 
 <word text="CSS" />`width` 属性有三种属性：`max-content` 、`min-content` 以及 `fit-content` ，三者的区别如下：
 
@@ -56,6 +56,6 @@
 
 ![公式](https://pic.imgdb.cn/item/651ff270c458853aefc3985f.jpg)
 
-## 总体效果
+## CSS 总体效果
 
 <myIframe url="https://duyidao.github.io/blogweb/#/detail/css/width" />

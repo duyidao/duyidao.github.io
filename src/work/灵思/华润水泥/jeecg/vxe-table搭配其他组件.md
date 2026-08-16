@@ -1,5 +1,3 @@
-
-
 # j-vxe-table 搭配其他组件
 
 `j-vxe-table` 是 <word text="JeecgBoot" /> 基于 <word text="vxe-table" /> 组件开发的自定义组件，在弹窗组件中引入一个子表单。

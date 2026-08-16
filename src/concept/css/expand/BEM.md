@@ -2,11 +2,11 @@
 
 官网：[BEM](https://getbem.com/introduction/) 。
 
-<word text="CSS" />命名十分重要，如有重名，就会发生样式覆盖，导致最终效果显示错乱。
+<word text="CSS" /> 命名十分重要，如有重名，就会发生样式覆盖，导致最终效果显示错乱。
 
 对于命名，市面上有一些民间组织指定的命名规则，例如 BEM，SMACSS 和 OOCSS。
 
-## 介绍
+## CSS BEM 介绍
 
 BEM 命名规则比较常见，其中：
 
@@ -22,6 +22,6 @@ BEM 命名规则比较常见，其中：
 <button class="button button-state_danger">Danger button</button>
 ```
 
-## 总结
+## CSS BEM 总结
 
 样式设置方面可以使用 `BEM` 方法，其中，E 和 M 可以省略。通过该方法可以高效设置类名与方便后续的维护。

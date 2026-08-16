@@ -1,6 +1,6 @@
-# 任务管理
+# 任务管理与 Promise 核心
 
-## 基本信息
+## 任务管理基本信息
 
 JavaScript 语言的一大特点就是单线程，也就是说同一个时间只能处理一个任务。为了协调事件、用户交互、脚本、UI 渲染和网络处理等行为，防止主线程的不阻塞，（事件循环）Event Loop 的方案应运而生。
 
@@ -12,9 +12,9 @@ JavaScript 处理任务是在等待任务、执行任务 、休眠等待新任�
 
 任务包括 script(整体代码)、 setTimeout、setInterval、DOM 渲染、DOM 事件、Promise、XMLHTTPREQUEST 等
 
-### 原理分析
+### 任务管理原理分析
 
-下面通过一个例子来详细分析<word text="宏任务" />与<word text="微任务" />
+下面通过一个例子来详细分析 <word text="宏任务" /> 与 <word text="微任务" />
 
 ```js
 console.log("刀刀");
@@ -93,16 +93,16 @@ promise2
 HTML 标准规定最小时间不能低于 4 毫秒，有些异步操作如 DOM 操作最低是 16 毫秒，总之把时间设置大些对性能更好。
 
 ```js
-setTimeout(func,6);
+setTimeout(func, 6)
 ```
 
 下面的代码会先输出 `daodao.com` 之后输出 `刀刀`
 
 ```js
 setTimeout(() => {
-  console.log("刀刀");
-}, 0);
-console.log("daodao.com");
+  console.log('刀刀')
+}, 0)
+console.log('daodao.com')
 ```
 
 > 其他的异步操作如事件、XMLHTTPREQUEST 等逻辑是一样的
@@ -114,40 +114,40 @@ console.log("daodao.com");
 任务的执行顺序是同步任务、微任务、宏任务所以下面执行结果是 `1、2、3、4`
 
 ```js
-setTimeout(() => console.log(4));
+setTimeout(() => console.log(4))
 
-new Promise(resolve => {
-  resolve();
-  console.log(1);
-}).then(_ => {
-  console.log(3);
-});
+new Promise((resolve) => {
+  resolve()
+  console.log(1)
+}).then((_) => {
+  console.log(3)
+})
 
-console.log(2);
+console.log(2)
 ```
 
 我们来看下面稍复杂的任务代码
 
 ```js
 setTimeout(() => {
-  console.log("定时器");
+  console.log('定时器')
   setTimeout(() => {
-    console.log("timeout timeout");
-  }, 0);
-  new Promise(resolve => {
-    console.log("settimeout Promise");
-    resolve();
+    console.log('timeout timeout')
+  }, 0)
+  new Promise((resolve) => {
+    console.log('settimeout Promise')
+    resolve()
   }).then(() => {
-    console.log("settimeout then");
-  });
-}, 0);
-new Promise(resolve => {
-  console.log("Promise");
-  resolve();
+    console.log('settimeout then')
+  })
+}, 0)
+new Promise((resolve) => {
+  console.log('Promise')
+  resolve()
 }).then(() => {
-  console.log("then");
-});
-console.log("刀刀");
+  console.log('then')
+})
+console.log('刀刀')
 ```
 
 以上代码执行结果为
@@ -162,21 +162,21 @@ settimeout then
 timeout timeout
 ```
 
-## 实例操作
+## 任务管理实例操作
 
 ### 进度条
 
 下面的定时器虽然都定时了一秒钟，但也是按先进先出原则，依次执行
 
 ```js
-let i = 0;
+let i = 0
 setTimeout(() => {
-  console.log(++i);  // 1
-}, 1000);
+  console.log(++i) // 1
+}, 1000)
 
 setTimeout(() => {
-  console.log(++i); // 2
-}, 1000);
+  console.log(++i) // 2
+}, 1000)
 ```
 
 下面是一个进度条的示例，将每个数字放在一个任务中执行
@@ -200,17 +200,17 @@ setTimeout(() => {
 
 <script>
   function view() {
-    let i = 0;
-    (function handle() {
-      fn.innerHTML = i + "%";
-      fn.style.width = i + "%";
+    let i = 0
+    ;(function handle() {
+      fn.innerHTML = i + '%'
+      fn.style.width = i + '%'
       if (i++ < 100) {
-        setTimeout(handle, 20);
+        setTimeout(handle, 20)
       }
-    })();
+    })()
   }
-  view();
-  console.log("定时器开始了...");
+  view()
+  console.log('定时器开始了...')
 </script>
 ```
 
@@ -219,63 +219,63 @@ setTimeout(() => {
 一个比较耗时的任务可能造成浏览器卡死现象，所以可以将任务拆分为多个异步小任务执行。下面是一个数字统计的函数，运行时间特别长
 
 ```js
-console.time("runtime");
+console.time('runtime')
 function fn(num) {
-  let count = 0;
+  let count = 0
   for (let i = 0; i <= num; i++) {
-    count += i;
+    count += i
   }
-  console.log(count);
-  console.timeEnd("runtime");
+  console.log(count)
+  console.timeEnd('runtime')
 }
-let num=987654321;
-fn(num);
-console.log("daodao.com"); //需要等待上面执行完才会执行
+let num = 987654321
+fn(num)
+console.log('daodao.com') //需要等待上面执行完才会执行
 ```
 
 现在把任务分解成小块放入任务队列，游览器就不会出现卡死的现象了，也不会影响后续代码的执行
 
 ```js
-console.time("runtime");
-let count = 0;
-let num = 987654321;
+console.time('runtime')
+let count = 0
+let num = 987654321
 function fn() {
   for (let i = 0; i < 100000000; i++) {
-    if (num <= 0) break;
-    count += num--;
+    if (num <= 0) break
+    count += num--
   }
   if (num > 0) {
-    console.log(num);
-    setTimeout(fn);
+    console.log(num)
+    setTimeout(fn)
   } else {
-    console.log(num);
-    console.log(count);
+    console.log(num)
+    console.log(count)
   }
 }
-fn();
-console.log("daodao.com"); //立刻显示出来
+fn()
+console.log('daodao.com') //立刻显示出来
 ```
 
 交给微任务处理是更好的选择
 
 ```js
 async function fn(num) {
-  let res = await Promise.resolve().then(_ => {
-    let count = 0;
+  let res = await Promise.resolve().then((_) => {
+    let count = 0
     for (let i = 0; i < num; i++) {
-      count += num--;
+      count += num--
     }
-    return count;
-  });
-  console.log(res);
+    return count
+  })
+  console.log(res)
 }
-fn(987654321);
-console.log("刀刀");
+fn(987654321)
+console.log('刀刀')
 ```
 
-# Promise核心
+## Promise 核心
 
-## 起步构建
+### 起步构建
 
 本章来自己开发一个 Promise 实现，提升异步编程的能力。
 
@@ -289,28 +289,28 @@ console.log("刀刀");
 
 ```js
 class fn {
-  static PENDING = "pending";
-  static FULFILLED = "fulfilled";
-  static REJECTED = "rejected";
+  static PENDING = 'pending'
+  static FULFILLED = 'fulfilled'
+  static REJECTED = 'rejected'
   constructor(executor) {
-    this.status = fn.PENDING;
-    this.value = null;
+    this.status = fn.PENDING
+    this.value = null
     try {
-      executor(this.resolve.bind(this), this.reject.bind(this));
+      executor(this.resolve.bind(this), this.reject.bind(this))
     } catch (error) {
-      this.reject(error);
+      this.reject(error)
     }
   }
   resolve(value) {
     if (this.status == fn.PENDING) {
-      this.status = fn.FULFILLED;
-      this.value = value;
+      this.status = fn.FULFILLED
+      this.value = value
     }
   }
   reject(value) {
     if (this.status == fn.PENDING) {
-      this.status = fn.REJECTED;
-      this.value = value;
+      this.status = fn.REJECTED
+      this.value = value
     }
   }
 }
@@ -328,7 +328,7 @@ class fn {
 </script>
 ```
 
-## THEN
+### THEN
 
 现在添加 then 方法来处理状态的改变，有以下几点说明
 
@@ -367,16 +367,16 @@ then(onFulfilled, onRejected) {
 
 ```js
 let p = new fn((resolve, reject) => {
-  resolve("刀刀");
+  resolve('刀刀')
 }).then(
-  value => {
-    console.log(value);
+  (value) => {
+    console.log(value)
   },
-  reason => {
-    console.log(reason);
-  }
-);
-console.log("daodao.com");
+  (reason) => {
+    console.log(reason)
+  },
+)
+console.log('daodao.com')
 ```
 
 ### 异步任务
@@ -416,16 +416,16 @@ then(onFulfilled, onRejected) {
 
 ```js
 let p = new fn((resolve, reject) => {
-  resolve("刀刀");
+  resolve('刀刀')
 }).then(
-  value => {
-    console.log(value);
+  (value) => {
+    console.log(value)
   },
-  reason => {
-    console.log(reason);
-  }
-);
-console.log("daodao.com");
+  (reason) => {
+    console.log(reason)
+  },
+)
+console.log('daodao.com')
 ```
 
 ### PENDING 状态
@@ -448,7 +448,7 @@ let p = new fn((resolve, reject) => {
 
    ```js
    constructor(executor) {
-   	...
+    ...
      this.callbacks = [];
      ...
    }
@@ -464,7 +464,7 @@ let p = new fn((resolve, reject) => {
      if (typeof onRejected != "function") {
        onRejected = value => value;
      }
-   	if (this.status == fn.PENDING) {
+    if (this.status == fn.PENDING) {
        this.callbacks.push({
          onFulfilled: value => {
            try {
@@ -516,17 +516,17 @@ let p = new fn((resolve, reject) => {
 ```js
 let p = new fn((resolve, reject) => {
   setTimeout(() => {
-    resolve("刀刀");
-    console.log("大叔视频");
-  });
+    resolve('刀刀')
+    console.log('大叔视频')
+  })
 }).then(
-  value => {
-    console.log(value);
+  (value) => {
+    console.log(value)
   },
-  reason => {
-    console.log(reason);
-  }
-);
+  (reason) => {
+    console.log(reason)
+  },
+)
 ```
 
 解决以上问题，只需要将 resolve 与 reject 执行通过 setTimeout 定义为异步任务
@@ -534,8 +534,8 @@ let p = new fn((resolve, reject) => {
 ```js
 resolve(value) {
   if (this.status == fn.PENDING) {
-   	this.status = fn.FULFILLED;
-		this.value = value;
+    this.status = fn.FULFILLED;
+  this.value = value;
     setTimeout(() => {
       this.callbacks.map(callback => {
         callback.onFulfilled(value);
@@ -545,7 +545,7 @@ resolve(value) {
 }
 reject(value) {
   if (this.status == fn.PENDING) {
-  	this.status = fn.REJECTED;
+   this.status = fn.REJECTED;
     this.value = value;
     setTimeout(() => {
       this.callbacks.map(callback => {
@@ -556,7 +556,7 @@ reject(value) {
 }
 ```
 
-## 链式操作
+### 链式操作
 
 Promise 中的 then 是链式调用执行的，所以 then 也要返回 Promise 才能实现
 
@@ -620,30 +620,30 @@ then(onFulfilled, onRejected) {
 
 ```js
 let p = new fn((resolve, reject) => {
-  resolve("刀刀");
-  console.log("fncms.com");
+  resolve('刀刀')
+  console.log('fncms.com')
 })
-.then(
-  value => {
-    console.log(value);
-    return "大叔视频";
-  },
-  reason => {
-    console.log(reason);
-  }
-)
-.then(
-  value => {
-    console.log(value);
-  },
-  reason => {
-    console.log(reason);
-  }
-);
-console.log("daodao.com");
+  .then(
+    (value) => {
+      console.log(value)
+      return '大叔视频'
+    },
+    (reason) => {
+      console.log(reason)
+    },
+  )
+  .then(
+    (value) => {
+      console.log(value)
+    },
+    (reason) => {
+      console.log(reason)
+    },
+  )
+console.log('daodao.com')
 ```
 
-## 返回类型
+### 返回类型
 
 如果 then 返回的是 Promise 呢？所以我们需要判断分别处理返回值为 Promise 与普通值的情况
 
@@ -773,14 +773,14 @@ parse(result, resolve, reject) {
 then 的返回的 promise 不能是 then 相同的 Promise，下面是原生 Promise 的示例将产生错误
 
 ```js
-let promise = new Promise(resolve => {
+let promise = new Promise((resolve) => {
   setTimeout(() => {
-    resolve("刀刀");
-  });
-});
-let p = promise.then(value => {
-  return p;
-});
+    resolve('刀刀')
+  })
+})
+let p = promise.then((value) => {
+  return p
+})
 ```
 
 解决上面的问题来完善代码，添加当前 promise 做为 parse 的第一个参数与函数结果比对
@@ -837,14 +837,14 @@ parse(promise, result, resolve, reject) {
 
 ```js
 let p = new fn((resolve, reject) => {
-  resolve("刀刀");
-});
-p = p.then(value => {
-  return p;
-});
+  resolve('刀刀')
+})
+p = p.then((value) => {
+  return p
+})
 ```
 
-## RESOLVE
+### RESOLVE
 
 下面来实现 Promise 的 resolve 方法
 
@@ -863,21 +863,21 @@ static resolve(value) {
 使用普通值的测试
 
 ```js
-fn.resolve("刀刀").then(value => {
-  console.log(value);
-});
+fn.resolve('刀刀').then((value) => {
+  console.log(value)
+})
 ```
 
 使用状态为 fulfilled 的 promise 值测试
 
 ```js
 fn.resolve(
-  new fn(resolve => {
-    resolve("daodao.com");
-  })
-).then(value => {
-  console.log(value);
-});
+  new fn((resolve) => {
+    resolve('daodao.com')
+  }),
+).then((value) => {
+  console.log(value)
+})
 ```
 
 使用状态为 rejected 的 Promise 测试
@@ -885,19 +885,19 @@ fn.resolve(
 ```js
 fn.resolve(
   new fn((_, reject) => {
-    reject("reacted");
-  })
+    reject('reacted')
+  }),
 ).then(
-  value => {
-    console.log(value);
+  (value) => {
+    console.log(value)
   },
-  reason => {
-    console.log(reason);
-  }
-);
+  (reason) => {
+    console.log(reason)
+  },
+)
 ```
 
-## REJEDCT
+### REJEDCT
 
 下面定义 Promise 的 rejecte 方法
 
@@ -912,12 +912,12 @@ static reject(reason) {
 使用测试
 
 ```js
-fn.reject("rejected").then(null, reason => {
-  console.log(reason);
-});
+fn.reject('rejected').then(null, (reason) => {
+  console.log(reason)
+})
 ```
 
-## ALL
+### ALL
 
 下面来实现 Promise 的 all 方法
 
@@ -946,52 +946,52 @@ static all(promises) {
 
 ```js
 let p1 = new fn((resolve, reject) => {
-  resolve("刀刀");
-});
+  resolve('刀刀')
+})
 let p2 = new fn((resolve, reject) => {
-  reject("刀刀");
-});
+  reject('刀刀')
+})
 let promises = fn.all([p1, p2]).then(
-  promises => {
-    console.log(promises);
+  (promises) => {
+    console.log(promises)
   },
-  reason => {
-    console.log(reason);
-  }
-);
+  (reason) => {
+    console.log(reason)
+  },
+)
 ```
 
 使用我们写的 resolve 进行测试
 
 ```js
-let p1 = fn.resolve("刀刀");
-let p2 = fn.resolve("daodao.com");
+let p1 = fn.resolve('刀刀')
+let p2 = fn.resolve('daodao.com')
 let promises = fn.all([p1, p2]).then(
-  promises => {
-    console.log(promises);
+  (promises) => {
+    console.log(promises)
   },
-  reason => {
-    console.log(reason);
-  }
-);
+  (reason) => {
+    console.log(reason)
+  },
+)
 ```
 
 其中一个 Promise 为 rejected 时的效果
 
 ```js
-let p1 = fn.resolve("刀刀");
-let p2 = fn.reject("rejected");
+let p1 = fn.resolve('刀刀')
+let p2 = fn.reject('rejected')
 let promises = fn.all([p1, p2]).then(
-  promises => {
-    console.log(promises);
+  (promises) => {
+    console.log(promises)
   },
-  reason => {
-    console.log(reason);
-  }
-);
+  (reason) => {
+    console.log(reason)
+  },
+)
 ```
 
-## RACE
+### RACE
 
 下面实现 Promise 的 race 方法
 
@@ -1010,37 +1010,37 @@ static race(promises) {
 我们来进行测试
 
 ```js
-let p1 = fn.resolve("刀刀");
-let p2 = fn.resolve("daodao.com");
+let p1 = fn.resolve('刀刀')
+let p2 = fn.resolve('daodao.com')
 let promises = fn.race([p1, p2]).then(
-  promises => {
-    console.log(promises);
+  (promises) => {
+    console.log(promises)
   },
-  reason => {
-    console.log(reason);
-  }
-);
+  (reason) => {
+    console.log(reason)
+  },
+)
 ```
 
 使用延迟 Promise 后的效果
 
 ```js
-let p1 = new fn(resolve => {
+let p1 = new fn((resolve) => {
   setInterval(() => {
-    resolve("刀刀");
-  }, 2000);
-});
-let p2 = new fn(resolve => {
+    resolve('刀刀')
+  }, 2000)
+})
+let p2 = new fn((resolve) => {
   setInterval(() => {
-    resolve("daodao.com");
-  }, 1000);
-});
+    resolve('daodao.com')
+  }, 1000)
+})
 let promises = fn.race([p1, p2]).then(
-  promises => {
-    console.log(promises);
+  (promises) => {
+    console.log(promises)
   },
-  reason => {
-    console.log(reason);
-  }
-);
+  (reason) => {
+    console.log(reason)
+  },
+)
 ```

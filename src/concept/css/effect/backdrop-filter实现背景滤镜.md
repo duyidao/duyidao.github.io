@@ -1,8 +1,8 @@
 # backdrop-filter 实现背景滤镜
 
-## 前置知识
+## CSS 前置知识
 
-[backdrop-filter](https://developer.mozilla.org/zh-CN/docs/Web/CSS/backdrop-filter)<word text="CSS" />属性可以让你为一个元素后面区域添加图形效果（如模糊或颜色偏移）。因为它适用于元素背后的所有元素，为了看到效果，必须使元素或其背景至少部分透明。
+[backdrop-filter](https://developer.mozilla.org/zh-CN/docs/Web/CSS/backdrop-filter) <word text="CSS" /> 属性可以让你为一个元素后面区域添加图形效果（如模糊或颜色偏移）。因为它适用于元素背后的所有元素，为了看到效果，必须使元素或其背景至少部分透明。
 
 语法参考：
 
@@ -35,9 +35,9 @@ backdrop-filter: revert;
 backdrop-filter: unset;
 ```
 
-## 效果实现
+## CSS 效果实现
 
-### 磨砂玻璃
+### CSS 磨砂玻璃
 
 使用 `blur` 让元素背景模糊，实现磨砂玻璃效果。注意：实现效果，元素自身需要部分透明。
 
@@ -49,7 +49,7 @@ backdrop-filter: unset;
 }
 ```
 
-### 黑白滤镜
+### CSS 黑白滤镜
 
 使用 `grayscale` 让元素背景变成黑白滤镜。
 
@@ -70,6 +70,6 @@ div:hover .grayscale {
 }
 ```
 
-## 总体效果
+## CSS 总体效果
 
 <myIframe url="https://duyidao.github.io/blogweb/#/detail/css/backdropFilter" />

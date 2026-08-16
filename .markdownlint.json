@@ -1,0 +1,19 @@
+{
+  "MD033": {
+    "allowed_elements": [
+      "br",
+      "span",
+      "img",
+      "details",
+      "myIframe",
+      "word"
+    ],
+    "table_allowed_elements": [
+      "word",
+      "br"
+    ]
+  },
+  "MD013": false,
+  "MD036": false,
+  "MD031": false
+}

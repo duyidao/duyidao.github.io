@@ -56,19 +56,19 @@ export function proxyRefs<T extends object>(
 源码着重做了几处判断：
 
 1. `isReactive(objectWithRefs)`：判断传入的对象是否是由 `reactive` 声明的响应式对象。
-   
+
    如果是，则直接返回原对象，不进行代理。因为 `reactive` 声明的响应式对象，其属性已经是响应式的，且不需要做 `.value` 的解包处理。
 
    反之，通过 `new Proxy` 创建一个代理对象，并重写其 `get` 和 `set` 方法。让 `template` 中访问的属性也能保持响应式。
 
 2. `get` 获取值时，`key === ReactiveFlags.RAW`：判断访问的属性是否是 `ReactiveFlags.RAW`。
-   
+
    如果是，说明用户已经用 `toRaw` 函数将响应式对象转为了普通对象，此时不需要做 `.value` 的解包处理。
 
    反之，用 `unref` 函数将 `ref` 自动解包，并返回其值。
 
 3. `set` 设置值时，`isRef(oldValue) && !isRef(value)`：判断旧值是否是 `ref`，且新值不是 `ref`。
-   
+
    如果是，说明用户试图将一个非 `ref` 的值赋给一个 `ref`，此时需要将新值赋给 `ref.value`，而不是直接赋给 `ref`。
 
    反之，直接将新值赋给 `ref`。
@@ -83,9 +83,9 @@ const HelloWorld = {
     const msg = ref('Hello World')
     console.log(msg.value)
     return {
-      msg
+      msg,
     }
-  }
+  },
 }
 
 const setupState = HelloWorld.setup()

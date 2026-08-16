@@ -10,9 +10,9 @@ const http = require('http')
 
 ![img](https://doc.houdunren.com/assets/img/0_bxDKfJauHG6hjB-5.d8d959b1.png)
 
-## 服务器相关概念
+## Node http服务器相关概念
 
-### IP
+### Node httpIP
 
 如果不设置ip，或设置为 **0.0.0.0** 表示允许任何IP 访问，这样局域网其他电脑可以通过 IP 访问到你的项目。
 
@@ -34,7 +34,7 @@ service.listen(3000, '127.0.0.1', () => {
 })
 ```
 
-### 域名
+### Node http域名
 
 管 IP 地址能够唯一地标记网络上的计算机，但IP地址是一长串数字，不直观，而且不便于记忆，于是人们又发明了另一套字符型的地址方案，即所谓的域名（ `Domain Name` ）地址。
 
@@ -45,7 +45,7 @@ IP地址和域名是一一对应的关系，这份对应关系存放在一种叫
 > 1. 单纯使用 IP 地址，互联网中的电脑也能够正常工作。但是有了域名的加持，能让互联网的世界变得更加方便。
 > 2. 在开发测试期间， 127.0.0.1 对应的域名是 localhost，它们都代表我们自己的这台电脑，在使用效果上没有任何区别。
 
-### 端口号
+### Node http端口号
 
 计算机中的端口号，就好像是现实生活中的门牌号一样。通过门牌号，外卖小哥可以在整栋大楼众多的房间中，准确把外卖送到你的手中。
 
@@ -56,7 +56,7 @@ IP地址和域名是一一对应的关系，这份对应关系存放在一种叫
 > 1. 每个端口号不能同时被多个 web 服务占用。
 > 2. 在实际应用中，URL 中的 80 端口可以被省略。
 
-## 基本使用
+## Node http基本使用
 
 下面创建http服务器，并监听 `request` 事件，处理用户请求并向客户端发送响应。
 
@@ -73,7 +73,6 @@ IP地址和域名是一一对应的关系，这份对应关系存放在一种叫
    ```
 
 3. 为服务器实例绑定 `request` 事件，监听客户端的请求
-
    - `req.url` 获取客户端请求的地址
    - `req.method` 获取客户端的请求类型
    - `res.write` 向客户端响应内容
@@ -113,7 +112,7 @@ service.on('request', (req, res) => {
 })
 
 //监听端口
-service.listen(3000,'localhost', () => {
+service.listen(3000, 'localhost', () => {
   console.log('Service: http://127.0.0.1:3000')
 })
 ```
@@ -135,7 +134,7 @@ service.listen(3000, () => {
 })
 ```
 
-### 头信息
+### Node http头信息
 
 当调用 `res.end()` 方法，向客户端发送中文内容的时候，会出现乱码问题，此时，可通过 **setHeader** 与 **statusCode** 设置响应头信息，手动设置内容的编码格式。
 
@@ -178,7 +177,7 @@ service.listen(3000, () => {
 })
 ```
 
-### 页面跳转
+### Node http页面跳转
 
 通过设置头信息进行页面跳转
 
@@ -194,7 +193,7 @@ const service = createServer((req, res) => {
 service.listen(3000)
 ```
 
-## 路由基础
+## Node http路由基础
 
 下面我们创建简单的路由，即根据请求响应不同结果，步骤如下：
 
@@ -226,7 +225,7 @@ const service = createServer((req, res) => {
       break
     default:
       content = '<h1>404 Not Found</h1>'
-      break;
+      break
   }
   res.end(content)
 })
@@ -236,11 +235,11 @@ service.listen(3000, () => {
 })
 ```
 
-## 响应数据
+## Node http响应数据
 
 下面介绍掌用客户端数据响应
 
-### HTML
+### Node httpHTML
 
 通过设置头信息来告之浏览器，服务器端响应的是 html 数据
 
@@ -259,7 +258,7 @@ const service = createServer((req, res) => {
 service.listen(3000)
 ```
 
-### JSON
+### Node httpJSON
 
 后端做为接口时，需要传递 JSON 数据给前端
 
@@ -278,7 +277,7 @@ const service = createServer((req, res) => {
 service.listen(3000)
 ```
 
-### 变量解析
+### Node http变量解析
 
 下面来演示模板变量的替换流程，首先创建模板文件 **index.html**
 
@@ -308,7 +307,7 @@ import { createServer } from 'http'
 const service = createServer((req, res) => {
   res.writeHead(200, { 'Content-type': 'text/html' })
 
-	//模板变量
+ //模板变量
   const vars = { name: '后盾人' } as any
   //加载模板
   const template = readFileSync(__dirname + '/index.html', 'utf-8')
@@ -325,11 +324,11 @@ service.listen(3000, () => {
 })
 ```
 
-## 表单数据
+## Node http表单数据
 
 下面介绍如何获取客户端表单数据
 
-### 基本原理
+### Node http基本原理
 
 ```js
 import { createServer } from 'http'
@@ -362,7 +361,7 @@ service.listen(3000, () => {
 
 ![image-20220824025713812](https://doc.houdunren.com/assets/img/image-20220824025713812.1db91999.png)
 
-### 使用扩展包
+### Node http使用扩展包
 
 使用 [multiparty (opens new window)](https://www.npmjs.com/package/multiparty)包解析前端非常方便，下面使用流并结合插件 [multiparty (opens new window)](https://www.npmjs.com/package/multiparty)扩展包实现文件上传
 
@@ -392,11 +391,11 @@ const service = createServer((req, res) => {
 service.listen(3000)
 ```
 
-## 案例
+## Node http案例
 
 显示静态 html 文件
 
-### 导入模块
+### Node http导入模块
 
 ```js
 const fs = require('fs')
@@ -404,35 +403,34 @@ const path = require('path')
 const http = require('http')
 ```
 
-### 搭建服务
+### Node http搭建服务
 
 ```js
 const server = http.createServer()
 
-server.on('request', (req, res) => {
-})
+server.on('request', (req, res) => {})
 
 server.listen(80, () => {
-  console.log('已启动');
+  console.log('已启动')
 })
 ```
 
-### 获取地址
+### Node http获取地址
 
 ```js
 const fPath = path.join(__dirname, url)
 ```
 
-### 读取文件
+### Node http读取文件
 
 ```js
 fs.readFile(fPath, 'utf8', (err, result) => {
-  if(err) return res.end('404 not found')
+  if (err) return res.end('404 not found')
   res.end(result)
 })
 ```
 
-### 路径优化
+### Node http路径优化
 
 ```js
 if (url === '/') {
@@ -442,7 +440,7 @@ if (url === '/') {
 }
 ```
 
-### 总体代码
+### Node http总体代码
 
 ```js
 const fs = require('fs')
@@ -454,7 +452,7 @@ const server = http.createServer()
 server.on('request', (req, res) => {
   const url = req.url
   const method = req.method
-  
+
   let fPath = ''
   if (url === '/') {
     fPath = path.join(__dirname, '/clock/clock.html')
@@ -463,12 +461,12 @@ server.on('request', (req, res) => {
   }
 
   fs.readFile(fPath, 'utf8', (err, result) => {
-    if(err) return res.end('404 not')
+    if (err) return res.end('404 not')
     res.end(result)
   })
 })
 
 server.listen(80, () => {
-  console.log('已启动');
+  console.log('已启动')
 })
 ```

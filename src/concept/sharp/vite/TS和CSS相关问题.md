@@ -1,20 +1,18 @@
 # TS CSS 相关问题
 
-## TS
+## Vite TS
 
 如果是一个新建的项目，那么在选择是否需要使用<word text="TypeScript" />的时候，可以选择使用<word text="TypeScript" />，这样项目就能支持<word text="TypeScript" />。
 
 而如果之前已经创建了一个使用<word text="JavaScript" />的项目，那么就需要在项目中 `pnpm i typescript` 引入<word text="TypeScript" />，并在根目录新建一个 `tsconfig.json`，`init` 或网上复制一个即可。
 
-## CSS
+## Vite CSS
 
 官方推荐开发使用变量来减少重复的代码，比如颜色、字体大小等。在根目录下新建一个 `postcss.config.cjs` 文件，内容如下：
 
 ```js
 module.exports = {
-  plugins: [
-    require('tailwindcss'),
-  ]
+  plugins: [require('tailwindcss')],
 }
 ```
 

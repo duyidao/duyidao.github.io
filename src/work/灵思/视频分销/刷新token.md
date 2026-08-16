@@ -14,18 +14,18 @@
 
 **参数说明**
 
-|    参数名    |           类型            | 必填  | 默认值 |                        说明                        |
-| :----------: | :-----------------------: | :---: | :----: | :------------------------------------------------: |
-|     url      |          String           |  是   |        |                开发者服务器接口地址                |
-|     data     | Object/String/ArrayBuffer |  否   |        |                     请求的参数                     |
-|    header    |          Object           |  否   |        |    设置请求的 header，header 中不能设置 Referer    |
-|    method    |          String           |  否   |  GET   |                 有效值详见下方说明                 |
-|   timeout    |          Number           |  否   | 60000  |                 超时时间，单位 ms                  |
-|   dataType   |          String           |  否   |  json  | 如果设为 json，会尝试对返回的数据做一次 JSON.parse |
-| responseType |          String           |  否   |  text  |   设置响应的数据类型。合法值：text、arraybuffer    |
-|   success    |         Function          |  否   |        |         收到开发者服务器成功返回的回调函数         |
-|     fail     |         Function          |  否   |        |               接口调用失败的回调函数               |
-|   complete   |         Function          |  否   |        |  接口调用结束的回调函数（调用成功、失败都会执行）  |
+|    参数名    |           类型            | 必填 | 默认值 |                        说明                        |
+| :----------: | :-----------------------: | :--: | :----: | :------------------------------------------------: |
+|     url      |          String           |  是  |        |                开发者服务器接口地址                |
+|     data     | Object/String/ArrayBuffer |  否  |        |                     请求的参数                     |
+|    header    |          Object           |  否  |        |    设置请求的 header，header 中不能设置 Referer    |
+|    method    |          String           |  否  |  GET   |                 有效值详见下方说明                 |
+|   timeout    |          Number           |  否  | 60000  |                 超时时间，单位 ms                  |
+|   dataType   |          String           |  否  |  json  | 如果设为 json，会尝试对返回的数据做一次 JSON.parse |
+| responseType |          String           |  否  |  text  |   设置响应的数据类型。合法值：text、arraybuffer    |
+|   success    |         Function          |  否  |        |         收到开发者服务器成功返回的回调函数         |
+|     fail     |         Function          |  否  |        |               接口调用失败的回调函数               |
+|   complete   |         Function          |  否  |        |  接口调用结束的回调函数（调用成功、失败都会执行）  |
 
 整体代码如下所示：
 
@@ -67,7 +67,7 @@ module.exports = (vm) => {
     (config) => {
       // 可使用async await 做异步操作
       return Promise.reject(config)
-    }
+    },
   )
 
   // 响应拦截

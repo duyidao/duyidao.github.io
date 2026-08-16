@@ -1,12 +1,12 @@
 # React Router 6
 
-## 官网文档
+## ReactRouter6官网文档
 
 推荐自行阅读一遍官网文档（没有中文！！）
 
 指路：[reactrouter](https://reactrouter.com/en/6.14.1/start/tutorial)
 
-## 概述
+## ReactRouter6概述
 
 1. React Router 以三个不同的包发布到 npm 上，它们分别为：
    1. `react-router`: 路由的核心库，提供了很多的：组件、钩子。
@@ -18,11 +18,11 @@
    3. 新增多个 hook：`useParams`、`useNavigate`、`useMatch`等。
    4. <strong style="color:#dd4d40">官方明确推荐函数式组件了！！！</strong>
 
-## Component
+## ReactRouter6 Component
 
-### `<BrowserRouter>`
+### ReactRouter6 `<BrowserRouter>`
 
-说明：`<BrowserRouter> `用于包裹整个应用。
+说明：`<BrowserRouter>`用于包裹整个应用。
 
 示例代码：
 
@@ -33,19 +33,19 @@ import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(
   <BrowserRouter>{/* 整体结构（通常为App组件） */}</BrowserRouter>,
-  root
+  root,
 )
 ```
 
-### `<HashRouter>`
+### ReactRouter6 `<HashRouter>`
 
 说明：作用与`<BrowserRouter>`一样，但`<HashRouter>`修改的是地址栏的 hash 值。
 
 > [!IMPORTANT] 备注
 >
-> 6.x 版本中`<HashRouter>`、`<BrowserRouter> ` 的用法与 5.x 相同。
+> 6.x 版本中`<HashRouter>`、`<BrowserRouter>` 的用法与 5.x 相同。
 
-### `<Routes/>` 与 `<Route/>`
+### ReactRouter6 `<Routes/>` 与 `<Route/>`
 
 在 `ReactRouter5` 版本，路由通过 `Switch` 组件包裹 `router` 组件，`router` 组件通过设置 `path` 路径和 `component` 匹配的路由组件实现路由。
 
@@ -63,23 +63,24 @@ ReactDOM.render(
     <Route path="test1" element={<Test />}></Route>
     <Route path="test2" element={<Test2 />}></Route>
   </Route>
-  //Route也可以不写element属性, 这时就是用于展示嵌套的路由 .所对应的路径是/users/xxx
+  //Route也可以不写element属性, 这时就是用于展示嵌套的路由
+  .所对应的路径是/users/xxx
   <Route path="users">
     <Route path="xxx" element={<Demo />} />
   </Route>
 </Routes>
 ```
 
-#### 总结
+#### ReactRouter6总结
 
 1. v6 版本中移出了先前的`<Switch>`，引入了新的替代者：`<Routes>`。
 2. `<Routes>` 和 `<Route>`要配合使用，且必须要用`<Routes>`包裹`<Route>`。
 3. `<Route>` 相当于一个 if 语句，如果其路径与当前 URL 匹配，则呈现其对应的组件。
 4. `<Route caseSensitive>` 属性用于指定：匹配时是否区分大小写（默认为 false）。
-5. 当 URL 发生变化时，`<Routes> `都会查看其所有子` <Route>` 元素以找到最佳匹配并呈现组件 。
+5. 当 URL 发生变化时，`<Routes>`都会查看其所有子`<Route>` 元素以找到最佳匹配并呈现组件 。
 6. `<Route>` 也可以嵌套使用，且可配合`useRoutes()`配置 “路由表” ，但需要通过 `<Outlet>` 组件来渲染其子路由。
 
-### `<Link>`
+### ReactRouter6 `<Link>`
 
 作用: 修改 URL，且不发送网络请求（路由链接）。
 
@@ -101,7 +102,7 @@ function Test() {
 }
 ```
 
-### `<NavLink>`
+### ReactRouter6 `<NavLink>`
 
 作用: 与 `<Link>` 组件类似，且可实现导航的“高亮”效果。高亮效果原理相同，为标签添加 `active` 类名。
 
@@ -145,7 +146,7 @@ function componentClassName({ isActive }) {
 <NavLink to="home" end >home</NavLink>
 ```
 
-### `<Navigate>`
+### ReactRouter6 `<Navigate>`
 
 作用：只要`<Navigate>`组件被渲染，就会修改路径，切换视图。需要为其 `to` 属性设置对应路由的路径，不设置则报错。
 
@@ -174,9 +175,9 @@ export default function Home() {
 }
 ```
 
-### `<Outlet>`
+### ReactRouter6 `<Outlet>`
 
-当`<Route>`产生嵌套时，渲染其对应的后续子路由。可以理解为<word text="Vue" />中二级路由及以后路由的 `router-view` 。
+当`<Route>`产生嵌套时，渲染其对应的后续子路由。可以理解为 <word text="Vue" /> 中二级路由及以后路由的 `router-view` 。
 
 示例代码：
 
@@ -232,9 +233,9 @@ export default function Home() {
 }
 ```
 
-## Hooks
+## ReactRouter6 Hooks
 
-### useRoutes()
+### ReactRouter6 useRoutes()
 
 作用：根据路由表，动态创建`<Routes>`和`<Route>`。
 
@@ -282,7 +283,7 @@ export default function App() {
 
 :::
 
-### useNavigate()
+### ReactRouter6 useNavigate()
 
 > [!INFO] 作用
 >
@@ -321,7 +322,7 @@ export default function Demo() {
 }
 ```
 
-### useParams()
+### ReactRouter6 useParams()
 
 > [!INFO] 作用
 >
@@ -350,7 +351,7 @@ function App() {
 }
 ```
 
-### useSearchParams()
+### ReactRouter6 useSearchParams()
 
 > [!INFO] 作用
 >
@@ -389,7 +390,7 @@ export default function Detail() {
 }
 ```
 
-### useLocation()
+### ReactRouter6 useLocation()
 
 > [!INFO] 作用
 >
@@ -428,7 +429,7 @@ export default function Detail() {
 }
 ```
 
-### useMatch()
+### ReactRouter6 useMatch()
 
 > [!INFO] 作用
 >
@@ -464,7 +465,7 @@ export default function Login() {
 }
 ```
 
-### useInRouterContext()
+### ReactRouter6 useInRouterContext()
 
 如果组件在 `<Router>` 的上下文中呈现，则 `useInRouterContext` 钩子返回 `true`，否则返回 `false`。
 
@@ -472,7 +473,7 @@ export default function Login() {
 >
 > 第三组件封装者需要知道当前组件是否在路由上时有用
 
-### useNavigationType()
+### ReactRouter6 useNavigationType()
 
 作用：返回当前的导航类型（用户是如何来到当前页面的）。
 
@@ -486,7 +487,7 @@ export default function Login() {
 >
 > `POP` 是指在浏览器中直接打开了这个路由组件（刷新页面）。
 
-### useOutlet()
+### ReactRouter6 useOutlet()
 
 作用：用来呈现当前组件中渲染的嵌套路由。
 
@@ -499,6 +500,6 @@ console.log(result)
 // 如果嵌套路由已经挂载,则展示嵌套的路由对象
 ```
 
-### useResolvedPath()
+### ReactRouter6 useResolvedPath()
 
 作用：给定一个 URL 值，解析其中的：`path`、`search`、`hash` 值。

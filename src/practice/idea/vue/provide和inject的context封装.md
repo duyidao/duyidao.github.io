@@ -9,18 +9,22 @@
 `inject` 用于接收祖先组件提供的依赖。
 
 ::: code-group
+
 ```js [父组件App.vue]
 provide('theme', reactive({ color: 'blue' }))
 ```
+
 ```js [子组件Child.vue]
 const theme = inject('theme')
 // 修改 theme.color 会同步影响所有注入了它的组件
 theme.color = 'red'
 ```
+
 ```js [孙组件GrandChild.vue]
 const theme = inject('theme')
 console.log(theme.color) // 'red'
 ```
+
 :::
 
 ## 为什么需要封装 context
@@ -46,12 +50,13 @@ export function createContext<ContextValue>(
   providerComponentName: string | string[],
   contextName?: string,
 ) {
-  const symbolDescription
-    = typeof providerComponentName === 'string' && !contextName
+  const symbolDescription =
+    typeof providerComponentName === 'string' && !contextName
       ? `${providerComponentName}Context`
       : contextName
 
-  const injectionKey: InjectionKey<ContextValue | null> = Symbol(symbolDescription)
+  const injectionKey: InjectionKey<ContextValue | null> =
+    Symbol(symbolDescription)
 
   /**
    * @param fallback The context value to return if the injection fails.
@@ -65,18 +70,16 @@ export function createContext<ContextValue>(
     fallback?: T,
   ): T extends null ? ContextValue | null : ContextValue => {
     const context = inject(injectionKey, fallback)
-    if (context)
-      return context
+    if (context) return context
 
-    if (context === null)
-      return context as any
+    if (context === null) return context as any
 
     throw new Error(
       `Injection \`${injectionKey.toString()}\` not found. Component must be used within ${
         Array.isArray(providerComponentName)
           ? `one of the following components: ${providerComponentName.join(
-            ', ',
-          )}`
+              ', ',
+            )}`
           : `\`${providerComponentName}\``
       }`,
     )
@@ -99,8 +102,8 @@ export function createContext<ContextValue>(
 - 否则使用 `contextName` 作为描述
 
 ```ts
-const symbolDescription
-  = typeof providerComponentName === 'string' && !contextName
+const symbolDescription =
+  typeof providerComponentName === 'string' && !contextName
     ? `${providerComponentName}Context`
     : contextName
 ```
@@ -120,16 +123,12 @@ const injectionKey = Symbol(symbolDescription)
 ```ts
 const injectContext = (fallback) => {
   const context = inject(injectionKey, fallback)
-  if (context)
-    return context
-  if (context === null)
-    return context as any
+  if (context) return context
+  if (context === null) return context as any
   throw new Error(
     `Injection \`${injectionKey.toString()}\` not found. Component must be used within ${
       Array.isArray(providerComponentName)
-        ? `one of the following components: ${providerComponentName.join(
-          ', ',
-        )}`
+        ? `one of the following components: ${providerComponentName.join(', ')}`
         : `\`${providerComponentName}\``
     }`,
   )
@@ -147,42 +146,43 @@ const provideContext = (contextValue) => {
 [ant-design-vue](https://github.com/vueComponent/ant-design-vue/blob/main/components/form/context.ts) 在 `Form` 组件中封装 `provide` 和 `inject` 的实现：
 
 ```ts
-import type { InjectionKey, ComputedRef } from 'vue';
-import { inject, provide, computed } from 'vue';
-import type { ColProps } from '../grid';
-import type { RequiredMark } from './Form';
-import type { ValidateStatus, FieldExpose } from './FormItem';
-import type { FormLabelAlign, Rule, ValidateMessages } from './interface';
-import { defaultValidateMessages } from './utils/messages';
+import type { InjectionKey, ComputedRef } from 'vue'
+import { inject, provide, computed } from 'vue'
+import type { ColProps } from '../grid'
+import type { RequiredMark } from './Form'
+import type { ValidateStatus, FieldExpose } from './FormItem'
+import type { FormLabelAlign, Rule, ValidateMessages } from './interface'
+import { defaultValidateMessages } from './utils/messages'
 
 export interface FormContextProps {
-  model?: ComputedRef<any>;
-  vertical: ComputedRef<boolean>;
-  name?: ComputedRef<string>;
-  colon?: ComputedRef<boolean>;
-  labelAlign?: ComputedRef<FormLabelAlign>;
-  labelWrap?: ComputedRef<boolean>;
-  labelCol?: ComputedRef<ColProps>;
-  wrapperCol?: ComputedRef<ColProps>;
-  requiredMark?: ComputedRef<RequiredMark>;
+  model?: ComputedRef<any>
+  vertical: ComputedRef<boolean>
+  name?: ComputedRef<string>
+  colon?: ComputedRef<boolean>
+  labelAlign?: ComputedRef<FormLabelAlign>
+  labelWrap?: ComputedRef<boolean>
+  labelCol?: ComputedRef<ColProps>
+  wrapperCol?: ComputedRef<ColProps>
+  requiredMark?: ComputedRef<RequiredMark>
   //itemRef: (name: (string | number)[]) => (node: React.ReactElement) => void;
-  addField: (eventKey: string, field: FieldExpose) => void;
-  removeField: (eventKey: string) => void;
-  validateTrigger?: ComputedRef<string | string[]>;
-  rules?: ComputedRef<{ [k: string]: Rule[] | Rule }>;
+  addField: (eventKey: string, field: FieldExpose) => void
+  removeField: (eventKey: string) => void
+  validateTrigger?: ComputedRef<string | string[]>
+  rules?: ComputedRef<{ [k: string]: Rule[] | Rule }>
   onValidate: (
     name: string | number | Array<string | number>,
     status: boolean,
     errors: string[] | null,
-  ) => void;
-  validateMessages: ComputedRef<ValidateMessages>;
+  ) => void
+  validateMessages: ComputedRef<ValidateMessages>
 }
 
-export const FormContextKey: InjectionKey<FormContextProps> = Symbol('formContextKey');
+export const FormContextKey: InjectionKey<FormContextProps> =
+  Symbol('formContextKey')
 
 export const useProvideForm = (state: FormContextProps) => {
-  provide(FormContextKey, state);
-};
+  provide(FormContextKey, state)
+}
 
 export const useInjectForm = () => {
   return inject(FormContextKey, {
@@ -202,28 +202,27 @@ export const useInjectForm = () => {
     validateTrigger: computed(() => undefined),
     onValidate: () => {},
     validateMessages: computed(() => defaultValidateMessages),
-  } as FormContextProps);
-};
+  } as FormContextProps)
+}
 
 /** Used for ErrorList only */
 export interface FormItemPrefixContextProps {
-  prefixCls: ComputedRef<string>;
-  status?: ComputedRef<ValidateStatus>;
+  prefixCls: ComputedRef<string>
+  status?: ComputedRef<ValidateStatus>
 }
 
-export const FormItemPrefixContextKey: InjectionKey<FormItemPrefixContextProps> = Symbol(
-  'formItemPrefixContextKey',
-);
+export const FormItemPrefixContextKey: InjectionKey<FormItemPrefixContextProps> =
+  Symbol('formItemPrefixContextKey')
 
 export const useProvideFormItemPrefix = (state: FormItemPrefixContextProps) => {
-  provide(FormItemPrefixContextKey, state);
-};
+  provide(FormItemPrefixContextKey, state)
+}
 
 export const useInjectFormItemPrefix = () => {
   return inject(FormItemPrefixContextKey, {
     prefixCls: computed(() => ''),
-  });
-};
+  })
+}
 ```
 
 去除<word text="TypeScript" />类型定义后，分析实现逻辑：
@@ -231,17 +230,19 @@ export const useInjectFormItemPrefix = () => {
 先定义 `FormContextKey` 作为 `Form` 组件的上下文 `InjectionKey`，用 `Symbol` 生成唯一 `key`。
 
 ```ts
-export const FormContextKey = Symbol('formContextKey');
+export const FormContextKey = Symbol('formContextKey')
 ```
 
 导出封装好的 `provide` 和 `inject` 函数，凭借 `FormContextKey` 实现 `Form` 组件的上下文注入和获取。与 `reka-ui` 一样，`inject` 传入第二个参数作为默认值。
 
 ::: code-group
+
 ```ts [provide]
 export const useProvideForm = (state) => {
-  provide(FormContextKey, state);
-};
+  provide(FormContextKey, state)
+}
 ```
+
 ```ts [inject]
 export const useInjectForm = () => {
   return inject(FormContextKey, {
@@ -261,32 +262,36 @@ export const useInjectForm = () => {
     validateTrigger: computed(() => undefined),
     onValidate: () => {},
     validateMessages: computed(() => defaultValidateMessages),
-  });
-};
+  })
+}
 ```
+
 :::
 
 再定义 `FormItemPrefixContextKey`，用于 `FormItem` 组件的上下文注入和获取。
 
 ```ts
-export const FormItemPrefixContextKey = Symbol('formItemPrefixContextKey');
+export const FormItemPrefixContextKey = Symbol('formItemPrefixContextKey')
 ```
 
 导出封装好的 `provide` 和 `inject` 函数，凭借 `FormItemPrefixContextKey` 实现 `FormItem` 组件的上下文注入和获取。
 
 ::: code-group
+
 ```ts [provide]
 export const useProvideFormItemPrefix = (state) => {
-  provide(FormItemPrefixContextKey, state);
-};
+  provide(FormItemPrefixContextKey, state)
+}
 ```
+
 ```ts [inject]
 export const useInjectFormItemPrefix = () => {
   return inject(FormItemPrefixContextKey, {
     prefixCls: computed(() => ''),
-  });
-};
+  })
+}
 ```
+
 :::
 
 ## 总结

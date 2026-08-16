@@ -19,6 +19,6 @@ img {
 
 这样就能够实现效果了。
 
-## 总体效果
+## CSS 总体效果
 
 <myIframe url="https://duyidao.github.io/blogweb/#/detail/css/vmin" />

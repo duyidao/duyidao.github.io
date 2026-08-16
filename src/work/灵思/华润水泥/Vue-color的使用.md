@@ -39,7 +39,6 @@ pnpm i vue-color
    ```
 
 2. 注册组件并使用
-
    - 设置默认显示的颜色
    - 引入组件并注册
    - 使用
@@ -106,36 +105,35 @@ pnpm i vue-color
   整体模块分为上下模块，上方模块为插件引入。下方模块又分为左右结构，左侧模块
 
 - 逻辑
-
   1. 颜色筛选
 
      根据官方文档可知，该颜色筛选器有一个内置方法 `input` ，切换颜色后就触发，返回值如下所示：
 
      ```js
      {
-     	a: 1,
-     	hex: "#1A4C24",
-     	hex8: "#1A4C24FF",
-     	hsl: {
+      a: 1,
+      hex: "#1A4C24",
+      hex8: "#1A4C24FF",
+      hsl: {
              a: 1,
              h: 132.06585845347314,
              l: 0.2009,
              s: 0.49250000000000005
          },
-     	hsv: {
+      hsv: {
              a: 1,
              h: 132.06585845347314,
-     		s: 0.6599664991624791,
-     		v: 0.29984325
+       s: 0.6599664991624791,
+       v: 0.29984325
          },
-     	oldHue: 132.06585845347314,
-     	rgba: {
+      oldHue: 132.06585845347314,
+      rgba: {
              a: 1,
              b: 36,
-     		g: 76,
-     		r: 26
+       g: 76,
+       r: 26
          },
-     	source: "hsl"
+      source: "hsl"
      }
      ```
 
@@ -195,4 +193,7 @@ pnpm i vue-color
       <!-- <photoshop-picker v-model="colors" /> -->
     </div>
     <h2>颜色列表</h2>
-    <div style="display: flex; margin: 0px auto; height: 360px;">
+    <div style="display: flex; margin: 0px auto; height: 360px;"></div>
+  </div>
+</template>
+```

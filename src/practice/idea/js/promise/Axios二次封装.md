@@ -8,15 +8,15 @@
 
 ```js
 let request = axios.create({
-  baseURL: "http://192.168.0.18", // 基准路径
+  baseURL: 'http://192.168.0.18', // 基准路径
   timeout: 9000, // 超时时间
-  responseType: "json", // 响应类型
+  responseType: 'json', // 响应类型
   headers: {
     // 请求头
-    "Content-Type": "xxx", // 请求头设置
+    'Content-Type': 'xxx', // 请求头设置
   },
   widthCredentials: true, // 允许跨域
-});
+})
 ```
 
 ### 密钥
@@ -24,32 +24,32 @@ let request = axios.create({
 `Token` ，密钥等出于权限和安全性考虑的密钥请求头设置。一般设置在请求<word text="拦截器" />上，做额外的处理。
 
 ```js
-let whileList = ["/a"]; // 不需要验证token的白名单接口
+let whileList = ['/a'] // 不需要验证token的白名单接口
 
 request.intercepetors.request.use(
   (config) => {
-    let url = config.url;
-    let token = localStorage.getItem("token");
+    let url = config.url
+    let token = localStorage.getItem('token')
 
     if (!token) {
-      alert("请先登录");
-      logout(); // 登出
+      alert('请先登录')
+      logout() // 登出
     }
 
     /* 不在白名单且有token，则设置请求头token */
     if (!whileList.includes(url) && token) {
-      config.headers.token = token;
+      config.headers.token = token
     }
 
     // 也可以做其他工作，比如md5加密
 
-    return config;
+    return config
   },
   (error) => {
     // 请求失败，返回即可
-    return Promise.reject(new Error(error));
-  }
-);
+    return Promise.reject(new Error(error))
+  },
+)
 ```
 
 ### 响应
@@ -62,32 +62,32 @@ request.intercepetors.request.use(
 request.intercepetors.response.use(
   (res) => {
     // 响应成功
-    const code = res.data.code || 200;
-    const message = res.data.msg || "未知错误";
+    const code = res.data.code || 200
+    const message = res.data.msg || '未知错误'
 
     switch (code) {
       case 200:
-        return res.data.data;
+        return res.data.data
       case 401:
       case 403:
         // 登录过期
-        alert("没有权限，重新登录");
-        router.push("/login");
-        break;
+        alert('没有权限，重新登录')
+        router.push('/login')
+        break
       case 999:
-        alert("xxx参数有误");
-        break;
+        alert('xxx参数有误')
+        break
       default:
-        alert(`错误码${code}，${message}`);
-        return Promise.reject(new Error(message));
+        alert(`错误码${code}，${message}`)
+        return Promise.reject(new Error(message))
     }
   },
   (error) => {
     // 响应失败，统一处理
-    alert(error); // 一般还是用组件库的提示信息组件，这里简单代替
-    return Promise.reject(new Error(error));
-  }
-);
+    alert(error) // 一般还是用组件库的提示信息组件，这里简单代替
+    return Promise.reject(new Error(error))
+  },
+)
 ```
 
 但是如果 `code` 后续如果多新增几个情况，`switch` 需要写很多，代码冗余不好维护，可以修改为<word text="策略模式" />。业务错误代码和浏览器错误码分开处理。还支持函数传参，做特殊提示定制。
@@ -99,115 +99,115 @@ const errorCode = {
   // [!code ++]
   999: (v) => {
     // [!code ++]
-    alert("xxx参数有误", v); // [!code ++]
+    alert('xxx参数有误', v) // [!code ++]
   }, // [!code ++]
-}; // [!code ++]
+} // [!code ++]
 const httpErrorCode = {
   // [!code ++]
   403: (v) => {
     // [!code ++]
-    alert("暂无权限"); // [!code ++]
+    alert('暂无权限') // [!code ++]
   }, // [!code ++]
-}; // [!code ++]
+} // [!code ++]
 request.intercepetors.response.use(
   (res) => {
     // 响应成功
-    const { code = 200, message = "未知错误", data } = res.data; // [!code ++]
-    if (res.data instanceof Blob) return res.data; // [!code ++]
+    const { code = 200, message = '未知错误', data } = res.data // [!code ++]
+    if (res.data instanceof Blob) return res.data // [!code ++]
     switch (
       code // [!code --]
     ) {
       case 200: // [!code --]
-        return res.data.data; // [!code --]
+        return res.data.data // [!code --]
       case 401: // [!code --]
       case 403: // [!code --]
         // 登录过期 // [!code --]
-        alert("没有权限，重新登录"); // [!code --]
-        router.push("/login"); // [!code --]
-        break; // [!code --]
+        alert('没有权限，重新登录') // [!code --]
+        router.push('/login') // [!code --]
+        break // [!code --]
       case 999: // [!code --]
-        alert("xxx参数有误"); // [!code --]
-        break; // [!code --]
+        alert('xxx参数有误') // [!code --]
+        break // [!code --]
       default: // [!code --]
-        alert(`错误码${code}，${message}`); // [!code --]
-        return Promise.reject(new Error(message)); // [!code --]
+        alert(`错误码${code}，${message}`) // [!code --]
+        return Promise.reject(new Error(message)) // [!code --]
     } // [!code --]
     if (code === 200) {
       // [!code ++]
-      return data; // [!code ++]
+      return data // [!code ++]
     } // [!code ++]
-    errorCode[code]?.(); // [!code ++]
-    httpErrorCode[code]?.(); // [!code ++]
+    errorCode[code]?.() // [!code ++]
+    httpErrorCode[code]?.() // [!code ++]
   },
   (error) => {
     // 响应失败，统一处理
-    alert(error); // 一般还是用组件库的提示信息组件，这里简单代替
-    return Promise.reject(new Error(error));
-  }
-);
+    alert(error) // 一般还是用组件库的提示信息组件，这里简单代替
+    return Promise.reject(new Error(error))
+  },
+)
 ```
 
 ### 代码示例
 
 ```js [代码运行]
 // 全局基础配置
-import axios from "axios";
+import axios from 'axios'
 
 // 后面的请求都是用该变量来发
 let request = axios.create({
-  baseURL: "http://192.168.0.18", // 基准路径
+  baseURL: 'http://192.168.0.18', // 基准路径
   timeout: 9000,
-  responseType: "json",
+  responseType: 'json',
   headers: {
-    "Content-Type": "xxx",
+    'Content-Type': 'xxx',
   },
-});
+})
 
 // 请求拦截器
-const whileList = ["/a"]; // 白名单
-const secretId = "daodao"; // 密钥假设
+const whileList = ['/a'] // 白名单
+const secretId = 'daodao' // 密钥假设
 request.intercepetors.request.use(
   (config) => {
     // token请求头设置。可设置一个白名单，如果不需要token可放到白名单内
-    const token = localStorage.getItem("token");
-    const url = config.url;
+    const token = localStorage.getItem('token')
+    const url = config.url
     if (!whileList.includes(url) && token) {
-      config.headers.token = token;
+      config.headers.token = token
     }
 
     // 密钥，secretId + 特殊算法，防止仿造请求和攻击。如当前时间戳加secretId，再通md5加密，就能得出最终密钥。后端再解密判断请求即可。
-    let secretKey = secretId + new Date().toString();
-    config.headers.secretKey = secretKey;
+    let secretKey = secretId + new Date().toString()
+    config.headers.secretKey = secretKey
   },
   (error) => {
     // 失败请求，返回即可
-    return Promise.reject(new Error(error));
-  }
-);
+    return Promise.reject(new Error(error))
+  },
+)
 
 // 响应拦截器
 request.intercepetors.response.use(
   () => {
     // 响应统一处理
-    const status = res.data.code || 200; // 状态码
-    const message = res.data.message || "未知错误"; // 错误信息
+    const status = res.data.code || 200 // 状态码
+    const message = res.data.message || '未知错误' // 错误信息
 
     switch (status) {
       case 401:
       case 403:
-        alert("暂无权限");
-        router.push("/login");
-        break;
+        alert('暂无权限')
+        router.push('/login')
+        break
       default:
-        break;
+        break
     }
   },
   (error) => {
     // 响应失败，真实项目中往往使用的是组件库的消息提示弹出提示。这里用alert代替
-    alert(error);
-    return Promise.reject(new Error(error));
-  }
-);
+    alert(error)
+    return Promise.reject(new Error(error))
+  },
+)
 ```
 
 ## 扩展
@@ -227,26 +227,26 @@ request.intercepetors.response.use(
 
 ```js
 let myRequest = (function () {
-  let hasRequest = [];
+  let hasRequest = []
   return function (config) {
     if (hasRequest.inculdes(config.url)) {
-      return Promise.reject("请求已提交");
+      return Promise.reject('请求已提交')
     }
 
-    hasRequest.push(config.url);
+    hasRequest.push(config.url)
 
     return request({
       ...config,
     }).then(() => {
       hasRequest = hasRequest.filter((item) => {
         if (item !== config.url) {
-          return item;
+          return item
         }
-      });
-      return res.data;
-    });
-  };
-})();
+      })
+      return res.data
+    })
+  }
+})()
 ```
 
 ### 缓存
@@ -255,19 +255,19 @@ let myRequest = (function () {
 
 ```js
 let myRequest = (function () {
-  let men = {}; // [!code focus]
-  let hasRequest = [];
+  let men = {} // [!code focus]
+  let hasRequest = []
   return function (config) {
     if (men[url]) {
       // [!code focus]
-      return Promise.resolve(men[url]); // [!code focus]
+      return Promise.resolve(men[url]) // [!code focus]
     } // [!code focus]
     else {
       if (hasRequest.inculdes(config.url)) {
-        return Promise.reject("请求已提交");
+        return Promise.reject('请求已提交')
       }
 
-      hasRequest.push(config.url);
+      hasRequest.push(config.url)
 
       return request({
         ...config,
@@ -275,15 +275,15 @@ let myRequest = (function () {
         // 把url地址从hasRequest数组中去掉，因为请求已经响应
         hasRequest = hasRequest.filter((item) => {
           if (item !== config.url) {
-            return item;
+            return item
           }
-        });
-        men[url] = res.data; // [!code focus]
-        return res.data;
-      });
+        })
+        men[url] = res.data // [!code focus]
+        return res.data
+      })
     }
-  };
-})();
+  }
+})()
 ```
 
 ### 优化代码
@@ -298,8 +298,8 @@ let myRequest = (function () {
 
 ```js
 let myRequest = (function () {
-  let men = {};
-  let hasRequest = [];
+  let men = {}
+  let hasRequest = []
   return function (config) {
     // 缓存模块
     function cache() {
@@ -321,12 +321,12 @@ let myRequest = (function () {
       // ...
     }
 
-    let _handleArr = [cache, noRequest, finalRequest, finalHandle];
+    let _handleArr = [cache, noRequest, finalRequest, finalHandle]
     while (_handleArr.length) {
-      promise = promise.then(_handleArr.shift());
+      promise = promise.then(_handleArr.shift())
     }
-  };
-})();
+  }
+})()
 ```
 
 每执行完一个步骤，返回一个对象，对象中包含：
@@ -339,24 +339,24 @@ let myRequest = (function () {
 
 ```js
 let myRequest = (function () {
-  let men = {};
-  let hasRequest = [];
+  let men = {}
+  let hasRequest = []
   return function (config) {
-    let promise = Promise.resolve(); // 每次新请求都要有一个自己的promise // [!code ++]
+    let promise = Promise.resolve() // 每次新请求都要有一个自己的promise // [!code ++]
     // 缓存模块
     function cache(result = { go: true }) {
       // [!code ++]
       if (!result.go) {
         // [!code ++]
-        return Promise.resolve(result); // [!code ++]
+        return Promise.resolve(result) // [!code ++]
       } // [!code ++]
-      const { url } = config; // [!code ++]
+      const { url } = config // [!code ++]
       if (men[url]) {
         // [!code ++]
-        return Promise.resolve({ go: false, type: "then", data: men[url] }); // [!code ++]
+        return Promise.resolve({ go: false, type: 'then', data: men[url] }) // [!code ++]
       } else {
         // [!code ++]
-        return Promise.resolve({ go: true, type: "then" }); // [!code ++]
+        return Promise.resolve({ go: true, type: 'then' }) // [!code ++]
       } // [!code ++]
     }
 
@@ -365,15 +365,15 @@ let myRequest = (function () {
       // [!code ++]
       if (!result.go) {
         // [!code ++]
-        return Promise.resolve(result); // [!code ++]
+        return Promise.resolve(result) // [!code ++]
       } // [!code ++]
       if (hasRequest.inculdes(config.url)) {
         // [!code ++]
-        return Promise.reject({ go: false, data: "请求已提交", type: "catch" }); // [!code ++]
+        return Promise.reject({ go: false, data: '请求已提交', type: 'catch' }) // [!code ++]
       } else {
         // [!code ++]
-        hasRequest.push(url); // [!code ++]
-        return Promise.resolve({ go: true, type: "then" }); // [!code ++]
+        hasRequest.push(url) // [!code ++]
+        return Promise.resolve({ go: true, type: 'then' }) // [!code ++]
       }
     }
 
@@ -382,10 +382,10 @@ let myRequest = (function () {
       // [!code ++]
       if (!result.go) {
         // [!code ++]
-        return Promise.resolve(result); // [!code ++]
+        return Promise.resolve(result) // [!code ++]
       } // [!code ++]
-      let resData = await request({ ...config }); // [!code ++]
-      return Promise.resolve({ go: true, type: "then", data: resData }); // [!code ++]
+      let resData = await request({ ...config }) // [!code ++]
+      return Promise.resolve({ go: true, type: 'then', data: resData }) // [!code ++]
     }
 
     // 最终处理模块
@@ -393,21 +393,21 @@ let myRequest = (function () {
       // [!code ++]
       if (!result.go) {
         // [!code ++]
-        return Promise.resolve(result); // [!code ++]
+        return Promise.resolve(result) // [!code ++]
       } // [!code ++]
-      if (result.type === "catch") {
+      if (result.type === 'catch') {
         // [!code ++]
-        return Promise.reject(result.data); // [!code ++]
+        return Promise.reject(result.data) // [!code ++]
       } // [!code ++]
-      men[config.url] === result.data; // [!code ++]
+      men[config.url] === result.data // [!code ++]
     }
 
-    let _handleArr = [cache, noRequest, finalRequest, finalHandle];
+    let _handleArr = [cache, noRequest, finalRequest, finalHandle]
     while (_handleArr.length) {
-      promise = promise.then(_handleArr.shift());
+      promise = promise.then(_handleArr.shift())
     }
-  };
-})();
+  }
+})()
 ```
 
 通过这个方法，一环扣一环的形式，不仅代码可阅读性强，可拓展性强，还能够快速定位到对应的方法中。
@@ -416,21 +416,21 @@ let myRequest = (function () {
 
 ```js
 let myRequest = (function () {
-  let men = {};
-  let hasRequest = [];
+  let men = {}
+  let hasRequest = []
   return function (config) {
-    let promise = Promise.resolve(); // 每次新请求都要有一个自己的promise
+    let promise = Promise.resolve() // 每次新请求都要有一个自己的promise
     // 缓存模块
     function cache(result = { go: true }) {
       if (!result.go) {
         // [!code --]
-        return Promise.resolve(result); // [!code --]
+        return Promise.resolve(result) // [!code --]
       } // [!code --]
-      const { url } = config;
+      const { url } = config
       if (men[url]) {
-        return Promise.resolve({ go: false, type: "then", data: men[url] });
+        return Promise.resolve({ go: false, type: 'then', data: men[url] })
       } else {
-        return Promise.resolve({ go: true, type: "then" });
+        return Promise.resolve({ go: true, type: 'then' })
       }
     }
 
@@ -438,13 +438,13 @@ let myRequest = (function () {
     function noRequest(result = { go: true }) {
       if (!result.go) {
         // [!code --]
-        return Promise.resolve(result); // [!code --]
+        return Promise.resolve(result) // [!code --]
       } // [!code --]
       if (hasRequest.inculdes(config.url)) {
-        return Promise.reject({ go: false, data: "请求已提交", type: "catch" });
+        return Promise.reject({ go: false, data: '请求已提交', type: 'catch' })
       } else {
-        hasRequest.push(url);
-        return Promise.resolve({ go: true, type: "then" });
+        hasRequest.push(url)
+        return Promise.resolve({ go: true, type: 'then' })
       }
     }
 
@@ -452,94 +452,94 @@ let myRequest = (function () {
     async function finalRequest(result = { go: true }) {
       if (!result.go) {
         // [!code --]
-        return Promise.resolve(result); // [!code --]
+        return Promise.resolve(result) // [!code --]
       } // [!code --]
-      let resData = await request({ ...config });
-      return Promise.resolve({ go: true, type: "then", data: resData });
+      let resData = await request({ ...config })
+      return Promise.resolve({ go: true, type: 'then', data: resData })
     }
 
     // 最终处理模块
     function finalHandle(result = { go: true }) {
       if (!result.go) {
         // [!code --]
-        return Promise.resolve(result); // [!code --]
+        return Promise.resolve(result) // [!code --]
       } // [!code --]
-      if (result.type === "catch") {
-        return Promise.reject(result.data);
+      if (result.type === 'catch') {
+        return Promise.reject(result.data)
       }
-      men[config.url] === result.data;
+      men[config.url] === result.data
     }
 
-    let _handleArr = [cache, noRequest, finalRequest, finalHandle];
+    let _handleArr = [cache, noRequest, finalRequest, finalHandle]
     while (_handleArr.length) {
-      let _fn = _handleArr.shift(); // [!code ++]
+      let _fn = _handleArr.shift() // [!code ++]
       function _final(result = { go: true }) {
         // [!code ++]
         if (!result.go) {
           // [!code ++]
-          return Promise.resolve(result); // [!code ++]
+          return Promise.resolve(result) // [!code ++]
         } // [!code ++]
-        return _fn.call(this, result); // [!code ++]
+        return _fn.call(this, result) // [!code ++]
       } // [!code ++]
-      promise = promise.then(_handleArr.shift());
+      promise = promise.then(_handleArr.shift())
     }
-  };
-})();
+  }
+})()
 ```
 
 ### 最终代码
 
 ```js [代码运行]
 let myRequest = (function () {
-  let men = {};
-  let hasRequest = [];
+  let men = {}
+  let hasRequest = []
   return function (config) {
-    let promise = Promise.resolve(); // 每次新请求都要有一个自己的promise
+    let promise = Promise.resolve() // 每次新请求都要有一个自己的promise
     // 缓存模块
     function cache(result = { go: true }) {
-      const { url } = config;
+      const { url } = config
       if (men[url]) {
-        return Promise.resolve({ go: false, type: "then", data: men[url] });
+        return Promise.resolve({ go: false, type: 'then', data: men[url] })
       } else {
-        return Promise.resolve({ go: true, type: "then" });
+        return Promise.resolve({ go: true, type: 'then' })
       }
     }
 
     // 防止重复提交模块
     function noRequest(result = { go: true }) {
       if (hasRequest.inculdes(config.url)) {
-        return Promise.reject({ go: false, data: "请求已提交", type: "catch" });
+        return Promise.reject({ go: false, data: '请求已提交', type: 'catch' })
       } else {
-        hasRequest.push(url);
-        return Promise.resolve({ go: true, type: "then" });
+        hasRequest.push(url)
+        return Promise.resolve({ go: true, type: 'then' })
       }
     }
 
     // 最终请求
     async function finalRequest(result = { go: true }) {
-      let resData = await request({ ...config });
-      return Promise.resolve({ go: true, type: "then", data: resData });
+      let resData = await request({ ...config })
+      return Promise.resolve({ go: true, type: 'then', data: resData })
     }
 
     // 最终处理模块
     function finalHandle(result = { go: true }) {
-      if (result.type === "catch") {
-        return Promise.reject(result.data);
+      if (result.type === 'catch') {
+        return Promise.reject(result.data)
       }
-      men[config.url] === result.data;
+      men[config.url] === result.data
     }
 
-    let _handleArr = [cache, noRequest, finalRequest, finalHandle];
+    let _handleArr = [cache, noRequest, finalRequest, finalHandle]
     while (_handleArr.length) {
-      let _fn = _handleArr.shift();
+      let _fn = _handleArr.shift()
       function _final(result = { go: true }) {
         if (!result.go) {
-          return Promise.resolve(result);
+          return Promise.resolve(result)
         }
-        return _fn.call(this, result);
+        return _fn.call(this, result)
       }
-      promise = promise.then(_handleArr.shift());
+      promise = promise.then(_handleArr.shift())
     }
-  };
-})();
+  }
+})()
 ```

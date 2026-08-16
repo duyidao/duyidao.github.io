@@ -21,15 +21,15 @@ class MyPromise {
   static resolve(value) {
     // 该值本身就是一个 Promise，那么该 Promise 将被返回
     if (value instanceof Promise) {
-      return value;
+      return value
     }
     return new Promise((resolve, reject) => {
       if (isPromiseLike(value)) {
-        value.then(resolve, reject);
+        value.then(resolve, reject)
       } else {
-        resolve(value);
+        resolve(value)
       }
-    });
+    })
   }
 }
 ```
@@ -48,23 +48,23 @@ class MyPromise {
   static resolve(value) {
     // 该值本身就是一个 Promise，那么该 Promise 将被返回
     if (value instanceof Promise) {
-      return value;
+      return value
     }
     return new Promise((resolve, reject) => {
       if (isPromiseLike(value)) {
-        value.then(resolve, reject);
+        value.then(resolve, reject)
       } else {
-        resolve(value);
+        resolve(value)
       }
-    });
+    })
   }
 
   static reject(reason) {
     // [!code ++]
     return new Promise((_, reject) => {
       // [!code ++]
-      reject(reason); // [!code ++]
-    }); // [!code ++]
+      reject(reason) // [!code ++]
+    }) // [!code ++]
   } // [!code ++]
 }
 ```
@@ -77,19 +77,19 @@ class MyPromise {
 
 ```js
 function fn() {
-  throw new Error("错误");
+  throw new Error('错误')
 
-  return 1;
+  return 1
 }
 
 Promise.resolve(fn()).then(
   (res) => {
-    console.log(res);
+    console.log(res)
   },
   (err) => {
-    console.log(err);
-  }
-);
+    console.log(err)
+  },
+)
 ```
 
 预期的结果是 `console.log(err)`，但是实际结果是代码报错，这说明 `fn` 函数同步报错，是不会进入 `Promise` 里，自然不会被 `onRejected` 捕获。因此需要使用 `Promise.try` 来处理。
@@ -103,29 +103,29 @@ class MyPromise {
   static resolve(value) {
     // 该值本身就是一个 Promise，那么该 Promise 将被返回
     if (value instanceof Promise) {
-      return value;
+      return value
     }
     return new Promise((resolve, reject) => {
       if (isPromiseLike(value)) {
-        value.then(resolve, reject);
+        value.then(resolve, reject)
       } else {
-        resolve(value);
+        resolve(value)
       }
-    });
+    })
   }
 
   static reject(reason) {
     return new Promise((_, reject) => {
-      reject(reason);
-    });
+      reject(reason)
+    })
   }
 
   static try(callback, ...args) {
     // [!code ++]
     return new Promise((resolve) => {
       // [!code ++]
-      resolve(callback(...args)); // [!code ++]
-    }); // [!code ++]
+      resolve(callback(...args)) // [!code ++]
+    }) // [!code ++]
   } // [!code ++]
 }
 ```
@@ -147,52 +147,52 @@ class MyPromise {
   static resolve(value) {
     // 该值本身就是一个 Promise，那么该 Promise 将被返回
     if (value instanceof Promise) {
-      return value;
+      return value
     }
     return new Promise((resolve, reject) => {
       if (isPromiseLike(value)) {
-        value.then(resolve, reject);
+        value.then(resolve, reject)
       } else {
-        resolve(value);
+        resolve(value)
       }
-    });
+    })
   }
 
   static reject(reason) {
     return new Promise((_, reject) => {
-      reject(reason);
-    });
+      reject(reason)
+    })
   }
 
   static try(callback, ...args) {
     return new Promise((resolve) => {
-      resolve(callback(...args));
-    });
+      resolve(callback(...args))
+    })
   }
 
   static all(promises) {
     // [!code ++]
-    promises = [...promises]; // [!code ++]
+    promises = [...promises] // [!code ++]
     return new MyPromise((resolve, reject) => {
       // [!code ++]
-      let result = []; // 存储结果 // [!code ++]
+      let result = [] // 存储结果 // [!code ++]
       // 如果没传，则返回空数组 // [!code ++]
-      if (promises.length <= 0) resolve(result); // [!code ++]
-      let count = 0; // 当前执行完成的 Promise 数量 // [!code ++]
+      if (promises.length <= 0) resolve(result) // [!code ++]
+      let count = 0 // 当前执行完成的 Promise 数量 // [!code ++]
       promises.forEach((promise, index) => {
         // [!code ++]
         MyPromise.resolve(promise).then((res) => {
           // [!code ++]
-          count++; // [!code ++]
-          result[index] = res; // [!code ++]
+          count++ // [!code ++]
+          result[index] = res // [!code ++]
           // 如果执行完成数量与数组长度相等，说明都执行完毕了 // [!code ++]
           if (count === promises.length) {
             // [!code ++]
-            resolve(result); // [!code ++]
+            resolve(result) // [!code ++]
           } // [!code ++]
-        }, reject); // [!code ++]
-      }); // [!code ++]
-    }); // [!code ++]
+        }, reject) // [!code ++]
+      }) // [!code ++]
+    }) // [!code ++]
   } // [!code ++]
 }
 ```

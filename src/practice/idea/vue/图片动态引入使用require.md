@@ -97,13 +97,12 @@
    > 将会被编译为：
    >
    > ```js
-   > h("img", { attrs: { src: require("./image.png") } });
+   > h('img', { attrs: { src: require('./image.png') } })
    > ```
    >
    > 引入图片时，`src` 后面的属性值实际是一个变量。<word text="Webpack" />会根据 `v-bind` 指令解析 `src` 后面的属性值，并不会通过 `require` 引入资源路径。因此需要手动添加 `require`。
 
 2. 如果是<word text="Vite" />创建的项目，以下几种情况可满足自动转换路径：
-
    1. CSS 的静态路径
    2. `img` 的 `src`
    3. `import()` 语句
@@ -116,10 +115,10 @@
 直接修改路径无效：
 
 ```js
-const path = ref("");
+const path = ref('')
 const changeImgFn = (e) => {
-  path.value = `./assets/${e}.jpg`;
-};
+  path.value = `./assets/${e}.jpg`
+}
 ```
 
 打包后的图片路径与其不符，图片无法渲染。
@@ -127,13 +126,13 @@ const changeImgFn = (e) => {
 方法一：使用 `import()` 方法：
 
 ```js
-const path = ref("");
+const path = ref('')
 const changeImgFn = (e) => {
   import(`./assets/${e}.jpg`).then((res) => {
-    console.log(res);
-    path.value = res.default;
-  });
-};
+    console.log(res)
+    path.value = res.default
+  })
+}
 ```
 
 回调参数拿到的数据如下：
@@ -147,11 +146,11 @@ const changeImgFn = (e) => {
 方法二：通过 JavaScript 内置对象 URL 生成地址，传入两个参数：图片相对路径和相对对象。
 
 ```js
-const path = ref("");
+const path = ref('')
 const changeImgFn = (e) => {
-  const url = new URL(`./assets/${e}.jpg`, import.meta.url);
-  console.log(url);
-};
+  const url = new URL(`./assets/${e}.jpg`, import.meta.url)
+  console.log(url)
+}
 ```
 
 打印结果如下：

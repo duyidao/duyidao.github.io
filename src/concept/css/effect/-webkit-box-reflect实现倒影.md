@@ -1,8 +1,8 @@
 # -webkit-box-reflect 实现倒影
 
-## 前置知识
+## CSS 前置知识
 
-通过设置 [-webkit-box-reflect](https://developer.mozilla.org/zh-CN/docs/Web/CSS/-webkit-box-reflect)<word text="CSS" />属性可让你将元素内容在特定方向上进行轴对称反射。
+通过设置 [-webkit-box-reflect](https://developer.mozilla.org/zh-CN/docs/Web/CSS/-webkit-box-reflect) <word text="CSS" /> 属性可让你将元素内容在特定方向上进行轴对称反射。
 
 该方法主要有三个属性值，分别如下：
 
@@ -13,7 +13,7 @@
 > [!WARNING] 注意
 > 该特性是非标准的，请尽量不要在生产环境中使用它！
 
-## 实现
+## CSS 实现
 
 为一个文本标签或图片标签设置反射样式，添加渐变蒙版即可。代码：
 
@@ -27,11 +27,13 @@
     <style>
       img {
         width: 250px;
-        -webkit-box-reflect: below 15px linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.5));
+        -webkit-box-reflect: below 15px
+          linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.5));
       }
       p {
         width: 250px;
-        -webkit-box-reflect: below 3px linear-gradient(transparent, rgba(0, 0, 0, 0.5));
+        -webkit-box-reflect: below 3px
+          linear-gradient(transparent, rgba(0, 0, 0, 0.5));
       }
     </style>
   </head>
@@ -43,6 +45,6 @@
 </html>
 ```
 
-## 总体效果
+## CSS 总体效果
 
 <myIframe url="https://duyidao.github.io/blogweb/#/detail/css/below" />

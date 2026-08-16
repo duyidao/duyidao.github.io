@@ -3,17 +3,11 @@ export default [
     text: '💻 前端知识',
     items: [
       {
-        text: '🗡️ 基础',
+        text: '🗡️ 基础与框架',
         items: [
           { text: 'CSS', link: '/css/effect/-webkit-box-reflect实现倒影' },
           { text: 'JavaScript', link: '/javascript/knowledge/变量与严格模式' },
-        ],
-      },
-      {
-        text: '🧺 框架',
-        items: [
-          { text: 'Vue2', link: '/vue/vue2/基本概念与Vue指令' },
-          { text: 'Vue3', link: '/vue/vue3/项目初始化' },
+          { text: 'Vue', link: '/vue/vue2/基本概念与Vue指令' },
           { text: 'React', link: '/react/无脚手架项目创建' },
         ],
       },
@@ -47,12 +41,15 @@ export default [
         text: '💼 工作项目',
         items: [
           { text: '🧟 灵思', link: '/灵思/APP/登录' },
-          { text: '⛷️ 百度', link: '/百度/图业融合/公共组件封装' },
+          { text: '⛷️ 百度', link: '/百度/图业融合/项目规范' },
           {
             text: '🔢 数说数字化',
             link: '/数说/AI报告/AI问答模块流式交互与富文本复制方案',
           },
-          { text: '南方电网', link: '/南网/无人机/公共表单组件的封装与拓展' },
+          {
+            text: '⚡ 南方电网',
+            link: '/南网/无人机/公共表单组件的封装与拓展',
+          },
         ],
       },
     ],

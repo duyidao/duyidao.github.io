@@ -1,6 +1,6 @@
 # Computed 计算属性 实现
 
-## 基础实现
+## Vue3 基础实现
 
 `computed` 计算属性是一个特殊的存在，它既是 `sub` 也是 `dep`。
 
@@ -11,17 +11,17 @@
 > [!info] 例子
 >
 > ```js
-> let count = ref(1);
+> let count = ref(1)
 >
-> const c = computed(() => count.value + 1);
+> const c = computed(() => count.value + 1)
 >
 > effect(() => {
->   console.log("effect => ", c.value);
-> });
+>   console.log('effect => ', c.value)
+> })
 >
 > setTimeout(() => {
->   count.value++;
-> }, 1000);
+>   count.value++
+> }, 1000)
 > ```
 
 先来理解它的工作运行流程：
@@ -42,19 +42,19 @@
 
 ```js [function.js]
 const c = computed(() => {
-  return count.value + 1;
-});
+  return count.value + 1
+})
 ```
 
 ```js [object.js]
 const c = computed({
   get() {
-    return count.value + 1;
+    return count.value + 1
   },
   set() {
-    count.value = value;
+    count.value = value
   },
-});
+})
 ```
 
 :::
@@ -64,7 +64,7 @@ const c = computed({
 ::: code-group
 
 ```ts [reactivity/computed.ts]
-import { isFunction } from "@vue/shared";
+import { isFunction } from '@vue/shared'
 
 /**
  * 计算属性
@@ -72,33 +72,36 @@ import { isFunction } from "@vue/shared";
  * @returns 计算属性的实例对象
  */
 export function computed(getterOrOptions) {
-  let getter;
-  let setter;
+  let getter
+  let setter
 
   if (isFunction(getterOrOptions)) {
     // const c = computed(() => {})
-    getter = getterOrOptions;
+    getter = getterOrOptions
   } else {
     // const c = computed({
     //   get() {},
     //   set() {},
     // })
-    getter = getterOrOptions.get;
-    setter = getterOrOptions.set;
+    getter = getterOrOptions.get
+    setter = getterOrOptions.set
   }
 
-  return new ComputedImpl(getter, setter);
+  return new ComputedImpl(getter, setter)
 }
 
 class ComputedImpl {
-  constructor(public getter, private setter) {}
+  constructor(
+    public getter,
+    private setter,
+  ) {}
 }
 ```
 
 ```ts [shared/index.ts]
 // [!code ++]
 export function isFunction(value) {
-  return typeof value === "function"; // [!code ++]
+  return typeof value === 'function' // [!code ++]
 } // [!code ++]
 ```
 
@@ -116,117 +119,123 @@ export function isFunction(value) {
 8. `update` ：当依赖项发生变化时，更新 `_value` 的值
 
 ```ts
-import { isFunction } from "@vue/shared";
-import { ReactiveFlags } from "./ref.ts"; // [!code ++]
-import { Sub, Dep, Link } from "./system.ts"; // [!code ++]
+import { isFunction } from '@vue/shared'
+import { ReactiveFlags } from './ref.ts' // [!code ++]
+import { Sub, Dep, Link } from './system.ts' // [!code ++]
 
 export function computed(getterOrOptions) {
-  let getter;
-  let setter;
+  let getter
+  let setter
 
   if (isFunction(getterOrOptions)) {
-    getter = getterOrOptions;
+    getter = getterOrOptions
   } else {
-    getter = getterOrOptions.get;
-    setter = getterOrOptions.set;
+    getter = getterOrOptions.get
+    setter = getterOrOptions.set
   }
 
-  return new ComputedImpl(getter, setter);
+  return new ComputedImpl(getter, setter)
 }
 
 class ComputedImpl {
   _value; // [!code ++]
-  [ReactiveFlags.IS_REF] = true; // 计算属性也是 ref 类型 // [!code ++]
+  [ReactiveFlags.IS_REF] = true // 计算属性也是 ref 类型 // [!code ++]
   // [!code ++]
   /**
   // [!code ++]
    * 作为依赖项 dep，需要关联subs，等值更新了，需要通知 subs 执行回调函数
   // [!code ++]
    */
-  subs: Link | undefined; // 订阅者链表 // [!code ++]
-  subsTail: Link | undefined; // 订阅者链表尾节点 // [!code ++]
+  subs: Link | undefined // 订阅者链表 // [!code ++]
+  subsTail: Link | undefined // 订阅者链表尾节点 // [!code ++]
   // [!code ++]
   /**
   // [!code ++]
    * 作为订阅者 sub，需要知道哪些 dep 被收集了
   // [!code ++]
    */
-  deps: Link | undefined; // 依赖项链表 // [!code ++]
-  depsTail: Link | undefined; // 依赖项链表尾节点 // [!code ++]
-  tracking = false; // 标识当前是否正在收集依赖 // [!code ++]
+  deps: Link | undefined // 依赖项链表 // [!code ++]
+  depsTail: Link | undefined // 依赖项链表尾节点 // [!code ++]
+  tracking = false // 标识当前是否正在收集依赖 // [!code ++]
 
-  constructor(public getter, private setter) {}
+  constructor(
+    public getter,
+    private setter,
+  ) {}
 
   // [!code ++]
   get() {
-    this.update(this); // [!code ++]
-    return this._value; // [!code ++]
+    this.update(this) // [!code ++]
+    return this._value // [!code ++]
   } // [!code ++]
   // [!code ++]
   set(newValue) {
     // [!code ++]
     if (this.setter) {
-      this.setter(newValue); // [!code ++]
+      this.setter(newValue) // [!code ++]
     } // [!code ++]
     // [!code ++]
     else {
-      console.warn("computed is readonly"); // [!code ++]
+      console.warn('computed is readonly') // [!code ++]
     } // [!code ++]
   } // [!code ++]
   // [!code ++]
   update(dep) {
-    this._value = this.getter(); // [!code ++]
+    this._value = this.getter() // [!code ++]
   } // [!code ++]
 }
 ```
 
-## 关联关系绑定
+## Vue3 关联关系绑定
 
 目前运行代码，可以看到控制台有打印内容，但是这里还是有问题：
 
 目前的 `computed` 并没有用到它的 `subs` 和 `deps` 链表，因为它没有和 `effect` 建立关联关系。目前的 `effect` 实际上是和 `computed` 接收的回调函数 `getter` 函数建立关联关系的，而不是和 `computed` 实例对象建立关联关系的。因此需要修改下代码。
 
 ```ts
-import { isFunction } from "@vue/shared";
-import { ReactiveFlags } from "./ref.ts";
-import { Sub, Dep, Link } from "./system.ts";
-import { activeSub } from "./effect.ts"; // [!code ++]
+import { isFunction } from '@vue/shared'
+import { ReactiveFlags } from './ref.ts'
+import { Sub, Dep, Link } from './system.ts'
+import { activeSub } from './effect.ts' // [!code ++]
 
 export function computed(getterOrOptions) {
-  let getter;
-  let setter;
+  let getter
+  let setter
 
   if (isFunction(getterOrOptions)) {
-    getter = getterOrOptions;
+    getter = getterOrOptions
   } else {
-    getter = getterOrOptions.get;
-    setter = getterOrOptions.set;
+    getter = getterOrOptions.get
+    setter = getterOrOptions.set
   }
 
-  return new ComputedImpl(getter, setter);
+  return new ComputedImpl(getter, setter)
 }
 
 class ComputedImpl {
   _value;
-  [ReactiveFlags.IS_REF] = true; // 计算属性也是 ref 类型
+  [ReactiveFlags.IS_REF] = true // 计算属性也是 ref 类型
 
   /**
    * 作为依赖项 dep，需要关联subs，等值更新了，需要通知 subs 执行回调函数
    */
-  subs: Link | undefined; // 订阅者链表
-  subsTail: Link | undefined; // 订阅者链表尾节点
+  subs: Link | undefined // 订阅者链表
+  subsTail: Link | undefined // 订阅者链表尾节点
 
   /**
    * 作为订阅者 sub，需要知道哪些 dep 被收集了
    */
-  deps: Link | undefined; // 依赖项链表
-  depsTail: Link | undefined; // 依赖项链表尾节点
-  tracking = false; // 标识当前是否正在收集依赖
+  deps: Link | undefined // 依赖项链表
+  depsTail: Link | undefined // 依赖项链表尾节点
+  tracking = false // 标识当前是否正在收集依赖
 
-  constructor(public getter, private setter) {}
+  constructor(
+    public getter,
+    private setter,
+  ) {}
 
   get() {
-    this.update(this);
+    this.update(this)
 
     // [!code ++]
     /**
@@ -236,21 +245,21 @@ class ComputedImpl {
      */
     // [!code ++]
     if (activeSub) {
-      link(this, activeSub); // [!code ++]
+      link(this, activeSub) // [!code ++]
     } // [!code ++]
-    return this._value;
+    return this._value
   }
 
   set(newValue) {
     if (this.setter) {
-      this.setter(newValue);
+      this.setter(newValue)
     } else {
-      console.warn("computed is readonly");
+      console.warn('computed is readonly')
     }
   }
 
   update(dep) {
-    this._value = this.getter();
+    this._value = this.getter()
   }
 }
 ```
@@ -264,61 +273,64 @@ class ComputedImpl {
 ::: code-group
 
 ```ts [computed.ts]
-import { isFunction } from "@vue/shared";
-import { ReactiveFlags } from "./ref.ts";
-import { setActiveEffect, activeSub } from "./effect.ts"; // [!code ++]
-import { Link, Dep, Sub, link, startTrack, endTrack } from "./system.ts"; // [!code ++]
+import { isFunction } from '@vue/shared'
+import { ReactiveFlags } from './ref.ts'
+import { setActiveEffect, activeSub } from './effect.ts' // [!code ++]
+import { Link, Dep, Sub, link, startTrack, endTrack } from './system.ts' // [!code ++]
 
 export function computed(getterOrOptions) {
-  let getter;
-  let setter;
+  let getter
+  let setter
 
   if (isFunction(getterOrOptions)) {
-    getter = getterOrOptions;
+    getter = getterOrOptions
   } else {
-    getter = getterOrOptions.get;
-    setter = getterOrOptions.set;
+    getter = getterOrOptions.get
+    setter = getterOrOptions.set
   }
 
-  return new ComputedImpl(getter, setter);
+  return new ComputedImpl(getter, setter)
 }
 
 class ComputedImpl {
   _value;
-  [ReactiveFlags.IS_REF] = true; // 计算属性也是 ref 类型
+  [ReactiveFlags.IS_REF] = true // 计算属性也是 ref 类型
 
   /**
    * 作为依赖项 dep，需要关联subs，等值更新了，需要通知 subs 执行回调函数
    */
-  subs: Link | undefined; // 订阅者链表
-  subsTail: Link | undefined; // 订阅者链表尾节点
+  subs: Link | undefined // 订阅者链表
+  subsTail: Link | undefined // 订阅者链表尾节点
 
   /**
    * 作为订阅者 sub，需要知道哪些 dep 被收集了
    */
-  deps: Link | undefined; // 依赖项链表
-  depsTail: Link | undefined; // 依赖项链表尾节点
-  tracking = false; // 标识当前是否正在收集依赖
+  deps: Link | undefined // 依赖项链表
+  depsTail: Link | undefined // 依赖项链表尾节点
+  tracking = false // 标识当前是否正在收集依赖
 
-  constructor(public getter, private setter) {}
+  constructor(
+    public getter,
+    private setter,
+  ) {}
 
   get() {
-    this.update(this);
+    this.update(this)
 
     /**
      * 要和 sub 建立关联关系。这里不直接使用 trackRef，是为了避免后续可能还需要修改
      */
     if (activeSub) {
-      link(this, activeSub);
+      link(this, activeSub)
     }
-    return this._value;
+    return this._value
   }
 
   set(newValue) {
     if (this.setter) {
-      this.setter(newValue);
+      this.setter(newValue)
     } else {
-      console.warn("computed is readonly");
+      console.warn('computed is readonly')
     }
   }
 
@@ -330,23 +342,23 @@ class ComputedImpl {
     // [!code ++]
      */
     // [!code ++]
-    let prevSub = activeSub;
+    let prevSub = activeSub
     // [!code ++]
     // 每次执行都把回调函数 getter 放到 activeSub 中，让 reactivity 收集依赖
     // [!code ++]
-    setActiveEffect(this);
+    setActiveEffect(this)
     // [!code ++]
-    startTrack(this);
+    startTrack(this)
     // [!code ++]
     try {
       // [!code ++]
-      this._value = this.getter();
+      this._value = this.getter()
       // [!code ++]
     } finally {
       // [!code ++]
-      endTrack(this);
+      endTrack(this)
       // [!code ++]
-      setActiveEffect(prevSub);
+      setActiveEffect(prevSub)
       // [!code ++]
     }
   }
@@ -363,7 +375,7 @@ class ComputedImpl {
 // [!code ++]
 export function setActiveEffect(effect: ReactiveEffect) {
   // [!code ++]
-  activeSub = effect;
+  activeSub = effect
   // [!code ++]
 }
 ```
@@ -380,28 +392,28 @@ export function setActiveEffect(effect: ReactiveEffect) {
 
 ```ts [system.ts]
 export const propagate = (subs) => {
-  let link = subs;
-  let queueEffects = [];
+  let link = subs
+  let queueEffects = []
   while (link) {
-    let sub = link.sub;
+    let sub = link.sub
     if (!sub.trackShaking) {
       // [!code ++]
-      if ("update" in sub) {
+      if ('update' in sub) {
         // [!code ++]
-        console.log("Todo, 这里是 computed, 要做其他处理");
+        console.log('Todo, 这里是 computed, 要做其他处理')
         // [!code ++]
       } else {
-        queueEffects.push(link.sub);
+        queueEffects.push(link.sub)
         // [!code ++]
       }
     }
-    link = link.nextSub;
+    link = link.nextSub
   }
-  queueEffects.forEach((effect) => effect?.notify());
-};
+  queueEffects.forEach((effect) => effect?.notify())
+}
 ```
 
-## subs 更新
+## Vue3 subs 更新
 
 接下来需要实现当 `computed` 作为依赖项 `dep` 时，如何通知订阅者 `subs` 执行。
 
@@ -415,42 +427,42 @@ export const propagate = (subs) => {
 
 ```ts [system.ts]
 export const propagate = (subs) => {
-  let link = subs;
-  let queueEffects = [];
+  let link = subs
+  let queueEffects = []
   while (link) {
-    let sub = link.sub;
+    let sub = link.sub
     if (!sub.trackShaking) {
-      if ("update" in sub) {
+      if ('update' in sub) {
         // [!code ++]
-        propagateSubs(sub);
+        propagateSubs(sub)
       } else {
-        queueEffects.push(link.sub);
+        queueEffects.push(link.sub)
       }
     }
-    link = link.nextSub;
+    link = link.nextSub
   }
-  queueEffects.forEach((effect) => effect?.notify());
-};
+  queueEffects.forEach((effect) => effect?.notify())
+}
 
 // [!code ++]
 export function propagateSubs(sub) {
   // [!code ++]
-  sub.update();
+  sub.update()
   // [!code ++]
-  propagate(sub.subs);
+  propagate(sub.subs)
   // [!code ++]
 }
 ```
 
-## 小结
+## Vue3 小结
 
-### 步骤流程
+### Vue3 步骤流程
 
-### 内容总结
+### Vue3 内容总结
 
 1. 作为 `sub`（订阅者）：当 `computed` 的回调函数中访问了响应式变量（如 `ref`）时，`computed` 会收集这些变量作为依赖项。这是通过在 `update` 方法中执行回调函数并利用 `track` 机制完成的。
 2. 作为 `dep`（依赖）：当被 `computed` 依赖的响应式变量发生改变时，由于没有 `notify` 方法，额外做了处理。通过 `propagate` 和 `propagateSubs` 函数调用 `update` 方法，更新 `_value` 的值，然后通知订阅者 `subs` 执行。
 
-### 时序图
+### Vue3 时序图
 
 ![时序图](https://pic1.imgdb.cn/item/696b38dd55fa3078186f4d0e.png)

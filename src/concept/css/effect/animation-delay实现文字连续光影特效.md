@@ -1,6 +1,6 @@
 # animation-delay 实现文字连续光影特效
 
-## 颜色变化
+## CSS 颜色变化
 
 先拆分成实现一个文字的效果，实现后再考虑多个文字的实现。
 
@@ -22,7 +22,7 @@ span {
 }
 ```
 
-## 动画延迟
+## CSS 动画延迟
 
 文字动画效果已实现，不过是整体一起变化，需要循环设置动画延迟。
 
@@ -36,7 +36,7 @@ span {
 }
 ```
 
-最终编译成<word text="CSS"/>代码如下：
+最终编译成 <word text="CSS"/> 代码如下：
 
 ```css
 span:nth-child(1) {
@@ -72,6 +72,6 @@ span:nth-child(8) {
 }
 ```
 
-## 总体效果
+## CSS 总体效果
 
 <myIframe url="https://duyidao.github.io/blogweb/#/info/css/lightEffect" />

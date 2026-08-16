@@ -96,49 +96,49 @@ const arrayProto = Array.prototype;
 // 创建一个新对象，该新对象的原型指向Array的原型。
 export const arrayMethods = Object.create(arrayProto);
 [
-	'push',
-	'pop',
-	'shift',
-	'unshift',
-	'splice',
-	'sort',
-	'reverse'
+ 'push',
+ 'pop',
+ 'shift',
+ 'unshift',
+ 'splice',
+ 'sort',
+ 'reverse'
 ]
 .forEach(mentod => {
-	 // 缓存原始方法
-	const original = arrayProto[method];
-	// 对新原型对象上的方法，做数据绑定
-	Object.defineProperty(arrayMethods， method， {
-		value: function mutator(...args) {
-			// 返回原始方法
-			return original.apply(this, args);
-		},
-		enumerable: false,
-		writable: true,
-		configurable: true
-	})
+  // 缓存原始方法
+ const original = arrayProto[method];
+ // 对新原型对象上的方法，做数据绑定
+ Object.defineProperty(arrayMethods， method， {
+  value: function mutator(...args) {
+   // 返回原始方法
+   return original.apply(this, args);
+  },
+  enumerable: false,
+  writable: true,
+  configurable: true
+ })
 })
 ```
 
 #### 将拦截器挂载到数组上面
 
 ```js
-import { arrayMethods } from "./array"; // 处理好的Array原型对象
+import { arrayMethods } from './array' // 处理好的Array原型对象
 // __proto__是否可用
-const hasProto = "__proto__" in {};
+const hasProto = '__proto__' in {}
 // 所有属性名，不论是否可枚举（与Object.keys的区别）
-const arrayKeys = Object.getOwnPropertyNames(arrayMethods);
+const arrayKeys = Object.getOwnPropertyNames(arrayMethods)
 
 export class Observe {
   // 将value转为响应式
   constructor(value) {
-    this.value = value;
+    this.value = value
 
     if (Array.isArray(value)) {
-      const augment = hasProto ? protoAugment : copyAugment;
-      augment(value, arrayMethods, arrayKeys);
+      const augment = hasProto ? protoAugment : copyAugment
+      augment(value, arrayMethods, arrayKeys)
     } else {
-      this.walk(value); // Object的响应式处理，在其他文章中
+      this.walk(value) // Object的响应式处理，在其他文章中
     }
   }
 }
@@ -148,7 +148,7 @@ export class Observe {
  * 将target对象的原型对象替换为src
  */
 function protoAugment(target, src, keys) {
-  target.__proto__ = src;
+  target.__proto__ = src
 }
 
 /**
@@ -157,8 +157,8 @@ function protoAugment(target, src, keys) {
  */
 function copyAugment(target, src, keys) {
   for (let i = 0, len = keys.length; i < len; i++) {
-    const key = keys[i];
-    def(target, key, src[key]);
+    const key = keys[i]
+    def(target, key, src[key])
   }
 }
 
@@ -169,7 +169,7 @@ function def(obj, key, val, enumerable) {
     enumerable: !!enumerable,
     writable: true,
     configurable: true,
-  });
+  })
 }
 ```
 
@@ -179,36 +179,36 @@ function def(obj, key, val, enumerable) {
 
 ```js
 function defineReactive(data, key, val) {
-  let childOb = observe(val);
-  let dep = new Dep(); // 存储依赖
+  let childOb = observe(val)
+  let dep = new Dep() // 存储依赖
   Object.defineProperty(data, key, {
     enumerable: true,
     configurable: true,
     get: function () {
-      dep.depend();
+      dep.depend()
 
-      if (childOb) childOb.dep.depend(); // 收集
-      return val;
+      if (childOb) childOb.dep.depend() // 收集
+      return val
     },
     set: function (newVal) {
-      if (val === newVal) return;
-      dep.notify();
-      val = newVal;
+      if (val === newVal) return
+      dep.notify()
+      val = newVal
     },
-  });
+  })
 }
 
 // 返回val的响应式对象
 function observe(val, asRootData) {
-  if (!isObject(value)) return;
-  let ob;
+  if (!isObject(value)) return
+  let ob
   // 避免重复侦测
-  if (hasOwn(value, "__ob__") && value.__ob__ instanceof observer) {
-    ob = value.__ob__;
+  if (hasOwn(value, '__ob__') && value.__ob__ instanceof observer) {
+    ob = value.__ob__
   } else {
-    ob = new Observe(value);
+    ob = new Observe(value)
   }
-  return ob;
+  return ob
 }
 ```
 
@@ -224,86 +224,86 @@ function observe(val, asRootData) {
 
 ```js
 let person = {
-  name: "张三",
+  name: '张三',
   age: 18,
-};
+}
 const p = new Proxy(person, {
   //有人读取p的某个属性时调用
   get(target, prop, receiver) {
-    console.log(target, prop);
+    console.log(target, prop)
     //return target[p]
-    return Reflect.get(target, prop);
+    return Reflect.get(target, prop)
   },
   //有人修改、增加p的某个属性时调用
   set(target, p, value, receiver) {
-    console.log(`有人修改了p身上的${p}，我要去更新界面了`);
+    console.log(`有人修改了p身上的${p}，我要去更新界面了`)
     //target[p] = value
-    Reflect.set(target, p, value);
+    Reflect.set(target, p, value)
   },
   //有人删除p的某个属性时调用
   deleteProperty(target, p) {
-    console.log(`有人删除了p身上的${p}，我要去更新界面了`);
+    console.log(`有人删除了p身上的${p}，我要去更新界面了`)
     //return delete target[p]
-    return Reflect.deleteProperty(target, p);
+    return Reflect.deleteProperty(target, p)
   },
-});
+})
 
-console.log((p.age = 23));
-console.log(person);
+console.log((p.age = 23))
+console.log(person)
 ```
 
 ### hook
 
-<word text="Vue" />中的 `hook` 通常称为 `Composition API`，是<a class="self_icon" href="https://cn.vuejs.org/" data-title="Vue" target="_blank">Vue</a>框架的重要特性。本质是**组件内部使用的函数**，能在不影响组件逻辑的情况下增强和扩展组件功能。
+<word text="Vue3" /> 中的 `hook` 通常称为 `Composition API`，是 [Vue](https://cn.vuejs.org/) 框架的重要特性。本质是**组件内部使用的函数**，能在不影响组件逻辑的情况下增强和扩展组件功能。
 
 `Hook` 的主要作用是**允许在组件之间重用状态逻辑**。例如，处理异步请求和管理请求状态的功能，可能在多个组件中都需要。在<word text="Vue2.x" />中，需要使用 `mixins` 或 `HOC`（高阶组件）来抽象和重用这些逻辑，但容易导致命名冲突和逻辑混乱。
 
 使用<word text="Vue3" />的 `Composition API`，可以避免上述问题。通过调用 `useFetch` 这样的自定义 `hook`，在任何组件中重用异步请求逻辑：
 
 ```javascript
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted } from 'vue'
 
 function useFetch(url) {
   const state = reactive({
     data: null,
     loading: true,
     error: null,
-  });
+  })
 
   const fetchData = async () => {
     try {
-      const response = await fetch(url);
-      const data = await response.json();
-      state.data = data;
-      state.loading = false;
+      const response = await fetch(url)
+      const data = await response.json()
+      state.data = data
+      state.loading = false
     } catch (error) {
-      state.error = error;
-      state.loading = false;
+      state.error = error
+      state.loading = false
     }
-  };
+  }
 
-  onMounted(fetchData);
+  onMounted(fetchData)
 
-  return state;
+  return state
 }
 
-export default useFetch;
+export default useFetch
 ```
 
 在其他组件中使用：
 
 ```javascript
-import useFetch from "./useFetch";
+import useFetch from './useFetch'
 
 export default {
   setup() {
-    const posts = useFetch("/api/posts");
+    const posts = useFetch('/api/posts')
 
     return {
       posts,
-    };
+    }
   },
-};
+}
 ```
 
 `useFetch` 就是一个自定义 `hook`（`Composition API`），可在各组件间重用。
@@ -338,19 +338,19 @@ export default {
 //定义一个mixin
 let myMixin = {
   created: function () {
-    this.hello();
+    this.hello()
   },
   methods: {
     hello: function () {
-      console.log("hello from mixin!");
+      console.log('hello from mixin!')
     },
   },
-};
+}
 
 //在组件中使用mixin
 var Component = Vue.extend({
   mixins: [myMixin],
-});
+})
 ```
 
 这里 "hello" 方法被添加到组件的 `methods` 属性中，组件的 `created` 生命周期钩子被调用后，也调用了 `mixin` 中的 `created`。
@@ -361,25 +361,25 @@ var Component = Vue.extend({
 //定义一个hook
 function useHello() {
   const hello = () => {
-    console.log("hello from hook!");
-  };
+    console.log('hello from hook!')
+  }
 
-  onMounted(hello);
+  onMounted(hello)
 
   return {
     hello,
-  };
+  }
 }
 
 //在组件中使用hook
 const Component = {
   setup() {
-    const { hello } = useHello();
+    const { hello } = useHello()
     return {
       hello,
-    };
+    }
   },
-};
+}
 ```
 
 这里用 `onMounted` 函数代替了 `created` 生命周期钩子，"hello" 函数从 `hook` 中解构出来。<word text="Vue3" />的 `hook` 将逻辑保持在独立函数中，使组件代码保持清晰。
@@ -412,15 +412,15 @@ const Component = {
        _openBlock(),
        _createElementBlock(_Fragment, null, [
          _createElementVNode(
-           "div",
+           'div',
            null,
            toDisplayString(_ctx.a),
-           1 /* TEXT */
+           1 /* TEXT */,
          ),
-         _createElementVNode("div", null, "123"),
-         _createElementVNode("div", { class: _ctx.b }, "cc", 2 /* CLASS */),
+         _createElementVNode('div', null, '123'),
+         _createElementVNode('div', { class: _ctx.b }, 'cc', 2 /* CLASS */),
        ])
-     );
+     )
    }
    ```
 
@@ -436,36 +436,36 @@ const Component = {
 app.mixin({
   data() {
     return {
-      name: "mixin",
-    };
+      name: 'mixin',
+    }
   },
   methods: {
     mixinMethod() {
-      console.log("mixinMethod");
+      console.log('mixinMethod')
     },
   },
   mounted() {},
-});
+})
 ```
 
 `mixin` 是选项式 API，在<word text="Vue3" />中推荐使用 `Composition API`，`mixin` 不适用，更推荐使用 `hook`。
 
 ```js
-import { ref, onMounted } from "vue";
+import { ref, onMounted } from 'vue'
 
 export function useHello() {
-  const name = ref("hook");
+  const name = ref('hook')
 
   const hello = () => {
-    console.log("hello from hook!");
-  };
+    console.log('hello from hook!')
+  }
 
-  onMounted(hello);
+  onMounted(hello)
 
   return {
     name,
     hello,
-  };
+  }
 }
 ```
 
@@ -515,13 +515,13 @@ export function useHello() {
   export default {
     // 数据
     data() {
-      return {};
+      return {}
     },
     mounted() {},
     // 方法
     methods: {},
     computed: {},
-  };
+  }
   </script>
   ```
 

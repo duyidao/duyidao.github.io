@@ -9,14 +9,14 @@
 ## 例子
 
 ```js
-const obj = {};
+const obj = {}
 
 setTimeout(() => {
-  console.log("执行setTimeout");
-  obj.a = 1;
-  obj.b = 2;
-});
-console.log(obj); // { a: 1, b: 2 }
+  console.log('执行setTimeout')
+  obj.a = 1
+  obj.b = 2
+})
+console.log(obj) // { a: 1, b: 2 }
 ```
 
 ## 原理

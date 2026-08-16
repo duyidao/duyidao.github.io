@@ -1,6 +1,6 @@
 # Express
 
-## 简介
+## Node Express简介
 
 官方给出的概念：Express 是基于<word text="Node" />平台，快速、开放、极简的 Web 开发框架。
 通俗的理解：Express 的作用和<word text="Node" />内置的 `http` 模块类似，是专门用来创建 Web 服务器的。
@@ -15,9 +15,9 @@ Express 的本质：就是一个 npm 上的第三方包，提供了快速创建 
 
 使用 Express，我们可以方便、快速的创建 Web 网站的服务器或 API 接口的服务器。
 
-## 使用
+## Node Express使用
 
-### 安装
+### Node Express安装
 
 命令如下：
 
@@ -25,28 +25,28 @@ Express 的本质：就是一个 npm 上的第三方包，提供了快速创建 
 npm i express@版本
 ```
 
-### 创建服务器
+### Node Express创建服务器
 
 1. 导入 `express`
 2. 创建服务器
 3. 调用 `.listen(端口号，启动成功后的回调函数)`，启动服务器
 
 ```js
-const express = require("express");
+const express = require('express')
 
-const app = express();
+const app = express()
 
 app.listen(80, () => {
-  console.log("running");
-});
+  console.log('running')
+})
 ```
 
-### 监听请求
+### Node Express监听请求
 
 通过 `app.get()` 方法，可以监听客户端的 `GET` 请求，具体的语法格式如下：
 
 ```js
-app.get("请求url", function (req, res) {});
+app.get('请求url', function (req, res) {})
 ```
 
 - 参数 1：客户端请求的 `url` 地址
@@ -57,24 +57,24 @@ app.get("请求url", function (req, res) {});
 通过 `app.post()` 方法，可以监听客户端的 `POST` 请求，具体的语法格式如下：
 
 ```js
-app.post("请求url", function (req, res) {});
+app.post('请求url', function (req, res) {})
 ```
 
-### 响应
+### Node Express响应
 
 通过 res.send() 方法，可以把处理好的内容，发送给客户端：
 
 ```js
-app.get("/user", (req, res) => {
-  res.send({ username: "daodao", age: 23 });
-});
+app.get('/user', (req, res) => {
+  res.send({ username: 'daodao', age: 23 })
+})
 
-app.post("/add", (req, res) => {
-  res.send("添加成功");
-});
+app.post('/add', (req, res) => {
+  res.send('添加成功')
+})
 ```
 
-### 获取参数
+### Node Express获取参数
 
 - 获取查询参数
 
@@ -83,9 +83,9 @@ app.post("/add", (req, res) => {
   ![img](https://s1.ax1x.com/2023/02/10/pSf7uH1.png)
 
   ```js
-  app.get("/user", (req, res) => {
-    console.log(req.query); // { a: '1', b: '2' }
-  });
+  app.get('/user', (req, res) => {
+    console.log(req.query) // { a: '1', b: '2' }
+  })
   ```
 
 - 获取动态参数
@@ -95,19 +95,19 @@ app.post("/add", (req, res) => {
   ![img](https://s1.ax1x.com/2023/02/10/pSf739O.png)
 
   ```js
-  app.get("/user/:id", (req, res) => {
-    console.log(req.params); // { id: '814' }
-  });
+  app.get('/user/:id', (req, res) => {
+    console.log(req.params) // { id: '814' }
+  })
   ```
 
-### 托管静态资源
+### Node Express托管静态资源
 
 1. `express.static()`
 
    `express` 提供了一个非常好用的函数，叫做 `express.static()`，通过它，我们可以非常方便地创建一个静态资源服务器，例如，通过如下代码就可以将 `public` 目录下的图片、<word text="CSS" />文件、<word text="JavaScript" />文件对外开放访问了：
 
    ```js
-   app.use(express.static("public"));
+   app.use(express.static('public'))
    ```
 
    现在，你就可以访问 `public` 目录中的所有文件了：`http://127.0.0.1/clock.html`
@@ -121,8 +121,8 @@ app.post("/add", (req, res) => {
    如果要托管多个静态资源目录，请多次调用 `express.static()` 函数
 
    ```js
-   app.use(express.static("public"));
-   app.use(express.static("files"));
+   app.use(express.static('public'))
+   app.use(express.static('files'))
    ```
 
    > [!warning] 注意
@@ -136,42 +136,42 @@ app.post("/add", (req, res) => {
    `http://127.0.0.1/public/clock.html`
 
    ```js
-   app.use("public", express.static("public"));
+   app.use('public', express.static('public'))
    ```
 
-## 路由
+## Node Express路由
 
-### 概念
+### Node Express路由概念
 
 在 Express 中，路由指的是客户端的请求与服务器处理函数之间的映射关系。
 
 Express 中的路由分 3 部分组成，分别是请求的类型、请求的 `url` 地址、处理函数，格式如下：
 
 ```js
-app.METHOD(PATH, CALLBACK);
+app.METHOD(PATH, CALLBACK)
 ```
 
 - METHOD：请求方法
 - PATH：请求路径
 - CALLBACK：请求方法回调函数
 
-### 使用
+### Node Express使用
 
-#### 基础用法
+#### Node Express基础用法
 
 在 Express 中使用路由最简单的方式，就是把路由挂载到 `app` 上，示例代码如下：
 
 ```js
-app.get("/user", (req, res) => {
-  res.send({ username: "daodao", age: 23 });
-});
+app.get('/user', (req, res) => {
+  res.send({ username: 'daodao', age: 23 })
+})
 
-app.post("/add", (req, res) => {
-  res.send("添加成功");
-});
+app.post('/add', (req, res) => {
+  res.send('添加成功')
+})
 ```
 
-#### 模块化管理
+#### Node Express模块化管理
 
 为了方便对路由进行模块化的管理，Express 不建议将路由直接挂载到 `app` 上，而是推荐将路由抽离为单独的模块。将路由抽离为单独模块的步骤如下：
 
@@ -184,8 +184,8 @@ app.post("/add", (req, res) => {
    在 `router.js` 文件创建路由对象
 
    ```js
-   const express = require("express");
-   const router = express.Router();
+   const express = require('express')
+   const router = express.Router()
    ```
 
 3. 向路由对象上挂载具体的路由
@@ -193,13 +193,13 @@ app.post("/add", (req, res) => {
    在 `router.js` 文件挂载
 
    ```js
-   router.get("/user", (req, res) => {
-     res.send("获取列表");
-   });
+   router.get('/user', (req, res) => {
+     res.send('获取列表')
+   })
 
-   router.post("/add", (req, res) => {
-     res.send("添加成功");
-   });
+   router.post('/add', (req, res) => {
+     res.send('添加成功')
+   })
    ```
 
 4. 使用 `module.exports` 向外共享路由对象
@@ -207,7 +207,7 @@ app.post("/add", (req, res) => {
    在 `router.js` 文件共享
 
    ```js
-   module.exports = router;
+   module.exports = router
    ```
 
 5. 使用 `app.use()` 函数注册路由模块
@@ -216,15 +216,15 @@ app.post("/add", (req, res) => {
 
    ```js
    // 导入路由
-   const router = require("./route");
+   const router = require('./route')
    // 注册路由
-   app.use(router);
+   app.use(router)
    ```
 
-#### 添加前缀
+#### Node Express添加前缀
 
 ```js
-app.use("/api", router);
+app.use('/api', router)
 ```
 
 **总体代码**
@@ -232,41 +232,41 @@ app.use("/api", router);
 ::: code-group
 
 ```js [index.js]
-const express = require("express");
+const express = require('express')
 
-const app = express();
+const app = express()
 
 // 导入路由
-const router = require("./route");
+const router = require('./route')
 // 注册路由
-app.use(router);
+app.use(router)
 
 app.listen(80, () => {
-  console.log("running");
-});
+  console.log('running')
+})
 ```
 
 ```js [route.js]
-const express = require("express");
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-router.get("/user", (req, res) => {
-  res.send("获取列表");
-});
+router.get('/user', (req, res) => {
+  res.send('获取列表')
+})
 
-router.post("/add", (req, res) => {
-  res.send("添加成功");
-});
+router.post('/add', (req, res) => {
+  res.send('添加成功')
+})
 
 // 向外导出
-module.exports = router;
+module.exports = router
 ```
 
 :::
 
-## 中间件
+## Node Express中间件
 
-### 概念
+### Node Express中间件概念
 
 中间件（`Middleware`），特指业务流程的中间处理环节。
 
@@ -280,83 +280,83 @@ Express 的中间件，本质上就是一个 `function` 处理函数。多个中
 
 `next` 函数是实现多个中间件连续调用的关键，它表示把流转关系转交给下一个中间件或路由
 
-### 定义
+### Node Express定义
 
 定义一个最简单的中间件函数：
 
 ```js
 const mv = (req, res, next) => {
-  console.log("我是最基础的中间件");
+  console.log('我是最基础的中间件')
   // 中间件必须next把流转关系转交给下一个
-  next();
-};
+  next()
+}
 ```
 
 客户端发起的任何请求，到达服务器之后，都会触发的中间件，叫做全局生效的中间件。通过调用 `app.use(中间件函数)` ，即可定义一个全局生效的中间件，示例代码如下：
 
 ```js
 const mv = (req, res, next) => {
-  console.log("我是最基础的中间件");
+  console.log('我是最基础的中间件')
   // 中间件必须next把流转关系转交给下一个
-  next();
-};
+  next()
+}
 
 // 全局生效
-app.use(mv);
+app.use(mv)
 ```
 
 简化全局中间件的定义形式：
 
 ```js
 app.use((req, res, next) => {
-  console.log("这是一个中间件");
-  next();
-});
+  console.log('这是一个中间件')
+  next()
+})
 ```
 
 可以使用 `app.use()` 连续定义多个全局中间件。客户端请求到达服务器之后，会按照中间件定义的先后顺序依次进行调用，示例代码如下：
 
 ```js
 app.use((req, res, next) => {
-  console.log("这是第一个中间件");
-  next();
-});
+  console.log('这是第一个中间件')
+  next()
+})
 
 app.use((req, res, next) => {
-  console.log("这是第二个中间件");
-  next();
-});
+  console.log('这是第二个中间件')
+  next()
+})
 
 app.use((req, res, next) => {
-  res.send("结束");
-});
+  res.send('结束')
+})
 ```
 
 不使用 `app.use()` 定义的中间件，叫做局部生效的中间件，示例代码如下：
 
 ```js
 const mv = (req, res, next) => {
-  console.log("我是中间件");
-  next();
-};
+  console.log('我是中间件')
+  next()
+}
 
-app.get("/", mv, (req, res) => {
-  res.send("我使用了局部中间件");
-});
+app.get('/', mv, (req, res) => {
+  res.send('我使用了局部中间件')
+})
 ```
 
 可以在路由中，通过如下两种等价的方式，使用多个局部中间件：
 
 ```js
-app.get("/", mv1, mv2, (req, res) => {
-  res.send("我使用了两个局部中间件");
-});
-app.get("/", [mv1, mv2], (req, res) => {
-  res.send("我使用了两个局部中间件");
-});
+app.get('/', mv1, mv2, (req, res) => {
+  res.send('我使用了两个局部中间件')
+})
+app.get('/', [mv1, mv2], (req, res) => {
+  res.send('我使用了两个局部中间件')
+})
 ```
 
-### 注意事项
+### Node Express注意事项
 
 1. 一定要在路由之前注册中间件
 2. 客户端发送过来的请求，可以连续调用多个中间件进行处理
@@ -364,57 +364,57 @@ app.get("/", [mv1, mv2], (req, res) => {
 4. 为了防止代码逻辑混乱，调用 `next()` 函数后不要再写额外的代码
 5. 连续调用多个中间件时，多个中间件之间，共享 `req` 和 `res` 对象
 
-### 分类
+### Node Express分类
 
 为了方便大家理解和记忆中间件的使用，Express 官方把常见的中间件用法，分成了 5 大类，分别是：
 
-#### 应用级别的中间件
+#### Node Express应用级别的中间件
 
 通过 `app.use()` 或 `app.get()` 或 `app.post()` ，绑定到 `app` 实例上的中间件，叫做应用级别的中间件，代码示例如下：
 
 ```js
 app.use((req, res, next) => {
-  next();
-});
+  next()
+})
 
-app.get("/", mv, (req, res) => {
-  res.send("home");
-});
+app.get('/', mv, (req, res) => {
+  res.send('home')
+})
 ```
 
 即全局中间件和局部中间件。
 
-#### 路由级别的中间件
+#### Node Express路由级别的中间件
 
 绑定到 `express.Router()` 实例上的中间件，叫做路由级别的中间件。它的用法和应用级别中间件没有任何区别。只不过，应用级别中间件是绑定到 `app` 实例上，路由级别中间件绑定到 `router` 实例上，代码示例如下：
 
 ```js
-const app = express();
-const router = express.Router();
+const app = express()
+const router = express.Router()
 
 router.use((req, res, next) => {
-  next();
-});
+  next()
+})
 
-app.use("/", router);
+app.use('/', router)
 ```
 
-#### 错误级别的中间件
+#### Node Express错误级别的中间件
 
 错误级别中间件的作用：专门用来捕获整个项目中发生的异常错误，从而防止项目异常崩溃的问题。
 
 格式：错误级别中间件的 `function` 处理函数中，必须有 4 个形参，形参顺序从前到后，分别是 `(err, req, res, next)` 。
 
 ```js
-app.get("/", (req, res) => {
-  throw new Error("人为制造服务器错误");
-  res.send("前面有错误，这里执行不了");
-});
+app.get('/', (req, res) => {
+  throw new Error('人为制造服务器错误')
+  res.send('前面有错误，这里执行不了')
+})
 
 app.use((err, req, res, next) => {
-  console.log("发生错误" + err.message);
-  res.send("Error!" + err.message);
-});
+  console.log('发生错误' + err.message)
+  res.send('Error!' + err.message)
+})
 ```
 
 ![结果](https://s1.ax1x.com/2023/02/10/pShpIGd.png)
@@ -423,7 +423,7 @@ app.use((err, req, res, next) => {
 >
 > 错误级别的中间件，必须注册在所有路由之后！
 
-#### Express 内置的中间件
+#### Node ExpressExpress 内置的中间件
 
 自 Express 4.16.0 版本开始，Express 内置了 3 个常用的中间件，极大的提高了 Express 项目的开发效率和体验：
 
@@ -432,38 +432,38 @@ app.use((err, req, res, next) => {
 2. `express.json` 解析 JSON 格式的请求体数据（有兼容性，仅在 4.16.0+ 版本中可用）
 
    ```js
-   app.post("/add", (req, res) => {
-     console.log(req.body); // 没配置json中间件，打印出来是undefined
-     res.send("ok");
-   });
+   app.post('/add', (req, res) => {
+     console.log(req.body) // 没配置json中间件，打印出来是undefined
+     res.send('ok')
+   })
 
    // ----------------------分割线------------------------
-   app.use(express.json());
+   app.use(express.json())
 
-   app.post("/add", (req, res) => {
-     console.log(req.body); // 配置了json中间件，打印出来是{ name: 'daodao', age: '20' }
-     res.send("ok");
-   });
+   app.post('/add', (req, res) => {
+     console.log(req.body) // 配置了json中间件，打印出来是{ name: 'daodao', age: '20' }
+     res.send('ok')
+   })
    ```
 
 3. `express.urlencoded` 解析 `URL-encoded` 格式的请求体数据（有兼容性，仅在 4.16.0+ 版本中可用）
 
    ```js
-   app.post("/book", (req, res) => {
-     console.log(req.body); // 没配置urlencoded中间件，打印出来是{}
-     res.send("ok");
-   });
+   app.post('/book', (req, res) => {
+     console.log(req.body) // 没配置urlencoded中间件，打印出来是{}
+     res.send('ok')
+   })
 
    // ----------------------分割线------------------------
-   app.use(express.urlencoded({ extended: false }));
+   app.use(express.urlencoded({ extended: false }))
 
-   app.post("/book", (req, res) => {
-     console.log(req.body); // 配置了urlencoded中间件，打印出来是[Object: null prototype] { num: '20', name: '刀刀博客' }
-     res.send("ok");
-   });
+   app.post('/book', (req, res) => {
+     console.log(req.body) // 配置了urlencoded中间件，打印出来是[Object: null prototype] { num: '20', name: '刀刀博客' }
+     res.send('ok')
+   })
    ```
 
-#### 第三方的中间件
+#### Node Express第三方的中间件
 
 非 Express 官方内置的，而是由第三方开发出来的中间件，叫做第三方中间件。在项目中，大家可以按需下载并配置第三方中间件，从而提高项目的开发效率。
 
@@ -471,76 +471,76 @@ app.use((err, req, res, next) => {
 >
 > Express 内置的 `express.urlencoded` 中间件，就是基于 `body-parser` 这个第三方中间件进一步封装出来的。
 
-## 总结
+## Node Express总结
 
 `app.use()` 的作用是用来注册全局的中间件。
 
-## 编写接口
+## Node Express编写接口
 
-### 创建基本服务器
+### Node Express创建基本服务器
 
 ```js
-const express = require("express");
-const app = express();
+const express = require('express')
+const app = express()
 
 app.listen(80, () => {
-  console.log("running");
-});
+  console.log('running')
+})
 ```
 
-### 创建 API 模块
+### Node Express创建 API 模块
 
 ::: code-group
 
 ```js [router.js]
-const express = require("express");
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
 // 向外导出
-module.exports = router;
+module.exports = router
 ```
 
 ```js [index.js]
-const route = require("./route");
+const route = require('./route')
 
-app.use("/api", route);
+app.use('/api', route)
 ```
 
 :::
 
-### 编写 GET 接口
+### Node Express编写 GET 接口
 
 ```js
-router.get("/", (req, res) => {
-  const query = req.query;
-  console.log(query);
+router.get('/', (req, res) => {
+  const query = req.query
+  console.log(query)
 
   res.send({
     code: 200,
-    msg: "get请求处理成功",
+    msg: 'get请求处理成功',
     data: query,
-  });
-});
+  })
+})
 ```
 
-### 编写 POST 接口
+### Node Express编写 POST 接口
 
 ```js
-router.post("/add", (req, res) => {
-  const body = req.body;
-  console.log(body);
+router.post('/add', (req, res) => {
+  const body = req.body
+  console.log(body)
 
   res.send({
     code: 200,
-    msg: "post请求处理成功",
+    msg: 'post请求处理成功',
     data: body,
-  });
-});
+  })
+})
 ```
 
-### 跨域
+### Node Express跨域
 
-#### cors
+#### Node Expresscors
 
 使用步骤：
 
@@ -563,13 +563,13 @@ CORS （`Cross-Origin Resource Sharing`，跨域资源共享）由一系列 HTTP
 
 使用 [nodemon](https://www.npmjs.com/package/nodemon) 这个工具，它能够监听项目文件的变动，当代码被修改后，`nodemon` 会自动帮我们重启项目，极大方便了开发和调试。
 
-## 安装
+## Node Express安装
 
 ```sh
 npm i -g nodemon
 ```
 
-## 使用
+## Node Express使用
 
 ```sh
 nodemon xxx.js

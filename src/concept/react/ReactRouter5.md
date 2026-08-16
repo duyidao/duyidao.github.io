@@ -1,34 +1,34 @@
 # React 路由
 
-## SPA 的理解
+## React路由SPA理解
 
 1. 单页 Web 应用（`single page web application，SPA`）。
 2. 整个应用只有一个完整的页面。
 3. 点击页面中的链接不会刷新页面，只会做页面的局部更新。
 4. 数据都需要通过 `ajax` 请求获取, 并在前端异步展现。
 
-## 路由的理解
+## React路由的理解
 
-### 路由的概念
+### React路由的概念
 
 1. 一个路由就是一个映射关系 `(key:value)`
 2. `key` 为路径, `value` 可能是 `function` 或 `component`
 
-### 路由的分类
+### React路由的分类
 
-#### 后端路由
+#### React路由后端路由
 
 1. 路由理解： `value` 是 `function` , 用来处理客户端提交的请求。
 2. 注册路由： `router.get(path, function(req, res))`
 3. 工作过程：当 `node` 接收到一个请求时, 根据请求路径找到匹配的路由, 调用路由中的函数来处理请求, 返回响应数据
 
-#### 前端路由
+#### React路由前端路由
 
 1. 浏览器端路由，`value` 是 `component` ，用于展示页面内容。
 2. 注册路由：`<Route path="/test" component={Test}>`
 3. 工作过程：当浏览器的 path 变为/test 时, 当前路由组件就会变为 Test 组件
 
-### 前端路由原理
+### React路由原理
 
 本质上是通过浏览器的 `history` 对象，记录请求路径中的变化，其中用到了几个重要的 API：
 
@@ -44,15 +44,15 @@
 > 1. 点击导航链接引起路径的变化
 > 2. 被路由器检测到进行匹配组件，从而展示
 
-## react-router-dom
+## React路由react-router-dom
 
-### 含义
+### React路由含义
 
-1. <word text="React"/>的一个插件库。
+1. <word text="React"/> 的一个插件库。
 2. 专门用来实现一个 SPA 应用。
-3. 基于<word text="React"/>的项目基本都会用到此库。
+3. 基于 <word text="React"/> 的项目基本都会用到此库。
 
-### 内置组件
+### React路由内置组件
 
 - `<BrowserRouter>`
 - `<HashRouter>`
@@ -62,15 +62,15 @@
 - `<NavLink>`
 - `<Switch>`
 
-### 其它组件
+### React路由其它组件
 
 1. `history` 对象
 2. `match` 对象
 3. `withRouter` 函数
 
-### react-router-dom@5
+### React路由react-router-dom@5
 
-#### 路由使用
+#### React路由路由使用
 
 下载依赖：
 
@@ -124,11 +124,11 @@ ReactDOM.render(
   <BrowserRouter>
     <App />
   </BrowserRouter>,
-  document.querySelector('#root')
+  document.querySelector('#root'),
 )
 ```
 
-现在运行，效果实现，接下来实现动态样式激活的效果。<word text="React" />中除了 `Link` 标签以外，还有一个 `NavLink` ，当路由匹配后它会添加一个 `active` 类名给自身，表明处于激活状态。也可通过 `activeClassName` 设置激活的类名。
+现在运行，效果实现，接下来实现动态样式激活的效果。 <word text="React" /> 中除了 `Link` 标签以外，还有一个 `NavLink` ，当路由匹配后它会添加一个 `active` 类名给自身，表明处于激活状态。也可通过 `activeClassName` 设置激活的类名。
 
 ```jsx
 <NavLink activeClassName="activeClass" className="list-group-item" to="/about">About</NavLink>
@@ -139,11 +139,11 @@ ReactDOM.render(
 >
 > 别忘记引入 `NavLink` 路由器、路由组件 `BrowserRouter` 和路由注册 `Route` 。
 
-#### Switch
+#### React路由Switch
 
 路由在查找时为了防止你把路由放在很下方，他会一直查找直到找完为止，这之中会有一定的性能消耗。通过 `Switch` 包裹 `Route` 标签，当查找完包裹内的标签后就不会再查找，有利于性能优化，提高效率。
 
-#### 路由匹配
+#### React路由路由匹配
 
 路由匹配中区分模糊匹配与精确匹配，例如 `Route` 中的 `path` 属性为 `/home/id` ，而 `Link` 链接提供的是 `/home` ，代码如下：
 
@@ -170,7 +170,7 @@ ReactDOM.render(
 <Route exact path="/home" component={Home}></Route>
 ```
 
-#### 重定向
+#### React路由重定向
 
 有时会希望刚进页面就能默认选中一个路由，进入页面时默认路径为 `/` ，省略不显示。此时如果路由 `path` 没有设置 `/` 的，则什么都不显示。
 
@@ -187,7 +187,7 @@ ReactDOM.render(
 >
 > 重定向组件必须写在路由组件的最后。
 
-#### 二级路由
+#### React路由二级路由
 
 先上一段代码，主要分为两级路由：
 
@@ -219,7 +219,7 @@ ReactDOM.render(
 
 此时二级路由挂载到 `<Home />` 组件上，点击 `Home` 路由也能显示，可是点击二级路由切换时却失败了，返回了 `About` 组件页面上。
 
-这是因为在<word text="React" />中，路由修改后会根据路由挂载顺序开始匹配，在上方示例中，一级路由先挂载。点击 `Home` 路由后会开始匹配，匹配到结果，然后进入到 `<Home />` 组件，挂载了二级路由；接着点击 `News` ，路由发生变化，从先挂载的一级路由中去匹配查找，没有找到符合的，最终重定向。
+这是因为在 <word text="React" /> 中，路由修改后会根据路由挂载顺序开始匹配，在上方示例中，一级路由先挂载。点击 `Home` 路由后会开始匹配，匹配到结果，然后进入到 `<Home />` 组件，挂载了二级路由；接着点击 `News` ，路由发生变化，从先挂载的一级路由中去匹配查找，没有找到符合的，最终重定向。
 
 因此，二级路由想要实现，需要拼接上一级路由的路径，代码如下：
 
@@ -240,11 +240,11 @@ ReactDOM.render(
 
 如果开启精确模式，会导致无法继续匹配下级的路由。
 
-#### 路由传参
+#### React路由路由传参
 
 - `params` 传参
 
-  可以联想一下<word text="Vue" />或者<word text="Node" />的动态传参的方式，通过 `/:` 的方式接收动态的传参。代码如下所示：
+  可以联想一下 <word text="Vue" /> 或者 <word text="Node" /> 的动态传参的方式，通过 `/:` 的方式接收动态的传参。代码如下所示：
 
   ```jsx
   <Link to={`/home/news/${item.id}/${item.title}`}></Link>
@@ -278,7 +278,7 @@ ReactDOM.render(
 
   接收的时候需要在 `location` 对象中的 `search` 属性中获取，该属性是一个字符串，如 `?id=0&title=daodao` ，需要我们手动转为对象的形式。
 
-  <word text="React" />脚手架下载好一个库 `querystring` ，其方法 `stringify()` 可以把一个对象转为 `key=value&key=value` 的格式；其 `parse()` 方法可以把该格式的字符串换为对象的形式。
+  <word text="React" /> 脚手架下载好一个库 `querystring` ，其方法 `stringify()` 可以把一个对象转为 `key=value&key=value` 的格式；其 `parse()` 方法可以把该格式的字符串换为对象的形式。
 
   引入 `querystring` 后转换格式，示例代码如下：
 
@@ -311,7 +311,7 @@ ReactDOM.render(
 
   在地址栏中它不像 `parasm` 和 `search` 传参，该方法传参不会在地址栏中传递参数，有利于参数保密。再刷新也不会参数丢失，因为其传递的参数保存到浏览器的缓存历史记录 `history` 中。当浏览器历史记录被清除后无法找到。
 
-#### push 与 replace
+#### React路由push与replace
 
 `push()` 操作是压栈模式，每点击一次路由跳转都会往路由栈中压入一个路由，最先进来的在栈底，最后进来的在栈顶；`replace()` 则是替换掉栈顶，不留下痕迹。
 
@@ -321,7 +321,7 @@ ReactDOM.render(
 <Link replace={true} to="/home/news"></Link>
 ```
 
-#### 编程式路由导航
+#### React路由编程式路由导航
 
 如果不借助 `<Link />` 或 `<NavLink />` 这类路由链接点击跳转，而是通过代码处理跳转，这类跳转被称为编程式导航。主要分为 `push()` 跳转和 `replace()` 跳转。
 
@@ -362,7 +362,7 @@ class A extends Component {
 
 前进和后退可通过 `history` 中的 `goBack()` 与 `goForword()` 方法。方法 `go()` 内可以填入数字，正数往前前进，前进的位数是括号内的数字；负数往后退，后退 1 的位数是括号内的数字。
 
-#### withRouter
+#### React路由withRouter
 
 在一般组件与路由组件的区别中我们说到，他们最大的区别在于路由组件的 `props` 中有 `history` 方法，一般组件没有。也就是说在一般组件无法通过 `this.props.history` 跳转路由。
 
@@ -389,9 +389,9 @@ class A extends Component {
    }
    ```
 
-#### 总结
+#### React路由总结
 
-##### 路由基本使用
+##### React路由路由基本使用
 
 1. 明确好界面中的导航区、展示区
 2. 导航区的 a 标签改为 `Link` 标签
@@ -404,7 +404,7 @@ class A extends Component {
    ```
 4. `<App>` 的最外侧包裹了一个 `<BrowserRouter>` 或 `<HashRouter>`
 
-##### 路由组件与一般组件
+##### React路由路由组件与一般组件
 
 1. 写法不同
    - 一般组件：`<Demo/>`
@@ -413,7 +413,6 @@ class A extends Component {
    - 一般组件：`components`
    - 路由组件：`pages`
 3. 接收到的 props 不同：
-
    - 一般组件：写组件标签时传递了什么，就能收到什么
    - 路由组件：接收到三个固定的属性
 
@@ -423,9 +422,9 @@ class A extends Component {
 
      ```jsx
      history:
-     	go: ƒ go(n)
-     	goBack: ƒ goBack()
-     	goForward: ƒ goForward()
+      go: ƒ go(n)
+      goBack: ƒ goBack()
+      goForward: ƒ goForward()
        push: ƒ push(path, state)
        replace: ƒ replace(path, state)
      location:
@@ -438,7 +437,7 @@ class A extends Component {
        url: "/about"
      ```
 
-##### NavLink 与封装
+##### React路由NavLink与封装
 
 1. `NavLink` 可以实现路由链接的高亮，通过 `activeClassName` 指定样式名
 2. 标签体的内容可以通过 `children` 属性来设置，如：
@@ -448,12 +447,12 @@ class A extends Component {
    <NavLink children="About" />
    ```
 
-##### Switch
+##### React路由Switch
 
 1. 通常情况下，`path` 和 `component` 是一一对应的关系。
 2. `Switch` 可以提高路由匹配效率(单一匹配)。
 
-##### 多级结构
+##### React路由多级结构
 
 - 在路由请求服务器时，如果请求了一个不存在的数据，最终会把 `public/index.html` 返回。
 
@@ -462,7 +461,7 @@ class A extends Component {
   2. `public/index.html` 中 引入样式时不写 `./` 写 `%PUBLIC_URL%` （常用）
   3. 使用 `HashRouter`
 
-##### 匹配模式
+##### React路由匹配模式
 
 1. 默认使用的是模糊匹配（简单记：【输入的路径】必须包含要【匹配的路径】，且顺序要一致）
 2. 开启严格匹配
@@ -471,7 +470,7 @@ class A extends Component {
    ```
 3. 严格匹配不要随便开启，需要再开，有些时候开启会导致无法继续匹配二级路由
 
-##### 重定向
+##### React路由重定向
 
 一般写在所有路由注册的最下方，当所有路由都无法匹配时，跳转到 `Redirect` 指定的路由。具体编码：
 
@@ -483,13 +482,13 @@ class A extends Component {
 </Switch>
 ```
 
-##### 多级路由
+##### React路由多级路由
 
 1. 注册子路由时要写上父路由的 `path` 值
 2. 路由的匹配是按照注册路由的顺序进行的
 3. 如果开启精确路由模式，会导致无法继续匹配下级的路由
 
-##### 参数传递
+##### React路由参数传递
 
 - `params`
   1. 路由链接(携带参数)：
@@ -539,7 +538,7 @@ class A extends Component {
      >
      > 刷新也可以保留住参数
 
-##### 编程式路程导航
+##### React路由编程式路程导航
 
 借助 `this.prosp.history` 对象上的 API 对操作路由跳转、前进、后退
 
@@ -549,11 +548,11 @@ class A extends Component {
 - `this.prosp.history.goForward()`
 - `this.prosp.history.go()`
 
-##### withRouter
+##### React路由withRouter
 
 `withRouter` 可以加工一个一般组件，让一般组件拥有路由组件所特有的 API 。`withRouter` 的返回值是一个新组件。
 
-##### BrowserRouter 与 HashRouter 的区别
+##### React路由BrowserRouter与HashRouter区别
 
 1. 底层原理不一样：
    - `BrowserRouter` 使用的是 H5 的 `history API` ，不兼容 IE9 及以下版本。

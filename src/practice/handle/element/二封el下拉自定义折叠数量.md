@@ -49,35 +49,35 @@
 
 <script>
 // 创建 span 节点，在此创建整个 script 都可使用
-const span = document.createElement("span");
-span.className = "num_select";
+const span = document.createElement('span')
+span.className = 'num_select'
 
 export default {
-  name: "App",
+  name: 'App',
   data() {
     return {
       options: [
         // ...
       ],
-      value: "",
-    };
+      value: '',
+    }
   },
   mounted() {
-    const select = document.querySelector(".el-select");
-    select.appendChild(span);
+    const select = document.querySelector('.el-select')
+    select.appendChild(span)
   },
   methods: {
     changeFn(val) {
       // 触发事件函数后判断长度
       if (val.length > 2) {
-        span.setAttribute("style", "display:inline-block");
-        span.innerHTML = `+${val.length - 2}`;
+        span.setAttribute('style', 'display:inline-block')
+        span.innerHTML = `+${val.length - 2}`
       } else {
-        span.setAttribute("style", "display:none");
+        span.setAttribute('style', 'display:none')
       }
     },
   },
-};
+}
 </script>
 
 <style>

@@ -1,8 +1,8 @@
 # 响应式 Reactivity 进阶优化
 
-## 分支切换
+## Vue3 分支切换
 
-### Bug 复现
+### Vue3 Bug 复现
 
 先看一个例子：
 
@@ -13,36 +13,36 @@
   <button id="name">change name</button>
   <button id="age">change age</button>
   <script type="module">
-    import { ref, effect } from "../dist/reactivity.esm.js";
+    import { ref, effect } from '../dist/reactivity.esm.js'
 
-    const flag = ref(true);
-    const age = ref(1);
-    const name = ref("刀刀");
-    const btnFlag = document.querySelector("#flag");
-    const btnAge = document.querySelector("#age");
-    const btnName = document.querySelector("#name");
-    const text = document.querySelector("#text");
+    const flag = ref(true)
+    const age = ref(1)
+    const name = ref('刀刀')
+    const btnFlag = document.querySelector('#flag')
+    const btnAge = document.querySelector('#age')
+    const btnName = document.querySelector('#name')
+    const text = document.querySelector('#text')
 
     effect(() => {
-      console.count("run effect" + count);
+      console.count('run effect' + count)
       if (flag.value) {
-        text.innerText = name.value;
+        text.innerText = name.value
       } else {
-        text.innerText = age.value;
+        text.innerText = age.value
       }
-    });
+    })
 
-    btnFlag.addEventListener("click", () => {
-      flag.value = !flag.value;
-    });
+    btnFlag.addEventListener('click', () => {
+      flag.value = !flag.value
+    })
 
-    btnAge.addEventListener("click", () => {
-      age.value += 1;
-    });
+    btnAge.addEventListener('click', () => {
+      age.value += 1
+    })
 
-    btnName.addEventListener("click", () => {
-      name.value += "1";
-    });
+    btnName.addEventListener('click', () => {
+      name.value += '1'
+    })
   </script>
 </body>
 ```
@@ -59,21 +59,21 @@
 4. 获取 `activeSub` 的 `depsTail` （为 `undefined` ）赋值给 `nextDep`
 
    ```ts
-   const currentDep = sub.depsTail; // undefined
+   const currentDep = sub.depsTail // undefined
    ```
 
 5. 获取当前 `sub.deps`，即副作用函数 `effect` 中的 `dep` 依赖项头节点（为 `undefined` ）赋值给 `nextDep`
 
    ```ts
-   const nextDep = currentDep === undefined ? sub.deps : currentDep.nextDep;
+   const nextDep = currentDep === undefined ? sub.deps : currentDep.nextDep
    ```
 
 6. 判断 `nextDep` 是否有值且值等于当前的订阅者 `dep`，此时没值，说明不可复用，跳过 `if` 判断，往下新建一个 `newLink`
 
    ```ts
    if (nextDep && nextDep.dep === dep) {
-     sub.depsTail = nextDep;
-     return;
+     sub.depsTail = nextDep
+     return
    }
 
    const newLink: Link = {
@@ -82,7 +82,7 @@
      prevSub: undefined,
      dep,
      nextDep: undefined,
-   };
+   }
    ```
 
 7. 判断当前的订阅者链表是否有尾节点，当前订阅者链表没有内容，直接将 `newLink` 赋值给 `dep.subs` 和 `dep.subsTail`，此时 `dep.subs` 和 `dep.subsTail` 都指向 `newLink` 。
@@ -90,13 +90,13 @@
    ```ts
    if (dep.subsTail) {
      // 如果有尾指针，说明当前已经存在链表，让链表最后一个节点的next指向当前节点，当前节点的prev指向最后一个节点。最后再移动尾指针
-     dep.subsTail.nextSub = newLink;
-     newLink.prevSub = dep.subsTail;
-     dep.subsTail = newLink;
+     dep.subsTail.nextSub = newLink
+     newLink.prevSub = dep.subsTail
+     dep.subsTail = newLink
    } else {
      // 如果没有尾指针，说明当前链表为空，直接让头指针指向当前节点，尾指针指向当前节点
-     dep.subs = newLink;
-     dep.subsTail = newLink;
+     dep.subs = newLink
+     dep.subsTail = newLink
    }
    ```
 
@@ -105,12 +105,12 @@
    ```ts
    if (sub.depsTail) {
      // 如果有尾指针，说明当前已经存在链表，让链表最后一个节点的next指向当前节点，最后再移动尾指针
-     sub.depsTail.nextDep = newLink;
-     sub.depsTail = newLink;
+     sub.depsTail.nextDep = newLink
+     sub.depsTail = newLink
    } else {
      // 如果没有尾指针，说明当前链表为空，直接让头指针指向当前节点，尾指针指向当前节点
-     sub.deps = newLink;
-     sub.depsTail = newLink;
+     sub.deps = newLink
+     sub.depsTail = newLink
    }
    ```
 
@@ -171,7 +171,7 @@
 10. 三元判断为假，`nextDep` 的值为 `flag.value` 的 `newLink` 节点的下一个节点，即 `name.value` 的 `newLink` 节点
 
     ```ts
-    const nextDep = currentDep === undefined ? sub.deps : currentDep.nextDep;
+    const nextDep = currentDep === undefined ? sub.deps : currentDep.nextDep
     ```
 
 11. 判断，`nextDep.dep` 是 `name.value` 的，`dep` 指向 `age` ，不相同，不可复用，往下创建新节点
@@ -186,7 +186,7 @@
 
 如何实现呢？
 
-### 方法实现
+### Vue3 方法实现
 
 以上方的示例代码为例，解决思路是把 `age` 的 `nextDep` 指向 `name` 的 `newLink` 节点，此时 `depsTail` 尾指针指向的是 `age` ，而 `age` 的下一个节点 `nextDep` 还有值，在运行完 `fn` 后就把 `depsTail` 后面的节点都清掉，这样 `name` 的 `sub` 就没有 `effect` 了。
 
@@ -206,23 +206,23 @@
 
 ```ts [effect.ts]
 class ReactiveEffect {
-  deps: Link | undefined;
-  depsTail: Link | undefined;
+  deps: Link | undefined
+  depsTail: Link | undefined
 
   constructor(public fn) {}
 
   run() {
     // 把当前的 effect 保存，后面执行完 fn 函数后再获取
-    let prevSub = activeSub;
+    let prevSub = activeSub
     // 每次执行都把 fn 放到 activeSub 中，让 reactivity 收集依赖
-    activeSub = this;
-    this.depsTail = undefined; // [!code --]
-    startTrack(this); // [!code ++]
+    activeSub = this
+    this.depsTail = undefined // [!code --]
+    startTrack(this) // [!code ++]
     try {
-      return this.fn();
+      return this.fn()
     } finally {
-      endTrack(this); // [!code ++]
-      activeSub = prevSub;
+      endTrack(this) // [!code ++]
+      activeSub = prevSub
     }
   }
 
@@ -232,11 +232,11 @@ class ReactiveEffect {
 
 ```ts [system.ts]
 export const link = (dep, sub) => {
-  const currentDep = sub.depsTail;
-  const nextDep = currentDep === undefined ? sub.deps : currentDep.nextDep;
+  const currentDep = sub.depsTail
+  const nextDep = currentDep === undefined ? sub.deps : currentDep.nextDep
   if (nextDep && nextDep.dep === dep) {
-    sub.depsTail = nextDep;
-    return;
+    sub.depsTail = nextDep
+    return
   }
 
   const newLink: Link = {
@@ -246,10 +246,10 @@ export const link = (dep, sub) => {
     dep,
     nextDep: undefined, // [!code --]
     nextDep, // [!code ++]
-  };
+  }
 
   // ...
-};
+}
 
 // [!code ++]
 /**
@@ -259,7 +259,7 @@ export const link = (dep, sub) => {
  */
 // [!code ++]
 export function startTrack(sub) {
-  sub.depsTail = undefined; // [!code ++]
+  sub.depsTail = undefined // [!code ++]
 } // [!code ++]
 
 // [!code ++]
@@ -270,13 +270,13 @@ export function startTrack(sub) {
  */
 // [!code ++]
 export function endTrack(sub) {
-  const depsTail = sub.depsTail; // [!code ++]
+  const depsTail = sub.depsTail // [!code ++]
   // [!code ++]
   if (depsTail) {
     // [!code ++]
     if (depsTail.nextDep) {
-      clearTracking(depsTail.nextDep); // [!code ++]
-      depsTail.nextDep = undefined; // [!code ++]
+      clearTracking(depsTail.nextDep) // [!code ++]
+      depsTail.nextDep = undefined // [!code ++]
     } // [!code ++]
   } // [!code ++]
 } // [!code ++]
@@ -285,7 +285,7 @@ export function endTrack(sub) {
 export function clearTracking(link: Link) {
   // [!code ++]
   while (link) {
-    const { nextDep, prevSub, dep, nextSub } = link; // [!code ++]
+    const { nextDep, prevSub, dep, nextSub } = link // [!code ++]
     // [!code ++]
     /**
     // [!code ++]
@@ -296,12 +296,12 @@ export function clearTracking(link: Link) {
      */
     // [!code ++]
     if (prevSub) {
-      prevSub.nextSub = nextSub; // [!code ++]
-      link.nextSub = undefined; // [!code ++]
+      prevSub.nextSub = nextSub // [!code ++]
+      link.nextSub = undefined // [!code ++]
     } // [!code ++]
     // [!code ++]
     else {
-      dep.subs = nextSub; // [!code ++]
+      dep.subs = nextSub // [!code ++]
     } // [!code ++]
     // [!code ++]
     /**
@@ -313,23 +313,23 @@ export function clearTracking(link: Link) {
      */
     // [!code ++]
     if (nextSub) {
-      nextSub.prevSub = prevSub; // [!code ++]
-      link.prevSub = undefined; // [!code ++]
+      nextSub.prevSub = prevSub // [!code ++]
+      link.prevSub = undefined // [!code ++]
     } // [!code ++]
     // [!code ++]
     else {
-      dep.subsTail = prevSub; // [!code ++]
+      dep.subsTail = prevSub // [!code ++]
     } // [!code ++]
-    link.dep = link.sub = undefined; // [!code ++]
-    link.nextDep = undefined; // [!code ++]
-    link = nextDep; // [!code ++]
+    link.dep = link.sub = undefined // [!code ++]
+    link.nextDep = undefined // [!code ++]
+    link = nextDep // [!code ++]
   } // [!code ++]
 } // [!code ++]
 ```
 
 :::
 
-## 依赖清理
+## Vue3 依赖清理
 
 目前还有一个问题，还是以上方的示例代码为例，添加一点判断条件，代码如下：
 
@@ -340,39 +340,39 @@ export function clearTracking(link: Link) {
   <button id="name">change name</button>
   <button id="age">change age</button>
   <script type="module">
-    import { ref, effect } from "../dist/reactivity.esm.js";
+    import { ref, effect } from '../dist/reactivity.esm.js'
 
-    const flag = ref(true);
-    const age = ref(1);
-    const name = ref("刀刀");
-    const btnFlag = document.querySelector("#flag");
-    const btnAge = document.querySelector("#age");
-    const btnName = document.querySelector("#name");
-    const text = document.querySelector("#text");
+    const flag = ref(true)
+    const age = ref(1)
+    const name = ref('刀刀')
+    const btnFlag = document.querySelector('#flag')
+    const btnAge = document.querySelector('#age')
+    const btnName = document.querySelector('#name')
+    const text = document.querySelector('#text')
 
-    let count = 0; // [!code ++]
+    let count = 0 // [!code ++]
     effect(() => {
-      console.count("run effect" + count);
-      if (count > 1) return; // [!code ++]
-      count++; // [!code ++]
+      console.count('run effect' + count)
+      if (count > 1) return // [!code ++]
+      count++ // [!code ++]
       if (flag.value) {
-        text.innerText = name.value;
+        text.innerText = name.value
       } else {
-        text.innerText = age.value;
+        text.innerText = age.value
       }
-    });
+    })
 
-    btnFlag.addEventListener("click", () => {
-      flag.value = !flag.value;
-    });
+    btnFlag.addEventListener('click', () => {
+      flag.value = !flag.value
+    })
 
-    btnAge.addEventListener("click", () => {
-      age.value += 1;
-    });
+    btnAge.addEventListener('click', () => {
+      age.value += 1
+    })
 
-    btnName.addEventListener("click", () => {
-      name.value += "1";
-    });
+    btnName.addEventListener('click', () => {
+      name.value += '1'
+    })
   </script>
 </body>
 ```
@@ -387,21 +387,21 @@ export function clearTracking(link: Link) {
 
 ```ts
 export function endTrack(sub) {
-  const depsTail = sub.depsTail;
+  const depsTail = sub.depsTail
   if (depsTail) {
     if (depsTail.nextDep) {
-      clearTracking(depsTail.nextDep);
-      depsTail.nextDep = undefined;
+      clearTracking(depsTail.nextDep)
+      depsTail.nextDep = undefined
     }
   } else if (sub.deps) {
     // [!code ++]
-    clearTracking(sub.deps); // [!code ++]
-    sub.deps = undefined; // [!code ++]
+    clearTracking(sub.deps) // [!code ++]
+    sub.deps = undefined // [!code ++]
   } // [!code ++]
 }
 ```
 
-## 小结
+## Vue3 小结
 
 本次在创建节点时复用了之前获取到的 `nextDep`，如果是第一次运行 `effect` 函数，则 `nextDep` 值为 `undefined`；如果是后续运行 `effect` 函数，会出现分支切换的情况，此时 `nextDep` 值旧分支，以上方示例代码为例，切换了 `flag.value` 后新分支是 `age.value`，旧分支是 `name.value`，因此 `age.value` 节点的 `nextDep` 值为 `name.value` 节点。
 
@@ -413,7 +413,7 @@ export function endTrack(sub) {
 
 如果 `activeSub` 没有 `depsTail` 尾节点，则判断当前是否有链表 `deps` ，如果有说明没有依赖收集，直接循环清掉 `deps` 链表，避免依赖触发。
 
-## 节点复用
+## Vue3 节点复用
 
 还是以上方的代码为例，目前每次切换 `flag` ，都会清掉旧节点依赖，生成 `newLink` 新节点依赖，性能会有一定的消耗。如果每次清掉节点依赖后，把节点保存起来，下次复用，性能会有所提升。
 
@@ -424,12 +424,12 @@ export function endTrack(sub) {
 ```ts [system.ts]
 export const link = (dep, sub) => {
   // 获取订阅者链表尾节点
-  const currentDep = sub.depsTail;
+  const currentDep = sub.depsTail
   // 如果没有尾节点，则从头节点拿取；如果有尾节点，则拿尾节点的下一个节点做复用
-  const nextDep = currentDep === undefined ? sub.deps : currentDep.nextDep;
+  const nextDep = currentDep === undefined ? sub.deps : currentDep.nextDep
   if (nextDep && nextDep.dep === dep) {
-    sub.depsTail = nextDep;
-    return;
+    sub.depsTail = nextDep
+    return
   }
 
   // [!code --]
@@ -439,9 +439,9 @@ export const link = (dep, sub) => {
     prevSub: undefined, // [!code --]
     dep, // [!code --]
     nextDep, // [!code --]
-  }; // [!code --]
+  } // [!code --]
 
-  let newLink: Link; // [!code ++]
+  let newLink: Link // [!code ++]
 
   // [!code ++]
   /**
@@ -452,11 +452,11 @@ export const link = (dep, sub) => {
   // [!code ++]
   if (linkPool) {
     // 从对象池中拿取 // [!code ++]
-    newLink = linkPool; // [!code ++]
-    linkPool = linkPool.nextDep; // [!code ++]
-    newLink.nextDep = nextDep; // [!code ++]
-    newLink.dep = dep; // [!code ++]
-    newLink.sub = sub; // [!code ++]
+    newLink = linkPool // [!code ++]
+    linkPool = linkPool.nextDep // [!code ++]
+    newLink.nextDep = nextDep // [!code ++]
+    newLink.dep = dep // [!code ++]
+    newLink.sub = sub // [!code ++]
   } // [!code ++]
   // [!code ++]
   else {
@@ -467,32 +467,32 @@ export const link = (dep, sub) => {
       prevSub: undefined, // [!code ++]
       dep, // [!code ++]
       nextDep, // [!code ++]
-    }; // [!code ++]
+    } // [!code ++]
   } // [!code ++]
 
   // ...
-};
+}
 
-let linkPool: link | undefined = undefined; // [!code ++]
+let linkPool: link | undefined = undefined // [!code ++]
 
 export function clearTracking(link: Link) {
   while (link) {
-    const { nextDep, prevSub, dep, nextSub } = link;
+    const { nextDep, prevSub, dep, nextSub } = link
 
     // ...
 
     // 将当前节点从依赖项链表中移除，并将其放入linkPool中，以便下次使用
-    link.dep = link.sub = undefined;
+    link.dep = link.sub = undefined
     // [!code ++]
     /**
     // [!code ++]
     * 把不要的节点给 linkPool，以便下次使用
     // [!code ++]
    */
-    link.nextDep = undefined; // [!code --]
-    link.nextDep = linkPool; // [!code ++]
-    linkPool = link; // [!code ++]
-    link = nextDep;
+    link.nextDep = undefined // [!code --]
+    link.nextDep = linkPool // [!code ++]
+    linkPool = link // [!code ++]
+    link = nextDep
   }
 }
 ```
@@ -502,17 +502,17 @@ export function clearTracking(link: Link) {
 >
 > 不要小看这点性能，当项目足够大时，节点复用可以显著提升性能。
 
-## 避免递归
+## Vue3 避免递归
 
 下面先来看一个例子：
 
 ```js
-import { ref, effect } from "../dist/reactivity.esm.js";
+import { ref, effect } from '../dist/reactivity.esm.js'
 
-let count = ref(0);
+let count = ref(0)
 effect(() => {
-  console.log("count.value++", count.value++);
-});
+  console.log('count.value++', count.value++)
+})
 ```
 
 运行这段代码会出现死循环的情况，因为 `effect` 函数中会调用 `count.value++`，而 `count.value++` 会触发 `count` 的 `set` 方法实现赋值，`set` 方法会调用 `run` 方法，又再次调用 `effect` 函数，导致递归调用。
@@ -523,42 +523,42 @@ effect(() => {
 
 ```ts
 export const propagate = (subs) => {
-  let link = subs;
-  let queueEffects = [];
+  let link = subs
+  let queueEffects = []
   while (link) {
-    let sub = link.sub; // [!code ++]
-    if (!sub.trackShaking) queueEffects.push(link.sub); // [!code ++]
-    queueEffects.push(link.sub); // [!code --]
-    link = link.nextSub;
+    let sub = link.sub // [!code ++]
+    if (!sub.trackShaking) queueEffects.push(link.sub) // [!code ++]
+    queueEffects.push(link.sub) // [!code --]
+    link = link.nextSub
   }
-  queueEffects.forEach((effect) => effect?.notify());
-};
+  queueEffects.forEach((effect) => effect?.notify())
+}
 
 export function startTrack(sub) {
-  sub.depsTail = undefined;
-  sub.trackShaking = true; // [!code ++]
+  sub.depsTail = undefined
+  sub.trackShaking = true // [!code ++]
 }
 
 export function endTrack(sub) {
-  const depsTail = sub.depsTail;
-  sub.trackShaking = false; // [!code ++]
+  const depsTail = sub.depsTail
+  sub.trackShaking = false // [!code ++]
   if (depsTail) {
     if (depsTail.nextDep) {
-      clearTracking(depsTail.nextDep);
-      depsTail.nextDep = undefined;
+      clearTracking(depsTail.nextDep)
+      depsTail.nextDep = undefined
     }
   } else if (sub.deps) {
-    clearTracking(sub.deps);
-    sub.deps = undefined;
+    clearTracking(sub.deps)
+    sub.deps = undefined
   }
 }
 ```
 
-## 总结
+## Vue3 总结
 
 上一章实现了基础的 `ref` 功能，实现了依赖收集、链表存储、依赖更新等功能。本章节重点修改完善了部分功能和 `Bug` 。
 
-### 分支切换
+### Vue3 分支切换
 
 如果在 `effect` 回调函数内有一个 `if` 判断，点击修改按钮让判断走 `else` 部分，修改 `if` 为 `true` 部分的响应式变量，发现还是触发了 `effect`，这是因为该响应式变量的 `RefImpl` 类的 `subs` 链表节点上还存在该 `effect` 的依赖项。
 
@@ -573,22 +573,22 @@ export function endTrack(sub) {
 - 清除 `dep` 和 `sub` 和 `nextDep`
 - 继续循环下一个节点
 
-### 依赖清理
+### Vue3 依赖清理
 
 如果在 `effect` 回调函数内有一个变量判断如 `if(a > 2) return`，此时会出现前面此时不会往下执行了，本来依赖是不会收集了，但是之前的依赖节点还在链表内，修改了响应式变量后还是会触发 `effect` 回调函数。
 
 前面已经实现了依赖清除，不过只是在尾节点 `depsTail` 存在且 `nextDep` 不为 `undefined` 时才会清除，因此可以再添加一个判断，如果尾节点不存在，那么就判断它是否有头节点，如果尾节点不存在但有头节点，那么说明 `effect` 回调函数执行过程被 `return` 阻止继续执行，此时需要清除链表内所有依赖。
 
-### 节点复用
+### Vue3 节点复用
 
 每次清掉节点依赖，需要用时创建新的节点，性能会有一定的消耗。如果每次清掉节点依赖后，把节点保存起来，下次复用，性能会有所提升。
 
 新建一个 `linkPool` 变量，用于保存旧节点，默认为 `undefined`，在清除依赖函数中，把旧节点保存起来。在 `link` 函数中，判断当前 `linkPool` 是否有值，如果有值，创建新节点 `newLink` 时可以复用 `linkPool` 的 `nextSub` 和 `prevSub` 。
 
-### 避免递归
+### Vue3 避免递归
 
 为了避免递归调用 `effect` 函数，会给 `activeSub` 添加一个 `trackShaking` 属性，默认值为 `false`，触发 `effect` 后设置为 `true` ，执行完毕后才设为 `false` 。在 `propagate` 函数中，判断 `trackShaking` 是否为 `false`，如果是才把 `link.sub` 添加到数组中。
 
-### 时序图
+### Vue3 时序图
 
 ![时序图](https://pic1.imgdb.cn/item/681d7cf058cb8da5c8e7bfeb.png)

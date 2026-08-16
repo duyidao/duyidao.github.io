@@ -1,6 +1,6 @@
 # Vite 的 SPA 模式
 
-## 前言
+## Vite 前言
 
 关于<word text="Vite" />创建的项目，和曾经的项目创建（如<word text="Vue Cli" />等）存在着很多不同之处。
 
@@ -8,11 +8,11 @@
 
 最后再来聊聊如何用<word text="Vite" />创建一个<word text="Vue2" />项目。
 
-## Vite 创建 Vue 项目
+## Vite Vite 创建 Vue 项目
 
-### Vite 创建 Vue3 项目
+### Vite Vite 创建 Vue3 项目
 
-#### 命令行对比
+#### Vite 命令行对比
 
 先来看看最新版的 [Vite 官方文档](https://vitejs.cn/vite6-cn/guide/#scaffolding-your-first-vite-project)，如何新建一个项目。
 
@@ -48,7 +48,7 @@ pnpm create vue@latest
 
 从命令行的对比上看，二者并没有太大的区别。
 
-#### 入口文件对比
+#### Vite 入口文件对比
 
 新建一个项目后，我们来看看入口文件有何不同。
 
@@ -74,9 +74,9 @@ pnpm create vue@latest
 <!DOCTYPE html>
 <html lang="">
   <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
   </head>
   <body>
@@ -90,7 +90,7 @@ pnpm create vue@latest
 
 从入口文件来看，二者并没有多大的差别，都是以 `type` 为 `module` 的 `script` 标签引入加载 `main.js`，运用到的是浏览器的 [ES Module](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules) 特性。
 
-#### package.json 对比
+#### Vite package.json 对比
 
 下面来对比两个项目的 `package.json` 文件。
 
@@ -148,7 +148,7 @@ pnpm create vue@latest
 
 相比于<word text="Vite" />项目，<word text="Vue3" />项目多了一个 `vite-plugin-vue-devtools` 插件，该插件主要用于调试项目。
 
-#### vite.config.js 对比
+#### Vite vite.config.js 对比
 
 再来看看两个项目的 `vite.config.js` 文件。
 
@@ -164,7 +164,6 @@ export default defineConfig({
 })
 ```
 
-
 ```js [vue/vite.config.js]
 import { fileURLToPath, URL } from 'node:url'
 
@@ -174,13 +173,10 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-  ],
+  plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
 })
@@ -192,8 +188,8 @@ export default defineConfig({
 
 除此之外，<word text="Vue3" />项目还配置了 `resolve.alias`，用于简化路径引用。
 
-### Vue Cli 创建 Vue 项目
+### Vite Vue Cli 创建 Vue 项目
 
 接下来用<word text="Vue Cli" />创建一个<word text="Vue3" />项目，看看有何不同。
 
-#### 目录结构
+#### Vite 目录结构

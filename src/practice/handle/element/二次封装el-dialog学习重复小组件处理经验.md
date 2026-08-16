@@ -51,7 +51,7 @@ export const signProp = (content) => {
 ### jsx 组件标签方案
 
 ```jsx
-import { render } from "vue";
+import { render } from 'vue'
 
 export const signProp = (content) => {
   let pop = (
@@ -61,7 +61,7 @@ export const signProp = (content) => {
         <div>
           <button
             onClick={() => {
-              document.body.removeChild(pop.el); // 这里需要真实dom，虚拟dom会报错
+              document.body.removeChild(pop.el) // 这里需要真实dom，虚拟dom会报错
             }}
           >
             不同意
@@ -70,11 +70,11 @@ export const signProp = (content) => {
         </div>
       </div>
     </div>
-  );
+  )
 
   // 参数一：要渲染的虚拟dom；参数二，要渲染到那个真实dom上
-  render(pop, document.body);
-};
+  render(pop, document.body)
+}
 ```
 
 这么写点击按钮后页面能生成对应 <word text="DOM" />，点击不同意按钮也能卸载。但再次点击按钮后不再生成 <word text="DOM" />，因为 `render` 函数只会执行一次，执行完后虽然页面真实 <word text="DOM" /> 被删除了，但 `render` 认为已挂载，就不再执行。
@@ -82,10 +82,10 @@ export const signProp = (content) => {
 参考一下 Element UI 的方法修改。
 
 ```jsx
-import { render } from "vue";
+import { render } from 'vue'
 
 export const signProp = (content, handler) => {
-  let div = document.createElement("div"); // [!code ++]
+  let div = document.createElement('div') // [!code ++]
   let pop = (
     <div class="dialog-cover">
       <div class="dialog-cover-content">
@@ -93,8 +93,8 @@ export const signProp = (content, handler) => {
         <div class="btns">
           <button
             onClick={() => {
-              document.body.removeChild(div); // 这里需要真实dom，虚拟dom会报错
-              handler.cancel && handler.cancel(); // [!code ++]
+              document.body.removeChild(div) // 这里需要真实dom，虚拟dom会报错
+              handler.cancel && handler.cancel() // [!code ++]
             }}
           >
             不同意
@@ -102,8 +102,8 @@ export const signProp = (content, handler) => {
           <button
             onClick={() => {
               // [!code ++]
-              document.body.removeChild(div); // 这里需要真实dom，虚拟dom会报错 // [!code ++]
-              handler.confirm && handler.confirm(); // [!code ++]
+              document.body.removeChild(div) // 这里需要真实dom，虚拟dom会报错 // [!code ++]
+              handler.confirm && handler.confirm() // [!code ++]
             }} // [!code ++]
           >
             确认签署
@@ -111,12 +111,12 @@ export const signProp = (content, handler) => {
         </div>
       </div>
     </div>
-  );
+  )
 
   // 参数一：要渲染的虚拟dom；参数二，要渲染到那个真实dom上
-  render(pop, div); // [!code ++]
-  document.body.appendChild(div);
-};
+  render(pop, div) // [!code ++]
+  document.body.appendChild(div)
+}
 ```
 
 它是通过原生 <word text="DOM" /> 来加入到 `body` 内，这样就不会管虚拟 <word text="DOM" /> 是否挂载。
@@ -125,7 +125,7 @@ export const signProp = (content, handler) => {
 
 ```vue
 <script setup>
-import { signProp } from "./signProp.jsx";
+import { signProp } from './signProp.jsx'
 </script>
 
 <template>
@@ -153,40 +153,40 @@ import { signProp } from "./signProp.jsx";
 ::: code-group
 
 ```ts [signProp.ts]
-import { createApp, h } from "vue";
-import { ElDialog } from "element-plus";
+import { createApp, h } from 'vue'
+import { ElDialog } from 'element-plus'
 
 export function signProp({ component, props, modalProps }) {
   const dialog = h(
     ElDialog,
     { ...modalProps, modelValue: true },
-    { default: () => h(component, props) }
-  );
+    { default: () => h(component, props) },
+  )
 
-  const app = createApp(dialog);
+  const app = createApp(dialog)
 
-  const div = document.createElement("div");
-  document.body.appendChild(div);
-  app.mount(div);
+  const div = document.createElement('div')
+  document.body.appendChild(div)
+  app.mount(div)
 }
 ```
 
 ```vue [App.vue]
 <script setup>
-import signProp from "./signProp.ts";
-import LoginForm from "./LoginForm.vue";
+import signProp from './signProp.ts'
+import LoginForm from './LoginForm.vue'
 
 const clickFn = () => {
   signProp({
     component: LoginForm,
     props: {
-      msg: "欢迎来到xx系统",
+      msg: '欢迎来到xx系统',
     },
     modalProps: {
-      title: "登录",
+      title: '登录',
     },
-  });
-};
+  })
+}
 </script>
 
 <template>
@@ -196,50 +196,50 @@ const clickFn = () => {
 
 ```vue [LoginForm.vue]
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { reactive, ref } from 'vue'
 
 withDefaults(
   defineProps<{
-    msg: string;
+    msg: string
   }>(),
   {
-    msg: "请登录",
-  }
-);
+    msg: '请登录',
+  },
+)
 
 const formData = reactive({
-  username: "",
-  password: "",
-});
+  username: '',
+  password: '',
+})
 
 const rules = {
   username: [
-    { required: true, message: "请输入用户名", trigger: "blur" },
-    { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" },
+    { required: true, message: '请输入用户名', trigger: 'blur' },
+    { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' },
   ],
   password: [
-    { required: true, message: "请输入密码", trigger: "blur" },
-    { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" },
+    { required: true, message: '请输入密码', trigger: 'blur' },
+    { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' },
   ],
-};
+}
 
-const formRef = ref(null);
+const formRef = ref(null)
 
 const submit = () => {
   return new Promise((resolve, reject) => {
     formRef.value.validate((valid: boolean) => {
       if (valid) {
-        resolve(valid);
+        resolve(valid)
       } else {
-        reject(valid);
+        reject(valid)
       }
-    });
-  });
-};
+    })
+  })
+}
 
 defineExpose({
   submit,
-});
+})
 </script>
 
 <template>
@@ -264,32 +264,32 @@ defineExpose({
 ::: code-group
 
 ```ts [plugin.ts]
-import Antd from "ant-design-vue"; // [!code ++]
+import Antd from 'ant-design-vue' // [!code ++]
 // [!code ++]
 // [!code ++]
 export function loadPlugin(app) {
-  app.use(Antd); // [!code ++]
+  app.use(Antd) // [!code ++]
 } // [!code ++]
 ```
 
 ```ts [signProp.ts]
-import { createApp, h } from "vue";
-import { ElDialog } from "element-plus";
-import { loadPlugin } from "./plugin.ts"; // [!code ++]
+import { createApp, h } from 'vue'
+import { ElDialog } from 'element-plus'
+import { loadPlugin } from './plugin.ts' // [!code ++]
 
 export function signProp({ component, props, modalProps }) {
   const dialog = h(
     ElDialog,
     { ...modalProps, modelVAlue: true },
-    { default: () => h(component, props) }
-  );
+    { default: () => h(component, props) },
+  )
 
-  app.createApp(dialog);
-  loadPlugin(app); // [!code ++]
+  app.createApp(dialog)
+  loadPlugin(app) // [!code ++]
 
-  const div = document.createElement("div");
-  document.body.appendChild(div);
-  app.mount(div);
+  const div = document.createElement('div')
+  document.body.appendChild(div)
+  app.mount(div)
 }
 ```
 
@@ -298,12 +298,12 @@ export function signProp({ component, props, modalProps }) {
 现在能正常渲染组件了，但是点击关闭按钮后发现无法生效，这是因为弹框开启的变量 `visible` 设为 `true` ，需要修改为一个响应式变量。修改为响应式变量后，点击关闭按钮发现还是不生效，这是因为响应式变量想要工作，需要作为订阅者 `effect` 函数的依赖项，因此这里需要调整为一个函数的形式。
 
 ```ts [signProp.ts]
-import { createApp, h } from "vue";
-import { ElDialog } from "element-plus";
-import { loadPlugin } from "./plugin.ts";
+import { createApp, h } from 'vue'
+import { ElDialog } from 'element-plus'
+import { loadPlugin } from './plugin.ts'
 
 export function signProp(component, props, modalProps) {
-  const visible = ref(true); // [!code ++]
+  const visible = ref(true) // [!code ++]
   // [!code ++]
   const dialog = () =>
     h(
@@ -316,7 +316,7 @@ export function signProp(component, props, modalProps) {
         default: () => h(component, props),
         // [!code ++]
         footer: () =>
-          h("div", {}, [
+          h('div', {}, [
             // [!code ++]
             h(
               ElButton, // [!code ++]
@@ -324,43 +324,43 @@ export function signProp(component, props, modalProps) {
                 // [!code ++]
                 onClick() {
                   // [!code ++]
-                  unmount(); // [!code ++]
+                  unmount() // [!code ++]
                 }, // [!code ++]
               }, // [!code ++]
-              { default: () => "取消" } // [!code ++]
+              { default: () => '取消' }, // [!code ++]
             ), // [!code ++]
             h(
               // [!code ++]
               ElButton, // [!code ++]
               {
                 // [!code ++]
-                type: "primary", // [!code ++]
+                type: 'primary', // [!code ++]
                 onClick() {
                   // [!code ++]
                 }, // [!code ++]
               }, // [!code ++]
-              { default: () => "确认" } // [!code ++]
+              { default: () => '确认' }, // [!code ++]
             ), // [!code ++]
           ]), // [!code ++]
-      }
-    );
+      },
+    )
 
-  app.createApp(dialog);
-  loadPlugin(app);
+  app.createApp(dialog)
+  loadPlugin(app)
 
-  const div = document.createElement("div");
-  document.body.appendChild(div);
-  app.mount(div);
+  const div = document.createElement('div')
+  document.body.appendChild(div)
+  app.mount(div)
 
   // [!code ++]
   function unmount() {
-    visible.value = false; // [!code ++]
+    visible.value = false // [!code ++]
     // [!code ++]
     setTimeout(() => {
       // 组件关闭后再卸载组件，保留弹框的关闭动画 // [!code ++]
-      app.unmount(); // [!code ++]
-      document.body.removeChild(div); // [!code ++]
-    }, 300); // [!code ++]
+      app.unmount() // [!code ++]
+      document.body.removeChild(div) // [!code ++]
+    }, 300) // [!code ++]
   } // [!code ++]
 }
 ```

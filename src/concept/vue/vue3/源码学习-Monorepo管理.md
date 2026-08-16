@@ -3,8 +3,9 @@
 现在在 `monorepo` 中，除了前面的 `reactivity` 和 `vue` 两个包，我们再新增一个 `shared` 包，用于存放一些公共的工具函数，给其他包导入使用。他们配置分别如下：
 
 - `reactivity`
-  
+
   ::: code-group
+
   ```js [package.json]
   {
     "name": "@vue/reactivity",
@@ -28,16 +29,19 @@
     }
   }
   ```
+
   ```js [src/index.js]
-  export function fn (a, b) {
-    return a + b;
+  export function fn(a, b) {
+    return a + b
   }
   ```
+
   :::
 
 - `vue`
-  
+
   ::: code-group
+
   ```js [package.json]
   {
     "name": "vue",
@@ -60,16 +64,19 @@
     }
   }
   ```
+
   ```js [src/index.js]
-  export function isObject (value) {
+  export function isObject(value) {
     return value !== null && typeof value === 'object'
   }
   ```
+
   :::
 
 - `shared`
-  
+
   ::: code-group
+
   ```js [package.json]
   {
     "name": "myshared",
@@ -93,11 +100,13 @@
     }
   }
   ```
+
   ```js [src/index.js]
-  export function isObject (value) {
+  export function isObject(value) {
     return value !== null && typeof value === 'object'
   }
   ```
+
   :::
 
 现在 `reactivity` 模块想要引用 `shared` 模块的方法，除了 `import { isObject } from '../../shared'`，还可以 `import { isObject } from '@vue/shared'`。但是这么导入的话会报错，找不到模块，因为 `@vue/shared` 模块并没有被安装。
@@ -135,7 +144,8 @@ pnpm i @vue/shared --workspace --filter @vue/reactivity
     "resolveJsonModule": true, // 允许导入 JSON 文件
     "strict": false, // 关闭严格模式
     "lib": ["ESNext", "DOM"], // 指定要使用的库文件
-    "paths": { // [!code ++]
+    "paths": {
+      // [!code ++]
       "@vue/*": ["packages/*/src"] // [!code ++]
     }, // [!code ++]
     "baseUrl": "./" // [!code ++]

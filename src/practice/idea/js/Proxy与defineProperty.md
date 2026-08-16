@@ -21,15 +21,15 @@
 - 方法调用
 
 ```js
-let obj = {};
-console.log(obj.a);
-obj.b = 2;
-"c" in obj;
-delete obj.a;
+let obj = {}
+console.log(obj.a)
+obj.b = 2
+'c' in obj
+delete obj.a
 for (const k in obj) {
-  console.log(k);
+  console.log(k)
 }
-obj.c();
+obj.c()
 ```
 
 这些写法是为了方便开发者的简便写法，其内部会调用对应的函数。如读值操作 `obj.a` ，它内部会调用一个 `get` 函数；赋值操作 `obj.b = 2` ，它内部会调用一个 `set` 函数；查找操作 `'c' in obj` ，它内部会调用一个 `has` 函数；删除操作 `delete obj.a` ，它内部会调用 `delete` 函数；枚举操作 `for(const k in obj)` ，它内部会调用一个 `ownKeys` 函数。
@@ -56,7 +56,7 @@ const obj = {
     tree: 1,
     flower: 2,
   },
-};
+}
 ```
 
 现在我若直接 `obj.a = 2` 修改对象 `obj` 的 `a` 属性，显然是无法做处理的。若使用函数的方式呢？通过 `get()` 获取值，通过 `set()` 设置值。
@@ -64,18 +64,18 @@ const obj = {
 不过怎么变成函数呢？在 ES6 之前，只能通过 `Object.defineProperty` 实现。
 
 ```js
-Object.defineProperty(obj, "a", {
+Object.defineProperty(obj, 'a', {
   get() {
-    console.log("读取a:", a);
-    return a;
+    console.log('读取a:', a)
+    return a
   },
   set(val) {
     if (val !== obj.a) {
-      console.log("更改a:", a);
-      obj.a = val;
+      console.log('更改a:', a)
+      obj.a = val
     }
   },
-});
+})
 ```
 
 这样就能够在获取 `a` 时监听到，在更改 `a` 时也能监听到，还能做其他的操作。
@@ -84,26 +84,26 @@ Object.defineProperty(obj, "a", {
 
 ```js
 function _isObject(v) {
-  return typeof v === "object" && v !== null;
+  return typeof v === 'object' && v !== null
 }
 
 function observe(obj) {
   for (const k in obj) {
-    let v = obj[k];
-    if (_isObject(v)) observe(v);
+    let v = obj[k]
+    if (_isObject(v)) observe(v)
   }
   Object.defineProperty(obj, k, {
     get() {
-      console.log("读取:", k);
-      return v;
+      console.log('读取:', k)
+      return v
     },
     set(val) {
       if (val !== v) {
-        console.log("更改:", k);
-        v = val;
+        console.log('更改:', k)
+        v = val
       }
     },
-  });
+  })
 }
 ```
 
@@ -119,27 +119,27 @@ function observe(obj) {
 
 ```js
 function _isObject(v) {
-  return typeof v === "object" && v !== null;
+  return typeof v === 'object' && v !== null
 }
 
 function observe(obj) {
   const newObj = new Proxy(obj, {
     get(target, k) {
-      let v = target[k];
+      let v = target[k]
       if (_isObject(v)) {
-        v = observe(v);
+        v = observe(v)
       }
-      console.log(k, "read");
-      return v;
+      console.log(k, 'read')
+      return v
     },
     set(target, k, val) {
-      let v = target[k];
+      let v = target[k]
       if (target[k] !== val) {
-        target[k] = val;
+        target[k] = val
       }
     },
-  });
-  return newObj;
+  })
+  return newObj
 }
 ```
 

@@ -28,12 +28,10 @@ const formItems = [
     label: '姓名',
     key: 'name',
     type: 'input',
-    rules: [
-      { required: true, message: '请输入姓名', trigger: 'blur' },
-    ],
+    rules: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
     props: {
       placeholder: '请输入姓名',
-    }
+    },
   },
   {
     label: '年龄',
@@ -44,7 +42,7 @@ const formItems = [
     ],
     props: {
       placeholder: '请输入年龄',
-    }
+    },
   },
 ]
 
@@ -64,13 +62,15 @@ setTimeout(() => {
 
 <template>
   <div>
-    <FormBuilder ref="formBuilderRef" :formItems="formItems" v-model="formData" />
+    <FormBuilder
+      ref="formBuilderRef"
+      :formItems="formItems"
+      v-model="formData"
+    />
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
 ```
 
 ```vue [formBuilder.vue]
@@ -92,32 +92,39 @@ const formData = defineModel()
 
 const formRules = computed(() => {
   let rules = {}
-  props.formItems.forEach(item => rules[item.key] = item.rules)
+  props.formItems.forEach((item) => (rules[item.key] = item.rules))
   return rules
 })
 
 const formItemDict = {
   input: ElInput,
-  number: ElInputNumber
+  number: ElInputNumber,
 }
 
-const vm = getCurrentInstance(); 
+const vm = getCurrentInstance()
 function changeRef(inputInstance) {
-  vm.exposed = vm.exposeProxy = inputInstance || {}; 
-} 
+  vm.exposed = vm.exposeProxy = inputInstance || {}
+}
 </script>
 
 <template>
   <el-form :ref="changeRef" :model="formData" :rules="formRules">
-    <el-form-item v-for="item in formItems" :key="item.key" :label="item.label" :prop="item.key">
-      <component :is="formItemDict[item.type]" v-model="formData[item.key]" v-bind="item.props"></component>
+    <el-form-item
+      v-for="item in formItems"
+      :key="item.key"
+      :label="item.label"
+      :prop="item.key"
+    >
+      <component
+        :is="formItemDict[item.type]"
+        v-model="formData[item.key]"
+        v-bind="item.props"
+      ></component>
     </el-form-item>
   </el-form>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
 ```
 
 :::
@@ -148,9 +155,7 @@ const formItems = [
     label: '姓名',
     key: 'name',
     type: 'input',
-    rules: [
-      { required: true, message: '请输入姓名', trigger: 'blur' },
-    ],
+    rules: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
     placeholder: '请输入姓名', // [!code focus]
   },
   {
@@ -172,18 +177,19 @@ const formItems = [
     // [!code focus]
     props: {
       placeholder: '请选择年龄', // [!code focus]
-      options: [ // [!code focus]
+      options: [
+        // [!code focus]
         { label: '男', value: 1 }, // [!code focus]
         { label: '女', value: 2 }, // [!code focus]
-      ] // [!code focus]
-    } // [!code focus]
+      ], // [!code focus]
+    }, // [!code focus]
   },
 ]
 
 const { state: formData, reset } = useResetRefByObj({
   name: '',
   age: null,
-  sex: null
+  sex: null,
 })
 
 const formBuilderRef = useTemplateRef('formBuilderRef')
@@ -206,20 +212,28 @@ const handleReset = () => {
 
 <template>
   <div>
-    <FormBuilder ref="formBuilderRef" :formItems="formItems" v-model="formData" />
+    <FormBuilder
+      ref="formBuilderRef"
+      :formItems="formItems"
+      v-model="formData"
+    />
     <MyButton @click="handleSubmit">提交</MyButton>
     <el-button @click="handleReset">重置</el-button>
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
 ```
 
 ```vue [formBuilder.vue]
 <script setup lang="ts">
-import { ElForm, ElFormItem, ElInput, ElInputNumber, ElSelect } from 'element-plus'
+import {
+  ElForm,
+  ElFormItem,
+  ElInput,
+  ElInputNumber,
+  ElSelect,
+} from 'element-plus'
 import { computed, getCurrentInstance } from 'vue'
 
 const props = defineProps<{
@@ -237,7 +251,7 @@ const formData = defineModel()
 // 表单校验规则
 const formRules = computed(() => {
   let rules = {}
-  props.formItems.forEach(item => rules[item.key] = item.rules)
+  props.formItems.forEach((item) => (rules[item.key] = item.rules))
   return rules
 })
 
@@ -264,24 +278,31 @@ const getProps = (item) => {
 } // [!code focus]
 
 // el-form方法暴露给父组件
-const vm = getCurrentInstance(); 
+const vm = getCurrentInstance()
 function changeRef(inputInstance) {
-  vm.exposed = vm.exposeProxy = inputInstance || {}; 
-} 
+  vm.exposed = vm.exposeProxy = inputInstance || {}
+}
 </script>
 
 <template>
   <el-form :ref="changeRef" :model="formData" :rules="formRules">
-    <el-form-item v-for="item in formItems" :key="item.key" :label="item.label" :prop="item.key">
+    <el-form-item
+      v-for="item in formItems"
+      :key="item.key"
+      :label="item.label"
+      :prop="item.key"
+    >
       <!-- ![code focus] -->
-      <component :is="formItemDict[item.type]" v-model="formData[item.key]" v-bind="getProps(item)"></component>
+      <component
+        :is="formItemDict[item.type]"
+        v-model="formData[item.key]"
+        v-bind="getProps(item)"
+      ></component>
     </el-form-item>
   </el-form>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
 ```
 
 :::
@@ -303,14 +324,12 @@ const formItems = [
     label: '姓名',
     key: 'name',
     type: 'input',
-    rules: [
-      { required: true, message: '请输入姓名', trigger: 'blur' },
-    ],
+    rules: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
     placeholder: '请输入姓名',
     // [!code focus]
     onChange: (val: string) => {
       console.log(val) // [!code focus]
-    } // [!code focus]
+    }, // [!code focus]
   },
   {
     label: '年龄',
@@ -333,8 +352,8 @@ const formItems = [
       options: [
         { label: '男', value: 1 },
         { label: '女', value: 2 },
-      ]
-    }
+      ],
+    },
   },
 ]
 ```
@@ -355,15 +374,21 @@ const formItems = [
     key: 'MyButton',
     type: MyButton,
     props: {
-      text: '自定义按钮'
-    }
+      text: '自定义按钮',
+    },
   },
 ]
 ```
 
 ```vue [formBuilder.vue]
 <script setup lang="ts">
-import { ElForm, ElFormItem, ElInput, ElInputNumber, ElSelect } from 'element-plus'
+import {
+  ElForm,
+  ElFormItem,
+  ElInput,
+  ElInputNumber,
+  ElSelect,
+} from 'element-plus'
 import { computed, getCurrentInstance } from 'vue'
 
 const props = defineProps<{
@@ -381,7 +406,7 @@ const formData = defineModel()
 // 表单校验规则
 const formRules = computed(() => {
   let rules = {}
-  props.formItems.forEach(item => rules[item.key] = item.rules)
+  props.formItems.forEach((item) => (rules[item.key] = item.rules))
   return rules
 })
 
@@ -419,28 +444,38 @@ const getProps = (item) => {
  // [!code focus]
  * @returns 表单项的组件 
  // [!code focus]
- */ 
- // [!code focus]
+ */
+// [!code focus]
 const getComponent = (item) => {
   const { type } = item // [!code focus]
-  if (typeof type === 'string') { // [!code focus]
+  if (typeof type === 'string') {
+    // [!code focus]
     return formItemDict[type] // [!code focus]
   } // [!code focus]
   return type // [!code focus]
 } // [!code focus]
 
 // el-form方法暴露给父组件
-const vm = getCurrentInstance(); 
+const vm = getCurrentInstance()
 function changeRef(inputInstance) {
-  vm.exposed = vm.exposeProxy = inputInstance || {}; 
-} 
+  vm.exposed = vm.exposeProxy = inputInstance || {}
+}
 </script>
 
 <template>
   <el-form :ref="changeRef" :model="formData" :rules="formRules">
-    <el-form-item v-for="item in formItems" :key="item.key" :label="item.label" :prop="item.key">
+    <el-form-item
+      v-for="item in formItems"
+      :key="item.key"
+      :label="item.label"
+      :prop="item.key"
+    >
       <!-- [!code focus] -->
-      <component :is="getComponent(item)" v-model="formData[item.key]" v-bind="getProps(item)"></component>
+      <component
+        :is="getComponent(item)"
+        v-model="formData[item.key]"
+        v-bind="getProps(item)"
+      ></component>
     </el-form-item>
   </el-form>
 </template>
@@ -476,7 +511,8 @@ import { AddLocation } from '@element-plus/icons-vue'
 
 const formItems = [
   // ... 省略
-  { // [!code focus]
+  {
+    // [!code focus]
     label: '地址', // [!code focus]
     key: 'address', // [!code focus]
     placeholder: '请输入地址', // [!code focus]
@@ -486,8 +522,8 @@ const formItems = [
     key: 'MyButton',
     type: MyButton,
     props: {
-      text: '自定义按钮'
-    }
+      text: '自定义按钮',
+    },
   },
 ]
 
@@ -499,9 +535,13 @@ const formItems = [
     <FormBuilder ref="formBuilderRef" :formItems="formItems" v-model="formData">
       <!-- [!code focus] -->
       <template #address>
-      <!-- [!code focus] -->
-        <el-input v-model="formData.address" placeholder="请输入地址" :suffix-icon="AddLocation"></el-input>
-      <!-- [!code focus] -->
+        <!-- [!code focus] -->
+        <el-input
+          v-model="formData.address"
+          placeholder="请输入地址"
+          :suffix-icon="AddLocation"
+        ></el-input>
+        <!-- [!code focus] -->
       </template>
     </FormBuilder>
     <!-- ... 省略 -->
@@ -514,11 +554,20 @@ const formItems = [
 
 <template>
   <el-form :ref="changeRef" :model="formData" :rules="formRules">
-    <el-form-item v-for="item in formItems" :key="item.key" :label="item.label" :prop="item.key">
+    <el-form-item
+      v-for="item in formItems"
+      :key="item.key"
+      :label="item.label"
+      :prop="item.key"
+    >
       <!-- [!code focus] -->
       <slot :name="item.key">
-        <component :is="getComponent(item)" v-model="formData[item.key]" v-bind="getProps(item)"></component>
-      <!-- [!code focus] -->
+        <component
+          :is="getComponent(item)"
+          v-model="formData[item.key]"
+          v-bind="getProps(item)"
+        ></component>
+        <!-- [!code focus] -->
       </slot>
     </el-form-item>
   </el-form>
@@ -539,7 +588,7 @@ const formItems = [
 
 ```vue [formBuilder.vue]
 <script setup lang="ts">
-const form = computed(() => props.formItems.filter(item => !item.hidden)) // [!code focus]
+const form = computed(() => props.formItems.filter((item) => !item.hidden)) // [!code focus]
 
 // ... 省略
 </script>
@@ -547,9 +596,18 @@ const form = computed(() => props.formItems.filter(item => !item.hidden)) // [!c
 <template>
   <el-form :ref="changeRef" :model="formData" :rules="formRules">
     <!-- [!code focus] -->
-    <el-form-item v-for="item in form" :key="item.key" :label="item.label" :prop="item.key">
+    <el-form-item
+      v-for="item in form"
+      :key="item.key"
+      :label="item.label"
+      :prop="item.key"
+    >
       <slot :name="item.key">
-        <component :is="getComponent(item)" v-model="formData[item.key]" v-bind="getProps(item)"></component>
+        <component
+          :is="getComponent(item)"
+          v-model="formData[item.key]"
+          v-bind="getProps(item)"
+        ></component>
       </slot>
     </el-form-item>
   </el-form>
@@ -565,17 +623,21 @@ const form = computed(() => props.formItems.filter(item => !item.hidden)) // [!c
   <el-form :ref="changeRef" :model="formData" :rules="formRules">
     <!-- [!code focus] -->
     <el-row :gutter="20">
-    <!-- [!code focus] -->
+      <!-- [!code focus] -->
       <el-col v-for="item in form" :key="item.key" :span="item.span || 24">
-    <!-- [!code focus] -->
+        <!-- [!code focus] -->
         <el-form-item :label="item.label" :prop="item.key">
           <slot :name="item.key">
-            <component :is="getComponent(item)" v-model="formData[item.key]" v-bind="getProps(item)"></component>
+            <component
+              :is="getComponent(item)"
+              v-model="formData[item.key]"
+              v-bind="getProps(item)"
+            ></component>
           </slot>
         </el-form-item>
-    <!-- [!code focus] -->
+        <!-- [!code focus] -->
       </el-col>
-    <!-- [!code focus] -->
+      <!-- [!code focus] -->
     </el-row>
   </el-form>
 </template>

@@ -8,99 +8,99 @@
 
 ```js
 // 常量
-const PENDING = "pending";
-const FULFILLED = "fulfilled";
-const REJECTED = "rejected";
+const PENDING = 'pending'
+const FULFILLED = 'fulfilled'
+const REJECTED = 'rejected'
 
 function runMicrotasks(fn) {
-  if (typeof queueMicrotask === "function") {
-    queueMicrotask(fn);
+  if (typeof queueMicrotask === 'function') {
+    queueMicrotask(fn)
   } else if (
-    typeof process === "object" &&
-    typeof process.nextTick === "function"
+    typeof process === 'object' &&
+    typeof process.nextTick === 'function'
   ) {
-    process.nextTick(fn);
-  } else if (typeof MutationObserver === "function") {
-    const observer = new MutationObserver(fn);
-    const textNode = document.createTextNode(String(Math.random()));
-    observer.observe(textNode, { characterData: true });
+    process.nextTick(fn)
+  } else if (typeof MutationObserver === 'function') {
+    const observer = new MutationObserver(fn)
+    const textNode = document.createTextNode(String(Math.random()))
+    observer.observe(textNode, { characterData: true })
     // 当节点的内容发生变化，就会异步执行前面的fn函数
-    textNode.data = String(Math.random());
+    textNode.data = String(Math.random())
   } else {
-    setTimeout(fn, 0);
+    setTimeout(fn, 0)
   }
 }
 
 function isPromiseLike(obj) {
-  return typeof obj?.then === "function";
+  return typeof obj?.then === 'function'
 }
 
 class MyPromise {
-  #state = PENDING; // 修改为内部私有
-  #value;
-  #handlers = []; // 保存onFulfilled和onRejected函数
+  #state = PENDING // 修改为内部私有
+  #value
+  #handlers = [] // 保存onFulfilled和onRejected函数
   constructor(executor) {
     const resolve = (val) => {
-      this.#setState(FULFILLED, val);
-    };
+      this.#setState(FULFILLED, val)
+    }
 
     const reject = (reason) => {
-      this.#setState(REJECTED, reason);
-    };
+      this.#setState(REJECTED, reason)
+    }
 
     try {
-      executor(resolve, reject);
+      executor(resolve, reject)
     } catch (err) {
-      reject(err);
+      reject(err)
     }
   }
 
   // 修改状态和值
   #setState(state, value) {
-    if (this.#state !== PENDING) return;
-    this.#value = value;
-    this.#state = state;
-    this.#runTask();
+    if (this.#state !== PENDING) return
+    this.#value = value
+    this.#state = state
+    this.#runTask()
   }
 
   #runTask() {
     runMicrotasks(() => {
       if (this.#state !== PENDING) {
-        this.#handlers().forEach((cb) => cb());
-        this.#handlers = [];
+        this.#handlers().forEach((cb) => cb())
+        this.#handlers = []
       }
-    });
+    })
   }
 
   then(onFulfilled, onRejected) {
     return new MyPromise((resolve, reject) => {
       this.#handlers.push(() => {
         try {
-          const cb = this.#state === FULFILLED ? onFulfilled : onRejected;
-          const res = typeof cb === "function" ? cb(this.#value) : this.#value;
+          const cb = this.#state === FULFILLED ? onFulfilled : onRejected
+          const res = typeof cb === 'function' ? cb(this.#value) : this.#value
           if (isPromiseLike(res)) {
-            resolve(res.then(resolve, reject));
+            resolve(res.then(resolve, reject))
           } else {
-            resolve(res);
+            resolve(res)
           }
         } catch (err) {
-          reject(err);
+          reject(err)
         }
-      });
-      this.#runTask();
-    });
+      })
+      this.#runTask()
+    })
   }
 }
 
 const p = new MyPromise((resolve, reject) => {
-  resolve(1);
-});
+  resolve(1)
+})
 
 p.then((res) => {
-  console.log("p1", res);
-});
+  console.log('p1', res)
+})
 
-console.log("end");
+console.log('end')
 ```
 
 `MyPromise` 接收一个回调函数，由于它是同步任务，因此会立即执行这个函数。执行完毕后，会调用 `resolve` 或 `reject` 来改变状态。状态只会改变一次，发生改变后不再会改变。如果函数内部抛出了错误，最终状态也会变为 `reject`，因此用了 `try...catch` 来捕获错误。
@@ -121,7 +121,7 @@ class MyPromise {
 
   catch(onRejected) {
     // [!code ++]
-    return this.then(null, onRejected); // [!code ++]
+    return this.then(null, onRejected) // [!code ++]
   } // [!code ++]
 }
 ```
@@ -135,7 +135,7 @@ class MyPromise {
   // ...
 
   catch(onRejected) {
-    return this.then(null, onRejected);
+    return this.then(null, onRejected)
   }
 
   finally(onFinally) {
@@ -144,15 +144,15 @@ class MyPromise {
       // [!code ++]
       (res) => {
         // [!code ++]
-        onFinally(); // [!code ++]
-        return res; // [!code ++]
+        onFinally() // [!code ++]
+        return res // [!code ++]
       }, // [!code ++]
       (err) => {
         // [!code ++]
-        onFinally(); // [!code ++]
-        throw err; // [!code ++]
-      } // [!code ++]
-    ); // [!code ++]
+        onFinally() // [!code ++]
+        throw err // [!code ++]
+      }, // [!code ++]
+    ) // [!code ++]
   } // [!code ++]
 }
 ```

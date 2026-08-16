@@ -1,6 +1,6 @@
 # clip-path 实现裁剪
 
-## 前置知识
+## CSS 前置知识
 
 [clip-path](https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path) 属性使用裁剪方式创建元素的可显示区域。区域内的部分显示，区域外的隐藏。
 
@@ -53,7 +53,6 @@ clip-path: unset;
 - `<basic-shape>`
 
   一种形状，其大小和位置由 `<geometry-box>` 的值定义。如果没有指定 `<geometry-box>`，则将使用 `border-box` 用为参考框。取值可为以下值中的任意一个：
-
   - `inset()` 定义一个 inset 矩形。
   - `circle()` 定义一个圆形（使用一个半径和一个圆心位置）。
   - `ellipse()` 定义一个椭圆（使用两个半径和一个圆心位置）。
@@ -63,7 +62,6 @@ clip-path: unset;
 - `<geometry-box>`
 
   如果同 `<basic-shape>` 一起声明，它将为基本形状提供相应的参考框盒。通过自定义，它将利用确定的盒子边缘包括任何形状边角（比如说，被 [border-radius](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-radius) 定义的剪切路径）。几何框盒可以有以下的值中的一个：
-
   - `margin-box` 使用 [margin box](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_shapes/From_box_values#margin-box) 作为引用框。
   - `border-box` 使用 [border box](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_shapes/From_box_values#border-box) 作为引用框。
   - `padding-box` 使用 [padding box](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_shapes/From_box_values#padding-box) 作为引用框。
@@ -77,7 +75,7 @@ clip-path: unset;
   不创建剪切路径。
 
 > [!INFO] 备注
-> <word text="CSS" />计算值不为 `none` 时，会创建新的[层叠上下文](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context)，就像 CSS [opacity](https://developer.mozilla.org/zh-CN/docs/Web/CSS/opacity) 的值不为 1 时那样。
+> <word text="CSS" /> 计算值不为 `none` 时，会创建新的[层叠上下文](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context)，就像 CSS [opacity](https://developer.mozilla.org/zh-CN/docs/Web/CSS/opacity) 的值不为 1 时那样。
 
 形式定义:
 
@@ -120,7 +118,7 @@ clip-path =
   content-box
 ```
 
-## 实现
+## CSS 实现
 
 1. 相框显示，鼠标移入后显示全部，移出则裁剪为四方形。使用多边形裁剪 `polygon` ，代码：
 
@@ -174,19 +172,19 @@ clip-path =
 
 实现从下往上只需要给起始动画设置 Y 轴的偏移量为 100% 即可。代码：
 
-   ```css
-   @keyframes fall {
-     0% {
-       clip-path: inset(100% 0% 0% 0%);
-       transform: translateY(-100%);
-     }
-     100% {
-       clip-path: inset(0% 0% 0% 0%);
-     }
-   }
-   ```
+```css
+@keyframes fall {
+  0% {
+    clip-path: inset(100% 0% 0% 0%);
+    transform: translateY(-100%);
+  }
+  100% {
+    clip-path: inset(0% 0% 0% 0%);
+  }
+}
+```
 
-4. 水平位移，实际上是通过多边形裁剪实现，鼠标移出时不渲染该部分内容，鼠标移入时再显示。代码：
+1. 水平位移，实际上是通过多边形裁剪实现，鼠标移出时不渲染该部分内容，鼠标移入时再显示。代码：
 
    ```html
    <style>
@@ -199,6 +197,6 @@ clip-path =
    </style>
    ```
 
-## 总体效果
+## CSS 总体效果
 
 <myIframe url="https://duyidao.github.io/blogweb/#/detail/css/clipPath" />

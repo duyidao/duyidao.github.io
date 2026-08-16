@@ -31,16 +31,16 @@ pnpm i @fullcalendar/core @fullcalendar/daygrid @fullcalendar/interaction @fullc
         还有{{ arg.num }}个日程
       </span>
     </template>
-    
+
     <!-- 定制单个日程卡片的展示 -->
     <template #eventContent="arg">
-      <div 
-        class="event-title flex items-center px-6px truncate hover:opacity-70" 
+      <div
+        class="event-title flex items-center px-6px truncate hover:opacity-70"
         :style="getEventTitleStyle(arg)"
       >
-        <span 
-          class="border-dot hidden shrink-0 mr-4px" 
-          :style="{ backgroundColor: arg.event.textColor }" 
+        <span
+          class="border-dot hidden shrink-0 mr-4px"
+          :style="{ backgroundColor: arg.event.textColor }"
         />
         <span class="event-label">{{ arg.event.title }}</span>
       </div>
@@ -90,7 +90,7 @@ const calendarOptions = {
   selectable: false,
   dayMaxEvents: true,
   weekends: true,
-  
+
   // 自定义事件排序（按时间从新到旧）
   eventOrder(eventA: any, eventB: any) {
     return dayjs(eventB.time).isAfter(dayjs(eventA.time)) ? 1 : -1
@@ -102,7 +102,7 @@ const calendarOptions = {
       startTime: dayjs(info.startStr).format('YYYY-MM-DD'),
       endTime: dayjs(info.endStr).format('YYYY-MM-DD'),
     })
-    
+
     // 映射数据并分配循环颜色
     const source = res.rows.map((item: any, index: number) => {
       const color = eventColors[index % eventColors.length]
@@ -113,13 +113,13 @@ const calendarOptions = {
         borderColor: `${color}33`,
       }
     })
-    
+
     // 清除旧事件源并注入新数据
     info.view.calendar.getEventSources().forEach((eventSource: any) => {
       eventSource.remove()
     })
     info.view.calendar?.addEventSource(source)
-    
+
     // 同步外部日期选择器状态
     setCurDate()
   },

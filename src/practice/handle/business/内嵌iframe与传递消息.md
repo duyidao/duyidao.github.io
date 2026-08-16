@@ -94,7 +94,7 @@ mounted() {
 - `.top`：始终指向最顶层窗口
 - `.parent`：指向上一级窗口
 
-以三层嵌套为例：`window` → `iframe1` → `iframe2` → `iframe3`，对于 `iframe3`：`.top` 指向 `window`，`.parent `指向 `iframe2`。
+以三层嵌套为例：`window` → `iframe1` → `iframe2` → `iframe3`，对于 `iframe3`：`.top` 指向 `window`，`.parent`指向 `iframe2`。
 
 保存流程：
 

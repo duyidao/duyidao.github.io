@@ -14,7 +14,9 @@ const inst = window.CXO_API.CXEditor(config.id, {
   height: '100%',
   type: 'desktop',
   events: {
-    onDocumentReady: () => { /* 文档加载完成 */ },
+    onDocumentReady: () => {
+      /* 文档加载完成 */
+    },
     onError: (error: any) => {
       // 拦截版本过旧或强制下线错误
       if (error.code === -100 && error.description.includes('下线')) {

@@ -12,7 +12,7 @@
 2. 如果执行到异步方法，执行该异步代码，加入到异步队列里
 
    ```js
-   setTimeout(fn);
+   setTimeout(fn)
    ```
 
    上方代码中，`setTimeout` 是立即执行的，执行完毕后的 `fn` 才是加入宏任务队列。
@@ -36,15 +36,15 @@
 
 ```js [代码运行]
 setTimeout(() => {
-  console.log("setTimeout");
-});
+  console.log('setTimeout')
+})
 new Promise((resolve) => {
-  console.log("Promise");
-  resolve();
+  console.log('Promise')
+  resolve()
 }).then((res) => {
-  console.log("then");
-});
-console.log(1);
+  console.log('then')
+})
+console.log(1)
 ```
 
 先不看它每一个具体的回调函数，先一步步执行下来，执行结果如下：
@@ -56,37 +56,37 @@ console.log(1);
 
 此时微任务队列清空，异步队列询问宏任务有没有执行完毕的异步方法，有一个，于是执行 `setTimeout` 方法 **输出 setTimeout**，此时宏任务队列清空，同步任务和异步任务都执行完毕了。
 
-因此最终打印顺序为：<code>Promise 1 then setTimeout</code>
+因此最终打印顺序为：`Promise 1 then setTimeout`
 
 #### 高级版本
 
 ```js [代码运行]
 new Promise((resolve) => {
   setTimeout(() => {
-    console.log("setTimeout1");
-    resolve();
-  });
+    console.log('setTimeout1')
+    resolve()
+  })
 }).then(() => {
-  console.log("then1");
-});
+  console.log('then1')
+})
 setTimeout(() => {
-  console.log("setTimeout2");
+  console.log('setTimeout2')
   Promise.resolve().then(() => {
-    console.log("then3");
+    console.log('then3')
     setTimeout(() => {
-      console.log("setTimeout3");
-    });
-  });
-});
+      console.log('setTimeout3')
+    })
+  })
+})
 setTimeout(() => {
-  console.log("setTimeout4");
-});
+  console.log('setTimeout4')
+})
 new Promise((resolve) => {
-  console.log("Promise1");
-  resolve();
+  console.log('Promise1')
+  resolve()
 }).then(() => {
-  console.log("then2");
-});
+  console.log('then2')
+})
 ```
 
 老样子，先从上到下执行下来，并手写划分一下宏任务和微任务队列数组：
@@ -155,52 +155,52 @@ new Promise((resolve) => {
 function a() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(1);
-    }, 1000);
-  });
+      resolve(1)
+    }, 1000)
+  })
 }
 function b() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(2);
-    }, 1500);
-  });
+      resolve(2)
+    }, 1500)
+  })
 }
 function c() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(val + 3);
-    }, 2000);
-  });
+      resolve(val + 3)
+    }, 2000)
+  })
 }
 Promise.all([a(), b()]).then((res) => {
   c(res[0] + res[1]).then((res) => {
-    console.log(res);
-  });
-});
+    console.log(res)
+  })
+})
 ```
 
 上面代码可以整合一下，能够一起执行的异步放到一个函数内一起执行；不能的再一个个执行。
 
 ```js [整合.js]
 function cell() {
-  return Promise.all([a(), b()]);
+  return Promise.all([a(), b()])
 }
 
 function cell2(val) {
-  const _val = val[0] + val[1];
-  return c(_val);
+  const _val = val[0] + val[1]
+  return c(_val)
 }
-let arr = [cell, cell2];
+let arr = [cell, cell2]
 async function run() {
-  let res;
+  let res
   for (let i = 0; i < arr.length; i++) {
-    res = await arr[i](res);
+    res = await arr[i](res)
   }
-  return res;
+  return res
 }
 
 run().then((res) => {
-  console.log(res);
-});
+  console.log(res)
+})
 ```

@@ -12,7 +12,7 @@ function deepClone(v) {}
 
 ```js
 function deepClone(v) {
-  return v;
+  return v
 }
 ```
 
@@ -29,14 +29,14 @@ function deepClone(v) {
   // 数组情况
   if (Array.isArray(v)) {
     // [!code ++]
-    let arr = []; // [!code ++]
+    let arr = [] // [!code ++]
     for (let i = 0; i < v.length; i++) {
       // [!code ++]
-      arr[i] = deepClone(v[i]); // [!code ++]
+      arr[i] = deepClone(v[i]) // [!code ++]
     } // [!code ++]
-    return arr; // [!code ++]
+    return arr // [!code ++]
   } // [!code ++]
-  return v;
+  return v
 }
 ```
 
@@ -50,23 +50,23 @@ function deepClone(v) {
 function deepClone(v) {
   // 数组情况
   if (Array.isArray(v)) {
-    let arr = [];
+    let arr = []
     for (let i = 0; i < v.length; i++) {
-      arr[i] = deepClone(v[i]);
+      arr[i] = deepClone(v[i])
     }
-    return arr;
+    return arr
   }
   // 对象情况
-  if (typeof v === "object" && v !== null) {
+  if (typeof v === 'object' && v !== null) {
     // [!code ++]
-    let obj = {}; // [!code ++]
+    let obj = {} // [!code ++]
     for (let key in v) {
       // [!code ++]
-      obj[key] = deepClone(v[key]); // [!code ++]
+      obj[key] = deepClone(v[key]) // [!code ++]
     } // [!code ++]
-    return obj; // [!code ++]
+    return obj // [!code ++]
   } // [!code ++]
-  return v;
+  return v
 }
 ```
 
@@ -80,25 +80,25 @@ function deepClone(v) {
 function deepClone(v) {
   // 数组情况
   if (Array.isArray(v)) {
-    let arr = [];
+    let arr = []
     for (let i = 0; i < v.length; i++) {
-      arr[i] = deepClone(v[i]);
+      arr[i] = deepClone(v[i])
     }
-    return arr;
+    return arr
   }
   // 对象情况
-  if (typeof v === "object" && v !== null) {
-    let obj = {};
+  if (typeof v === 'object' && v !== null) {
+    let obj = {}
     for (let key in v) {
-      obj[key] = deepClone(v[key]);
+      obj[key] = deepClone(v[key])
     }
-    return obj;
+    return obj
   }
   // 函数情况
-  if (typeof v === "function") {
+  if (typeof v === 'function') {
     // [!code ++]
-    return v; // [!code ++]
+    return v // [!code ++]
   } // [!code ++]
-  return v;
+  return v
 }
 ```

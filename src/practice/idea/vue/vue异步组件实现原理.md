@@ -14,7 +14,7 @@ const AsyncComponent = defineAsyncComponent(() => {
         // setup 返回的这个函数就是render函数
         // render 函数返回的就是 vNode
         return () => h('div', '异步组件')
-      }
+      },
     }
     setTimeout(() => {
       resolve(comp)
@@ -43,9 +43,7 @@ const AsyncComponent = defineAsyncComponent()
   <AsyncComponent />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
 ```
 
 ```ts [defineAsyncComponent.ts]
@@ -59,7 +57,7 @@ export const defineAsyncComponent = () => {
       return () => {
         return h(component.value)
       }
-    }
+    },
   }
 }
 ```
@@ -78,11 +76,12 @@ export const defineAsyncComponent = () => {
 <script setup lang="ts">
 import { h } from 'vue' // [!code ++]
 import { defineAsyncComponent } from './index'
- // [!code ++]
+// [!code ++]
 const AsyncComponent = defineAsyncComponent(() => {
   const comp = () => h('div', 'hello world') // [!code ++]
-  return new Promise((resolve) => { // [!code ++]
-   // [!code ++]
+  return new Promise((resolve) => {
+    // [!code ++]
+    // [!code ++]
     setTimeout(() => {
       resolve(comp) // [!code ++]
     }, 2000) // [!code ++]
@@ -94,9 +93,7 @@ const AsyncComponent = defineAsyncComponent(() => {
   <AsyncComponent />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
 ```
 
 ```ts [defineAsyncComponent.ts]
@@ -108,14 +105,14 @@ export const defineAsyncComponent = (loader) => {
       // 这是一个函数式组件
       const component = shallowRef(() => h('div', ''))
       // 执行回调函数，获取组件 // [!code ++]
-       // [!code ++]
+      // [!code ++]
       loader().then((res) => {
         component.value = res // [!code ++]
       }) // [!code ++]
       return () => {
         return h(component.value)
       }
-    }
+    },
   }
 }
 ```
@@ -165,9 +162,7 @@ const AsyncComponent = defineAsyncComponent({
   <AsyncComponent />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
 ```
 
 ```ts [defineAsyncComponent.ts]
@@ -195,7 +190,7 @@ export const defineAsyncComponent = (options) => {
       return () => {
         return h(component.value)
       }
-    }
+    },
   }
 }
 ```
@@ -238,9 +233,7 @@ const AsyncComponent = defineAsyncComponent({
   <AsyncComponent />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
 ```
 
 ```ts [defineAsyncComponent.ts]
@@ -253,7 +246,11 @@ export const defineAsyncComponent = (options) => {
   }
   const defineComponent = () => h('div', '') // 默认占位组件
 
-  const { loader, loadingComponent = defineComponent, errorComponent = defineComponent } = options // [!code focus]
+  const {
+    loader,
+    loadingComponent = defineComponent,
+    errorComponent = defineComponent,
+  } = options // [!code focus]
 
   return {
     setup() {
@@ -264,14 +261,14 @@ export const defineAsyncComponent = (options) => {
         .then((res) => {
           component.value = res
         })
-         // [!code focus]
+        // [!code focus]
         .catch(() => {
           component.value = errorComponent // [!code focus]
         }) // [!code focus]
       return () => {
         return h(component.value)
       }
-    }
+    },
   }
 }
 ```
@@ -300,14 +297,19 @@ export const defineAsyncComponent = (options) => {
   }
   const defineComponent = () => h('div', '') // 默认占位组件
 
-  const { loader, loadingComponent = defineComponent, errorComponent = defineComponent, timeout = 1000 } = options
+  const {
+    loader,
+    loadingComponent = defineComponent,
+    errorComponent = defineComponent,
+    timeout = 1000,
+  } = options
 
   // 再写一个函数，返回一个new Promise。这样就能手动修改new Promise的状态 // [!code focus]
-   // [!code focus]
+  // [!code focus]
   const loaderComponent = () => {
-     // [!code focus]
+    // [!code focus]
     return new Promise((resolve, reject) => {
-       // [!code focus]
+      // [!code focus]
       setTimeout(() => {
         reject('加载超时') // [!code focus]
       }, timeout) // [!code focus]
@@ -330,7 +332,7 @@ export const defineAsyncComponent = (options) => {
       return () => {
         return h(component.value)
       }
-    }
+    },
   }
 }
 ```
@@ -366,15 +368,13 @@ const AsyncComponent = defineAsyncComponent({
 <template>
   <!-- [!code focus] -->
   <AsyncComponent msg="父组件传递的信息">
-     <!-- [!code focus] -->
+    <!-- [!code focus] -->
     <div>父组件传递的插槽</div>
-  <!-- [!code focus] -->
+    <!-- [!code focus] -->
   </AsyncComponent>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
 ```
 
 ```ts [defineAsyncComponent.ts]
@@ -387,7 +387,12 @@ export const defineAsyncComponent = (options) => {
   }
   const defineComponent = () => h('div', '') // 默认占位组件
 
-  const { loader, loadingComponent = defineComponent, errorComponent = defineComponent, timeout = 5000 } = options
+  const {
+    loader,
+    loadingComponent = defineComponent,
+    errorComponent = defineComponent,
+    timeout = 5000,
+  } = options
 
   // 再写一个函数，返回一个new Promise。这样就能手动修改new Promise的状态
   const loaderComponent = () => {
@@ -410,8 +415,7 @@ export const defineAsyncComponent = (options) => {
         .then((res) => {
           if (res && res[Symbol.toStringTag] === 'Module') {
             component.value = res.default
-          }
-          else {
+          } else {
             component.value = res
           }
         })
@@ -421,7 +425,7 @@ export const defineAsyncComponent = (options) => {
       return () => {
         return h(component.value, attrs, slots) // [!code focus]
       }
-    }
+    },
   }
 }
 ```
@@ -429,11 +433,11 @@ export const defineAsyncComponent = (options) => {
 ```vue [test.vue]
 <script setup lang="ts">
 interface Props {
-  msg?: string;
+  msg?: string
 }
 
 withDefaults(defineProps<Props>(), {
-  msg: 'Hello World'
+  msg: 'Hello World',
 })
 </script>
 
@@ -445,9 +449,7 @@ withDefaults(defineProps<Props>(), {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
 ```
 
 :::

@@ -1,25 +1,28 @@
 # patchProp
 
-## 创建函数
+## Vue3 创建函数
 
 在 `runtime-dom/src` 文件夹下新建一个 `patchProp.ts` 文件，导出 `patchProp` 函数。修改 `index.ts`，引入对应的函数并统一导出。
 
 ::: code-group
+
 ```ts [runtime-dom/src/patchProp.ts]
 export function patchProp(el, key, prevValue, nextValue) {
-  console.log(el, key, prevValue, nextValue);
+  console.log(el, key, prevValue, nextValue)
 }
 ```
-```ts [runtime-dom/src/index.ts]
-import { nodeOps } from "./nodeOps";
-import { patchProp } from "./patchProp"; // [!code ++]
 
-export * from "@vue/runtime-core";
+```ts [runtime-dom/src/index.ts]
+import { nodeOps } from './nodeOps'
+import { patchProp } from './patchProp' // [!code ++]
+
+export * from '@vue/runtime-core'
 
 const renderOptions = { patchProp, ...nodeOps } // [!code ++]
 
-export { renderOptions }; // [!code ++]
+export { renderOptions } // [!code ++]
 ```
+
 :::
 
 回到 `html` 文件，修改引入的内容。
@@ -29,15 +32,15 @@ export { renderOptions }; // [!code ++]
   <div id="app"></div>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script type="module">
-    import { renderOptions } from "../dist/vue.esm.js"; // [!code ++]
-    
+    import { renderOptions } from '../dist/vue.esm.js' // [!code ++]
+
     const app = document.getElementById('app')
     const { h, createRenderer } = Vue
 
-    const vmode = h('div', {class: 'daodao'}, 'hello vue') // [!code ++]
+    const vmode = h('div', { class: 'daodao' }, 'hello vue') // [!code ++]
 
     const renderer = createRenderer(renderOptions) // [!code ++]
-    
+
     renderer.render(vmode, app)
   </script>
 </body>
@@ -56,47 +59,49 @@ export { renderOptions }; // [!code ++]
 
 现在要做的就是如何正确的为<word text="DOM" />节点挂载和卸载类名。
 
-## 类名等属性的挂载和卸载
+## Vue3 类名等属性的挂载和卸载
 
-### class
+### Vue3 class
 
 在 `runtime-dom/src` 文件夹下新建一个 `modules` 文件夹，用于存放配置文件。新建一个 `patchClass.ts` 文件，导出一个 `patchClass` 函数，用于处理类名的变更。
 
 判断当前属性是否存在 `class` 值，如果有则 `className` 添加类名；没有则 `removeAttribute` 移除该属性。
 
 ::: code-group
+
 ```ts [runtime-dom/src/modules/patchClass.ts]
-export function patchClass (el, value) {
+export function patchClass(el, value) {
   if (value) {
-    el.className = value;
-  }
-  else {
-    el.removeAttribute("class");
+    el.className = value
+  } else {
+    el.removeAttribute('class')
   }
 }
 ```
+
 ```ts [runtime-dom/src/patchProp.ts]
-import { patchClass } from  './modules/patchClass' // [!code ++]
+import { patchClass } from './modules/patchClass' // [!code ++]
 
 export function patchProp(el, key, prevValue, nextValue) {
-  console.log(el, key, prevValue, nextValue);
+  console.log(el, key, prevValue, nextValue)
   // [!code ++]
   if (key === 'class') {
     patchClass(el, nextValue) // [!code ++]
   } // [!code ++]
 }
 ```
+
 ```html
 <body>
   <div id="app"></div>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script type="module">
-    import { renderOptions } from "../dist/vue.esm.js";
+    import { renderOptions } from '../dist/vue.esm.js'
 
     const app = document.getElementById('app')
     const { h, createRenderer } = Vue
 
-    const vmode = h('div', {class: 'daodao'}, 'hello vue')
+    const vmode = h('div', { class: 'daodao' }, 'hello vue')
     const vmode2 = h('div', {}, 'hello vue')
 
     const renderer = createRenderer(renderOptions)
@@ -110,9 +115,10 @@ export function patchProp(el, key, prevValue, nextValue) {
   </script>
 </body>
 ```
+
 :::
 
-### style
+### Vue3 style
 
 在 `runtime-dom/src/modules` 文件夹下新建一个 `patchStyle.ts` 文件，导出一个 `patchStyle` 函数，用于处理样式的变更。
 
@@ -126,15 +132,16 @@ export function patchProp(el, key, prevValue, nextValue) {
 当新样式没有而旧样式还残留的样式配置（例如旧样式为 `background: skyblue`，新样式没有设置 `background`），则通过判断 `!(key in nextValue)`，符合条件的都清空。
 
 ::: code-group
+
 ```ts [runtime-dom/src/modules/patchStyle.ts]
-export function patchStyle (el, prevValue, nextValue) {
-  const style = el.style;
+export function patchStyle(el, prevValue, nextValue) {
+  const style = el.style
   if (nextValue) {
     /**
      * 新的样式都保存到 style 中
      */
     for (const key in nextValue) {
-      style[key] = nextValue[key];
+      style[key] = nextValue[key]
     }
   }
 
@@ -144,24 +151,29 @@ export function patchStyle (el, prevValue, nextValue) {
        * 把之前有的，现在没有的，给清掉
        */
       if (!(key in nextValue)) {
-        style[key] = null;
+        style[key] = null
       }
     }
   }
 }
 ```
+
 ```html
 <body>
   <div id="app"></div>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script type="module">
-    import { renderOptions } from "../dist/vue.esm.js";
+    import { renderOptions } from '../dist/vue.esm.js'
 
     const app = document.getElementById('app')
     const { h, createRenderer } = Vue
 
-    const vmode = h('div', {style: {color: 'red'}}, 'hello vue')
-    const vmode2 = h('div', {style: {color: 'yellow', background: 'skyblue'}}, 'hello vue') // [!code ++]
+    const vmode = h('div', { style: { color: 'red' } }, 'hello vue')
+    const vmode2 = h(
+      'div',
+      { style: { color: 'yellow', background: 'skyblue' } },
+      'hello vue',
+    ) // [!code ++]
 
     const renderer = createRenderer(renderOptions)
     renderer.render(vmode, app)
@@ -172,9 +184,10 @@ export function patchStyle (el, prevValue, nextValue) {
   </script>
 </body>
 ```
+
 :::
 
-### 事件
+### Vue3 事件
 
 在 `runtime-dom/src/modules` 文件夹下新建一个 `patchEvent.ts` 文件，导出一个 `patchEvent` 函数，用于处理事件的变更。
 
@@ -183,7 +196,7 @@ export function patchStyle (el, prevValue, nextValue) {
 在 `patchEvent` 事件中，通过裁剪字符串拿到事件名，然后判断 `prevValue` 是否有值，有值则先卸载旧的事件，再绑定新的事件。
 
 ```ts [shared/src/index.ts]
-export function patchEvnet (el, key, prevValue, nextValue) {
+export function patchEvnet(el, key, prevValue, nextValue) {
   const methodName = key.slice(2).toLowerCase()
 
   if (prevValue) {
@@ -199,7 +212,9 @@ export function patchEvnet (el, key, prevValue, nextValue) {
 ```ts [示例代码.ts]
 const fn1 = () => {}
 const fn2 = () => {}
-el.addEventListener('click', e => { fn1(e) })
+el.addEventListener('click', (e) => {
+  fn1(e)
+})
 ```
 
 修改为以上的形式，事件绑定不变，需要更新时，只需要改变内部调用的方法即可。这样即可减轻性能消耗。
@@ -229,7 +244,7 @@ function createInvoker(callback) {
 2. 无新事件，则判断旧事件 `existingInvoker` 是否还存在，若存在，则说明之前绑定过事件，此时解绑事件并把 `existingInvoker.value` 置空。
 
 ```ts [runtime-dom/src/modules/patchEvent.ts]
-export function patchEvnet (el, key, prevValue, nextValue) {
+export function patchEvnet(el, key, prevValue, nextValue) {
   const methodName = key.slice(2).toLowerCase()
 
   const invokers = (el._vei ??= {}) // 简写，实际等于 el._vei = el._vei ?? {} // [!code ++]
@@ -273,17 +288,16 @@ function createInvoker(callback) {
 }
 ```
 
-### Attr
+### Vue3 Attr
 
 其他属性同理，判断它的值是否是 `undefined`，如果是则移除该属性；反之，则添加该属性。
 
 ```ts [runtime-dom/src/modules/patchAttr.ts]
 export function patchAttr(el, key, nextValue) {
   if (nextValue == undefined) {
-    el.removeAttribute(key);
-  }
-  else {
-    el.setAttribute(key, nextValue);
+    el.removeAttribute(key)
+  } else {
+    el.setAttribute(key, nextValue)
   }
 }
 ```

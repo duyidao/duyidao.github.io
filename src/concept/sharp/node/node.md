@@ -2,7 +2,7 @@
 
 ## Node 简介
 
-### 什么是 node
+### Node 什么是 node
 
 `Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.`
 
@@ -21,7 +21,7 @@
 - <word text="Node" />没有基于浏览器的<word text="JavaScript" />的 DOM、BOM 等概念，但拥有文件系统操作功能
 - <word text="Node" />我们可以随意选择版本，但浏览器的<word text="JavaScript" />运行在众多用户电脑中，所以版本不是由我们决定的
 
-### 运行环境
+### Node 运行环境
 
 - v8 引擎
 - 内置 API：fs、path、http、js 内置对象、querystring、etc...
@@ -32,14 +32,14 @@
 > 2. <word text="Node" />是<word text="JavaScript" />的后端运行环境
 > 3. <word text="Node" />无法使用 DOM 和 BOM 等浏览器的内置 API
 
-### 可实现效果
+### Node 可实现效果
 
 1. 基于 [Express](http://www.expressjs.com.cn/) 框架，可以快速构建 Web 应用
 2. 基于 [Electron](https://electronjs.org/) 框架，可以构建跨平台的桌面应用
 3. 基于 [restify](http://restify.com/) 框架，可以快速构建 API 接口项目
 4. 读写和操作数据库、创建实用的命令行工具辅助前端开发、etc...
 
-## 安装运行
+## Node 安装运行
 
 下面我们来安装开发用到的软件，访问 [https://nodejs.org/zh-cn/ (opens new window)](https://nodejs.org/zh-cn/)网站下载 LTS 版本，因为<word text="Node" />是开源的你也可以访问 [github (opens new window)](https://github.com/nodejs/node)了解源码。
 
@@ -54,7 +54,7 @@ node -v
 下面编写 `index.js` 内容如下
 
 ```js
-console.log("hello node.js");
+console.log('hello node.js')
 ```
 
 然后在命令行执行该文件，好可以查看到当前目录的 node.js 执行结果
@@ -70,11 +70,11 @@ node index.js
 > 3. esc：清空当前已输入的命令
 > 4. cls：清空终端
 
-## 类型支持
+## Node 类型支持
 
 开发中经常需要使用<word text="TypeScript" />进行开发，所以我们来配置<word text="Node" />的<word text="TypeScript" />开发环境。
 
-### 安装软件
+### Node 安装软件
 
 首先安装 Ts 环境需要的软件
 
@@ -88,7 +88,7 @@ node index.js
 pnpm add -g add ts-node nodemon typescript @types/node
 ```
 
-### 文件结构
+### Node 文件结构
 
 最终的项目文件结构如下
 
@@ -100,7 +100,7 @@ pnpm add -g add ts-node nodemon typescript @types/node
     └── index.ts
 ```
 
-### package.json
+### Node package.json
 
 创建 package.json 文件
 
@@ -133,7 +133,7 @@ package.json 文件内容为
 }
 ```
 
-### tsconfig.json
+### Node tsconfig.json
 
 然后创建 `tsconfig.json` 文件
 
@@ -162,7 +162,7 @@ tsc --init
 }
 ```
 
-### 运行测试
+### Node 运行测试
 
 下面我们来运行项目，项目的主文件是 **`src/index.ts`**，文件内容如下
 

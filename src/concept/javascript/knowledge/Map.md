@@ -5,193 +5,216 @@ Map 是一组键值对的结构，用于解决不能用对象作为键的问题
 - 具有极快的查找速度
 - 函数、对象、基本类型都可以作为键或值
 
-### 声明定义
+## Map 基本使用
+
+### Map 声明定义
 
 可以接受一个数组作为参数，该数组的成员是一个表示键值对的数组。
 
 ```js
 let m = new Map([
   ['daodao', '刀刀'],
-  ['duyidao', '刀刀小窝']
-]);
+  ['duyidao', '刀刀小窝'],
+])
 
-console.log(m.get('daodao')); // 刀刀
+console.log(m.get('daodao')) // 刀刀
 ```
 
 使用 `set` 方法添加元素，支持链式操作
 
 ```js
-let map = new Map();
+let map = new Map()
 let obj = {
-  name: "daodao"
-};
+  name: 'daodao',
+}
 
-map.set(obj, "daodao.com").set("name", "duyidao");
+map.set(obj, 'daodao.com').set('name', 'duyidao')
 
-console.log(map.entries()); //MapIterator {{…} => "daodao.com", "name" => "duyidao"}
+console.log(map.entries()) //MapIterator {{…} => "daodao.com", "name" => "duyidao"}
 ```
 
 构造函数 `new Map` 创建原理
 
 ```js
-const hd = new Map();
-const arr = [["daodao", "刀刀"], ["duyidao", "刀刀小窝"]];
+const hd = new Map()
+const arr = [
+  ['daodao', '刀刀'],
+  ['duyidao', '刀刀小窝'],
+]
 
 arr.forEach(([key, value]) => {
-  hd.set(key, value);
-});
-console.log(hd); // Map(2) {'daodao' => '刀刀', 'duyidao' => '刀刀小窝'}
+  hd.set(key, value)
+})
+console.log(hd) // Map(2) {'daodao' => '刀刀', 'duyidao' => '刀刀小窝'}
 ```
 
 对于键是对象的 `Map`， 键保存的是内存地址，值相同但内存地址不同的视为两个键。
 
 ```js
-let arr = ["刀刀"];
-const hd = new Map();
-hd.set(arr, "daodao.com");
-console.log(hd.get(arr)); // daodao.com
-console.log(hd.get(["刀刀"])); // undefined
+let arr = ['刀刀']
+const hd = new Map()
+hd.set(arr, 'daodao.com')
+console.log(hd.get(arr)) // daodao.com
+console.log(hd.get(['刀刀'])) // undefined
 ```
 
-### 获取数量
+### Map 获取数量
 
 获取数据数量
 
 ```js
-console.log(map.size);
+console.log(map.size)
 ```
 
-### 元素检测
+### Map 元素检测
 
 检测元素是否存在
 
 ```js
-console.log(map.has(obj));
+console.log(map.has(obj))
 ```
 
-### 读取元素
+### Map 读取元素
 
 ```js
-let map = new Map();
+let map = new Map()
 
 let obj = {
-	name: 'daodao'
+  name: 'daodao',
 }
 
-map.set(obj, 'daodao.com');
-console.log(map.get(obj)); // daodao.com
+map.set(obj, 'daodao.com')
+console.log(map.get(obj)) // daodao.com
 ```
 
-### 删除元素
+### Map 删除元素
 
 使用 `delete()` 方法删除单个元素
 
 ```js
-let map = new Map();
+let map = new Map()
 let obj = {
-	name: 'daodao'
+  name: 'daodao',
 }
 
-map.set(obj, 'daodao.com');
-console.log(map.get(obj)); // daodao.com
+map.set(obj, 'daodao.com')
+console.log(map.get(obj)) // daodao.com
 
-map.delete(obj);
-console.log(map.get(obj)); // Map(0) {}
+map.delete(obj)
+console.log(map.get(obj)) // Map(0) {}
 ```
 
 使用 `clear` 方法清除Map所有元素
 
 ```js
-let map = new Map();
+let map = new Map()
 let obj1 = {
-	name: 'daodao.com'
+  name: 'daodao.com',
 }
 
 let obj2 = {
-	name: 'duyidao'
+  name: 'duyidao',
 }
 
 map.set(obj1, {
-	title: '刀刀小窝'
-});
+  title: '刀刀小窝',
+})
 
 map.set(obj2, {
-	title: '刀刀'
-});
+  title: '刀刀',
+})
 
-console.log(map.size); // 2
-console.log(map.clear());
-console.log(map.size); // 0
+console.log(map.size) // 2
+console.log(map.clear())
+console.log(map.size) // 0
 ```
 
-### 遍历数据
+### Map 遍历数据
 
 使用 `keys()/values()/entries()` 都可以返回可遍历的迭代对象。
 
 ```js
-let hd = new Map([["daodao", "刀刀"], ["duyidao", "刀刀小窝"]]);
-console.log(hd.keys()); //MapIterator {"daodao", "duyidao"}
-console.log(hd.values()); //MapIterator {"刀刀", "刀刀小窝"}
-console.log(hd.entries()); //MapIterator {"daodao" => "刀刀", "duyidao" => "刀刀小窝"}
+let hd = new Map([
+  ['daodao', '刀刀'],
+  ['duyidao', '刀刀小窝'],
+])
+console.log(hd.keys()) //MapIterator {"daodao", "duyidao"}
+console.log(hd.values()) //MapIterator {"刀刀", "刀刀小窝"}
+console.log(hd.entries()) //MapIterator {"daodao" => "刀刀", "duyidao" => "刀刀小窝"}
 ```
 
 可以使用 `keys/values` 函数遍历键与值
 
 ```js
-let hd = new Map([["daodao", "刀刀"], ["duyidao", "刀刀小窝"]]);
+let hd = new Map([
+  ['daodao', '刀刀'],
+  ['duyidao', '刀刀小窝'],
+])
 for (const key of hd.keys()) {
-  console.log(key);
+  console.log(key)
 }
 for (const value of hd.values()) {
-  console.log(value);
+  console.log(value)
 }
 ```
 
 使用 `for/of` 遍历操作，直播遍历 Map 等同于使用 `entries()` 函数
 
 ```js
-let hd = new Map([["daodao", "刀刀"], ["duyidao", "刀刀小窝"]]);
+let hd = new Map([
+  ['daodao', '刀刀'],
+  ['duyidao', '刀刀小窝'],
+])
 for (const [key, value] of hd) {
-  console.log(`${key}=>${value}`);
+  console.log(`${key}=>${value}`)
 }
 ```
 
 使用 `forEach` 遍历操作
 
 ```js
-let hd = new Map([["daodao", "刀刀"], ["duyidao", "刀刀小窝"]]);
+let hd = new Map([
+  ['daodao', '刀刀'],
+  ['duyidao', '刀刀小窝'],
+])
 hd.forEach((value, key) => {
-  console.log(`${key}=>${value}`);
-});
+  console.log(`${key}=>${value}`)
+})
 ```
 
-### 数组转换
+### Map 数组转换
 
 可以使用 `展开语法` 或 `Array.from` 静态方法将Set类型转为数组，这样就可以使用数组处理函数了
 
 ```js
-let hd = new Map([["daodao", "刀刀"], ["duyidao", "刀刀小窝"]]);
+let hd = new Map([
+  ['daodao', '刀刀'],
+  ['duyidao', '刀刀小窝'],
+])
 
-console.log(...hd); //(2) ["daodao", "刀刀"] (2) ["duyidao", "刀刀小窝"]
-console.log(...hd.entries()); // (2) ['daodao', '刀刀'] (2) ['duyidao', '刀刀小窝']
-console.log(...hd.values()); // 刀刀 刀刀小窝 
-console.log(...hd.keys()); // daodao duyidao
+console.log(...hd) //(2) ["daodao", "刀刀"] (2) ["duyidao", "刀刀小窝"]
+console.log(...hd.entries()) // (2) ['daodao', '刀刀'] (2) ['duyidao', '刀刀小窝']
+console.log(...hd.values()) // 刀刀 刀刀小窝
+console.log(...hd.keys()) // daodao duyidao
 ```
 
 检索包含 `刀刀` 的值组成新 Map
 
 ```js
-let hd = new Map([["daodao", "刀刀"], ["duyidao", "刀刀小窝"]]);
+let hd = new Map([
+  ['daodao', '刀刀'],
+  ['duyidao', '刀刀小窝'],
+])
 
-let newArr = [...hd].filter(function(item) {
-  return item[1].includes("刀刀");
-});
+let newArr = [...hd].filter(function (item) {
+  return item[1].includes('刀刀')
+})
 
-hd = new Map(newArr);
-console.log(...hd.keys()); // 刀刀
+hd = new Map(newArr)
+console.log(...hd.keys()) // 刀刀
 ```
 
-### 节点集合
+### Map 节点集合
 
 Map 的 `key` 可以为任意类型，使用 DOM 节点作为键来记录数据。
 
@@ -202,23 +225,23 @@ Map 的 `key` 可以为任意类型，使用 DOM 节点作为键来记录数据�
 </body>
 
 <script>
-  const divMap = new Map();
-  const divs = document.querySelectorAll("div");
+  const divMap = new Map()
+  const divs = document.querySelectorAll('div')
 
-  divs.forEach(div => {
+  divs.forEach((div) => {
     divMap.set(div, {
-      content: div.getAttribute("desc")
-    });
-  });
+      content: div.getAttribute('desc'),
+    })
+  })
   divMap.forEach((config, elem) => {
-    elem.addEventListener("click", function() {
-      alert(divMap.get(this).content);
-    });
-  });
+    elem.addEventListener('click', function () {
+      alert(divMap.get(this).content)
+    })
+  })
 </script>
 ```
 
-### 实例操作
+### Map 实例操作
 
 当不接受协议时无法提交表单，并根据自定义信息提示用户。
 
@@ -271,7 +294,7 @@ Map 的 `key` 可以为任意类型，使用 DOM 节点作为键来记录数据�
 以下操作由于键不是对象类型将产生错误
 
 ```js
-new WeakSet("duyidao"); //TypeError: Invalid value used in weak set
+new WeakSet('duyidao') //TypeError: Invalid value used in weak set
 ```
 
 将DOM节点保存到 `WeakMap`
@@ -282,11 +305,11 @@ new WeakSet("duyidao"); //TypeError: Invalid value used in weak set
   <div>duyidao</div>
 </body>
 <script>
-  const hd = new WeakMap();
+  const hd = new WeakMap()
   document
-    .querySelectorAll("div")
-    .forEach(item => hd.set(item, item.innerHTML));
-  console.log(hd); //WeakMap {div => "duyidao", div => "daodao"}
+    .querySelectorAll('div')
+    .forEach((item) => hd.set(item, item.innerHTML))
+  console.log(hd) //WeakMap {div => "duyidao", div => "daodao"}
 </script>
 ```
 
@@ -295,17 +318,17 @@ new WeakSet("duyidao"); //TypeError: Invalid value used in weak set
 下面是 WeakMap 的常用指令
 
 ```js
-const hd = new WeakMap();
-const arr = ["duyidao"];
+const hd = new WeakMap()
+const arr = ['duyidao']
 //添加操作
-hd.set(arr, "daodao");
-console.log(hd.has(arr)); //true
+hd.set(arr, 'daodao')
+console.log(hd.has(arr)) //true
 
 //删除操作
-hd.delete(arr);
+hd.delete(arr)
 
 //检索判断
-console.log(hd.has(arr)); //false
+console.log(hd.has(arr)) //false
 ```
 
 ### 垃圾回收
@@ -316,20 +339,21 @@ WakeMap 的键名对象不会增加引用计数器，如果一个对象不被引
 - 当垃圾回收时因为对象被删除，这时 WakeMap 也就没有记录了
 
 ```js
-let map = new WeakMap();
-let hd = {};
-map.set(hd, "daodao");
-hd = null;
-console.log(map);
+let map = new WeakMap()
+let hd = {}
+map.set(hd, 'daodao')
+hd = null
+console.log(map)
 
 setTimeout(() => {
-  console.log(map);
-}, 1000);
+  console.log(map)
+}, 1000)
 ```
 
 ### 选课案例
 
 ::: details 查看代码
+
 ```html
 <style>
   * {
@@ -420,51 +444,52 @@ setTimeout(() => {
 <script>
   class Lesson {
     constructor() {
-      this.lis = document.querySelectorAll("ul>li");
-      this.countELem = document.getElementById("count");
-      this.listElem = document.getElementById("lists");
-      this.map = new WeakMap();
+      this.lis = document.querySelectorAll('ul>li')
+      this.countELem = document.getElementById('count')
+      this.listElem = document.getElementById('lists')
+      this.map = new WeakMap()
     }
     run() {
-      this.lis.forEach(item => {
-        item.querySelector("a").addEventListener("click", event => {
-          const elem = event.target;
-          const state = elem.getAttribute("select");
+      this.lis.forEach((item) => {
+        item.querySelector('a').addEventListener('click', (event) => {
+          const elem = event.target
+          const state = elem.getAttribute('select')
           if (state) {
-            elem.removeAttribute("select");
-            this.map.delete(elem.parentElement);
-            elem.innerHTML = "+";
-            elem.style.backgroundColor = "green";
+            elem.removeAttribute('select')
+            this.map.delete(elem.parentElement)
+            elem.innerHTML = '+'
+            elem.style.backgroundColor = 'green'
           } else {
-            elem.setAttribute("select", true);
-            this.map.set(elem.parentElement, true);
-            elem.innerHTML = "-";
-            elem.style.backgroundColor = "red";
+            elem.setAttribute('select', true)
+            this.map.set(elem.parentElement, true)
+            elem.innerHTML = '-'
+            elem.style.backgroundColor = 'red'
           }
-          this.render();
-        });
-      });
+          this.render()
+        })
+      })
     }
     count() {
       return [...this.lis].reduce((count, item) => {
-        return (count += this.map.has(item) ? 1 : 0);
-      }, 0);
+        return (count += this.map.has(item) ? 1 : 0)
+      }, 0)
     }
     lists() {
       return [...this.lis]
-        .filter(item => {
-          return this.map.has(item);
+        .filter((item) => {
+          return this.map.has(item)
         })
-        .map(item => {
-          return `<span>${item.querySelector("span").innerHTML}</span>`;
-        });
+        .map((item) => {
+          return `<span>${item.querySelector('span').innerHTML}</span>`
+        })
     }
     render() {
-      this.countELem.innerHTML = `共选了${this.count()}课`;
-      this.listElem.innerHTML = this.lists().join("");
+      this.countELem.innerHTML = `共选了${this.count()}课`
+      this.listElem.innerHTML = this.lists().join('')
     }
   }
-  new Lesson().run();
+  new Lesson().run()
 </script>
 ```
+
 :::

@@ -18,55 +18,55 @@ export const useStorage = () => {
   // 保存值
   const setItem = (key, value) => {
     // 防止没有传正常的值
-    if (!value) value = null;
-    if (!key) return throw new Error("请传要保存的键名");
+    if (!value) value = null
+    if (!key) return throw new Error('请传要保存的键名')
 
-    localStorage.setItem(key, JSON.stringify(value));
-  };
+    localStorage.setItem(key, JSON.stringify(value))
+  }
 
   // 获取值
   const getItem = (key) => {
-    if (!key) return throw new Error("请传要查的键名");
+    if (!key) return throw new Error('请传要查的键名')
 
     if (
       !localStorage.getItem(key) ||
-      JSON.stringify(window[config.type].getItem(key)) === "null"
+      JSON.stringify(window[config.type].getItem(key)) === 'null'
     )
-      return null;
+      return null
 
-    return JSON.parse(localStorage.getItem(key));
-  };
+    return JSON.parse(localStorage.getItem(key))
+  }
 
   //  删除值
   const removeItem = (key) => {
-    if (!key) return throw new Error("请传要删除的键名");
+    if (!key) return throw new Error('请传要删除的键名')
 
-    localStorage.removeItem(key);
-  };
+    localStorage.removeItem(key)
+  }
 
   // 获取全部本地缓存
   const getAllItem = () => {
-    let len = localStorage.length; // 可以获取到本地存储的长度
-    let arr = new Array(); // 定义数组
+    let len = localStorage.length // 可以获取到本地存储的长度
+    let arr = new Array() // 定义数组
     for (let i = 0; i < len; i++) {
       // 获取key 索引从0开始
-      let getKey = localStorage.key(i);
+      let getKey = localStorage.key(i)
       // 获取key对应的值
-      let getVal = localStorage.getItem(getKey);
+      let getVal = localStorage.getItem(getKey)
       // 放进数组
-      arr[i] = { key: getKey, val: getVal };
+      arr[i] = { key: getKey, val: getVal }
     }
 
-    return arr;
-  };
+    return arr
+  }
 
   return {
     setItem,
     getItem,
     removeItem,
     getAllItem,
-  };
-};
+  }
+}
 ```
 
 ## 时效性设置
@@ -80,11 +80,11 @@ export const useStorage = () => {
   // 保存值
   const setItem = (key, value, expire = 60) => {
     // 防止没有传正常的值
-    if (!value) value = null;
-    if (!key) return throw new Error("请传要保存的键名");
+    if (!value) value = null
+    if (!key) return throw new Error('请传要保存的键名')
 
     // 时间是否有效数值 // [!code ++]
-    if (isNaN(expire) || expire < 0) throw new Error("Expire must be a number"); // [!code ++]
+    if (isNaN(expire) || expire < 0) throw new Error('Expire must be a number') // [!code ++]
 
     // 格式化值设置 // [!code ++]
     let data = {
@@ -92,40 +92,40 @@ export const useStorage = () => {
       value, // [!code ++]
       time: Date.now(), // [!code ++]
       expire: expire * 1000, // 转为毫秒 // [!code ++]
-    }; // [!code ++]
-    localStorage.setItem(key, JSON.stringify(value)); // [!code --]
-    localStorage.setItem(key, JSON.stringify(data)); // [!code ++]
-  };
+    } // [!code ++]
+    localStorage.setItem(key, JSON.stringify(value)) // [!code --]
+    localStorage.setItem(key, JSON.stringify(data)) // [!code ++]
+  }
 
   // 获取值
   const getItem = (key) => {
-    if (!key) return throw new Error("请传要查的键名");
+    if (!key) return throw new Error('请传要查的键名')
 
     if (
       !localStorage.getItem(key) ||
-      JSON.stringify(window[config.type].getItem(key)) === "null"
+      JSON.stringify(window[config.type].getItem(key)) === 'null'
     )
-      return null;
+      return null
 
-    return JSON.parse(localStorage.getItem(key)); // [!code --]
-    let storage = JSON.parse(localStorage.getItem(key)); // [!code ++]
-    let nowTime = Date.now(); // [!code ++]
+    return JSON.parse(localStorage.getItem(key)) // [!code --]
+    let storage = JSON.parse(localStorage.getItem(key)) // [!code ++]
+    let nowTime = Date.now() // [!code ++]
 
     if (storage.expire && nowTime - storage.time < storage.expire) {
       // [!code ++]
       // 还在有效期内，续时间 // [!code ++]
-      setItem(key, storage.value); // [!code ++]
-      return storage; // [!code ++]
+      setItem(key, storage.value) // [!code ++]
+      return storage // [!code ++]
     } else {
       // [!code ++]
       // 不在有效期内，删除 // [!code ++]
-      removeItem(key); // [!code ++]
-      return null; // [!code ++]
+      removeItem(key) // [!code ++]
+      return null // [!code ++]
     } // [!code ++]
-  };
+  }
 
   //  ...
-};
+}
 ```
 
 ## 信息加密
@@ -140,16 +140,16 @@ pnpm install crypto-js
 
 ```js [引入.js]
 // 引入 crypto-js 有以下两种方式
-import CryptoJS from "crypto-js";
+import CryptoJS from 'crypto-js'
 // 或者
-const CryptoJS = require("crypto-js");
+const CryptoJS = require('crypto-js')
 ```
 
 ```js [使用.js]
 // 十六位十六进制数作为密钥
-const SECRET_KEY = CryptoJS.enc.Utf8.parse("3333e6e143439161");
+const SECRET_KEY = CryptoJS.enc.Utf8.parse('3333e6e143439161')
 // 十六位十六进制数作为密钥偏移量
-const SECRET_IV = CryptoJS.enc.Utf8.parse("e3bbe7e3ba84431a");
+const SECRET_IV = CryptoJS.enc.Utf8.parse('e3bbe7e3ba84431a')
 ```
 
 :::
@@ -160,52 +160,52 @@ const SECRET_IV = CryptoJS.enc.Utf8.parse("e3bbe7e3ba84431a");
 
 ```js [encrypt.js]
 // 十六位十六进制数作为密钥
-const SECRET_KEY = CryptoJS.enc.Utf8.parse("3333e6e143439161");
+const SECRET_KEY = CryptoJS.enc.Utf8.parse('3333e6e143439161')
 // 十六位十六进制数作为密钥偏移量
-const SECRET_IV = CryptoJS.enc.Utf8.parse("e3bbe7e3ba84431a");
+const SECRET_IV = CryptoJS.enc.Utf8.parse('e3bbe7e3ba84431a')
 /**
  * 加密方法
  * @param data
  * @returns {string}
  */
 export function encrypt(data) {
-  if (typeof data === "object") {
+  if (typeof data === 'object') {
     try {
-      data = JSON.stringify(data);
+      data = JSON.stringify(data)
     } catch (error) {
-      console.log("encrypt error:", error);
+      console.log('encrypt error:', error)
     }
   }
-  const dataHex = CryptoJS.enc.Utf8.parse(data);
+  const dataHex = CryptoJS.enc.Utf8.parse(data)
   const encrypted = CryptoJS.AES.encrypt(dataHex, SECRET_KEY, {
     iv: SECRET_IV,
     mode: CryptoJS.mode.CBC,
     padding: CryptoJS.pad.Pkcs7,
-  });
-  return encrypted.ciphertext.toString();
+  })
+  return encrypted.ciphertext.toString()
 }
 ```
 
 ```js [decrypt.js]
 // 十六位十六进制数作为密钥
-const SECRET_KEY = CryptoJS.enc.Utf8.parse("3333e6e143439161");
+const SECRET_KEY = CryptoJS.enc.Utf8.parse('3333e6e143439161')
 // 十六位十六进制数作为密钥偏移量
-const SECRET_IV = CryptoJS.enc.Utf8.parse("e3bbe7e3ba84431a");
+const SECRET_IV = CryptoJS.enc.Utf8.parse('e3bbe7e3ba84431a')
 /**
  * 解密方法
  * @param data
  * @returns {string}
  */
 export function decrypt(data) {
-  const encryptedHexStr = CryptoJS.enc.Hex.parse(data);
-  const str = CryptoJS.enc.Base64.stringify(encryptedHexStr);
+  const encryptedHexStr = CryptoJS.enc.Hex.parse(data)
+  const str = CryptoJS.enc.Base64.stringify(encryptedHexStr)
   const decrypt = CryptoJS.AES.decrypt(str, SECRET_KEY, {
     iv: SECRET_IV,
     mode: CryptoJS.mode.CBC,
     padding: CryptoJS.pad.Pkcs7,
-  });
-  const decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
-  return decryptedStr.toString();
+  })
+  const decryptedStr = decrypt.toString(CryptoJS.enc.Utf8)
+  return decryptedStr.toString()
 }
 ```
 
@@ -214,63 +214,63 @@ export function decrypt(data) {
 修改设置和获取数据的方法，需要传入一个参数为是否需要加密，默认为 `false` 不需要。代码如下：
 
 ```js
-import decrypt from "./decrypt.js"; // [!code ++]
-import encrypt from "./encrypt.js"; // [!code ++]
+import decrypt from './decrypt.js' // [!code ++]
+import encrypt from './encrypt.js' // [!code ++]
 
 export const useStorage = () => {
   // 保存值
   const setItem = (key, value, expire = 60, isEncrypt = false) => {
     // 防止没有传正常的值
-    if (!value) value = null;
-    if (!key) return throw new Error("请传要保存的键名");
+    if (!value) value = null
+    if (!key) return throw new Error('请传要保存的键名')
 
-    if (isNaN(expire) || expire < 0) throw new Error("Expire must be a number");
+    if (isNaN(expire) || expire < 0) throw new Error('Expire must be a number')
 
     // 格式化值设置
     let data = {
       value,
       time: Date.now(),
       expire: expire * 1000, // 转为毫秒
-    };
+    }
 
     // 判断是否需要加密 // [!code ++]
     const encryptString = isEncrypt
       ? encrypt(JSON.stringify(data))
-      : JSON.stringify(data); // [!code ++]
+      : JSON.stringify(data) // [!code ++]
 
-    localStorage.setItem(key, encryptString);
-  };
+    localStorage.setItem(key, encryptString)
+  }
 
   // 获取值
   const getItem = (key) => {
-    if (!key) return throw new Error("请传要查的键名");
+    if (!key) return throw new Error('请传要查的键名')
 
     if (
       !localStorage.getItem(key) ||
-      JSON.stringify(localStorage.getItem(key)) === "null"
+      JSON.stringify(localStorage.getItem(key)) === 'null'
     )
-      return null;
+      return null
 
     // 对存储数据进行解密 // [!code ++]
     const storage = isEncrypt
       ? JSON.parse(decrypt(localStorage.getItem(key)))
-      : JSON.parse(localStorage.getItem(key)); // [!code ++]
-    let storage = JSON.parse(localStorage.getItem(key)); // [!code --]
-    let nowTime = Date.now();
+      : JSON.parse(localStorage.getItem(key)) // [!code ++]
+    let storage = JSON.parse(localStorage.getItem(key)) // [!code --]
+    let nowTime = Date.now()
 
     if (storage.expire && nowTime - storage.time < storage.expire) {
       // 还在有效期内，续时间
-      setItem(key, storage.value);
-      return storage;
+      setItem(key, storage.value)
+      return storage
     } else {
       // 不在有效期内，删除
-      removeItem(key);
-      return null;
+      removeItem(key)
+      return null
     }
-  };
+  }
 
   //  ...
-};
+}
 ```
 
 ## 防止命名污染
@@ -278,43 +278,43 @@ export const useStorage = () => {
 方法为创建一个变量作为本地存储命名前缀，这样可以一定程度减少命名污染，代码如下：
 
 ```js
-import decrypt from "./decrypt.js";
-import encrypt from "./encrypt.js";
-import { ref } from "vue"; // [!code ++]
+import decrypt from './decrypt.js'
+import encrypt from './encrypt.js'
+import { ref } from 'vue' // [!code ++]
 
 export const useStorage = () => {
   // 前缀名称 // [!code ++]
-  const prefixName = ref(""); // [!code ++]
+  const prefixName = ref('') // [!code ++]
   // 名称前自动添加前缀 // [!code ++]
   const autoAddPrefixName = (key) => {
     // [!code ++]
-    const prefix = prefix ? prefix + "_" : ""; // [!code ++]
-    return prefix + key; // [!code ++]
-  }; // [!code ++]
+    const prefix = prefix ? prefix + '_' : '' // [!code ++]
+    return prefix + key // [!code ++]
+  } // [!code ++]
 
   // 保存值
   const setItem = (key, value, expire = 60, isEncrypt = false) => {
     // 防止没有传正常的值
-    if (!value) value = null;
-    if (!key) return throw new Error("请传要保存的键名");
+    if (!value) value = null
+    if (!key) return throw new Error('请传要保存的键名')
 
-    if (isNaN(expire) || expire < 0) throw new Error("Expire must be a number");
+    if (isNaN(expire) || expire < 0) throw new Error('Expire must be a number')
 
     // 格式化值设置
     let data = {
       value,
       time: Date.now(),
       expire: expire * 1000, // 转为毫秒
-    };
+    }
 
     // 判断是否需要加密
     const encryptString = isEncrypt
       ? encrypt(JSON.stringify(data))
-      : JSON.stringify(data);
+      : JSON.stringify(data)
 
-    localStorage.setItem(key, encryptString); // [!code --]
-    localStorage.setItem(autoAddPrefixName(key), encryptString); // [!code ++]
-  };
+    localStorage.setItem(key, encryptString) // [!code --]
+    localStorage.setItem(autoAddPrefixName(key), encryptString) // [!code ++]
+  }
 
   // ...
 
@@ -324,8 +324,8 @@ export const useStorage = () => {
     getItem,
     removeItem,
     getAllItem,
-  };
-};
+  }
+}
 ```
 
 在根组件 `App.vue` 中引入设置 `prefixName` 的值即可，由于他是响应式数据，因此全局都有效。
@@ -337,9 +337,9 @@ export const useStorage = () => {
 可以封装一个函数，代码如下：
 
 ```js
-import decrypt from "./decrypt.js";
-import encrypt from "./encrypt.js";
-import { ref } from "vue";
+import decrypt from './decrypt.js'
+import encrypt from './encrypt.js'
+import { ref } from 'vue'
 
 export const useStorage = () => {
   // ...
@@ -347,46 +347,46 @@ export const useStorage = () => {
   // 监测内存函数封装 // [!code ++]
   const getStorageSize = () => {
     // [!code ++]
-    let sizeStore = 0; // [!code ++]
+    let sizeStore = 0 // [!code ++]
     for (item in window.localStorage) {
       // [!code ++]
       if (window.localStorage.hasOwnProperty(item)) {
         // [!code ++]
-        sizeStore += window.localStorage.getItem(item).length; // [!code ++]
+        sizeStore += window.localStorage.getItem(item).length // [!code ++]
       } // [!code ++]
     } // [!code ++]
-    return (sizeStore / 1024 / 1024).toFixed(2); // [!code ++]
-  }; // [!code ++]
+    return (sizeStore / 1024 / 1024).toFixed(2) // [!code ++]
+  } // [!code ++]
 
   // 保存值
   const setItem = (key, value, expire = 60, isEncrypt = false) => {
     // 查看已存了多大的内存 // [!code ++]
-    const size = getStorageSize(); // [!code ++]
-    if (size >= 5) return throw new Error("内存不足"); // [!code ++]
+    const size = getStorageSize() // [!code ++]
+    if (size >= 5) return throw new Error('内存不足') // [!code ++]
 
     // 防止没有传正常的值
-    if (!value) value = null;
-    if (!key) return throw new Error("请传要保存的键名");
+    if (!value) value = null
+    if (!key) return throw new Error('请传要保存的键名')
 
-    if (isNaN(expire) || expire < 0) throw new Error("Expire must be a number");
+    if (isNaN(expire) || expire < 0) throw new Error('Expire must be a number')
 
     // 格式化值设置
     let data = {
       value,
       time: Date.now(),
       expire: expire * 1000, // 转为毫秒
-    };
+    }
 
     // 判断是否需要加密
     const encryptString = isEncrypt
       ? encrypt(JSON.stringify(data))
-      : JSON.stringify(data);
+      : JSON.stringify(data)
 
-    localStorage.setItem(autoAddPrefixName(key), encryptString);
-  };
+    localStorage.setItem(autoAddPrefixName(key), encryptString)
+  }
 
   // ...
-};
+}
 ```
 
 ## 完整代码
@@ -397,140 +397,140 @@ export const useStorage = () => {
 
 ```js [encrypt.js]
 // 十六位十六进制数作为密钥
-const SECRET_KEY = CryptoJS.enc.Utf8.parse("3333e6e143439161");
+const SECRET_KEY = CryptoJS.enc.Utf8.parse('3333e6e143439161')
 // 十六位十六进制数作为密钥偏移量
-const SECRET_IV = CryptoJS.enc.Utf8.parse("e3bbe7e3ba84431a");
+const SECRET_IV = CryptoJS.enc.Utf8.parse('e3bbe7e3ba84431a')
 /**
  * 加密方法
  * @param data
  * @returns {string}
  */
 export function encrypt(data) {
-  if (typeof data === "object") {
+  if (typeof data === 'object') {
     try {
-      data = JSON.stringify(data);
+      data = JSON.stringify(data)
     } catch (error) {
-      console.log("encrypt error:", error);
+      console.log('encrypt error:', error)
     }
   }
-  const dataHex = CryptoJS.enc.Utf8.parse(data);
+  const dataHex = CryptoJS.enc.Utf8.parse(data)
   const encrypted = CryptoJS.AES.encrypt(dataHex, SECRET_KEY, {
     iv: SECRET_IV,
     mode: CryptoJS.mode.CBC,
     padding: CryptoJS.pad.Pkcs7,
-  });
-  return encrypted.ciphertext.toString();
+  })
+  return encrypted.ciphertext.toString()
 }
 ```
 
 ```js [decrypt.js]
 // 十六位十六进制数作为密钥
-const SECRET_KEY = CryptoJS.enc.Utf8.parse("3333e6e143439161");
+const SECRET_KEY = CryptoJS.enc.Utf8.parse('3333e6e143439161')
 // 十六位十六进制数作为密钥偏移量
-const SECRET_IV = CryptoJS.enc.Utf8.parse("e3bbe7e3ba84431a");
+const SECRET_IV = CryptoJS.enc.Utf8.parse('e3bbe7e3ba84431a')
 /**
  * 解密方法
  * @param data
  * @returns {string}
  */
 export function decrypt(data) {
-  const encryptedHexStr = CryptoJS.enc.Hex.parse(data);
-  const str = CryptoJS.enc.Base64.stringify(encryptedHexStr);
+  const encryptedHexStr = CryptoJS.enc.Hex.parse(data)
+  const str = CryptoJS.enc.Base64.stringify(encryptedHexStr)
   const decrypt = CryptoJS.AES.decrypt(str, SECRET_KEY, {
     iv: SECRET_IV,
     mode: CryptoJS.mode.CBC,
     padding: CryptoJS.pad.Pkcs7,
-  });
-  const decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
-  return decryptedStr.toString();
+  })
+  const decryptedStr = decrypt.toString(CryptoJS.enc.Utf8)
+  return decryptedStr.toString()
 }
 ```
 
 ```js [useStorage.js]
-import decrypt from "./decrypt.js";
-import encrypt from "./encrypt.js";
-import { ref } from "vue";
+import decrypt from './decrypt.js'
+import encrypt from './encrypt.js'
+import { ref } from 'vue'
 
 export const useStorage = () => {
   // 前缀名称
-  const prefixName = ref("");
+  const prefixName = ref('')
 
   // 名称前自动添加前缀
   const autoAddPrefixName = (key) => {
-    const prefix = prefix ? prefix + "_" : "";
-    return prefix + key;
-  };
+    const prefix = prefix ? prefix + '_' : ''
+    return prefix + key
+  }
 
   // 保存值
   const setItem = (key, value, expire = 60, isEncrypt = false) => {
     // 防止没有传正常的值
-    if (!value) value = null;
-    if (!key) return throw new Error("请传要保存的键名");
+    if (!value) value = null
+    if (!key) return throw new Error('请传要保存的键名')
 
-    if (isNaN(expire) || expire < 0) throw new Error("Expire must be a number");
+    if (isNaN(expire) || expire < 0) throw new Error('Expire must be a number')
 
     // 格式化值设置
     let data = {
       value,
       time: Date.now(),
       expire: expire * 1000, // 转为毫秒
-    };
+    }
 
     // 判断是否需要加密
     const encryptString = isEncrypt
       ? encrypt(JSON.stringify(data))
-      : JSON.stringify(data);
-    localStorage.setItem(autoAddPrefixName(key), encryptString);
-  };
+      : JSON.stringify(data)
+    localStorage.setItem(autoAddPrefixName(key), encryptString)
+  }
 
   // 获取值
   const getItem = (key) => {
-    if (!key) return throw new Error("请传要查的键名");
+    if (!key) return throw new Error('请传要查的键名')
 
     if (
       !localStorage.getItem(autoAddPrefixName(key)) ||
-      JSON.stringify(localStorage.getItem(autoAddPrefixName(key))) === "null"
+      JSON.stringify(localStorage.getItem(autoAddPrefixName(key))) === 'null'
     )
-      return null;
+      return null
 
     // 对存储数据进行解密
     const storage = isEncrypt
       ? JSON.parse(decrypt(localStorage.getItem(autoAddPrefixName(key))))
-      : JSON.parse(localStorage.getItem(autoAddPrefixName(key)));
-    let nowTime = Date.now();
+      : JSON.parse(localStorage.getItem(autoAddPrefixName(key)))
+    let nowTime = Date.now()
 
     if (storage.expire && nowTime - storage.time < storage.expire) {
       // 还在有效期内，续时间
-      setItem(key, storage.value);
-      return storage;
+      setItem(key, storage.value)
+      return storage
     } else {
       // 不在有效期内，删除
-      removeItem(key);
-      return null;
+      removeItem(key)
+      return null
     }
-  };
+  }
 
   //  删除值
   const removeItem = (key) => {
-    if (!key) return throw new Error("请传要删除的键名");
-    localStorage.removeItem(autoAddPrefixName(key));
-  };
+    if (!key) return throw new Error('请传要删除的键名')
+    localStorage.removeItem(autoAddPrefixName(key))
+  }
 
   // 获取全部本地缓存
   const getAllItem = () => {
-    let len = localStorage.length; // 可以获取到本地存储的长度
-    let arr = new Array(); // 定义数组
+    let len = localStorage.length // 可以获取到本地存储的长度
+    let arr = new Array() // 定义数组
     for (let i = 0; i < len; i++) {
       // 获取key 索引从0开始
-      let getKey = localStorage.key(i);
+      let getKey = localStorage.key(i)
       // 获取key对应的值
-      let getVal = localStorage.getItem(getKey);
+      let getVal = localStorage.getItem(getKey)
       // 放进数组
-      arr[i] = { key: getKey, val: getVal };
+      arr[i] = { key: getKey, val: getVal }
     }
 
-    return arr;
-  };
+    return arr
+  }
 
   return {
     setItem,
@@ -538,8 +538,8 @@ export const useStorage = () => {
     removeItem,
     getAllItem,
     prefixName,
-  };
-};
+  }
+}
 ```
 
 :::

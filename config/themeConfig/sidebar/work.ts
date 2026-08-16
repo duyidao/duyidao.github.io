@@ -20,13 +20,7 @@ const shushuo = [
       {
         text: '需求洞察',
         collapsed: true,
-        items: [
-          { text: '代理配置', link: '/数说/需求洞察/代理配置' },
-          {
-            text: 'Tooltip无法显示',
-            link: '/数说/需求洞察/Tooltip无法显示',
-          },
-        ],
+        items: [{ text: '代理配置', link: '/数说/需求洞察/代理配置' }],
       },
       {
         text: 'N次方',
@@ -176,7 +170,6 @@ const baidu = [
             link: '/百度/图业融合/MapVThree地图组件',
           },
           { text: '项目优化', link: '/百度/图业融合/项目优化' },
-          { text: 'BUG修改与记录', link: '/百度/图业融合/BUG修改与记录' },
         ],
       },
       {

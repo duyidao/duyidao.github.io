@@ -44,45 +44,45 @@
 
 <script>
 export default {
-  name: "MyTable",
+  name: 'MyTable',
   data() {
     return {
       start: 0,
       over: 20,
       tableData: [],
-    };
+    }
   },
   mounted() {
     setTimeout(() => {
       for (let i = 0; i < 200; i++) {
         this.tableData.push({
           date: i + 1,
-          name: "刀刀",
-          address: "哈哈哈",
-        });
+          name: '刀刀',
+          address: '哈哈哈',
+        })
       }
-    }, 1000);
+    }, 1000)
   },
   methods: {},
-};
+}
 </script>
 ```
 
 ```js [directives.js]
-Vue.directives("myscroll", {
+Vue.directives('myscroll', {
   bind(el, bind, vnode) {
-    const target = el.querySelector("el-table__body-wrapper"); // 获取表格的body
-    const self = vnode.context; // 获取当前组件实例 this
+    const target = el.querySelector('el-table__body-wrapper') // 获取表格的body
+    const self = vnode.context // 获取当前组件实例 this
 
-    target.addEventListener("scroll", () => {
+    target.addEventListener('scroll', () => {
       // 判断是否滚动到底部
       if (target.scrollTop + target.clientHeight >= target.scrollHeight) {
-        if (self.over >= self.list.length) return;
-        self.over += 20;
+        if (self.over >= self.list.length) return
+        self.over += 20
       }
-    });
+    })
   },
-});
+})
 ```
 
 :::
@@ -111,24 +111,24 @@ Vue.directives("myscroll", {
 ::: code-group
 
 ```js [directives.js]
-Vue.directives("myscroll", {
+Vue.directives('myscroll', {
   bind(el, bind, vnode) {
-    const target = el.querySelector("el-table__body-wrapper"); // 获取表格的body
-    const self = vnode.context; // 获取当前组件实例 this
+    const target = el.querySelector('el-table__body-wrapper') // 获取表格的body
+    const self = vnode.context // 获取当前组件实例 this
 
-    const table = target.querySelector("table");
+    const table = target.querySelector('table')
 
-    target.addEventListener("scroll", () => {
+    target.addEventListener('scroll', () => {
       setTimeout(() => {
-        table.style.paddingTop = self.padding[0] + "px";
-        table.style.paddingBottom = self.padding[1] + "px";
+        table.style.paddingTop = self.padding[0] + 'px'
+        table.style.paddingBottom = self.padding[1] + 'px'
 
-        self.scrollTop = target.scrollTop;
-        self.tableHeight = target.clientHeight;
-      }, 200);
-    });
+        self.scrollTop = target.scrollTop
+        self.tableHeight = target.clientHeight
+      }, 200)
+    })
   },
-});
+})
 ```
 
 ```js [mixin.js]
@@ -137,28 +137,28 @@ Vue.mixin({
     return {
       scrollTop: 0, // 被卷曲的高度
       tableHeight: 300, // 表单初始值默认高度
-    };
+    }
   },
   computed: {
     // 计算起始位置的索引。最大值为0，不能有负数。
     start() {
-      return Math.max(this.scrollTop / 40 - 6, 0); // 初始卷曲值为288，288/48=6
+      return Math.max(this.scrollTop / 40 - 6, 0) // 初始卷曲值为288，288/48=6
     },
     // 计算结束1位置的索引。最小值为数组长度
     over() {
       return Math.min(
         (this.scrollTop + this.tableHeight) / 40,
-        this.tableData.length
-      );
+        this.tableData.length,
+      )
     },
     padding() {
-      const paddingTop = this.start * 48;
-      const paddingBottom = (this.tableData.length - this.over) * 48;
+      const paddingTop = this.start * 48
+      const paddingBottom = (this.tableData.length - this.over) * 48
 
-      return [paddingTop, paddingBottom];
+      return [paddingTop, paddingBottom]
     },
   },
-});
+})
 ```
 
 :::
@@ -171,54 +171,46 @@ Vue.mixin({
 ### 方案一：触底加载（简单版）
 
 - 实现原理：
-
   - 初始加载前 20 条数据
   - 监听滚动事件，当 `scrollTop + clientHeight >= scrollHeight` 时加载后续数据
   - 每次滚动到底部追加 20 条数据
 
 - 优点：
-
   - 实现简单，代码量少
   - 初始渲染压力小
 
 - 缺点：
-
   - 滚动到底部后仍会渲染全部数据
   - 数据量超过 1000 条时会出现明显卡顿
   - 无法实现真正的无限滚动体验
 
 - 适用场景：
-
   - 数据量较小（<500 条）
   - 对性能要求不高的管理后台
 
 ### 方案二：固定数量渲染（高性能版）
 
 - 实现原理：
-
   - 始终只渲染可见区域附近数据（如 30 条）
   - 通过动态计算 `paddingTop` / `paddingBottom` 模拟完整滚动高度
   - 根据 `scrollTop` 动态计算数据起始位置：
-  
+
     ```js
-    start = Math.floor(scrollTop / 行高);
-    end = start + 可见行数;
+    start = Math.floor(scrollTop / 行高)
+    end = start + 可见行数
     ```
 
 - 优点：
-
   - 无论数据量多大，渲染的<word text="DOM" />数量恒定
   - 平滑滚动体验，无性能瓶颈
   - 支持快速跳转滚动
 
 - 缺点：
-
   - 实现复杂度较高
   - 需要精确计算行高
   - 需处理边缘滚动抖动问题
 
 - 适用场景：
-
   - 万级数据量表格
   - 需要流畅交互体验的 C 端产品
   - 移动端 H5 页面

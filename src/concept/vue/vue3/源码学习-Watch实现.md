@@ -1,30 +1,30 @@
 # watch
 
-## 知识点回顾
+## Vue3 知识点回顾
 
 先来回顾一个之前提到的知识点。先看一下示例代码：
 
 ```html
 <script type="module">
-  import { ref, effect, computed } from "../dist/reactivity.esm.js";
+  import { ref, effect, computed } from '../dist/reactivity.esm.js'
 
-  let count = ref(1);
+  let count = ref(1)
 
   effect(
     () => {
-      console.log("我就执行了一次");
-      count.value;
+      console.log('我就执行了一次')
+      count.value
     },
     {
       scheduler: () => {
-        console.log("scheduler 执行了");
+        console.log('scheduler 执行了')
       },
     },
-  );
+  )
 
   setTimeout(() => {
-    count.value += 2;
-  }, 1000);
+    count.value += 2
+  }, 1000)
 </script>
 ```
 
@@ -36,7 +36,7 @@
 
 而 `watch` 的用法和这一致，在源码中，`watch` 就是基于 `effect` 实现的。
 
-## watch 基本实现
+## Vue3 watch 基本实现
 
 `watch` 是一个函数，接收三个参数：`source`、`callback`、`options`。其中：
 
@@ -58,34 +58,34 @@
 完整代码如下：
 
 ```ts
-import { isRef } from "./ref";
-import { ReactiveEffect } from "./effect";
+import { isRef } from './ref'
+import { ReactiveEffect } from './effect'
 export const watch = (source, callback, options) => {
-  let getter;
+  let getter
 
   if (isRef(source)) {
-    getter = () => source.value;
+    getter = () => source.value
   }
 
-  const effect = new ReactiveEffect(getter);
-  let oldValue = effect.run();
+  const effect = new ReactiveEffect(getter)
+  let oldValue = effect.run()
 
   function job() {
     // 执行 effect.run()，获取 getter 的返回值。这里不能直接执行 getter，否则无法收集依赖。
-    const newValue = effect.run();
+    const newValue = effect.run()
     // 执行回调函数，将新值和旧值作为参数传入。
-    callback(newValue, oldValue);
+    callback(newValue, oldValue)
     // 将新值赋值给旧值，作为下一次的旧值。
-    oldValue = newValue;
+    oldValue = newValue
   }
 
-  effect.scheduler = job;
+  effect.scheduler = job
 
-  return () => {};
-};
+  return () => {}
+}
 ```
 
-## watch 的返回值
+## Vue3 watch 的返回值
 
 `watch` 函数返回一个函数，用于停止监听 `source` 的变化。
 
@@ -97,22 +97,22 @@ export const watch = (source, callback, options) => {
 
 ```ts [system.ts]
 export function startTrack(sub) {
-  sub.depsTail = undefined;
-  sub.trackShaking = true;
+  sub.depsTail = undefined
+  sub.trackShaking = true
 }
 
 export function endTrack(sub) {
-  const depsTail = sub.depsTail;
-  sub.trackShaking = false;
-  sub.dirty = false;
+  const depsTail = sub.depsTail
+  sub.trackShaking = false
+  sub.dirty = false
   if (depsTail) {
     if (depsTail.nextDep) {
-      clearTracking(depsTail.nextDep);
-      depsTail.nextDep = undefined;
+      clearTracking(depsTail.nextDep)
+      depsTail.nextDep = undefined
     }
   } else if (sub.deps) {
-    clearTracking(sub.deps);
-    sub.deps = undefined;
+    clearTracking(sub.deps)
+    sub.deps = undefined
   }
 }
 ```
@@ -125,9 +125,9 @@ export function endTrack(sub) {
 
 ```ts [effect.ts]
 export class ReactiveEffect {
-  deps: Link | undefined;
-  depsTail: Link | undefined;
-  active = true; // [!code ++]
+  deps: Link | undefined
+  depsTail: Link | undefined
+  active = true // [!code ++]
 
   constructor(public fn) {}
 
@@ -135,20 +135,20 @@ export class ReactiveEffect {
     // [!code ++]
     if (!this.active) {
       // [!code ++]
-      return this.fn(); // 如果已经停止了，则不再收集依赖，直接执行函数
+      return this.fn() // 如果已经停止了，则不再收集依赖，直接执行函数
       // [!code ++]
     }
 
     // 把当前的 effect 保存，后面执行完 fn 函数后再获取
-    let prevSub = activeSub;
+    let prevSub = activeSub
     // 每次执行都把 fn 放到 activeSub 中，让 reactivity 收集依赖
-    setActiveEffect(this);
-    startTrack(this);
+    setActiveEffect(this)
+    startTrack(this)
     try {
-      return this.fn();
+      return this.fn()
     } finally {
-      endTrack(this);
-      setActiveEffect(prevSub);
+      endTrack(this)
+      setActiveEffect(prevSub)
     }
   }
 
@@ -161,11 +161,11 @@ export class ReactiveEffect {
     // [!code ++]
     if (this.active) {
       // [!code ++]
-      startTrack(this);
+      startTrack(this)
       // [!code ++]
-      endTrack(this);
+      endTrack(this)
       // [!code ++]
-      this.active = false;
+      this.active = false
       // [!code ++]
     }
     // [!code ++]
@@ -174,47 +174,47 @@ export class ReactiveEffect {
 ```
 
 ```ts [watch.ts]
-import { isRef } from "./ref";
-import { ReactiveEffect } from "./effect";
+import { isRef } from './ref'
+import { ReactiveEffect } from './effect'
 
 export const watch = (source, callback, options) => {
-  let getter;
+  let getter
 
   if (isRef(source)) {
-    getter = () => source.value;
+    getter = () => source.value
   }
 
-  const effect = new ReactiveEffect(getter);
-  let oldValue = effect.run();
+  const effect = new ReactiveEffect(getter)
+  let oldValue = effect.run()
 
   function job() {
     // 执行 effect.run()，获取 getter 的返回值。这里不能直接执行 getter，否则无法收集依赖。
-    const newValue = effect.run();
+    const newValue = effect.run()
     // 执行回调函数，将新值和旧值作为参数传入。
-    callback(newValue, oldValue);
+    callback(newValue, oldValue)
     // 将新值赋值给旧值，作为下一次的旧值。
-    oldValue = newValue;
+    oldValue = newValue
   }
 
-  effect.scheduler = job;
+  effect.scheduler = job
 
   // 移除 effect 依赖 // [!code ++]
   // [!code ++]
   function stop() {
-    effect.stop(); // [!code ++]
+    effect.stop() // [!code ++]
   } // [!code ++]
 
   return () => {
-    stop(); // [!code ++]
-  };
-};
+    stop() // [!code ++]
+  }
+}
 ```
 
 :::
 
 当依赖不处于激活状态时，`run` 方法不再收集依赖，直接当作普通函数执行。
 
-## watch 的选项
+## Vue3 watch 的选项
 
 `watch` 函数的第三个参数 `options` 是一个对象，先考虑三个常用的属性：
 
@@ -222,7 +222,7 @@ export const watch = (source, callback, options) => {
 - `deep`：是否深度监听。默认为 `false`。如果为 `true`，则监听对象内部的变化。
 - `once`：是否只执行一次。默认为 `false`。如果为 `true`，则在 `watch` 函数执行时，只执行一次回调函数。
 
-### immediate 选项
+### Vue3 immediate 选项
 
 首先看看 `immediate` 选项。该参数为 `true` 时，立即执行一次回调函数。
 
@@ -232,46 +232,46 @@ export const watch = (source, callback, options) => {
 
 ```ts [watch.ts]
 export const watch = (source, callback, options) => {
-  const { immediate, deep, once } = options || {}; // [!code ++]
-  let getter;
-  let oldValue; // [!code ++]
+  const { immediate, deep, once } = options || {} // [!code ++]
+  let getter
+  let oldValue // [!code ++]
 
   if (isRef(source)) {
-    getter = () => source.value;
+    getter = () => source.value
   }
 
-  const effect = new ReactiveEffect(getter);
+  const effect = new ReactiveEffect(getter)
   // [!code ++]
   if (immediate) {
-    job(); // [!code ++]
+    job() // [!code ++]
     // [!code ++]
   } else {
-    oldValue = effect.run(); // [!code ++]
+    oldValue = effect.run() // [!code ++]
   } // [!code ++]
 
   function job() {
     // 执行 effect.run()，获取 getter 的返回值。这里不能直接执行 getter，否则无法收集依赖。
-    const newValue = effect.run();
+    const newValue = effect.run()
     // 执行回调函数，将新值和旧值作为参数传入。
-    callback(newValue, oldValue);
+    callback(newValue, oldValue)
     // 将新值赋值给旧值，作为下一次的旧值。
-    oldValue = newValue;
+    oldValue = newValue
   }
 
-  effect.scheduler = job;
+  effect.scheduler = job
 
   // 移除 effect 依赖
   function stop() {
-    effect.stop();
+    effect.stop()
   }
 
   return () => {
-    stop();
-  };
-};
+    stop()
+  }
+}
 ```
 
-### once 选项
+### Vue3 once 选项
 
 `once` 选项为 `true` 时，则只执行一次 `job` 方法，并调用 `stop` 方法停止监听。
 
@@ -281,61 +281,61 @@ export const watch = (source, callback, options) => {
 
 ```ts [watch.ts]
 export const watch = (source, callback, options) => {
-  const { immediate, deep, once } = options || {};
-  let getter;
-  let oldValue;
+  const { immediate, deep, once } = options || {}
+  let getter
+  let oldValue
 
   // [!code ++]
   if (once) {
     // 只需要调用一次，先保存callback函数，调用_callback函数，再调用stop方法，清空依赖停止监听 // [!code ++]
-    const _cb = callback; // [!code ++]
+    const _cb = callback // [!code ++]
     // [!code ++]
     callback = (...args) => {
-      _cb(...args); // [!code ++]
-      stop(); // [!code ++]
-    }; // [!code ++]
+      _cb(...args) // [!code ++]
+      stop() // [!code ++]
+    } // [!code ++]
   } // [!code ++]
 
   if (isRef(source)) {
-    getter = () => source.value;
+    getter = () => source.value
   }
 
-  const effect = new ReactiveEffect(getter);
+  const effect = new ReactiveEffect(getter)
   if (immediate) {
-    job();
+    job()
   } else {
-    oldValue = effect.run();
+    oldValue = effect.run()
   }
 
   function job() {
     // 执行 effect.run()，获取 getter 的返回值。这里不能直接执行 getter，否则无法收集依赖。
-    const newValue = effect.run();
+    const newValue = effect.run()
     // 执行回调函数，将新值和旧值作为参数传入。
-    callback(newValue, oldValue);
+    callback(newValue, oldValue)
     // 将新值赋值给旧值，作为下一次的旧值。
-    oldValue = newValue;
+    oldValue = newValue
   }
 
-  effect.scheduler = job;
+  effect.scheduler = job
 
   // 移除 effect 依赖
   function stop() {
-    effect.stop();
+    effect.stop()
   }
 
   return () => {
-    stop();
-  };
-};
+    stop()
+  }
+}
 ```
 
-### deep 选项
+### Vue3 deep 选项
 
 `deep` 选项为 `true` 时，则监听对象内部的变化。
 
 想要深度监听，则需要递归遍历对象，为对象的每一个属性都添加一个 `watch` 监听。
 
-#### 递归遍历对象
+#### Vue3 递归遍历对象
 
 如何实现呢？
 
@@ -344,75 +344,75 @@ export const watch = (source, callback, options) => {
 判断 `deep` 的值，如果为 `true`，拷贝一份 `getter`，再调用 `traverse` 函数，遍历对象的每一个属性，将返回值赋值给 `getter`。
 
 ```ts [watch.ts]
-import { isObject } from "@vue/shared"; // [!code ++]
+import { isObject } from '@vue/shared' // [!code ++]
 
 export const watch = (source, callback, options) => {
-  const { immediate, deep, once } = options || {};
-  let getter;
-  let oldValue;
+  const { immediate, deep, once } = options || {}
+  let getter
+  let oldValue
 
   if (once) {
     // 只需要调用一次，先保存callback函数，调用_callback函数，再调用stop方法，清空依赖停止监听
-    const _cb = callback;
+    const _cb = callback
     callback = (...args) => {
-      _cb(...args);
-      stop();
-    };
+      _cb(...args)
+      stop()
+    }
   }
 
   if (isRef(source)) {
-    getter = () => source.value;
+    getter = () => source.value
   }
 
   // [!code ++]
   if (deep) {
-    const baseGetter = getter; // [!code ++]
-    getter = () => traverse(baseGetter()); // [!code ++]
+    const baseGetter = getter // [!code ++]
+    getter = () => traverse(baseGetter()) // [!code ++]
   } // [!code ++]
 
-  const effect = new ReactiveEffect(getter);
+  const effect = new ReactiveEffect(getter)
   if (immediate) {
-    job();
+    job()
   } else {
-    oldValue = effect.run();
+    oldValue = effect.run()
   }
 
   function job() {
     // 执行 effect.run()，获取 getter 的返回值。这里不能直接执行 getter，否则无法收集依赖。
-    const newValue = effect.run();
+    const newValue = effect.run()
     // 执行回调函数，将新值和旧值作为参数传入。
-    callback(newValue, oldValue);
+    callback(newValue, oldValue)
     // 将新值赋值给旧值，作为下一次的旧值。
-    oldValue = newValue;
+    oldValue = newValue
   }
 
-  effect.scheduler = job;
+  effect.scheduler = job
 
   // 移除 effect 依赖
   function stop() {
-    effect.stop();
+    effect.stop()
   }
 
   return () => {
-    stop();
-  };
-};
+    stop()
+  }
+}
 
 // [!code ++]
 function traverse(value) {
   // [!code ++]
   if (!isObject(value)) {
-    return; // [!code ++]
+    return // [!code ++]
   } // [!code ++]
   // [!code ++]
   for (const key in value) {
-    traverse(value[key]); // [!code ++]
+    traverse(value[key]) // [!code ++]
   } // [!code ++]
-  return value; // [!code ++]
+  return value // [!code ++]
 }
 ```
 
-#### 对象循环引用
+#### Vue3 对象循环引用
 
 当对象存在循环引用时，就会触发 BUG，如下所示：
 
@@ -421,18 +421,18 @@ let state = ref({
   a: {
     b: 1,
   },
-});
-state.value.c = state.value;
+})
+state.value.c = state.value
 
 const stop = watch(
   state,
   (newValue, oldValue) => {
-    console.log(newValue, oldValue);
+    console.log(newValue, oldValue)
   },
   {
     deep: true,
   },
-);
+)
 ```
 
 ![报错信息](https://pic1.imgdb.cn/item/696c9104e8f4cc17ae65a7ca.png)
@@ -445,23 +445,23 @@ const stop = watch(
 // [!code ++]
 function traverse(value, seen = new Set()) {
   if (!isObject(value)) {
-    return;
+    return
   }
   // [!code ++]
   // 如果当前对象有存储到集合内，说明有循环引用
   // [!code ++]
-  if (seen.has(value)) return value;
+  if (seen.has(value)) return value
   // [!code ++]
-  seen.add(value);
+  seen.add(value)
   for (const key in value) {
     // [!code ++]
-    traverse(value[key], seen);
+    traverse(value[key], seen)
   }
-  return value;
+  return value
 }
 ```
 
-#### deep 层级监听
+#### Vue3 deep 层级监听
 
 假设我有一个对象，层级特别深。
 
@@ -475,7 +475,7 @@ let state = ref({
       },
     },
   },
-});
+})
 ```
 
 我只想要它监听至多 2 层，后续层级我不需要监听，节约性能。如何实现呢？
@@ -489,34 +489,34 @@ export const watch = (source, callback, options) => {
   // ...  省略代码
 
   if (deep) {
-    const baseGetter = getter;
-    const depth = deep === true ? Infinity : deep; // 拿到需要监听的层级，为 true 则监听无穷大层 // [!code ++]
-    getter = () => traverse(baseGetter(), depth);
+    const baseGetter = getter
+    const depth = deep === true ? Infinity : deep // 拿到需要监听的层级，为 true 则监听无穷大层 // [!code ++]
+    getter = () => traverse(baseGetter(), depth)
   }
 
   // ...  省略代码
-};
+}
 
 // [!code ++]
 function traverse(value, depth = Infinity, seen = new Set()) {
   // [!code ++]
   if (!isObject(value) || depth <= 0) {
-    return;
+    return
   }
   // 如果当前对象有存储到集合内，说明有循环引用
-  if (seen.has(value)) return value;
-  seen.add(value);
+  if (seen.has(value)) return value
+  seen.add(value)
   // [!code ++]
-  depth--;
+  depth--
   for (const key in value) {
     // [!code ++]
-    traverse(value[key], depth, seen);
+    traverse(value[key], depth, seen)
   }
-  return value;
+  return value
 }
 ```
 
-## watch 监听 reactive
+## Vue3 watch 监听 reactive
 
 目前监听的都是 `ref` 类型的响应式数据，而 `reactive` 类型的响应式数据，需要特殊处理。现在修改变量 `state` 为 `reactive` 类型，看看效果。
 
@@ -528,7 +528,7 @@ function traverse(value, depth = Infinity, seen = new Set()) {
     effect,
     computed,
     watch,
-  } from "../dist/reactivity.esm.js";
+  } from '../dist/reactivity.esm.js'
 
   let state = reactive({
     a: {
@@ -540,21 +540,21 @@ function traverse(value, depth = Infinity, seen = new Set()) {
         },
       },
     },
-  });
+  })
 
   const stop = watch(
     state,
     (newValue, oldValue) => {
-      console.log(newValue, oldValue);
+      console.log(newValue, oldValue)
     },
     {
       // deep: 2,
     },
-  );
+  )
 
   setTimeout(() => {
-    state.a.b.e += 2;
-  }, 1000);
+    state.a.b.e += 2
+  }, 1000)
 </script>
 ```
 
@@ -565,32 +565,32 @@ function traverse(value, depth = Infinity, seen = new Set()) {
 回到代码，在 `if(isRef(source))` 判断之后，再添加一个 `else if (isReactiveObject(source))` 的判断，如果 `source` 是 `reactive` 类型的响应式数据，则直接返回 `source`，并判断用户是否传 `deep`，没传则默认为 `true`；传了则不修改。
 
 ```ts [watch.ts]
-import { isReactive } from "./reactive"; // [!code ++]
+import { isReactive } from './reactive' // [!code ++]
 
 export const watch = (source, callback, options) => {
   // ...  省略代码
 
   if (isRef(source)) {
     // 如果是 ref，访问 ref.value 收集依赖
-    getter = () => source.value;
+    getter = () => source.value
     // [!code ++]
   } else if (isReactive(source)) {
-    getter = () => source; // [!code ++]
+    getter = () => source // [!code ++]
     // 如果是 reactive，用户没传deep，默认为true // [!code ++]
     // [!code ++]
     if (!deep) {
-      deep = true; // [!code ++]
+      deep = true // [!code ++]
     } // [!code ++]
     // [!code ++]
   } else if (isFunction(source)) {
-    getter = source; // [!code ++]
+    getter = source // [!code ++]
   } // [!code ++]
 
   // ...  省略代码
-};
+}
 ```
 
-## watch 清理操作
+## Vue3 watch 清理操作
 
 看一段示例代码：
 
@@ -600,32 +600,32 @@ export const watch = (source, callback, options) => {
   <div id="dv"></div>
   <button id="btn">点击我</button>
   <script type="module">
-    import { ref, watch } from "../dist/reactivity.esm.js";
+    import { ref, watch } from '../dist/reactivity.esm.js'
 
-    const app = document.getElementById("app");
-    const dv = document.getElementById("dv");
-    const btn = document.getElementById("btn");
-    const flag = ref(true);
+    const app = document.getElementById('app')
+    const dv = document.getElementById('dv')
+    const btn = document.getElementById('btn')
+    const flag = ref(true)
 
     watch(
       () => flag.value,
       (newValue, oldValue, onClearup) => {
-        console.log("newValue", newValue);
+        console.log('newValue', newValue)
         if (newValue) {
-          app.addEventListener("click", () => {
-            console.log("app了");
-          });
+          app.addEventListener('click', () => {
+            console.log('app了')
+          })
         } else {
-          dv.addEventListener("click", () => {
-            console.log("dv了");
-          });
+          dv.addEventListener('click', () => {
+            console.log('dv了')
+          })
         }
       },
-    );
+    )
 
-    btn.addEventListener("click", () => {
-      flag.value = !flag.value;
-    });
+    btn.addEventListener('click', () => {
+      flag.value = !flag.value
+    })
   </script>
 </body>
 ```
@@ -642,30 +642,30 @@ export const watch = (source, callback, options) => {
   <div id="dv"></div>
   <button id="btn">点击我</button>
   <script type="module">
-    import { ref, watch } from "../dist/reactivity.esm.js";
+    import { ref, watch } from '../dist/reactivity.esm.js'
 
-    const app = document.getElementById("app");
-    const dv = document.getElementById("dv");
-    const btn = document.getElementById("btn");
-    const flag = ref(true);
+    const app = document.getElementById('app')
+    const dv = document.getElementById('dv')
+    const btn = document.getElementById('btn')
+    const flag = ref(true)
 
     watch(
       () => flag.value,
       (newValue, oldValue, onClearup) => {
-        const dom = newValue ? app : dv;
+        const dom = newValue ? app : dv
         const clickFn = () => {
-          console.log(dom + "了");
-        };
-        dom.addEventListener("click", clickFn);
+          console.log(dom + '了')
+        }
+        dom.addEventListener('click', clickFn)
         onClearup(() => {
-          dom.removeEventListener("click", clickFn);
-        });
+          dom.removeEventListener('click', clickFn)
+        })
       },
-    );
+    )
 
-    btn.addEventListener("click", () => {
-      flag.value = !flag.value;
-    });
+    btn.addEventListener('click', () => {
+      flag.value = !flag.value
+    })
   </script>
 </body>
 ```
@@ -682,44 +682,44 @@ export const watch = (source, callback, options) => {
 export const watch = (source, callback, options) => {
   // ...  省略代码
 
-  const effect = new ReactiveEffect(getter);
+  const effect = new ReactiveEffect(getter)
 
-  let clearup = null; // [!code ++]
+  let clearup = null // [!code ++]
 
   // 立即执行一次
   if (immediate) {
-    job();
+    job()
   } else {
-    oldValue = effect.run();
+    oldValue = effect.run()
   }
 
   // [!code ++]
   function onClearup(fn) {
-    clearup = fn; // [!code ++]
+    clearup = fn // [!code ++]
   } // [!code ++]
 
   function job() {
     // 清空上一次的依赖 // [!code ++]
     // [!code ++]
     if (clearup) {
-      clearup(); // [!code ++]
-      clearup = null; // 重置依赖函数  // [!code ++]
+      clearup() // [!code ++]
+      clearup = null // 重置依赖函数  // [!code ++]
     } // [!code ++]
     // 执行 effect.run()，获取 getter 的返回值。这里不能直接执行 getter，否则无法收集依赖。
-    const newValue = effect.run();
+    const newValue = effect.run()
     // 执行回调函数，将新值和旧值作为参数传入。
-    callback(newValue, oldValue, onClearup);
+    callback(newValue, oldValue, onClearup)
     // 将新值赋值给旧值，作为下一次的旧值。
-    oldValue = newValue;
+    oldValue = newValue
   }
 
   // ...  省略代码
-};
+}
 ```
 
-## 总结
+## Vue3 总结
 
-### 内容总结
+### Vue3 内容总结
 
 如果传了 `once`，则先保存 `callback` 函数赋值为 `_cb`，调用 `_cb` 函数后，再调用 `stop` 方法，清空依赖停止监听。
 
@@ -741,6 +741,6 @@ export const watch = (source, callback, options) => {
 
 最后，返回一个函数 `stop`，用于停止监听 `source` 的变化。
 
-### 时序图
+### Vue3 时序图
 
 ![时序图](https://pic1.imgdb.cn/item/696cad3ee8f4cc17ae660550.png)

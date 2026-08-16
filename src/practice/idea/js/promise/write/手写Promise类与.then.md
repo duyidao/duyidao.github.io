@@ -26,11 +26,11 @@
 ```js
 class MyPromise {
   constructor(executor) {
-    executor();
+    executor()
   }
 }
 
-const p = new MyPromise((resolve, reject) => {});
+const p = new MyPromise((resolve, reject) => {})
 ```
 
 ### 状态
@@ -46,31 +46,31 @@ const p = new MyPromise((resolve, reject) => {});
 
 ```js
 class MyPromise {
-  state = "pending"; // [!code ++]
-  value; // [!code ++]
+  state = 'pending' // [!code ++]
+  value // [!code ++]
   constructor(executor) {
     const resolve = (val) => {
       // [!code ++]
-      if (this.state !== "pending") return; // [!code ++]
-      this.value = val; // [!code ++]
-      this.state = "fulfilled"; // [!code ++]
-    }; // [!code ++]
+      if (this.state !== 'pending') return // [!code ++]
+      this.value = val // [!code ++]
+      this.state = 'fulfilled' // [!code ++]
+    } // [!code ++]
 
     const reject = (reason) => {
       // [!code ++]
-      if (this.state !== "pending") return; // [!code ++]
-      this.value = reason; // [!code ++]
-      this.state = "rejected"; // [!code ++]
-    }; // [!code ++]
+      if (this.state !== 'pending') return // [!code ++]
+      this.value = reason // [!code ++]
+      this.state = 'rejected' // [!code ++]
+    } // [!code ++]
 
-    executor(); // [!code --]
-    executor(resolve, reject); // [!code ++]
+    executor() // [!code --]
+    executor(resolve, reject) // [!code ++]
   }
 }
 
 const p = new MyPromise((resolve, reject) => {
-  resolve(1); // [!code ++]
-});
+  resolve(1) // [!code ++]
+})
 ```
 
 ### 优化
@@ -89,52 +89,52 @@ const p = new MyPromise((resolve, reject) => {
 
 ```js
 // 常量
-const PENDING = "pending"; // [!code ++]
-const FULFILLED = "fulfilled"; // [!code ++]
-const REJECTED = "rejected"; // [!code ++]
+const PENDING = 'pending' // [!code ++]
+const FULFILLED = 'fulfilled' // [!code ++]
+const REJECTED = 'rejected' // [!code ++]
 
 class MyPromise {
-  state = "pending"; // [!code --]
-  #state = PENDING; // 修改为内部私有 // [!code ++]
-  #value;
+  state = 'pending' // [!code --]
+  #state = PENDING // 修改为内部私有 // [!code ++]
+  #value
   constructor(executor) {
     const resolve = (val) => {
-      if (this.state !== "pending") return; // [!code --]
-      this.value = val; // [!code --]
-      this.state = "fulfilled"; // [!code --]
-      this.#setState(FULFILLED, val); // [!code ++]
-    };
+      if (this.state !== 'pending') return // [!code --]
+      this.value = val // [!code --]
+      this.state = 'fulfilled' // [!code --]
+      this.#setState(FULFILLED, val) // [!code ++]
+    }
 
     const reject = (reason) => {
-      if (this.state !== "pending") return; // [!code --]
-      this.value = reason; // [!code --]
-      this.state = "rejected"; // [!code --]
-      this.#setState(REJECTED, reason); // [!code ++]
-    };
+      if (this.state !== 'pending') return // [!code --]
+      this.value = reason // [!code --]
+      this.state = 'rejected' // [!code --]
+      this.#setState(REJECTED, reason) // [!code ++]
+    }
 
     try {
       // [!code ++]
-      executor(resolve, reject);
+      executor(resolve, reject)
     } catch (err) {
       // [!code ++]
-      reject(err); // [!code ++]
+      reject(err) // [!code ++]
     } // [!code ++]
   }
 
   // 修改状态和值 // [!code ++]
   #setState(state, value) {
     // [!code ++]
-    if (this.#state !== PENDING) return; // [!code ++]
-    this.#value = value; // [!code ++]
-    this.#state = state; // [!code ++]
+    if (this.#state !== PENDING) return // [!code ++]
+    this.#value = value // [!code ++]
+    this.#state = state // [!code ++]
   } // [!code ++]
 }
 
 const p = new MyPromise((resolve, reject) => {
-  resolve(1);
-});
+  resolve(1)
+})
 
-console.log(p.#state); // 报错，不可访问私有属性
+console.log(p.#state) // 报错，不可访问私有属性
 ```
 
 现在能够解决上述罗列的几个优化点了。不过要注意的是，`try...catch` 是无法捕获异步的报错，这个原生 `Promise` 也是如此。
@@ -151,56 +151,56 @@ console.log(p.#state); // 报错，不可访问私有属性
 
 ```js
 // 常量
-const PENDING = "pending";
-const FULFILLED = "fulfilled";
-const REJECTED = "rejected";
+const PENDING = 'pending'
+const FULFILLED = 'fulfilled'
+const REJECTED = 'rejected'
 
 class MyPromise {
-  #state = PENDING; // 修改为内部私有
-  #value;
+  #state = PENDING // 修改为内部私有
+  #value
   constructor(executor) {
     const resolve = (val) => {
-      this.#setState(FULFILLED, val);
-    };
+      this.#setState(FULFILLED, val)
+    }
 
     const reject = (reason) => {
-      this.#setState(REJECTED, reason);
-    };
+      this.#setState(REJECTED, reason)
+    }
 
     try {
-      executor(resolve, reject);
+      executor(resolve, reject)
     } catch (err) {
-      reject(err);
+      reject(err)
     }
   }
 
   // 修改状态和值
   #setState(state, value) {
-    if (this.#state !== PENDING) return;
-    this.#value = value;
-    this.#state = state;
+    if (this.#state !== PENDING) return
+    this.#value = value
+    this.#state = state
   }
 
   then(onFulfilled, onRejected) {
     // [!code ++]
     if (this.#state === FULFILLED) {
       // [!code ++]
-      onFulfilled(this.#value); // [!code ++]
+      onFulfilled(this.#value) // [!code ++]
     } // [!code ++]
     else if (this.#state === REJECTED) {
       // [!code ++]
-      onRejected(this.#value); // [!code ++]
+      onRejected(this.#value) // [!code ++]
     } // [!code ++]
   } // [!code ++]
 }
 
 const p = new MyPromise((resolve, reject) => {
-  resolve(1);
-});
+  resolve(1)
+})
 
 p.then((res) => {
-  console.log(res); // 1
-});
+  console.log(res) // 1
+})
 ```
 
 ### 链式调用
@@ -213,57 +213,57 @@ p.then((res) => {
 
 ```js
 // 常量
-const PENDING = "pending";
-const FULFILLED = "fulfilled";
-const REJECTED = "rejected";
+const PENDING = 'pending'
+const FULFILLED = 'fulfilled'
+const REJECTED = 'rejected'
 
 class MyPromise {
-  #state = PENDING; // 修改为内部私有
-  #value;
+  #state = PENDING // 修改为内部私有
+  #value
   constructor(executor) {
     const resolve = (val) => {
-      this.#setState(FULFILLED, val);
-    };
+      this.#setState(FULFILLED, val)
+    }
 
     const reject = (reason) => {
-      this.#setState(REJECTED, reason);
-    };
+      this.#setState(REJECTED, reason)
+    }
 
     try {
-      executor(resolve, reject);
+      executor(resolve, reject)
     } catch (err) {
-      reject(err);
+      reject(err)
     }
   }
 
   // 修改状态和值
   #setState(state, value) {
-    if (this.#state !== PENDING) return;
-    this.#value = value;
-    this.#state = state;
+    if (this.#state !== PENDING) return
+    this.#value = value
+    this.#state = state
   }
 
   then(onFulfilled, onRejected) {
     return new MyPromise((resolve, reject) => {
       // [!code ++]
       if (this.#state === FULFILLED) {
-        const res = onFulfilled(this.#value); // [!code ++]
-        resolve(res); // [!code ++]
+        const res = onFulfilled(this.#value) // [!code ++]
+        resolve(res) // [!code ++]
       } else if (this.#state === REJECTED) {
-        const res = onRejected(this.#value); // [!code ++]
-        resolve(res); // [!code ++]
+        const res = onRejected(this.#value) // [!code ++]
+        resolve(res) // [!code ++]
       }
-    }); // [!code ++]
+    }) // [!code ++]
   }
 }
 
 const p = new MyPromise((resolve, reject) => {
-  resolve(1);
-});
+  resolve(1)
+})
 
 p.then((res) => {
-  console.log(res); // 1
-});
+  console.log(res) // 1
+})
 ```
 
 ### 考虑异步
@@ -271,9 +271,9 @@ p.then((res) => {
 ```js
 const p = new MyPromise((resolve, reject) => {
   setTimeout(() => {
-    resolve(1);
-  }, 20);
-});
+    resolve(1)
+  }, 20)
+})
 ```
 
 基本实现版本，只能处理同步代码，如果 `Promise` 是异步的，则无法处理，这是因为前面写的判断只判断了 `fulfilled` 和 `rejected` 两种状态，并没有处理 `pending` 状态。而异步代码执行时，`Promise` 的状态是 `pending`，因此需要处理 `pending` 状态。
@@ -284,36 +284,36 @@ const p = new MyPromise((resolve, reject) => {
 
 ```js
 // 常量
-const PENDING = "pending";
-const FULFILLED = "fulfilled";
-const REJECTED = "rejected";
+const PENDING = 'pending'
+const FULFILLED = 'fulfilled'
+const REJECTED = 'rejected'
 
 class MyPromise {
-  #state = PENDING; // 修改为内部私有
-  #value;
-  #handler; // 保存onFulfilled和onRejected函数 // [!code ++]
+  #state = PENDING // 修改为内部私有
+  #value
+  #handler // 保存onFulfilled和onRejected函数 // [!code ++]
   constructor(executor) {
     const resolve = (val) => {
-      this.#setState(FULFILLED, val);
-    };
+      this.#setState(FULFILLED, val)
+    }
 
     const reject = (reason) => {
-      this.#setState(REJECTED, reason);
-    };
+      this.#setState(REJECTED, reason)
+    }
 
     try {
-      executor(resolve, reject);
+      executor(resolve, reject)
     } catch (err) {
-      reject(err);
+      reject(err)
     }
   }
 
   // 修改状态和值
   #setState(state, value) {
-    if (this.#state !== PENDING) return;
-    this.#value = value;
-    this.#state = state;
-    this.#handler(); // [!code ++]
+    if (this.#state !== PENDING) return
+    this.#value = value
+    this.#state = state
+    this.#handler() // [!code ++]
   }
 
   then(onFulfilled, onRejected) {
@@ -321,25 +321,25 @@ class MyPromise {
       this.#handler = () => {
         // [!code ++]
         if (this.#state === FULFILLED) {
-          const res = onFulfilled(this.#value);
-          resolve(res);
+          const res = onFulfilled(this.#value)
+          resolve(res)
         } else if (this.#state === REJECTED) {
-          const res = onRejected(this.#value);
-          resolve(res);
+          const res = onRejected(this.#value)
+          resolve(res)
         }
-      }; // [!code ++]
-      if (this.#state !== PENDING) this.#handler(); // [!code ++]
-    });
+      } // [!code ++]
+      if (this.#state !== PENDING) this.#handler() // [!code ++]
+    })
   }
 }
 
 const p = new MyPromise((resolve, reject) => {
-  resolve(1);
-});
+  resolve(1)
+})
 
 p.then((res) => {
-  console.log(res); // 1
-});
+  console.log(res) // 1
+})
 ```
 
 ### 多个实例
@@ -349,17 +349,17 @@ p.then((res) => {
 ```js
 const p = new MyPromise((resolve, reject) => {
   setTimeout(() => {
-    resolve(1);
-  }, 1000);
-});
+    resolve(1)
+  }, 1000)
+})
 
 p.then((res) => {
-  console.log("p1", res);
-});
+  console.log('p1', res)
+})
 
 p.then((res) => {
-  console.log("p2", res);
-});
+  console.log('p2', res)
+})
 ```
 
 现在只能打印 `p2`，`p1` 没有打印。这是因为最开始运行第一个 `then` 时 `this.#handler` 保存了 `p1` 的回调；然后运行到 `p2` 后重新赋值，覆盖了 `p1` 的回调。所以需要把 `this.#handler` 改成数组，保存多个回调。
@@ -452,42 +452,42 @@ p.then(res => {
 
 ```js
 // 常量
-const PENDING = "pending";
-const FULFILLED = "fulfilled";
-const REJECTED = "rejected";
+const PENDING = 'pending'
+const FULFILLED = 'fulfilled'
+const REJECTED = 'rejected'
 
 class MyPromise {
-  #state = PENDING; // 修改为内部私有
-  #value;
-  #handlers = []; // 保存onFulfilled和onRejected函数
+  #state = PENDING // 修改为内部私有
+  #value
+  #handlers = [] // 保存onFulfilled和onRejected函数
   constructor(executor) {
     const resolve = (val) => {
-      this.#setState(FULFILLED, val);
-    };
+      this.#setState(FULFILLED, val)
+    }
 
     const reject = (reason) => {
-      this.#setState(REJECTED, reason);
-    };
+      this.#setState(REJECTED, reason)
+    }
 
     try {
-      executor(resolve, reject);
+      executor(resolve, reject)
     } catch (err) {
-      reject(err);
+      reject(err)
     }
   }
 
   // 修改状态和值
   #setState(state, value) {
-    if (this.#state !== PENDING) return;
-    this.#value = value;
-    this.#state = state;
-    this.#runTask();
+    if (this.#state !== PENDING) return
+    this.#value = value
+    this.#state = state
+    this.#runTask()
   }
 
   #runTask() {
     if (this.#state !== PENDING) {
-      this.#handlers().forEach((cb) => cb());
-      this.#handlers = [];
+      this.#handlers().forEach((cb) => cb())
+      this.#handlers = []
     }
   }
 
@@ -496,41 +496,41 @@ class MyPromise {
       this.#handlers.push(() => {
         if (this.#state === FULFILLED) {
           // [!code --]
-          const res = onFulfilled(this.#value); // [!code --]
-          resolve(res); // [!code --]
+          const res = onFulfilled(this.#value) // [!code --]
+          resolve(res) // [!code --]
         } // [!code --]
         else if (this.#state === REJECTED) {
           // [!code --]
-          const res = onRejected(this.#value); // [!code --]
-          resolve(res); // [!code --]
+          const res = onRejected(this.#value) // [!code --]
+          resolve(res) // [!code --]
         } // [!code --]
         try {
           // [!code ++]
-          const cb = this.#state === FULFILLED ? onFulfilled : onRejected; // [!code ++]
+          const cb = this.#state === FULFILLED ? onFulfilled : onRejected // [!code ++]
           // 如果cb不是函数，说明用户没传，直接返回结果 // [!code ++]
-          const res = typeof cb === "function" ? cb(this.#value) : this.#value; // [!code ++]
-          resolve(res); // [!code ++]
+          const res = typeof cb === 'function' ? cb(this.#value) : this.#value // [!code ++]
+          resolve(res) // [!code ++]
         } catch (err) {
           // [!code ++]
-          reject(err); // [!code ++]
+          reject(err) // [!code ++]
         } // [!code ++]
-      });
-      this.#runTask();
-    });
+      })
+      this.#runTask()
+    })
   }
 }
 
 const p = new MyPromise((resolve, reject) => {
-  resolve(1);
-});
+  resolve(1)
+})
 
 p.then((res) => {
-  console.log("p1", res);
-});
+  console.log('p1', res)
+})
 
 p.then((res) => {
-  console.log("p2", res);
-});
+  console.log('p2', res)
+})
 ```
 
 ## 异步处理
@@ -539,14 +539,14 @@ p.then((res) => {
 
 ```js
 const p = new MyPromise((resolve, reject) => {
-  resolve(1);
-});
+  resolve(1)
+})
 
 p.then((res) => {
-  console.log("then", res);
-});
+  console.log('then', res)
+})
 
-console.log("end");
+console.log('end')
 ```
 
 查看上方的打印，`.then` 里面的代码应该是异步的，因此会先打印 `end`，再打印 `then`。但是现在的代码是同步的，因此会先打印 `then`，再打印 `end`。
@@ -559,100 +559,100 @@ console.log("end");
 
 ```js
 // 常量
-const PENDING = "pending";
-const FULFILLED = "fulfilled";
-const REJECTED = "rejected";
+const PENDING = 'pending'
+const FULFILLED = 'fulfilled'
+const REJECTED = 'rejected'
 
 function runMicrotasks(fn) {
   // [!code ++]
-  if (typeof queueMicrotask === "function") {
+  if (typeof queueMicrotask === 'function') {
     // [!code ++]
-    queueMicrotask(fn); // [!code ++]
+    queueMicrotask(fn) // [!code ++]
   } // [!code ++]
   else if (
-    typeof process === "object" &&
-    typeof process.nextTick === "function"
+    typeof process === 'object' &&
+    typeof process.nextTick === 'function'
   ) {
     // [!code ++]
-    process.nextTick(fn); // [!code ++]
+    process.nextTick(fn) // [!code ++]
   } // [!code ++]
-  else if (typeof MutationObserver === "function") {
+  else if (typeof MutationObserver === 'function') {
     // [!code ++]
-    const observer = new MutationObserver(fn); // [!code ++]
-    const textNode = document.createTextNode(String(Math.random())); // [!code ++]
-    observer.observe(textNode, { characterData: true }); // [!code ++]
+    const observer = new MutationObserver(fn) // [!code ++]
+    const textNode = document.createTextNode(String(Math.random())) // [!code ++]
+    observer.observe(textNode, { characterData: true }) // [!code ++]
     // 当节点的内容发生变化，就会异步执行前面的fn函数 // [!code ++]
-    textNode.data = String(Math.random()); // [!code ++]
+    textNode.data = String(Math.random()) // [!code ++]
   } // [!code ++]
   else {
     // [!code ++]
-    setTimeout(fn, 0); // [!code ++]
+    setTimeout(fn, 0) // [!code ++]
   } // [!code ++]
 } // [!code ++]
 
 class MyPromise {
-  #state = PENDING; // 修改为内部私有
-  #value;
-  #handlers = []; // 保存onFulfilled和onRejected函数
+  #state = PENDING // 修改为内部私有
+  #value
+  #handlers = [] // 保存onFulfilled和onRejected函数
   constructor(executor) {
     const resolve = (val) => {
-      this.#setState(FULFILLED, val);
-    };
+      this.#setState(FULFILLED, val)
+    }
 
     const reject = (reason) => {
-      this.#setState(REJECTED, reason);
-    };
+      this.#setState(REJECTED, reason)
+    }
 
     try {
-      executor(resolve, reject);
+      executor(resolve, reject)
     } catch (err) {
-      reject(err);
+      reject(err)
     }
   }
 
   // 修改状态和值
   #setState(state, value) {
-    if (this.#state !== PENDING) return;
-    this.#value = value;
-    this.#state = state;
-    this.#runTask();
+    if (this.#state !== PENDING) return
+    this.#value = value
+    this.#state = state
+    this.#runTask()
   }
 
   #runTask() {
     runMicrotasks(() => {
       // [!code ++]
       if (this.#state !== PENDING) {
-        this.#handlers().forEach((cb) => cb());
-        this.#handlers = [];
+        this.#handlers().forEach((cb) => cb())
+        this.#handlers = []
       }
-    }); // [!code ++]
+    }) // [!code ++]
   }
 
   then(onFulfilled, onRejected) {
     return new MyPromise((resolve, reject) => {
       this.#handlers.push(() => {
         try {
-          const cb = this.#state === FULFILLED ? onFulfilled : onRejected;
-          const res = typeof cb === "function" ? cb(this.#value) : this.#value;
-          resolve(res);
+          const cb = this.#state === FULFILLED ? onFulfilled : onRejected
+          const res = typeof cb === 'function' ? cb(this.#value) : this.#value
+          resolve(res)
         } catch (err) {
-          reject(err);
+          reject(err)
         }
-      });
-      this.#runTask();
-    });
+      })
+      this.#runTask()
+    })
   }
 }
 
 const p = new MyPromise((resolve, reject) => {
-  resolve(1);
-});
+  resolve(1)
+})
 
 p.then((res) => {
-  console.log("p1", res);
-});
+  console.log('p1', res)
+})
 
-console.log("end");
+console.log('end')
 ```
 
 ## .then 返回 Promise
@@ -661,32 +661,32 @@ console.log("end");
 
 ```js
 const p = new MyPromise((resolve, reject) => {
-  resolve(1);
-});
+  resolve(1)
+})
 
 const p1 = p.then(() => {
   return new Promise((resolve, reject) => {
-    resolve(2);
-  });
-});
+    resolve(2)
+  })
+})
 
 p1.then((res) => {
-  console.log("p1", res); // p1 { Promise 2 }
-});
+  console.log('p1', res) // p1 { Promise 2 }
+})
 
 const pro = new Promise((resolve, reject) => {
-  resolve(1);
-});
+  resolve(1)
+})
 
 const pro1 = pro.then(() => {
   return new Promise((resolve, reject) => {
-    resolve(2);
-  });
-});
+    resolve(2)
+  })
+})
 
 pro1.then((res) => {
-  console.log("pro1", res); // pro1 2
-});
+  console.log('pro1', res) // pro1 2
+})
 ```
 
 原生 `Promise` 返回的是其结果，而我们封装的返回的还是一个 `Promise`，因此需要修改一下代码，具体要修改的是 `then` 方法。
@@ -697,101 +697,101 @@ pro1.then((res) => {
 
 ```js
 // 常量
-const PENDING = "pending";
-const FULFILLED = "fulfilled";
-const REJECTED = "rejected";
+const PENDING = 'pending'
+const FULFILLED = 'fulfilled'
+const REJECTED = 'rejected'
 
 function runMicrotasks(fn) {
-  if (typeof queueMicrotask === "function") {
-    queueMicrotask(fn);
+  if (typeof queueMicrotask === 'function') {
+    queueMicrotask(fn)
   } else if (
-    typeof process === "object" &&
-    typeof process.nextTick === "function"
+    typeof process === 'object' &&
+    typeof process.nextTick === 'function'
   ) {
-    process.nextTick(fn);
-  } else if (typeof MutationObserver === "function") {
-    const observer = new MutationObserver(fn);
-    const textNode = document.createTextNode(String(Math.random()));
-    observer.observe(textNode, { characterData: true });
+    process.nextTick(fn)
+  } else if (typeof MutationObserver === 'function') {
+    const observer = new MutationObserver(fn)
+    const textNode = document.createTextNode(String(Math.random()))
+    observer.observe(textNode, { characterData: true })
     // 当节点的内容发生变化，就会异步执行前面的fn函数
-    textNode.data = String(Math.random());
+    textNode.data = String(Math.random())
   } else {
-    setTimeout(fn, 0);
+    setTimeout(fn, 0)
   }
 }
 
 function isPromiseLike(obj) {
   // [!code ++]
-  return typeof obj?.then === "function"; // [!code ++]
+  return typeof obj?.then === 'function' // [!code ++]
 } // [!code ++]
 
 class MyPromise {
-  #state = PENDING; // 修改为内部私有
-  #value;
-  #handlers = []; // 保存onFulfilled和onRejected函数
+  #state = PENDING // 修改为内部私有
+  #value
+  #handlers = [] // 保存onFulfilled和onRejected函数
   constructor(executor) {
     const resolve = (val) => {
-      this.#setState(FULFILLED, val);
-    };
+      this.#setState(FULFILLED, val)
+    }
 
     const reject = (reason) => {
-      this.#setState(REJECTED, reason);
-    };
+      this.#setState(REJECTED, reason)
+    }
 
     try {
-      executor(resolve, reject);
+      executor(resolve, reject)
     } catch (err) {
-      reject(err);
+      reject(err)
     }
   }
 
   // 修改状态和值
   #setState(state, value) {
-    if (this.#state !== PENDING) return;
-    this.#value = value;
-    this.#state = state;
-    this.#runTask();
+    if (this.#state !== PENDING) return
+    this.#value = value
+    this.#state = state
+    this.#runTask()
   }
 
   #runTask() {
     runMicrotasks(() => {
       if (this.#state !== PENDING) {
-        this.#handlers().forEach((cb) => cb());
-        this.#handlers = [];
+        this.#handlers().forEach((cb) => cb())
+        this.#handlers = []
       }
-    });
+    })
   }
 
   then(onFulfilled, onRejected) {
     return new MyPromise((resolve, reject) => {
       this.#handlers.push(() => {
         try {
-          const cb = this.#state === FULFILLED ? onFulfilled : onRejected;
-          const res = typeof cb === "function" ? cb(this.#value) : this.#value;
+          const cb = this.#state === FULFILLED ? onFulfilled : onRejected
+          const res = typeof cb === 'function' ? cb(this.#value) : this.#value
           if (isPromiseLike(res)) {
             // [!code ++]
-            resolve(res.then(resolve, reject)); // [!code ++]
+            resolve(res.then(resolve, reject)) // [!code ++]
           } // [!code ++]
           else {
             // [!code ++]
-            resolve(res);
+            resolve(res)
           } // [!code ++]
         } catch (err) {
-          reject(err);
+          reject(err)
         }
-      });
-      this.#runTask();
-    });
+      })
+      this.#runTask()
+    })
   }
 }
 
 const p = new MyPromise((resolve, reject) => {
-  resolve(1);
-});
+  resolve(1)
+})
 
 p.then((res) => {
-  console.log("p1", res);
-});
+  console.log('p1', res)
+})
 
-console.log("end");
+console.log('end')
 ```

@@ -40,22 +40,22 @@
 export default {
   data() {
     return {
-      msg: "hello",
-    };
+      msg: 'hello',
+    }
   },
-};
+}
 </script>
 ```
 
 ```js [编译后.vue]
 let component = {
-  template: "<div>{{msg}}</div>",
+  template: '<div>{{msg}}</div>',
   data() {
     return {
-      msg: "hello",
-    };
+      msg: 'hello',
+    }
   },
-};
+}
 ```
 
 :::
@@ -104,10 +104,10 @@ let statuTable = {
 
 ```vue
 <table>
-	<tbody>
-  	<tr v-for="item in list" :key="item.id">
+ <tbody>
+   <tr v-for="item in list" :key="item.id">
       <td>{{ item.name }}</td>
-    	<td><statuTable :status="item.status"></statuTable></td>
+     <td><statuTable :status="item.status"></statuTable></td>
     </tr>
   </tbody>
 </table>
@@ -124,10 +124,10 @@ let statuTable = {
 ```vue
 <table>
   <tbody>
-  	<tr v-for="item in list" :key="item.id">
+   <tr v-for="item in list" :key="item.id">
       <template v-if="item.name !== '王五' || item.name！== ‘赵六'">
-      	<td>{{ item.name }}</td>
-      	<!-- ...... -->
+       <td>{{ item.name }}</td>
+       <!-- ...... -->
       </template>
     </tr>
   </tbody>
@@ -149,8 +149,8 @@ JSX 使用方式如下：
      return (
        <>
          {list.map((item) => {
-           if (item.name === "王五" || item.name === "赵六") {
-             return "";
+           if (item.name === '王五' || item.name === '赵六') {
+             return ''
            } else {
              return (
                <tr>
@@ -159,11 +159,11 @@ JSX 使用方式如下：
                    <statusTable>{item.status}</statusTable>
                  </td>
                </tr>
-             );
+             )
            }
          })}
        </>
-     );
+     )
    }
    ```
 
@@ -172,7 +172,7 @@ JSX 使用方式如下：
    ```vue
    <table>
      <tbody>
-     	<TrList></TrList>
+      <TrList></TrList>
      </tbody>
    </table>
    ```

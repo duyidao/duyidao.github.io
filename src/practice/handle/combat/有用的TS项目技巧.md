@@ -141,9 +141,9 @@ getApi1({ id: "123" }).then((res) => {
 
 ```js
 export const UserTypeMap = {
-  sing: "sing",
-  dancer: "dancer",
-};
+  sing: 'sing',
+  dancer: 'dancer',
+}
 ```
 
 这么做的好处是，如果后端后续修改了属性字段，如上方例子，后端把 `sing` ，改成了 `singer` ，此时前端没有做枚举而是直接判断，会有很多地方需要修改。而使用枚举字典，只需要修改字典即可，前端代码不需要修改。

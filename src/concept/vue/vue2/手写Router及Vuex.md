@@ -2,26 +2,26 @@
 
 ## VueRouter
 
-在一个<word text="Vue" />的项目中，入口文件 `main.js` 中负责渲染组件和引入路由，代码如下所示：
+在一个 <word text="Vue" /> 的项目中，入口文件 `main.js` 中负责渲染组件和引入路由，代码如下所示：
 
 ```js [main.js]
-import Vue from "vue"; // 这里用的vue是runtime，不包含compiler
-import App from "./App.vue";
-import router from "./router"; // 前端路由
+import Vue from 'vue' // 这里用的vue是runtime，不包含compiler
+import App from './App.vue'
+import router from './router' // 前端路由
 
 new Vue({
   router,
   render: (h) => h(App), // 渲染组件，内部_c 发现是对象的话会调用组件的render方法进行渲染。如果在这里写template会报错，因为不包含compiler
-}).$mount("#app");
+}).$mount('#app')
 ```
 
 在 `router/index.js` 文件中会有这么一段代码：
 
 ```js [router/index.js]
-import Vue from "vue";
-import VueRouter from "vue-router";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 ```
 
 VueRouter 会调用插件的 `install` 方法。最后导出一个路由实例，在入口文件中传到 `new Vue` 对象内。
@@ -40,14 +40,14 @@ VueRouter 会调用插件的 `install` 方法。最后导出一个路由实例�
 >
 > <word text="NodeJS" />中没有前端 `url` 地址，因此内部采用的是 `memeryHistory` 。通过<word text="Node" />+<word text="Vue" />实现路由跳转。（服务端渲染能用到）
 
-### install 方法
+### VueRouter install 方法
 
 现在尝试写一个 VueRouter ，新建一个 `js` 文件，创建一个类，并全部导出。代码如下：
 
 ```js
 class VueRouter {}
 
-export default VueRouter;
+export default VueRouter
 ```
 
 注释掉原来引入的 `vue-router` 路由，引入手写的文件，刷新后页面报错，报错信息如下所示；
@@ -61,10 +61,10 @@ class VueRouter {}
 
 // 如果用户导出一个类，在类上写一个install方法，会调用该方法
 VueRouter.install = function (Vue) {
-  console.log("install");
-};
+  console.log('install')
+}
 
-export default VueRouter;
+export default VueRouter
 ```
 
 因为 VueRouter 会调用插件的 `install` 方法。在源码中，它会去判断是否有 `install` 方法，如果有则调用，没有才执行函数。
@@ -72,20 +72,20 @@ export default VueRouter;
 方法 `install` 会拿到<word text="Vue" />构造函数，为了能够每个文件都可使用，在 `install` 方法中保存到全局属性上。代码如下：
 
 ```js
-export let Vue;
+export let Vue
 class VueRouter {
   constructor(options) {
-    let routes = options.routes;
+    let routes = options.routes
   }
 }
 
 // 如果用户导出一个类，在类上写一个install方法，会调用该方法
 VueRouter.install = function (_Vue) {
-  Vue = _Vue; // 将传入的Vue的构造函数变为全局的
-  console.log("install");
-};
+  Vue = _Vue // 将传入的Vue的构造函数变为全局的
+  console.log('install')
+}
 
-export default VueRouter;
+export default VueRouter
 ```
 
 在创建路由表时，前端代码如下：
@@ -96,24 +96,24 @@ const routes = [
       path: '/',
       component: () => import('./home.vue'),
       children: [
-      	{
-      		path: 'a',
-      		component: {
-      			render: (h) => h('<div>a</div>')
-    		  }
-    	  }
+       {
+        path: 'a',
+        component: {
+         render: (h) => h('<div>a</div>')
+        }
+       }
       ]
     },
     {
       path: '/about',
       component: import() => './about.vue',
       children: [
-      	{
-      		path: 'a',
-      		component: {
-      			render: (h) => h('<div>about a</div>')
-    		  }
-    	  }
+       {
+        path: 'a',
+        component: {
+         render: (h) => h('<div>about a</div>')
+        }
+       }
       ]
     }
 ]
@@ -133,10 +133,10 @@ const routes = [
 new Vue({
   router,
   render: (h) => h(App),
-});
+})
 new Vue({
   render: (h) => h(App),
-});
+})
 ```
 
 只有通过 `new Vue` 中传入了 `router` 才能被共享，因此原型的方法不可取。
@@ -147,30 +147,30 @@ new Vue({
 
 ```js
 VueRouter.install = function (_Vue) {
-  Vue = _Vue;
+  Vue = _Vue
 
   Vue.mixin({
     beforeCreate() {
       // 组件渲染从父 _router 到子
       if (this.$options.router) {
         // 如果有router，说明是根实例且传递了router。此时 this 指向根实例
-        this._routerRoot = this;
-        this._router = this.$options.router;
+        this._routerRoot = this
+        this._router = this.$options.router
       } else {
         // 没有说明是子组件，从父组件拿router，所有组件上增加一个 _routerRoot 指向根实例
-        this._routerRoot = this.$parent && this.$parent._routerRoot;
+        this._routerRoot = this.$parent && this.$parent._routerRoot
       }
 
       // 在组件中都可以通过 this 属性获取到 _router 属性
-      Object.defineProperty(Vue.prototype, "$router", {
+      Object.defineProperty(Vue.prototype, '$router', {
         // 为了取值方便，做一层代理。后面无需通过 this.$options._router 获取
         get() {
-          return this._routerRoot && this._routerRoot._router;
+          return this._routerRoot && this._routerRoot._router
         },
-      });
+      })
     },
-  });
-};
+  })
+}
 ```
 
 > [!IMPORTANT] 答疑解惑
@@ -190,27 +190,26 @@ VueRouter.install = function (_Vue) {
 
 代码如下所示：
 
-```jsx
+````jsx
 VueRouter.install = function (_Vue) {
   // ...
 
   // react 中叫children；vue中所有的插槽会被变道 vm.$slots 对象上
-  Vue.component("router-link", {
+  Vue.component('router-link', {
     render() {
-      return <a>{this.$slots.default}</a>;
+      return <a>{this.$slots.default}</a>
     },
-  });
-  Vue.component("router-view", {
+  })
+  Vue.component('router-view', {
     render() {
-      return <div></div>;
+      return <div></div>
     },
-  });
-};
-```
+  })
+}
 
-### 跳转逻辑
+### VueRouter 跳转逻辑
 
-#### 路由表扁平化
+### VueRouter 路由表扁平化
 
 现在该把路由表扁平化存储了，变成映射表，方便后续的匹配操作，可以匹配也可以添加新的路由。在 VueRouter 类的 `constructor` 构造器中书写相应的逻辑，步骤如下：
 
@@ -232,7 +231,7 @@ VueRouter.install = function (_Vue) {
 
 因此需要修改上述的 BUG，在 `addRouteRecord()` 方法中修改获取 `path` 的逻辑，不再是之间获取路径，而是判断是否有父路由组件，如果有则拼接，没有才直接获取。
 
-#### 路由添加方法
+### VueRouter 路由添加方法
 
 接下来实现添加路由的方法，用户调用 `addRoutes` 或 `addRoute` 方法时会传入相对应的路由表数组，因此分别调用 `createRouteMap` 方法即可。
 
@@ -240,52 +239,52 @@ VueRouter.install = function (_Vue) {
 // 扁平化路由信息
 function createRouteMap(routes, pathMap) {
   // 最终返回的映射表对象，如果用户传入则使用用户传的，用户没传说明第一次创建，赋值空对象
-  pathMap = pathMap || {};
+  pathMap = pathMap || {}
 
   // 遍历数组
   routes.forEach((route) => {
-    addRouteRecord(route, pathMap);
-  });
+    addRouteRecord(route, pathMap)
+  })
 
-  return pathMap;
+  return pathMap
 }
 
 function addRouteRecord(route, pathMap, parentRecord) {
   // 判断是否有父组件路由，如果有判断是否是 / ，如果是则只使用一个 / 进行拼接，避免 //a 的情况
   let path = parentRecord
-    ? `${parentRecord.path === "/" ? "/" : `${parentRecord.path}/`}`
-    : route.path;
+    ? `${parentRecord.path === '/' ? '/' : `${parentRecord.path}/`}`
+    : route.path
   let record = {
     path,
     component: route.component,
     props: route.props,
     meta: route.meta,
-  };
+  }
 
   // 看看它有没有被存过
   if (!pathMap[path]) {
     // 维护路径对应信息，如组件、元信息等
-    pathMap[path] = record;
+    pathMap[path] = record
   }
 
   // 如果有子路由数组，则遍历递归调用 addRouteRecord 方法
   route.children &&
     route.children.forEach((childRoute) => {
       // 把当前的父组件路由信息record传过去
-      addRouteRecord(childRoute, pathMap, record);
-    });
+      addRouteRecord(childRoute, pathMap, record)
+    })
 }
 
 function createMatcher(routes) {
   // 映射关系处理
-  let { pathMap } = createRouteMap(routes);
+  let { pathMap } = createRouteMap(routes)
 
   // 路由匹配与路由添加的方法
   function addRoutes(routes) {
-    createRouteMap(routes, pathMap);
+    createRouteMap(routes, pathMap)
   }
   function addRoute(route) {
-    createRouteMap([route], pathMap);
+    createRouteMap([route], pathMap)
   }
   function match() {}
 
@@ -293,19 +292,19 @@ function createMatcher(routes) {
     addRoutes, // 添加路由（多个路由）
     addRoute, // 添加路由（单个路由）
     match, // 给一个路径，返回对应的路由
-  };
+  }
 }
 
 class VueRouter {
   constructor(options) {
     // 用户传递的路由表数组，需要进行映射表处理
-    let routes = options.routes || [];
+    let routes = options.routes || []
 
     // 封装并调用方法做映射表扁平化处理，并实现可以匹配也可以添加新路由
-    this.matcher = createMatcher(routes);
+    this.matcher = createMatcher(routes)
   }
 }
-```
+````
 
 > [!WARNING] 注意
 >
@@ -314,7 +313,7 @@ class VueRouter {
 > 1. 刚开始时路由表为空，用于扁平化路由表
 > 2. 调用添加路由方法，往路由表内添加路由
 
-#### 不同路由模式创建对应路由系统
+#### VueRouter 不同路由模式创建对应路由系统
 
 获取到用户用的路由模式，分别调用不同的路由系统，并设置路由初始化和调用路由的 `match` 方法获取路径对应的组件映射。代码如下所示：
 
@@ -322,32 +321,32 @@ class VueRouter {
 class VueRouter {
   constructor(options) {
     // 用户传递的路由表数组，需要进行映射表处理
-    let routes = options.routes || [];
+    let routes = options.routes || []
 
     // 封装并调用方法做映射表扁平化处理，并实现可以匹配也可以添加新路由
-    this.matcher = createMatcher(routes);
+    this.matcher = createMatcher(routes)
 
     // 判断用户使用哪种路由模式，默认hash模式
-    let mode = options.mode || "hash";
-    if (mode === "hash") {
-      this.history = new HashHistory(this);
+    let mode = options.mode || 'hash'
+    if (mode === 'hash') {
+      this.history = new HashHistory(this)
     } else {
-      this.history = new BrowserHistory(this);
+      this.history = new BrowserHistory(this)
     }
   }
 
   init(app) {
-    let history = this.history;
+    let history = this.history
     // 监听路由变化，并匹配对应的组件来进行渲染，更新视图
     history.transitionTo(history.getCurrentLocation(), () => {
       // 跳转后再监听路由变化
-      history.setupListener();
-    });
+      history.setupListener()
+    })
   }
 
   // 调用路由的match方法
   match(location) {
-    return this.router.match(location);
+    return this.router.match(location)
   }
 }
 ```
@@ -356,21 +355,21 @@ class VueRouter {
 
 ```js
 VueRouter.install = function (_Vue) {
-  Vue = _Vue;
+  Vue = _Vue
 
   Vue.mixin({
     beforeCreate() {
       if (this.$options.router) {
-        this._routerRoot = this;
-        this._router = this.$options.router;
+        this._routerRoot = this
+        this._router = this.$options.router
 
-        this._router.init(this); // this指的是整个应用
+        this._router.init(this) // this指的是整个应用
       }
 
       // ...
     },
-  });
-};
+  })
+}
 ```
 
 下面依次书写两个路由模式类对应的代码：
@@ -382,21 +381,21 @@ VueRouter.install = function (_Vue) {
   ```js
   class Base {
     constructor(router) {
-      this.router = router;
+      this.router = router
     }
 
     // 路由跳转。参数一为要跳转的路径，参数二为监听的回调
     transitionTo(location, listener) {
       // 获取映射表上对应的路由与其组件
-      let record = this.router.match(location);
+      let record = this.router.match(location)
 
       // 路由切换时也调用该方法，再次拿到新记录
 
-      listener && listener();
+      listener && listener()
     }
   }
 
-  export default Base;
+  export default Base
   ```
 
   把路由放到 `this` 上，这样历史模式和哈希模式都可以拿到。
@@ -406,88 +405,88 @@ VueRouter.install = function (_Vue) {
   首先需要判断它有没有哈希路径，如果有则不用做处理，没有则需要加上哈希路径。
 
   ```js
-  import Base from "./base";
+  import Base from './base'
   class HashHistory extends Base {
     constructor(router) {
-      super(router);
+      super(router)
 
       // 初始化hash路由时候，要给定一个默认哈希路径
-      ensureSlash();
+      ensureSlash()
     }
 
     // 稍后调用此方法，监控hash路径的变化
     setupListener() {
-      window.addEventListener("hashchange", function () {
+      window.addEventListener('hashchange', function () {
         // hash值发生变化则获取新的hash值
-        getHash();
-      });
+        getHash()
+      })
     }
 
     // 获取要跳转的路径
     getCurrentLocation() {
-      return getHash();
+      return getHash()
     }
   }
 
   function ensureSlash() {
     if (window.location.hash) {
-      return;
+      return
     }
-    window.location.hash = "/";
+    window.location.hash = '/'
   }
 
   function getHash() {
-    return window.location.hash.slice(1);
+    return window.location.hash.slice(1)
   }
   ```
 
 - 历史模式
 
   ```js
-  import Base from "./base";
+  import Base from './base'
   class BrowerHistory extends Base {
     constructor(router) {
-      super(router);
+      super(router)
     }
     // 稍后调用此方法，监控history路径的变化
     setupListener() {
-      window.addEventListener("popstate", function () {
+      window.addEventListener('popstate', function () {
         // history值发生变化则获取新的history值
-        getHash();
-      });
+        getHash()
+      })
     }
 
     // 获取要跳转的路径
     getCurrentLocation() {
-      return window.location.pathname;
+      return window.location.pathname
     }
   }
   ```
 
-#### 跳转逻辑
+#### VueRouter 跳转逻辑
 
 回到 `router-link` 的组件注册模块，实现路由跳转逻辑。
 
 在原来的代码基础上为它添加一个 `to` 方法，用于跳转；添加一个 `tag` ，用于设置其标签，默认是 `a` 。
 
 ```jsx
-Vue.component("router-link", {
+Vue.component('router-link', {
   props: {
     // to必传
     to: { type: String, required: true },
-    tag: { type: String, default: "a" },
+    tag: { type: String, default: 'a' },
   },
   methods: {
     handler() {
       // 去哪里调用push方法把路径传过去即可
-      this.$router.push(this.to);
+      this.$router.push(this.to)
     },
   },
   render() {
-    let tag = this.tag;
-    return <tag onClick={this.handler}>{this.$slots.default}</tag>;
+    let tag = this.tag
+    return <tag onClick={this.handler}>{this.$slots.default}</tag>
   },
-});
+})
 ```
 
 VueRouter 类中注册一个 `push` 方法，用于跳转路由。
@@ -496,7 +495,7 @@ VueRouter 类中注册一个 `push` 方法，用于跳转路由。
 class VueRouter {
   // ...
   push(location) {
-    this.history.transitionTo(location);
+    this.history.transitionTo(location)
   }
 }
 ```
@@ -505,9 +504,9 @@ class VueRouter {
 
 注意一点，路由 `/about/a` 实际上是路由 `/about` 加上 `/a` ，一级路由渲染 `/about` 的内容，二级路由渲染 `/a` 的内容。
 
-### 响应式原理
+### VueRouter 响应式原理
 
-#### 路径响应式变化
+#### VueRouter 路径响应式变化
 
 做到这里点击路由可以在 `transitionTo()` 方法内监听到路由的变化，并且能够获取到当前跳转到哪个路由。但是浏览器的路径并没有响应式变化。因此需要在 VueRouter 类的 `push` 方法做处理。代码如下：
 
@@ -516,8 +515,8 @@ class VueRouter {
   // ...
   push(location) {
     this.history.transitionTo(location, () => {
-      window.location.hash = location;
-    });
+      window.location.hash = location
+    })
   }
 }
 ```
@@ -533,16 +532,16 @@ class VueRouter {
 因此还需要去到 `hash` 路由对应的类，在其 `setupListener()` 方法上也添加一个 Hash 值变化的事件，触发事件后跳转路由。代码如下：
 
 ```js
-import Base from "./base";
+import Base from './base'
 class HashHistory extends Base {
   // ...
 
   // 稍后调用此方法，监控hash路径的变化
   setupListener() {
-    window.addEventListener("hashchange", function () {
+    window.addEventListener('hashchange', function () {
       // hash值发生变化则获取新的hash值
-      this.transitionTo(getHash());
-    });
+      this.transitionTo(getHash())
+    })
   }
 }
 
@@ -551,7 +550,7 @@ class HashHistory extends Base {
 
 不过现在会有一个小 BUG：由于两个地方都添加了 Hash 值变化监听事件，导致触发改变后 `transitionTo()` 方法会调用两次。处理方法也很简单，做个判断即可。
 
-#### 组件查找
+#### VueRouter 组件查找
 
 如果访问的是 `/about/a` ，实际上是访问两个组件，先访问 `/about` ，把组件渲染到一级 `router-view` ；然后再访问 `/a` ，把组件放到二级 `router-view` 。
 
@@ -559,44 +558,44 @@ class HashHistory extends Base {
 
 ```js
 function createRoute(record, location) {
-  let matched = [];
+  let matched = []
   if (record) {
     // 不停去父级找
     while (record) {
       // 父级要放在最前面
-      matched.unshift(record);
-      record = record.parent;
+      matched.unshift(record)
+      record = record.parent
     }
   }
 
   return {
     ...location,
     matched,
-  };
+  }
 }
 
 class Base {
   constructure(router) {
-    this.router = router;
+    this.router = router
     this.current = createRoute(null, {
-      path: "/",
-    });
+      path: '/',
+    })
   }
 
   transitionTo(location, listener) {
-    let record = this.router.match(location);
+    let record = this.router.match(location)
     let route = createRoute(record, {
       path: location,
-    });
+    })
     // 如果路由路径相同，且新旧的组件数组matched长度也相等，表示同一个路径跳转，返回
     if (
       location === this.current.path &&
       route.match.length === this.current.matched.length
     ) {
-      return;
+      return
     }
     // 每次更新的都是current，稍后current变化了，就切换页面显示
-    this.current = route;
+    this.current = route
 
     // ...
   }
@@ -607,7 +606,7 @@ class Base {
 
 做一个优化，避免跳转同一个路径重复匹配。判断条件为新旧的路径 `path` 相等，且新旧组件匹配的数组 `matched` 长度相等，都相等说明新旧是同一个路由。此时不做操作。
 
-#### 组件路由实例响应式
+#### VueRouter 组件路由实例响应式
 
 给根实例添加一个属性 `_route` ，即当前的 `current` 。在组件中可以获取到当前组件的路由属性。在 `install` 方法的 `beforeCreate()` 钩子上挂载，代码如下：
 
@@ -617,16 +616,16 @@ function install() {
     beforeCreate() {
       if (this.$options.router) {
         // ...
-        Vue.util.defineReactive(this, "_route", this._router._route);
+        Vue.util.defineReactive(this, '_route', this._router._route)
       }
     },
-  });
+  })
 
-  Object.defineProperty(Vue, prototype, "$route", {
+  Object.defineProperty(Vue, prototype, '$route', {
     get() {
-      return this._routerRoot && this.__routerRoot.history.current;
+      return this._routerRoot && this.__routerRoot.history.current
     },
-  });
+  })
 }
 ```
 
@@ -640,12 +639,12 @@ function install() {
 class Base {
   // ...
   listen(cb) {
-    this.cb = cb;
+    this.cb = cb
   }
 
   transitionTo() {
     // ...
-    this.cb && this.cb(route);
+    this.cb && this.cb(route)
   }
 }
 ```
@@ -656,20 +655,20 @@ class Base {
 class VueRouter {
   // ...
   init(app) {
-    let history = this.history;
+    let history = this.history
     history.transitionTo(history.getCurrentLocation(), () => {
-      history.setupListener(); // 监听路由的变化
-    });
+      history.setupListener() // 监听路由的变化
+    })
 
     // 每次路由切换都需要调用listen方法中的回调函数，更新_route的值，使它能自动渲染视图
     history.listen((newRoute) => {
-      app._route = newRoute;
-    });
+      app._route = newRoute
+    })
   }
 }
 ```
 
-#### router-view 组件
+#### VueRouter router-view 组件
 
 新建一个 `js` 文件，导出一个对象，用于配置 `router-view` 组件的配置项。
 
@@ -684,36 +683,36 @@ class VueRouter {
 export default {
   functional: true,
   render(h, { parent, data }) {
-    let route = parent.$route;
-    let depth = 0;
+    let route = parent.$route
+    let depth = 0
 
     while (parent) {
       // _vnode对应的是组件的渲染函数中虚拟节点，$vnode代表的是home组件本身。$vnode是_vnode本身
       if (parent.$vnode && parent.$vnode.data.routerView) {
-        depth++;
+        depth++
       }
 
-      parent = parent.$parent;
+      parent = parent.$parent
     }
 
-    let record = route.matched[depth];
+    let record = route.matched[depth]
     if (!record) {
-      return h();
+      return h()
     }
 
-    return h(record.component, data);
+    return h(record.component, data)
   },
-};
+}
 ```
 
-### 路由钩子
+### VueRouter 路由钩子
 
 路由守卫使用如下：
 
 ```js
 router.beforeEach((from, to, next) => {
-  next();
-});
+  next()
+})
 ```
 
 在类 VueRouter 中定义一个方法 `beforeEach()` ，调用该方法则往一个数组内追加，后续依次执行。代码如下：
@@ -722,11 +721,11 @@ router.beforeEach((from, to, next) => {
 class VueRouter {
   constructure() {
     // ...
-    this.beforeEachHooks = [];
+    this.beforeEachHooks = []
   }
   // ...
   beforeEach(cb) {
-    this.beforeEachHooks.push(cb);
+    this.beforeEachHooks.push(cb)
   }
 }
 ```
@@ -736,28 +735,28 @@ class VueRouter {
 ```js
 function runQueue(queue, cb) {
   function next(index) {
-    if (queue.length < index) return cb();
+    if (queue.length < index) return cb()
 
-    let hook = queue[index];
-    hook(from, to, () => next(index + 1));
+    let hook = queue[index]
+    hook(from, to, () => next(index + 1))
   }
-  next(0);
+  next(0)
 }
 
 class Base {
   // ...
   transitionTo() {
     // ...
-    let queue = [].cancat(this.router.beforeEachHooks);
+    let queue = [].cancat(this.router.beforeEachHooks)
     runQueue(queue, () => {
-      listener && listener();
-      this.cb && this.cb(route);
-    });
+      listener && listener()
+      this.cb && this.cb(route)
+    })
   }
 }
 ```
 
-### 总结
+### VueRouter 总结
 
 1. 路由的 `install` 方法就做了一件事情，把 `beforeCreate` 通过 `mixin` 混入，在根实例上保存根组件，其子路由不断找其父亲，获取根组件。
 

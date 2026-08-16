@@ -25,23 +25,19 @@
 **核心步骤**
 
 1. 引入必要方法
-
-    - `Icon`：用于创建点标记
-    - `GeoJSONDataSource`：将数据转换为渲染所需的数据源
+   - `Icon`：用于创建点标记
+   - `GeoJSONDataSource`：将数据转换为渲染所需的数据源
 
 2. 添加点到地图
-
-    - 调用地图实例的 `add()` 方法
-    - 传参：宽度、高度、偏移量等
+   - 调用地图实例的 `add()` 方法
+   - 传参：宽度、高度、偏移量等
 
 3. 获取数据源
-
-    - 调用 `GeoJSONDataSource` 方法
-    - 入参可通过 F12 打开网络控制台查看
+   - 调用 `GeoJSONDataSource` 方法
+   - 入参可通过 F12 打开网络控制台查看
 
 4. 删除点
-
-    - 调用地图实例的 `remove()` 方法
+   - 调用地图实例的 `remove()` 方法
 
 **数据结构示例**
 
@@ -55,8 +51,8 @@ const geoData = [
       coordinates: [lng, lat, altitude], // 坐标
     },
     properties: {
-      icon: url,        // 图标图片路径
-      size: 40,         // 尺寸大小
+      icon: url, // 图标图片路径
+      size: 40, // 尺寸大小
     },
   },
 ]
@@ -75,7 +71,7 @@ const geoData = [
 export const addIcon = (coordinates, url, info) => {
   // 确保坐标数组完整性
   coordinates = [coordinates?.[0], coordinates?.[1], coordinates?.[2] || 0]
-  
+
   const {
     width = 92,
     height = 118,
@@ -95,7 +91,7 @@ export const addIcon = (coordinates, url, info) => {
     ],
     _engine = engine.value,
   } = info || {}
-  
+
   // 创建 Icon 实例
   const icon = _engine.add(
     new Icon({
@@ -106,15 +102,15 @@ export const addIcon = (coordinates, url, info) => {
       transparent: true,
       offset,
       depthTest: false, // 深度检测
-    })
+    }),
   )
-  
+
   // 加载数据源
   GeoJSONDataSource.fromGeoJSON(geoData).then((data) => {
     data.setAttribute('size').setAttribute('icon')
     icon.dataSource = data
   })
-  
+
   return {
     icon,
     _engine,
@@ -154,22 +150,18 @@ export const removeIcon = (icon, _engine = engine.value) => {
 **核心步骤**
 
 1. 引入必要方法
-
-    - `FatLine`：用于创建线
-    - `GeoJSONDataSource`：转换数据源
+   - `FatLine`：用于创建线
+   - `GeoJSONDataSource`：转换数据源
 
 2. 添加线到地图
-
-    - 调用地图实例的 `add()` 方法
-    - 传参：线宽、线的颜色、线的坐标等
+   - 调用地图实例的 `add()` 方法
+   - 传参：线宽、线的颜色、线的坐标等
 
 3. 获取数据源
-
-    - 调用 `GeoJSONDataSource` 方法
+   - 调用 `GeoJSONDataSource` 方法
 
 4. 删除线
-
-    - 调用地图实例的 `remove()` 方法
+   - 调用地图实例的 `remove()` 方法
 
 **代码实现**
 
@@ -184,9 +176,9 @@ export const removeIcon = (icon, _engine = engine.value) => {
  */
 export const addLine = (coordinates, info, _engine, callback) => {
   if (!_engine) _engine = engine.value
-  
+
   const { lineWidth, color, opacity } = info || {}
-  
+
   // 创建 FatLine 实例
   const line = _engine.add(
     new FatLine({
@@ -195,9 +187,9 @@ export const addLine = (coordinates, info, _engine, callback) => {
       opacity,
       keepSize: true,
       lineJoin: 'round',
-    })
+    }),
   )
-  
+
   // 构建 GeoJSON 数据
   const geojson = {
     type: 'Feature',
@@ -209,14 +201,14 @@ export const addLine = (coordinates, info, _engine, callback) => {
       color: color,
     },
   }
-  
+
   // 加载数据源
   GeoJSONDataSource.fromGeoJSON(geojson).then((geoData) => {
     geoData.setAttribute('color')
     line.dataSource = geoData
     callback && callback(geojson)
   })
-  
+
   return { line, _engine }
 }
 
@@ -235,12 +227,12 @@ export const removeLine = (line, _engine = engine.value) => {
 ```javascript
 // 线的配置示例
 const lineConfig = {
-  lineWidth: 15,          // 线宽
-  color: '#d0a63c',       // 线的颜色
-  opacity: 1,             // 透明度
-  vertexColors: true,     // 顶点颜色
-  keepSize: true,         // 保持大小
-  lineJoin: 'round',      // 线条连接方式
+  lineWidth: 15, // 线宽
+  color: '#d0a63c', // 线的颜色
+  opacity: 1, // 透明度
+  vertexColors: true, // 顶点颜色
+  keepSize: true, // 保持大小
+  lineJoin: 'round', // 线条连接方式
 }
 ```
 
@@ -255,26 +247,21 @@ const lineConfig = {
 **核心步骤**
 
 1. 加载模型
-
-    - 使用 `GLTFLoader` 进行模型加载
+   - 使用 `GLTFLoader` 进行模型加载
 
 2. 添加到场景
-
-    - 通过地图实例的 `add()` 方法添加到场景
+   - 通过地图实例的 `add()` 方法添加到场景
 
 3. 设置位置
-
-    - 使用 `map.projectPointArr(center)` 获取屏幕中心点坐标
-    - 设置模型的 `position`
+   - 使用 `map.projectPointArr(center)` 获取屏幕中心点坐标
+   - 设置模型的 `position`
 
 4. load 回调
-
-    - 获取模型数据
-    - 设置坐标和大小
+   - 获取模型数据
+   - 设置坐标和大小
 
 5. 删除模型
-
-    - 使用地图实例的 `remove()` 方法移除
+   - 使用地图实例的 `remove()` 方法移除
 
 **代码实现**
 
@@ -290,30 +277,30 @@ export const addModel = (
   url = 'maplayer/assets/models/car-impact.glb',
   position,
   scale = 7,
-  callback
+  callback,
 ) => {
   const loader = new GLTFLoader()
-  
+
   // 将经纬度转换为屏幕坐标
   const point = engine.value.map.projectPointArr(position)
-  
+
   let model = null
-  
+
   loader.load(url, (gltf) => {
     model = gltf.scene
-    
+
     // 设置模型位置
     model.position.set(point[0], point[1], 0)
-    
+
     // 设置模型缩放
     model.scale.setScalar(scale)
-    
+
     // 设置模型旋转（X轴旋转90度）
     model.rotation.x = Math.PI / 2
-    
+
     // 添加到场景
     engine.value.add(model)
-    
+
     callback && callback(model)
   })
 }
@@ -346,23 +333,19 @@ export const removeModel = (model) => {
 **核心步骤**
 
 1. 引入方法
-
-    - `PathTracker`：实现视野漫游动画
+   - `PathTracker`：实现视野漫游动画
 
 2. 添加到地图
-
-    - 调用地图实例的 `add()` 方法
+   - 调用地图实例的 `add()` 方法
 
 3. 配置参数
-
-    - 设置方向插值的距离点阈值
-    - 赋值跟踪的路线和模型
-    - 设置视野漫游类型
-    - 开启动画
+   - 设置方向插值的距离点阈值
+   - 赋值跟踪的路线和模型
+   - 设置视野漫游类型
+   - 开启动画
 
 4. 删除动画
-
-    - 调用地图实例的 `remove()` 方法
+   - 调用地图实例的 `remove()` 方法
 
 **代码实现**
 
@@ -374,24 +357,24 @@ export const removeModel = (model) => {
  */
 export const addPathTracker = (options) => {
   const {
-    viewMode = 'unlock',      // 视野模式
-    positions,                // 路径坐标数组
-    model,                    // 跟踪的模型
-    duration = 10000,         // 动画时长（毫秒）
-    distance = 50,            // 距离
-    pitch = 70,               // 俯仰角
+    viewMode = 'unlock', // 视野模式
+    positions, // 路径坐标数组
+    model, // 跟踪的模型
+    duration = 10000, // 动画时长（毫秒）
+    distance = 50, // 距离
+    pitch = 70, // 俯仰角
     _engine = engine.value,
   } = options
-  
+
   // 创建 PathTracker 实例
   const pathTracker = _engine.add(new PathTracker())
-  
+
   // 设置方向插值阈值
   pathTracker.interpolateDirectThreshold = 50
-  
+
   // 设置跟踪路径（坐标数组或 LineString 类型的 geojson 数据）
   pathTracker.track = positions
-  
+
   // 启动动画
   pathTracker.start({
     duration,
@@ -399,13 +382,13 @@ export const addPathTracker = (options) => {
     pitch,
     heading: 10,
   })
-  
+
   // 绑定跟踪对象
   pathTracker.object = model
-  
+
   // 设置视野模式
   pathTracker.viewMode = viewMode
-  
+
   return {
     pathTracker,
     _engine,
@@ -508,21 +491,21 @@ const getLabelOffset = (labelDom, size) => {
   if (!labelDom) {
     return [0, 0]
   }
-  
+
   const { width, height } = labelDom.getBoundingClientRect()
-  
+
   // 图标尺寸配置
   const iconWidth = size === 'normal' ? 48 : 32
   const iconHeight = size === 'normal' ? 83 : 55
-  
+
   // 间距配置
   const gapLeft = size === 'normal' ? 10 : 5
   const gapTop = size === 'normal' ? 42 : 28
-  
+
   // 计算偏移量
   const offsetLeft = width / 2 + iconWidth / 2 + gapLeft
   const offsetTop = -(height / 2 - (iconWidth + gapTop) / 2) - iconHeight
-  
+
   return [offsetLeft, offsetTop]
 }
 ```
@@ -543,21 +526,21 @@ const getIconUrl = (type, size = 'normal', status = 'normal', iconUrl) => {
   if (iconUrl) {
     return iconUrl
   }
-  
+
   // 状态处理
   const getIconStatus = (status) => {
     return `_${status}`
   }
-  
+
   // 尺寸处理
   size = size === 'normal' ? '_normal' : '_small'
-  
+
   // 状态处理
   status = getIconStatus(status)
-  
+
   // 类型转换（中文转拼音）
   type = nameMap[type] || type
-  
+
   // 返回完整路径
   return `maplayer/assets/image/${type}${size}${status}.png`
 }
@@ -582,19 +565,19 @@ bind(element, type) {
   const addEventListener = (type) => {
     const eventName = eventNameEnum[type]
     const callback = this.options[eventName]
-    
+
     if (callback && typeof callback === 'function') {
       element.receiveRaycast = true
       element[type] = callback
       element.engine.event.bind(element, type, callback)
     }
   }
-  
+
   if (type) {
     addEventListener(type)
     return
   }
-  
+
   // 绑定所有事件
   Object.keys(eventNameEnum).forEach((eventType) => {
     addEventListener(eventType)
@@ -611,12 +594,12 @@ unbind(element, type) {
     element.engine.event.unbind(element, type, element[type])
     element[type] = null
   }
-  
+
   if (type) {
     removeEventListener(type)
     return
   }
-  
+
   // 移除所有事件
   Object.keys(eventNameEnum).forEach((eventType) => {
     removeEventListener(eventType)
@@ -645,7 +628,7 @@ class LayerManager {
     this.engine = engine
     this.options = {}
   }
-  
+
   /**
    * 添加扎点
    * @param {String} name - 扎点名称（唯一标识）
@@ -657,9 +640,9 @@ class LayerManager {
     if (this.layerDomMap.has(name)) {
       this.removeLayerDomPointByName(name)
     }
-    
+
     this.options = options
-    
+
     const {
       labelDom,
       type = '桥梁',
@@ -670,7 +653,7 @@ class LayerManager {
       size = 'normal',
       status = 'normal',
     } = options || {}
-    
+
     // 1. 创建气泡点
     let { bubble } = addBubble(point, {
       size: size === 'normal' ? 60 : 40,
@@ -678,13 +661,13 @@ class LayerManager {
       type: 'Wave',
       _engine: this.engine,
     })
-    
+
     // 2. 创建右侧 label DOM
     let { domOverlay } = addDOMOverlay(point, labelDom, {
       _engine: this.engine,
       offset: getLabelOffset(labelDom, size),
     })
-    
+
     // 3. 创建图标
     let { icon, _engine } = addIcon(
       point,
@@ -695,20 +678,20 @@ class LayerManager {
         offset: size === 'normal' ? [0, -42] : [0, -28],
         customData,
         _engine: this.engine,
-      }
+      },
     )
-    
+
     // 4. 绑定事件
     this.bind(options, icon)
-    
+
     // 5. 保存到映射表
     this.layerDomMap.set(name, {
-      Bubble: bubble,        // 气泡点
-      Label: domOverlay,     // 文字 label
-      Icon: icon,            // 图标
+      Bubble: bubble, // 气泡点
+      Label: domOverlay, // 文字 label
+      Icon: icon, // 图标
     })
   }
-  
+
   /**
    * 根据名称删除扎点
    * @param {String} name - 扎点名称
@@ -716,20 +699,20 @@ class LayerManager {
   removeLayerDomPointByName(name) {
     const warning = this.layerDomMap.get(name)
     if (!warning) return
-    
+
     // 解绑事件
     this.unbind(warning.Icon)
-    
+
     // 删除各个元素
     Object.keys(warning).forEach((key) => {
       const remove = removeMap[key]
       remove(warning[key], this.engine)
     })
-    
+
     // 从映射表删除
     this.layerDomMap.delete(name)
   }
-  
+
   /**
    * 清空所有扎点
    */
@@ -803,7 +786,7 @@ class PathTrackerManager {
     this.pathTrackerMap = new Map()
     this.engine = engine
   }
-  
+
   /**
    * 添加视野漫游动画
    * @param {String} name - 动画名称（唯一标识）
@@ -814,9 +797,9 @@ class PathTrackerManager {
     if (this.pathTrackerMap.has(name)) {
       this.removePathTrackerByName(name)
     }
-    
+
     const { position, positions } = options || {}
-    
+
     // 1. 添加路径线
     let { line } = addLine(
       positions,
@@ -835,36 +818,36 @@ class PathTrackerManager {
             position,
             model,
           })
-          
+
           // 4. 保存到映射表
           this.pathTrackerMap.set(name, {
             line: line,
             model: model,
           })
         })
-      }
+      },
     )
   }
-  
+
   /**
    * 根据名称删除视野漫游动画
    * @param {String} name - 动画名称
    */
   removePathTrackerByName(name) {
     const pathTracker = this.pathTrackerMap.get(name)
-    
+
     if (!pathTracker) return
-    
+
     // 删除模型
     removeModel(pathTracker.model, this.engine)
-    
+
     // 删除线
     removeLine(pathTracker.line, this.engine)
-    
+
     // 从映射表删除
     this.pathTrackerMap.delete(name)
   }
-  
+
   /**
    * 清空所有视野漫游动画
    */
@@ -895,8 +878,8 @@ const positions = [
 
 // 3. 添加视野漫游动画
 pathTrackerManager.addPathTracker('route-1', {
-  position: [116.404, 39.915],  // 模型起始位置
-  positions: positions,           // 路径坐标数组
+  position: [116.404, 39.915], // 模型起始位置
+  positions: positions, // 路径坐标数组
 })
 
 // 4. 删除指定动画

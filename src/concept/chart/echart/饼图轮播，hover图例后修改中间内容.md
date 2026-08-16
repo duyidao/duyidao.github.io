@@ -1,6 +1,6 @@
 # 饼图轮播，hover图例后修改中间内容
 
-## 需求梳理
+## Echart 饼图需求梳理
 
 客户那边说内容一直展示一条数据的值不符合他们的期望，要求能够实现内容轮播滚动，且鼠标悬停在图例上时，能够实现中间内容展示对应的数据。
 
@@ -12,22 +12,21 @@
 
   ```js
   myChart.value.dispatchAction({
-      type: 'highlight',
-      seriesIndex: 0, // setOption中series数组内第几索引的对象
-      dataIndex: 1, // setOption中series数组对象中data第几项数据
-  });
+    type: 'highlight',
+    seriesIndex: 0, // setOption中series数组内第几索引的对象
+    dataIndex: 1, // setOption中series数组对象中data第几项数据
+  })
   ```
 
 - `downplay` 用于取消高亮指定的图形，用法如下：
 
   ```js
   myChart.value.dispatchAction({
-      type: 'downplay',
-      seriesIndex: 0, // setOption中series数组内第几索引的对象
-      dataIndex: 1, // setOption中series数组对象中data第几项数据
-  });
+    type: 'downplay',
+    seriesIndex: 0, // setOption中series数组内第几索引的对象
+    dataIndex: 1, // setOption中series数组对象中data第几项数据
+  })
   ```
-
 
 看到这里可以得出结论，实现饼图轮播就是 `forEach` 循环遍历数据数组，让当前项的索引触发 `highlight` 激活状态，再通过排他思想把其余所有项索引触发 `downplay` 取消高亮。这样就能实现轮播了。
 
@@ -36,14 +35,14 @@
 为 `echart` 绑定 `highlight` 方法后，能够在内容激活后触发该事件。
 
 ```js
-const myChart = document.querySelector('.echart');
+const myChart = document.querySelector('.echart')
 
 myChart.on('highlight', (e) => {
-  console.log(e);
+  console.log(e)
 })
 ```
 
-## 轮播
+## Echart 饼图轮播
 
 找到方法后开始实现功能。实现步骤如下：
 
@@ -57,11 +56,11 @@ myChart.on('highlight', (e) => {
 
 ```js
 const props = defineProps({
-    data: {
-        type: Array,
-        default: () => ([]),
-    },
-});
+  data: {
+    type: Array,
+    default: () => [],
+  },
+})
 
 // echart的option配置项设置
 const option = ref({
@@ -70,63 +69,83 @@ const option = ref({
 
 // 如果data发生变化则重新更新option
 watch(
-    () => props.data,
-    (val) => {
-        if (val.length > 0) {
-            option.value.series[0].data = val;
-            option.value.series[0].label.normal.formatter = '{title|' + val[0].value + '%}' + '\n' + '{car|' + val[0].name + val[0].flowValue + '辆}';
-        }
-    },
-    { immediate: true, deep: true }
-);
+  () => props.data,
+  (val) => {
+    if (val.length > 0) {
+      option.value.series[0].data = val
+      option.value.series[0].label.normal.formatter =
+        '{title|' +
+        val[0].value +
+        '%}' +
+        '\n' +
+        '{car|' +
+        val[0].name +
+        val[0].flowValue +
+        '辆}'
+    }
+  },
+  { immediate: true, deep: true },
+)
 
 // 开启定时器轮播
-const timer = ref(null);
-const highlightIndex = ref(0);
-const downplayIndex = ref(-1);
+const timer = ref(null)
+const highlightIndex = ref(0)
+const downplayIndex = ref(-1)
 const intervalStartFn = () => {
-    if (timer.value) {
-        clearInterval(timer.value);
-        timer.value = null;
-    }
-    const formatterChange = () => {
-        if (!pieChart.value) return;
-        pieChart.value.myChart.dispatchAction({
-            type: 'highlight',
-            seriesIndex: 0, // 第一个系列
-            dataIndex: highlightIndex.value,
-        });
-        pieChart.value.myChart.dispatchAction({
-            type: 'downplay',
-            seriesIndex: 0, // 第一个系列
-            dataIndex: downplayIndex.value,
-        });
+  if (timer.value) {
+    clearInterval(timer.value)
+    timer.value = null
+  }
+  const formatterChange = () => {
+    if (!pieChart.value) return
+    pieChart.value.myChart.dispatchAction({
+      type: 'highlight',
+      seriesIndex: 0, // 第一个系列
+      dataIndex: highlightIndex.value,
+    })
+    pieChart.value.myChart.dispatchAction({
+      type: 'downplay',
+      seriesIndex: 0, // 第一个系列
+      dataIndex: downplayIndex.value,
+    })
 
-        // 中部自定义内容调整
-        const obj = props.data[highlightIndex.value];
-        option.value.series[0].label.normal.formatter = '{title|' + obj.value + '%}' + '\n' + '{car|' + obj.name + obj.value + '辆}';
+    // 中部自定义内容调整
+    const obj = props.data[highlightIndex.value]
+    option.value.series[0].label.normal.formatter =
+      '{title|' +
+      obj.value +
+      '%}' +
+      '\n' +
+      '{car|' +
+      obj.name +
+      obj.value +
+      '辆}'
 
-        // 激活与非激活索引自增1
-        highlightIndex.value = highlightIndex.value >= props.data.length - 1 ? 0 : highlightIndex.value + 1;
-        downplayIndex.value = downplayIndex.value >= props.data.length - 1 ? 0 : downplayIndex.value + 1;
-    };
-    formatterChange();
-    timer.value = setInterval(() => {
-        formatterChange();
-    }, 3000);
-};
+    // 激活与非激活索引自增1
+    highlightIndex.value =
+      highlightIndex.value >= props.data.length - 1
+        ? 0
+        : highlightIndex.value + 1
+    downplayIndex.value =
+      downplayIndex.value >= props.data.length - 1 ? 0 : downplayIndex.value + 1
+  }
+  formatterChange()
+  timer.value = setInterval(() => {
+    formatterChange()
+  }, 3000)
+}
 
 onMounted(() => {
-    intervalStartFn();
-});
+  intervalStartFn()
+})
 
 onUnmounted(() => {
-    clearInterval(timer.value);
-    timer.value = null;
-});
+  clearInterval(timer.value)
+  timer.value = null
+})
 ```
 
-## hover
+## Echart hover
 
 实现鼠标悬停修改中部内容的功能，需要考虑到以下几点：
 
@@ -138,39 +157,46 @@ onUnmounted(() => {
 
 ```js
 // 为echart绑定图例选中和取消选择事件
-const pieChart = ref(null);
+const pieChart = ref(null)
 const pieChartAddEventFn = () => {
-    pieChart.value.myChart.on('highlight', function (params) {
-        if (params.name) {
-            clearInterval(timer.value);
-            timer.value = null;
+  pieChart.value.myChart.on('highlight', function (params) {
+    if (params.name) {
+      clearInterval(timer.value)
+      timer.value = null
 
-            props.data.forEach((item, index) => {
-                if (item.name !== params.name) {
-                    pieChart.value.myChart.dispatchAction({
-                        type: 'downplay',
-                        seriesIndex: 0, // 第一个系列
-                        dataIndex: index,
-                    });
-                }
-                else {
-                    option.value.series[0].label.normal.formatter = '{title|' + item.value + '%}' + '\n' + '{car|' + item.name + item.value + '辆}';
-                }
-            });
+      props.data.forEach((item, index) => {
+        if (item.name !== params.name) {
+          pieChart.value.myChart.dispatchAction({
+            type: 'downplay',
+            seriesIndex: 0, // 第一个系列
+            dataIndex: index,
+          })
+        } else {
+          option.value.series[0].label.normal.formatter =
+            '{title|' +
+            item.value +
+            '%}' +
+            '\n' +
+            '{car|' +
+            item.name +
+            item.value +
+            '辆}'
         }
-    });
-    pieChart.value.myChart.on('downplay', function (params) {
-        if (params.name) {
-            intervalStartFn();
-        }
-    });
-};
+      })
+    }
+  })
+  pieChart.value.myChart.on('downplay', function (params) {
+    if (params.name) {
+      intervalStartFn()
+    }
+  })
+}
 
 onMounted(() => {
-    pieChartAddEventFn();
-});
+  pieChartAddEventFn()
+})
 ```
 
-## 总体效果
+## Echart 总体效果
 
-<Iframe url="https://duyidao.github.io/blogweb/#/info/echart/pieCast" />
+<myIframe url="https://duyidao.github.io/blogweb/#/info/echart/pieCast" />

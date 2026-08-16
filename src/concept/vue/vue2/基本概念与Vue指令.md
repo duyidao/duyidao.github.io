@@ -2,7 +2,7 @@
 
 ## Vue 的基本概念
 
-### 什么是 Vue
+### Vue 什么是 Vue
 
 概念：<word text="Vue" />是一个 **_渐进式_** 的<word text="JavaScript"/>框架，拥有一套属于自己规则的语法。
 
@@ -15,24 +15,23 @@
 >    渐进式：逐步进步，想用什么就用什么，不必全部使用。
 >
 > 2. 什么是库和框架
->
 >    - 库：封装的属性或方法 (例 `JQuery.js` )
 >    - 框架：拥有自己的规则和元素, 比库强大的多 (例 `Vue.js` )拥有自己的规则和元素, 比库强大的多 (例 vue.js)
 
-### 开发方式
+### Vue 开发方式
 
 1. 传统开发方式：基于 `html`/`css`/`js` 文件开发<word text="Vue" />
 2. 工程化开发方式：在<word text="Webpack"/>环境中开发<word text="Vue" />（推荐这种方式）
 
-## 脚手架 `@vue/cli`
+## Vue 脚手架 `@vue/cli`
 
-### 脚手架介绍
+### Vue 脚手架介绍
 
 自己配置<word text="Webpack"/>的环境十分麻烦，<word text="Vue" />官方提供了一个全局模块包，这个包用于创建脚手架项目。
 
 脚手架的好处是无需我们配置<word text="Webpack"/>环境，下载即可使用，支持 `css` 、 `less` 、 `babel` 、开发服务器等。
 
-### 脚手架安装
+### Vue 脚手架安装
 
 > 需要把脚手架 `@vue/cli` 模块包安装到全局，让电脑拥有<word text="Vue" />命令，才能创建脚手架工程。
 
@@ -52,7 +51,7 @@
   vue -V
   ```
 
-### 创建项目启动服务
+### Vue 脚手架创建项目启动服务
 
 > 通过<word text="Vue" />命令创建一个脚手架的项目。注意：项目名不能带大写字母、中文和特殊符号。
 
@@ -68,7 +67,7 @@
 
 开启成功后会出现两条代码指示，第一条让我们进入目标文件内，第二条是开启命令。进入文件内并成功开启命令后就有相关路径。
 
-### 目录和代码分析
+### Vue 脚手架目录和代码分析
 
 ```txt
  vuecil-demo        # 项目目录
@@ -87,7 +86,7 @@
     ├── babel.config.js  # babel配置
     ├── package.json  # 依赖包列表
     ├── README.md    # 项目说明
-	└── yarn.lock    # 项目包版本锁定和缓存地址
+ └── yarn.lock    # 项目包版本锁定和缓存地址
 ```
 
 主要文件及含义
@@ -100,11 +99,11 @@ src/App.vue – vue项目入口页面，根主键
 package.json – 依赖包列表文件
 ```
 
-### 项目架构了解
+### Vue 脚手架项目架构
 
 首先去 `main.js` 入口文件，去到 `App.vue` 根组件模块，获取到样式、标签、逻辑，返回 `main.js` 文件。 `new` 实例化一个<word text="Vue" />对象，把属性插入到 `index.html` 页面中。
 
-### 自定义配置
+### Vue 脚手架自定义配置
 
 > 在<word text="Webpack" />中我们通过 `webpack.config.js` 文件进行自定义配置，如端口号、出入口文件等，<word text="Vue" />则是 `vue.config.js` 文件进行自定义配置。
 
@@ -120,7 +119,7 @@ module.exports = {
 
 修改完毕后重新启动即可。
 
-### `eslint` 的作用
+### Vue `eslint` 的作用
 
 > `eslint` 是一个代码检查工具，检测代码的严谨程度
 
@@ -139,7 +138,7 @@ module.exports = {
    }
    ```
 
-### 单文件 Vue 讲解
+### Vue 单文件 Vue 组件讲解
 
 > 单文件最大的好处，就是独立作用域，互不影响。<word text="Vue" />中更推荐采用 `.vue` 组件来开发项目。
 
@@ -166,7 +165,7 @@ module.exports = {
 
 ## Vue 指令
 
-### 插值表达式
+### Vue 插值表达式
 
 > 可以直接在<word text="DOM"/>元素中插入内容。
 
@@ -208,7 +207,7 @@ export default {
 >
 > <word text="DOM" />中插值表达式赋值, <word text="Vue" />的变量必须在 `data` 里声明。
 
-### `MVVM` 设计模式
+### Vue `MVVM` 设计模式
 
 > 转变思维，用数据驱动视图改变，操作<word text="DOM" />的事，<word text="Vue" />源码内干了。
 
@@ -221,7 +220,7 @@ export default {
   - V（修改视图） -> M（数据自动同步）
   - M（修改数据） -> V（视图自动同步）
 
-### 指令 v-bind
+### Vue 指令 v-bind
 
 > 作用：给标签属性设置<word text="Vue" />变量的值。
 
@@ -250,7 +249,7 @@ export default {
 >
 > <word text="Vue" />指令, 实质上就是特殊的 `html` 标签属性, 特点: `v-` 开头。`v-bind` 把<word text="Vue" />变量的值, 赋予给<word text="DOM" />属性上, 影响标签显示效果。
 
-#### 指令 v-bind 动态参数
+#### Vue 指令 v-bind 动态参数
 
 ```html
 <!-- 注意，参数表达式的写法存在一些约束，如之后的“对动态参数表达式的约束”章节所述。 -->
@@ -259,7 +258,7 @@ export default {
 
 这里的 `attributeName` 会被作为一个<word text="JavaScript" />表达式进行动态求值，求得的值将会作为最终的参数来使用。例如，如果你的<word text="Vue" />实例有一个 `data property attributeName`，其值为 `"href"`，那么这个绑定将等价于 `v-bind:href`。
 
-#### 对动态参数表达式的约束
+#### Vue 对动态参数表达式的约束
 
 动态参数表达式有一些语法约束，因为某些字符，如空格和引号，放在 `HTML attribute` 名里是无效的。例如：
 
@@ -278,12 +277,11 @@ export default {
 <a v-bind:[someAttr]="value"> ... </a>
 ```
 
-### 指令 v-on
+### Vue 指令 v-on
 
 > 作用：给标签绑定事件。
 
 - 语法
-
   - `v-on:事件名="要执行的少量代码"`
 
     ```vue
@@ -363,7 +361,7 @@ export default {
     </script>
     ```
 
-#### 指令 v-on 动态参数
+#### Vue 指令 v-on 动态参数
 
 使用动态参数为一个动态的事件名绑定处理函数：
 
@@ -377,7 +375,7 @@ export default {
 
 动态参数预期会求出一个字符串，异常情况下值为 `null`。这个特殊的 `null` 值可以被显性地用于移除绑定。任何其它非字符串类型的值都将会触发一个警告。
 
-#### 指令 v-on 简写
+#### Vue 指令 v-on 简写
 
 - 普通简写
 
@@ -391,7 +389,7 @@ export default {
   <a @[event]="doSomething"> ... </a>
   ```
 
-#### 指令 v-on 修饰符
+#### Vue 指令 v-on 修饰符
 
 > 作用：在事件后面加上 `.修饰符名` 给事件带来更大的功能。
 
@@ -433,7 +431,7 @@ export default {
 <style scoped></style>
 ```
 
-#### 指令 v-on 按键修饰符
+#### Vue 指令 v-on 按键修饰符
 
 > 作用：给键盘事件, 添加修饰符, 增强能力。
 
@@ -465,7 +463,7 @@ export default {
 </script>
 ```
 
-### 指令 v-model
+### Vue 指令 v-model
 
 > 作用：把 `value` 属性和<word text="Vue" />数据变量, 双向绑定到一起。 双向数据绑定的含义：
 
@@ -548,7 +546,7 @@ export default {
 </script>
 ```
 
-#### 指令 v-model 修饰符
+#### Vue 指令 v-model 修饰符
 
 > 作用：让 `v-model` 拥有更强大的功能。
 
@@ -593,7 +591,7 @@ export default {
 </script>
 ```
 
-### 指令 v-text 和 v-html
+### Vue 指令 v-text 和 v-html
 
 > 作用：更新<word text="DOM" />对象的 `innerText` / `innerHTML` 。
 
@@ -650,17 +648,15 @@ Vue.component('custom-input', {
 
 :::
 
-### 指令 v-show 和 v-if
+### Vue 指令 v-show 和 v-if
 
 > 作用：控制标签的隐藏或出现
 
 - 语法:
-
   - `v-show="vue变量"`
   - `v-if="vue变量"`
 
 - 原理
-
   - `v-show` 动态为元素添加或移除 `display:none` 样式 (频繁切换使用 `v-show` 性能更好)。
 
   - `v-if` 动态从<word text="DOM"/>树上创建或移除元素（对于刚初始化就不需要被展示的时候使用 `v-if` 性能更好，不需要额外创建这个元素）。
@@ -715,14 +711,13 @@ Vue.component('custom-input', {
 >
 > 但是在 `.vue` 组件中，会把整体当作 `js` 代码编译，因此会去判断是否要加载再去加载。
 
-### 指令 v-for
+### Vue 指令 v-for
 
 > 作用：列表渲染, 所在标签结构, 按照数据数量, 循环生成。
 
 1. 遍历数组
 
    语法
-
    - `v-for="值 in 目标数组"`
 
    - `v-for="(值, 索引) in 目标数组"`
@@ -732,7 +727,6 @@ Vue.component('custom-input', {
 2. 遍历对象
 
    语法
-
    - `v-for="值 of 目标对象"`
    - `v-for="(值, 键) of 目标对象"`
    - `v-for="(值, 键, 索引) of 目标对象"`
@@ -741,7 +735,7 @@ Vue.component('custom-input', {
 >
 > `v-for` 的临时变量名不能用到 `v-for` 范围外
 
-#### 指令 v-for 的更新监测
+#### Vue 指令 v-for 的更新监测
 
 > 作用：当 `v-for` 遍历的目标结构改变，<word text="Vue" />触发 `v-for` 的更新。
 
@@ -814,7 +808,6 @@ Vue.component('custom-input', {
   ```
 
 - 情景三：更新值 更新值可以用到<word text="Vue" />的内置属性方法： `$set()` ，需要传递三个参数：
-
   1. 第一个参数：需要被更新值的数组或对象
   2. 第二个参数：更新的位置（必须是字符串的形式）
   3. 第三个参数：更新后的值
@@ -874,7 +867,7 @@ Vue.component('custom-input', {
 >
 > <word text="Vue" />不能监测到数组里赋值的动作而更新, 如果需要请使用 `Vue.set()` 或者 `this.$set()` ，或者覆盖整个数组。即直接采用**数组[索引]**的方式修改值是不会被 `v-for` 监测到的。关于这点下图为<word text="Vue" />创始人和发现这个问题并在 `issue` 上提问的程序员的对话截图。知道即可。
 
-#### 指令 v-for 的就地更新与虚拟 DOM
+#### Vue 指令 v-for 的就地更新与虚拟 DOM
 
 `.vue` 文件中的 `template` 里写的标签，都是模板，都要被<word text="Vue"/>处理成虚拟<word text="DOM"/>对象，才会渲染显示到真实<word text="DOM"/>页面上
 
@@ -907,7 +900,6 @@ Vue.component('custom-input', {
    ```
 
 2. 以后<word text="Vue"/>数据更新
-
    - 生成新的虚拟<word text="DOM"/>结构
    - 和旧的虚拟<word text="DOM"/>结构对比
    - 找不不同, 只更新变化的部分(重绘/回流)到页面 —— 也叫打补丁
@@ -921,7 +913,7 @@ _好处 2: 虚拟<word text="DOM"/>只包含必要的属性(没有真实<word te
 > [!TIP] 总结
 > 虚拟<word text="DOM"/>保存在内存中, 只记录<word text="DOM"/>关键信息, 提高<word text="DOM"/>更新的性能
 
-#### 指令 v-for 的 key 的作用
+#### Vue 指令 v-for 的 key 的作用
 
 官方建议：只要使用到了 `v-for` ，那么一定要绑定一个 `:key` 属性，而且，尽量把 `id` 具有唯一性的数值作为 `key` 的值。
 
@@ -1052,14 +1044,13 @@ export default {
 > [!TIP] 总结
 > 不用 `key` 也不影响功能(就地更新)，添加 `key` 可以提高更新的性能
 
-## 总结
+## Vue 总结
 
 - <word text="Vue" />是什么
 
   是一个渐进式的<word text="JavaScript"/>框架。
 
 - `Vue-cli` 作用以及简单使用
-
   1. 作用：无需我们配置自动帮我们搭建好<word text="Webpack"/>环境，开箱即用。
   2. 使用：`vue create 项目名` 创建项目目录，进入目录后 `npm run serve` 运行。
 
@@ -1074,7 +1065,6 @@ export default {
   把<word text="Vue" />变量的值，赋予给<word text="DOM"/>属性上，影响标签显示效果
 
 - `v-on` 作用和事件对象以及修饰符使用
-
   1. 作用：给<word text="DOM"/>标签绑定事件，等号右侧为事件处理函数，简写形式为 `@`
   2. 事件对象
      - 无传参，通过形参直接接收
@@ -1089,19 +1079,16 @@ export default {
   把 `value` 属性和<word text="Vue" />数据变量，双向绑定到一起
 
 - `v-if` 和 `v-show` 的区别和本质
-
   1. `v-if` ：直接把节点从<word text="DOM"/>树上删除
   2. `v-show` ：原理是通过样式 `display:none` 隐藏节点。
 
 - `v-for` 的作用和使用
-
   1. 作用：列表渲染，所在标签结构，按照数据数量，循环生成
   2. 使用语法：
      - `v-for="(值, 索引) in 目标结构"`
      - `v-for="值 in 目标结构"`
 
 - <word text="Vue" />的特点
-
   - 渐进式
   - 声明式渲染
   - 数据驱动视图 (响应式)
@@ -1111,29 +1098,25 @@ export default {
   - 不兼容 IE8 及以下浏览器
 
 - `v-for` 什么时候会更新页面呢?
-
   - 数组采用更新方法, 才导致 `v-for` 更新页面
 
 - <word text="Vue" />是如何提高更新性能的?
-
   - 采用虚拟<word text="DOM"/>+ `key` 提高更新性能
 
 - 虚拟<word text="DOM"/>是什么?
-
   - 本质是保存<word text="DOM"/>关键信息的<word text="JavaScript"/>对象
 
 - 如何比较新旧虚拟<word text="DOM"/>?
-
   - 根元素改变 – 删除当前<word text="DOM"/>树重新建
   - 根元素未变, 属性改变 – 更新属性
   - 根元素未变, 子元素/内容改变
   - 无 `key` – 就地更新 / 有 `key` – 按 `key` 比较
 
-## 思维导图
+## Vue 思维导图
 
 ![vue基础.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/567ebc99576c420b9aad21854b190c61~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp?)
 
-## 拓展
+## Vue 拓展
 
 为什么在 `script` 逻辑模块中， `data` 是函数返回的形式，而 `methods` 方法是对象的形式？
 

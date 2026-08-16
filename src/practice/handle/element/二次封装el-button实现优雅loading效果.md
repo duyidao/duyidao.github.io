@@ -55,6 +55,7 @@ const clickFn3 = async () => {
 `loading` 属性则在二封组件内部处理，外部使用时只需传点击事件函数即可。
 
 ::: code-group
+
 ```vue [App.vue]
 <script setup>
 import MyButton from './components/MyButton.vue'
@@ -73,6 +74,7 @@ const clickFn = async () => {
   </div>
 </template>
 ```
+
 ```vue [src/components/MyButton.vue]
 <script setup>
 import { ref, useAttrs } from 'vue'
@@ -85,8 +87,7 @@ const click = async () => {
   loading.value = true
   try {
     await attrs.onClick?.()
-  }
-  finally {
+  } finally {
     loading.value = false
   }
 }
@@ -98,6 +99,7 @@ const click = async () => {
   </el-button>
 </template>
 ```
+
 :::
 
 ## 细化
@@ -121,8 +123,7 @@ const click = async () => {
   loading.value = true
   try {
     await attrs.onClick?.()
-  }
-  finally {
+  } finally {
     loading.value = false
   }
 }
@@ -147,7 +148,7 @@ import { omit } from 'lodash-es'
 
 // [!code focus]
 defineOption({
-  inheritAttrs: false // [!code focus]
+  inheritAttrs: false, // [!code focus]
 }) // [!code focus]
 
 const attrs = useAttrs()
@@ -158,8 +159,7 @@ const click = async () => {
   loading.value = true
   try {
     await attrs.onClick?.()
-  }
-  finally {
+  } finally {
     loading.value = false
   }
 }

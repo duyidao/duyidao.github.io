@@ -1,34 +1,34 @@
 # Computed 计算属性 缓存
 
-## 问题复现
+## Vue3 问题复现
 
 还是以上一章节的示例代码为例：
 
 ```html
 <script type="module">
-  import { ref, effect, computed } from "../dist/reactivity.esm.js";
+  import { ref, effect, computed } from '../dist/reactivity.esm.js'
 
-  let count = ref(1);
+  let count = ref(1)
 
-  const c = computed(() => count.value + 1);
+  const c = computed(() => count.value + 1)
 
   effect(() => {
-    console.log("effect => ", c.value);
-  });
+    console.log('effect => ', c.value)
+  })
 
   setTimeout(() => {
-    count.value++;
-    console.count(c.value);
-    console.count(c.value);
-    console.count(c.value);
-    console.count(c.value);
-    console.count(c.value);
-    console.count(c.value);
-    console.count(c.value);
-    console.count(c.value);
-    console.count(c.value);
-    console.count(c.value);
-  }, 1000);
+    count.value++
+    console.count(c.value)
+    console.count(c.value)
+    console.count(c.value)
+    console.count(c.value)
+    console.count(c.value)
+    console.count(c.value)
+    console.count(c.value)
+    console.count(c.value)
+    console.count(c.value)
+    console.count(c.value)
+  }, 1000)
 </script>
 ```
 
@@ -38,7 +38,7 @@
 
 接下来就要思考如何解决这个问题。
 
-## dirty 标志
+## Vue3 dirty 标志
 
 在 `ComputedImpl` 类中，新增一个属性 `dirty`，用于标记计算属性是否脏数据。
 
@@ -52,27 +52,30 @@
 ```ts [computed.ts]
 class ComputedRefImpl implements Dep, Sub {
   // ... 省略代码
-  dirty = true; // 是否脏数据，需要重新计算缓存。为 true 时，需要重新计算缓存；为 false 时，不需要重新计算缓存。 // [!code ++]
+  dirty = true // 是否脏数据，需要重新计算缓存。为 true 时，需要重新计算缓存；为 false 时，不需要重新计算缓存。 // [!code ++]
 
   /**
    * 构造函数
    * @param {Function} getter 计算属性函数
    * @param {Function} setter 计算属性设置函数
    */
-  constructor(public fn, private setter) {}
+  constructor(
+    public fn,
+    private setter,
+  ) {}
 
   get value() {
     // 如果计算属性脏了，需要重新计算缓存 // [!code ++]
     // [!code ++]
     if (this.dirty) {
-      this.update();
+      this.update()
     } // [!code ++]
 
     // 作为 dep 依赖项，要收集订阅者 sub
     if (activeSub) {
-      link(this, activeSub);
+      link(this, activeSub)
     }
-    return this._value;
+    return this._value
   }
 
   // ... 省略代码
@@ -81,16 +84,16 @@ class ComputedRefImpl implements Dep, Sub {
     /**
      * 作为 sub 订阅者，要收集依赖项 dep
      */
-    let prevSub = activeSub;
+    let prevSub = activeSub
     // 每次执行都把 fn 放到 activeSub 中，让 reactivity 收集依赖
-    setActiveEffect(this);
-    startTrack(this);
+    setActiveEffect(this)
+    startTrack(this)
     try {
-      this._value = this.fn();
-      this.dirty = false; // [!code ++]
+      this._value = this.fn()
+      this.dirty = false // [!code ++]
     } finally {
-      endTrack(this);
-      setActiveEffect(prevSub);
+      endTrack(this)
+      setActiveEffect(prevSub)
     }
   }
 }
@@ -102,27 +105,27 @@ class ComputedRefImpl implements Dep, Sub {
 >
 > 只在 `get value()` 方法里修改 `dirty` 为 `false` 会导致在 `propagateSubs` 方法中触发 `update` 方法，重新计算缓存后，数据依旧被判断为脏数据，重复多调用一次 `update` 方法。
 
-## 懒计算
+## Vue3 懒计算
 
 修改一下示例代码：
 
 ```html
 <script type="module">
-  import { ref, effect, computed } from "../dist/reactivity.esm.js";
+  import { ref, effect, computed } from '../dist/reactivity.esm.js'
 
-  let count = ref(1);
+  let count = ref(1)
 
-  const c = computed(() => count.value + 1);
+  const c = computed(() => count.value + 1)
 
   // effect(() => {
   //   console.log('effect => ', c.value)
   // })
 
-  console.log("c.value", c.value);
-  console.log("c.value", c.value);
-  console.log("c.value", c.value);
-  console.log("c.value", c.value);
-  count.value++;
+  console.log('c.value', c.value)
+  console.log('c.value', c.value)
+  console.log('c.value', c.value)
+  console.log('c.value', c.value)
+  count.value++
 </script>
 ```
 
@@ -134,56 +137,56 @@ class ComputedRefImpl implements Dep, Sub {
 
 ```ts [system.ts]
 export const propagate = (subs) => {
-  let link = subs;
-  let queueEffects = [];
+  let link = subs
+  let queueEffects = []
   while (link) {
-    let sub = link.sub;
+    let sub = link.sub
     if (!sub.trackShaking) {
-      if ("update" in sub) {
-        sub.dirty = true; // 计算属性标记为脏 // [!code ++]
-        propagateSubs(sub);
+      if ('update' in sub) {
+        sub.dirty = true // 计算属性标记为脏 // [!code ++]
+        propagateSubs(sub)
       } else {
-        queueEffects.push(link.sub);
+        queueEffects.push(link.sub)
       }
     }
-    link = link.nextSub;
+    link = link.nextSub
   }
-  queueEffects.forEach((effect) => effect?.notify());
-};
+  queueEffects.forEach((effect) => effect?.notify())
+}
 
 export function propagateSubs(sub) {
   // [!code ++]
   if (sub.subs) {
-    sub.update();
-    propagate(sub.subs);
+    sub.update()
+    propagate(sub.subs)
     // [!code ++]
   }
 }
 ```
 
-## 值没变
+## Vue3 值没变
 
 下面再修改一下示例代码：
 
 ```html
 <script type="module">
-  import { ref, effect, computed } from "../dist/reactivity.esm.js";
+  import { ref, effect, computed } from '../dist/reactivity.esm.js'
 
-  let count = ref(1);
+  let count = ref(1)
 
-  const c = computed(() => count.value * 0);
+  const c = computed(() => count.value * 0)
 
   effect(() => {
-    console.log("effect => ", c.value);
-  });
+    console.log('effect => ', c.value)
+  })
 
   setTimeout(() => {
-    count.value += 2;
-  }, 1000);
+    count.value += 2
+  }, 1000)
 
   setTimeout(() => {
-    count.value += 2;
-  }, 3000);
+    count.value += 2
+  }, 3000)
 </script>
 ```
 
@@ -211,18 +214,18 @@ class ComputedRefImpl implements Dep, Sub {
     /**
      * 作为 sub 订阅者，要收集依赖项 dep
      */
-    let prevSub = activeSub;
-    const oldValue = this._value; // 记录旧值 // [!code ++]
+    let prevSub = activeSub
+    const oldValue = this._value // 记录旧值 // [!code ++]
     // 每次执行都把 fn 放到 activeSub 中，让 reactivity 收集依赖
-    setActiveEffect(this);
-    startTrack(this);
+    setActiveEffect(this)
+    startTrack(this)
     try {
-      this._value = this.fn();
-      this.dirty = false;
+      this._value = this.fn()
+      this.dirty = false
     } finally {
-      endTrack(this);
-      setActiveEffect(prevSub);
-      return hasChanged(oldValue, this._value); // 返回值是否发生改变 // [!code ++]
+      endTrack(this)
+      setActiveEffect(prevSub)
+      return hasChanged(oldValue, this._value) // 返回值是否发生改变 // [!code ++]
     }
   }
 }
@@ -236,35 +239,35 @@ export function propagateSubs(sub) {
    */
   // [!code ++]
   if (sub.subs && sub.update()) {
-    propagate(sub.subs);
+    propagate(sub.subs)
   }
 }
 ```
 
 :::
 
-## effect 优化
+## Vue3 effect 优化
 
 这一块不算是 `computed` 的 Bug，先来看一段示例代码：
 
 ```html
 <script type="module">
-  import { ref, effect, computed } from "../dist/reactivity.esm.js";
+  import { ref, effect, computed } from '../dist/reactivity.esm.js'
 
-  let count = ref(1);
+  let count = ref(1)
 
   // const c = computed(() => count.value * 0)
 
   effect(() => {
     // console.log('effect => ', c.value)
-    console.count("effect 执行次数");
-    console.log("effect => ", count.value);
-    count.value;
-  });
+    console.count('effect 执行次数')
+    console.log('effect => ', count.value)
+    count.value
+  })
 
   setTimeout(() => {
-    count.value += 2;
-  }, 1000);
+    count.value += 2
+  }, 1000)
 </script>
 ```
 
@@ -282,52 +285,52 @@ export function propagateSubs(sub) {
 
 ```ts [system.ts]
 export const propagate = (subs) => {
-  let link = subs;
-  let queueEffects = [];
+  let link = subs
+  let queueEffects = []
   while (link) {
-    let sub = link.sub;
+    let sub = link.sub
     // [!code ++]
     if (!sub.trackShaking && !sub.dirty) {
-      if ("update" in sub) {
-        sub.dirty = true; // 计算属性标记为脏
-        propagateSubs(sub);
+      if ('update' in sub) {
+        sub.dirty = true // 计算属性标记为脏
+        propagateSubs(sub)
       } else {
-        queueEffects.push(link.sub);
+        queueEffects.push(link.sub)
       }
     }
-    link = link.nextSub;
+    link = link.nextSub
   }
-  queueEffects.forEach((effect) => effect?.notify());
-};
+  queueEffects.forEach((effect) => effect?.notify())
+}
 
 export function endTrack(sub) {
-  const depsTail = sub.depsTail;
-  sub.trackShaking = false;
-  sub.dirty = false; // [!code ++]
+  const depsTail = sub.depsTail
+  sub.trackShaking = false
+  sub.dirty = false // [!code ++]
   if (depsTail) {
     if (depsTail.nextDep) {
-      clearTracking(depsTail.nextDep);
-      depsTail.nextDep = undefined;
+      clearTracking(depsTail.nextDep)
+      depsTail.nextDep = undefined
     }
   } else if (sub.deps) {
-    clearTracking(sub.deps);
-    sub.deps = undefined;
+    clearTracking(sub.deps)
+    sub.deps = undefined
   }
 }
 ```
 
 ```ts [computed.ts]
 class ComputedRefImpl implements Dep, Sub {
-  _value; // 计算属性值，最终返回的值
-  subs: Link | undefined; // 订阅者链表头节点
-  subsTail: Link | undefined; // 订阅者链表尾节点
-  deps: Dep | undefined; // 依赖项链表头节点
+  _value // 计算属性值，最终返回的值
+  subs: Link | undefined // 订阅者链表头节点
+  subsTail: Link | undefined // 订阅者链表尾节点
+  deps: Dep | undefined // 依赖项链表头节点
   depsTail: Link | undefined; // 依赖项链表尾节点
 
-  [ReactiveFlags.IS_REF] = true; // computed也是ref类型
-  tracking = false; // 是否正在计算
-  dirty = true; // 是否脏数据，需要重新计算缓存。为 true 时，需要重新计算缓存；为 false 时，不需要重新计算缓存。 // [!code --]
-  dirty = false; // 是否脏数据，需要重新计算缓存。为 true 时，需要重新计算缓存；为 false 时，不需要重新计算缓存。 // [!code ++]
+  [ReactiveFlags.IS_REF] = true // computed也是ref类型
+  tracking = false // 是否正在计算
+  dirty = true // 是否脏数据，需要重新计算缓存。为 true 时，需要重新计算缓存；为 false 时，不需要重新计算缓存。 // [!code --]
+  dirty = false // 是否脏数据，需要重新计算缓存。为 true 时，需要重新计算缓存；为 false 时，不需要重新计算缓存。 // [!code ++]
 
   // ... 省略代码
 
@@ -335,18 +338,18 @@ class ComputedRefImpl implements Dep, Sub {
     /**
      * 作为 sub 订阅者，要收集依赖项 dep
      */
-    let prevSub = activeSub;
-    const oldValue = this._value; // 保存旧值
+    let prevSub = activeSub
+    const oldValue = this._value // 保存旧值
     // 每次执行都把 fn 放到 activeSub 中，让 reactivity 收集依赖
-    setActiveEffect(this);
-    startTrack(this);
+    setActiveEffect(this)
+    startTrack(this)
     try {
-      this._value = this.fn();
-      this.dirty = false; // [!code --]
+      this._value = this.fn()
+      this.dirty = false // [!code --]
     } finally {
-      endTrack(this);
-      setActiveEffect(prevSub);
-      return hasChanged(oldValue, this._value); // 返回值是否发生改变
+      endTrack(this)
+      setActiveEffect(prevSub)
+      return hasChanged(oldValue, this._value) // 返回值是否发生改变
     }
   }
 }
@@ -362,9 +365,9 @@ class ComputedRefImpl implements Dep, Sub {
 >
 > 源码的时间换空间写法，主要是在 `link` 方法里，通过遍历判断 `dep` 和 `sub` 是否绑定过关联关系，来避免是否重复绑定。
 
-## 总结
+## Vue3 总结
 
-### 内容总结
+### Vue3 内容总结
 
 1. 引入 `dirty` 标志：
 
@@ -395,6 +398,6 @@ class ComputedRefImpl implements Dep, Sub {
 
    将 `dirty` 的初始值设置为 `false`，并在 `endTrack` 中统一设置为 `false`，确保计算属性在执行完成后处于干净状态，供下次访问时判断是否需要重新计算。
 
-### 时序图
+### Vue3 时序图
 
 ![时序图](https://pic1.imgdb.cn/item/696b38dd55fa3078186f4d0e.png)

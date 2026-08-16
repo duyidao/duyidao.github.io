@@ -11,72 +11,76 @@
 ![架构设计](../../../../images/work/数说/H5实时预览方案-架构设计.png)
 
 ## 核心实现
+
 1. 预览容器初始化
 
-    为保证预览的独立性，使用 `iframe` 承载 H5 页面。首次预览需校验任务是否已保存（存在 `id`），并将 `id` 及预览标识通过 `URLSearchParams` 注入 `src`。
+   为保证预览的独立性，使用 `iframe` 承载 H5 页面。首次预览需校验任务是否已保存（存在 `id`），并将 `id` 及预览标识通过 `URLSearchParams` 注入 `src`。
 
-    ```vue
-    <template>
-      <div v-if="previewPhoneVisible" class="preview-container">
-        <template v-if="info.id">
-          <PhoneIframe 
-            ref="phoneIframeRef" 
-            :url="'/h5/detail'" 
-            :query="{ id: info.id, preview: true, ignore: true }" 
-          />
-        </template>
-        <div v-else class="empty-state">请先创建任务后再进行预览</div>
-      </div>
-    </template>
-    ```
+   ```vue
+   <template>
+     <div v-if="previewPhoneVisible" class="preview-container">
+       <template v-if="info.id">
+         <PhoneIframe
+           ref="phoneIframeRef"
+           :url="'/h5/detail'"
+           :query="{ id: info.id, preview: true, ignore: true }"
+         />
+       </template>
+       <div v-else class="empty-state">请先创建任务后再进行预览</div>
+     </div>
+   </template>
+   ```
 
 2. 数据同步与防抖机制
 
-    编辑页的数据变更需实时同步至 `iframe`。为避免频繁通信导致子窗口渲染卡顿，采用 <word text="VueUse" /> 的 `watchDebounced` 进行防抖处理，并通过 `JSON.stringify` 序列化复杂对象。
+   编辑页的数据变更需实时同步至 `iframe`。为避免频繁通信导致子窗口渲染卡顿，采用 <word text="VueUse" /> 的 `watchDebounced` 进行防抖处理，并通过 `JSON.stringify` 序列化复杂对象。
 
-    ```typescript
-    import { watchDebounced } from '@vueuse/core'
+   ```typescript
+   import { watchDebounced } from '@vueuse/core'
 
-    // 监听编辑区数据变化，防抖推送
-    watchDebounced(
-      info, 
-      () => {
-        if (visible.value) {
-          postMessageToIframe()
-        }
-      }, 
-      { deep: true, debounce: 500 }
-    )
+   // 监听编辑区数据变化，防抖推送
+   watchDebounced(
+     info,
+     () => {
+       if (visible.value) {
+         postMessageToIframe()
+       }
+     },
+     { deep: true, debounce: 500 },
+   )
 
-    function postMessageToIframe() {
-      const data = convertTaskDataToH5TaskData(info.value)
-      phoneIframeRef.value?.sendMessageToIframe({
-        type: 'H5_PREVIEW_DATA',
-        payload: JSON.stringify(data), // 序列化对象
-      }, '*')
-    }
-    ```
+   function postMessageToIframe() {
+     const data = convertTaskDataToH5TaskData(info.value)
+     phoneIframeRef.value?.sendMessageToIframe(
+       {
+         type: 'H5_PREVIEW_DATA',
+         payload: JSON.stringify(data), // 序列化对象
+       },
+       '*',
+     )
+   }
+   ```
 
 3. 跨窗口通信封装
 
-    在 `iframe` 容器组件中封装 `postMessage` 发送与接收逻辑，确保通信链路的稳定性。
+   在 `iframe` 容器组件中封装 `postMessage` 发送与接收逻辑，确保通信链路的稳定性。
 
-    ```typescript
-    // 父窗口容器组件
-    function sendMessageToIframe(message: any, targetOrigin: string = '*') {
-      if (iframeRef.value) {
-        iframeRef.value.contentWindow?.postMessage(message, targetOrigin)
-      }
-    }
+   ```typescript
+   // 父窗口容器组件
+   function sendMessageToIframe(message: any, targetOrigin: string = '*') {
+     if (iframeRef.value) {
+       iframeRef.value.contentWindow?.postMessage(message, targetOrigin)
+     }
+   }
 
-    // 子窗口 (H5 页面) 接收逻辑
-    useEventListener(window, 'message', (event: MessageEvent) => {
-      if (event.data.type === 'H5_PREVIEW_DATA') {
-        const payload = JSON.parse(event.data.payload)
-        detail.value = payload // 触发子窗口响应式更新
-      }
-    })
-    ```
+   // 子窗口 (H5 页面) 接收逻辑
+   useEventListener(window, 'message', (event: MessageEvent) => {
+     if (event.data.type === 'H5_PREVIEW_DATA') {
+       const payload = JSON.parse(event.data.payload)
+       detail.value = payload // 触发子窗口响应式更新
+     }
+   })
+   ```
 
 ## 安全与优化实践
 

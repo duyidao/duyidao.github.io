@@ -21,66 +21,69 @@ AI 问答模块是数说项目的核心交互链路，涉及 <word text="SSE" />
 
 1. 请求初始化与模型调度
 
-    使用 <word text="Ant Design X Vue" /> 提供的 `XRequest` 与 `useXAgent` 构建流式请求管道。
+   使用 <word text="Ant Design X Vue" /> 提供的 `XRequest` 与 `useXAgent` 构建流式请求管道。
 
-    ```typescript
-    import { XRequest, useXAgent } from 'ant-design-x-vue'
+   ```typescript
+   import { XRequest, useXAgent } from 'ant-design-x-vue'
 
-    // 1. 初始化 SSE 请求实例
-    const AIRequest = XRequest({
-      baseURL: '/api/ai/chat',
-      fetch: async (url, options) => {
-        return fetch(url, {
-          ...options,
-          headers: { Authorization: `Bearer ${token}`, ...options.headers },
-        })
-      },
-    })
+   // 1. 初始化 SSE 请求实例
+   const AIRequest = XRequest({
+     baseURL: '/api/ai/chat',
+     fetch: async (url, options) => {
+       return fetch(url, {
+         ...options,
+         headers: { Authorization: `Bearer ${token}`, ...options.headers },
+       })
+     },
+   })
 
-    // 2. 模型调度配置
-    const [agent] = useXAgent({
-      request: async (info, callbacks) => {
-        const { message } = info
-        const { onUpdate, onSuccess, onError, onStream } = callbacks
-        
-        await AIRequest.create({ message }, {
-          onStream: (ctrl) => onStream?.(ctrl), // 绑定 AbortController
-          onUpdate: (data) => parseMessage(data, onUpdate),
-          onSuccess: () => onSuccess(lastMessage.value),
-          onError: (err) => onError(err),
-        })
-      },
-    })
-    ```
+   // 2. 模型调度配置
+   const [agent] = useXAgent({
+     request: async (info, callbacks) => {
+       const { message } = info
+       const { onUpdate, onSuccess, onError, onStream } = callbacks
+
+       await AIRequest.create(
+         { message },
+         {
+           onStream: (ctrl) => onStream?.(ctrl), // 绑定 AbortController
+           onUpdate: (data) => parseMessage(data, onUpdate),
+           onSuccess: () => onSuccess(lastMessage.value),
+           onError: (err) => onError(err),
+         },
+       )
+     },
+   })
+   ```
 
 2. 工作流消息转换状态机
 
-    后端返回的 <word text="SSE" /> 数据包含多种工作流事件（`init`、`node_started`、`message` 等）。通过 `useXChat` 的 `transformMessage` 钩子，将流式数据块转换为结构化的前端渲染模型。
+   后端返回的 <word text="SSE" /> 数据包含多种工作流事件（`init`、`node_started`、`message` 等）。通过 `useXChat` 的 `transformMessage` 钩子，将流式数据块转换为结构化的前端渲染模型。
 
-    ![工作流消息转换状态机](../../../images/work/数说/AI问答模块流式交互与富文本复制方案-工作流消息转换状态机.png)
+   ![工作流消息转换状态机](../../../images/work/数说/AI问答模块流式交互与富文本复制方案-工作流消息转换状态机.png)
 
 ## 智能滚动与富文本复制
 
 1. 基于 <word text="VueUse" /> 的智能滚动
 
-    利用 `useScroll` 监听容器滚动状态，实现"用户阅读时暂停滚动，触底时恢复自动滚动"的交互逻辑。
+   利用 `useScroll` 监听容器滚动状态，实现"用户阅读时暂停滚动，触底时恢复自动滚动"的交互逻辑。
 
-    ```typescript
-    import { useScroll } from '@vueuse/core'
+   ```typescript
+   import { useScroll } from '@vueuse/core'
 
-    const { arrivedState, directions } = useScroll(containerRef, {
-      offset: { bottom: 20 }, // 距离底部 20px 视为触底
-    })
+   const { arrivedState, directions } = useScroll(containerRef, {
+     offset: { bottom: 20 }, // 距离底部 20px 视为触底
+   })
 
-    watchEffect(() => {
-      if (directions.top) shouldAutoScroll.value = false
-      else if (arrivedState.bottom) shouldAutoScroll.value = true
-    })
-    ```
+   watchEffect(() => {
+     if (directions.top) shouldAutoScroll.value = false
+     else if (arrivedState.bottom) shouldAutoScroll.value = true
+   })
+   ```
 
 2. 富文本跨格式复制方案
 
-    AI 生成的结果包含 Markdown 文本、<word text="ECharts" /> 图表及数据表格。为实现"一键复制至 Word/飞书"且保留富文本格式，采用 `Range` 选区与 `ClipboardItem` 方案。
+   AI 生成的结果包含 Markdown 文本、<word text="ECharts" /> 图表及数据表格。为实现"一键复制至 Word/飞书"且保留富文本格式，采用 `Range` 选区与 `ClipboardItem` 方案。
 
 ## 执行流程
 
@@ -107,7 +110,7 @@ async function copyRichText(htmlContent: string) {
   try {
     const htmlBlob = new <word text="Blob" />([htmlContent], { type: 'text/html' })
     const textBlob = new <word text="Blob" />([hiddenContainer.textContent || ''], { type: 'text/plain' })
-    
+
     await navigator.clipboard.write([
       new <word text="ClipboardItem" />({
         'text/html': htmlBlob,

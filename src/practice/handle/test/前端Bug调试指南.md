@@ -7,10 +7,10 @@
 试图从一个 `undefined` 里读取某个属性，常见于从用取值的时候。
 
 ```js
-const obj = {};
+const obj = {}
 
-obj.a; // undefined
-obj.a.b; // Cannot read properties of undefined (reading 'b')
+obj.a // undefined
+obj.a.b // Cannot read properties of undefined (reading 'b')
 ```
 
 解决方法：看这个报错马上根据报错上的 读 `xxx` 全局搜索，找到用到 `xxx` 的地方，此时已经可以断定此处有一个 `undefined` ，找出来为什么是 `undefined` 。通过判断获取 `?` 可选链等方式解决。
@@ -20,9 +20,9 @@ obj.a.b; // Cannot read properties of undefined (reading 'b')
 常见于调用方法的时候，这个报错意味着 `xxx` 不是一个函数，而是一个 `undefined` 、字符串、数组、对象等，却被当成方法来调用。
 
 ```js
-import { fn } from "xxx";
+import { fn } from 'xxx'
 
-fn(); // fn is not a function
+fn() // fn is not a function
 ```
 
 解决方法：直接按照提示搜索 `xxx` ，排查它为什么不是方法。
@@ -42,7 +42,7 @@ fn(); // fn is not a function
 某资源的引入失败，通常见于 `import` 引入了一个不存在的模块，一般是由构建工具提示，不会在控制台上输出。
 
 ```js
-import { xx } from "./a.js"; // Failed to resolve './a.js'
+import { xx } from './a.js' // Failed to resolve './a.js'
 ```
 
 解决方法：检查提示的错误 `import` 地址。
@@ -63,7 +63,7 @@ import { xx } from "./a.js"; // Failed to resolve './a.js'
 一般只见于 `import` 引入模块的时候，引入的东西不存在于目标文件。
 
 ```js
-import a from "xxx.js"; // xxx does not provide an export named 'default';
+import a from 'xxx.js' // xxx does not provide an export named 'default';
 ```
 
 解决方法：检查拼写，以及引入来源有没有 `export` 引入的东西有没有拼写错；或者排查一下有没有 `export` 和 `export default` 混淆使用。
@@ -82,10 +82,10 @@ import a from "xxx.js"; // xxx does not provide an export named 'default';
 
 ```js
 function a() {
-  a();
+  a()
 }
 
-a();
+a()
 
 while (true) {
   // do something
@@ -99,9 +99,9 @@ while (true) {
 重复变量定义。
 
 ```js
-const a = 1;
+const a = 1
 
-const a = () => {}; // Identifer 'a' has already been declared
+const a = () => {} // Identifer 'a' has already been declared
 ```
 
 解决方法：检查下哪个变量重复定义换个名字就好。
@@ -111,7 +111,7 @@ const a = () => {}; // Identifer 'a' has already been declared
 变量未定义。
 
 ```js
-console.log(a); // a is not defined
+console.log(a) // a is not defined
 ```
 
 解决方法：检查下变量是否定义，或者是否拼写错误。
@@ -121,9 +121,9 @@ console.log(a); // a is not defined
 变量提升导致的问题。
 
 ```js
-console.log(a); // Uncaught ReferenceError: Cannot access 'a' before initialization
+console.log(a) // Uncaught ReferenceError: Cannot access 'a' before initialization
 
-let a = 1;
+let a = 1
 ```
 
 解决方法：检查下变量是否提前使用，或者是否拼写错误。
@@ -138,7 +138,7 @@ let a = 1;
 2. 400、403、404：基本上是前端的问题，404 是地址有误；403 是无请求权限；400 是请求发的不符合后端要求
 3. 100 基本看不到；200、300 基本上没问题
 
-### Access to XMLHttpRequest at 'xxx' from origin 'xxx' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+### Access to XMLHttpRequest at 'xxx' from origin 'xxx' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource
 
 跨域问题，一般见于 <word text="Axios"/> 请求，<word text="Fetch"/> 请求，`html` 文件请求，`script` 标签请求等。跨域问题一般由后端解决，前端可以尝试使用 `cors-anywhere` 代理。
 

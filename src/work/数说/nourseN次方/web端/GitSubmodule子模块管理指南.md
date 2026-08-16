@@ -23,40 +23,41 @@
 | 更新子模块至最新提交   | `git submodule update --remote`        | 拉取子模块远程最新代码，并更新主仓库的指针       |
 
 ## 标准工作流实践
+
 1. 添加子模块
-  
-    在主项目根目录下，将远程仓库添加为子模块，并指定存放路径。
 
-    ```bash
-    git submodule add <submodule_repo_url> src/shared-components
-    ```
+   在主项目根目录下，将远程仓库添加为子模块，并指定存放路径。
 
-    执行后，主项目会生成 .gitmodules 文件，记录子模块的路径与 URL。
+   ```bash
+   git submodule add <submodule_repo_url> src/shared-components
+   ```
+
+   执行后，主项目会生成 .gitmodules 文件，记录子模块的路径与 URL。
 
 2. 团队协同拉取
-  
-    其他开发者克隆主项目后，需执行以下命令同步子模块：
 
-    ```bash
-    git submodule update --init --recursive
-    ```
+   其他开发者克隆主项目后，需执行以下命令同步子模块：
 
-    注意：`--recursive` 参数可确保嵌套的子模块（子模块中的子模块）也被正确初始化。
+   ```bash
+   git submodule update --init --recursive
+   ```
+
+   注意：`--recursive` 参数可确保嵌套的子模块（子模块中的子模块）也被正确初始化。
 
 3. 更新子模块代码
 
-    当子仓库有更新时，主项目需同步最新状态：
+   当子仓库有更新时，主项目需同步最新状态：
 
-    ```bash
-    # 进入子模块目录拉取最新代码
-    cd src/shared-components
-    git pull origin main
+   ```bash
+   # 进入子模块目录拉取最新代码
+   cd src/shared-components
+   git pull origin main
 
-    # 返回主项目目录，提交子模块指针的变更
-    cd ../..
-    git add src/shared-components
-    git commit -m "chore: update shared-components submodule"
-    ```
+   # 返回主项目目录，提交子模块指针的变更
+   cd ../..
+   git add src/shared-components
+   git commit -m "chore: update shared-components submodule"
+   ```
 
 ## 常见问题与注意事项
 

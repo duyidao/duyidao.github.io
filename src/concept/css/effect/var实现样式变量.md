@@ -8,7 +8,7 @@
 </div>
 ```
 
-## 思路
+## CSS 思路
 
 小圆从父盒子左侧移动到右侧，通过 CSS 的运算方法写为如下的方式：
 
@@ -20,7 +20,7 @@ calc(父元素宽度 - 子元素宽度)
 
 二者结合：JS 获取到父元素宽度后告诉 CSS 来使用。
 
-## 实现
+## CSS 实现
 
 JS 获取父盒子的宽度：
 
@@ -51,7 +51,7 @@ container.style.setProperty('--w', w + 'px')
 }
 ```
 
-## 说在最后
+## CSS 说在最后
 
 不一定在 `js` 获取父元素宽度，可以先设置一个变量，然后在 `template` 中使用动态样式设置，最后通过 `css` 的 `var()` 方法来获取。
 
@@ -70,6 +70,6 @@ onMounted(() => {
 </template>
 ```
 
-## 总体效果
+## CSS 总体效果
 
 <myIframe url="https://duyidao.github.io/blogweb/#/info/css/variable" />

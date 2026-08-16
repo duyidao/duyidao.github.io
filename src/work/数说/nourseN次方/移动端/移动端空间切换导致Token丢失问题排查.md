@@ -25,7 +25,7 @@ function switchSpace(spaceId) {
   // 更新全局状态
   store.setSpaceId(spaceId)
   // 强制刷新页面，导致内存状态丢失
-  router.go(0) 
+  router.go(0)
 }
 ```
 

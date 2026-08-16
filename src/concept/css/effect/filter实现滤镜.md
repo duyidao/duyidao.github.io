@@ -1,6 +1,6 @@
 # filter 实现滤镜
 
-## 前置知识
+## CSS 前置知识
 
 [filter](https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter) 属性将模糊或颜色偏移等图形效果应用于元素自身。滤镜通常用于调整图像、背景和边框的渲染。
 
@@ -37,11 +37,11 @@ filter: revert-layer;
 filter: unset;
 ```
 
-## 实现
+## CSS 实现
 
 针对部分函数方法做详细说明。
 
-### drop-shadow
+### CSS drop-shadow
 
 使用 `<shadow>` 参数沿图像的轮廓生成阴影效果。阴影语法类似于 `<box-shadow>`（在 [CSS 背景和边框模块](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_backgrounds_and_borders)中定义），但不允许使用 `inset` 关键字以及 `spread` 参数。与所有 `filter` 属性值一样，任何在 `drop-shadow()` 后的滤镜同样会应用在阴影上。
 
@@ -55,7 +55,7 @@ filter: drop-shadow(10px 10px 10px orange);
 
 其原理是把原来的像素点颜色通过算法来计算，计算完后返回新的像素点。
 
-### blur
+### CSS blur
 
 将高斯模糊应用于输入图像。括号内输入像素单位的值，该值表示需要做模糊处理时的参考半径范围，值越大处理的结果越模糊。
 
@@ -65,7 +65,7 @@ filter: drop-shadow(10px 10px 10px orange);
 filter: blur(5px);
 ```
 
-### hue-rotate
+### CSS hue-rotate
 
 应用色相旋转。`<angle>` 值设定图像会被调整的色环角度值。值为 `0deg`，则图像无变化。
 
@@ -75,7 +75,7 @@ filter: blur(5px);
 filter: hue-rotate(90deg);
 ```
 
-### contrast
+### CSS contrast
 
 调整输入图像的对比度。值是 `0%` 将使图像变灰（即对比度越小）；值是 `100%`，则无影响；若值超过 `100%` 将增强对比度。
 
@@ -85,7 +85,7 @@ filter: hue-rotate(90deg);
 filter: contrast(200%);
 ```
 
-### grayscale
+### CSS grayscale
 
 将图像转换为灰度图。值为 `100%` 则完全转为灰度图像，若为初始值 `0%` 则图像无变化。值在 `0%` 到 `100%` 之间，则是该效果的线性乘数。
 
@@ -95,6 +95,6 @@ filter: contrast(200%);
 filter: grayscale(1);
 ```
 
-## 总体效果
+## CSS 总体效果
 
 <myIframe url="https://duyidao.github.io/blogweb/#/detail/css/filter" />

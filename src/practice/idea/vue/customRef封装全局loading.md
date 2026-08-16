@@ -24,20 +24,20 @@ export async function request(url: string, params: Record<string, string>) {
 
 ```js
 export const loading = customRef((track, trigger) => {
-  let loadingCount = 0;
+  let loadingCount = 0
 
   return {
     get() {
-      track();
-      return loadingCount > 0;
+      track()
+      return loadingCount > 0
     },
     set(value) {
-      loadingCount += value ? 1 : -1;
-      loadingCount = Math.max(loadingCount, 0);
-      trigger();
+      loadingCount += value ? 1 : -1
+      loadingCount = Math.max(loadingCount, 0)
+      trigger()
     },
-  };
-});
+  }
+})
 ```
 
 ## 动手实操

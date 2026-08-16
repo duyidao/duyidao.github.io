@@ -18,7 +18,7 @@
 就像前端请求接口，会把 `token` 放到请求头上，后端做验证，防止非法请求，`WebSocket` 也有类似的机制和做法，比如 `token`，`uid` 等。实现思路是通过 `ws` 接口地址，把 `token` 和 `uid` 一起传给后端，后端做验证。例如：
 
 ```js
-const ws = new WebSocket(`ws://localhost:3000?token=${token}&uid=${uuid}`);
+const ws = new WebSocket(`ws://localhost:3000?token=${token}&uid=${uuid}`)
 ```
 
 ## 页面结构
@@ -40,7 +40,7 @@ const ws = new WebSocket(`ws://localhost:3000?token=${token}&uid=${uuid}`);
         :key="index"
         :timestamp="handleSecond(task.duration || 0) + '秒'"
       >
-        {{ task.name + (task.status === "finish" ? ":完成" : ":执行中") }}
+        {{ task.name + (task.status === 'finish' ? ':完成' : ':执行中') }}
       </el-timeline-item>
     </el-timeline>
   </div>
@@ -54,120 +54,118 @@ const ws = new WebSocket(`ws://localhost:3000?token=${token}&uid=${uuid}`);
 ::: code-group
 
 ```js [app.js]
-let retry = 0; // 重试次数
-const taskLine = ref([]); // 任务列表
-let timeInter = null; // 定时器
-let ws = new WebSocket(`ws://localhost:3000?token=${token}&uid=${uuid}`);
+let retry = 0 // 重试次数
+const taskLine = ref([]) // 任务列表
+let timeInter = null // 定时器
+let ws = new WebSocket(`ws://localhost:3000?token=${token}&uid=${uuid}`)
 
 ws.onopen = () => {
-  console.log("连接成功");
-  retry = 0; // 重置重试次数
-};
+  console.log('连接成功')
+  retry = 0 // 重置重试次数
+}
 ws.onmessage = (res) => {
-  let socketMessage = JSON.parse(res.data);
-  clearInterval(timeInter);
+  let socketMessage = JSON.parse(res.data)
+  clearInterval(timeInter)
   // 如果不是connect，则处理数据；connect表示连接成功，第一次会发送
-  if (socketMessage.type !== "connect") {
+  if (socketMessage.type !== 'connect') {
     // 如果是未完成，则开启定时器，每秒更新一次
-    if (socketMessage.type === "undone") {
-      let unfinishIndex = 0; // 当前等待完成的任务序号
+    if (socketMessage.type === 'undone') {
+      let unfinishIndex = 0 // 当前等待完成的任务序号
       // 找到第一个当前正在执行的任务
       unfinishIndex = socketMessage.list.findIndex((item, index) => {
-        return item.status === "unfinish";
-      });
+        return item.status === 'unfinish'
+      })
 
       // 开启定时器，每秒更新一次
       timeInter = setInterval(() => {
         socketMessage.list[unfinishIndex].duration
           ? (socketMessage.list[unfinishIndex].duration += 1000)
-          : (socketMessage.list[unfinishIndex].duration = 1000);
+          : (socketMessage.list[unfinishIndex].duration = 1000)
         // 数组需要展开为新数组赋值，不然会被认定为旧数组，vue无法监听到数组的变化
-        taskLine.value = [...socketMessage.list];
-      }, 1000);
+        taskLine.value = [...socketMessage.list]
+      }, 1000)
     }
-    taskLine.value = socketMessage.list;
+    taskLine.value = socketMessage.list
   }
-};
+}
 ws.onclose = () => {
-  retryFn();
-};
+  retryFn()
+}
 ws.onerror = () => {
-  retryFn();
-};
+  retryFn()
+}
 
 // 时间取整
 function handleSecond(time) {
-  return (time / 1000).toFixed(2);
+  return (time / 1000).toFixed(2)
 }
 ```
 
 ```js [server.js]
 // 创建http服务
 const server = http.createServer((req, res) => {
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end("WebSocket server is running on port 3000");
-});
+  res.writeHead(200, { 'Content-Type': 'text/plain' })
+  res.end('WebSocket server is running on port 3000')
+})
 
 // 创建ws服务器 - 使用 noServer 避免自动处理 upgrade
-const wss = new WebSocket.Server({ port: 3000, noServer: true });
+const wss = new WebSocket.Server({ port: 3000, noServer: true })
 
-server.on("upgrade", (req, socket, head) => {
-  const url = req.url; // 获取请求地址
-  const token = new URL("http://localhost:3000" + url).searchParams.get(
-    "token"
-  ); // 获取token
+server.on('upgrade', (req, socket, head) => {
+  const url = req.url // 获取请求地址
+  const token = new URL('http://localhost:3000' + url).searchParams.get('token') // 获取token
 
   // token 验证不通过，401禁止访问
   if (!authenticateUser(token)) {
-    socket.write("HTTP/1.1 401 Unauthorized\r\n\r\n");
-    socket.destroy();
-    return;
+    socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n')
+    socket.destroy()
+    return
   }
   // 验证通过，升级为 ws 协议
   wss.handleUpgrade(req, socket, head, (ws) => {
-    wss.emit("connection", ws, req);
-  });
-});
+    wss.emit('connection', ws, req)
+  })
+})
 
-wss.on("connection", (ws, req) => {
-  now = 0;
+wss.on('connection', (ws, req) => {
+  now = 0
   // 依次执行每一个任务
   function taskFinish(project, ws) {
-    let time = Math.floor(Math.random() * 6 * 2 * 1000); // 随机一个持续时间
+    let time = Math.floor(Math.random() * 6 * 2 * 1000) // 随机一个持续时间
     setTimeout(() => {
-      project.list[now].duration = time;
-      project.list[now].status = "finish";
+      project.list[now].duration = time
+      project.list[now].status = 'finish'
       if (now === project.list.length - 1) {
-        project.projectStatus = "done";
-        ws.send(JSON.stringify(project));
-        return;
+        project.projectStatus = 'done'
+        ws.send(JSON.stringify(project))
+        return
       }
-      now += 1;
-      ws.send(JSON.stringify(project));
-      taskFinish(project, ws); // 递归调用
-    }, time);
+      now += 1
+      ws.send(JSON.stringify(project))
+      taskFinish(project, ws) // 递归调用
+    }, time)
   }
   // 发送连接成功消息
-  ws.send(JSON.stringify({ type: "connect", message: "连接成功" }));
+  ws.send(JSON.stringify({ type: 'connect', message: '连接成功' }))
   // 监听消息
-  ws.on("message", (message) => {
+  ws.on('message', (message) => {
     // 假设ID为1的已完成，为2的未完成
-    const id = JSON.parse(message.toString()).id;
+    const id = JSON.parse(message.toString()).id
     if (id === 1) {
       ws.send(
-        JSON.stringify({ type: "finish", message: "已完成", list: taskList1 })
-      );
+        JSON.stringify({ type: 'finish', message: '已完成', list: taskList1 }),
+      )
     } else {
       ws.send(
-        JSON.stringify({ type: "undone", message: "未完成", list: taskList2 })
-      );
-      taskFinish(taskList2, ws);
+        JSON.stringify({ type: 'undone', message: '未完成', list: taskList2 }),
+      )
+      taskFinish(taskList2, ws)
     }
-  });
-  ws.on("close", () => {
-    console.log("连接已关闭");
-  });
-});
+  })
+  ws.on('close', () => {
+    console.log('连接已关闭')
+  })
+})
 ```
 
 :::
@@ -182,19 +180,19 @@ wss.on("connection", (ws, req) => {
 ```js
 function retryFn() {
   if (retry > 4) {
-    console.log("超出最大重试次数");
-    return;
+    console.log('超出最大重试次数')
+    return
   }
-  console.log("尝试重连");
-  ws = new WebSocket(`ws://localhost:3000?token=${token}&uid=${uuid}`);
+  console.log('尝试重连')
+  ws = new WebSocket(`ws://localhost:3000?token=${token}&uid=${uuid}`)
   // 基于新ws再去监听关闭和出错
   ws.onclose = () => {
-    retryFn();
-  };
+    retryFn()
+  }
   ws.onerror = () => {
-    retryFn();
-  };
-  retry++;
+    retryFn()
+  }
+  retry++
 }
 ```
 
@@ -205,84 +203,84 @@ function retryFn() {
 ::: code-group
 
 ```js [app.js]
-let testTimeout = null; // 定时器 // [!code ++]
-let testStatus = "ok"; // 探测状态 // [!code ++]
+let testTimeout = null // 定时器 // [!code ++]
+let testStatus = 'ok' // 探测状态 // [!code ++]
 // 探测 // [!code ++]
 function toTest() {
   // [!code ++]
-  clearTimeout(testTimeout); // [!code ++]
-  testStatus = "ok"; // [!code ++]
-  console.log("开始探测"); // [!code ++]
+  clearTimeout(testTimeout) // [!code ++]
+  testStatus = 'ok' // [!code ++]
+  console.log('开始探测') // [!code ++]
   testTimeout = setTimeout(() => {
     // [!code ++]
-    testStatus = "testing"; // [!code ++]
-    console.log("10s无消息，探测一下"); // [!code ++]
+    testStatus = 'testing' // [!code ++]
+    console.log('10s无消息，探测一下') // [!code ++]
     setTimeout(() => {
       // [!code ++]
-      if (testStatus !== "ok") {
+      if (testStatus !== 'ok') {
         // [!code ++]
-        console.log("超时未响应，断开连接"); // [!code ++]
-        ws.close(); // [!code ++]
+        console.log('超时未响应，断开连接') // [!code ++]
+        ws.close() // [!code ++]
       } // [!code ++]
-    }, 2000); // [!code ++]
-    ws.send(JSON.stringify({ test: "1" })); // 发送测试消息 // [!code ++]
-  }, 10000); // [!code ++]
+    }, 2000) // [!code ++]
+    ws.send(JSON.stringify({ test: '1' })) // 发送测试消息 // [!code ++]
+  }, 10000) // [!code ++]
 } // [!code ++]
 
 ws.onmessage = (res) => {
-  toTest(); // [!code ++]
-  let socketMessage = JSON.parse(res.data);
-  clearInterval(timeInter);
+  toTest() // [!code ++]
+  let socketMessage = JSON.parse(res.data)
+  clearInterval(timeInter)
   // 如果不是connect，则处理数据；connect表示连接成功，第一次会发送
-  if (socketMessage.type !== "connect") {
+  if (socketMessage.type !== 'connect') {
     // 如果是未完成，则开启定时器，每秒更新一次
-    if (socketMessage.type === "undone") {
-      let unfinishIndex = 0; // 当前等待完成的任务序号
+    if (socketMessage.type === 'undone') {
+      let unfinishIndex = 0 // 当前等待完成的任务序号
       // 找到第一个当前正在执行的任务
       unfinishIndex = socketMessage.list.findIndex((item, index) => {
-        return item.status === "unfinish";
-      });
+        return item.status === 'unfinish'
+      })
 
       // 开启定时器，每秒更新一次
       timeInter = setInterval(() => {
         socketMessage.list[unfinishIndex].duration
           ? (socketMessage.list[unfinishIndex].duration += 1000)
-          : (socketMessage.list[unfinishIndex].duration = 1000);
+          : (socketMessage.list[unfinishIndex].duration = 1000)
         // 数组需要展开为新数组赋值，不然会被认定为旧数组，vue无法监听到数组的变化
-        taskLine.value = [...socketMessage.list];
-      }, 1000);
+        taskLine.value = [...socketMessage.list]
+      }, 1000)
     }
-    taskLine.value = socketMessage.list;
+    taskLine.value = socketMessage.list
   }
-};
+}
 ```
 
 ```js [server.js]
-wss.on("connection", (ws, req) => {
+wss.on('connection', (ws, req) => {
   // ... 省略部分代码
   // 监听消息
-  ws.on("message", (message) => {
+  ws.on('message', (message) => {
     // 处理探测 // [!code ++]
-    const test = JSON.parse(message.toString()).test; // [!code ++]
+    const test = JSON.parse(message.toString()).test // [!code ++]
     if (test) {
       // [!code ++]
-      ws.send(JSON.stringify({ test: "ok" })); // [!code ++]
-      return; // [!code ++]
+      ws.send(JSON.stringify({ test: 'ok' })) // [!code ++]
+      return // [!code ++]
     } // [!code ++]
     // 假设ID为1的已完成，为2的未完成
-    const id = JSON.parse(message.toString()).id;
+    const id = JSON.parse(message.toString()).id
     if (id === 1) {
       ws.send(
-        JSON.stringify({ type: "finish", message: "已完成", list: taskList1 })
-      );
+        JSON.stringify({ type: 'finish', message: '已完成', list: taskList1 }),
+      )
     } else {
       ws.send(
-        JSON.stringify({ type: "undone", message: "未完成", list: taskList2 })
-      );
-      taskFinish(taskList2, ws);
+        JSON.stringify({ type: 'undone', message: '未完成', list: taskList2 }),
+      )
+      taskFinish(taskList2, ws)
     }
-  });
-});
+  })
+})
 ```
 
 :::
