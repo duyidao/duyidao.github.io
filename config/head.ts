@@ -1,6 +1,7 @@
 export default [
   // 添加图标
   ['link', { rel: 'icon', href: '/favicon.ico' }],
+  ['meta', { name: 'algolia-site-verification', content: 'C65A24C55F4B32EE' }],
   ['meta', { property: 'og:title', content: '刀刀博客' }],
   ['meta', { property: 'og:site_name', content: '刀刀博客' }],
   ['meta', { property: 'og:type', content: 'website' }],

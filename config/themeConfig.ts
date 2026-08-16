@@ -23,13 +23,14 @@ export default {
     next: '下一页 ⏭️',
   },
   search: {
-    provider: 'local',
-    // provider: 'algolia',
-    // options: {
-    //   appId: '7NYO59ARBT',
-    //   apiKey: '61d088fcaa575ed1e8d03923ab4ee643',
-    //   indexName: 'duyidaoio',
-    // },
+    // provider: 'local',
+    provider: 'algolia',
+    options: {
+      appId: 'M6J3D31YSI',
+      apiKey: '3f3fdf170c05df053ba1ca38b8ae4d12',
+      indexName: 'Duyidao',
+      container: '#docsearch',
+    },
   },
   returnToTopLabel: '回到顶部',
   sidebarMenuLabel: '菜单',
