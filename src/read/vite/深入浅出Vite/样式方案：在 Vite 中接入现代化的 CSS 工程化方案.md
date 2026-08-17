@@ -152,207 +152,364 @@ export function Header() {
 :::
 
 浏览器渲染结果：
-html
+
+```html
+<!-- 类名被处理成哈希值，避免全局冲突 -->
+<p class="_header_kcvt0_1">This is Header</p>
+```
 
 ### 自定义类名生成策略
 
 通过 `css.modules.generateScopedName` 配置开发时的类名格式，提升调试体验：
 
 ```typescript
-
+// vite.config.ts
+export default defineConfig({
+  css: {
+    modules: {
+      // 自定义类名生成规则
+      // [name] - 文件名, [local] - 原始类名, [hash:base64:5] - 5位哈希
+      generateScopedName: '[name]__[local]___[hash:base64:5]',
+    },
+  },
+})
 ```
 
 效果对比：
-配置
-生成类名示例
-适用场景
-默认
-\_header_kcvt0_1
-生产环境
-自定义
-index**header\_**kcvt0
-开发调试（可读性更强）3. CSS Modules 配置项参考
+
+| 配置   | 生成类名示例           | 适用场景               |
+| ------ | ---------------------- | ---------------------- |
+| 默认   | `_header_kcvt0_1`      | 生产环境               |
+| 自定义 | `index__header__kcvt0` | 开发调试（可读性更强） |
+
+### CSS Modules 配置项参考
+
 完整配置项可查阅 postcss-modules 文档：
 generateScopedName: 类名生成规则
 hashPrefix: 哈希前缀
 localsConvention: 类名转换规则（camelCase 等）
-五、 PostCSS：CSS 的后处理器引擎
 
-1. 核心能力与插件生态
-   <word text="PostCSS"/> 通过 <word text="AST"/>（抽象语法树）解析 <word text="CSS"/>，可实现：
-   自动添加浏览器前缀（<word text="autoprefixer"/>）
-   <word text="px"/> 转 <word text="rem"/>（<word text="postcss-pxtorem"/>）
-   支持最新 <word text="CSS"/> 语法（<word text="postcss-preset-env"/>）
-   代码压缩优化（<word text="cssnano"/>）
-2. Autoprefixer 实战配置 🔑
-   bash
-   1
-   typescript
-   123456789101112131415
-   编译效果：
-   css
-   1234567891011
-3. 主流 PostCSS 插件矩阵
-   插件名称
-   功能
-   适用场景
-   配置示例
-   <word text="autoprefixer"/>
-   自动添加浏览器前缀
-   跨浏览器兼容
-   overrideBrowserslist
-   <word text="postcss-pxtorem"/>
-   <word text="px"/> 转 <word text="rem"/>
-   移动端适配
-   rootValue: 16
-   <word text="postcss-preset-env"/>
-   支持最新 <word text="CSS"/> 语法
-   未来语法兼容
-   stage: 3
-   <word text="cssnano"/>
-   智能压缩 <word text="CSS"/>
-   生产环境优化
-   preset: 'default'
-   插件资源：探索更多插件请访问 <https://www.postcss.parts/>
-   六、 CSS in JS：在 JavaScript 中写样式
-4. 主流方案对比
-   方案
-   <word text="Babel"/> 插件
-   特点
-   适用框架
-   <word text="styled-components"/>
-   <word text="babel-plugin-styled-components"/>
-   标签模板语法
-   <word text="React"/>
-   <word text="emotion"/>
-   <word text="@emotion/babel-plugin"/>
-   更轻量、性能优
-   <word text="React"/>/<word text="Vue"/>
-5. Vite 集成配置 🔑
-   typescript
-   1234567891011121314151617181920
-6. 使用示例
-   tsx
-   1234567891011121314151617181920212223242526
-7. <word text="CSS in JS"/> 构建侧考量
-   考量维度
-   解决方案
-   选择器命名
-   <word text="Babel"/> 插件自动生成哈希类名
-   DCE（死代码消除）
-   <word text="Babel"/> 插件标记未使用样式
-   代码压缩
-   生产环境通过 <word text="Babel"/> 插件优化
-   <word text="SourceMap"/>
-   插件支持生成源码映射
-   <word text="SSR"/> 支持
-   框架提供服务端渲染 API
-   七、 CSS 原子化框架：Tailwind CSS vs Windi CSS
-8. 方案对比
-   特性
-   <word text="Tailwind CSS"/> v2
-   <word text="Windi CSS"/>
-   <word text="Tailwind CSS"/> v3
-   编译速度
-   慢
-   快 20-100 倍
-   快（引入 <word text="JIT"/>）
-   按需生成
-   ❌ 全量打包
-   ✅ 按需编译
-   ✅ <word text="JIT"/> 模式
-   高级功能
-   基础原子类
-   Attributify/Shortcuts
-   基础原子类
-   配置方式
-   tailwind.config.js
-   windi.config.ts
-   tailwind.config.js
-9. Windi CSS 接入实战 🔑
-   安装与配置：
-   bash
-   1
-   typescript
-   12345678
-   tsx
-   12
-   使用示例：
-   tsx
-   12345678910
-10. Windi CSS 高级功能
-    Attributify（属性化模式）
-    typescript
-    123456
-    使用效果：
-    tsx
-    123456789101112131415
-    类型声明（避免 TS 报错）：
-    typescript
-    123456
-    Shortcuts（快捷方式）
-    typescript
-    12345678
-    tsx
-    123
-11. Tailwind CSS 接入流程
-    安装依赖：
-    bash
-    1
-    配置文件：
-    javascript
-    12345678910111213141516171819
-    入口文件引入：
-    css
-    1234
-    使用示例：
-    tsx
-    12345678
-12. 原子化框架选型建议
-    项目特征
-    推荐方案
-    理由
-    追求极致开发速度
-    Windi CSS
-    编译快、Attributify 提升效率
-    需要稳定生态
-    Tailwind CSS v3
-    社区庞大、文档完善
-    已有 <word text="Tailwind CSS"/> v2 项目
-    升级到 v3
-    引入 <word text="JIT"/> 解决性能问题
-    需要高级定制
-    <word text="Windi CSS"/>
-    Shortcuts/Attributify 更灵活
-    八、 样式方案选型决策树
-    mermaid
+## PostCSS：CSS 的后处理器引擎
 
-Code
-Preview
-九、 小结与最佳实践
-核心收获
-<word text="CSS"/> 预处理器：<word text="Vite"/> 零配置支持，通过 additionalData 实现全局变量注入
-<word text="CSS Modules"/>：.module 后缀自动启用，通过 generateScopedName 优化调试体验
-<word text="PostCSS"/>：通过 <word text="AST"/> 实现浏览器兼容、单位转换等后处理能力
-<word text="CSS in JS"/>：需配置 <word text="Babel"/> 插件解决 DCE、压缩、<word text="SSR"/> 等构建问题
-<word text="CSS"/> 原子化：<word text="Windi CSS"/> 性能更优且功能丰富，<word text="Tailwind CSS"/> v3 生态更成熟
-工程化最佳实践
-typescript
-123456789101112131415161718192021222324
-方案组合推荐
-项目类型
-推荐组合
-说明
-企业级中后台
-<word text="Sass"/> + <word text="CSS Modules"/> + <word text="PostCSS"/>
-样式隔离、可维护性强
-<word text="React"/> 组件库
-<word text="emotion"/> + <word text="PostCSS"/>
-动态样式、<word text="SSR"/> 友好
-快速原型/个人项目
-<word text="Windi CSS"/>
-开发效率极高
-移动端 H5
-<word text="Less"/> + <word text="postcss-pxtorem"/> + <word text="PostCSS"/>
-适配多端屏幕
-💡 使用建议：本文档已完整覆盖从"原生 CSS 痛点"到"五大工程化方案"的实战落地路径，关键代码均附带配置说明与效果对比。可直接用于项目样式规范制定、技术选型评审或团队培训材料。如需针对某一方案（如 Windi CSS 的 Attributify 深度应用、PostCSS 自定义插件开发）展开技术拆解，可提供具体方向以便进一步补充。
+### 核心能力与插件生态
+
+<word text="PostCSS"/> 通过 <word text="AST"/>（抽象语法树）解析 <word text="CSS"/>，可实现：
+
+- 自动添加浏览器前缀（<word text="autoprefixer"/>）
+- <word text="px"/> 转 <word text="rem"/>（<word text="postcss-pxtorem"/>）
+- 支持最新 <word text="CSS"/> 语法（<word text="postcss-preset-env"/>）
+- 代码压缩优化（<word text="cssnano"/>）
+
+### Autoprefixer 实战配置
+
+::: code-group
+
+```bash [安装]
+pnpm i autoprefixer -D
+```
+
+```typescript [使用]
+// vite.config.ts
+import autoprefixer from 'autoprefixer'
+
+export default defineConfig({
+  css: {
+    postcss: {
+      plugins: [
+        autoprefixer({
+          // 指定目标浏览器范围
+          overrideBrowserslist: ['Chrome > 40', 'ff > 31', 'ie 11'],
+        }),
+      ],
+    },
+  },
+})
+```
+
+:::
+
+编译效果：
+
+```css
+/* 源码 */
+.header {
+  text-decoration: dashed;
+}
+
+/* 打包产物（自动添加前缀）*/
+._header_kcvt0_1 {
+  -webkit-text-decoration: dashed;
+  -moz-text-decoration: dashed;
+  text-decoration: dashed;
+}
+```
+
+### 主流 PostCSS 插件矩阵
+
+| 插件名称                          | 功能                                    | 适用场景     | 配置示例               |
+| --------------------------------- | --------------------------------------- | ------------ | ---------------------- |
+| <word text="autoprefixer"/>       | 自动添加浏览器前缀                      | 跨浏览器兼容 | `overrideBrowserslist` |
+| <word text="postcss-pxtorem"/>    | <word text="px"/> 转 <word text="rem"/> | 移动端适配   | `rootValue: 16`        |
+| <word text="postcss-preset-env"/> | 支持最新 <word text="CSS"/> 语法        | 未来语法兼容 | `stage: 3`             |
+| <word text="cssnano"/>            | 智能压缩 <word text="CSS"/>             | 生产环境优化 | `preset: 'default'`    |
+
+插件资源：探索更多插件请访问 [链接](https://www.postcss.parts/)
+
+### CSS in JS：在 JavaScript 中写样式
+
+### 主流方案对比
+
+| 方案                             | <word text="Babel"/> 插件                     | 特点           | 适用框架                                |
+| -------------------------------- | --------------------------------------------- | -------------- | --------------------------------------- | -------------------- |
+| <word text="styled-components"/> | <word text="babel-plugin-styled-components"/> | 标签模板语法   |                                         | <word text="React"/> |
+| <word text="emotion"/>           | <word text="@emotion/babel-plugin"/>          | 更轻量、性能优 | <word text="React"/>/<word text="Vue"/> |
+
+### Vite 集成配置
+
+```typescript
+// vite.config.ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [
+    react({
+      babel: {
+        plugins: [
+          // 适配 styled-components
+          'babel-plugin-styled-components',
+          // 适配 emotion
+          '@emotion/babel-plugin',
+        ],
+      },
+      // emotion 专属配置：支持特殊 jsx 语法
+      jsxImportSource: '@emotion/react',
+    }),
+  ],
+})
+```
+
+### 使用示例
+
+```tsx
+// styled-components 示例
+import styled from 'styled-components'
+
+const Button = styled.button`
+  background: blue;
+  color: white;
+  padding: 10px 20px;
+
+  &:hover {
+    background: darkblue;
+  }
+`
+
+// emotion 示例
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
+
+const buttonStyle = css`
+  background: blue;
+  color: white;
+  padding: 10px 20px;
+`
+
+function App() {
+  return <button css={buttonStyle}>Click me</button>
+}
+```
+
+### <word text="CSS in JS"/> 构建侧考量
+
+| 考量维度                 | 解决方案                                   |
+| ------------------------ | ------------------------------------------ |
+| 选择器命名               | <word text="Babel"/> 插件自动生成哈希类名  |
+| DCE（死代码消除）        | <word text="Babel"/> 插件标记未使用样式    |
+| 代码压缩                 | 生产环境通过 <word text="Babel"/> 插件优化 |
+| <word text="SourceMap"/> | 插件支持生成源码映射                       |
+| <word text="SSR"/> 支持  | 框架提供服务端渲染 API                     |
+
+## CSS 原子化框架：Tailwind CSS vs Windi CSS
+
+### 方案对比
+
+| 特性     | <word text="Tailwind CSS"/> v2 | <word text="Windi CSS"/> | <word text="Tailwind CSS"/> v3 |
+| -------- | ------------------------------ | ------------------------ | ------------------------------ |
+| 编译速度 | 慢                             | 快 20-100 倍             | 快（引入 <word text="JIT"/>）  |
+| 按需生成 | 全量打包                       | 按需编译                 | <word text="JIT"/> 模式        |
+| 高级功能 | 基础原子类                     | Attributify/Shortcuts    | 基础原子类                     |
+| 配置方式 | `tailwind.config.js`           | `windi.config.ts`        | `tailwind.config.js`           |
+
+### Windi CSS 接入实战
+
+::: code-group
+
+```bash [安装与配置]
+pnpm i windicss vite-plugin-windicss -D
+```
+
+```typescript
+// vite.config.ts
+import windi from 'vite-plugin-windicss'
+
+export default defineConfig({
+  plugins: [
+    windi(), // 启用 Windi CSS 插件
+  ],
+})
+```
+
+```tsx
+// src/main.tsx - 必须引入虚拟 CSS 文件
+import 'virtual:windi.css'
+```
+
+:::
+
+使用示例：
+
+```tsx
+// src/components/Header/index.tsx
+export function Header() {
+  return (
+    <div className="p-20px text-center">
+      <h1 className="font-bold text-2xl mb-2">Vite + Windi CSS</h1>
+    </div>
+  )
+}
+```
+
+### Windi CSS 高级功能
+
+#### Attributify（属性化模式）
+
+```typescript
+// windi.config.ts
+import { defineConfig } from 'vite-plugin-windicss'
+
+export default defineConfig({
+  attributify: true, // 开启属性化模式
+})
+```
+
+使用效果：
+
+```tsx
+<!-- 传统写法 -->
+<button className="bg-blue-400 hover:bg-blue-500 text-sm text-white font-mono p-y-2 p-x-4">
+  Button
+</button>
+
+<!-- Attributify 写法（更语义化）-->
+<button
+  bg="blue-400 hover:blue-500"
+  text="sm white"
+  font="mono light"
+  p="y-2 x-4"
+  border="2 rounded blue-200"
+>
+  Button
+</button>
+```
+
+类型声明（避免 TS 报错）：
+
+```typescript
+// types/shim.d.ts
+import { AttributifyAttributes } from 'windicss/types/jsx'
+
+declare module 'react' {
+  type HTMLAttributes<T> = AttributifyAttributes
+}
+```
+
+#### Shortcuts（快捷方式）
+
+::: code-group
+
+```typescript
+// windi.config.ts
+export default defineConfig({
+  shortcuts: {
+    // 封装常用类名组合
+    'flex-c': 'flex justify-center items-center',
+    'btn-primary': 'bg-blue-500 text-white px-4 py-2 rounded',
+  },
+})
+```
+
+```tsx
+// 使用 shortcuts
+<div className="flex-c">Centered content</div>
+<button className="btn-primary">Primary Button</button>
+```
+
+:::
+
+### Tailwind CSS 接入流程
+
+::: code-group
+
+```bash [安装依赖]
+pnpm install -D tailwindcss postcss autoprefixer
+```
+
+```javascript [配置文件]
+// tailwind.config.js
+module.exports = {
+  content: [
+    './index.html',
+    './src/**/*.{vue,js,ts,jsx,tsx}', // 扫描这些文件中的类名
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+// postcss.config.js
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+```
+
+:::
+
+入口文件引入：
+
+```css
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+使用示例：
+
+```tsx
+function App() {
+  return (
+    <div>
+      <img src={logo} className="w-20" alt="logo" />
+      <p className="bg-red-400">Hello Vite + Tailwind!</p>
+    </div>
+  )
+}
+```
+
+### 原子化框架选型建议
+
+| 项目特征                                 | 推荐方案                 | 理由                                 |
+| ---------------------------------------- | ------------------------ | ------------------------------------ |
+| 追求极致开发速度                         | Windi CSS                | 编译快、Attributify 提升效率         |
+| 需要稳定生态                             | Tailwind CSS v3          | 社区庞大、文档完善                   |
+| 已有 <word text="Tailwind CSS"/> v2 项目 | 升级到 v3                | 引入 <word text="JIT"/> 解决性能问题 |
+| 需要高级定制                             | <word text="Windi CSS"/> | Shortcuts/Attributify 更灵活         |
+
+## 样式方案选型决策树
+
+![样式方案选型决策树](../../../images/read/vite/深入浅出Vite/04-样式方案选型决策树.png)

@@ -30,6 +30,10 @@ export default [
             text: '实战训练',
             link: '/handle/business/前端操作excel与word',
           },
+          {
+            text: 'AI学习',
+            link: '/ai/企业级AI应用开发实战(js版)/大模型接口',
+          },
         ],
       },
     ],
