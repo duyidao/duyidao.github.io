@@ -2878,5 +2878,16 @@
       "webgl",
       "rendering"
     ]
+  },
+  "Gzip": {
+    "en": "Gzip",
+    "cn": "Gzip 压缩格式",
+    "descript": "GNU Zip 的缩写，一种广泛使用的文件压缩格式和压缩算法，前端构建工具（如 Vite、Webpack）通常配置 Gzip 插件对静态资源进行预压缩，以减小传输体积并提升加载速度。",
+    "tags": [
+      "compression",
+      "performance",
+      "build",
+      "format"
+    ]
   }
 }

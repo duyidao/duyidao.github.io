@@ -100,7 +100,7 @@ export function toRef(target, key) {
     })
 
     setTimeout(() => {
-      countRef.value = 1
+      count.value = 1
       name.value = 'Jane'
     }, 1000)
   </script>
@@ -110,7 +110,7 @@ export function toRef(target, key) {
 前面已经写过 `toRef` 了，这里实现 `toRefs` 功能就更简单了，只需要遍历对象的属性，将每个属性转换为响应式引用即可。
 
 ```ts [ref.ts]
-export function toRefs(target, key) {
+export function toRefs(target) {
   const res = {}
 
   for (const key in target) {
@@ -137,7 +137,7 @@ export function unRef(target) {
 `proxyRefs` 主要用于简化 `ref` 的 `.value` 操作，使代码更简洁。
 
 ```ts [ref.ts]
-export function proxyRefs(target, key) {
+export function proxyRefs(target) {
   return new Proxy(target, {
     get(target, key, receiver) {
       /**

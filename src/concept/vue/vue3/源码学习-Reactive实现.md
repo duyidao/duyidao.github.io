@@ -17,7 +17,7 @@ export const reactive = (obj) => {
   return createObjectReactive(obj)
 }
 
-export function createObjectReactive(obj) {
+export function createObjectReactive(target) {
   /**
    * reactive 必须接受一个对象
    */
@@ -28,7 +28,7 @@ export function createObjectReactive(obj) {
     return target
   }
 
-  const proxy = new Proxy(obj, {
+  const proxy = new Proxy(target, {
     get(target, key) {
       console.log('target, key', target, key)
       // 收集依赖，绑定 target 中某一个 key 和 sub 之间的关系
@@ -110,12 +110,12 @@ export const reactive = (obj) => {
   return createObjectReactive(obj)
 }
 
-export function createObjectReactive(obj) {
+export function createObjectReactive(target) {
   if (!isObject(target)) {
     return target
   }
 
-  const proxy = new Proxy(obj, {
+  const proxy = new Proxy(target, {
     get(target, key) {
       console.log('target, key', target, key)
       // 收集依赖
@@ -283,12 +283,12 @@ function triggerReactive(target, key, res) {
 解决方法很简单，`Proxy` 的 `get` 方法第三个参数 `recevier` 指向的是代理对象，因此我们可以通过 `receiver` 来获取代理对象：
 
 ```ts
-export function createObjectReactive(obj) {
+export function createObjectReactive(target) {
   if (!isObject(target)) {
     return target
   }
 
-  const proxy = new Proxy(obj, {
+  const proxy = new Proxy(target, {
     get(target, key) { // [!code --]
     get(target, key, recevier) { // [!code ++]
       console.log('target, key', target, key);
@@ -336,7 +336,7 @@ export function createObjectReactive(obj) {
 
 ```ts
 let reactiveMap = new WeakMap() // 复用同一个对象的代理 // [!code ++]
-export function createObjectReactive(obj) {
+export function createObjectReactive(target) {
   if (!isObject(target)) {
     return target
   }
@@ -344,7 +344,7 @@ export function createObjectReactive(obj) {
   let projectProxy = reactiveMap.get(obj) // [!code ++]
   // 如果已经代理过，直接返回 // [!code ++]
   if (projectProxy) return projectProxy // [!code ++]
-  const proxy = new Proxy(obj, {
+  const proxy = new Proxy(target, {
     get(target, key, recevier) {
       // 收集依赖
       trackReactive(target, key)
@@ -381,7 +381,7 @@ console.log('state1 === state2', state1 === state2)
 let reactiveMap = new WeakMap() // 复用同一个对象的代理
 let reactiveSet = new WeakSet() // 保存已经代理过的对象 // [!code ++]
 
-export function createObjectReactive(obj) {
+export function createObjectReactive(target) {
   if (!isObject(target)) {
     return target
   }
@@ -390,7 +390,7 @@ export function createObjectReactive(obj) {
   let projectProxy = reactiveMap.get(obj)
   // 如果已经代理过，直接返回
   if (projectProxy) return projectProxy
-  const proxy = new Proxy(obj, {
+  const proxy = new Proxy(target, {
     get(target, key, recevier) {
       // 收集依赖
       trackReactive(target, key)
@@ -481,7 +481,7 @@ const mutableHandlers = {
   }, // [!code focus]
 } // [!code focus]
 
-export function createObjectReactive(obj) {
+export function createObjectReactive(target) {
   if (!isObject(obj)) {
     return obj
   }
@@ -494,7 +494,7 @@ export function createObjectReactive(obj) {
   // 如果已经代理过，直接返回
   if (projectProxy) return projectProxy
 
-  const proxy = new Proxy(obj, mutableHandlers) // [!code focus]
+  const proxy = new Proxy(target, mutableHandlers) // [!code focus]
   reactiveMap.set(obj, proxy)
   reactiveSet.add(proxy)
   return proxy
@@ -714,7 +714,7 @@ export const reactive = (obj) => {
 let reactiveMap = new WeakMap() // 复用同一个对象的代理
 let reactiveSet = new WeakSet()
 
-export function createObjectReactive(obj) {
+export function createObjectReactive(target) {
   /**
    * reactive 必须接受一个对象
    */
@@ -733,7 +733,7 @@ export function createObjectReactive(obj) {
   // 如果已经代理过，直接返回
   if (projectProxy) return projectProxy
 
-  const proxy = new Proxy(obj, mutableHandlers)
+  const proxy = new Proxy(target, mutableHandlers)
   reactiveMap.set(obj, proxy) // 没代理过的对象，保存
   reactiveSet.add(proxy) // 保存已经代理过的对象
   return proxy

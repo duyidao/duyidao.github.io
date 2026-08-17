@@ -8,7 +8,7 @@
 
 虚拟 <word text="DOM"/> 中 `key` 的作用：
 
-1. `key` 是虚拟 <word text="DOM"/> 对象的标识，更新显示时 `key` 起着及其重要的作用。
+1. `key` 是虚拟 <word text="DOM"/> 对象的标识，更新显示时 `key` 起着极其重要的作用。
 2. 当状态的数据发生变化时，`react` 会根据 【新数据】 生成 【新的虚拟 DOM】，随后 `react` 进行 【新虚拟 DOM】的 `diff` 算法比较，比较规则如下：
    - 旧虚拟 <word text="DOM"/> 中找到与新虚拟 <word text="DOM"/> 相同的 `key` ：
      1. 若虚拟 <word text="DOM"/> 中内容没变，直接使用之前的真实 DOM

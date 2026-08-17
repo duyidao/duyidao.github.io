@@ -196,7 +196,7 @@ export function patchStyle(el, prevValue, nextValue) {
 在 `patchEvent` 事件中，通过裁剪字符串拿到事件名，然后判断 `prevValue` 是否有值，有值则先卸载旧的事件，再绑定新的事件。
 
 ```ts [shared/src/index.ts]
-export function patchEvnet(el, key, prevValue, nextValue) {
+export function patchEvent(el, key, prevValue, nextValue) {
   const methodName = key.slice(2).toLowerCase()
 
   if (prevValue) {
@@ -244,7 +244,7 @@ function createInvoker(callback) {
 2. 无新事件，则判断旧事件 `existingInvoker` 是否还存在，若存在，则说明之前绑定过事件，此时解绑事件并把 `existingInvoker.value` 置空。
 
 ```ts [runtime-dom/src/modules/patchEvent.ts]
-export function patchEvnet(el, key, prevValue, nextValue) {
+export function patchEvent(el, key, prevValue, nextValue) {
   const methodName = key.slice(2).toLowerCase()
 
   const invokers = (el._vei ??= {}) // 简写，实际等于 el._vei = el._vei ?? {} // [!code ++]

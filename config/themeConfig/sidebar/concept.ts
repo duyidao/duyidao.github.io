@@ -179,7 +179,7 @@ const module = [
     items: [
       { text: '网络分层模型', link: '/module/network/网络分层模型' },
       { text: '应用协议', link: '/module/network/应用协议' },
-      { text: 'xhr与fetch', link: '/module/network/xhr与fetch' },
+      { text: '浏览器通信能力', link: '/module/network/浏览器通信能力' },
       {
         text: '跨域问题及解决方案',
         link: '/module/network/跨域问题及解决方案',
@@ -315,7 +315,7 @@ const vue = [
           { text: '指令', link: '/vue/vue3/指令' },
           { text: '组件', link: '/vue/vue3/组件' },
           { text: '插槽', link: '/vue/vue3/插槽' },
-          { text: '路由与状态管理', link: '/vue/vue3/路由与状态管理' },
+          { text: '内置组件', link: '/vue/vue3/内置组件' },
           { text: '3.5增加的特性', link: '/vue/vue3/3.5增加的特性' },
         ],
       },

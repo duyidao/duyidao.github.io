@@ -550,7 +550,7 @@
       }
     ]
   },
-  "practice/ai/a/Function Tool": {
+  "practice/ai/企业级AI应用开发实战(js版)/Function Tool": {
     "title": "Function Tool 函数调用机制详解",
     "description": "深入解析大模型 Function Call 机制，涵盖上下文方案缺陷、标准 Function Tool 定义与输出规范、流式 tool_calls 数据拼接、工具执行与结果回传的完整链路。",
     "tags": [
@@ -562,7 +562,7 @@
     ],
     "authors": []
   },
-  "practice/ai/a/前端工具卡片": {
+  "practice/ai/企业级AI应用开发实战(js版)/前端工具卡片": {
     "title": "前端工具卡片实现方案",
     "description": "阐述 AI 应用中前端预制 UI 卡片的变通实现方案，通过 Function Tool 声明与自定义 cardName 属性下发前端卡片渲染指令。",
     "tags": [
@@ -573,7 +573,7 @@
     ],
     "authors": []
   },
-  "practice/ai/a/markdown 语法及渲染": {
+  "practice/ai/企业级AI应用开发实战(js版)/markdown 语法及渲染": {
     "title": "Markdown 语法及前端渲染实践",
     "description": "梳理 Markdown 基础语法，介绍基于 VueMarkdown、remark-gfm、rehype-highlight 等插件实现代码高亮、自定义样式与插槽定制的完整渲染方案。",
     "tags": [
@@ -584,7 +584,7 @@
     ],
     "authors": []
   },
-  "practice/ai/a/Token 消耗优化": {
+  "practice/ai/企业级AI应用开发实战(js版)/Token 消耗优化": {
     "title": "Token 消耗优化策略",
     "description": "分析大模型 Token 消耗机制，提供限制对话长度、AI 总结截取内容、RAG 向量检索等优化方案，降低 API 调用成本。",
     "tags": [
@@ -595,7 +595,7 @@
     ],
     "authors": []
   },
-  "practice/ai/a/上下文的威力": {
+  "practice/ai/企业级AI应用开发实战(js版)/上下文的威力": {
     "title": "上下文的威力：提示词工程实践",
     "description": "阐述通过上下文提示词约束大模型回答的实践方法，涵盖违禁问题过滤、回答风格控制、幻觉约束、逻辑步骤约束等核心技巧。",
     "tags": [
@@ -606,7 +606,7 @@
     ],
     "authors": []
   },
-  "practice/ai/a/前端界面": {
+  "practice/ai/企业级AI应用开发实战(js版)/前端界面": {
     "title": "AI 对话前端界面搭建与会话管理",
     "description": "从零搭建 AI 聊天前端界面，涵盖数据定义、界面布局、增量更新优化、多用户会话管理及前后端接口联调的全链路实践。",
     "tags": [
@@ -617,7 +617,7 @@
     ],
     "authors": []
   },
-  "practice/ai/a/大模型接口": {
+  "practice/ai/企业级AI应用开发实战(js版)/大模型接口": {
     "title": "大模型接口调用指南",
     "description": "梳理国内大模型接口厂商类型、HTTP 请求与响应格式、role 与 content 结构、choices 解析及常见答疑，帮助快速上手大模型 API 调用。",
     "tags": [
@@ -628,7 +628,7 @@
     ],
     "authors": []
   },
-  "practice/ai/a/提示词工程": {
+  "practice/ai/企业级AI应用开发实战(js版)/提示词工程": {
     "title": "提示词工程实践指南",
     "description": "系统介绍提示词工程的基本要素、高级要素及上下文文档编写方法，涵盖角色扮演、举例、分隔符、思考步骤等核心技巧。",
     "tags": [
@@ -639,7 +639,7 @@
     ],
     "authors": []
   },
-  "practice/ai/a/搭建服务器": {
+  "practice/ai/企业级AI应用开发实战(js版)/搭建服务器": {
     "title": "AI 应用后端服务器搭建",
     "description": "从零搭建 Node.js Express 服务器代理大模型 API 请求，涵盖 OpenAI SDK 使用、fetch 拦截调试、消息历史管理及流式传输基础。",
     "tags": [
@@ -650,7 +650,7 @@
     ],
     "authors": []
   },
-  "practice/ai/a/流式传输": {
+  "practice/ai/企业级AI应用开发实战(js版)/流式传输": {
     "title": "SSE 流式传输实现方案",
     "description": "对比原生 EventSource 与 fetch-event-source 两种 SSE 方案，详解流式接口定义、数据格式解析、前后端代码改造及生产环境最佳实践。",
     "tags": [
@@ -3339,8 +3339,8 @@
     ],
     "authors": []
   },
-  "concept/vue/vue3/路由与状态管理": {
-    "title": "Vue3 内置组件",
+  "concept/vue/vue3/内置组件": {
+    "title": "内置组件",
     "description": "讲解 Vue3 内置组件 Teleport、KeepAlive 的使用方法和应用场景。",
     "tags": [
       "vue3",
@@ -3888,15 +3888,16 @@
     ],
     "authors": []
   },
-  "concept/module/network/xhr与fetch": {
-    "title": "XHR 与 Fetch",
-    "description": "讲解 XMLHttpRequest 和 Fetch API 的使用方法，对比两者的区别和适用场景。",
+  "concept/module/network/浏览器通信能力": {
+    "title": "浏览器通信能力",
+    "description": "讲解浏览器通信能力，包括浏览器用户代理、AJAX、XHR 与 Fetch 的使用方法，对比两者的区别和适用场景。",
     "tags": [
       "network",
       "xhr",
       "fetch",
       "ajax",
-      "api"
+      "api",
+      "browser"
     ],
     "authors": []
   },
@@ -3981,7 +3982,7 @@
     ],
     "authors": []
   },
-  "work/百度/佛开/LED大屏/自定义样式": {
+  "work/百度/佛开/LED大屏/大屏自定义样式": {
     "title": "大屏自定义样式",
     "description": "讲解百度佛开 LED 大屏的自定义样式配置，包括样式 ID 和 JSON 文件两种配置方式。",
     "tags": [
@@ -4005,7 +4006,7 @@
     ],
     "authors": []
   },
-  "work/百度/佛开/LED大屏/覆盖物": {
+  "work/百度/佛开/LED大屏/大屏覆盖物": {
     "title": "大屏覆盖物",
     "description": "讲解百度佛开 LED 大屏的覆盖物实现，包括折线、文本标注、自定义 HTML 图层等。",
     "tags": [
@@ -4587,6 +4588,17 @@
     ],
     "authors": []
   },
+  "vitepress/algolia": {
+    "title": "搜索",
+    "description": "讲解 VitePress 博客中集成 Algolia 搜索与本地搜索的方案，包括申请流程、爬虫配置与 UI 定制。",
+    "tags": [
+      "vitepress",
+      "algolia",
+      "search",
+      "crawler"
+    ],
+    "authors": []
+  },
   "vitepress/review": {
     "title": "评论功能添加",
     "description": "讲解 VitePress 博客中集成 Giscus 评论系统的完整步骤，包括 GitHub 仓库配置与主题集成。",
@@ -4656,6 +4668,17 @@
       "experience",
       "vue2",
       "uniapp"
+    ],
+    "authors": []
+  },
+  "about/pr": {
+    "title": "如何提交 PR",
+    "description": "介绍在 GitHub 上提交 PR 的完整流程，涵盖 element-plus、ant-design-vue、vitest 等开源项目的 PR 提交经验。",
+    "tags": [
+      "about",
+      "pr",
+      "github",
+      "open-source"
     ],
     "authors": []
   },

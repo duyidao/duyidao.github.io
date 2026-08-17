@@ -288,30 +288,30 @@ const ai = [
             text: '上下文的威力',
             link: '/ai/企业级AI应用开发实战(js版)/上下文的威力',
           },
-          {
-            text: 'Markdown 语法及渲染',
-            link: '/ai/企业级AI应用开发实战(js版)/Markdown%20语法及渲染',
-          },
-          {
-            text: 'Token 消耗优化',
-            link: '/ai/企业级AI应用开发实战(js版)/Token%20消耗优化',
-          },
+          // {
+          //   text: 'Markdown 语法及渲染',
+          //   link: '/ai/企业级AI应用开发实战(js版)/Markdown%20语法及渲染',
+          // },
+          // {
+          //   text: 'Token 消耗优化',
+          //   link: '/ai/企业级AI应用开发实战(js版)/Token%20消耗优化',
+          // },
           { text: '前端界面', link: '/ai/企业级AI应用开发实战(js版)/前端界面' },
           { text: '流式传输', link: '/ai/企业级AI应用开发实战(js版)/流式传输' },
-          {
-            text: 'Function Tool',
-            link: '/ai/企业级AI应用开发实战(js版)/Function%20Tool',
-          },
+          // {
+          //   text: 'Function Tool',
+          //   link: '/ai/企业级AI应用开发实战(js版)/Function%20Tool',
+          // },
         ],
       },
       {
         text: '进阶开发技巧',
         collapsed: true,
         items: [
-          {
-            text: 'Function tool',
-            link: '/ai/企业级AI应用开发实战(js版)/tool',
-          },
+          // {
+          //   text: 'Function tool',
+          //   link: '/ai/企业级AI应用开发实战(js版)/tool',
+          // },
           {
             text: '前端工具卡片',
             link: '/ai/企业级AI应用开发实战(js版)/前端工具卡片',

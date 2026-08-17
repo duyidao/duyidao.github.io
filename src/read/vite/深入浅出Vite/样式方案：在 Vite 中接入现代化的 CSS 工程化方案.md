@@ -76,7 +76,7 @@ export function Header() {
 }
 ```
 
-### 全局变量注入配置 🔑
+### 全局变量注入配置
 
 痛点：每次使用全局变量都需手动 `@import`，代码冗余。
 
@@ -260,8 +260,8 @@ export default defineConfig({
 ### 主流方案对比
 
 | 方案                             | <word text="Babel"/> 插件                     | 特点           | 适用框架                                |
-| -------------------------------- | --------------------------------------------- | -------------- | --------------------------------------- | -------------------- |
-| <word text="styled-components"/> | <word text="babel-plugin-styled-components"/> | 标签模板语法   |                                         | <word text="React"/> |
+| -------------------------------- | --------------------------------------------- | -------------- | --------------------------------------- |
+| <word text="styled-components"/> | <word text="babel-plugin-styled-components"/> | 标签模板语法   | <word text="React"/>                    |
 | <word text="emotion"/>           | <word text="@emotion/babel-plugin"/>          | 更轻量、性能优 | <word text="React"/>/<word text="Vue"/> |
 
 ### Vite 集成配置
