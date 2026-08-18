@@ -15,112 +15,111 @@
 
 构建工具的革新与底层模块规范的发展深度绑定。理解模块化演进，是掌握现代构建工具设计哲学的前提。
 
-1.  前标准时代：作用域隔离的初步探索
+1. 前标准时代：作用域隔离的初步探索
 
-    在官方规范诞生前，社区通过三种原始手段实现基础代码组织，但均无法支撑现代工程化需求。
-    1. 文件划分（全局暴露，依赖难管）
+   在官方规范诞生前，社区通过三种原始手段实现基础代码组织，但均无法支撑现代工程化需求。
+   1. 文件划分（全局暴露，依赖难管）
 
-        ```html
-        <!-- index.html -->
-        <script src="module-a.js"></script>
-        <script src="module-b.js"></script>
-        <script>
-          console.log(data) // 依赖加载顺序，易引发运行时错误
-        </script>
-        ```
+      ```html
+      <!-- index.html -->
+      <script src="module-a.js"></script>
+      <script src="module-b.js"></script>
+      <script>
+        console.log(data) // 依赖加载顺序，易引发运行时错误
+      </script>
+      ```
 
-        痛点：变量挂载全局，极易命名冲突；依赖顺序需人工维护。
+      痛点：变量挂载全局，极易命名冲突；依赖顺序需人工维护。
 
-    1. 命名空间（缓解冲突，未解加载）
-       ```javascript
-       // module-a.js
-       window.moduleA = { data: 'A', method: () => console.log('A') }
-       ```
-       痛点：虽明确了归属，但仍未脱离全局污染，且无法自动加载依赖。
-    2. IIFE 立即执行函数（私有作用域，仍靠手动）
-       ```javascript
-       // module-a.js
-       ;(function () {
-         let data = 'private_A' // 外部无法直接访问
-         function method() {
-           console.log(data)
-         }
-         window.moduleA = { method }
-       })()
-       ```
-       痛点：安全性提升，但模块依赖与加载顺序依然依赖 `<script>` 物理排列，无法应对复杂工程。
+   1. 命名空间（缓解冲突，未解加载）
+      ```javascript
+      // module-a.js
+      window.moduleA = { data: 'A', method: () => console.log('A') }
+      ```
+      痛点：虽明确了归属，但仍未脱离全局污染，且无法自动加载依赖。
+   1. IIFE 立即执行函数（私有作用域，仍靠手动）
+      ```javascript
+      // module-a.js
+      ;(function () {
+        let data = 'private_A' // 外部无法直接访问
+        function method() {
+          console.log(data)
+        }
+        window.moduleA = { method }
+      })()
+      ```
+      痛点：安全性提升，但模块依赖与加载顺序依然依赖 `<script>` 物理排列，无法应对复杂工程。
 
-1.  CommonJS：服务端优先的同步规范
-    随着 <word text="Node.js"/> 普及，<word text="CJS"/> 成为早期主流标准。
+1. CommonJS：服务端优先的同步规范
+   随着 <word text="Node.js"/> 普及，<word text="CJS"/> 成为早期主流标准。
 
-    ```javascript
-    // module-a.js (导出)
-    var data = 'hello'
-    module.exports = { getData: () => data }
+   ```javascript
+   // module-a.js (导出)
+   var data = 'hello'
+   module.exports = { getData: () => data }
 
-    // index.js (导入)
-    const { getData } = require('./module-a.js')
-    console.log(getData())
-    ```
+   // index.js (导入)
+   const { getData } = require('./module-a.js')
+   console.log(getData())
+   ```
 
-    核心机制：Node.js 底层将模块包装为 IIFE，通过同步 require 加载。
+   核心机制：Node.js 底层将模块包装为 IIFE，通过同步 require 加载。
 
-    局限：强依赖 Node.js 文件系统 API，无法直接在浏览器运行；同步加载在浏览器端会阻塞 JS 解析与渲染，网络环境下性能损耗严重。
+   局限：强依赖 Node.js 文件系统 API，无法直接在浏览器运行；同步加载在浏览器端会阻塞 JS 解析与渲染，网络环境下性能损耗严重。
 
-1.  AMD：浏览器端的异步妥协方案
-    为解决 <word text="CJS"/> 的同步阻塞问题，社区提出 <word text="AMD"/>（Asynchronous Module Definition）。
+1. AMD：浏览器端的异步妥协方案
+   为解决 <word text="CJS"/> 的同步阻塞问题，社区提出 <word text="AMD"/>（Asynchronous Module Definition）。
 
-    ```javascript
-    // main.js
-    define(['./print'], function (printModule) {
-      printModule.print('main')
-    })
+   ```javascript
+   // main.js
+   define(['./print'], function (printModule) {
+     printModule.print('main')
+   })
 
-    // print.js
-    define(function () {
-      return { print: (msg) => console.log(msg) }
-    })
-    ```
+   // print.js
+   define(function () {
+     return { print: (msg) => console.log(msg) }
+   })
+   ```
 
-    核心机制：通过 define 声明依赖，配合 RequireJS 等 Loader 实现异步预加载。
+   核心机制：通过 define 声明依赖，配合 RequireJS 等 Loader 实现异步预加载。
 
-    局限：语法冗长、回调嵌套深，代码可读性与维护性差；属过渡性社区方案，未成为终极标准。
+   局限：语法冗长、回调嵌套深，代码可读性与维护性差；属过渡性社区方案，未成为终极标准。
 
-1.  <word text="ESM"/> (ES Module)：官方大一统标准
-    ECMAScript 官方推出的语言级模块规范，彻底终结规范割据。
-    ::: code-group
+1. <word text="ESM"/> (ES Module)：官方大一统标准
+   ECMAScript 官方推出的语言级模块规范，彻底终结规范割据。
+   ::: code-group
 
-    ```javascript
-    // module-a.js
-    export const methodA = () => console.log('a')
+   ```javascript
+   // module-a.js
+   export const methodA = () => console.log('a')
 
-    // main.js
-    import { methodA } from './module-a.js'
-    methodA()
-    ```
+   // main.js
+   import { methodA } from './module-a.js'
+   methodA()
+   ```
 
-    ```html
-    <!-- index.html -->
-    <script type="module" src="./main.js"></script>
-    ```
+   ```html
+   <!-- index.html -->
+   <script type="module" src="./main.js"></script>
+   ```
 
-    :::
-    核心优势：
-    - 原生跨平台：现代浏览器 `(<script type="module">)` 与 <word text="Node.js"/> (v12.20+) 双端原生支持。
-    - 静态分析友好：编译期即可确定依赖树，天然支持 <word text="Tree Shaking"/>、预编译与依赖图优化。
-    - 现代架构基石：浏览器原生 <word text="ESM"/> 使 <word text="Vite"/> 得以实现开发期 No-Bundle，跳过全量打包直接交由浏览器解析，性能提升一个量级。
+   :::
+   核心优势：
+   - 原生跨平台：现代浏览器 `(<script type="module">)` 与 <word text="Node.js"/> (v12.20+) 双端原生支持。
+   - 静态分析友好：编译期即可确定依赖树，天然支持 <word text="Tree Shaking"/>、预编译与依赖图优化。
+   - 现代架构基石：浏览器原生 <word text="ESM"/> 使 <word text="Vite"/> 得以实现开发期 No-Bundle，跳过全量打包直接交由浏览器解析，性能提升一个量级。
 
 ## Vite 破局之道：为何成为构建工具的最优解？
 
 <word text="Vite"/> 在全球开发者中满意度超 98%，并已深度集成至 <word text="SvelteKit"/>、<word text="Astro"/> 等主流框架。其架构设计精准映射前端工程四大痛点：
 
-| 痛点维度                                                      | Vite 解决方案                                                                                    | 核心技术支撑                                                                                                    |
-| :------------------------------------------------------------ | :----------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
-| 开发效率                                                      | 开发期跳过全量打包，冷启动提速，热更新达毫秒级                                                   | 浏览器原生 <word text="ESM"/> No-Bundle + <word text="Esbuild"/> 极速预编译                                     |
-| 模块兼容                                                      |
-| 统一模块加载，开发/生产环境自动转换非 <word text="ESM"/> 格式 | 原生 <word text="ESM"/> 路由 + 依赖图转换拦截                                                    |
-| 语法转译                                                      | 开箱即用，零配置支持 <word text="TypeScript"/>/<word text="JSX"/>/<word text="Sass"/> 及静态资源 | 内置 <word text="Esbuild"/> 转译链 + 插件化资源处理                                                             |
-| 产物质量                                                      | 生产环境工业级打包，保障性能与安全                                                               | 底层切换 <word text="Rollup"/>，无缝衔接 <word text="Terser"/>/<word text="Babel"/>/<word text="Tree Shaking"/> |
+| 痛点维度 | Vite 解决方案                                                                                    | 核心技术支撑                                                                                                    |
+| :------: | :----------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
+| 开发效率 | 开发期跳过全量打包，冷启动提速，热更新达毫秒级                                                   | 浏览器原生 <word text="ESM"/> No-Bundle + <word text="Esbuild"/> 极速预编译                                     |
+| 模块兼容 | 统一模块加载，开发/生产环境自动转换非 <word text="ESM"/> 格式                                    | 原生 <word text="ESM"/> 路由 + 依赖图转换拦截                                                                   |
+| 语法转译 | 开箱即用，零配置支持 <word text="TypeScript"/>/<word text="JSX"/>/<word text="Sass"/> 及静态资源 | 内置 <word text="Esbuild"/> 转译链 + 插件化资源处理                                                             |
+| 产物质量 | 生产环境工业级打包，保障性能与安全                                                               | 底层切换 <word text="Rollup"/>，无缝衔接 <word text="Terser"/>/<word text="Babel"/>/<word text="Tree Shaking"/> |
 
 传统工具（如 <word text="Webpack"/>）在冷启动时需递归打包整个依赖树，受限于 <word text="JavaScript"/> 单线程性能瓶颈；而 <word text="Vite"/> 将"编译"与"打包"在开发/生产环境解耦，实现了体验与质量的完美平衡。
 

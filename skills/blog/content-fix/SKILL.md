@@ -81,7 +81,7 @@ description: duyidao.github.io 博客 md 文档内容优化规范（标题文字
 全称规则：TS→TypeScript、JS→JavaScript；行业固有缩写（SVG、CSS、API、JSON、URL、PNG、WebP、GIF）保留。
 排除清单（不打标签不入表）：v-\* 指令、ref/reactive/computed 等 API 标识符、requestAnimationFrame 等函数名、通用编程词汇。
 首字母大写：lottie→Lottie、canvas→Canvas、base64→Base64；官方固定写法保持。
-标签语法：先搜仓库 `<word` 既有用法借用其风格；无则用 `<word text="术语" />`。
+标签语法：先搜仓库 `<word` 既有用法借用其风格；无则用 <word text="术语" />。
 同一段落同一术语只打一次；已打过标签的保持原样，写法不合规则修正并同步词汇表。
 
 ## 去AI化与表达规范

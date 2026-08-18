@@ -49,146 +49,144 @@ pnpm i eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @types
 
 1. parser - 解析器
 
-    <word text="ESLint"/> 默认使用 <word text="Espree"/>（基于 <word text="Acorn"/>）进行 <word text="AST"/> 解析，但 <word text="Acorn"/> 不支持 <word text="TypeScript"/>，因此需要引入专门的解析器。
+   <word text="ESLint"/> 默认使用 <word text="Espree"/>（基于 <word text="Acorn"/>）进行 <word text="AST"/> 解析，但 <word text="Acorn"/> 不支持 <word text="TypeScript"/>，因此需要引入专门的解析器。
 
-    ```javascript
-    // .eslintrc.js
-    module.exports = {
-      parser: '@typescript-eslint/parser', // 专门解析 TypeScript 语法
-    }
-    ```
+   ```javascript
+   // .eslintrc.js
+   module.exports = {
+     parser: '@typescript-eslint/parser', // 专门解析 TypeScript 语法
+   }
+   ```
 
-    工作原理： <word text="@typescript-eslint/parser"/> 将 <word text="TypeScript"/> 代码转换为 <word text="Espree"/> 能够识别的 <word text="Estree"/> 格式，然后在 <word text="ESLint"/> 下进行格式检查。
+   工作原理： <word text="@typescript-eslint/parser"/> 将 <word text="TypeScript"/> 代码转换为 <word text="Espree"/> 能够识别的 <word text="Estree"/> 格式，然后在 <word text="ESLint"/> 下进行格式检查。
 
 2. parserOptions - 解析器选项
 
-    可以对解析器进行能力定制：
+   可以对解析器进行能力定制：
 
-    ```javascript
-    module.exports = {
-      parserOptions: {
-        ecmaVersion: 'latest',        // 启用最新的 ES 语法（也可配置为 ES2015、ES6 等）
-        sourceType: 'module',         // 使用 ES Module（默认为 'script'）
-        ecmaFeatures: {
-          jsx: true                   // 开启 JSX 支持
-        }
-      }
-    }
-    ```
+   ```javascript
+   module.exports = {
+     parserOptions: {
+       ecmaVersion: 'latest', // 启用最新的 ES 语法（也可配置为 ES2015、ES6 等）
+       sourceType: 'module', // 使用 ES Module（默认为 'script'）
+       ecmaFeatures: {
+         jsx: true, // 开启 JSX 支持
+       },
+     },
+   }
+   ```
 
 3. rules - 具体代码规则
 
-    rules 配置用于指定具体的代码规范规则：
+   rules 配置用于指定具体的代码规范规则：
 
-    ```javascript
-    module.exports = {
-      rules: {
-        // 规则 ID 配置方式
-        "no-cond-assign": ["error", "always"],  // 数组形式：[规则级别, 具体配置]
-        "quotes": "error",                       // 字符串形式
-        "semi": 2,                               // 数字形式：0=关闭, 1=warn, 2=error
-        
-        // 自定义规则
-        "no-console": "warn",                    // 禁止使用 console（警告级别）
-        "prefer-const": "error"                  // 优先使用 const
-      }
-    }
-    ```
+   ```javascript
+   module.exports = {
+     rules: {
+       // 规则 ID 配置方式
+       'no-cond-assign': ['error', 'always'], // 数组形式：[规则级别, 具体配置]
+       quotes: 'error', // 字符串形式
+       semi: 2, // 数字形式：0=关闭, 1=warn, 2=error
 
-    规则级别说明：
+       // 自定义规则
+       'no-console': 'warn', // 禁止使用 console（警告级别）
+       'prefer-const': 'error', // 优先使用 const
+     },
+   }
+   ```
 
-    - `"off"` 或 0：关闭规则
-    - `"warn"` 或 1：开启规则，违反只抛出 `warning`
-    - `"error"` 或 2：开启规则，违反抛出 `error`，程序会退出
+   规则级别说明：
+   - `"off"` 或 0：关闭规则
+   - `"warn"` 或 1：开启规则，违反只抛出 `warning`
+   - `"error"` 或 2：开启规则，违反抛出 `error`，程序会退出
 
 4. plugins - 插件
 
-    <word text="ESLint"/> 本身没有内置 <word text="TypeScript"/> 的代码规则，需要通过插件拓展：
+   <word text="ESLint"/> 本身没有内置 <word text="TypeScript"/> 的代码规则，需要通过插件拓展：
 
-    ```javascript
-    module.exports = {
-      plugins: [
-        '@typescript-eslint',  // 可省略 'eslint-plugin-' 前缀
-        'react',               // React 相关规则
-        'prettier'             // Prettier 集成
-      ]
-    }
-    ```
+   ```javascript
+   module.exports = {
+     plugins: [
+       '@typescript-eslint', // 可省略 'eslint-plugin-' 前缀
+       'react', // React 相关规则
+       'prettier', // Prettier 集成
+     ],
+   }
+   ```
 
-    注意： 添加插件后只是拓展了规则集，需要在 rules 中手动开启或调整：
+   注意： 添加插件后只是拓展了规则集，需要在 rules 中手动开启或调整：
 
-    ```javascript
-    module.exports = {
-      rules: {
-        '@typescript-eslint/ban-ts-comment': 'error',      // 禁止使用 @ts-xxx 注释
-        '@typescript-eslint/no-explicit-any': 'warn'       // 禁止使用 any 类型（警告）
-      }
-    }
-    ```
+   ```javascript
+   module.exports = {
+     rules: {
+       '@typescript-eslint/ban-ts-comment': 'error', // 禁止使用 @ts-xxx 注释
+       '@typescript-eslint/no-explicit-any': 'warn', // 禁止使用 any 类型（警告）
+     },
+   }
+   ```
 
 5. extends - 继承配置
 
-    extends 用于继承其他 <word text="ESLint"/> 配置，避免手动配置大量规则：
+   extends 用于继承其他 <word text="ESLint"/> 配置，避免手动配置大量规则：
 
-    ```javascript
-    module.exports = {
-      extends: [
-        // 1. 从 ESLint 本身继承
-        "eslint:recommended",
-        
-        // 2. 从 npm 包继承（可省略 'eslint-config-' 前缀）
-        "standard",
-        "airbnb",
-        
-        // 3. 从插件继承（格式：plugin:插件名/配置名）
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
-        
-        // 4. Prettier 集成
-        "prettier",
-        "plugin:prettier/recommended"
-      ]
-    }
-    ```
+   ```javascript
+   module.exports = {
+     extends: [
+       // 1. 从 ESLint 本身继承
+       'eslint:recommended',
 
-    推荐配置的便利性：
+       // 2. 从 npm 包继承（可省略 'eslint-config-' 前缀）
+       'standard',
+       'airbnb',
 
-    ```javascript
-    // 只需这一行，自动开启 @typescript-eslint 插件的推荐规则
-    extends: ["plugin:@typescript-eslint/recommended"]
-    ```
+       // 3. 从插件继承（格式：plugin:插件名/配置名）
+       'plugin:react/recommended',
+       'plugin:@typescript-eslint/recommended',
+
+       // 4. Prettier 集成
+       'prettier',
+       'plugin:prettier/recommended',
+     ],
+   }
+   ```
+
+   推荐配置的便利性：
+
+   ```javascript
+   // 只需这一行，自动开启 @typescript-eslint 插件的推荐规则
+   extends: ["plugin:@typescript-eslint/recommended"]
+   ```
 
 6. `env` 和 `globals`
 
-    `env`（运行环境）： 预设全局变量
+   `env`（运行环境）： 预设全局变量
 
-    ```javascript
-    module.exports = {
-      env: {
-        browser: true,    // 启用浏览器全局变量（window, document 等）
-        node: true,       // 启用 <word text="Node.js"/> 全局变量（global, process 等）
-        es2021: true      // 启用 ES2021 语法
-      }
-    }
-    ```
+   ```javascript
+   module.exports = {
+     env: {
+       browser: true, // 启用浏览器全局变量（window, document 等）
+       node: true, // 启用 <word text="Node.js"/> 全局变量（global, process 等）
+       es2021: true, // 启用 ES2021 语法
+     },
+   }
+   ```
 
-    `globals`（全局变量声明）： 声明第三方库引入的全局变量
+   `globals`（全局变量声明）： 声明第三方库引入的全局变量
 
-    ```javascript
-    module.exports = {
-      globals: {
-        "$": "readonly",     // <word text="jQuery"/>，不可重写
-        "jQuery": "readonly",
-        "Promise": "writable" // 可重写
-      }
-    }
-    ```
+   ```javascript
+   module.exports = {
+     globals: {
+       $: 'readonly', // <word text="jQuery"/>，不可重写
+       jQuery: 'readonly',
+       Promise: 'writable', // 可重写
+     },
+   }
+   ```
 
-    配置值说明：
-
-    1. `"writable"` 或 `true`：变量可重写
-    2. `"readonly"` 或 `false`：变量不可重写
-    3. `"off"`：禁用该全局变量
+   配置值说明：
+   1. `"writable"` 或 `true`：变量可重写
+   2. `"readonly"` 或 `false`：变量不可重写
+   3. `"off"`：禁用该全局变量
 
 ### 完整的 ESLint 配置示例
 
@@ -197,30 +195,30 @@ pnpm i eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @types
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
   },
   extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "plugin:prettier/recommended"
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'plugin:prettier/recommended',
   ],
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
-    ecmaVersion: "latest",
-    sourceType: "module"
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  plugins: ["react", "@typescript-eslint", "prettier"],
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
-    "prettier/prettier": "error",  // 开启 Prettier 自动修复
-    quotes: ["error", "single"],   // 使用单引号
-    semi: ["error", "always"],     // 使用分号
-    "react/react-in-jsx-scope": "off"  // React 17+ 不需要导入 React
-  }
+    'prettier/prettier': 'error', // 开启 Prettier 自动修复
+    quotes: ['error', 'single'], // 使用单引号
+    semi: ['error', 'always'], // 使用分号
+    'react/react-in-jsx-scope': 'off', // React 17+ 不需要导入 React
+  },
 }
 ```
 
@@ -228,8 +226,8 @@ module.exports = {
 
 工具定位：
 
-- `<word text="ESLint"/>`：专注于代码风格检查和语法错误提示
-- `<word text="Prettier"/>`：专注于代码格式化，更加专业
+- <word text="ESLint"/>：专注于代码风格检查和语法错误提示
+- <word text="Prettier"/>：专注于代码格式化，更加专业
 
 安装 <word text="Prettier"/>：
 
@@ -242,13 +240,13 @@ pnpm i prettier -D
 ```javascript
 // .prettierrc.js
 module.exports = {
-  printWidth: 80,              // 一行最大字符数，超过换行
-  tabWidth: 2,                 // 缩进空格数
-  useTabs: false,              // 使用空格而非 tab
-  singleQuote: true,           // 使用单引号
-  semi: true,                  // 使用分号
-  trailingComma: "none",       // 尾逗号设置
-  bracketSpacing: true         // 对象大括号内空格：{ a: 1 }
+  printWidth: 80, // 一行最大字符数，超过换行
+  tabWidth: 2, // 缩进空格数
+  useTabs: false, // 使用空格而非 tab
+  singleQuote: true, // 使用单引号
+  semi: true, // 使用分号
+  trailingComma: 'none', // 尾逗号设置
+  bracketSpacing: true, // 对象大括号内空格：{ a: 1 }
 }
 ```
 
@@ -301,8 +299,8 @@ import viteEslint from 'vite-plugin-eslint'
 export default defineConfig({
   plugins: [
     vue(),
-    viteEslint(),  // 接入 ESLint 插件
-  ]
+    viteEslint(), // 接入 ESLint 插件
+  ],
 })
 ```
 
@@ -314,7 +312,7 @@ export default defineConfig({
 
 ## 样式规范工具：<word text="Stylelint"/>
 
-### <word text="Stylelint"/> 简介
+### Stylelint 简介
 
 <word text="Stylelint"/> 是一个强大的现代化样式 <word text="Lint"/> 工具，主要功能：
 
@@ -340,17 +338,17 @@ pnpm i stylelint stylelint-prettier stylelint-config-prettier \
 ```javascript
 // .stylelintrc.js
 module.exports = {
-  plugins: ['stylelint-prettier'],  // 注册 prettier 插件
+  plugins: ['stylelint-prettier'], // 注册 prettier 插件
   extends: [
-    'stylelint-config-standard',           // standard 规则集合
-    'stylelint-config-standard-scss',     // <word text="SCSS"/> 规则集合
-    'stylelint-config-recess-order',      // 样式属性顺序规则
-    'stylelint-config-prettier',          // <word text="Prettier"/> 规则
-    'stylelint-prettier/recommended'      // 推荐配置
+    'stylelint-config-standard', // standard 规则集合
+    'stylelint-config-standard-scss', // <word text="SCSS"/> 规则集合
+    'stylelint-config-recess-order', // 样式属性顺序规则
+    'stylelint-config-prettier', // <word text="Prettier"/> 规则
+    'stylelint-prettier/recommended', // 推荐配置
   ],
   rules: {
-    'prettier/prettier': true  // 开启 <word text="Prettier"/> 自动格式化
-  }
+    'prettier/prettier': true, // 开启 <word text="Prettier"/> 自动格式化
+  },
 }
 ```
 
@@ -362,20 +360,27 @@ module.exports = {
 module.exports = {
   rules: {
     // 1. null - 关闭规则
-    "color-no-invalid-hex": null,
-    
+    'color-no-invalid-hex': null,
+
     // 2. 简单值 - 开启规则
-    "indentation": 2,                    // 缩进 2 个空格
-    "string-quotes": "single",           // 使用单引号
-    
+    indentation: 2, // 缩进 2 个空格
+    'string-quotes': 'single', // 使用单引号
+
     // 3. 数组 - [简单值, 自定义配置]
-    "color-hex-length": ["short", {      // 使用短十六进制
-      "severity": "warning"              // 自定义严重级别
-    }],
-    "selector-pseudo-element-no-unknown": [true, {
-      "ignorePseudoElements": ["v-deep"] // 忽略伪元素
-    }]
-  }
+    'color-hex-length': [
+      'short',
+      {
+        // 使用短十六进制
+        severity: 'warning', // 自定义严重级别
+      },
+    ],
+    'selector-pseudo-element-no-unknown': [
+      true,
+      {
+        ignorePseudoElements: ['v-deep'], // 忽略伪元素
+      },
+    ],
+  },
 }
 ```
 
@@ -388,7 +393,7 @@ package.json 配置：
   "scripts": {
     // 整合所有 lint 命令
     "lint": "npm run lint:script && npm run lint:style",
-    
+
     // Stylelint 命令
     "lint:style": "stylelint --fix \"src/**/*.{css,scss}\""
   }
@@ -423,9 +428,9 @@ import viteStylelint from 'vite-plugin-stylelint'
 export default defineConfig({
   plugins: [
     viteStylelint({
-      exclude: /node_modules|windicss/  // 排除某些文件
-    })
-  ]
+      exclude: /node_modules|windicss/, // 排除某些文件
+    }),
+  ],
 })
 ```
 
@@ -466,7 +471,7 @@ npx husky install
 ```json
 {
   "scripts": {
-    "prepare": "husky install"  // 在 npm install 后自动执行
+    "prepare": "husky install" // 在 npm install 后自动执行
   }
 }
 ```
@@ -480,6 +485,7 @@ npx husky add .husky/pre-commit "npm run lint"
 这会创建 `.husky/pre-commit` 文件，在 `git commit` 前执行 `npm run lint`。
 
 > 注意事项：
+>
 > - <word text="Husky"/> 4.x 及以下版本可在 package.json 中配置
 > - <word text="Husky"/> 7.x 及以上版本必须使用 husky install 和 husky add 命令
 
@@ -504,14 +510,8 @@ pnpm i -D lint-staged
 ```json
 {
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "npm run lint:script",
-      "git add ."
-    ],
-    "**/*.{scss,css}": [
-      "npm run lint:style",
-      "git add ."
-    ]
+    "**/*.{js,jsx,ts,tsx}": ["npm run lint:script", "git add ."],
+    "**/*.{scss,css}": ["npm run lint:style", "git add ."]
   }
 }
 ```
@@ -524,6 +524,7 @@ npx --no -- lint-staged
 ```
 
 工作流程：
+
 1. 执行 git commit
 2. <word text="Husky"/> 触发 pre-commit 钩子
 3. <word text="lint-staged"/> 扫描暂存区文件
@@ -532,7 +533,9 @@ npx --no -- lint-staged
 6. 通过检查后完成提交
 
 ### <word text="Commitlint"/> 规范提交信息
+
 为什么需要规范 `commit` 信息？
+
 - 方便团队协作
 - 便于问题定位和追溯
 - 自动化生成 CHANGELOG
@@ -548,17 +551,18 @@ pnpm i commitlint @commitlint/cli @commitlint/config-conventional -D
 ```javascript
 // .commitlintrc.js
 module.exports = {
-  extends: ["@commitlint/config-conventional"]
+  extends: ['@commitlint/config-conventional'],
 }
 ```
 
 Commit 信息格式：
 
-```
+```txt
 <type>: <subject>
 ```
 
 常用 type 类型：
+
 - feat：添加新功能
 - fix：修复 Bug
 - chore：不影响功能的更改（如构建工具、依赖更新）
@@ -603,7 +607,8 @@ npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAM
 | <word text="Commitlint"/>  | 提交信息规范                                                 | 检查 commit message 格式                              |
 
 ### 完整的工作流程
-```
+
+```txt
 开发者编写代码
     ↓
 <word text="VSCode"/> 插件实时检查（<word text="ESLint"/> + <word text="Prettier"/> + <word text="Stylelint"/>）
@@ -637,31 +642,26 @@ npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAM
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    
+
     // 代码检查
     "lint:script": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./src",
     "lint:style": "stylelint --fix \"src/**/*.{css,scss}\"",
     "lint": "npm run lint:script && npm run lint:style",
-    
+
     // 启动前安装 Husky
     "prepare": "husky install"
   },
-  
+
   // lint-staged 配置
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "npm run lint:script",
-      "git add ."
-    ],
-    "**/*.{scss,css}": [
-      "npm run lint:style",
-      "git add ."
-    ]
+    "**/*.{js,jsx,ts,tsx}": ["npm run lint:script", "git add ."],
+    "**/*.{scss,css}": ["npm run lint:style", "git add ."]
   }
 }
 ```
 
 ### VSCode 推荐配置
+
 `.vscode/settings.json`：
 
 ```json
@@ -738,6 +738,7 @@ npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAM
 4. 检查 `.husky/pre-commit` 文件权限（需可执行）
 
 ### lint-staged 检查过慢
+
 问题： 即使使用 lint-staged，检查仍然很慢。
 
 解决方案：
@@ -746,7 +747,7 @@ npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAM
 {
   "lint-staged": {
     "**/*.{js,ts}": [
-      "eslint --fix --quiet",  // 只修复，不输出警告
+      "eslint --fix --quiet", // 只修复，不输出警告
       "git add ."
     ]
   }
