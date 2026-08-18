@@ -316,6 +316,35 @@ const ai = [
       },
     ],
   },
+  {
+    text: 'AI Agent+智能大屏设计器',
+    collapsed: true,
+    items: [
+      {
+        text: '第一章 低代码大屏设计器',
+        collapsed: true,
+        items: [],
+      },
+      {
+        text: '第二章 AI Agent 工程基础',
+        collapsed: true,
+        items: [
+          {
+            text: '前言',
+            link: '/ai/第二章%20AI%20Agent%20工程基础/前言',
+          },
+          {
+            text: '什么是 LLM',
+            link: '/ai/第二章%20AI%20Agent%20工程基础/LLM是什么',
+          },
+          {
+            text: '购买调试大模型 API',
+            link: '/ai/第二章%20AI%20Agent%20工程基础/调试大模型%20API',
+          },
+        ],
+      },
+    ],
+  },
 ]
 
 export { idea, handle, ai }
