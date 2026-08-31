@@ -2889,5 +2889,38 @@
       "build",
       "format"
     ]
+  },
+  "esbuild": {
+    "en": "esbuild",
+    "cn": "esbuild 打包工具",
+    "descript": "使用 Go 语言编写的极速 JavaScript 打包器和压缩工具，比传统打包工具快 10-100 倍，Vite 在开发阶段使用 esbuild 进行依赖预构建和 TypeScript/JSX 转译。",
+    "tags": [
+      "build-tool",
+      "javascript",
+      "performance",
+      "vite"
+    ]
+  },
+  "UMD": {
+    "en": "UMD",
+    "cn": "UMD 通用模块定义",
+    "descript": "Universal Module Definition 的缩写，一种同时兼容 CommonJS、AMD 和全局变量的 JavaScript 模块格式，旨在解决不同模块系统之间的兼容问题。",
+    "tags": [
+      "javascript",
+      "module",
+      "format",
+      "compatibility"
+    ]
+  },
+  "Monorepo": {
+    "en": "Monorepo",
+    "cn": "Monorepo 单仓多包架构",
+    "descript": "单一代码仓库（Single Repository）中管理多个项目或包的策略，便于代码共享、统一版本管理和原子化提交，现代前端工程常用 pnpm workspace 实现。",
+    "tags": [
+      "architecture",
+      "workflow",
+      "package-manager",
+      "pnpm"
+    ]
   }
 }

@@ -608,32 +608,7 @@ npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAM
 
 ### 完整的工作流程
 
-```txt
-开发者编写代码
-    ↓
-<word text="VSCode"/> 插件实时检查（<word text="ESLint"/> + <word text="Prettier"/> + <word text="Stylelint"/>）
-    ↓
-保存时自动格式化（Format On Save）
-    ↓
-执行 git add 添加文件到暂存区
-    ↓
-执行 git commit
-    ↓
-<word text="Husky"/> 触发 pre-commit 钩子
-    ↓
-<word text="lint-staged"/> 扫描暂存区文件
-    ↓
-对 <word text="JavaScript"/>/<word text="TypeScript"/> 文件执行 <word text="ESLint"/> + <word text="Prettier"/>
-对 <word text="CSS"/>/<word text="SCSS"/> 文件执行 <word text="Stylelint"/>
-    ↓
-<word text="Husky"/> 触发 commit-msg 钩子
-    ↓
-<word text="Commitlint"/> 检查提交信息格式
-    ↓
-所有检查通过 → 完成提交
-    ↓
-检查失败 → 中断提交，显示错误信息
-```
+![git提交代码质量检查流程](../../../images/read/vite/深入浅出Vite/05-git提交代码质量检查流程.png)
 
 ### 完整的 package.json 示例
 

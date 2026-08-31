@@ -496,6 +496,19 @@
     ],
     "authors": []
   },
+  "read/vite/深入浅出Vite/预构建：如何玩转秒级依赖预构建的能力？": {
+    "title": "预构建：如何玩转秒级依赖预构建的能力？",
+    "description": "深入剖析 Vite 依赖预构建机制，完整拆解 CommonJS 转 ESM、esbuild 高性能编译、依赖缓存策略及 optimizeDeps 配置调优实践。",
+    "tags": [
+      "vite",
+      "pre-bundling",
+      "esbuild",
+      "commonjs",
+      "esm",
+      "optimization"
+    ],
+    "authors": []
+  },
   "practice/handle/business/富文本编辑器": {
     "title": "富文本编辑器集成与二次开发指南",
     "description": "涵盖 Tinymce 与 vue-quill-editor 的安装配置、界面定制、插件开发及图片上传至服务器的完整实践方案。",

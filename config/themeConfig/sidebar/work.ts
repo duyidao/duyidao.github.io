@@ -1,6 +1,6 @@
 const shushuo = [
   {
-    text: '🔢 数说数字化',
+    text: '数说数字化',
     items: [
       {
         text: '智能报告',
@@ -74,7 +74,7 @@ const shushuo = [
 
 const lingsi = [
   {
-    text: '🔌 灵思',
+    text: '灵思',
     items: [
       {
         text: '音果云音',
@@ -158,7 +158,7 @@ const lingsi = [
 
 const baidu = [
   {
-    text: 'Baidu 百度',
+    text: '百度',
     items: [
       {
         text: '图业',

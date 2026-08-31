@@ -341,6 +341,14 @@ const ai = [
             text: '购买调试大模型 API',
             link: '/ai/第二章%20AI%20Agent%20工程基础/调试大模型%20API',
           },
+          {
+            text: 'LangChain框架',
+            link: '/ai/第二章%20AI%20Agent%20工程基础/LangChain框架',
+          },
+          {
+            text: '提示词工程',
+            link: '/ai/第二章%20AI%20Agent%20工程基础/提示词工程',
+          },
         ],
       },
     ],
