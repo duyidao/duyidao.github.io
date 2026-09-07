@@ -4,4 +4,4 @@ pnpm-lock.yaml
 .vscode
 .git
 .github
-dist
+.idea
