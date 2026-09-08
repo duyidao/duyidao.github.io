@@ -1,7 +1,9 @@
 node_modules
 .vitepress/cache
 pnpm-lock.yaml
+deploy copy.yml
 .vscode
 .git
 .github
 .idea
+dist
