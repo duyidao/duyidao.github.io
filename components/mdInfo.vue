@@ -6,17 +6,36 @@ import learn_light from './md-info/learn_light.vue'
 // 导入文档元数据 - 使用正确的相对路径
 import docMetadata from '@/文档元数据.json'
 
+interface AuthorInfo {
+  author: string
+  link: string
+  title: string
+}
+
+interface DocMeta {
+  description?: string
+  tags?: string[]
+  authors?: AuthorInfo[]
+}
+
 const { frontmatter, page } = useData()
 const route = useRoute()
 
-const dict = {
+const typedDocMetadata: Record<string, DocMeta> =
+  docMetadata as unknown as Record<string, DocMeta>
+
+const dict: Record<string, string> = {
   video: '视频',
   blog: '博客',
   article: '文章',
 }
 
 // 调试日志：检查数据是否加载成功
-console.log('📄 文档元数据加载状态:', Object.keys(docMetadata).length, '条记录')
+console.log(
+  '📄 文档元数据加载状态:',
+  Object.keys(typedDocMetadata).length,
+  '条记录',
+)
 console.log('📍 当前路由路径:', route.path)
 
 // 获取当前页面路径并匹配元数据（解决中文URL编码问题）
@@ -35,7 +54,7 @@ const currentPath = computed(() => {
 
 const currentDocMeta = computed(() => {
   // 直接匹配
-  let meta = docMetadata[currentPath.value]
+  let meta = typedDocMetadata[currentPath.value]
 
   // 如果没找到，尝试去掉或添加 practice/ 前缀
   if (!meta) {
@@ -44,7 +63,9 @@ const currentDocMeta = computed(() => {
       ? currentPath.value
       : `practice/${currentPath.value}`
 
-    meta = docMetadata[pathWithoutPractice] || docMetadata[pathWithPractice]
+    meta =
+      typedDocMetadata[pathWithoutPractice] ||
+      typedDocMetadata[pathWithPractice]
 
     if (meta) {
       console.log('🔄 使用备用路径匹配成功')
@@ -265,14 +286,14 @@ const readList = computed(() => {
       </div>
     </div>
 
+    <!-- 文档Tags - 移到基本信息下方 -->
+    <div v-if="docTags && docTags.length > 0" class="md-info__tags">
+      <span v-for="tag in docTags" :key="tag" class="tag-item">{{ tag }}</span>
+    </div>
+
     <!-- 文档描述 -->
     <div v-if="docDescription" class="md-info__description">
       {{ docDescription }}
-    </div>
-
-    <!-- 文档Tags -->
-    <div v-if="docTags && docTags.length > 0" class="md-info__tags">
-      <span v-for="tag in docTags" :key="tag" class="tag-item">{{ tag }}</span>
     </div>
 
     <!-- 外部引用地址（视频/博客/文章） - 数据来源：文档元数据.json -->
@@ -296,7 +317,6 @@ const readList = computed(() => {
     color: var(--vp-c-text-2);
     margin-bottom: 8px;
     padding-bottom: 12px;
-    border-bottom: 2px solid var(--vp-c-divider);
 
     > div {
       display: flex;
@@ -323,39 +343,82 @@ const readList = computed(() => {
   }
 
   &__tags {
-    margin-top: 16px;
+    margin-top: 12px;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     align-items: center;
+    padding-bottom: 12px;
 
     .tag-item {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       padding: 4px 12px;
-      background: var(--vp-c-bg-soft);
-      color: var(--vp-c-text-1); // 使用主文字颜色，确保可读性
-      border: 1px solid var(--vp-c-divider);
-      border-radius: 4px;
+      background: linear-gradient(
+        135deg,
+        var(--vp-c-brand-soft) 0%,
+        var(--vp-c-bg-soft) 100%
+      );
+      color: var(--vp-c-brand-1);
+      border: 1px solid var(--vp-c-brand-3);
+      border-radius: 16px;
       font-size: 12px;
-      font-weight: 500; // 稍微加粗
-      line-height: 1.6;
-      transition: all 0.2s ease;
+      font-weight: 600;
+      line-height: 1.5;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 
-      &:hover {
-        color: var(--vp-c-brand-1);
-        border-color: var(--vp-c-brand-1);
-        background: var(--vp-c-brand-soft);
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.15),
+          transparent
+        );
+        transition: left 0.5s ease;
       }
 
-      // 暗色模式下的额外优化
+      &:hover {
+        color: #fff;
+        border-color: var(--vp-c-brand-1);
+        background: linear-gradient(
+          135deg,
+          var(--vp-c-brand-1) 0%,
+          var(--vp-c-brand-2) 100%
+        );
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+        &::before {
+          left: 100%;
+        }
+      }
+
       :root.dark &,
       [data-theme='dark'] & {
-        color: rgba(255, 255, 255, 0.9); // 暗色模式下使用近白色
-        border-color: rgba(255, 255, 255, 0.15);
+        color: var(--vp-c-brand-2);
+        border-color: rgba(64, 158, 255, 0.3);
+        background: linear-gradient(
+          135deg,
+          rgba(64, 158, 255, 0.12) 0%,
+          rgba(255, 255, 255, 0.03) 100%
+        );
 
         &:hover {
-          color: var(--vp-c-brand-1);
+          color: #fff;
           border-color: var(--vp-c-brand-1);
+          background: linear-gradient(
+            135deg,
+            var(--vp-c-brand-1) 0%,
+            var(--vp-c-brand-2) 100%
+          );
         }
       }
     }
@@ -400,12 +463,14 @@ const readList = computed(() => {
     }
 
     &__tags {
-      margin-top: 1rem;
-      gap: 0.5rem;
+      margin-top: 0.75rem;
+      gap: 0.375rem;
+      padding-bottom: 0.75rem;
 
       .tag-item {
-        padding: 0.25rem 0.75rem;
-        font-size: 0.75rem;
+        padding: 0.2rem 0.625rem;
+        font-size: 0.6875rem;
+        border-radius: 10px;
       }
     }
   }

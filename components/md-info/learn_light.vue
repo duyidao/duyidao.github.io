@@ -5,10 +5,15 @@ const props = defineProps<{
   authorList: any[]
 }>()
 
-const show = ref(true) // 默认展开
+const show = ref(true)
 
-// 根据链接获取平台信息
-function getPlatformInfo(link: string) {
+interface PlatformInfo {
+  name: string
+  icon: string
+  color: string
+}
+
+function getPlatformInfo(link: string): PlatformInfo | null {
   if (link.includes('bilibili.com')) {
     return {
       name: 'Bilibili',
@@ -66,39 +71,6 @@ function getPlatformInfo(link: string) {
           :title="author.title"
           class="resource-item"
         >
-          <!-- 平台图标（如果有） -->
-          <div
-            v-if="getPlatformInfo(author.link)"
-            class="platform-badge"
-            :style="{ color: getPlatformInfo(author.link).color }"
-          >
-            <svg
-              v-if="getPlatformInfo(author.link)?.icon === 'bilibili'"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              width="16"
-              height="16"
-            >
-              <path
-                d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.767v7.36c-.036 1.518-.556 2.772-1.56 3.767-1.004.996-2.263 1.52-3.773 1.574h-11.63c-1.51-.054-2.769-.578-3.773-1.574C1.819 20.126 1.299 18.872 1.263 17.354v-7.36c.036-1.518.556-2.772 1.56-3.767 1.004-.996 2.263-1.52 3.773-1.574h.854l-1.675-1.659A.96.96 0 0 1 5.28 2.2l.893-.887a.956.956 0 0 1 1.356 0l2.592 2.58h3.76l2.587-2.58a.956.956 0 0 1 1.356 0l.893.887a.96.96 0 0 1 .003 1.356l-1.67 1.659zM7.815 7.65H5.333v7.842h13.334V7.65h-2.482v1.61a.655.655 0 0 1-.653.653h-.978a.655.655 0 0 1-.653-.653V7.65H10.4v1.61a.655.655 0 0 1-.653.653h-.978a.655.655 0 0 1-.653-.653V7.65z"
-              />
-            </svg>
-            <svg
-              v-else-if="getPlatformInfo(author.link)?.icon === 'youtube'"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              width="16"
-              height="16"
-            >
-              <path
-                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
-              />
-            </svg>
-            <span v-else class="platform-text">{{
-              getPlatformInfo(author.link)?.name?.charAt(0)
-            }}</span>
-          </div>
-
           <div class="resource-content">
             <a :href="author.link" class="resource-title" target="_blank">
               {{ author.title }}
@@ -215,9 +187,10 @@ function getPlatformInfo(link: string) {
   margin-top: 24px;
   background: var(--vp-c-bg-soft);
 
-  a[href^='https://']::before {
-    margin-top: 0;
+  a[href^='https://'].resource-title::before {
+    margin-top: -2px;
     margin-right: 8px;
+    vertical-align: middle;
   }
 
   .header {
@@ -268,47 +241,45 @@ function getPlatformInfo(link: string) {
         position: relative;
 
         &:hover {
-          border-color: var(--vp-c-brand-3); // 使用更柔和的品牌色
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); // 极淡阴影
-        }
-      }
-
-      // 平台图标徽章
-      .platform-badge {
-        flex-shrink: 0;
-        width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--vp-c-bg-soft);
-        border-radius: 4px;
-        border: 1px solid var(--vp-c-divider);
-
-        svg {
-          width: 16px;
-          height: 16px;
+          border-color: var(--vp-c-brand-3);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         }
 
-        .platform-text {
-          font-size: 11px;
-          font-weight: 600;
-        }
-      }
+        > .resource-content {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          flex: 1;
+          min-width: 0;
 
-      .resource-content {
-        flex: 1;
-        min-width: 0;
+          > .resource-title {
+            display: flex;
+            margin-bottom: 0;
+            flex: 1;
+            min-width: 0;
+            transform: translateY(0);
+          }
+
+          > .resource-meta {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+          }
+        }
       }
 
       .resource-title {
         font-size: 14px;
         font-weight: 500;
-        display: block;
+        align-items: center;
         color: var(--vp-c-text-1);
         cursor: pointer;
-        line-height: 1.5;
-        margin-bottom: 6px;
+        line-height: 24px;
+        height: 24px;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -326,9 +297,6 @@ function getPlatformInfo(link: string) {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 8px;
-        padding-top: 8px;
-        border-top: 1px dashed var(--vp-c-divider);
         color: var(--vp-c-text-2);
         font-size: 12px;
 
@@ -346,20 +314,21 @@ function getPlatformInfo(link: string) {
         }
 
         .resource-type {
-          display: flex;
+          display: inline-flex;
           align-items: center;
-          gap: 4px;
+          gap: 3px;
           font-weight: 500;
-          font-size: 11px;
-          padding: 2px 8px;
-          border-radius: 3px;
-          border: 1px solid var(--vp-c-divider);
+          font-size: 10px;
+          padding: 1px 6px;
+          border-radius: 8px;
+          border: 1px solid;
           background: transparent;
-          transition: all 0.2s ease;
+          transition: all 0.25s ease;
+          line-height: 1.4;
 
           .type-icon {
-            width: 10px;
-            height: 10px;
+            width: 9px;
+            height: 9px;
             display: flex;
             align-items: center;
           }
@@ -367,53 +336,117 @@ function getPlatformInfo(link: string) {
 
         .type-video {
           color: #e74c3c;
-          border-color: rgba(231, 76, 60, 0.3);
+          border-color: rgba(231, 76, 60, 0.25);
+          background: rgba(231, 76, 60, 0.04);
 
           &:hover {
-            background: rgba(231, 76, 60, 0.08);
+            background: rgba(231, 76, 60, 0.1);
+            border-color: rgba(231, 76, 60, 0.4);
+            transform: translateY(-1px);
           }
         }
 
         .type-blog {
           color: #3498db;
-          border-color: rgba(52, 152, 219, 0.3);
+          border-color: rgba(52, 152, 219, 0.25);
+          background: rgba(52, 152, 219, 0.04);
 
           &:hover {
-            background: rgba(52, 152, 219, 0.08);
+            background: rgba(52, 152, 219, 0.1);
+            border-color: rgba(52, 152, 219, 0.4);
+            transform: translateY(-1px);
           }
         }
 
         .type-article {
           color: #27ae60;
-          border-color: rgba(39, 174, 96, 0.3);
+          border-color: rgba(39, 174, 96, 0.25);
+          background: rgba(39, 174, 96, 0.04);
 
           &:hover {
-            background: rgba(39, 174, 96, 0.08);
+            background: rgba(39, 174, 96, 0.1);
+            border-color: rgba(39, 174, 96, 0.4);
+            transform: translateY(-1px);
           }
         }
       }
 
-      // 外链按钮 - 简洁风格
+      // 外链按钮 - 美化风格
       .resource-link {
         flex-shrink: 0;
         margin-left: 8px;
+        align-self: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 24px;
 
         a {
-          display: flex;
+          display: inline-flex;
           align-items: center;
           justify-content: center;
-          width: 28px;
-          height: 28px;
-          border-radius: 4px;
+          width: 24px;
+          height: 24px;
+          border-radius: 6px;
           color: var(--vp-c-text-2);
           border: 1px solid var(--vp-c-divider);
-          background: var(--vp-c-bg-soft);
-          transition: all 0.2s ease;
+          background: linear-gradient(
+            135deg,
+            var(--vp-c-bg-soft) 0%,
+            var(--vp-c-bg) 100%
+          );
+          transition: all 0.25s ease;
+          position: relative;
+          overflow: hidden;
+
+          svg {
+            width: 13px;
+            height: 13px;
+            transition: all 0.25s ease;
+          }
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(
+              circle,
+              var(--vp-c-brand-1) 0%,
+              transparent 70%
+            );
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+            border-radius: 50%;
+          }
 
           &:hover {
             color: var(--vp-c-brand-1);
-            border-color: var(--vp-c-brand-1);
-            background: transparent;
+            border-color: var(--vp-c-brand-3);
+            background: linear-gradient(
+              135deg,
+              var(--vp-c-brand-soft) 0%,
+              var(--vp-c-bg) 100%
+            );
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+            svg {
+              transform: scale(1.1);
+            }
+
+            &::before {
+              width: 40px;
+              height: 40px;
+              opacity: 0.1;
+            }
+          }
+
+          &:active {
+            transform: translateY(0) scale(0.95);
           }
         }
       }
@@ -458,20 +491,12 @@ function getPlatformInfo(link: string) {
           padding: 10px 12px;
           gap: 10px;
 
-          .platform-badge {
-            width: 22px;
+          .resource-link {
             height: 22px;
 
-            svg {
-              width: 14px;
-              height: 14px;
-            }
-          }
-
-          .resource-link {
             a {
-              width: 26px;
-              height: 26px;
+              width: 22px;
+              height: 22px;
 
               svg {
                 width: 12px;
@@ -483,12 +508,23 @@ function getPlatformInfo(link: string) {
 
         .resource-title {
           font-size: 13px;
-          margin-bottom: 5px;
+          line-height: 22px;
+          height: 22px;
+          gap: 5px;
+
+          .platform-icon-inline {
+            svg {
+              width: 13px;
+              height: 13px;
+            }
+
+            .platform-text-inline {
+              font-size: 10px;
+            }
+          }
         }
 
         .resource-meta {
-          margin-top: 6px;
-          padding-top: 6px;
           font-size: 11px;
           flex-direction: column;
           align-items: flex-start;
@@ -502,12 +538,12 @@ function getPlatformInfo(link: string) {
           }
 
           .resource-type {
-            font-size: 10px;
-            padding: 2px 6px;
+            font-size: 9px;
+            padding: 1px 5px;
 
             .type-icon {
-              width: 9px;
-              height: 9px;
+              width: 8px;
+              height: 8px;
             }
           }
         }
