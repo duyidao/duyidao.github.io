@@ -139,7 +139,21 @@ export default {
 
 优化决策流：
 
-![优化决策流](../../../images/read/vite/深入浅出Vite/06-优化决策流.png)
+```mermaid
+flowchart TD
+    A[静态资源] --> B{体积 = assetsInlineLimit?}
+    
+    B -- 是 --> C[打包为独立文件]
+    B -- 否 --> D[Base64 内联至 JS/CSS]
+    
+    C --> E[优势: 浏览器并行加载 / CDN 缓存]
+    C --> F[劣势: 增加 HTTP 请求数]
+    
+    D --> G[优势: 减少 HTTP 请求 / 首屏渲染快]
+    D --> H[劣势: 增大主包体积 / 阻塞解析]
+
+    I[SVG 资源] -- 始终独立文件 --> J[原因: 需动态操作 DOM 属性]
+```
 
 ### 图片自动化压缩 (vite-plugin-imagemin)
 

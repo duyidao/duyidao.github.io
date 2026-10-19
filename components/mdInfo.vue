@@ -30,14 +30,6 @@ const dict: Record<string, string> = {
   article: '文章',
 }
 
-// 调试日志：检查数据是否加载成功
-console.log(
-  '📄 文档元数据加载状态:',
-  Object.keys(typedDocMetadata).length,
-  '条记录',
-)
-console.log('📍 当前路由路径:', route.path)
-
 // 获取当前页面路径并匹配元数据（解决中文URL编码问题）
 const currentPath = computed(() => {
   // 移除开头和结尾的斜杠
@@ -48,7 +40,6 @@ const currentPath = computed(() => {
   } catch (e) {
     console.warn('⚠️ URL解码失败:', e)
   }
-  console.log('🔍 匹配路径:', path)
   return path
 })
 
@@ -66,17 +57,8 @@ const currentDocMeta = computed(() => {
     meta =
       typedDocMetadata[pathWithoutPractice] ||
       typedDocMetadata[pathWithPractice]
-
-    if (meta) {
-      console.log('🔄 使用备用路径匹配成功')
-    }
   }
 
-  console.log(
-    '📋 找到的元数据:',
-    meta ? '✅ 找到' : '❌ 未找到',
-    currentPath.value,
-  )
   return meta || null
 })
 
@@ -113,11 +95,6 @@ const authorList = computed(() => {
     Array.isArray(currentDocMeta.value.authors) &&
     currentDocMeta.value.authors.length > 0
   ) {
-    console.log(
-      '✅ 从JSON获取authors:',
-      currentDocMeta.value.authors.length,
-      '条',
-    )
     return currentDocMeta.value.authors.map((author: any) => ({
       name: author.author,
       type: getAuthorType(author.link),
@@ -128,11 +105,6 @@ const authorList = computed(() => {
 
   // 备用：从frontmatter获取（兼容旧数据）
   if (frontmatter.value.author && Array.isArray(frontmatter.value.author)) {
-    console.log(
-      '⚠️ 从frontmatter获取authors:',
-      frontmatter.value.author.length,
-      '条',
-    )
     return frontmatter.value.author.map((value: string) => {
       const authorInfo = value.split(' ')[0]
       const articleInfo = value.split(' ')[1]
@@ -145,34 +117,9 @@ const authorList = computed(() => {
     })
   }
 
-  console.log('❌ 无authors数据')
   return []
 })
 
-// 监听路由变化，重新计算数据
-watch(
-  () => route.path,
-  (newPath) => {
-    console.log('🔄 路由变化:', newPath)
-    console.log(
-      '📊 当前文档元数据:',
-      currentDocMeta.value ? '有数据' : '无数据',
-    )
-    if (currentDocMeta.value) {
-      console.log(
-        '📝 描述:',
-        currentDocMeta.value.description?.substring(0, 50),
-      )
-      console.log('🏷️ Tags:', currentDocMeta.value.tags)
-      console.log(
-        '👥 Authors:',
-        currentDocMeta.value.authors?.length || 0,
-        '条',
-      )
-    }
-  },
-  { immediate: true },
-)
 
 // 获取文章字数
 const wordCount = ref(0)

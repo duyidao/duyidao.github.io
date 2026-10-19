@@ -512,4 +512,27 @@ function App() {
 
 ## 样式方案选型决策树
 
-![样式方案选型决策树](../../../images/read/vite/深入浅出Vite/04-样式方案选型决策树.png)
+```mermaid
+flowchart TD
+    A[项目需求分析] --> B{是否需要样式隔离?}
+    
+    B -- 是 --> C[CSS Modules]
+    B -- 否 --> D{是否需要动态样式?}
+    
+    D -- 是 --> E[CSS in JS]
+    D -- 否 --> F{是否需要预处理能力?}
+    
+    F -- 是 --> G[Sass/Less + PostCSS]
+    F -- 否 --> H{是否追求开发效率?}
+    
+    H -- 是 --> I[Windi CSS / Tailwind CSS]
+    H -- 否 --> J[原生 CSS + PostCSS]
+    
+    K[结合预处理器使用]
+    
+    C --> K
+    E --> K
+    G --> K
+    I --> K
+    J --> K
+```
