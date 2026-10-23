@@ -36,7 +36,29 @@
 
 为了实现“室内外一体化”且“高内聚低耦合”，我们采用了 **Hook 模块化 + 容器组件隔离** 的分层架构：
 
-![整体架构设计](../../../images/work/南网/Leaflet地图封装与使用-整体架构设计.png)
+```mermaid
+flowchart TD
+    classDef blue fill:#e0f0ff,stroke:#1a6fa8,stroke-width:2px,color:#000
+    classDef orange fill:#fff4e0,stroke:#e07020,stroke-width:2px,color:#000
+    classDef green fill:#e0f5e0,stroke:#208020,stroke-width:2px,color:#000
+    classDef purple fill:#f0e0f5,stroke:#7020a0,stroke-width:2px,color:#000
+    classDef white fill:#fff,stroke:#333,stroke-width:1px,color:#000
+    classDef diamond fill:#f0f0ff,stroke:#7070e0,color:#000
+
+    A["业务页面层<br/>控制台 / 航线库 / 设备管理"]:::blue --> B["统一容器组件<br/>AirportMap.vue"]:::orange
+    B --> C{"mapType 路由"}:::diamond
+    
+    C -- 室外 leaflet --> D["OfflineMap.vue<br/>卫星地图容器"]:::green
+    C -- 室内 pointcloud --> E["PointCloud2D.vue<br/>点云2D容器"]:::green
+    
+    D --> F["核心 Hook 层<br/>useLeafletMap.ts"]:::purple
+    E --> G["核心 Hook 层<br/>usePointCloudMap.ts"]
+    
+    F --> H[模块化组合]
+    H --> I["useMapMarkers<br/>标记管理"]:::white
+    H --> J["useMapRoutes<br/>航线绘制"]:::white
+    H --> K["useMapAnimation<br/>平滑动画"]:::white
+```
 
 **架构优势**：
 
@@ -108,7 +130,31 @@ export function useLeafletMap(containerRef, emit) {
 
 **交互流程图：**
 
-![交互流程图](../../../images/work/南网/Leaflet地图封装与使用-交互流程图.png)
+```mermaid
+flowchart TD
+    classDef blue fill:#e0f0ff,stroke:#1a6fa8,color:#000
+    classDef green fill:#e0f5e0,stroke:#208020,color:#000
+    classDef orange fill:#fff4e0,stroke:#e07020,color:#000
+    classDef diamond fill:#f0f0ff,stroke:#7070e0,color:#000
+
+    A["用户点击'绘制航线'"]:::blue --> B["进入 select-start 状态"]
+    B --> C{"用户点击地图"}:::diamond
+    
+    C -- 未靠近扎点 --> D["提示: 请靠近扎点点击"]
+    C -- 靠近扎点<50px --> E["吸附起点, 进入 select-end"]:::green
+    
+    E --> F{"用户点击地图"}:::diamond
+    F -- 点击同一起点 --> G["提示: 终点不能与起点相同"]
+    F -- 靠近其他扎点 --> H["吸附终点, 进入 editing"]:::green
+    
+    H --> I["默认生成直线"]
+    I --> J{"用户操作"}:::diamond
+    
+    J -- 点击线条中间 --> K["添加折点"]
+    J -- 点击'自由绘制' --> L["进入 free-drawing,<br/>鼠标拖拽生成轨迹"]
+    L --> M["道格拉斯-普克算法抽稀"]
+    M --> N["生成最终航线"]:::orange
+```
 
 **核心吸附代码 (`useMapMarkers.ts`)：**
 

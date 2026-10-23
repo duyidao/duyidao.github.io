@@ -8,6 +8,26 @@
 
 信令交互没有走 <word text="WebSocket"/>，而是用了一次简单的 <word text="HTTP" /> 请求完成 <word text="SDP"/> 交换：
 
+```mermaid
+flowchart TD
+    subgraph Media["媒体传输"]
+        direction LR
+        M1["RTP/RTCP over UDP"] --> M2["抗丢包机制"]
+    end
+
+    subgraph Signaling["信令流程"]
+        direction LR
+        S1["Offer SDP"] --> S2["Answer SDP"]
+    end
+
+    subgraph Architecture["系统架构"]
+        N1["无人机"] -- "RTSP/RTMP推流" --> N2["ZLMediaKit服务器"]
+        N2 -- "WHEP API" --> N3["后端API服务"]
+        N3 -- "HTTPS + SDP交换" --> N4["前端Vue应用"]
+        N4 -- "WebRTC播放" --> N5["浏览器Video标签"]
+    end
+```
+
 ## 核心实现
 
 1. 创建 PeerConnection 并声明媒体需求

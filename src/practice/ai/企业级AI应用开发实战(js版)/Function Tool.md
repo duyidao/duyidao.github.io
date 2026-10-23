@@ -341,7 +341,17 @@ app.get('/simple', async (req, res) => {
 
 ### 执行流程
 
-![alt text](image-7.png)
+```mermaid
+flowchart LR
+    A[当流传输完毕] --> B[检查是否有 tool_calls]
+    B --> C[遍历找出每个 tool_call 的 name]
+    C --> D[按 name 找到对应的方法执行]
+    D --> E[拿到方法的执行结果]
+    E --> F["构建一个消息<br/>设置 role 为 tool<br/>id 使用模型返回的方法 id<br/>content 使用工具返回结果"]
+    F --> G[发送给大模型]
+    G --> H[大模型给出适合前端展示的答复]
+    H --> I[返回给前端]
+```
 
 ### 执行代码实现
 

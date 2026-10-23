@@ -31,7 +31,23 @@
 
 数据流总览：
 
-![数据流总览](../../../images/work/南网/Cesium室外实景模型渲染设计与实践-数据流总览.png)
+```mermaid
+flowchart TD
+    A["路由懒加载挂载<br/>CesiumSceneViewer"] --> B["CesiumViewerManager 构造"]
+    B --> C["Viewer 离线化配置<br/>Ion token 置空 / baseLayer<br/>/ 视觉调优"]
+    B --> D["禁用内置相机控制器<br/>绑定原生 pointer 事件"]
+    B --> E{"autoLoad ?"}
+    
+    E -- 是 --> F["CesiumTilesetLoader.loadFromURL"]
+    F --> G["解析根 tileset.json<br/>读取 root boundingVolume<br/>与 geometricError"]
+    G --> H["递归外部子 tileset<br/>BlockB / BlockY 的 tileset.json"]
+    H --> I["按 SSE 由粗到细流式请求 b3dm"]
+    I --> J["primitives.add 并 zoomTo 适配视角"]
+    J --> K["setOrbitTarget<br/>钉定模型包围球中心"]
+    K --> L["交互就绪<br/>平移 / 旋转 / 缩放 /<br/>拾取经纬度"]
+    
+    E -- 否 --> L
+```
 
 ## 格式解析：3D Tiles 与 b3dm
 
@@ -292,7 +308,19 @@ private pickWorld(clientX: number, clientY: number): Cesium.Cartesian3 | null {
 
 交互以原生 pointer 事件驱动，空移早退、拖拽与点击以 5px 阈值区分，平移结束后抑制一次 click 以免误抛坐标：
 
-![Cesium室外实景模型渲染设计与实践-指针事件状态机](../../../images/work/南网/Cesium室外实景模型渲染设计与实践-指针事件状态机.png)
+```mermaid
+stateDiagram-v2
+    [*] --> Idle
+
+    Idle --> Idle: pointerdown (自环)
+    Idle --> Panning: pointerdown (拖拽)
+    Idle --> Orbiting: pointerdown (旋转)
+    Idle --> Dollying: pointerdown (缩放)
+
+    Panning --> Idle: pointerup
+    Orbiting --> Idle: pointerup
+    Dollying --> Idle: pointerup
+```
 
 ## 公共组件 API 参考
 

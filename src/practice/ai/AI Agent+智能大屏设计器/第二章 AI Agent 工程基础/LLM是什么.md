@@ -54,7 +54,15 @@ Token 是模型读取和生成文本的最小片段单位。它可能是一个�
 | 4    | 喜欢  |
 | 5    | 你    |
 
-![token拆分](../../../../images/practice/ai/AI%20Agent+智能大屏设计器/token拆分.svg)
+```mermaid
+flowchart LR
+    Text["你好，我喜欢你"] --> Tokenizer["Tokenizer 切分"]
+    Tokenizer --> T1["你好"]
+    Tokenizer --> T2["，"]
+    Tokenizer --> T3["我"]
+    Tokenizer --> T4["喜欢"]
+    Tokenizer --> T5["你"]
+```
 
 LLM 生成这句话时，也不是一次性把整句话写出来，而是一个 Token 一个 Token 地往后生成。还是以上面例子为例，后续可能还会有其他的 Token，如《你好，我喜欢你的狗》。
 
