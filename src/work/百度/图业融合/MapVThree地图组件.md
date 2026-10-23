@@ -10,7 +10,23 @@
 
 ### 技术架构图
 
-![技术架构图](../../../images/work/百度/MapVThree-技术架构图.png)
+```
+flowchart LR
+    A[MapVThree 地图组件] --> B[管理类封装]
+    A --> C[基础渲染方法]
+
+    B --> D[PathTrackerManager 漫游管理]
+    B --> E[LayerManager 扎点管理]
+
+    C --> F[PathTracker 视野漫游]
+    C --> G[GLTFLoader 模型渲染]
+    C --> H[FatLine 线渲染]
+    C --> I[Icon 点渲染]
+
+    G --> J[GeoJSONDataSource]
+    H --> J
+    I --> J
+```
 
 ### 地图方法封装
 
@@ -20,7 +36,19 @@
 
 根据官方文档，渲染点需要完成以下步骤：
 
-![点的封装](../../../images/work/百度/MapVThree-点的封装.png)
+```mermaid
+sequenceDiagram
+    participant Developer as 开发者 (Developer)
+    participant CodeLogic as 代码逻辑 (Code Logic)
+    participant Map as 地图实例 (Map Instance)
+    participant DataSource as 数据源 (Data Source)
+
+    Developer->>CodeLogic: 引入 Icon 和 GeoJSONDestaSurce
+    Developer->>CodeLogic: 调用 map.add() 添加点
+    Developer->>DataSource: GeoJSONDestaSurce.from.GeoJSON()
+    DataSource-->>Map: 设置 icon.Dess.Surce
+    Map->>Developer: 返回 icon 实例
+```
 
 **核心步骤**
 
@@ -145,7 +173,14 @@ export const removeIcon = (icon, _engine = engine.value) => {
 
 渲染线的流程与点类似，但使用的是 `FatLine` 方法。
 
-![线的封装](../../../images/work/百度/MapVThree-线的封装.png)
+```mermaid
+flowchart LR
+    A[坐标数据] --> C[FatLine 创建]
+    B[样式配置] --> C
+    C --> D[地图实例.add]
+    D --> E[GeoJSONDataSource]
+    E --> F[渲染完成]
+```
 
 **核心步骤**
 
@@ -242,7 +277,18 @@ const lineConfig = {
 
 使用 `GLTFLoader` 加载三维模型，并通过地图实例添加到场景中。
 
-![模型的封装](../../../images/work/百度/MapVThree-模型的封装.png)
+```mermaid
+sequenceDiagram
+    participant Loader as GLTFLoader
+    participant Scene as 场景 (Scene)
+    participant Model as 模型 (Model)
+
+    Loader->>Loader: load(url)
+    Loader->>Model: map.projectPointArr(center)
+    Model-->>Loader: 屏幕坐标
+    Loader->>Model: 设置 position<br/>设置 scale<br/>设置 rotation
+    Loader->>Model: scene.add(model)
+```
 
 **核心步骤**
 
@@ -328,7 +374,25 @@ export const removeModel = (model) => {
 
 使用 `PathTracker` 实现相机沿路径移动的动画效果。
 
-![视野漫游动画封装](../../../images/work/百度/MapVThree-视野漫游动画封装.png)
+```mermaid
+flowchart TD
+    A[PathTracker 创建] --> B[设置跟踪路径]
+    B --> C[配置动画参数]
+    C --> D[duration: 动画时长]
+    C --> E[distance: 距离]
+    C --> F[pitch: 俯仰角]
+    C --> G[heading: 航向角]
+    C --> H[绑定模型对象]
+    H --> I[设置视野模式]
+    I --> J[启动动画]
+
+    subgraph 配置参数
+        D
+        E
+        F
+        G
+    end
+```
 
 **核心步骤**
 
@@ -430,11 +494,44 @@ export const removePathTracker = (name, _engine = engine.value) => {
 
 **解决方案：**封装管理类
 
-![封装管理类](../../../images/work/百度/MapVThree-封装管理类.png)
+```mermaid
+classDiagram
+    class LayerManager {
+        -Map layerDomMap
+        -Object engine
+        -addLayerDomPoint(name, point, options)
+        +removeLayerDomPointByName(name)
+        +clear()
+        +bind(element, type)
+        +unbind(element, type)
+    }
+
+    class PathTrackerManager {
+        -Map pathTrackerMap
+        -Object engine
+        +addPathTracker(name, options)
+        +removePathTrackerByName(name)
+        +clear()
+    }
+
+    note for LayerManager "扎点管理类"
+    note for PathTrackerManager "视野漫游管理类"
+```
 
 #### 管理类封装步骤
 
-![管理类封装步骤](../../../images/work/百度/MapVThree-管理类封装步骤.png)
+```mermaid
+flowchart TD
+    A[创建类] --> B[构造器中定义映射表 new Map]
+    B --> C[定义 addXxxx 方法]
+    C --> D[调用地图函数创建数据]
+    D --> E[在映射表中保存映射]
+    E --> F[定义 removeXxxx 方法]
+    F --> G[通过名称获取映射]
+    G --> H[从映射表和地图删除]
+    H --> I[定义 clear 方法]
+    I --> J[遍历映射表依次删除]
+```
 
 #### 扎点组件
 
@@ -442,7 +539,16 @@ export const removePathTracker = (name, _engine = engine.value) => {
 
 根据 UI 图，扎点效果包含三个部分：
 
-![扎点组件](../../../images/work/百度/MapVThree-扎点组件.png)
+```mermaid
+flowchart LR
+    A[扎点组件] --> B[左侧扎点]
+    A --> C[底部气泡]
+    A --> D[右侧 Label]
+    B --> E[图标]
+    E --> F["类型: 桥梁/边坡/隧道等"]
+    E --> G["状态: 正常/告警"]
+    E --> H["尺寸: small/normal"]
+```
 
 **扎点类型说明**
 
@@ -764,7 +870,15 @@ layerManager.clear()
 
 视野漫游动画由三部分组成：
 
-![视野漫游动画组件构成](../../../images/work/百度/MapVThree-视野漫游动画组件构成.png)
+```mermaid
+flowchart TD
+    A[视野漫游动画] --> B[路径线]
+    A --> C[模型卡车]
+    A --> D[动画效果]
+    B --> E[FatLine 渲染]
+    C --> F[GLTFLoader 加载]
+    D --> G[PathTracker 控制]
+```
 
 **PathTrackerManager 实现**
 
@@ -889,6 +1003,27 @@ pathTrackerManager.removePathTrackerByName('route-1')
 pathTrackerManager.clear()
 ```
 
-**执行流程图**
+**执行流程**
 
-![执行流程图](../../../images/work/百度/MapVThree-执行流程图.png)
+```
+sequenceDiagram
+    participant User as 用户 (User)
+    participant PTM as PathTrackerManager
+    participant AM as addModel
+    participant APT as addPathTracker
+
+    User->>PTM: addPathTracker(name, options)
+    PTM->>AM: 创建路径线
+    AM-->>PTM: line 实例
+    Note right of PTM: 回调函数执行
+
+    PTM->>AM: 加载模型
+    AM-->>PTM: model 实例
+    Note right of AM: 回调函数执行
+
+    AM->>APT: 启动视野漫游
+    APT-->>AM: pathTracker 实例
+
+    APT->>User: 保存到映射表
+    APT-->>User: 完成
+```

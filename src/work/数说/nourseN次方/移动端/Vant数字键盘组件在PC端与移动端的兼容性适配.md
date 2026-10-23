@@ -11,7 +11,17 @@
 
 ## 根因分析
 
-![根因分析](../../../../images/work/数说/Vant数字键盘组件在PC端与移动端的兼容性适配-根因分析.png)
+```mermaid
+flowchart LR
+    A[用户输入操作] --> B{运行环境}
+    B -- 移动端/设备仿真 --> C[触发 touch 事件]
+    C --> D[Vant 组件监听 touch]
+    D --> E[输入成功]
+    
+    B -- PC 端原生浏览器 --> F[触发 click/keyup 事件]
+    F --> G[组件未监听 click/keyup]
+    G --> H[输入失败]
+```
 
 1. 物理键盘失效：验证码输入框仅绑定了 `Vant` 组件的内部事件，未监听原生的 `keyup` 或 `keydown` 事件，导致物理键盘输入无法被捕获。
 2. 虚拟键盘失效：`Vant` 数字键盘组件底层依赖 `touchstart`、`touchend` 等移动端触摸事件。在 PC 端未开启设备仿真时，鼠标点击触发的是 `click` 事件，组件未能正确响应。

@@ -60,7 +60,19 @@ AI 问答模块是数说项目的核心交互链路，涉及 <word text="SSE" />
 
    后端返回的 <word text="SSE" /> 数据包含多种工作流事件（`init`、`node_started`、`message` 等）。通过 `useXChat` 的 `transformMessage` 钩子，将流式数据块转换为结构化的前端渲染模型。
 
-   ![工作流消息转换状态机](../../../images/work/数说/AI问答模块流式交互与富文本复制方案-工作流消息转换状态机.png)
+   ```mermaid
+   stateDiagram-v2
+        [*] --> init
+        init --> workflow_started: 建立连接
+        workflow_started --> note_started: 节点启动
+        note_started --> message: 推送消息片段
+        message --> note_finished: 节点完成
+        note_finished --> workflow_finished: 工作流完成
+        workflow_finished --> [*]
+
+        note right of message: 解析 Markdown 与图图分界
+        note right of note_finished: 整合 ECharts<br/>配置或表格数据
+    ```
 
 ## 智能滚动与富文本复制
 
@@ -87,7 +99,21 @@ AI 问答模块是数说项目的核心交互链路，涉及 <word text="SSE" />
 
 ## 执行流程
 
-![执行流程](../../../images/work/数说/AI问答模块流式交互与富文本复制方案-执行流程.png)
+```mermaid
+sequenceDiagram
+    participant UI as 用户界面
+    participant Hidden as 隐藏容器
+    participant Range as Range 选区
+    participant Clipboard as Clipboard API
+
+    UI->>Hidden: 构建包含 HTML/IMG/TABLE 的隐藏容器
+    UI->>Range: document.createRange()
+    Range->>Hidden: range.selectNode(hiddenContainer)
+    UI->>Range: window.getSelection().addRange(range)
+    UI->>Clipboard: navigator.clipboard.write()
+    Clipboard-->>UI: 写入 text/html 与 text/plain Blob
+    UI->>Hidden: 清理选区与隐藏 DOM
+```
 
 ## 核心代码实现
 

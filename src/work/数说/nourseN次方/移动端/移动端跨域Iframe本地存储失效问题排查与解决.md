@@ -10,7 +10,15 @@
 
 ## 根因分析
 
-![根因分析](../../../../images/work/数说/移动端跨域Iframe本地存储失效问题排查与解决-根因分析.png)
+```mermaid
+flowchart TD
+    A[后台点击按钮] --> B[打开弹窗并内嵌 Iframe]
+    B --> C{Iframe 与父页面是否同源?}
+    C -- 否 --> D[触发浏览器同源策略限制]
+    D --> E["Iframe 无法访问父页面 LocalStorage"]
+    E --> F[子页面读取 id 失败]
+    F --> G[请求头缺失参数导致接口报错]
+```
 
 经排查，代码中为支持空间切换，将 `id` 存储于 `LocalStorage` 并在请求拦截器中读取。由于弹窗内的 `Iframe` 与父页面域名不同，触发了浏览器的同源策略（`Same-Origin Policy`），导致跨域 `Iframe` 无法直接操作父页面的 `LocalStorage`。
 

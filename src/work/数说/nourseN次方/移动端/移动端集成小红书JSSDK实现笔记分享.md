@@ -6,7 +6,19 @@
 
 ## 核心实现流程
 
-![核心实现流程](../../../../images/work/数说/移动端集成小红书JS%20SDK实现笔记分享-核心实现流程.png)
+```mermaid
+sequenceDiagram
+    participant User as 用户
+    participant H5 as 移动端 H5
+    participant SDK as 小红书 JS SDK
+    participant Client as 小红书客户端
+
+    User->>H5: 点击分享按钮
+    H5->>H5: 组装 shareInfo 与 verifyConfig
+    H5->>SDK: 调用 xhs.share()
+    SDK->>Client: 唤起小红书客户端创作页
+    Client-->>User: 展示预填内容的编辑页
+```
 
 ## SDK 接入与参数配置
 

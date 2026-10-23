@@ -130,7 +130,18 @@ const calendarOptions = {
 
 为实现外部 `a-date-picker` 与日程表的双向联动，需通过 `ref` 获取 <word text="FullCalendar" /> 实例并调用其暴露的 <word text="API" />。
 
-![跨组件联动](../../../../images/work/数说/日程表组件封装与实践-跨组件联动.png)
+```mermaid
+sequenceDiagram
+    participant DatePicker as a-date-picker
+    participant Parent as 父组件
+    participant Calendar as FullCalendar
+
+    DatePicker->>Parent: 触发 change 事件 (选择新月份)
+    Parent->>Calendar: 调用 calendarApi.gotoDate(date)
+    Calendar->>Calendar: 内部视图切换
+    Calendar->>Parent: 触发 datesSet 回调
+    Parent->>DatePicker: 调用 setCurDate() 同步日期状态
+```
 
 ### 联动代码实现
 
