@@ -15,7 +15,7 @@ AI 问答模块是数说项目的核心交互链路，涉及 <word text="SSE" />
 | <word text="EventSource" /> | 简单 <word text="SSE" /> 场景                                    | 原生 <word text="SSE" /> 支持，自动重连                                          | 无法自定义 `Authorization` 头，仅支持 `GET` 请求       |
 | <word text="WebSocket" />   | 双向实时通信（如聊天室）                                         | 全双工通信，延迟极低                                                             | 协议复杂度高，不适合单向流式问答场景                   |
 
-**结论：**选择原生 `fetch` 结合 <word text="AbortController" />，兼顾轻量化与 <word text="SSE" /> 流的灵活解析。
+**结论：** 选择原生 `fetch` 结合 <word text="AbortController" />，兼顾轻量化与 <word text="SSE" /> 流的灵活解析。
 
 ## 核心链路实现
 

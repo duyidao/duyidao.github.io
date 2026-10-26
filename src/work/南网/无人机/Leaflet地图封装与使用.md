@@ -20,8 +20,6 @@
 | **复杂交互实现难** | 航线绘制需支持“扎点吸附”、“自由绘制”、“折点编辑”，原生 API 难以直接满足。        | 航线规划效率低下，操作反人类。           |
 | **性能与内存泄漏** | 在 Vue `keep-alive` 缓存下，地图实例、定时器、事件监听未正确清理，导致页面卡顿。 | 长时间运行控制台后浏览器崩溃。           |
 
----
-
 ## 技术选型与架构设计
 
 ### 为什么选择 Leaflet？
@@ -66,7 +64,6 @@ flowchart TD
 2. **职责单一**：`useLeafletMap` 作为总控，将 Marker、Route、Animation 拆分为独立 Hook，避免单文件代码超过 1000 行。
 3. **坐标系隔离**：转换逻辑（WGS84 <-> GCJ02）收敛在 Hook 层，业务层（`AirportMap.vue`）只传递纯坐标数组。
 
----
 
 ## 核心封装机制 (Hook 化设计)
 
@@ -119,8 +116,6 @@ export function useLeafletMap(containerRef, emit) {
   }
 }
 ```
-
----
 
 ## 复杂交互与算法实现
 
@@ -230,8 +225,6 @@ const getBearing = (start, end) => {
 
 **视觉优化**：使用 CSS `divIcon` 替代默认图片 Marker，通过 `transform: rotate(${angle}deg)` 实现 60fps 的平滑旋转，避免 Canvas 重绘开销。
 
----
-
 ## 业务场景实战：控制台与航线库
 
 ### 统一容器：AirportMap.vue
@@ -295,8 +288,6 @@ function onMessage(data) {
 
 `OfflineMap` 组件内部通过 `watch` 深度监听 `markers`，自动调用 `renderMarkers` 重绘，实现丝滑的实时位置更新。
 
----
-
 ## 踩坑记录与性能优化
 
 | 问题场景                | 原因分析                                                                   | 解决方案                                                                                                   |
@@ -306,8 +297,6 @@ function onMessage(data) {
 | **室内外切换白屏**      | Leaflet 的 CRS 在实例化时固定，无法动态从 EPSG3857 切换到 CRS.Simple。     | 采用 `v-if/v-else` 彻底销毁并重建 `OfflineMap` / `PointCloud2D` 组件实例。                                 |
 | **双击地图误缩放**      | 绘制航线时，双击结束绘制会触发地图默认的双击放大。                         | 初始化地图时配置 `doubleClickZoom: false`，将双击事件完全交由业务逻辑接管。                                |
 | **动画卡顿**            | 高频更新 Marker 位置导致 DOM 频繁重排。                                    | 禁用 CSS `transition`，完全由 `requestAnimationFrame` 接管动画，确保 60fps。                               |
-
----
 
 ## 总结
 

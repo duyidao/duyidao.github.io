@@ -268,11 +268,12 @@ private applyOrbit(dx: number, dy: number) {
 
 平移跟手感取决于"每屏幕像素对应多少世界尺寸"，按下时按相机到命中点距离一次性换算：
 
-```js
+::: code-group
+```js [index.js]
 pixelScale = (2 × d × tan(fovy / 2)) / clientHeight
 ```
 
-```ts
+```ts [index.ts]
 const right = camera.right.clone()
 const up = camera.up.clone()
 camera.moveRight(-dx * this.panPixelScale)
@@ -280,6 +281,7 @@ camera.moveUp(dy * this.panPixelScale)
 // 轨道中心同步平移，保证后续旋转仍绕视觉中心
 Cesium.Cartesian3.add(this.orbitTarget, delta, this.orbitTarget)
 ```
+:::
 
 ### 拾取 NaN 防御
 
