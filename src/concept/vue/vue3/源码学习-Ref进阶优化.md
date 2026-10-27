@@ -591,4 +591,22 @@ export function endTrack(sub) {
 
 ### Vue3 时序图
 
-![时序图](https://pic1.imgdb.cn/item/681d7cf058cb8da5c8e7bfeb.png)
+```mermaid
+sequenceDiagram
+    participant User
+    participant UI
+    participant Effect
+    participant RefFlag as Ref(flag)
+    participant RefName as Ref(name)
+    participant RefAge as Ref(age)
+    participant LinkPool
+
+    User->>UI: 点击flag按钮
+    UI->>RefFlag: set value
+    RefFlag->>Effect: trigger
+    Effect->>Effect: startTrack
+    Effect->>RefFlag: get value (link)
+    RefFlag->>Effect: 建立双向链接
+    Effect->>RefAge: get value (link)
+    RefAge->>Effect: 新建链接
+```

@@ -743,4 +743,45 @@ export const watch = (source, callback, options) => {
 
 ### Vue3 时序图
 
-![时序图](https://pic1.imgdb.cn/item/696cad3ee8f4cc17ae660550.png)
+```mermaid
+sequenceDiagram
+    participant W as watch()
+    participant RE as ReactiveEffect
+    participant ER as effect.run()
+    participant CB as callback()
+    participant S as scheduler(job)
+
+    Note over W, S: 初始化阶段
+    W->>RE: 创建 ReactiveEffect 实例，传入 getter
+    RE->>ER: 调用 effect.run() 获取初始值
+    ER-->>W: 返回初始值 oldValue
+
+    Note over W: immediate 选项处理
+    W->>S: 设置 scheduler 为 job 函数
+
+    alt immediate == true
+        W->>S: 立即执行 job()
+        S->>ER: 调用 effect.run() 获取 newValue
+        ER-->>S: 返回 newValue
+        S->>CB: 调用 callback(newValue, oldValue)
+        CB-->>W: 执行回调
+    else immediate == false
+        W->>W: 保存 oldValue = effect.run()
+    end
+
+    Note over W: 数据变化监听
+    loop 数据变化
+        S->>ER: 调用 effect.run() 获取 newValue
+        ER-->>S: 返回 newValue
+        S->>CB: 调用 callback(newValue, oldValue)
+        CB->>S: 执行回调并可能注册清理函数 onCleanup
+        S->>S: 清理上一次依赖 (如果有)
+        S->>S: 更新 oldValue = newValue
+    end
+
+    Note over W: 停止监听
+    W->>RE: 调用 effect.stop()
+    RE->>RE: 标记 active = false
+    RE->>ER: 再次调用 effect.run()
+    ER-->>RE: 直接执行 fn，不收集依赖
+```

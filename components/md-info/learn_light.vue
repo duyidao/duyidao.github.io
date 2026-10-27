@@ -243,6 +243,32 @@ function getPlatformInfo(link: string): PlatformInfo | null {
         &:hover {
           border-color: var(--vp-c-brand-3);
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+          .resource-title {
+            color: var(--vp-c-brand-1);
+          }
+
+          .resource-link a {
+            color: var(--vp-c-brand-1);
+            border-color: var(--vp-c-brand-3);
+            background: linear-gradient(
+              135deg,
+              var(--vp-c-brand-soft) 0%,
+              var(--vp-c-bg) 100%
+            );
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+            svg {
+              transform: scale(1.1);
+            }
+
+            &::before {
+              width: 40px;
+              height: 40px;
+              opacity: 0.1;
+            }
+          }
         }
 
         > .resource-content {
@@ -287,10 +313,6 @@ function getPlatformInfo(link: string): PlatformInfo | null {
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         transition: color 0.2s ease;
-
-        &:hover {
-          color: var(--vp-c-brand-1);
-        }
       }
 
       .resource-meta {
@@ -323,7 +345,6 @@ function getPlatformInfo(link: string): PlatformInfo | null {
           border-radius: 8px;
           border: 1px solid;
           background: transparent;
-          transition: all 0.25s ease;
           line-height: 1.4;
 
           .type-icon {
@@ -338,36 +359,18 @@ function getPlatformInfo(link: string): PlatformInfo | null {
           color: #e74c3c;
           border-color: rgba(231, 76, 60, 0.25);
           background: rgba(231, 76, 60, 0.04);
-
-          &:hover {
-            background: rgba(231, 76, 60, 0.1);
-            border-color: rgba(231, 76, 60, 0.4);
-            transform: translateY(-1px);
-          }
         }
 
         .type-blog {
           color: #3498db;
           border-color: rgba(52, 152, 219, 0.25);
           background: rgba(52, 152, 219, 0.04);
-
-          &:hover {
-            background: rgba(52, 152, 219, 0.1);
-            border-color: rgba(52, 152, 219, 0.4);
-            transform: translateY(-1px);
-          }
         }
 
         .type-article {
           color: #27ae60;
           border-color: rgba(39, 174, 96, 0.25);
           background: rgba(39, 174, 96, 0.04);
-
-          &:hover {
-            background: rgba(39, 174, 96, 0.1);
-            border-color: rgba(39, 174, 96, 0.4);
-            transform: translateY(-1px);
-          }
         }
       }
 
@@ -398,6 +401,7 @@ function getPlatformInfo(link: string): PlatformInfo | null {
           transition: all 0.25s ease;
           position: relative;
           overflow: hidden;
+          transform: translateY(0);
 
           svg {
             width: 13px;
@@ -421,28 +425,6 @@ function getPlatformInfo(link: string): PlatformInfo | null {
             transform: translate(-50%, -50%);
             transition: all 0.3s ease;
             border-radius: 50%;
-          }
-
-          &:hover {
-            color: var(--vp-c-brand-1);
-            border-color: var(--vp-c-brand-3);
-            background: linear-gradient(
-              135deg,
-              var(--vp-c-brand-soft) 0%,
-              var(--vp-c-bg) 100%
-            );
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
-            svg {
-              transform: scale(1.1);
-            }
-
-            &::before {
-              width: 40px;
-              height: 40px;
-              opacity: 0.1;
-            }
           }
 
           &:active {

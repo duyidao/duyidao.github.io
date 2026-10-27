@@ -928,4 +928,39 @@ export const mutableHandlers = {
 
 ### Vue3 时序图
 
-![时序图](https://pic1.imgdb.cn/item/681f413c58cb8da5c8eb7432.png)
+```mermaid
+sequenceDiagram
+    participant User
+    participant ComputedImpl as Computed Impl
+    participant Effect
+    participant ReactiveVariable as Reactive Variable
+    participant System
+
+    User->>ComputedImpl: computed(() => R.value + 1)
+    Note right of ComputedImpl: Creates instance
+    User->>Effect: effect(() => console.log(C.value))
+    Note right of Effect: effect starts, calls C.value
+
+    ComputedImpl->>System: get()
+    System->>ComputedImpl: setActiveEffect(C)
+    System->>ComputedImpl: startTrack(C)
+    ComputedImpl->>ReactiveVariable: R.value (triggers track)
+    ReactiveVariable->>System: link(R, C)
+    System->>ComputedImpl: endTrack(C)
+
+    ComputedImpl->>ComputedImpl: update()
+    ComputedImpl->>ReactiveVariable: getter() (accesses R)
+    ReactiveVariable->>System: link(R, C)
+    ComputedImpl->>System: setActiveEffect(prev)
+    Note right of ComputedImpl: C is sub of R, dep of E
+
+    ReactiveVariable->>System: R.value = newValue
+    System->>ReactiveVariable: notify()
+    System->>ComputedImpl: propagate(R.subs)
+    System->>ComputedImpl: propagateSubs(C)
+
+    ComputedImpl->>ComputedImpl: update()
+    ComputedImpl->>System: propagate(C.subs)
+    System->>Effect: effect.notify()
+    Effect->>User: console.log(C.value)
+```

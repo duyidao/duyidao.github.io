@@ -1213,4 +1213,50 @@ export const link = (dep, sub) => {
 
 ### Vue3 时序图
 
-![时序图](https://pic1.imgdb.cn/item/681cc3c158cb8da5c8e66d0f.png)
+```mermaid
+sequenceDiagram
+    actor User as 用户
+    participant RefFunc as ref()
+    participant RefImpl
+    participant EffectFunc as effect()
+    participant EffectReactive
+    participant LinkFunc as link()
+    participant PropagateFunc as propagate()
+    participant ActiveSub as activeSub
+
+    Note over User, ActiveSub: <b>初始化阶段</b>
+    User->>RefFunc: 1. 创建 ref<br>ref(initialValue)
+    RefFunc->>RefImpl: 2. new RefImpl(value)
+    RefImpl-->>User: 3. 返回 Ref 实例
+    User->>EffectFunc: 4. 创建 effect<br>effect(fn, options)
+    EffectFunc->>EffectReactive: 5. new EffectReactive(fn)
+    EffectReactive-->>User: 6. 返回 effect.run
+
+    Note over User, ActiveSub: <b>依赖收集阶段</b>
+    User->>EffectReactive: 7. 执行 effect.run()
+    EffectReactive->>ActiveSub: 8. prevSub = activeSub
+    EffectReactive->>ActiveSub: 9. activeSub = this
+    EffectReactive->>User: 10. 执行回调函数 fn()
+    User->>RefImpl: 11. 访问 .value (触发 get)
+    RefImpl->>LinkFunc: 12. link(dep=Ref, sub=Effect)
+    LinkFunc->>RefImpl: 13. 添加订阅者到 subs 链表
+    LinkFunc->>EffectReactive: 14. 添加依赖到 deps 链表
+    RefImpl-->>User: 15. 返回 _value
+
+    Note over User, ActiveSub: <b>更新触发阶段</b>
+    User->>RefImpl: 16. 设置 .value = newVal (触发 set)
+    RefImpl->>PropagateFunc: 17. propagate()
+    PropagateFunc->>RefImpl: 18. 遍历 subs 链表
+
+    loop 遍历所有订阅者
+        PropagateFunc->>EffectReactive: 19. 调用 notify()
+        alt 存在 scheduler
+            EffectReactive->>EffectReactive: 20. 执行自定义 scheduler
+        else
+            EffectReactive->>EffectReactive: 21. 执行默认 run()
+        end
+    end
+
+    Note over User, ActiveSub: <b>清理阶段</b>
+    EffectReactive->>ActiveSub: 22. 恢复上下文<br>activeSub = prevSub
+```
