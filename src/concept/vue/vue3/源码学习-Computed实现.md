@@ -33,8 +33,23 @@
 - `c` 创建一个新节点，头节点和尾节点都指向该节点。节点的 `sub` 指向 `effect`，继续往下走（此时 `computed` 作为 `dep`）
 - 一秒之后 `count` 发生改变，通过节点的 `sub` 触发 `computed` 的回调函数，然后 `computed` 通过节点的 `sub` 通知 `effect` 执行回调函数，打印 `c.value`
 
-下面画一个图方便理解：
-![流程图](https://pic1.imgdb.cn/item/6821949058cb8da5c8ed395a.png)
+下面画一个流程图方便理解：
+
+```mermaid
+graph TD
+    Count["count(Ref)"]
+    CComputed["c(Computed)"]
+    Link1["link1"]
+    Link2["link2"]
+    Effect["effect"]
+
+    Count -->|subs / subsTail| Link1
+    CComputed -->|dep| Count
+    CComputed -->|subs / subsTail| Link2
+    Link1 -->|sub| CComputed
+    Effect -->|dep| CComputed
+    Link2 -->|sub| Effect
+```
 
 新建一个 `computed.ts` 文件，按需导出一个 `computed` 函数，接收一个参数。该参数有可能是一个函数，也有可能是一个包含 `get` 和 `set` 方法的对象，使用示例如下：
 

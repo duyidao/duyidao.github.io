@@ -8,7 +8,14 @@
 
 具体流程图如下：
 
-![流程图](https://pic1.imgdb.cn/item/6878ac6c58cb8da5c8be54b4.png)
+```mermaid
+flowchart TD
+    A["打开页面连接<br>websocket"] --> B["点击要查看的项目"]
+    B --> C["发送项目id给<br>websocket服务"]
+    C --> D["未完成的项目，开始执行，<br>每个节点完成<br>都会发当前进度给前端"]
+    D --> E["未完成项目，前端会<br>找到当前正在等待执行<br>的节点，前端开始计时"]
+    E --> F["收到websocket消息，<br>显示完整事件，<br>开始计时一个节点"]
+```
 
 ## WebSocket 基本使用
 
