@@ -236,6 +236,10 @@ const read = [
         text: '双引擎架构：Vite 是如何站在巨人的肩膀上实现的？',
         link: '/read/深入浅出Vite/双引擎架构：Vite 是如何站在巨人的肩膀上实现的？',
       },
+      {
+        text: '得力的性能推手：Esbuild 功能使用与插件开发实战',
+        link: '/read/深入浅出Vite/得力的性能推手：Esbuild 功能使用与插件开发实战',
+      },
     ],
   },
 ]

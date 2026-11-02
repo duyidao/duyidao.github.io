@@ -1,4 +1,3 @@
-import type MarkdownIt from 'markdown-it'
 import { isMermaidFence, isInsideCodeGroup, mermaidDomId } from './utils'
 
 /**
@@ -7,7 +6,7 @@ import { isMermaidFence, isInsideCodeGroup, mermaidDomId } from './utils'
  * - ```md:img - 将 Markdown 内容渲染为图片
  * - ```mermaid [标题] - 在代码组中将 mermaid 图表渲染为交互式组件
  */
-export function fencePlugin(md: MarkdownIt) {
+export function fencePlugin(md: any) {
   // 保存默认的 fence 渲染规则，用于兜底处理普通代码块
   // 如果默认规则不存在，则使用最简实现：直接返回代码内容
   const defaultFence =
@@ -16,7 +15,7 @@ export function fencePlugin(md: MarkdownIt) {
 
   // 重写 fence 渲染规则，拦截所有代码块的渲染过程
   md.renderer.rules.fence = (
-    tokens: Token[], // 所有语法解析令牌
+    tokens: any[], // 所有语法解析令牌
     idx: number, // 当前代码块的索引
     options: any, // Markdown 配置选项
     env: any, // 环境信息（包含文件路径等）

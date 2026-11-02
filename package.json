@@ -4,6 +4,7 @@
   "devDependencies": {
     "@braintree/sanitize-url": "^7.1.2",
     "@nolebase/vitepress-plugin-git-changelog": "^2.18.2",
+    "@types/node": "^26.6.6",
     "busuanzi.pure.js": "^1.0.3",
     "cytoscape": "^3.34.4",
     "cytoscape-cose-bilkent": "^4.1.0",

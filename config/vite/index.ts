@@ -1,19 +1,30 @@
+// @ts-ignore Node.js typings may not be included by this project's tsconfig.
 import fs from 'fs'
+// @ts-ignore Node.js typings may not be included by this project's tsconfig.
 import path from 'path'
+// @ts-ignore Node.js typings may not be included by this project's tsconfig.
+import { fileURLToPath } from 'url'
 import { localIconLoader } from 'vitepress-plugin-group-icons'
 import { iconToSVG } from '@iconify/utils'
 import * as hugeicons from '@iconify-json/hugeicons'
 import * as cib from '@iconify-json/cib'
 
 // 读取 SVG 文件并返回一个对象，其中键是 SVG 文件的名称，值是 SVG 文件的路径
-function getSvgs() {
+interface SvgMap {
+  [name: string]: string
+}
+
+function getSvgs(): SvgMap {
   try {
-    const svgDir = path.join(__dirname, '../../public/svg')
-    const files = fs.readdirSync(svgDir)
+    const svgDir = path.join(
+      path.dirname(fileURLToPath(import.meta.url)),
+      '../../public/svg',
+    )
+    const files: string[] = fs.readdirSync(svgDir)
 
     return files
       .filter((file) => file.endsWith('.svg'))
-      .reduce((acc, file) => {
+      .reduce<SvgMap>((acc, file: string) => {
         const name = path.basename(file, '.svg')
         // 使用 GitHub Pages 兼容的绝对路径
         acc[name] = `/svg/${file}`

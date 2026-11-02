@@ -120,7 +120,6 @@ const authorList = computed(() => {
   return []
 })
 
-
 // 获取文章字数
 const wordCount = ref(0)
 const imageCount = ref(0)
@@ -203,28 +202,6 @@ const readList = computed(() => {
 
 <template>
   <div class="md-info">
-    <!-- 调试信息（生产环境可删除） -->
-    <div
-      v-if="false"
-      style="
-        background: #fff3cd;
-        padding: 10px;
-        margin-bottom: 10px;
-        border-radius: 4px;
-        font-size: 12px;
-      "
-    >
-      <p><strong>调试信息：</strong></p>
-      <p>当前路径：{{ currentPath }}</p>
-      <p>元数据存在：{{ !!currentDocMeta }}</p>
-      <p>描述长度：{{ docDescription.length }}</p>
-      <p>Tags数量：{{ docTags.length }}</p>
-      <p>Authors数量：{{ authorList.length }}</p>
-      <p v-if="authorList.length">
-        第一条作者：{{ JSON.stringify(authorList[0]) }}
-      </p>
-    </div>
-
     <!-- 文档基本信息（作者、字数、阅读时间、日期） -->
     <div class="md-info__read">
       <div v-for="read in readList" :key="read.name" :title="read.title">

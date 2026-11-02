@@ -509,6 +509,20 @@
     ],
     "authors": []
   },
+  "read/vite/深入浅出Vite/得力的性能推手：Esbuild 功能使用与插件开发实战": {
+    "title": "得力的性能推手：Esbuild 功能使用与插件开发实战",
+    "description": "剖析 Esbuild 高性能的四大底层原因（Go 原生编译、多核并行、零依赖自研、AST 复用），详解命令行与代码调用两种方式下的 Build API/Transform API，并通过 env 插件、CDN 依赖拉取插件、HTML 构建插件三个实战掌握 onResolve/onLoad/onStart/onEnd 钩子与插件开发范式。",
+    "tags": [
+      "esbuild",
+      "vite",
+      "plugin",
+      "build-api",
+      "transform-api",
+      "metafile",
+      "cdn"
+    ],
+    "authors": []
+  },
   "practice/handle/business/富文本编辑器": {
     "title": "富文本编辑器集成与二次开发指南",
     "description": "涵盖 Tinymce 与 vue-quill-editor 的安装配置、界面定制、插件开发及图片上传至服务器的完整实践方案。",

@@ -2922,5 +2922,104 @@
       "package-manager",
       "pnpm"
     ]
+  },
+  "Golang": {
+    "en": "Golang",
+    "cn": "Go 语言",
+    "descript": "Google 推出的静态类型编译型语言，代码直接编译为原生机器码，具备协程并发与共享内存优势，Esbuild 正是基于 Go 实现，因此获得远超 JS 打包工具的构建性能。",
+    "tags": [
+      "programming-language",
+      "build-tool",
+      "esbuild",
+      "performance"
+    ]
+  },
+  "Build API": {
+    "en": "Build API",
+    "cn": "Build API 构建接口",
+    "descript": "Esbuild 面向项目打包的 API 集合，包含异步的 build、同步的 buildSync 以及提供静态服务的 serve，支持入口、产物格式、拆包、SourceMap、元信息等完整配置。",
+    "tags": [
+      "esbuild",
+      "api",
+      "bundler",
+      "build"
+    ]
+  },
+  "Transform API": {
+    "en": "Transform API",
+    "cn": "Transform API 转译接口",
+    "descript": "Esbuild 面向单文件转译的 API，包含异步的 transform 与同步的 transformSync，接收代码字符串与编译配置，返回转译结果，Vite 底层用它完成 TS/JSX 单文件编译。",
+    "tags": [
+      "esbuild",
+      "api",
+      "transformer",
+      "compile"
+    ]
+  },
+  "onResolve": {
+    "en": "onResolve",
+    "cn": "onResolve 路径解析钩子",
+    "descript": "Esbuild 插件钩子，在模块路径解析阶段触发，可拦截并重写模块路径、返回 namespace 标记，用于处理自定义协议、CDN URL 或虚拟模块。",
+    "tags": [
+      "esbuild",
+      "plugin",
+      "hook",
+      "resolve"
+    ]
+  },
+  "onLoad": {
+    "en": "onLoad",
+    "cn": "onLoad 模块加载钩子",
+    "descript": "Esbuild 插件钩子，在模块内容加载阶段触发，通过 namespace 过滤目标模块并返回 contents 与 loader，实现自定义模块内容的注入。",
+    "tags": [
+      "esbuild",
+      "plugin",
+      "hook",
+      "loader"
+    ]
+  },
+  "Metafile": {
+    "en": "Metafile",
+    "cn": "Metafile 构建元信息",
+    "descript": "Esbuild 构建时生成的元信息文件，记录所有输入模块与输出产物的路径、体积及依赖关系，需在配置中开启 metafile，是编写 HTML 生成、产物分析等插件的关键数据源。",
+    "tags": [
+      "esbuild",
+      "plugin",
+      "build",
+      "analysis"
+    ]
+  },
+  "Namespace": {
+    "en": "Namespace",
+    "cn": "Namespace 命名空间",
+    "descript": "Esbuild 插件机制中的模块分类标识，onResolve 钩子可为模块返回 namespace，onLoad 钩子再依据该标识过滤出需要处理的模块，实现路径解析与内容加载的联动。",
+    "tags": [
+      "esbuild",
+      "plugin",
+      "resolve",
+      "module"
+    ]
+  },
+  "Loader": {
+    "en": "Loader",
+    "cn": "Loader 加载器",
+    "descript": "Esbuild 内置的文件类型处理规则，包括 base64、binary、css、dataurl、file、js(x)、ts(x)、text、json 等，通过 loader 配置为不同后缀文件指定加载方式。",
+    "tags": [
+      "esbuild",
+      "build-tool",
+      "file",
+      "compile"
+    ]
+  },
+  "Skypack": {
+    "en": "Skypack",
+    "cn": "Skypack CDN 服务",
+    "descript": "提供 npm 第三方包 ESM 产物的 CDN 服务，可直接通过 URL 引入依赖而无需本地安装，常作为 Esbuild 插件实战中 CDN 依赖拉取的对象。",
+    "tags": [
+      "cdn",
+      "esm",
+      "npm",
+      "frontend"
+    ]
   }
 }
