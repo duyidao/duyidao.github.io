@@ -523,6 +523,21 @@
     ],
     "authors": []
   },
+  "read/vite/深入浅出Vite/Rollup 构建基石：打包配置与插件机制实战": {
+    "title": "Rollup 构建基石：打包配置与插件机制实战",
+    "description": "系统梳理 Rollup 从基础使用到插件开发的全链路：快速上手与 Tree Shaking 原理、多产物/多入口/output 占位符/external/plugins 等核心配置、rollup.rollup 与 rollup.watch 编程式调用；深入 Build 与 Output 两大构建阶段，拆解 Async/Sync/Parallel/Sequential/First 五类 Hook 与完整插件工作流，并以官方插件源码实战 resolveId、load、transform、renderChunk、generateBundle 五大高频钩子。",
+    "tags": [
+      "rollup",
+      "vite",
+      "plugin",
+      "hook",
+      "build",
+      "chunk",
+      "tree-shaking",
+      "bundle"
+    ],
+    "authors": []
+  },
   "practice/handle/business/富文本编辑器": {
     "title": "富文本编辑器集成与二次开发指南",
     "description": "涵盖 Tinymce 与 vue-quill-editor 的安装配置、界面定制、插件开发及图片上传至服务器的完整实践方案。",

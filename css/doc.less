@@ -33,6 +33,29 @@
 
   --custom-block-caution-left: #e0575b;
   --custom-block-caution-bg: #fde4e8;
+
+  /* 表格：单元格底色、表头底色、边框色 */
+  --custom-table-td-bg: var(--vp-code-block-bg);
+  --custom-table-th-bg: color-mix(in srgb, var(--vp-c-indigo-3) 16%, var(--vp-code-block-bg));
+  --custom-table-border: color-mix(in srgb, var(--vp-c-indigo-3) 22%, var(--vp-c-divider));
+  --custom-table-row-alt-bg: color-mix(in srgb, var(--vp-c-indigo-3) 4%, var(--vp-code-block-bg));
+  --custom-table-row-hover-bg: color-mix(in srgb, var(--vp-c-indigo-3) 11%, var(--vp-code-block-bg));
+  --custom-table-shadow: rgba(0, 0, 0, 0.08);
+
+  /* 术语词条：文字色、高亮底色、下划线、悬停反馈 */
+  --custom-word-color: var(--vp-c-indigo-1);
+  --custom-word-color-hover: var(--vp-c-indigo-3);
+  --custom-word-highlight: color-mix(in srgb, var(--vp-c-indigo-3) 20%, transparent);
+  --custom-word-bg-hover: color-mix(in srgb, var(--vp-c-indigo-3) 16%, transparent);
+  --custom-word-underline: color-mix(in srgb, var(--vp-c-indigo-2) 60%, transparent);
+  --custom-word-shadow: color-mix(in srgb, var(--vp-c-indigo-3) 30%, transparent);
+
+  /* 术语悬浮提示：面板底色、边框、阴影、标签描边 */
+  --custom-tooltip-bg: rgba(255, 255, 255, 0.92);
+  --custom-tooltip-border: color-mix(in srgb, var(--vp-c-indigo-3) 22%, var(--vp-c-divider));
+  --custom-tooltip-shadow: rgba(0, 0, 0, 0.16);
+  --custom-tooltip-tag-bg: color-mix(in srgb, var(--vp-c-indigo-3) 14%, transparent);
+  --custom-tooltip-tag-border: color-mix(in srgb, var(--vp-c-indigo-3) 30%, transparent);
 }
 
 .dark {
@@ -56,11 +79,115 @@
 
   --custom-block-caution-left: #e0575b;
   --custom-block-caution-bg: #391c22;
+
+  /* 表格：暗色下表头更亮，与表体拉开层次 */
+  --custom-table-td-bg: var(--vp-code-block-bg);
+  --custom-table-th-bg: color-mix(in srgb, var(--vp-c-indigo-3) 24%, var(--vp-code-block-bg));
+  --custom-table-border: color-mix(in srgb, var(--vp-c-indigo-3) 30%, rgba(255, 255, 255, .16));
+  --custom-table-row-alt-bg: color-mix(in srgb, var(--vp-c-indigo-3) 5%, var(--vp-code-block-bg));
+  --custom-table-row-hover-bg: color-mix(in srgb, var(--vp-c-indigo-3) 14%, var(--vp-code-block-bg));
+  --custom-table-shadow: rgba(0, 0, 0, 0.5);
+
+  /* 术语词条：暗色下提高亮度与对比，避免文字淹没在深底上 */
+  --custom-word-color: var(--vp-c-indigo-2);
+  --custom-word-color-hover: var(--vp-c-indigo-3);
+  --custom-word-highlight: color-mix(in srgb, var(--vp-c-indigo-3) 26%, transparent);
+  --custom-word-bg-hover: color-mix(in srgb, var(--vp-c-indigo-3) 22%, transparent);
+  --custom-word-underline: color-mix(in srgb, var(--vp-c-indigo-2) 55%, transparent);
+  --custom-word-shadow: color-mix(in srgb, var(--vp-c-indigo-3) 45%, transparent);
+
+  /* 术语悬浮提示：暗色下改用半透明深底 + 更强描边 */
+  --custom-tooltip-bg: rgba(30, 30, 32, 0.94);
+  --custom-tooltip-border: color-mix(in srgb, var(--vp-c-indigo-3) 32%, var(--vp-c-divider));
+  --custom-tooltip-shadow: rgba(0, 0, 0, 0.55);
+  --custom-tooltip-tag-bg: color-mix(in srgb, var(--vp-c-indigo-3) 18%, transparent);
+  --custom-tooltip-tag-border: color-mix(in srgb, var(--vp-c-indigo-3) 45%, transparent);
+}
+
+/* 表格：占满整行、内容居中、统一底色与边框 */
+.vp-doc table {
+  display: table;
+  width: 100%;
+  table-layout: auto;
+  margin: 24px 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--custom-table-border);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px -6px var(--custom-table-shadow);
 }
 
 .vp-doc table th,
 .vp-doc table td {
-  background-color: var(--vp-code-block-bg);
+  background-color: var(--custom-table-td-bg);
+  border: none;
+  border-bottom: 1px solid var(--custom-table-border);
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px 16px;
+  transition: background-color 0.22s ease, color 0.22s ease;
+}
+
+/* 表格：表头底色与表体明显区分 */
+.vp-doc table thead th {
+  background-color: var(--custom-table-th-bg);
+  color: var(--vp-c-text-1);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  border-bottom: 2px solid var(--custom-table-border);
+}
+
+/* 表格：最后一行不画线，避免与圆角外框重复 */
+.vp-doc table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* 表格：四角贴合外框圆角，避免 display:table 下 overflow 裁切失效 */
+.vp-doc table thead tr:first-child th:first-child {
+  border-top-left-radius: 11px;
+}
+
+.vp-doc table thead tr:first-child th:last-child {
+  border-top-right-radius: 11px;
+}
+
+.vp-doc table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 11px;
+}
+
+.vp-doc table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 11px;
+}
+
+/* 表格：斑马纹，隔行底色微调以增强可读性 */
+.vp-doc table tbody tr:nth-child(2n) td {
+  background-color: var(--custom-table-row-alt-bg);
+}
+
+/* 表格：悬停整行高亮，方便横向对照数据 */
+.vp-doc table tbody tr:hover td {
+  background-color: var(--custom-table-row-hover-bg);
+  color: var(--vp-c-text-1);
+}
+
+/* 表格：合并单元格内容垂直居中 */
+.vp-doc table td[rowspan],
+.vp-doc table th[rowspan] {
+  vertical-align: middle;
+}
+
+/* 表格：窄屏降级为可横向滚动，避免宽表格撑破页面 */
+@media screen and (max-width: 768px) {
+  .vp-doc table {
+    display: block;
+    overflow-x: auto;
+    border-radius: 10px;
+  }
+
+  .vp-doc table th,
+  .vp-doc table td {
+    padding: 8px 12px;
+  }
 }
 
 .vp-doc img.medium-zoom-image {
@@ -69,24 +196,22 @@
 
 :root.dark {
 
-  .vp-doc th,
-  .vp-doc td {
-    border-color: rgba(#FFDAB9, .5);
+  /* 表格：暗色下用渐变表头强化层次，避免大面积深底显得沉闷 */
+  .vp-doc table thead th {
+    background-image: linear-gradient(180deg,
+        color-mix(in srgb, var(--vp-c-indigo-3) 14%, transparent) 0%,
+        transparent 100%);
+    border-bottom-width: 1px;
   }
 
-  .vp-doc table thead th,
-  .vp-doc table tbody td {
-    border-top: none !important;
+  /* 表格：暗色下悬停行加内发光，替代浅色下不明显的底色变化 */
+  .vp-doc table tbody tr:hover td {
+    box-shadow: inset 0 0 0 999px color-mix(in srgb, var(--vp-c-indigo-3) 7%, transparent);
   }
 
-  .vp-doc table thead th,
-  .vp-doc table tbody td {
-    border-left: none !important;
-  }
-
-  .vp-doc table thead th:last-child,
-  .vp-doc table tbody td:last-child {
-    border-right: none !important;
+  /* 表格：外框投影在暗底上需要更柔和的扩散 */
+  .vp-doc table {
+    box-shadow: 0 6px 22px -8px var(--custom-table-shadow);
   }
 }
 

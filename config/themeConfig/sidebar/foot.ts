@@ -240,6 +240,10 @@ const read = [
         text: '得力的性能推手：Esbuild 功能使用与插件开发实战',
         link: '/read/深入浅出Vite/得力的性能推手：Esbuild 功能使用与插件开发实战',
       },
+      {
+        text: 'Rollup 构建基石：打包配置与插件机制实战',
+        link: '/read/深入浅出Vite/Rollup 构建基石：打包配置与插件机制实战',
+      },
     ],
   },
 ]

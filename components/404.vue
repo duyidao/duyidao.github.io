@@ -47,14 +47,17 @@ const goBack = () => {
   box-sizing: border-box;
   height: calc(100% - 64px);
   background-color: #000000;
-  background-image: radial-gradient(#11581e, #041607),
+  background-image:
+    radial-gradient(#11581e, #041607),
     url('https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif');
   background-repeat: no-repeat;
   background-size: cover;
   font-family: 'Inconsolata', Helvetica, sans-serif;
   font-size: 1.5rem;
   color: rgba(255, 165, 0, 0.8); /* 橙色主题 */
-  text-shadow: 0 0 1ex rgba(255, 165, 0, 1), 0 0 2px rgba(255, 255, 255, 0.8);
+  text-shadow:
+    0 0 1ex rgba(255, 165, 0, 1),
+    0 0 2px rgba(255, 255, 255, 0.8);
 
   .terminal {
     box-sizing: inherit;
@@ -74,7 +77,8 @@ const goBack = () => {
     .output {
       color: rgba(255, 165, 0, 0.8); /* 橙色主题 */
       margin-bottom: 24px;
-      text-shadow: 0 0 1px rgba(255, 165, 0, 0.4),
+      text-shadow:
+        0 0 1px rgba(255, 165, 0, 0.4),
         0 0 2px rgba(255, 255, 255, 0.8);
     }
 
@@ -96,7 +100,7 @@ const goBack = () => {
     }
 
     .errorcode {
-      color: #ffa500; /* 橙色 */
+      color: var(--theme-base, var(--vp-c-brand-1));
     }
   }
   .noise {

@@ -80,23 +80,56 @@ function handleMouseLeave() {
 
 <style lang="less" scoped>
 .special_words {
-  color: var(--color);
-  font-style: italic;
-  padding: 1px 10px;
-  background-color: var(--bg-color);
-  border-radius: 8px 8px 0 0;
-  border-bottom: 1.5px solid var(--bd-color);
-  margin: 0 2.5px;
+  display: inline-block;
+  padding: 0.05em 0.45em;
+  margin: 0 0.15em;
+  color: var(
+    --custom-word-color,
+    color-mix(in srgb, var(--theme-base) 79%, #000)
+  );
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.45;
+  background-color: var(
+    --custom-word-highlight,
+    color-mix(in srgb, var(--theme-base) 20%, transparent)
+  );
+  border-radius: 6px;
+  border-bottom: 1px dashed
+    var(
+      --custom-word-underline,
+      color-mix(in srgb, var(--theme-base) 60%, transparent)
+    );
   position: relative;
   cursor: default;
-  transition: all 0.2s ease;
+  transition:
+    color 0.22s ease,
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
 
   &.has-glossary {
     cursor: help;
-    border-bottom-style: dashed;
 
     &:hover {
-      background-color: var(--bg-color-hover, rgba(100, 150, 255, 0.1));
+      color: var(--custom-word-color-hover, var(--theme-base));
+      background-color: var(
+        --custom-word-bg-hover,
+        color-mix(in srgb, var(--theme-base) 16%, transparent)
+      );
+      border-bottom-style: solid;
+      border-bottom-color: var(--custom-word-color-hover, var(--theme-base));
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px -2px
+        var(
+          --custom-word-shadow,
+          color-mix(in srgb, var(--theme-base) 30%, transparent)
+        );
+    }
+
+    &:active {
+      transform: translateY(0);
     }
   }
 }
@@ -104,34 +137,54 @@ function handleMouseLeave() {
 .glossary-tooltip {
   position: fixed;
   z-index: 10000;
-  max-width: 350px;
-  padding: 12px 16px;
-  background: var(--vp-c-bg, #fff);
-  border: 1px solid var(--vp-c-border, #e0e0e0);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 360px;
+  padding: 14px 18px;
+  background: var(--custom-tooltip-bg, rgba(255, 255, 255, 0.92));
+  border: 1px solid
+    var(
+      --custom-tooltip-border,
+      color-mix(in srgb, var(--theme-base) 22%, var(--vp-c-divider))
+    );
+  border-radius: 10px;
+  box-shadow: 0 8px 28px -8px var(--custom-tooltip-shadow, rgba(0, 0, 0, 0.16));
   pointer-events: none;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
 
   .tooltip-header {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px;
     margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed
+      var(
+        --custom-tooltip-border,
+        color-mix(in srgb, var(--theme-base) 22%, var(--vp-c-divider))
+      );
     font-weight: 600;
     font-size: 14px;
+    line-height: 1.4;
     color: var(--vp-c-text-1, #333);
 
     .tooltip-en {
       font-weight: 400;
       font-size: 12px;
+      font-style: italic;
       color: var(--vp-c-text-2, #666);
-      margin-left: 4px;
     }
   }
 
   .tooltip-desc {
     font-size: 13px;
-    line-height: 1.6;
+    line-height: 1.7;
     color: var(--vp-c-text-2, #555);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   .tooltip-tags {
@@ -140,36 +193,47 @@ function handleMouseLeave() {
     gap: 6px;
 
     .tooltip-tag {
-      padding: 2px 8px;
+      padding: 2px 9px;
       font-size: 11px;
-      background: var(--vp-c-brand-soft, rgba(100, 150, 255, 0.1));
-      color: var(--vp-c-brand, #5b8def);
-      border-radius: 4px;
+      line-height: 1.6;
+      background: var(
+        --custom-tooltip-tag-bg,
+        color-mix(in srgb, var(--theme-base) 14%, transparent)
+      );
+      color: var(--vp-c-brand-1, var(--theme-base));
+      border: 1px solid
+        var(
+          --custom-tooltip-tag-border,
+          color-mix(in srgb, var(--theme-base) 30%, transparent)
+        );
+      border-radius: 999px;
     }
   }
 }
 
 .tooltip-fade-enter-active,
 .tooltip-fade-leave-active {
-  transition: opacity 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .tooltip-fade-enter-from,
 .tooltip-fade-leave-to {
   opacity: 0;
+  transform: translateY(4px);
 }
 
 @media screen and (max-width: 768px) {
   .special_words {
-    padding: 0.0625rem 0.625rem;
-    border-radius: 0.5rem 0.5rem 0 0;
-    border-bottom-width: 0.0938rem;
-    margin: 0 0.1563rem;
+    padding: 0.0625rem 0.3125rem;
+    margin: 0 0.0938rem;
+    border-radius: 0.25rem;
   }
 
   .glossary-tooltip {
     max-width: 280px;
-    padding: 10px 12px;
+    padding: 12px 14px;
 
     .tooltip-header {
       font-size: 13px;

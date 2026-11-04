@@ -513,12 +513,14 @@ module.exports = { createLink, createScript, generateHTML }
 
 在 `build.js` 的 `plugins` 数组中引入 `html()` 后执行打包，`index.html` 会自动输出到根目录。随后用 `serve` 起一个本地静态服务器即可预览：
 
-```bash
+::: code-group
+
+```bash [bash]
 npm i -g serve
 serve .
 ```
 
-```mermaid
+```mermaid [流程图]
 flowchart LR
     A[Esbuild 构建完成] --> B[onEnd 触发]
     B --> C{errors 为空?}
@@ -530,6 +532,8 @@ flowchart LR
     H --> I[写入 index.html]
     I --> J[serve 启动静态服务预览]
 ```
+
+:::
 
 > 要做一个足够通用的 HTML 插件，还需考虑自定义 HTML 内容、自定义公共前缀（publicPath）、自定义 script 标签类型以及多入口打包等因素。
 

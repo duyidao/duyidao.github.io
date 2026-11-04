@@ -1,49 +1,69 @@
 :root {
-  --vp-c-indigo-3: #f49b00;
-  --vp-c-indigo-2: #e69100;
-  --vp-c-indigo-1: #c67600;
-  /* 明亮主题变量 */
-  --learn-primary-color: #FF9800;
-  --learn-primary-dark: #F57C00;
-  --learn-primary-light: #FFE0B2;
-  --learn-primary-extra-light: #FFF3E0;
+  /* 主题色：全站唯一基准色，其余色值一律由它派生 */
+  --theme-base: #f49b00;
+
+  /* VitePress 品牌色阶：由基准色压暗派生，切换主题色只需改 --theme-base */
+  --vp-c-indigo-3: var(--theme-base);
+  --vp-c-indigo-2: color-mix(in srgb, var(--theme-base) 94%, #000);
+  --vp-c-indigo-1: color-mix(in srgb, var(--theme-base) 79%, #000);
+  --vp-c-indigo-soft: color-mix(in srgb, var(--theme-base) 14%, transparent);
+
+  /* 明亮主题变量：由基准色与白/黑混合派生明暗阶 */
+  --learn-primary-color: var(--theme-base);
+  --learn-primary-dark: var(--vp-c-indigo-2);
+  --learn-primary-light: color-mix(in srgb, var(--theme-base) 26%, #fff);
+  --learn-primary-extra-light: color-mix(in srgb, var(--theme-base) 10%, #fff);
   --text-color: #333;
   --text-secondary: #666;
   --bg-color: #fff;
   --card-bg: #fff;
-  --border-color: #FFCC80;
-  --shadow-color: rgba(255, 152, 0, 0.1);
-  --wave1: #FF980077;
-  --wave2: #F57C0066;
-  --wave3: #EF6C0044;
-  --body-bg: linear-gradient(135deg, #fff8f0 0%, #ffecd2 100%);
-  --header-bg: linear-gradient(90deg, var(--learn-primary-color), var(--learn-primary-dark));
+  --border-color: color-mix(in srgb, var(--theme-base) 42%, #fff);
+  --shadow-color: color-mix(in srgb, var(--theme-base) 12%, transparent);
+  --wave1: color-mix(in srgb, var(--theme-base) 47%, transparent);
+  --wave2: color-mix(in srgb, var(--vp-c-indigo-2) 40%, transparent);
+  --wave3: color-mix(in srgb, var(--vp-c-indigo-1) 27%, transparent);
+  --body-bg: linear-gradient(135deg,
+      color-mix(in srgb, var(--theme-base) 6%, #fff) 0%,
+      color-mix(in srgb, var(--theme-base) 19%, #fff) 100%);
+  --header-bg: linear-gradient(90deg,
+      var(--learn-primary-color),
+      var(--learn-primary-dark));
   --header-after-bg: var(--learn-primary-dark);
   --header-text: #fff;
 }
 
 :root.dark {
   --vp-code-block-bg: #292d3e;
-  --vp-c-indigo-1: #FFA500;
-  --vp-c-indigo-2: #FFC364;
-  --vp-c-indigo-3: #FFB732;
-  /* 黑暗主题变量 */
-  --learn-primary-color: #FF9800;
-  --learn-primary-dark: #E65100;
-  --learn-primary-light: #5D4037;
-  --learn-primary-extra-light: #424242;
+
+  /* 品牌色阶：暗色下 1 最浅、3 最深，与 VitePress 默认顺序一致 */
+  --vp-c-indigo-1: color-mix(in srgb, var(--theme-base) 62%, #fff);
+  --vp-c-indigo-2: color-mix(in srgb, var(--theme-base) 82%, #fff);
+  --vp-c-indigo-3: color-mix(in srgb, var(--theme-base) 95%, #fff);
+  --vp-c-indigo-soft: color-mix(in srgb, var(--theme-base) 16%, transparent);
+
+  /* 黑暗主题变量：同样由基准色派生，仅调换混合锚点 */
+  --learn-primary-color: var(--theme-base);
+  --learn-primary-dark: color-mix(in srgb, var(--theme-base) 62%, #000);
+  --learn-primary-light: color-mix(in srgb, var(--theme-base) 25%, #2b2b2b);
+  --learn-primary-extra-light: color-mix(in srgb,
+      var(--theme-base) 6%,
+      #2b2b2b);
   --text-color: #f0f0f0;
   --text-secondary: #ccc;
   --bg-color: #121212;
   --card-bg: #1e1e1e;
-  --border-color: #FF8F00;
-  --shadow-color: rgba(255, 152, 0, 0.15);
-  --wave1: #FF8F0077;
-  --wave2: #FF6D0066;
-  --wave3: #FF572244;
-  --body-bg: linear-gradient(135deg, #2c1a0d 0%, #1a120b 100%);
-  --header-bg: linear-gradient(90deg, var(--learn-primary-dark), #BF360C);
-  --header-after-bg: #BF360C;
+  --border-color: color-mix(in srgb, var(--theme-base) 85%, #fff);
+  --shadow-color: color-mix(in srgb, var(--theme-base) 15%, transparent);
+  --wave1: color-mix(in srgb, var(--theme-base) 47%, transparent);
+  --wave2: color-mix(in srgb, var(--vp-c-indigo-2) 40%, transparent);
+  --wave3: color-mix(in srgb, var(--vp-c-indigo-1) 27%, transparent);
+  --body-bg: linear-gradient(135deg,
+      color-mix(in srgb, var(--theme-base) 10%, #141414) 0%,
+      color-mix(in srgb, var(--theme-base) 5%, #141414) 100%);
+  --header-bg: linear-gradient(90deg,
+      color-mix(in srgb, var(--theme-base) 78%, #000),
+      var(--learn-primary-dark));
+  --header-after-bg: var(--learn-primary-dark);
   --header-text: #fff;
 }
 

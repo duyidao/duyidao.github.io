@@ -4,6 +4,7 @@ import DefaultTheme from 'vitepress/theme'
 import backtotop from './backtotop.vue'
 import dataPanel from './dataPanel.vue'
 import notFound from './404.vue'
+import themeSwitcher from './themeSwitcher.vue'
 import { useData } from 'vitepress'
 import { nextTick, provide } from 'vue'
 
@@ -23,7 +24,7 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     `circle(0px at ${x}px ${y}px)`,
     `circle(${Math.hypot(
       Math.max(x, innerWidth - x),
-      Math.max(y, innerHeight - y)
+      Math.max(y, innerHeight - y),
     )}px at ${x}px ${y}px)`,
   ]
 
@@ -39,13 +40,23 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
       easing: 'ease-in',
       fill: 'forwards',
       pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
-    }
+    },
   )
 })
 </script>
 
 <template>
   <DefaultTheme.Layout>
+    <!-- 导航栏右侧：主题色切换 -->
+    <template #nav-bar-content-after>
+      <themeSwitcher />
+    </template>
+
+    <!-- 移动端菜单：主题色切换 -->
+    <template #nav-screen-content-after>
+      <themeSwitcher variant="screen" />
+    </template>
+
     <!-- doc-footer-before插槽 -->
     <template #doc-footer-before>
       <backtotop />

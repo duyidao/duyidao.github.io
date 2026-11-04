@@ -1,10 +1,53 @@
 export default [
   // 添加图标
-  ['link', { rel: 'icon', href: '/favicon.ico' }],
-  ['meta', { name: 'algolia-site-verification', content: 'C65A24C55F4B32EE' }],
-  ['meta', { property: 'og:title', content: '刀刀博客' }],
-  ['meta', { property: 'og:site_name', content: '刀刀博客' }],
-  ['meta', { property: 'og:type', content: 'website' }],
+  [
+    'link',
+    {
+      rel: 'icon',
+      href: '/favicon.ico',
+    },
+  ],
+  // 首屏前应用已保存的主题色，避免闪烁
+  [
+    'script',
+    {},
+    `try {
+  var c=localStorage.getItem('vitepress-theme-base');
+  if(c)document.documentElement.style.setProperty('--theme-base', c)
+}
+
+catch(e) {}
+
+`,
+  ],
+  [
+    'meta',
+    {
+      name: 'algolia-site-verification',
+      content: 'C65A24C55F4B32EE',
+    },
+  ],
+  [
+    'meta',
+    {
+      property: 'og:title',
+      content: '刀刀博客',
+    },
+  ],
+  [
+    'meta',
+    {
+      property: 'og:site_name',
+      content: '刀刀博客',
+    },
+  ],
+  [
+    'meta',
+    {
+      property: 'og:type',
+      content: 'website',
+    },
+  ],
   [
     'meta',
     {
@@ -20,8 +63,20 @@ export default [
         '刀刀,杜一刀,技术博客,博客,前端,js,css,html,react,vue,webpack,vite,git,github,码农,程序员,刀刀博客',
     },
   ],
-  ['meta', { property: 'og:image', content: '/favicon.ico' }],
-  ['meta', { property: 'og:url', content: 'https://duyidao.github.io/' }],
+  [
+    'meta',
+    {
+      property: 'og:image',
+      content: '/favicon.ico',
+    },
+  ],
+  [
+    'meta',
+    {
+      property: 'og:url',
+      content: 'https://duyidao.github.io/',
+    },
+  ],
   [
     'meta',
     {
@@ -37,6 +92,18 @@ export default [
       content: 'no-cache, no-store, must-revalidate',
     },
   ],
-  ['meta', { httpEquiv: 'Pragma', content: 'no-cache' }],
-  ['meta', { httpEquiv: 'Expires', content: '0' }],
+  [
+    'meta',
+    {
+      httpEquiv: 'Pragma',
+      content: 'no-cache',
+    },
+  ],
+  [
+    'meta',
+    {
+      httpEquiv: 'Expires',
+      content: '0',
+    },
+  ],
 ]

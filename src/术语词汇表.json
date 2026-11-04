@@ -3021,5 +3021,148 @@
       "npm",
       "frontend"
     ]
+  },
+  "DCE": {
+    "en": "Dead Code Elimination",
+    "cn": "DCE 死代码消除",
+    "descript": "编译原理中的死代码消除技术，通过静态分析移除永远不会被执行或从未被引用的代码。Rollup 的 Tree Shaking 正是 DCE 在 ES Module 场景下的一种实现。",
+    "tags": [
+      "optimization",
+      "compiler",
+      "tree-shaking",
+      "rollup"
+    ]
+  },
+  "Build 阶段": {
+    "en": "Build Phase",
+    "cn": "Build 构建阶段",
+    "descript": "Rollup 构建生命周期的第一个阶段，由 rollup.rollup() 触发，负责解析入口、创建模块依赖图、初始化各模块 AST 并收集依赖关系。此阶段产物尚未生成，仅得到承载模块信息的 bundle 对象。",
+    "tags": [
+      "rollup",
+      "lifecycle",
+      "build",
+      "ast"
+    ]
+  },
+  "Output 阶段": {
+    "en": "Output Phase",
+    "cn": "Output 输出阶段",
+    "descript": "Rollup 构建生命周期的第二个阶段，由 bundle.generate() 或 bundle.write() 触发，负责真正执行打包、生成 chunk 与静态资源，并通过 write 将产物写入磁盘。",
+    "tags": [
+      "rollup",
+      "lifecycle",
+      "bundle",
+      "chunk"
+    ]
+  },
+  "Build Hook": {
+    "en": "Build Hook",
+    "cn": "Build 阶段钩子",
+    "descript": "在 Rollup 的 Build 阶段执行的插件钩子，主要涉及模块代码转换、AST 解析与模块依赖解析，操作粒度为单个模块（单文件）级别，如 options、buildStart、resolveId、load、transform、moduleParsed、buildEnd。",
+    "tags": [
+      "rollup",
+      "plugin",
+      "hook",
+      "build"
+    ]
+  },
+  "Output Hook": {
+    "en": "Output Generation Hook",
+    "cn": "Output 阶段钩子",
+    "descript": "官方称为 Output Generation Hook，在 Rollup 的 Output 阶段执行，主要负责代码打包与产物输出，操作粒度通常为 chunk 级别，如 renderStart、renderChunk、generateBundle、writeBundle、closeBundle。",
+    "tags": [
+      "rollup",
+      "plugin",
+      "hook",
+      "output"
+    ]
+  },
+  "Hook": {
+    "en": "Hook",
+    "cn": "钩子函数",
+    "descript": "构建工具在生命周期特定阶段自动调用的回调函数。Rollup 插件本质就是若干 Hook 的集合：Hook 既定义插件「做什么」，也通过所属阶段声明「什么时候做」。按执行方式分为 Async、Sync、Parallel、Sequential、First 五类。",
+    "tags": [
+      "plugin",
+      "lifecycle",
+      "rollup",
+      "vite"
+    ]
+  },
+  "Rollup 插件": {
+    "en": "Rollup Plugin",
+    "cn": "Rollup 插件",
+    "descript": "以对象形式声明 name 属性并组合若干 Hook 函数来扩展 Rollup 构建能力的模块。可通过 plugins 配置在顶层或 output 内注册，Rollup 插件生态也被 Vite 的 Plugin Container 完整兼容。",
+    "tags": [
+      "rollup",
+      "plugin",
+      "build-tool",
+      "vite"
+    ]
+  },
+  "Chunk": {
+    "en": "Chunk",
+    "cn": "Chunk 代码块",
+    "descript": "Rollup 在 Output 阶段生成的产物单元，通常由多个源文件合并而成，包含入口 chunk 与异步 chunk。renderChunk、generateBundle 等 Output 钩子以 chunk 为操作粒度。",
+    "tags": [
+      "rollup",
+      "bundle",
+      "output",
+      "build"
+    ]
+  },
+  "Alias": {
+    "en": "Alias",
+    "cn": "Alias 路径别名",
+    "descript": "为模块路径配置简写映射的机制，Rollup 通过 @rollup/plugin-alias 在 resolveId 钩子中把别名替换为真实路径，Vite 则通过 resolve.alias 在配置层直接支持。",
+    "tags": [
+      "rollup",
+      "resolve",
+      "plugin",
+      "vite"
+    ]
+  },
+  "External": {
+    "en": "External",
+    "cn": "External 外部化",
+    "descript": "Rollup 配置项，用于声明不参与打包的依赖，产物中保留原始 import 语句交由运行时提供。常见于 SSR 构建与 ESM CDN 场景，也可由 resolveId 钩子通过返回对象的 external 字段动态标记。",
+    "tags": [
+      "rollup",
+      "config",
+      "ssr",
+      "cdn"
+    ]
+  },
+  "MagicString": {
+    "en": "MagicString",
+    "cn": "MagicString 字符串编辑库",
+    "descript": "专为源码转换设计的字符串操作库，支持在不破坏原有位置信息的前提下执行 overwrite、append 等编辑，并可生成高精度 SourceMap，Rollup 官方 replace 插件即基于它实现。",
+    "tags": [
+      "rollup",
+      "sourcemap",
+      "plugin",
+      "transform"
+    ]
+  },
+  "Plugin Context": {
+    "en": "Plugin Context",
+    "cn": "插件上下文对象",
+    "descript": "Rollup 在每个 Hook 执行时绑定到 this 的对象，提供 resolve、load、emitFile、warn 等能力。借助 this.resolve 可触发除当前插件外所有插件的 resolveId 钩子，实现插件间的互相调用。",
+    "tags": [
+      "rollup",
+      "plugin",
+      "hook",
+      "api"
+    ]
+  },
+  "Plugin Container": {
+    "en": "Plugin Container",
+    "cn": "插件容器",
+    "descript": "Vite 内部用于调度插件的核心模块，在开发阶段模拟 Rollup 的插件生命周期（options、resolveId、load、transform 等），使 Vite 能够直接复用海量 Rollup 插件，同时支持 configureServer、transformIndexHtml 等 Vite 专属钩子。",
+    "tags": [
+      "vite",
+      "plugin",
+      "rollup",
+      "architecture"
+    ]
   }
 }
