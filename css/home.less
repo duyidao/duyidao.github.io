@@ -84,28 +84,383 @@ body {
   }
 }
 
-.VPHome {
-  .VPHero {
-    .main {
-      .home_blog {
-        font-size: 32px;
-        line-height: 1;
-      }
+/* 首页：所有色值均由 --theme-base 派生，跟随主题色切换 */
+:root {
+  /* Hero 标题流光渐变：深色端 → 基准色 → 浅色端 */
+  --home-hero-name-bg: linear-gradient(100deg,
+      color-mix(in srgb, var(--theme-base) 76%, #000) 0%,
+      var(--theme-base) 32%,
+      color-mix(in srgb, var(--theme-base) 58%, #fff) 55%,
+      var(--theme-base) 78%,
+      color-mix(in srgb, var(--theme-base) 76%, #000) 100%);
+  /* Hero 顶部光晕与网格纹理 */
+  --home-hero-glow: color-mix(in srgb, var(--theme-base) 18%, transparent);
+  --home-grid-color: color-mix(in srgb, var(--theme-base) 12%, transparent);
+  /* 主按钮渐变与投影 */
+  --home-btn-bg-image: linear-gradient(135deg,
+      color-mix(in srgb, var(--theme-base) 78%, #000) 0%,
+      var(--theme-base) 58%,
+      color-mix(in srgb, var(--theme-base) 76%, #fff) 100%);
+  --home-btn-shadow: 0 10px 22px -10px color-mix(in srgb, var(--theme-base) 70%, transparent);
+  --home-btn-shadow-hover: 0 16px 30px -10px color-mix(in srgb, var(--theme-base) 78%, transparent);
+  /* 页卡：玻璃底色、描边、投影 */
+  --home-card-bg: color-mix(in srgb, var(--vp-c-bg-soft) 86%, transparent);
+  --home-card-bg-hover: color-mix(in srgb, var(--theme-base) 8%, var(--home-card-bg));
+  --home-card-border: color-mix(in srgb, var(--theme-base) 20%, transparent);
+  --home-card-border-hover: color-mix(in srgb, var(--theme-base) 62%, transparent);
+  --home-card-shadow: 0 6px 22px -16px color-mix(in srgb, var(--theme-base) 60%, transparent);
+  --home-card-shadow-hover: 0 18px 38px -18px color-mix(in srgb, var(--theme-base) 55%, transparent);
+  --home-card-icon-bg: color-mix(in srgb, var(--theme-base) 13%, transparent);
+  --home-card-icon-bg-hover: color-mix(in srgb, var(--theme-base) 22%, transparent);
+}
 
-      .home_welcome {
-        font-size: 28px;
-      }
-    }
+:root.dark {
+  /* 暗色下标题整体提亮，避免流光在深底上失焦 */
+  --home-hero-name-bg: linear-gradient(100deg,
+      color-mix(in srgb, var(--theme-base) 85%, #fff) 0%,
+      var(--theme-base) 32%,
+      color-mix(in srgb, var(--theme-base) 68%, #fff) 55%,
+      var(--theme-base) 78%,
+      color-mix(in srgb, var(--theme-base) 85%, #fff) 100%);
+  --home-hero-glow: color-mix(in srgb, var(--theme-base) 22%, transparent);
+  --home-grid-color: color-mix(in srgb, var(--theme-base) 16%, transparent);
+  /* 暗色下按钮用深一档的橙，保证白字对比度 */
+  --home-btn-bg-image: linear-gradient(135deg,
+      color-mix(in srgb, var(--theme-base) 58%, #000) 0%,
+      color-mix(in srgb, var(--theme-base) 76%, #000) 58%,
+      color-mix(in srgb, var(--theme-base) 92%, #000) 100%);
+  --home-btn-shadow: 0 10px 22px -12px color-mix(in srgb, var(--theme-base) 55%, transparent);
+  --home-btn-shadow-hover: 0 16px 30px -12px color-mix(in srgb, var(--theme-base) 62%, transparent);
+  --home-card-bg: color-mix(in srgb, var(--vp-c-bg-soft) 82%, transparent);
+  --home-card-bg-hover: color-mix(in srgb, var(--theme-base) 14%, var(--home-card-bg));
+  --home-card-border: color-mix(in srgb, var(--theme-base) 28%, transparent);
+  --home-card-border-hover: color-mix(in srgb, var(--theme-base) 70%, transparent);
+  --home-card-shadow: 0 6px 22px -16px rgb(0 0 0 / 60%);
+  --home-card-shadow-hover: 0 18px 38px -16px rgb(0 0 0 / 65%);
+  --home-card-icon-bg: color-mix(in srgb, var(--theme-base) 18%, transparent);
+  --home-card-icon-bg-hover: color-mix(in srgb, var(--theme-base) 28%, transparent);
+}
+
+/* ---------- Hero 区域 ---------- */
+
+/* 顶部光晕：品牌色向外淡出，替代大面积纯色底 */
+.VPHome .VPHero {
+  position: relative;
+  isolation: isolate;
+  background-image: radial-gradient(58% 52% at 50% 0%,
+      var(--home-hero-glow) 0%,
+      transparent 72%);
+  background-repeat: no-repeat;
+}
+
+/* 网格纹理：靠遮罩从中心向外淡出，只作为极淡的氛围层 */
+.VPHome .VPHero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, var(--home-grid-color) 1px, transparent 1px),
+    linear-gradient(180deg, var(--home-grid-color) 1px, transparent 1px);
+  background-size: 46px 46px;
+  background-position: center top;
+  opacity: 0.7;
+  -webkit-mask-image: radial-gradient(70% 62% at 50% 0%, #000 0%, transparent 78%);
+  mask-image: radial-gradient(70% 62% at 50% 0%, #000 0%, transparent 78%);
+}
+
+/* Hero 插图若存在，保证压在纹理之上 */
+.VPHome .VPHero .image {
+  position: relative;
+  z-index: 2;
+}
+
+/* 主标题：品牌色渐变 + 缓慢横向流光 */
+.VPHome .VPHero .main .heading .name.clip {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: var(--home-hero-name-bg);
+  padding-bottom: 6px;
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+  animation: home-hero-name-shine 9s ease-in-out infinite;
+}
+
+/* 副标题两行：主文案加粗、欢迎语降级为次要信息 */
+/* 容器行高归零 + 解除宽度限制：两行是 inline-block，行高由子级自定，避免继承 56px 字号带来的过大行距与提前折行 */
+.VPHome .VPHero .main .heading .text {
+  margin-top: 12px;
+  max-width: none;
+  letter-spacing: 0;
+  line-height: 0;
+  color: var(--vp-c-text-1);
+}
+
+.VPHome .VPHero .main .heading .text .home_blog {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.VPHome .VPHero .main .heading .text .home_welcome {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.7;
+  letter-spacing: 0.5px;
+  color: var(--vp-c-text-2);
+}
+
+/* 标语：胶囊标签，弱化留白 */
+.VPHome .VPHero .main .tagline {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 18px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--theme-base) 32%, transparent);
+  background-color: color-mix(in srgb, var(--theme-base) 9%, transparent);
+  backdrop-filter: blur(8px);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--vp-c-text-1);
+}
+
+/* 按钮：圆角收敛为卡片式，主按钮渐变、副按钮玻璃 */
+.VPHome .VPHero .actions {
+  padding-top: 28px;
+}
+
+.VPHome .VPHero .actions .VPButton.medium {
+  border-radius: 12px;
+  padding: 0 22px;
+  line-height: 42px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.VPHome .VPHero .actions .VPButton.brand {
+  border-color: transparent;
+  background-color: transparent;
+  background-image: var(--home-btn-bg-image);
+  color: #fff;
+  box-shadow: var(--home-btn-shadow);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s,
+    filter 0.3s;
+}
+
+.VPHome .VPHero .actions .VPButton.brand:hover {
+  border-color: transparent;
+  background-color: transparent;
+  background-image: var(--home-btn-bg-image);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--home-btn-shadow-hover);
+  filter: brightness(1.06) saturate(1.05);
+}
+
+.VPHome .VPHero .actions .VPButton.alt {
+  border-color: color-mix(in srgb, var(--theme-base) 40%, transparent);
+  background-color: color-mix(in srgb, var(--vp-c-bg) 62%, transparent);
+  backdrop-filter: blur(10px);
+  color: var(--vp-c-text-1);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s,
+    background-color 0.3s;
+}
+
+.VPHome .VPHero .actions .VPButton.alt:hover {
+  border-color: color-mix(in srgb, var(--theme-base) 76%, transparent);
+  background-color: color-mix(in srgb, var(--theme-base) 10%, var(--vp-c-bg));
+  color: var(--vp-c-text-1);
+  transform: translateY(-2px);
+}
+
+/* ---------- Feature 页卡 ---------- */
+
+.VPHome .VPFeatures .items .item {
+  animation: home-feature-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* 卡片入场：按顺序错峰，避免一次性同时出现 */
+.VPHome .VPFeatures .items .item:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.VPHome .VPFeatures .items .item:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.VPHome .VPFeatures .items .item:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+.VPHome .VPFeatures .items .item:nth-child(5) {
+  animation-delay: 0.32s;
+}
+
+.VPHome .VPFeatures .items .item:nth-child(6) {
+  animation-delay: 0.4s;
+}
+
+.VPHome .VPFeatures .items .item .VPFeature {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--home-card-border);
+  background-color: var(--home-card-bg);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--home-card-shadow);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s,
+    box-shadow 0.4s,
+    background-color 0.4s;
+}
+
+.VPHome .VPFeatures .items .item .VPFeature:hover {
+  border-color: var(--home-card-border-hover);
+  background-color: var(--home-card-bg-hover);
+  box-shadow: var(--home-card-shadow-hover);
+  transform: translateY(-6px);
+}
+
+/* 悬停时从卡片顶部透出的品牌色光斑 */
+.VPHome .VPFeatures .VPFeature::before {
+  content: '';
+  position: absolute;
+  top: -42%;
+  left: 50%;
+  width: 240px;
+  height: 240px;
+  pointer-events: none;
+  transform: translateX(-50%);
+  background-image: radial-gradient(circle,
+      color-mix(in srgb, var(--theme-base) 24%, transparent) 0%,
+      transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.VPHome .VPFeatures .VPFeature:hover::before {
+  opacity: 1;
+}
+
+/* 顶部描边光条，悬停时点亮 */
+.VPHome .VPFeatures .VPFeature::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  pointer-events: none;
+  background-image: linear-gradient(90deg,
+      transparent,
+      var(--theme-base),
+      transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.VPHome .VPFeatures .VPFeature:hover::after {
+  opacity: 1;
+}
+
+/* 内容层上移，避免被光斑与光条遮挡 */
+.VPHome .VPFeatures .VPFeature .box {
+  position: relative;
+  z-index: 1;
+  padding: 26px 24px;
+}
+
+/* 图标：品牌色浅底方块，悬停时轻微放大 */
+.VPHome .VPFeatures .VPFeature .box .icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  font-size: 26px;
+  background-color: var(--home-card-icon-bg);
+  transition:
+    background-color 0.35s,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.VPHome .VPFeatures .VPFeature:hover .box .icon {
+  background-color: var(--home-card-icon-bg-hover);
+  transform: scale(1.06) rotate(-3deg);
+}
+
+.VPHome .VPFeatures .VPFeature .box .title {
+  line-height: 1.4;
+  font-size: 17px;
+  letter-spacing: 0.2px;
+}
+
+.VPHome .VPFeatures .VPFeature .box .details {
+  padding-top: 10px;
+  line-height: 1.7;
+  color: var(--vp-c-text-2);
+}
+
+@keyframes home-hero-name-shine {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
   }
 }
 
-/* VPFeatures 页卡悬浮效果 */
-.VPFeatures .items .item {
-  transition: transform 0.3s;
+@keyframes home-feature-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.VPFeatures .items .item:hover {
-  transform: translateY(-5px);
+/* 窄屏：收缩字号与留白，避免标题换行过于拥挤 */
+@media (max-width: 639px) {
+  .VPHome .VPHero .main .heading .text .home_blog {
+    font-size: 22px;
+  }
+
+  .VPHome .VPHero .main .heading .text .home_welcome {
+    font-size: 15px;
+  }
+
+  .VPHome .VPHero .main .tagline {
+    font-size: 14px;
+  }
+
+  .VPHome .VPHero .actions .VPButton.medium {
+    line-height: 40px;
+    font-size: 14px;
+  }
+}
+
+/* 尊重系统减弱动效偏好 */
+@media (prefers-reduced-motion: reduce) {
+
+  .VPHome .VPHero .main .heading .name.clip,
+  .VPHome .VPFeatures .items .item {
+    animation: none;
+  }
 }
 
 .VPFooter {
@@ -113,5 +468,5 @@ body {
 }
 
 .nprogress .bar {
-  background: var(--vp-home-hero-name-color) !important; //自定义颜色
+  background: var(--theme-base) !important; //自定义颜色
 }

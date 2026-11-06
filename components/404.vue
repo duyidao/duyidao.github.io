@@ -6,20 +6,18 @@
       <h1>错误 <span class="errorcode">404</span></h1>
       <p class="output">您正在查找的页面可能已被删除、名称更改或暂时不可用。</p>
       <p class="output">
-        可以尝试 <a href="javascript:;" @click="goBack">返回上一页</a> 或者
+        可以尝试 <a href="javascript:;" @click="goBack">返回上一页</a>或者
         <a href="/">回到首页</a>.
       </p>
       <p class="output">感谢阅览，祝你好运。</p>
     </div>
   </div>
 </template>
-
 <script setup>
 const goBack = () => {
   window.history.back()
 }
 </script>
-
 <style>
 :root {
   --overlay: repeating-linear-gradient(
@@ -28,7 +26,25 @@ const goBack = () => {
     rgba(255, 255, 255, 0.3) 50%,
     rgba(255, 255, 255, 0) 100%
   );
-  --a: #555;
+  --a: color-mix(in srgb, var(--notfound-base) 62%, #fff);
+
+  /* 404 终端配色：全部由 --theme-base 派生，跟随主题色切换 */
+  --notfound-base: var(--theme-base, #f49b00);
+  --notfound-text: color-mix(in srgb, var(--notfound-base) 78%, #fff);
+  --notfound-text-strong: color-mix(in srgb, var(--notfound-base) 86%, #fff);
+  --notfound-glow: color-mix(in srgb, var(--notfound-base) 45%, transparent);
+  --notfound-scan-soft: color-mix(
+    in srgb,
+    var(--notfound-base) 20%,
+    transparent
+  );
+  --notfound-scan-strong: color-mix(
+    in srgb,
+    var(--notfound-base) 80%,
+    transparent
+  );
+  --notfound-bg-core: color-mix(in srgb, var(--notfound-base) 20%, #000);
+  --notfound-bg-edge: color-mix(in srgb, var(--notfound-base) 3%, #000);
 }
 
 :root.dark {
@@ -38,25 +54,30 @@ const goBack = () => {
     rgba(0, 0, 0, 0.3) 50%,
     rgba(0, 0, 0, 0) 100%
   );
-  --a: #fff;
+  --a: color-mix(in srgb, var(--notfound-base) 78%, #fff);
+
+  /* 深色下底色更沉，文本提亮一档保证可读 */
+  --notfound-text: color-mix(in srgb, var(--notfound-base) 88%, #fff);
+  --notfound-text-strong: color-mix(in srgb, var(--notfound-base) 94%, #fff);
+  --notfound-bg-core: color-mix(in srgb, var(--notfound-base) 16%, #000);
+  --notfound-bg-edge: color-mix(in srgb, var(--notfound-base) 2%, #000);
 }
 </style>
-
 <style lang="less" scoped>
 .not-found-page {
   box-sizing: border-box;
   height: calc(100% - 64px);
   background-color: #000000;
   background-image:
-    radial-gradient(#11581e, #041607),
+    radial-gradient(var(--notfound-bg-core), var(--notfound-bg-edge)),
     url('https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif');
   background-repeat: no-repeat;
   background-size: cover;
   font-family: 'Inconsolata', Helvetica, sans-serif;
   font-size: 1.5rem;
-  color: rgba(255, 165, 0, 0.8); /* 橙色主题 */
+  color: var(--notfound-text);
   text-shadow:
-    0 0 1ex rgba(255, 165, 0, 1),
+    0 0 1ex var(--notfound-text-strong),
     0 0 2px rgba(255, 255, 255, 0.8);
 
   .terminal {
@@ -75,10 +96,10 @@ const goBack = () => {
     }
 
     .output {
-      color: rgba(255, 165, 0, 0.8); /* 橙色主题 */
+      color: var(--notfound-text);
       margin-bottom: 24px;
       text-shadow:
-        0 0 1px rgba(255, 165, 0, 0.4),
+        0 0 1px var(--notfound-glow),
         0 0 2px rgba(255, 255, 255, 0.8);
     }
 
@@ -100,9 +121,10 @@ const goBack = () => {
     }
 
     .errorcode {
-      color: var(--theme-base, var(--vp-c-brand-1));
+      color: var(--notfound-base);
     }
   }
+
   .noise {
     pointer-events: none;
     position: absolute;
@@ -123,6 +145,7 @@ const goBack = () => {
     background: var(--overlay);
     background-size: auto 4px;
     z-index: 1;
+
     &::before {
       content: '';
       pointer-events: none;
@@ -137,9 +160,9 @@ const goBack = () => {
       background-image: linear-gradient(
         0deg,
         transparent 0%,
-        rgba(255, 165, 0, 0.2) 2%,
-        rgba(255, 165, 0, 0.8) 3%,
-        rgba(255, 165, 0, 0.2) 3%,
+        var(--notfound-scan-soft) 2%,
+        var(--notfound-scan-strong) 3%,
+        var(--notfound-scan-soft) 3%,
         transparent 100%
       );
       background-repeat: no-repeat;
@@ -152,6 +175,7 @@ const goBack = () => {
   0% {
     background-position: 0 -100vh;
   }
+
   35%,
   100% {
     background-position: 0 100vh;
