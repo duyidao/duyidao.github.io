@@ -6,9 +6,26 @@ import dataPanel from './dataPanel.vue'
 import notFound from './404.vue'
 import themeSwitcher from './themeSwitcher.vue'
 import { useData } from 'vitepress'
-import { nextTick, provide } from 'vue'
+import { nextTick, provide, onMounted, onBeforeUnmount } from 'vue'
 
 const { isDark } = useData()
+
+const onCardPointerMove = (event: PointerEvent) => {
+  const target = event.target as HTMLElement | null
+  const card = target?.closest?.('.VPFeature') as HTMLElement | null
+  if (!card) return
+  const rect = card.getBoundingClientRect()
+  card.style.setProperty('--card-x', `${event.clientX - rect.left}px`)
+  card.style.setProperty('--card-y', `${event.clientY - rect.top}px`)
+}
+
+onMounted(() => {
+  document.addEventListener('pointermove', onCardPointerMove, { passive: true })
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('pointermove', onCardPointerMove)
+})
 
 const enableTransitions = () =>
   'startViewTransition' in document &&

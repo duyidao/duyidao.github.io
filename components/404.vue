@@ -9,10 +9,11 @@
         可以尝试 <a href="javascript:;" @click="goBack">返回上一页</a>或者
         <a href="/">回到首页</a>.
       </p>
-      <p class="output">感谢阅览，祝你好运。</p>
+      <p class="output">感谢阅览，互相进步。</p>
     </div>
   </div>
 </template>
+
 <script setup>
 const goBack = () => {
   window.history.back()
@@ -63,6 +64,7 @@ const goBack = () => {
   --notfound-bg-edge: color-mix(in srgb, var(--notfound-base) 2%, #000);
 }
 </style>
+
 <style lang="less" scoped>
 .not-found-page {
   box-sizing: border-box;

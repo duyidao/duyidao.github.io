@@ -107,11 +107,17 @@ body {
   --home-card-bg: color-mix(in srgb, var(--vp-c-bg-soft) 86%, transparent);
   --home-card-bg-hover: color-mix(in srgb, var(--theme-base) 8%, var(--home-card-bg));
   --home-card-border: color-mix(in srgb, var(--theme-base) 20%, transparent);
-  --home-card-border-hover: color-mix(in srgb, var(--theme-base) 62%, transparent);
+  --home-card-border-hover: color-mix(in srgb, var(--theme-base) 34%, transparent);
   --home-card-shadow: 0 6px 22px -16px color-mix(in srgb, var(--theme-base) 60%, transparent);
   --home-card-shadow-hover: 0 18px 38px -18px color-mix(in srgb, var(--theme-base) 55%, transparent);
   --home-card-icon-bg: color-mix(in srgb, var(--theme-base) 13%, transparent);
   --home-card-icon-bg-hover: color-mix(in srgb, var(--theme-base) 22%, transparent);
+  /* 页卡悬停：跟随鼠标的高亮光斑与描边流光（色值仍由主题色派生） */
+  --home-card-glow: color-mix(in srgb, var(--theme-base) 26%, transparent);
+  --home-card-glow-soft: color-mix(in srgb, var(--theme-base) 12%, transparent);
+  --home-card-flow-1: color-mix(in srgb, var(--theme-base) 85%, transparent);
+  --home-card-flow-2: color-mix(in srgb, var(--theme-base) 35%, #fff);
+  --home-card-flow-3: color-mix(in srgb, var(--theme-base) 78%, #000);
 }
 
 :root.dark {
@@ -134,11 +140,16 @@ body {
   --home-card-bg: color-mix(in srgb, var(--vp-c-bg-soft) 82%, transparent);
   --home-card-bg-hover: color-mix(in srgb, var(--theme-base) 14%, var(--home-card-bg));
   --home-card-border: color-mix(in srgb, var(--theme-base) 28%, transparent);
-  --home-card-border-hover: color-mix(in srgb, var(--theme-base) 70%, transparent);
+  --home-card-border-hover: color-mix(in srgb, var(--theme-base) 42%, transparent);
   --home-card-shadow: 0 6px 22px -16px rgb(0 0 0 / 60%);
   --home-card-shadow-hover: 0 18px 38px -16px rgb(0 0 0 / 65%);
   --home-card-icon-bg: color-mix(in srgb, var(--theme-base) 18%, transparent);
   --home-card-icon-bg-hover: color-mix(in srgb, var(--theme-base) 28%, transparent);
+  --home-card-glow: color-mix(in srgb, var(--theme-base) 30%, transparent);
+  --home-card-glow-soft: color-mix(in srgb, var(--theme-base) 14%, transparent);
+  --home-card-flow-1: color-mix(in srgb, var(--theme-base) 80%, transparent);
+  --home-card-flow-2: color-mix(in srgb, var(--theme-base) 45%, #fff);
+  --home-card-flow-3: color-mix(in srgb, var(--theme-base) 60%, #000);
 }
 
 /* ---------- Hero 区域 ---------- */
@@ -285,6 +296,13 @@ body {
 
 /* ---------- Feature 页卡 ---------- */
 
+/* 注册角度变量，使锥形渐变的角度可被关键帧平滑动画 */
+@property --home-card-flow-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
 .VPHome .VPFeatures .items .item {
   animation: home-feature-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -332,46 +350,85 @@ body {
   transform: translateY(-6px);
 }
 
-/* 悬停时从卡片顶部透出的品牌色光斑 */
+/* 悬停高光：跟随鼠标的品牌色光斑，位置由 --card-x/--card-y 驱动，位移带缓动 */
 .VPHome .VPFeatures .VPFeature::before {
   content: '';
   position: absolute;
-  top: -42%;
-  left: 50%;
-  width: 240px;
-  height: 240px;
+  top: var(--card-y, 50%);
+  left: var(--card-x, 50%);
+  width: 260px;
+  height: 260px;
   pointer-events: none;
-  transform: translateX(-50%);
-  background-image: radial-gradient(circle,
-      color-mix(in srgb, var(--theme-base) 24%, transparent) 0%,
-      transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background-image: radial-gradient(circle at 50% 50%,
+      var(--home-card-glow) 0%,
+      var(--home-card-glow-soft) 38%,
+      transparent 68%);
   opacity: 0;
-  transition: opacity 0.4s;
+  transition:
+    opacity 0.4s,
+    top 0.1s ease-out,
+    left 0.1s ease-out;
 }
 
 .VPHome .VPFeatures .VPFeature:hover::before {
   opacity: 1;
 }
 
-/* 顶部描边光条，悬停时点亮 */
+/* 描边流光：用遮罩只保留 1px 环，旋转锥形渐变形成绕圈流动的光 */
 .VPHome .VPFeatures .VPFeature::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
+  inset: 0;
+  box-sizing: border-box;
+  padding: 1px;
+  border-radius: inherit;
   pointer-events: none;
-  background-image: linear-gradient(90deg,
-      transparent,
-      var(--theme-base),
-      transparent);
+  background-image: conic-gradient(from var(--home-card-flow-angle),
+      transparent 0deg,
+      var(--home-card-flow-1) 28deg,
+      var(--home-card-flow-2) 52deg,
+      var(--home-card-flow-3) 76deg,
+      var(--home-card-flow-1) 100deg,
+      transparent 140deg,
+      transparent 360deg);
+  -webkit-mask-image: linear-gradient(#000, #000), linear-gradient(#000, #000);
+  -webkit-mask-clip: content-box, border-box;
+  -webkit-mask-composite: xor;
+  mask-image: linear-gradient(#000, #000), linear-gradient(#000, #000);
+  mask-clip: content-box, border-box;
+  mask-composite: exclude;
   opacity: 0;
   transition: opacity 0.4s;
+  animation: home-card-border-flow 7s linear infinite;
+  animation-play-state: paused;
 }
 
 .VPHome .VPFeatures .VPFeature:hover::after {
   opacity: 1;
+  animation-play-state: running;
+}
+
+/* 各卡片流光错开相位，避免同时停在同一起点 */
+.VPHome .VPFeatures .items .item:nth-child(2) .VPFeature::after {
+  animation-delay: -1.2s;
+}
+
+.VPHome .VPFeatures .items .item:nth-child(3) .VPFeature::after {
+  animation-delay: -2.4s;
+}
+
+.VPHome .VPFeatures .items .item:nth-child(4) .VPFeature::after {
+  animation-delay: -3.6s;
+}
+
+.VPHome .VPFeatures .items .item:nth-child(5) .VPFeature::after {
+  animation-delay: -4.8s;
+}
+
+.VPHome .VPFeatures .items .item:nth-child(6) .VPFeature::after {
+  animation-delay: -6s;
 }
 
 /* 内容层上移，避免被光斑与光条遮挡 */
@@ -434,6 +491,17 @@ body {
   }
 }
 
+/* 描边流光：锥形渐变旋转一周，形成绕卡片缓慢流动的光 */
+@keyframes home-card-border-flow {
+  from {
+    --home-card-flow-angle: 0deg;
+  }
+
+  to {
+    --home-card-flow-angle: 360deg;
+  }
+}
+
 /* 窄屏：收缩字号与留白，避免标题换行过于拥挤 */
 @media (max-width: 639px) {
   .VPHome .VPHero .main .heading .text .home_blog {
@@ -460,6 +528,15 @@ body {
   .VPHome .VPHero .main .heading .name.clip,
   .VPHome .VPFeatures .items .item {
     animation: none;
+  }
+
+  /* 减弱动效偏好下取消描边流光与光斑位移，仅保留静态高亮 */
+  .VPHome .VPFeatures .VPFeature::after {
+    animation: none;
+  }
+
+  .VPHome .VPFeatures .VPFeature::before {
+    transition: opacity 0.4s;
   }
 }
 
