@@ -64,7 +64,6 @@ flowchart TD
 2. **职责单一**：`useLeafletMap` 作为总控，将 Marker、Route、Animation 拆分为独立 Hook，避免单文件代码超过 1000 行。
 3. **坐标系隔离**：转换逻辑（WGS84 <-> GCJ02）收敛在 Hook 层，业务层（`AirportMap.vue`）只传递纯坐标数组。
 
-
 ## 核心封装机制 (Hook 化设计)
 
 ### 坐标系大一统：WGS84 / GCJ02 / CRS.Simple

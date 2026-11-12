@@ -1,12 +1,12 @@
-## 第十一章 Set和Map数据结构
+# 第十一章 Set和Map数据结构
 
 本章讲解数据结构 `Set` 和 `Map`。这两个数据结构在开发中十分常用，并且二者都有弱引用写法。
 
-### Set
+## Set
 
 <word text="Set"/> 是 <word text="ES6"/> 引入的一种新的数据结构，类似于数组，但其中的元素值唯一，不允许重复。
 
-#### 基本用法
+### 基本用法
 
 1. **创建 `Set` 实例**:
 
@@ -69,7 +69,7 @@
    set.size; // 输出 2
    ```
 
-#### Set实例的属性和方法
+### Set实例的属性和方法
 
 <word text="Set"/> 拥有 2个属性和 4种方法：
 
@@ -101,7 +101,7 @@ s.has(2) // false
 
 `Array.from` 可以把 `Set` 转为数组，这就提供了数组去重的方法。
 
-#### 遍历操作
+### 遍历操作
 
 `Set` 有四种遍历方法：
 
@@ -155,9 +155,9 @@ s.has(2) // false
 
 `Set` 插入顺序就是遍历的顺序，这点在做回调函数列表时非常有用，能够保证按照插入顺序依次执行。
 
-### WeakSet
+## WeakSet
 
-#### 含义
+### 含义
 
 `WeakSet` 与 `Set` 一样，也是不重复值的集合，但是有两点区别：
 
@@ -171,7 +171,7 @@ s.has(2) // false
 
 2. 弱引用。`WeakSet` 中的对象都是弱引用类型，若外部不再引用该对象，则垃圾回收器会自动回收，不考虑该对象是否还在 `WeakSet` 中使用。因此，ES6 规定 `WeakSet` 不可遍历
 
-#### 语法
+### 语法
 
 `WeakSet` 是一个构造函数，需要使用 `new` 创建数据结构。可以接收任何具有 `iterable` 接口的对象作为参数。
 
@@ -191,9 +191,9 @@ let b = new WeakSet([1, 2]) // 报错
 - `delete(value)` 删除指定成员
 - `has(value)` 返回布尔值，表示是否有该值
 
-### Map
+## Map
 
-#### 含义
+### 含义
 
 <word text="ES6"/> 之前都是使用对象 `Object` 做键值对的集合，但是对象有一个很大的限制，他只能使用字符串作为键名。
 
@@ -271,10 +271,11 @@ console.log(obj['[object HTMLDivElement]']) // content
    let m2 = new Map(m1)
    
    m2.get('n') // 1
-m2.get('m') // 2
+
+   m2.get('m') // 2
    ```
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > 对于基本数据类型，只要值相同即可（需要注意的是，0 和 -0 在 `Map` 中是相同的；`NaN` 不严格等于自身，但在 `Map` 中视为相同的）
 >
 > ```js
@@ -301,7 +302,7 @@ m2.get('m') // 2
 > map.get(arr) // array
 > ```
 
-#### 实例属性与语法
+### 实例属性与语法
 
 - 属性
 
@@ -317,19 +318,19 @@ m2.get('m') // 2
   map.size // 3
   ```
 
--  方法
+- 方法
 
   `set(key, value)` 方法设置 `key` 所对应的键值对，并返回总的 `Map` 结构。可以采取链式写法。
 
   ```js
   const m = new Map()
-  	.set(1, 'daodao')
-  	.set('2', 'xiaodao')
-  	.set(undefined, 'duyidao')
+   .set(1, 'daodao')
+   .set('2', 'xiaodao')
+   .set(undefined, 'duyidao')
   ```
-  
+
   `get(key)` 方法获取 `key` 对应的键值，找不到返回 `undefined` 。
-  
+
   ```js
   const m = new Map()
   
@@ -342,14 +343,14 @@ m2.get('m') // 2
   m.get('hi') // function
   m.get('hello') // undefined
   ```
-  
+
   `has(key)` 方法返回布尔值，表示该键值是否在 `Map` 中有数据。
-  
+
   `delete(key)` 方法删除 `Map` 中某个键，删除成功返回 `true` ，反之返回 `false` 。
-  
+
   `clear()` 方法清空所有成员，无返回值。
 
-#### 遍历操作
+### 遍历操作
 
 同 `Set` 一致，`Map` 也拥有 `keys()` 、`values()` 、`entries()` 和 `forEach()` 四种遍历方法，遍历的顺序也是插入顺序。
 
@@ -428,7 +429,7 @@ map.forEach((value, key, item) => {
 }, ojb)
 ```
 
-#### 数据结构转换
+### 数据结构转换
 
 - `Map` 转数组
 
@@ -447,7 +448,7 @@ map.forEach((value, key, item) => {
 
   数组放到 `new Map` 的括号内就能转为 `Map` 。
 
-  ```js 
+  ```js
   let arr = [
     [1, 'a'], [2, 'b']
   ]
@@ -476,7 +477,7 @@ map.forEach((value, key, item) => {
   console.log(toObj(map)) // {yes: true, no: false}
   ```
 
-- 对象转 `Map` 
+- 对象转 `Map`
 
   同理可得，可以通过代码逻辑把对象转为 `Map` 。
 
@@ -497,11 +498,10 @@ map.forEach((value, key, item) => {
   console.log(toMap(obj)) // Map(2) {'yes' => true, 'no' => false}
   ```
 
-- `Map` 转 `JSON` 
+- `Map` 转 `JSON`
 
   `Map` 转 `JSON` 有两种情况：
-
-  - 键都是字符串型：此时可以转为对象形式的 `JSON` 
+  - 键都是字符串型：此时可以转为对象形式的 `JSON`
 
     ```js
     function toObjJSON(params) {
@@ -514,18 +514,21 @@ map.forEach((value, key, item) => {
     ])
     ```
 
-  - 键不全是字符串型：此时转为数组形式的 `JSON` 
+  - 键不全是字符串型：此时转为数组形式的 `JSON`
 
-- `JSON` 转 `Map` 
+- `JSON` 转 `Map`
 
   `JSON` 转为 `Map` ，正常情况下所有键名都是字符串
+
   ```js
   function jsonToStrMap(jsonStr) { 
     return objToStrMap (JSON .parse(jsonStr) ); 
   }
   jsonToStrMap('{"yes": true, "no": false }') // Map {’ yes ’=> true,’no’ => false}
   ```
+
   但是，有 种特殊情况：整个 `JSON` 就是 个数组，且每个数组成员本身又是 个具有两个成员的数组。这时，它可以一一对应地转为 `Map` 。这往往是数组转为 `JSON` 的逆操作。
+
   ```js
   function jsonToMap(jsonStr) { 
     return new Map(JSON.parse(jsonStr))
@@ -533,15 +536,17 @@ map.forEach((value, key, item) => {
   jsonToMap('[[true, 7], [{"foo": 3}, ["abc"]]]') // Map {true=> 7 , Object {foo: 3) => [’ abc ’ ]}
   ```
 
-### WeakMap
-#### 含义
+## WeakMap
+
+### 含义
 
 `WeakMap` 和 `Map` 相似，都是用 `set()` 生成键值对集合，`get()` 获取值，`has()` 判断是否存在，`delete` 删除键值对。
 
 两者的区别在于：
+
 1. `WeakMap` 只接受对象作为键名（`null` 除外），不接受其他类型的值作为键名。如果用 `number` 、`string` 等类型作为键名，会报错。
 2. `WeakMap` 的键名所指向的对象，不计入垃圾回收机制。
-   
+
    垃圾回收机制是判断当前变量是否被使用到，如果被使用到就不会被回收，因此有时候如果使用了某些数据变量用完后没及时置空，则这些变量会一直占用内存，导致内存泄漏。
 
    ```js
@@ -552,20 +557,22 @@ map.forEach((value, key, item) => {
 
     let arr = [obj1, 23]
    ```
-   
+
    而 `WeakMap` 的键名是弱引用，垃圾回收机制会自动回收键名所指向的对象，因此不会造成内存泄漏。变量被垃圾回收后， `WeakMap` 中对应的键值对也会自动消失，无法访问。
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > `WeakMap` 引用的只是键名而不是键值，键值依然是正常引用的。
 
-#### 语法
+### 语法
 
 由于 `WeakMap` 是弱类型引用，因此某个键名是否存在完全不可预测，可能上一秒还存在，下一秒对象被垃圾回收机制运行回收了，消失找不到了。为了防止这种不确定性，<word text="ES6"/> 规定，`WeakMap` 没有遍历操作，也没有 `size` 属性，也不支持 `clear` 方法。因此，`WeakMap` 只能用来存储键值对，而不能用来存放任何复杂的数据结构。
 
-#### 用途
+### 用途
+
 `WeakMap` 的用途主要是用来存储私有数据，因为它的键名是弱引用，垃圾回收机制会自动回收键名所指向的对象，因此不会造成内存泄漏。
 
 1. `WeakMap` 可以用来存储 `DOM` 节点的私有属性，防止内存泄漏。
+
    ```js
    let myElement = document.getElementById('logo')
    let myWeakmap = new WeakMap()
@@ -574,9 +581,10 @@ map.forEach((value, key, item) => {
 
    myElement.addEventListener('click', myWeakmap.get(myElement), false)
    ```
+
 2. `WeakMap` 可以用来部署私有属性。
-  
-  ```js
+
+```js
    const _counter= new WeakMap(); 
     const _action= new WeakMap(); 
     class Countdown {
@@ -597,9 +605,9 @@ map.forEach((value, key, item) => {
     const c = new Countdown(2, () => console.log('DONE ')); 
 c.dec() 
 c.dec() 
-  ```
+```
 
-### 总结
+## 总结
 
 <word text="ES6"/>中新增了两种数据结构：`Set` 和 `Map`，以及它们的弱引用版本 `WeakSet` 和 `WeakMap`。`Set` 是一个元素唯一、无序且允许重复的数据结构，通过 `new Set()` 创建，支持 `add` 、`delete`、`has` 等方法，并可通过 `for...of` 循环遍历。`Map` 是键值对的集合，键不仅限于字符串，支持 `set`、`get`、`has`、`delete` 等方法，同样可通过 `for...of` 循环遍历。`WeakSet` 和 `WeakMap` 分别对应 `Set` 和 `Map` 的弱引用版本，只接受对象作为键，且键的引用为弱引用，有利于垃圾回收，但不可遍历且没有 `size` 属性。
 

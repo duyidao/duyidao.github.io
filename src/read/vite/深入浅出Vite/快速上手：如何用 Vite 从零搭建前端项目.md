@@ -1,6 +1,7 @@
 # 快速上手：如何用 Vite 从零搭建前端项目
 
 ## 核心主旨
+
 本节聚焦 <word text="Vite"/> 的工程落地实践，完整拆解从环境配置、脚手架初始化到核心运行原理与生产构建的全流程。重点阐释 No-Bundle 架构下的模块按需加载机制、配置体系的设计逻辑，以及开发/生产双环境的工程化差异，帮助开发者建立对现代构建工具链的直观认知与实操能力。
 
 ## 开发环境搭建与包管理器选型
@@ -31,6 +32,7 @@ pnpm create vite
 ## 核心运行机制：入口加载与 No-Bundle 理念
 
 <word text="Vite"/> 彻底打破传统构建工具"先全量打包，后加载运行"的范式。项目根目录的 index.html 是 Dev Server 的唯一入口。
+
 1. 入口声明与模块解析
    ::: code-group
     ```html
@@ -56,12 +58,12 @@ pnpm create vite
     - import = HTTP Request 范式：在 <word text="Vite"/> 开发环境中，每一个 import 语句都代表一次独立的 HTTP 请求。浏览器解析到新依赖后自动发起请求，<word text="Vite"/> 按需编译返回，形成动态依赖图。
     - No-Bundle 本质：开发阶段完全跳过递归打包过程，将模块加载任务交还给浏览器原生能力。这是 <word text="Vite"/> 实现冷启动提速与毫秒级热更新（<word text="HMR"/>）的根本原因。
 
-## 配置文件解析与自定义能力 🔑
+## 配置文件解析与自定义能力
 
 <word text="Vite"/> 支持 .js/.ts/.mjs 配置文件，工程实践中推荐使用 vite.config.ts 以获得完整的类型提示。
 
 1. 默认配置结构
-    
+
     ```typescript
     // vite.config.ts
     import { defineConfig } from 'vite'
@@ -96,7 +98,7 @@ pnpm create vite
 澄清误区：<word text="Vite"/> 仅在开发期采用 No-Bundle，生产环境会自动切换至基于 <word text="Rollup"/> 的工业级全量打包模式，通过 <word text="Tree Shaking"/>、代码分割、压缩混淆等手段保障线上产物质量。
 
 1. 构建脚本设计
-    
+
     ```json
     // package.json
     {

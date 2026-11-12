@@ -1,5 +1,3 @@
-
-
 # 搭建
 
 |         官网         |                                      链接                                      |
@@ -335,7 +333,7 @@ export default DefaultTheme
 
 并且，根据根目录 `docs` ，可自动生成路由。
 
-```
+```text
 ├── docs
 │   ├── HTML
 │   │   ├── index.md     /HTML/

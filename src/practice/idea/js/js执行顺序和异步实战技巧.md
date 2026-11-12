@@ -21,7 +21,7 @@
 
    而 `.then` 和 `.catch` 也是立即执行的，只不过执行完毕后没有把它们加入到异步队列里。因为此时 `new Promise` 还是 `pending` 状态，直到调用 `resolve` 变为 `fullfilled` 状态，才会把 `.then` 回调函数加入到微任务队列里。同理，直到调用 `reject` 变为 `rejected` 状态，才会把 `.catch` 回调函数加入到微任务队列里。
 
-   > [!IMPORTANT] ❓ 解惑
+   > [!IMPORTANT] 解惑
    >
    > 1. 异步队列存放的实际上是已经执行完毕的异步方法，等待下一次事件循环去执行
    > 2. `.then` 和 `.catch` 是马上执行的，而不是等到调用 `resolve` 和 `reject` 之后再执行

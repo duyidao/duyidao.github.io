@@ -2,7 +2,8 @@ import path from 'path'
 
 import { groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 
-import { customIcon } from './vite/index'
+import { customIcon, iconifyOfflinePlugin } from './vite/index'
+import { iconCssVars } from './icons/index'
 
 import {
   GitChangelog,
@@ -21,10 +22,24 @@ export default {
     },
   },
 
+  css: {
+    preprocessorOptions: {
+      less: {
+        additionalData(source: string, filename: string) {
+          if (!filename.replace(/\\/g, '/').endsWith('css/index.less')) {
+            return source
+          }
+          return `${source}\n${iconCssVars}`
+        },
+      },
+    },
+  },
+
   plugins: [
     groupIconVitePlugin({
       customIcon,
     }),
+    iconifyOfflinePlugin(),
     GitChangelog({
       // 填写在此处填写您的仓库链接
       repoURL: () => 'https://github.com/duyidao/duyidao.github.io',

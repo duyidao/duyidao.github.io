@@ -992,7 +992,7 @@ export default {
 
 新<word text="DOM"/>里数据的 `key` 存在，去旧的虚拟<word text="DOM"/>结构里找到 key 标记的标签，复用标签。 新<word text="DOM"/>里数据的 `key` 存在，去旧的虚拟<word text="DOM"/>结构里没有找到 `key` 标签的标签，创建。
 
-旧<word text="DOM"/>结构的 `key`，在新的<word text="DOM"/>结构里没有了，则*移除 `key` 所在的标签*
+旧<word text="DOM"/>结构的 `key`，在新的<word text="DOM"/>结构里没有了，则_移除 `key` 所在的标签_
 
 ```vue [key为id.vue]
 <template>

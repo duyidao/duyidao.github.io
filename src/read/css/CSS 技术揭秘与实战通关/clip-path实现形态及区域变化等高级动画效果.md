@@ -1,8 +1,8 @@
-## clip-path：实现形态及区域变化等高级动画效果
+# clip-path：实现形态及区域变化等高级动画效果
 
 上一个章节讲了 `clip-path` 的基本功能和用法，并且围绕它的静态效果进行描述。本章节将围绕它的动画效果进行讲解，探索它能实现什么样的动画。
 
-### 基于 clip-path 的形变动画
+## 基于 clip-path 的形变动画
 
 `clip-path` 可以搭配 `transition` 和 `animation` 实现各种动画变化，因此借助过渡和动画效果可以实现一些形变的动画效果。例如：
 
@@ -79,7 +79,7 @@
 > [!info] 补充
 > **逐帧动画**就是每一帧都是关键帧：每一帧都是自己做出来的。**补间动画**就是知道两端的关键帧，通过计算机自己能计算出中间帧的动画。
 
-### clip-path 的缺陷
+## clip-path 的缺陷
 
 `clip-path` 在做动画时的缺陷：当进行动画或者过渡的两个 `clip-path` 的顶点个数不一致时，动画会变成逐帧动画，而不是补间动画。
 
@@ -87,7 +87,7 @@
 
 ![一图流展示](https://pic1.imgdb.cn/item/68f5cdb83203f7be0080e547.png)
 
-### 基于 clip-path 的图形变换动画
+## 基于 clip-path 的图形变换动画
 
 `clip-path` 除了可以用于实现形变动画，还可以用于实现图形变换动画：
 
@@ -212,7 +212,7 @@
 
 > 具体效果可查看 [clip-path 图形变换动画](https://codepen.io/duyidao/pen/EaPQxKM)
 
-### 基于 clip-path 的边框动画
+## 基于 clip-path 的边框动画
 
 基于 `clip-path` 实现动画效果，都是围绕着修改坐标点进行的，通过从一个形状裁剪成另外一个形状来实现。继续利用这个特点，实现边框动画效果。
 
@@ -295,7 +295,7 @@ div {
 
 > 具体效果可查看 [clip-path 线条环绕按钮](https://codepen.io/duyidao/pen/KwVrbWp)
 
-### 基于 clip-path 的故障动画
+## 基于 clip-path 的故障动画
 
 首先先来看看如何通过 `clip-path` 实现文本切割效果，`clip-path` 有 `polygon()` 方法，可以把一个容器切割成其他形状，例如切成平行四边形：
 
@@ -780,7 +780,7 @@ div::before {
 
 > 具体效果可查看 [clip-path 故障动画](https://codepen.io/duyidao/pen/XJXyOqy)
 
-### 基于 clip-path 实现动态区域裁剪
+## 基于 clip-path 实现动态区域裁剪
 
 最后看一个使用 `clip-path` 实现动态区域裁剪的效果。该效果用到了 `circle()` 方法，可以创建一个圆形裁剪路径。通过改变 `circle()` 的半径参数，可以动态改变裁剪区域的大小和位置，从而实现动态区域裁剪的效果。
 
@@ -836,7 +836,7 @@ ul {
 
 > 具体效果可查看 [clip-path 动态区域裁剪](https://codepen.io/duyidao/pen/PwZxLJQ)
 
-### 总结
+## 总结
 
 本章节着重介绍了如何使用 `clip-path` 实现动画效果，在实现效果的适合需要注意以下几点：
 

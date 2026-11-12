@@ -1,8 +1,8 @@
-## background 属性进阶技巧讲解及实战演练
+# background 属性进阶技巧讲解及实战演练
 
 第二章主要介绍 `background` 的进阶技巧，包括如何设置渐变色动画、如何实现文字渐变色或图片背景、在 `inline` 和 `block` 中 `background` 的差异以及 `background-attachment` 的使用。
 
-### 渐变色动画
+## 渐变色动画
 
 想要实现渐变色动画效果，不能直接在 `@keyframes` 中使用渐变属性，因为 `background` 属性只有单色背景色才支持动画效果。如果想要在 `@keyframes` 设置渐变动画，最后的效果只能是生硬的渐变色变换，没有动画效果可言。
 
@@ -19,7 +19,7 @@
 
 依次看它们的实现方式。
 
-#### 通过 background-position 模拟渐变动画
+### 通过 background-position 模拟渐变动画
 
 想要通过 `background-position` 实现渐变动画，需要搭配 `background-size` 使用。将渐变背景的横轴设置为 2 倍 `background-size: 200% 100%;` ，然后通过 `background-position` 控制背景图片的移动，从而实现渐变动画效果。
 
@@ -55,7 +55,7 @@ div {
 
 > 具体效果可查看 [background-position 模拟渐变动画](https://codepen.io/duyidao/pen/qEbXYKv)
 
-#### 通过 background-size 模拟渐变动画
+### 通过 background-size 模拟渐变动画
 
 想要通过 `background-size` 实现渐变动画，推荐搭配 `background-position` 使用。将渐变背景的初始位置设置为右上 `background-position: 100% 0;` ，然后通过 `background-size` 控制背景图片的缩放，从而实现渐变动画效果。
 
@@ -91,7 +91,7 @@ div {
 
 > 具体效果可查看 [background-size 模拟渐变动画](https://codepen.io/duyidao/pen/zxrEOVx)
 
-#### 通过 transform 模拟渐变动画
+### 通过 transform 模拟渐变动画
 
 前两个方法虽然能够实现过渡效果，但是自由度不够高。而且动画大量修改 `background-position` 或者 `background-size` 属性，导致浏览器重排，性能花销较大。
 
@@ -150,7 +150,7 @@ div::before {
 
 这只是其中一种移动方法，还有更多移动方法可以自行尝试搭配。
 
-#### 通过滤镜 hue-rotate 实现渐变动画
+### 通过滤镜 hue-rotate 实现渐变动画
 
 `hue-rotate` 为色相滤镜，通过改变色相角度，可以实现渐变动画效果，默认值为 0deg，最大值为 360deg。
 
@@ -185,7 +185,7 @@ div {
 
 > 具体效果可查看 [滤镜 hue-rotate 实现渐变动画](https://codepen.io/duyidao/pen/MYKEWPy)
 
-#### 通过 CSS @property 实现背景色渐变动画
+### 通过 CSS @property 实现背景色渐变动画
 
 `CSS @property` 是 `CSS` 自定义属性，它允许开发者显式地定义他们的 CSS 自定义属性，允许进行属性类型检查、设定默认值以及定义该自定义属性是否可以被继承。语法如下：
 
@@ -246,9 +246,9 @@ div {
 
 > 具体效果可查看 [CSS @property 实现背景色渐变动画](https://codepen.io/duyidao/pen/yyezLrO)
 
-### background-clip 与渐变文字
+## background-clip 与渐变文字
 
-#### background-clip 的基础使用
+### background-clip 的基础使用
 
 `background-clip` 的作用是设置元素的背景（背景图片或颜色）的填充规则，默认属性是 `border-box`，分别介绍它们的属性和区别。
 
@@ -275,9 +275,11 @@ div {
 > 1. 这里不能写 `background: #fff, blue`，而是要写成渐变的形式，因为浏览器解析机制对颜色和渐变的处理方式不同，渐变支持叠层。
 > 2. 边框要写为虚线 `dashed` ，因为实线 `solid` 会覆盖背景。
 
+<!-- -->
+
 > 具体效果可查看 [background-clip 实现渐变边框](https://codepen.io/duyidao/pen/zxrEGZX)
 
-#### background-clip：text 实现渐变文字
+### background-clip：text 实现渐变文字
 
 `background-clip` 的 `text` 属性值，可以让背景色填充到文字的形状中，文字的背景即是区块的背景，文字以外的背景都被裁剪掉。
 
@@ -313,6 +315,8 @@ div {
 把文字颜色变为透明，背景色填充到文字的形状中，就能把背景的渐变色显示出来。
 
 > 具体效果可查看 [background-clip：text 实现渐变文字](https://codepen.io/duyidao/pen/YPwryyx)
+
+<!-- -->
 
 > [!IMPORTANT] 拓展
 >
@@ -355,7 +359,7 @@ div {
 >    } /* [!code ++] */
 >    ```
 
-### background 与 display: inline
+## background 与 display: inline
 
 `background` 属性在 `display: inline` 和 `display: block` 元素上有不同的表现，展示的方式不一样。试验一下：
 
@@ -486,7 +490,7 @@ a::before {
 
 还能利用 `inline` 特性结合 `background-size` 实现下划线动画效果。这里就不做过多阐述，可以查看 [下划线动画](/css/effect/下划线动画)。
 
-### background-attachment
+## background-attachment
 
 `background-attachment` 属性用来设置背景图片是固定还是随着页面滚动而滚动。默认值是 `scroll`，每个属性值的具体含义如下：
 
@@ -583,14 +587,14 @@ section {
 1. 兼容性较差，`background-attachment: local` 在 IE 等一些浏览器中是不支持的。
 2. 效果上有一些差异，最终的效果是文字盖在阴影上，而不是阴影盖在文字上。
 
-### 总结
+## 总结
 
 - 想要实现 `background` 的渐变动画动画效果，有五种方法可以解决：
-  1.  `background-size` 缩放实现动画。
-  2.  `background-position` 移动实现动画。
-  3.  `transform` 平移实现动画。
-  4.  `hue-rotate` 色相旋转实现动画。
-  5.  `CSS @property` 嫁接到 `color` 实现动画。
+  1. `background-size` 缩放实现动画。
+  2. `background-position` 移动实现动画。
+  3. `transform` 平移实现动画。
+  4. `hue-rotate` 色相旋转实现动画。
+  5. `CSS @property` 嫁接到 `color` 实现动画。
 - `background-clip` 属性可以用来实现文字渐变效果。如果文字不是纯色背景，那么就能用到这个属性。无论是渐变色还是背景图，都可以使用该属性来实现效果
 - `background` 在 `inline` 和 `block` 元素上的表现是不同的，可以利用这个特性实现一些有趣的效果，比如多行文本的渐隐消失。
 - `background-attachment` 属性用来设置背景图片是固定还是随着页面滚动而滚动。可以用来做视差滚动，或者滚动阴影效果。

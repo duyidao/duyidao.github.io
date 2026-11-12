@@ -1,6 +1,6 @@
-## Class的继承
+# Class的继承
 
-### 简介
+## 简介
 
 比起 ES5 修改原型链实现继承的方式，ES6 的 `class` 通过 `extends` 关键字实现继承，子类继承父类的所有属性和方法，需要用 `super` 方法，继承父类的 `this` 对象，否则会因为得不到 `this` 对象新建实例报错。
 
@@ -50,7 +50,7 @@ class C extends A {
 }
 ```
 
-### Object.getPrototypeOf()
+## Object.getPrototypeOf()
 
 `Object.getPrototypeOf` 方法可以用来从子类上获取父类。因此可以用这个方法判断某个子类是否继承了另一个类作为父类。
 
@@ -58,7 +58,7 @@ class C extends A {
 Object.getPrototypeOf(B) === A // true
 ```
 
-### super关键字
+## super关键字
 
 `super` 关键字既可以当作函数使用，也可以当作对象使用。
 
@@ -95,7 +95,7 @@ Object.getPrototypeOf(B) === A // true
 
   `super` 作为对象时，在普通方法中，指向父类的原型对象；在静态方法中，指向父类。
 
-  > [!WARNING] ⚠ 注意
+  > [!WARNING] 注意
   > 由于 `super` 指向父类的原型对象，所以定义在父类实例上的方法或属性，是无法通过 `super` 调用的。把属性定义在父类的原型对象上 `super` 才能拿到。
 
   ```js
@@ -178,11 +178,11 @@ Child.myMethod(1) // static 1
 let child = new Child()
 child.myMethod(2) // instance 2
 ```
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > 使用 `super` 的时候，必须显式指定是作为函数、还是作为对象使用，否则会报错。
 :::
 
-### 类的prototype属性和__proto__属性
+## 类的prototype属性和__proto__属性
 
 在大多数浏览器的 ES5 实现之中，每一个对象都有 `__proto__` 属性，指向对应的构造函数的 `prototype` 属性。Class 作为构造函数，也有 `prototype` 属性和 `__proto__` 属性，因此同时存在两条继承链。
 
@@ -200,7 +200,7 @@ B.prototype.__proto__ === A.prototype // true
 
 上述代码中，子类 `B` 的 `__proto__` 属性指向父类 `A` ，子类 `B` 的 `prototype` 属性的 `__proto__` 属性指向父类 `A` 的 `prototype` 属性。
 
-#### extends的继承目标
+### extends的继承目标
 
 `extends` 关键字后面可以跟多种类型的值。
 
@@ -211,8 +211,9 @@ class B extends A {}
 上述代码的 `A` 可以是任意值。只要这个值有 `prototype` 属性即可。由于函数都有 `prototype` 属性，因此 `A` 可以是任意函数。
 
 不过，有三种特殊情况：
+
 1. 子类继承 `Object` 类
-   
+
    ```js
    class A extends Object {}
    A.__proto__ === Object // true
@@ -222,7 +223,7 @@ class B extends A {}
    这种情况下，`A` 其实就是构造函数 `Object` 的复制，`A` 的实例就是 `Object` 的实例。
 
 2. 不存在任何继承
-   
+
    ```js
    class A {}
    A.__proto__ === Function.prototype // true
@@ -232,7 +233,7 @@ class B extends A {}
    这种情况下，`A` 作为一个基类（即不存在任何继承），就是一个普通函数，所以直接继承 `Function.prototype` 。但是，`A` 调用 `super` 方法时，返回的是 `undefined` ，因为 `A` 作为一个普通函数，没有任何继承。
 
 3. 子类继承 `null`
-   
+
    ```js
    class A extends null {}
    A.__proto__ === Function.prototype // true
@@ -241,7 +242,7 @@ class B extends A {}
 
    这种情况下，`A` 也是一个普通函数，所以直接继承 `Function.prototype` 。但是，`A` 调用 `super` 方法时，返回的是 `undefined` ，因为没有继承任何东西。
 
-#### 实例的 __proto__ 属性
+### 实例的 __proto__ 属性
 
 子类实例的 `__proto__` 属性的 `__proto__` 属性，指向父类实例的 `__proto__` 属性。也就是说，子类的原型的原型，是父类的原型。
 
@@ -253,7 +254,7 @@ p2.__proto__ === p1.__proto__ // false
 p2.__proto__.__proto__ === p1.__proto__ // true
 ```
 
-### 原生构造函数的继承
+## 原生构造函数的继承
 
 原生构造函数是指语言内置的构造函数，通常用来生成数据结构。ECMAScript 的原生构造函数大致有下面这些。
 
@@ -290,7 +291,7 @@ arr.length // 0
 
 上面代码中，`MyArray` 并不是 `Array` 的实例，所以 `arr.length` 属性等于0。这显然不符合继承的意图，所以 ES6 允许继承原生构造函数定义子类，因为 ES6 是先新建父类的实例对象 `this` ，然后再用子类的构造函数修饰 `this` ，使得父类的所有行为都可以继承。
 
-### Mixin模式的实现
+## Mixin模式的实现
 
 由于 ES6 没有 `mixin` 的语法，但是通过 `extends` 关键字，可以很方便地实现 `mixin` 模式。具体做法如下。
 
@@ -328,7 +329,7 @@ class MyClass extends mix(AnotherClass, YetAnotherClass) {
 
 上面代码中，`MyClass` 就是 `AnotherClass` 和 `YetAnotherClass` 的混合，继承了它们的全部接口。
 
-### 总结
+## 总结
 
 ES6 的 `class` 语法通过 `extends` 关键字实现了继承，使得子类可以继承父类的属性和方法。子类的构造函数中必须首先调用 `super()` 方法，以确保父类的构造函数被正确执行，从而正确地初始化子类的 `this` 对象。如果子类没有显式定义构造函数，那么会默认添加一个调用了 `super()` 的空构造函数。
 

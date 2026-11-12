@@ -1,5 +1,5 @@
 <script setup>
-import { Icon } from '@iconify/vue';
+import { Icon } from '@iconify/vue/offline';
 
 const props = defineProps({
   name: String,

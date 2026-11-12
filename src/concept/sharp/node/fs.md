@@ -24,7 +24,7 @@ fs.readFile(path[, options], callback)
 
 `1.txt` 文件内容：
 
-```
+```text
 hello
 ```
 
@@ -47,10 +47,10 @@ hello
   fs.readFile("./11.txt", "utf8", function (err, dataStr) {
     console.log(err);
     // {
-    //	errno: -4058,
-    //	code: 'ENOENT',
-    //	syscall: 'open',
-    //	path: 'C:\\Users\\Administrator\\Desktop\\blog\\node\\11.txt'
+    // errno: -4058,
+    // code: 'ENOENT',
+    // syscall: 'open',
+    // path: 'C:\\Users\\Administrator\\Desktop\\blog\\node\\11.txt'
     // }
     console.log(dataStr); // undefined
   });
@@ -290,7 +290,7 @@ fileType('hd').then((type) => {
 import { unlink, writeFileSync } from 'fs'
 writeFileSync('hd.txt', 'houdunren')
 setTimeout(() => {
-	//三秒后删除文件
+ //三秒后删除文件
   unlink('hd.txt', (error) => {
     if (error) throw error
     console.log('文件删除成功')

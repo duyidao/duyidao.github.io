@@ -1,8 +1,8 @@
-## 第十二章 Proxy
+# 第十二章 Proxy
 
 在 <word text="JavaScript"/> 中，`Proxy` 对象提供了一种全新的能力，允许拦截和自定义对象的基本操作。这种代理机制使得开发者能够精确控制对象的行为，从属性读取到函数调用。
 
-### 概述
+## 概述
 
 `Proxy` 用于修改某些操作的默认行为，可以理解为在目标对象之前架设一层拦截，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。
 
@@ -40,11 +40,11 @@ obj.count = 1; // getting count
 
 <word text="Proxy"/> 实际上重载了 `overload` 点运算符，即用自己的定义覆盖了语言的原始定义。
 
-### 实例方法
+## 实例方法
 
 <word text="Proxy"/> 支持的所有拦截操作如下。如果没有设置拦截，那么默认的行为就是原来语言的行为，以 `get()` 为例，如果没有设置 `get()` 拦截，访问对象属性会返回对象的属性值。
 
-#### get()
+### get()
 
 `get()` 方法用于拦截某个属性的读取操作，可以接受三个参数，依次为目标对象、属性名和 <word text="Proxy"/> 实例本身（严格地说，是操作行为所针对的对象），其中最后一个参数可选。
 
@@ -101,7 +101,8 @@ const proxy = new Proxy(target,handler);
 proxy.a // TypeError: 'get' on proxy: property 'a' is a read-only and non-configurable data property on the proxy target but the proxy did not return its actual value (expected '37' but got '27')
 ```
 
-#### set()
+### set()
+
 `set()` 方法用来拦截某个属性的赋值操作，可以接受四个参数，依次为目标对象、属性名、属性值和 Proxy 实例本身，其中最后一个参数可选。
 
 假定 `person` 对象有一个 `age` 属性，该属性应该是一个不大于 200 的整数，那么可以使用 `Proxy` 拦截这个属性，如果赋值的数值不满足要求，就抛出一个错误，从而实现数据的验证和转换。
@@ -132,7 +133,7 @@ person.age = 300 // 抛出错误
 
 上面代码中，`validator` 对象有一个 `set` 方法，用来拦截对 `person` 对象属性 `age` 的赋值操作。如果不符合要求，就抛出一个错误，否则就返回赋值结果，并且返回 `true`，表示赋值成功。
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > 严格模式下，`set()` 必须返回 `true`，否则会报错。
 
 有时候需要在对象内做内部属性设置，这些内部属性不希望让使用者外部修改，这时可以使用 `set()` 方法拦截，这些属性统一下划线 `_` 开头，表示这些属性不应该被外部使用。
@@ -157,10 +158,11 @@ proxy._prop // undefined
 proxy._prop = 1; // 抛出错误 Invalid attempt to set private "_prop" property
 ```
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > 如果目标对象自身的某个属性不可写也不可配置，那么 `set` 不得改变这个属性的值，只能返回同样的值，否则报错。
 
-#### apply()
+### apply()
+
 `apply` 方法拦截函数的调用、`call` 和 `apply` 操作。该方法接受三个参数，分别是目标对象、目标对象的上下文对象（`this`）和目标对象的参数数组。
 
 ```javascript
@@ -186,7 +188,8 @@ let proxy = new Proxy(fn,handler)
 proxy() // '我是proxy的apply拦截'
 ```
 
-#### has()
+### has()
+
 `has()` 方法用来拦截 `HasProperty` 操作，即判断对象是否具有某个属性时，这个方法会生效，例如 `in` 运算符。具体来说，`has()` 方法可以接受两个参数，分别是目标对象、需查询的属性名。
 
 ```javascript
@@ -267,10 +270,11 @@ for(let key in p2){
 ```
 :::
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > `has()` 方法拦截的是 `HasProperty` 操作，而不是 `HasOwnProperty` 操作，即 `has()` 方法不判断一个属性是对象自身的属性，还是继承的属性。
 
-#### construct()
+### construct()
+
 `construct` 方法用于拦截 `new` 命令，其接受三个参数，分别是目标对象 `target`、构造函数的参数对象 `args` 和 `new` 命令的上下文对象（`newTarget`）。下面是拦截对象的写法：
 ```javascript
 var handler = {
@@ -305,7 +309,7 @@ var p = new Proxy(function() {}, {
 new p() // TypeError: 'construct' on proxy: trap returned non-object ('1')
 ```
 
-#### deleteProperty()
+### deleteProperty()
 
 `deleteProperty` 方法用于拦截 `delete` 操作，如果这个方法抛出错误或者返回 `false`，当前属性就无法被 `delete` 命令删除。
 
@@ -330,10 +334,10 @@ delete proxy._prop // Error: Invalid attempt to delete private "_prop" property
 delete proxy.prop // true
 ```
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > 目标对象自身的不可配置的属性不能被 `deleteProperty` 方法删除，否则会报错。
 
-#### defineProperty()
+### defineProperty()
 
 `defineProperty` 方法拦截了 `Object.defineProperty` 操作。
 ```js
@@ -349,10 +353,11 @@ Object.defineProperty(proxy, 'foo', {value: 1}) // TypeError: 'defineProperty' o
 ```
 由于 `defineProperty` 返回 `false`，所以添加新属性会抛出错误。
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > 如果目标对象不可扩展（`extensible`），则 `defineProperty` 不能增加目标对象上不存在的属性，否则也会报错。另外，如果目标对象的某个属性不可写（`writable`）或不可配置（`configurable`），则 `defineProperty` 方法不得改变这两个设置。
 
-#### getOwnPropertyDescriptor()
+### getOwnPropertyDescriptor()
+
 `getOwnPropertyDescriptor` 方法拦截 `Object.getOwnPropertyDescriptor()`，返回一个属性描述对象或者 `undefined`。
 
 ```js
@@ -376,7 +381,7 @@ Object.getOwnPropertyDescriptor(proxy, '_foo') // undefined
 Object.getOwnPropertyDescriptor(proxy, 'baz') // qux
 ```
 
-#### getPrototypeOf()
+### getPrototypeOf()
 
 `getPrototypeOf` 方法主要用来拦截获取对象原型。具体来说，拦截下面这些操作。
 
@@ -397,10 +402,10 @@ var p = new Proxy({}, {
 Object.getPrototypeOf(p) === proto // true
 ```
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > `getPrototypeOf` 方法只能返回对象或者 `null`，否则会报错。另外，如果目标对象不可扩展（`extensible`）， `getPrototypeOf` 方法必须返回目标对象的原型对象。
 
-#### ownKeys()
+### ownKeys()
 
 `ownKeys` 方法用来拦截对象自身属性的读取操作。具体来说，拦截以下操作。
 
@@ -514,11 +519,11 @@ Object.keys(proxy) // ["a", "c"]
     Object.getOwnPropertyNames(proxy) // TypeError: 'ownKeys' on proxy: trap returned extra keys but proxy target is non-extensible
    ```
 
-#### preventExtensions()
+### preventExtensions()
 
 `preventExtensions` 方法拦截 `Object.preventExtensions` 操作。该方法必须返回一个布尔值，否则会被自动转为布尔值。
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > `preventExtensions` 方法有一个限制，只有目标对象不可扩展时，`preventExtensions` 方法才能返回 `true`，否则会报错。
 > ```js
 > let p = new Proxy({}, {
@@ -530,7 +535,7 @@ Object.keys(proxy) // ["a", "c"]
 > ```
 > 为了防止这种问题，需要在 `proxy.preventExtensions` 方法中调用一次 `Object.preventExtensions`。
 
-#### isExtensible()
+### isExtensible()
 
 `isExtensible` 方法拦截 `Object.isExtensible` 操作。
 
@@ -545,10 +550,10 @@ var p = new Proxy({}, {
 Object.isExtensible(p) // "called"
 ```
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > `isExtensible` 方法只能返回布尔值，返回值会自动被转换为布尔值。`isExtensible` 方法有一个强限制，它的返回值必须与目标对象的 `isExtensible` 属性保持一致，否则会抛出错误。
 
-#### setPrototypeOf()
+### setPrototypeOf()
 
 `setPrototypeOf` 方法用于拦截 `Object.setPrototypeOf` 方法。该方法接受两个参数，第一个参数是目标对象，第二个参数是原型对象。
 
@@ -564,10 +569,10 @@ var proxy = new Proxy(target, handler)
 Object.setPrototypeOf(proxy, proto) // Error: Changing the prototype is forbidden
 ```
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > `setPrototypeOf` 方法只能返回布尔值，否则会被自动转为布尔值。另外，如果目标对象不可扩展（non-extensible），`setPrototypeOf` 方法不得改变目标对象的原型。否则会报错。
 
-### Proxy.revocable()
+## Proxy.revocable()
 
 `Proxy.revocable` 方法返回一个可取消的 `Proxy` 实例。
 
@@ -581,12 +586,12 @@ revoke()
 proxy.foo // TypeError: Revoked
 ```
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > `Proxy.revocable` 方法返回一个对象，该对象的 `proxy` 属性是 `Proxy` 实例，`revoke` 属性是一个函数，可以取消 `Proxy` 实例。一旦 `revoke` 函数执行，`Proxy` 实例就会失效。
 
 使用场景是，目标对象不允许直接访问，必须通过代理访问，一旦访问结束，就收回代理权，不允许再次访问。
 
-### this 问题
+## this 问题
 
 在 `Proxy` 代理的情况下，目标对象内部的 `this` 关键字会指向 `Proxy` 实例。
 
@@ -610,7 +615,7 @@ var proxy = new Proxy(d, {})
 proxy.getTime() // 1488488835657
 ```
 
-### 总结
+## 总结
 
 `Proxy` 是 <word text="JavaScript"/> 中用于拦截和修改对象操作的代理器，它允许在访问对象属性或方法时进行自定义行为。
 

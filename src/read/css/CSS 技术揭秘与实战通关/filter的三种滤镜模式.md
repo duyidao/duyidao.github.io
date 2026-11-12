@@ -1,4 +1,4 @@
-## filter在CSS中的三种滤镜模式及其特殊性介绍
+# filter在CSS中的三种滤镜模式及其特殊性介绍
 
 在<word text="CSS" />中，不同的滤镜有着不同的使用方式和作用，使用方式分为以下三种：
 
@@ -6,7 +6,7 @@
 2. 通过 `backdrop-filter` 使用滤镜
 3. 通过 `filter` 属性的 `url()` 值，引入 SVG 滤镜
 
-### filter 滤镜基础扫盲
+## filter 滤镜基础扫盲
 
 `filter` 滤镜各个属性值的作用：
 
@@ -127,7 +127,7 @@ div p {
 
 > 具体代码可以查看 [filter滤镜基础扫盲](https://codepen.io/duyidao/pen/XJdpYoG)
 
-### filter 滤镜是可以叠加使用的
+## filter 滤镜是可以叠加使用的
 
 - **可以给同个元素同时定义多个不同的滤镜**
 
@@ -183,20 +183,20 @@ div p {
 
     总之，**可以给同个元素定义多个滤镜，并且滤镜是可以重复的**
 
-### filter 与 backdrop-filter 的异同
+## filter 与 backdrop-filter 的异同
 
 1. 作用对象不同
-   
+
    - `filter` 作用对象：应用于元素本身及其所有子元素。
 
        它影响的是元素内容区域（包括元素的背景、边框、文字、子元素等）。相当于给元素"戴上"一个滤镜眼镜，所有看到的东西都经过这副眼镜。
 
    - `backdrop-filter` 作用对象：应用于元素背后的内容区域。
-   
+
       它影响的是元素后面的一切，包括背景、其他元素、甚至是视口背景。相当于在元素后面加了一层滤镜玻璃，透过这层玻璃看后面的景物。
 
 2. 关键要求
-   
+
     - `filter`：不需要元素透明，任何元素都可以应用 `filter`。
 
         例如：一个纯色背景的 div 也可以加 blur。
@@ -233,7 +233,7 @@ div p {
 
 挑几点来深入交流一下。
 
-#### 作用对象的差异
+### 作用对象的差异
 
 `backdrop-filter` 滤镜最为常见的使用场景，就是实现毛玻璃效果。
 
@@ -289,7 +289,7 @@ body {
 
 > 具体代码可以查看 [filter与backdrop-filter作用对象的差异](https://codepen.io/duyidao/pen/XJdpvGz)
 
-#### 效果上的差异
+### 效果上的差异
 
 同样设置 `grayscale(100%)` 实现灰度效果，`filter` 是作用于自身，而 `backdrop-filter` 是作用于背后的元素。
 
@@ -358,7 +358,7 @@ body {
 
 > 具体代码可以查看 [filter与backdrop-filter效果上的差异](https://codepen.io/duyidao/pen/azNJowQ)
 
-### 作用了 filter 和 backdrop-filter 的元素会导致 3D 效果失效
+## 作用了 filter 和 backdrop-filter 的元素会导致 3D 效果失效
 
 作用了 `filter` 和 `backdrop-filter` 的元素（值不为 `none`），都会生成 Backdrop Root。
 
@@ -389,7 +389,7 @@ body {
 - `filter`
 - `backdrop-filter`
 
-### 作用了 `filter` 和 `backdrop-filter` 的元素会使内部的 fixed 定位失效
+## 作用了 `filter` 和 `backdrop-filter` 的元素会使内部的 fixed 定位失效
 
 这个特性并不能被视为 Bug，它是 CSS 中的一个独特表现。
 
@@ -429,7 +429,7 @@ body {
 
 1. 红色色块，是 `.container` 父级元素，没有设置一些特殊属性
 2. 蓝色色卡，是 `.fixed` 子元素，设置了 `position: fixed` 定位
- 
+
 然而给父元素 `.container` 新增一个 `filter: blur(1px)`，子元素的 `fixed` 定位就会退化成 `position: absolute` 定位！
 
 ```CSS
@@ -447,8 +447,8 @@ body {
 
 这个问题，就牵涉到了 Stacking Context，也就是堆叠上下文的概念了。解释上面的问题分为两步：
 
-1.  任何非 none 的 transform 值都会导致一个堆叠上下文（Stacking Context）和包含块（Containing Block）的创建。
-1.  由于堆叠上下文的创建，该元素会影响其子元素的固定定位。设置了 `position:fixed` 的子元素将不会基于 viewport 定位，而是基于这个父元素。
+1. 任何非 none 的 transform 值都会导致一个堆叠上下文（Stacking Context）和包含块（Containing Block）的创建。
+1. 由于堆叠上下文的创建，该元素会影响其子元素的固定定位。设置了 `position:fixed` 的子元素将不会基于 viewport 定位，而是基于这个父元素。
 
 **堆叠上下文（Stacking Context）和包含块（Containing Block）的理解会比较困难。** 堆叠上下文是 HTML 元素的三维概念，这些 HTML 元素在一条假想的相对于面向（电脑屏幕的）视窗或者网页的用户的 z 轴上延伸，HTML 元素依据其自身属性按照优先级顺序占用层叠上下文的空间。
 
@@ -456,44 +456,46 @@ body {
 
 CSS 中，能够生成堆叠上下文的方法有非常多，方法如下（参考自 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context)）：
 
--   根元素 (HTML)；
--   z-index 值不为 "auto" 的绝对/相对定位；
--   一个 z-index 值不为 "auto" 的 flex 项目 (flex item)，即：父元素 display: flex|inline-flex；
--   opacity 属性值小于 1 的元素（参考 the specification for opacity）；
--   transform 属性值不为 "none" 的元素；
--   mix-blend-mode 属性值不为 "normal" 的元素；
--   filter 值不为 “none” 的元素；
--   perspective 值不为 “none” 的元素；
--   isolation 属性被设置为 "isolate" 的元素；
--   position: fixed；
--   在 will-change 中指定了任意 CSS 属性，即便你没有直接指定这些属性的值；
--   -webkit-overflow-scrolling 属性被设置 "touch" 的元素；
--   backdrop-filter 值不为 “none” 的元素。
+- 根元素 (HTML)；
+- z-index 值不为 "auto" 的绝对/相对定位；
+- 一个 z-index 值不为 "auto" 的 flex 项目 (flex item)，即：父元素 display: flex|inline-flex；
+- opacity 属性值小于 1 的元素（参考 the specification for opacity）；
+- transform 属性值不为 "none" 的元素；
+- mix-blend-mode 属性值不为 "normal" 的元素；
+- filter 值不为 “none” 的元素；
+- perspective 值不为 “none” 的元素；
+- isolation 属性被设置为 "isolate" 的元素；
+- position: fixed；
+- 在 will-change 中指定了任意 CSS 属性，即便你没有直接指定这些属性的值；
+- -webkit-overflow-scrolling 属性被设置 "touch" 的元素；
+- backdrop-filter 值不为 “none” 的元素。
 
 但是，除了 `filter` 和 `backdrop-filter` 之外，并非所有能够生成**堆叠上下文或者包含块**的属性，都会导致`position: fixed` 失效。
 
 在 CSS 中，目前一共有 7 种方式可以让元素内部的 `position: fixed` 基于该元素定位：
 
-1.  `transform` 属性值不为 none 的元素；
-1.  设置了 `transform-style`: preserve-3d 的元素；
-1.  `perspective` 值不为 none 的元素；
-1.  在 `will-change` 中指定了任意 CSS 属性；
-1.  设置了 `contain: paint`；
-1.  filter 值不为 `none` 的元素；
-1.  backdrop-filter 值不为 `none`的元素。
+1. `transform` 属性值不为 none 的元素；
+1. 设置了 `transform-style`: preserve-3d 的元素；
+1. `perspective` 值不为 none 的元素；
+1. 在 `will-change` 中指定了任意 CSS 属性；
+1. 设置了 `contain: paint`；
+1. filter 值不为 `none` 的元素；
+1. backdrop-filter 值不为 `none`的元素。
 
-### 总结
+## 总结
 
 本章节详细介绍了 CSS 中 `filter` 滤镜的三种使用方式及其特殊性。
 
-#### 三种滤镜使用方式
+### 三种滤镜使用方式
+
 1. 通过 `filter` 属性使用滤镜：作用于元素本身及其所有子元素，影响元素内容区域。
 2. 通过 `backdrop-filter` 属性使用滤镜：作用于元素背后的内容区域，需要透明背景才能看到效果。
 3. 通过 `filter` 属性的 `url()` 值引入 SVG 滤镜：使用 SVG 定义的自定义滤镜效果。
 
-#### 核心特性对比
+### 核心特性对比
+
 1. 作用对象差异
-    
+
     - `filter`：影响元素自身及后代元素
     - `backdrop-filter`：影响元素背后的所有内容
 
@@ -507,7 +509,7 @@ CSS 中，能够生成堆叠上下文的方法有非常多，方法如下（参�
     - `filter`：美化元素本身，如模糊、调整亮度等
     - `backdrop-filter`：创建毛玻璃效果，用于模态框、导航栏等
 
-#### 两种特殊问题
+### 两种特殊问题
 
 1. 3D 效果失效
 
@@ -517,7 +519,8 @@ CSS 中，能够生成堆叠上下文的方法有非常多，方法如下（参�
 
     应用了 `filter` 或 `backdrop-filter` 的元素，其内部的 `position: fixed` 元素会失去相对于视口定位的特性，退化为 `position: absolute`。
 
-#### 原理说明
+### 原理说明
+
 这两种问题都源于滤镜属性会创建堆叠上下文（Stacking Context）：
 
 `filter` 和 `backdrop-filter` 值不为 `"none"` 时会创建堆叠上下文，堆叠上下文会影响元素的层叠关系和定位关系

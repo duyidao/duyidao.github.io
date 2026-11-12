@@ -1,6 +1,6 @@
-## Module的语法
+# Module的语法
 
-### 概述
+## 概述
 
 JavaScript 一直没有模块（`module`）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代现有的 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决方案。
 
@@ -32,7 +32,7 @@ import { stat, exists, readFile } from 'fs';
 - 将来浏览器的新 API 就能用模块格式提供，不再必须做成全局变量或者navigator对象的属性。
 - 不再需要对象作为命名空间（比如Math对象），未来这些功能可以通过模块提供。
 
-### 严格模式
+## 严格模式
 
 ES6 的模块自动采用严格模式，不管你有没有在模块头部加上 `"use strict";`。
 
@@ -54,7 +54,7 @@ ES6 的模块自动采用严格模式，不管你有没有在模块头部加上 
 - 不能使用 `fn.caller` 和 `fn.arguments` 获取函数调用的堆栈
 - 增加了保留字（比如 `protected`、`static` 和 `interface`）
 
-### export命令
+## export命令
 
 模块功能主要由两个命令构成：`export` 和 `import`。`export` 命令用于规定模块的对外接口，`import` 命令用于输入其他模块提供的功能。
 
@@ -122,7 +122,7 @@ function fn() {
 }
 ```
 
-### import命令
+## import命令
 
 使用 `export` 命令定义了模块的对外接口以后，其他 <word text="JavaScript"/> 文件就可以通过 `import` 命令加载这个模块。`import` 接受一个对象（用大括号表示），里面指定要从其他模块导入的变量名。大括号里面的变量名，必须与被导入模块（`export` 命令）对外接口的名称相同。同样的，可以使用 `as` 重命名。
 
@@ -155,7 +155,7 @@ import './my_module.js';
 import './my_module.js';
 ```
 
-### 模块的整体加载
+## 模块的整体加载
 
 除了指定加载某个输出值，还可以使用整体加载，即用星号（`*`）指定一个对象，所有输出值都加载在这个对象上面。
 
@@ -170,7 +170,7 @@ import * as mod from './my_module.js'
 mod.foo = 123 // 报错
 ```
 
-### export default命令
+## export default命令
 
 `export default` 命令为模块指定默认输出。其他模块加载该模块时，`import` 命令可以为该匿名函数指定任意名字。
 
@@ -226,7 +226,7 @@ export default var a = 1;
 import _, { area, circumference } from './circle';
 ```
 
-### export和import的复合写法
+## export和import的复合写法
 
 如果一个模块先后输出的模块和输入的模块名称相同，那么 `import` 和 `export` 可以写在一起。接口改名和整体输出也可以采用这种写法。
 
@@ -252,7 +252,7 @@ export default my_module;
 ```
 :::
 
-### 模块的继承
+## 模块的继承
 
 模块之间也可以继承。假设有一个 `circleplus` 模块，继承了 `circle` 模块。
 
@@ -267,7 +267,7 @@ export default function(x) {
 
 上面代码中的 `export *` 命令用于规定模块的输出。`circleplus` 模块对 `circle` 模块的输出做了扩展，并在末尾加上了 `e` 常数和默认输出。
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > `export *` 命令会忽略 `circle` 模块的 `default` 方法。之后又输出自定义的 e 变量和默认方法。
 
 这时，也可以将 `circle` 的输出都加到 `circleplus` 上面。
@@ -281,7 +281,7 @@ export default function(x) {
 }
 ```
 
-### import()函数
+## import()函数
 
 由于 `import` 命令会被 JavaScript 引擎静态分析，所以不能使用表达式和变量，也就不能在运行时加载模块。这种限制实际上对用户不太友好。为了解决这个问题，ES2020 引入了动态 `import()`，支持动态加载模块。接受的参数与 `import` 相同，二者的区别主要是 `import()` 是动态加载。`import()` 返回一个 Promise 对象。
 
@@ -343,7 +343,7 @@ import(`./section-modules/${someVariable}.js`)
   })
   ```
 
-### 总结
+## 总结
 
 ES6 引入的模块系统，通过 `export` 和 `import` 两个命令，实现了代码的模块化。`export` 命令用于导出模块中的变量、函数或类等，使其可以被其他模块使用。可以单独导出每个成员，也可以使用 `export default` 导出默认成员，简化导入时的语法。`import` 命令用于导入其他模块提供的功能，可以指定导入特定成员或使用整体导入，将整个模块导入为一个对象。
 

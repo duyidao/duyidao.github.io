@@ -1,9 +1,13 @@
+import { navMenuIcons } from '../icons'
+
+const { laptop, harddisk, footPrint, star, cube, bookOpen } = navMenuIcons
+
 export default [
   {
-    text: '💻 前端知识',
+    text: `${laptop}前端知识`,
     items: [
       {
-        text: '🗡️ 基础与框架',
+        text: '基础与框架',
         items: [
           { text: 'CSS', link: '/css/effect/-webkit-box-reflect实现倒影' },
           { text: 'JavaScript', link: '/javascript/knowledge/变量与严格模式' },
@@ -12,7 +16,7 @@ export default [
         ],
       },
       {
-        text: '⬆️ 进阶',
+        text: '进阶',
         items: [
           { text: '图表', link: '/chart/svg/文字适应纹理' },
           { text: '高级', link: '/sharp/node/node' },
@@ -20,7 +24,7 @@ export default [
         ],
       },
       {
-        text: '📚 学而时习之',
+        text: '学而时习之',
         items: [
           {
             text: '概念知识',
@@ -39,10 +43,10 @@ export default [
     ],
   },
   {
-    text: '💾 项目履历',
+    text: `${harddisk}项目履历`,
     items: [
       {
-        text: '💼 工作项目',
+        text: '工作项目',
         items: [
           { text: '灵思', link: '/灵思/APP/登录' },
           { text: '百度', link: '/百度/图业融合/项目规范' },
@@ -59,17 +63,17 @@ export default [
     ],
   },
   {
-    text: '💦 脚踏实地',
+    text: `${footPrint}脚踏实地`,
     items: [
-      { text: '🧊 博客部署', link: '/vitepress/' },
+      { text: `${cube}博客部署`, link: '/vitepress/' },
       {
-        text: '📖 书香满屋',
+        text: `${bookOpen}书香满屋`,
         link: '/read/ES6标准入门/ECMAScript6简介',
       },
     ],
   },
   {
-    text: '⭐ 关于',
+    text: `${star}关于`,
     link: '/about/',
   },
 ]

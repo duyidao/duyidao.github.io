@@ -557,19 +557,19 @@ CORS （`Cross-Origin Resource Sharing`，跨域资源共享）由一系列 HTTP
 > 1. CORS 主要在服务器端进行配置。客户端浏览器无须做任何额外的配置，即可请求开启了 CORS 的接口。
 > 2. CORS 在浏览器中有兼容性。只有支持 XMLHttpRequest Level2 的浏览器，才能正常访问开启了 CORS 的服务端接口（例如：IE10+、Chrome4+、FireFox3.5+）。
 
-# nodemon
+## nodemon
 
 在编写调试<word text="Node" />项目的时候，如果修改了项目的代码，则需要频繁的手动 `close` 掉，然后再重新启动，非常繁琐。
 
 使用 [nodemon](https://www.npmjs.com/package/nodemon) 这个工具，它能够监听项目文件的变动，当代码被修改后，`nodemon` 会自动帮我们重启项目，极大方便了开发和调试。
 
-## Node Express安装
+### Node Express安装
 
 ```sh
 npm i -g nodemon
 ```
 
-## Node Express使用
+### Node Express使用
 
 ```sh
 nodemon xxx.js

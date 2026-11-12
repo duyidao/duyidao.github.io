@@ -1,8 +1,8 @@
-## Reflect
+# Reflect
 
 `Reflect` 对象不仅提供了一种更加清晰和一致的方式来操作对象属性，还与 `Proxy` 对象紧密协作，为开发者提供了强大的元编程能力。本文将深入探讨 `Reflect` 的静态方法、其与 `Proxy` 的关系以及实际应用，揭示如何在 <word text="JavaScript"/> 中更有效地使用这些强大的工具。
 
-### 概述
+## 概述
 
 `Reflect`对象与`Proxy`对象一样，也是 <word text="ES6"/> 为了操作对象而提供的新 API。`Reflect`对象的设计目的有以下几个。
 
@@ -11,11 +11,11 @@
 3. 让 `Object` 操作变成函数行为。某些`Object`操作是命令式，比如 `name in obj` 和 `delete obj[name]`，而 `Reflect.has(obj,name)` 和 `Reflect.deleteProperty(obj,name)` 让它们变成了函数行为。
 4. `Reflect`对象的方法与`Proxy`对象的方法一一对应，只要是`Proxy`对象的方法，就能在`Reflect`对象上找到对应的方法。这就让`Proxy`对象可以方便地调用对应的`Reflect`方法，完成默认行为，作为修改行为的基础。也就是说，不管`Proxy`怎么修改默认行为，你总可以在`Reflect`上获取默认行为。
 
-### 静态方法
+## 静态方法
 
 `Reflect` 对象一共有13个静态方法。
 
-#### Reflect.get(target,name,receiver)
+### Reflect.get(target,name,receiver)
 
 `Reflect.get`方法查找并返回`target`对象的`name`属性键值，如果没有该属性，则返回`undefined`。接受三个参数，`target`对象，`name`属性名，`receiver`可选参数。
 
@@ -54,7 +54,7 @@ Reflect.get(obj1,'baz', obj2) // 9
 
 如果 `target` 参数不是一个对象，`Reflect.get` 会抛出一个 `TypeError` 异常错误。
 
-#### Reflect.set(target,name,value,receiver)
+### Reflect.set(target,name,value,receiver)
 
 `Reflect.set`方法给 `target` 对象的 `name` 属性赋值 `value` ，如果成功则返回`true`，否则返回`false`。接受四个参数，`target`对象，`name`属性名，`value`属性值，`receiver`可选参数。
 
@@ -85,10 +85,10 @@ obj.foo // 1
 
 如果 `target` 参数不是一个对象，`Reflect.set` 会抛出一个 `TypeError` 异常错误。
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > `Reflect.set` 会触发 `Proxy.defineProperty` 的拦截。
 
-#### Reflect.has(target,name)
+### Reflect.has(target,name)
 
 `Reflect.has`方法对应 `name in obj`，用来判断对象是否具有某个属性，如果具有则返回 `true`，否则返回 `false`。接受两个参数，`target`对象，`name`属性名。
 
@@ -102,7 +102,8 @@ Reflect.has(obj,'bar') // false
 
 如果 `target` 参数不是一个对象，`Reflect.has` 会抛出一个 `TypeError` 异常错误。
 
-#### Reflect.deleteProperty(target,name)
+### Reflect.deleteProperty(target,name)
+
 `Reflect.deleteProperty`方法用于删除对象的属性，返回一个布尔值。如果成功删除或者要删除的属性不存在，则返回 `true`，如果删除失败或者删除的属性依旧存在，则返回 `false`。接受两个参数，`target`对象，`name`属性名。
 
 ```js
@@ -118,7 +119,7 @@ Reflect.deleteProperty(obj,'foo') // true
 Reflect.deleteProperty(obj,'bar') // true
 ```
 
-#### Reflect.construct(target, args)
+### Reflect.construct(target, args)
 
 `Reflect.construct`方法对应`new target(...args)`，用来新建一个实例对象。接受两个参数，`target`对象，`args`数组。
 
@@ -134,7 +135,7 @@ let instance1 = new F()
 let instance2 = Reflect.construct(F,[])
 ```
 
-#### Reflect.getPrototypeOf(target)
+### Reflect.getPrototypeOf(target)
 
 `Reflect.getPrototypeOf` 方法用于读取对象的 `__proto__` 属性，对应 `Object.getPrototypeOf(obj)`。接受一个参数，`target` 对象。
 
@@ -146,7 +147,7 @@ Reflect.getPrototypeOf(obj) === obj.__proto__ // true
 
 `Reflect.getPrototypeOf` 与 `Object.getPrototypeOf` 二者的区别是，如果参数不是对象，`Object.getPrototypeOf` 会将参数转为对象，然后再运行，而 `Reflect.getPrototypeOf` 会报错。
 
-#### Reflect.setPrototypeOf(target,prototype)
+### Reflect.setPrototypeOf(target,prototype)
 
 `Reflect.setPrototypeOf` 方法用于设置对象的 `__proto__` 属性，对应 `Object.setPrototypeOf(obj, newProto)`。接受两个参数，`target` 对象，`prototype` 对象。
 
@@ -158,7 +159,7 @@ Reflect.setPrototypeOf(obj,Object.prototype) // 新写法
 
 如果 `target` 参数不是对象，`Object.setPrototypeOf` 会返回第一个参数本身，`Reflect.setPrototypeOf` 会报错。如果 `target` 参数是 `undefined` 或者 `null`，两者都会抛出报错。
 
-#### Reflect.apply(target,thisArg,args)
+### Reflect.apply(target,thisArg,args)
 
 `Reflect.apply` 方法等同于 `Function.prototype.apply.call(func,thisArg,args)`，用于绑定 `this` 对象后执行函数。接受三个参数，`target` 对象，`thisArg` 对象，`args` 数组。
 
@@ -172,7 +173,7 @@ Reflect.apply(doSomething,null,[1,2])
 // bar: 2
 ```
 
-#### Reflect.defineProperty(target,name,desc)
+### Reflect.defineProperty(target,name,desc)
 
 `Reflect.defineProperty` 方法基本等同于 `Object.defineProperty`，用来为对象定义属性。接受三个参数，`target` 对象，`name` 属性名，`desc` 属性描述符。
 
@@ -185,7 +186,7 @@ function myReflactDefineProperty(target,name,desc){
 
 如果 `target` 参数不是对象，方法会抛出一个 `TypeError` 异常错误。
 
-#### Reflect.getOwnPropertyDescriptor(target,name)
+### Reflect.getOwnPropertyDescriptor(target,name)
 
 `Reflect.getOwnPropertyDescriptor` 方法基本等同于 `Object.getOwnPropertyDescriptor`，用于得到指定属性的描述对象，将来会替代掉 `Object.getOwnPropertyDescriptor` 方法。接受两个参数，`target` 对象，`name` 属性名。
 
@@ -199,7 +200,7 @@ Reflect.getOwnPropertyDescriptor(obj,'foo')
 
 二者的区别在于，如果 `target` 参数不是对象，`Object.getOwnPropertyDescriptor` 会返回 `undefined` ，而 `Reflect.getOwnPropertyDescriptor` 会报错，表示参数非法。
 
-#### Reflect.isExtensible(target)
+### Reflect.isExtensible(target)
 
 `Reflect.isExtensible` 方法对应 `Object.isExtensible`，返回一个布尔值，表示当前对象是否可扩展。接受一个参数，`target` 对象。
 ```js
@@ -210,7 +211,7 @@ Reflect.isExtensible(obj) // true
 
 二者的区别在于，如果参数不是对象，`Object.isExtensible` 会返回 `false`，而 `Reflect.isExtensible` 会报错，表示参数非法。
 
-#### Reflect.preventExtensions(target)
+### Reflect.preventExtensions(target)
 
 `Reflect.preventExtensions` 方法对应 `Object.preventExtensions`，用于让一个对象变为不可扩展。接受一个参数，`target` 对象。
 
@@ -222,7 +223,7 @@ Reflect.isExtensible(obj) // false
 
 二者的区别在于，如果参数不是对象，<word text="ES5"/>环境下的 `Object.preventExtensions` 会报错，<word text="ES6"/>环境下会返回原对象；而 `Reflect.preventExtensions` 会报错。
 
-#### Reflect.ownKeys(target)
+### Reflect.ownKeys(target)
 
 `Reflect.ownKeys` 方法返回对象的所有属性，基本等同于 `Object.getOwnPropertyNames` 与 `Object.getOwnPropertySymbols` 之和。
 
@@ -235,7 +236,8 @@ Reflect.ownKeys(obj)
 // ["foo", Symbol(baz)]
 ```
 
-### 实例运用
+## 实例运用
+
 下面是 `Reflect` 对象与 `Proxy` 对象结合使用的一个例子。实现观察者模式。
 ```js
 const queuedObservers = new Set()
@@ -264,7 +266,7 @@ person.age = 30
 // 李四, 30岁
 ```
 
-### 总结
+## 总结
 
 `Reflect`对象是 <word text="ES6"/> 引入的新 API，用于操作对象。`Reflect` 对象有以下几个设计目的：
 

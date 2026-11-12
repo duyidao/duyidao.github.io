@@ -9,9 +9,13 @@ import initZoom from '../../utils/zoom.js'
 import giscusTalk from '../../utils/giscus.js'
 import preloadImages from '../../utils/preload.js'
 import MyLayout from '../../components/myLayout.vue'
+import { addCollection } from '@iconify/vue/offline'
+import offlineIcons from 'virtual:iconify-offline'
 import { NProgress } from 'nprogress-v2/dist/index.js' // 进度条组件
 import 'nprogress-v2/dist/index.css' // 进度条样式
 import busuanzi from 'busuanzi.pure.js'
+
+addCollection(offlineIcons as any)
 
 export default {
   ...Theme,

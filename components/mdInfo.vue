@@ -38,7 +38,7 @@ const currentPath = computed(() => {
   try {
     path = decodeURIComponent(path)
   } catch (e) {
-    console.warn('⚠️ URL解码失败:', e)
+    console.warn('URL解码失败:', e)
   }
   return path
 })
@@ -201,31 +201,35 @@ const readList = computed(() => {
 </script>
 
 <template>
-  <div class="md-info">
-    <!-- 文档基本信息（作者、字数、阅读时间、日期） -->
-    <div class="md-info__read">
-      <div v-for="read in readList" :key="read.name" :title="read.title">
-        <icon :name="read.name" />
-        <span>{{ read.value }}</span>
-      </div>
+<div class="md-info">
+  <!-- 文档基本信息（作者、字数、阅读时间、日期） -->
+  <div class="md-info__read">
+    <div v-for="read in readList"
+      :key="read.name"
+      :title="read.title">
+      <icon :name="read.name" />
+      <span>{{ read.value }}</span>
     </div>
-
-    <!-- 文档Tags - 移到基本信息下方 -->
-    <div v-if="docTags && docTags.length > 0" class="md-info__tags">
-      <span v-for="tag in docTags" :key="tag" class="tag-item">{{ tag }}</span>
-    </div>
-
-    <!-- 文档描述 -->
-    <div v-if="docDescription" class="md-info__description">
-      {{ docDescription }}
-    </div>
-
-    <!-- 外部引用地址（视频/博客/文章） - 数据来源：文档元数据.json -->
-    <learn_light
-      v-if="authorList && authorList.length > 0"
-      :authorList="authorList"
-    />
   </div>
+
+  <!-- 文档Tags - 移到基本信息下方 -->
+  <div v-if="docTags && docTags.length > 0"
+    class="md-info__tags">
+    <span v-for="tag in docTags"
+      :key="tag"
+      class="tag-item">{{ tag }}</span>
+  </div>
+
+  <!-- 文档描述 -->
+  <div v-if="docDescription"
+    class="md-info__description">
+    {{ docDescription }}
+  </div>
+
+  <!-- 外部引用地址（视频/博客/文章） - 数据来源：文档元数据.json -->
+  <learn_light v-if="authorList && authorList.length > 0"
+    :authorList="authorList" />
+</div>
 </template>
 
 <style lang="less" scoped>
@@ -242,7 +246,7 @@ const readList = computed(() => {
     margin-bottom: 8px;
     padding-bottom: 12px;
 
-    > div {
+    >div {
       display: flex;
       align-items: center;
       gap: 6px;
@@ -278,11 +282,9 @@ const readList = computed(() => {
       display: inline-flex;
       align-items: center;
       padding: 4px 12px;
-      background: linear-gradient(
-        135deg,
-        var(--vp-c-brand-soft) 0%,
-        var(--vp-c-bg-soft) 100%
-      );
+      background: linear-gradient(135deg,
+          var(--vp-c-brand-soft) 0%,
+          var(--vp-c-bg-soft) 100%);
       color: var(--vp-c-brand-1);
       border: 1px solid var(--vp-c-brand-3);
       border-radius: 16px;
@@ -301,23 +303,19 @@ const readList = computed(() => {
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.15),
-          transparent
-        );
+        background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.15),
+            transparent);
         transition: left 0.5s ease;
       }
 
       &:hover {
         color: #fff;
         border-color: var(--vp-c-brand-1);
-        background: linear-gradient(
-          135deg,
-          var(--vp-c-brand-1) 0%,
-          var(--vp-c-brand-2) 100%
-        );
+        background: linear-gradient(135deg,
+            var(--vp-c-brand-1) 0%,
+            var(--vp-c-brand-2) 100%);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 
         &::before {
@@ -329,20 +327,16 @@ const readList = computed(() => {
       [data-theme='dark'] & {
         color: var(--vp-c-brand-2);
         border-color: rgba(64, 158, 255, 0.3);
-        background: linear-gradient(
-          135deg,
-          rgba(64, 158, 255, 0.12) 0%,
-          rgba(255, 255, 255, 0.03) 100%
-        );
+        background: linear-gradient(135deg,
+            rgba(64, 158, 255, 0.12) 0%,
+            rgba(255, 255, 255, 0.03) 100%);
 
         &:hover {
           color: #fff;
           border-color: var(--vp-c-brand-1);
-          background: linear-gradient(
-            135deg,
-            var(--vp-c-brand-1) 0%,
-            var(--vp-c-brand-2) 100%
-          );
+          background: linear-gradient(135deg,
+              var(--vp-c-brand-1) 0%,
+              var(--vp-c-brand-2) 100%);
         }
       }
     }
@@ -360,7 +354,7 @@ const readList = computed(() => {
       gap: 0;
       padding-bottom: 0.75rem;
 
-      > div {
+      >div {
         width: 50%;
         display: flex;
         align-items: center;

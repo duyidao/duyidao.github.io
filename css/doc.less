@@ -1,10 +1,46 @@
+/* 引用卡片（blockquote）：独立视觉，与提示卡片区分 */
 .vp-doc blockquote {
-  border-radius: 10px;
-  padding: 18px 20px 20px 15px;
   position: relative;
-  background-color: var(--vp-c-gray-soft);
-  border-left: 6px solid var(--vp-c-indigo-3);
-  border-right: 6px solid var(--vp-c-indigo-3);
+  margin: 20px 0;
+  padding: 16px 22px 16px 26px;
+  border-radius: 12px;
+  border: 1px solid var(--custom-quote-border);
+  border-left: 4px solid var(--custom-quote-accent);
+  background-color: var(--custom-quote-bg);
+  box-shadow: 0 2px 12px -6px rgba(0, 0, 0, 0.16);
+  transition: border-color 0.25s, background-color 0.25s;
+}
+
+.vp-doc blockquote::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 26px;
+  height: 26px;
+  opacity: 0.16;
+  background-color: var(--custom-quote-accent);
+  -webkit-mask-image: var(--custom-quote-icon);
+  mask-image: var(--custom-quote-icon);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.vp-doc blockquote>p {
+  margin: 0;
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc blockquote>p+p {
+  margin-top: 10px;
+}
+
+.vp-doc blockquote:hover {
+  border-left-color: var(--custom-quote-accent);
+  background-color: color-mix(in srgb, var(--custom-quote-accent) 10%, var(--custom-quote-bg));
 }
 
 .vp-doc h3 {
@@ -13,6 +49,9 @@
 
 /* 深浅色卡 */
 :root {
+  /* 强调色兜底：非内置类型（如自定义容器）也能拿到投影色 */
+  --custom-block-accent: var(--vp-c-divider);
+
   --custom-block-info-left: #cccccc;
   --custom-block-info-bg: #fafafa;
 
@@ -33,6 +72,20 @@
 
   --custom-block-caution-left: #e0575b;
   --custom-block-caution-bg: #fde4e8;
+
+  /* 提示卡片标题图标配色（info 边框为中性灰，图标单独提亮一档） */
+  --custom-block-info-icon: #7f8794;
+  --custom-block-note-icon: #4cb3d4;
+  --custom-block-tip-icon: #009400;
+  --custom-block-warning-icon: #d99600;
+  --custom-block-danger-icon: #e13238;
+  --custom-block-important-icon: #a371f7;
+  --custom-block-caution-icon: #e0575b;
+
+  /* 引用卡片（blockquote）：左侧强调条、浅底、边框 */
+  --custom-quote-accent: var(--vp-c-indigo-3);
+  --custom-quote-bg: color-mix(in srgb, var(--vp-c-indigo-3) 5%, var(--vp-c-gray-soft));
+  --custom-quote-border: color-mix(in srgb, var(--vp-c-indigo-3) 20%, var(--vp-c-divider));
 
   /* 表格：单元格底色、表头底色、边框色 */
   --custom-table-td-bg: var(--vp-code-block-bg);
@@ -79,6 +132,20 @@
 
   --custom-block-caution-left: #e0575b;
   --custom-block-caution-bg: #391c22;
+
+  /* 提示卡片标题图标配色：暗色下整体提亮，保证图标在深底上可辨识 */
+  --custom-block-info-icon: #c2c8d0;
+  --custom-block-note-icon: #6fc7e4;
+  --custom-block-tip-icon: #3ddc3d;
+  --custom-block-warning-icon: #f0bd45;
+  --custom-block-danger-icon: #f5666b;
+  --custom-block-important-icon: #bfa0ff;
+  --custom-block-caution-icon: #f07b7e;
+
+  /* 引用卡片（blockquote）：暗色下降低底色明度、提高描边对比 */
+  --custom-quote-accent: var(--vp-c-indigo-2);
+  --custom-quote-bg: color-mix(in srgb, var(--vp-c-indigo-3) 9%, var(--vp-c-bg-soft));
+  --custom-quote-border: color-mix(in srgb, var(--vp-c-indigo-3) 26%, var(--vp-c-divider));
 
   /* 表格：暗色下表头更亮，与表体拉开层次 */
   --custom-table-td-bg: var(--vp-code-block-bg);
@@ -215,69 +282,137 @@
   }
 }
 
-/* 标题字体大小 */
-.custom-block-title {
+/* 提示卡片标题图标（iconify: mdi），变量由 config/icons/index.ts 在构建期注入
+   七类卡片各用一枚语义独立的图标，避免视觉上互相混淆 */
+
+/* 卡片投影：暗色下改用纯黑扩散，避免彩色投影发脏 */
+.dark {
+  --custom-block-shadow: rgba(0, 0, 0, 0.55);
+}
+
+/* 提示卡片：统一圆角、内边距、投影与过渡（details 折叠块保持原生观感）
+   投影色按各自强调色混出，var 需在使用处解析，故此处直接内联 color-mix */
+.vp-doc .custom-block:not(.details) {
+  border-radius: 10px;
+  padding: 14px 18px 14px 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04),
+    0 8px 20px -12px var(--custom-block-shadow,
+      color-mix(in srgb, var(--custom-block-accent) 28%, transparent));
+}
+
+/* 提示卡片标题：图标与文字同一行垂直居中 */
+.vp-doc .custom-block .custom-block-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* 标题与正文留出间距（覆盖 VitePress 对首个子元素的 margin 归零） */
+.vp-doc .custom-block p.custom-block-title,
+.vp-doc .custom-block p.custom-block-title:first-child {
+  margin: 0 0 6px;
+}
+
+/* 提示卡片图标：统一用 mask 注入 iconify SVG，颜色随类型变化 */
+.custom-block-icon(@icon, @color) {
+  content: '';
+  flex: 0 0 auto;
+  width: 17px;
+  height: 17px;
+  background-color: @color;
+  -webkit-mask-image: @icon;
+  mask-image: @icon;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 /* info容器:背景色、左侧 */
 .custom-block.info {
-  border-left: 5px solid var(--custom-block-info-left);
+  --custom-block-accent: var(--custom-block-info-left);
+  border-left: 5px solid var(--custom-block-accent);
   background-color: var(--custom-block-info-bg);
 }
 
 /* info容器:svg图 */
-.custom-block.info [class*="custom-block-title"]::before {
-  content: '✉️';
-  margin-right: 6px;
+.custom-block.info .custom-block-title::before {
+  .custom-block-icon(var(--icon-info), var(--custom-block-info-icon));
 }
 
 /* 提示容器:边框色、背景色、左侧 */
 .custom-block.tip {
-  border-left: 5px solid var(--custom-block-tip-left);
+  --custom-block-accent: var(--custom-block-tip-left);
+  border-left: 5px solid var(--custom-block-accent);
   background-color: var(--custom-block-tip-bg);
 }
 
 /* 提示容器:svg图 */
-.custom-block.tip [class*="custom-block-title"]::before {
-  content: '✅';
-  margin-right: 6px;
+.custom-block.tip .custom-block-title::before {
+  .custom-block-icon(var(--icon-tip), var(--custom-block-tip-icon));
 }
 
 /* 警告容器:背景色、左侧 */
 .custom-block.warning {
-  border-left: 5px solid var(--custom-block-warning-left);
+  --custom-block-accent: var(--custom-block-warning-left);
+  border-left: 5px solid var(--custom-block-accent);
   background-color: var(--custom-block-warning-bg);
 }
 
 /* 警告容器:svg图 */
-.custom-block.warning [class*="custom-block-title"]::before {
-  content: '⚠️';
-  margin-right: 6px;
+.custom-block.warning .custom-block-title::before {
+  .custom-block-icon(var(--icon-warning), var(--custom-block-warning-icon));
 }
 
 /* 危险容器:背景色、左侧 */
 .custom-block.danger {
-  border-left: 5px solid var(--custom-block-danger-left);
+  --custom-block-accent: var(--custom-block-danger-left);
+  border-left: 5px solid var(--custom-block-accent);
   background-color: var(--custom-block-danger-bg);
 }
 
 /* 危险容器:svg图 */
-.custom-block.danger [class*="custom-block-title"]::before {
-  content: '❗';
-  margin-right: 6px;
+.custom-block.danger .custom-block-title::before {
+  .custom-block-icon(var(--icon-danger), var(--custom-block-danger-icon));
 }
 
 /* 重要容器:背景色、左侧 */
 .custom-block.important {
-  border-left: 5px solid var(--custom-block-important-left);
+  --custom-block-accent: var(--custom-block-important-left);
+  border-left: 5px solid var(--custom-block-accent);
   background-color: var(--custom-block-important-bg);
 }
 
 /* 重要容器:svg图 */
-.custom-block.important [class*="custom-block-title"]::before {
-  content: 'ℹ️';
-  margin-right: 6px;
+.custom-block.important .custom-block-title::before {
+  .custom-block-icon(var(--icon-important), var(--custom-block-important-icon));
+}
+
+/* 备注容器:背景色、左侧 */
+.custom-block.note {
+  --custom-block-accent: var(--custom-block-note-left);
+  border-left: 5px solid var(--custom-block-accent);
+  background-color: var(--custom-block-note-bg);
+}
+
+/* 备注容器:svg图 */
+.custom-block.note .custom-block-title::before {
+  .custom-block-icon(var(--icon-note), var(--custom-block-note-icon));
+}
+
+/* 警示容器:背景色、左侧 */
+.custom-block.caution {
+  --custom-block-accent: var(--custom-block-caution-left);
+  border-left: 5px solid var(--custom-block-accent);
+  background-color: var(--custom-block-caution-bg);
+}
+
+/* 警示容器:svg图 */
+.custom-block.caution .custom-block-title::before {
+  .custom-block-icon(var(--icon-caution), var(--custom-block-caution-icon));
 }
 
 .medium-zoom-overlay {

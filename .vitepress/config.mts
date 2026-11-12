@@ -5,6 +5,7 @@ import vite from '../config/vite'
 import config from '../config/index'
 import rewrites from '../config/rewrites'
 import head from '../config/head'
+import { homeIconsPlugin } from '../config/home-icons-plugin'
 
 export default withMermaid({
   ...config,
@@ -13,4 +14,5 @@ export default withMermaid({
   markdown,
   vite,
   rewrites,
+  ...homeIconsPlugin(),
 })

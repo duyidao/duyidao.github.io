@@ -1,18 +1,21 @@
-## Iterator和for...of循环
+# Iterator和for...of循环
 
 <word text="JavaScript"/> 随着 <word text="ES6"/> 的引入，`Iterator` 和 `for...of` 循环成为了处理集合数据的新方式。它们不仅提供了一种统一的接口来遍历各种数据结构，还使得代码更加简洁和高效。本文将深入探讨 `Iterator` 的概念、默认 `Iterator` 接口的工作原理，以及 `for...of` 循环的实际应用。
 
-### Iterator（遍历器）的概念
+## Iterator（遍历器）的概念
+
 <word text="JavaScript"/> 原有的表示"集合"的数据结构主要是数组（`Array`）和对象（`Object`），<word text="ES6"/> 又添加了 `Map` 和 `Set`。这样就有了四种数据集合。这样就需要一种统一的接口机制，来处理所有不同的数据结构。
 
 遍历器（`Iterator`）就是这样一种机制。它是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署 `Iterator` 接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）。
 
 `Iterator` 的作用有三个：
+
 1. 为各种数据结构，提供一个统一的、简便的访问接口
 2. 使得数据结构的成员能够按某种次序排列
 3. <word text="ES6"/> 创造了一种新的遍历命令 `for...of` 循环，Iterator接口主要供 `for...of` 消费。
 
 `Iterator` 的遍历过程如下：
+
 1. 创建一个指针对象，指向当前数据结构的起始位置。也就是说，遍历器对象本质上，就是一个指针对象。
 2. 第一次调用指针对象的 `next` 方法，可以将指针指向数据结构的第一个成员。
 3. 第二次调用指针对象的 `next` 方法，指针就指向数据结构的第二个成员。
@@ -41,13 +44,14 @@ function makeIterator(array) {
 
 其中，`value: undefined` 和 `done: false` 可以省略。
 
-### 默认的Iterator接口
+## 默认的Iterator接口
 
 上面提到，`Iterator` 接口是为所有数据结构提供统一的访问机制，也就是说，只要数据结构部署了 `Iterator` 接口，就称这些数据结构为可遍历的（`iterable`）。
 
 <word text="ES6"/> 规定，默认的 `Iterator` 接口部署在数据结构的 `Symbol.iterator` 属性。`Symbol.iterator` 属性本身是一个函数，就是当前数据结构默认的遍历器生成函数。执行这个函数，就会返回一个遍历器。
 
 原生具备 `Iterator` 接口的数据结构如下：
+
 - `Array`
 - `Map`
 - `Set`
@@ -60,15 +64,16 @@ function makeIterator(array) {
 
 对象之所以没默认部署 `Iterator` 接口，是因为对象属性遍历的先后顺序不确定，需要开发者手动指定。但是对象本质上也是个现行处理，部署 `Iterator` 接口不是很必要。若对象想要实现 `for...of` 循环，则需要该对象上（或它的原型链上）部署了 `Symbol.iterator` 方法。
 
-### 调用Iterator接口的场合
+## 调用Iterator接口的场合
 
 除了上面提到的 `for...of`，还有几个场合会默认调用 `Iterator` 接口（即 `Symbol.iterator` 方法）：
+
 - 解构赋值，对数组和 `Set` 结构进行解构赋值时，会默认调用 `Symbol.iterator` 方法。
 - 扩展运算符，扩展运算符（...）也会调用默认的 `Iterator` 接口。
 - `yield*`，`yield*` 后面跟的是一个可遍历的结构，它会调用该结构的遍历器接口。
 - 任何接受数组作参数遍历的场合，比如 `for...of`、`Array.from()`、`Map()`、`Set()`、`WeakMap()`、`WeakSet()`、`Promise.all()`、`Promise.race()`。
 
-### 字符串的Iterator接口
+## 字符串的Iterator接口
 
 字符串是一个类似数组的对象，也原生具有 `Iterator` 接口。
 
@@ -107,7 +112,7 @@ str[Symbol.iterator] = function() {
 [...str] // ["a", "b"]
 ```
 
-### Iterator接口与Generator函数
+## Iterator接口与Generator函数
 
 `Symbol.iterator()` 方法的最简单实现，还是使用 `Generator` 函数。
 
@@ -131,7 +136,7 @@ for (let i of arr) {
 }
 ```
 
-### 遍历器对象的return()，throw()
+## 遍历器对象的return()，throw()
 
 遍历器对象除了具有 `next()` 方法，还可以具有 `return()` 方法和 `throw()` 方法，如果是自己写的遍历器对象生成函数，`next()` 是必须部署的，后两个是可选的。
 
@@ -156,18 +161,18 @@ function readLinesSync(fileName) {
 }
 ```
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > `return()` 方法必须返回一个对象，这是 `Generator` 规格规定的。
 
 `throw()` 方法主要是配合 `Generator` 函数使用，一般的遍历器对象用不到这个方法。
 
-### for...of循环
+## for...of循环
 
 `for...of` 是 <word text="ES6"/>引进的，用于遍历部署了 `Symbol.iterator` 接口的数据结构，它内部调用的是数据结构的 `Symbol.iterator` 方法。
 
 使用范围包括 数组、`Set`、`Map`、类数组对象（`arguments`、`DOM NodeList` 对象）、`Generator` 对象，以及字符串。
 
-#### 数组
+### 数组
 
 数组原生具备了 `Iterator` 接口（调用的是数组的遍历器接口），`for...of` 循环本质就是调用这个接口产生的遍历器。
 
@@ -214,7 +219,7 @@ for (let a of arr) {
 // 33
 ```
 
-#### Set和Map
+### Set和Map
 
 `Set` 和 `Map` 结构也原生具有 `Iterator` 接口，可以直接用 `for...of` 循环遍历。
 
@@ -234,17 +239,19 @@ map.set('c', 3)
 ```
 
 其中有两个注意点：
+
 - 遍历的顺序是按照各个成员被添加进数据结构的顺序
 - `Set` 结构遍历时，返回的是一个值，而 `Map` 结构遍历时，返回的是一个数组，该数组的两个成员分别为当前 `Map` 成员的键名和键值
 
-#### 计算生成的数据结构
+### 计算生成的数据结构
 
 有些数据结构是在现有数据结构的基础上，计算生成的。如数组、`Set`、`Map` 都部署了以下三个方法，调用后都返回遍历器对象。
+
 - `entries()` 返回一个遍历器对象，用于遍历[键名, 键值]组成的数组。对于数组，键名就是索引；对于 Set，键名与键值相同。`Map` 结构的 `Iterator` 接口，默认就是调用 `entries` 方法。
 - `keys()` 返回一个遍历器对象，用于遍历所有的键名。
 - `values()` 返回一个遍历器对象，用于遍历所有的键值。
 
-#### 类似数组的对象
+### 类似数组的对象
 
 类似数组的对象包括 `arguments` 对象和 `DOM NodeList` 对象。`for...of` 循环都可以遍历这些数据结构。
 
@@ -278,7 +285,7 @@ for (let arg of args('a', 'b', 'c')) {
 
 并不是所有类似数组的对象都具有 `Iterator` 接口，一个简便的解决方法，就是使用 `Array.from()` 方法将其转为数组。
 
-#### 对象
+### 对象
 
 对于普通的对象，`for...of` 结构不能直接使用，会报错，必须部署了 `Iterator` 接口后才能使用。一种解法是用 `Object.keys()` 方法将对象的键名生成一个数组，然后遍历这个数组；另一种解法是用 `Generator` 函数将对象重新包装。
 
@@ -310,21 +317,23 @@ for (let [key, value] of entries(obj)) {
 // c -> 3
 ```
 
-#### 与其他遍历语法的比较
+### 与其他遍历语法的比较
 
 以数组为例，最开始是 `for` 循环，缺点是写法麻烦；后面提供了 `forEach` 方法，不过存在无法中断循环的问题。
 
 `for...in` 循环可以遍历数组的键名，但是存在几个缺点：
+
 1. 数组的键名是数字，但是 `for...in` 循环是以字符串作为键名 “0”、“1”、“2” 等等。
 2. `for...in` 循环不仅遍历数字键名，还会遍历手动添加的其他键，甚至包括原型链上的键。
 3. 某些情况下，`for...in` 循环会以任意顺序遍历键名。
 
 相比之下，`for...of` 循环有以下几个优点：
+
 1. 有着同 `for...in` 一样的简洁语法，但是没有 `for...in` 那些缺点。
 2. 不同于 `forEach` 方法，它可以与 `break`、`continue` 和 `return` 配合使用。
 3. 提供了遍历所有数据结构的统一操作接口。
 
-### 总结
+## 总结
 
 `Iterator` 是 <word text="JavaScript"/> <word text="ES6"/> 引入的一种接口，用于统一访问不同数据结构的元素。它允许使用 `for...of` 循环遍历具有 `Iterator` 接口的数据结构，如数组、字符串、Map、Set 等。`Iterator` 对象通过 `next()` 方法返回包含 `value` 和 `done` 属性的对象，其中 `value` 是当前元素的值，`done` 指示遍历是否结束。
 

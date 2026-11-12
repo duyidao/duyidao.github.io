@@ -1,8 +1,8 @@
-## Module的加载实现
+# Module的加载实现
 
 上一章讲述模块的语法，本章重心在浏览器和 `Node` 之中如何加载 ES6 模块。
 
-### 浏览器加载
+## 浏览器加载
 
 传统方法是在 HTML 页面中通过 `script` 标签加载 JavaScript 脚本。
 
@@ -42,27 +42,29 @@
 ```
 
 对于外部加载的模块脚本，需要注意以下几点：
+
 - 代码是在模块作用域之中运行，而不是在全局作用域运行。模块内部的顶层变量，外部不可见。
 - 模块脚本自动采用严格模式，不管有没有在模块头部加上 `"use strict";`。
 - 模块之中，可以使用 `import` 命令加载其他模块（`.js` 后缀不可省略，需要提供绝对 URL 或相对 URL），也可以使用 `export` 命令输出对外接口。
 - 模块之中，顶层的 `this` 关键字返回 `undefined`，而不是指向 `window` 对象。
 - 同一个模块如果加载多次，将只执行一次。
 
-### ES6模块与CommonJS模块的差异
+## ES6模块与CommonJS模块的差异
 
 ES6模块与 CommonJS 模块具体两大差异如下：
 
 - CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。
-  
+
   CommonJS 模块输出的是值的复制，也就意味着内部值发生改变，不会影响到已输出的值，模块不会同步更新。ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。
 
 - CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。
-  
+
   这是因为 CommonJS 模块加载的是一个对象，该对象只有在脚本运行完才会生成。而 ES6 模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。
 
 ES6 模块的运行机制与 CommonJS 不一样。 引擎对脚本静态分析的时候，遇到模块加载命令 `import` 就会生成 个只读引用。等到脚本真正执行时 ，再根据这个只读引用到被加载的模块中取值。换句话说，ES6 `import` 有点像 Unix 系统的 “符号链接”，原始值变了，`import` 加载的值也会跟着变。因此， ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。
 
 ::: code-group
+
 ```js [CommonJS]
 var num = 1
 function changeNum() {
@@ -79,6 +81,7 @@ console.log(mod.num) // 1
 mod.changeNum()
 console.log(mod.num) // 1
 ```
+
 ```js [ES6]
 export let num = 1
 export function changeNum() {
@@ -90,6 +93,7 @@ console.log(num) // 1
 changeNum()
 console.log(num) // 2
 ```
+
 :::
 
 由于 ES6 输入的模块变量只是一个"符号链接"，所以这个变量是只读的，对它进行重新赋值会报错。
@@ -102,15 +106,16 @@ a = 123 // Syntax Error : 'a' is read-only
 
 `export` 通过接口输出的是同一个值。不同的脚本加载这个接口得到的都是同样的实例。
 
-### Node.js的模块加载
+## Node.js的模块加载
 
-#### 概述
+### 概述
 
 `Node.js` 有自己的 CommonJS 模块规范，与 ES6 模块是不兼容的。目前解决方案是二者分开，采取各自的加载方案。
 
 在静态分析阶段，一个模块脚本只要有一行 `import` 或者 `export` ，`Node.js` 就会认为该脚本为 ES6 模块，否则为 CommonJS 模块。如果不想输出任何语句，但是希望被 `Node.js` 将其视为 ES6 模块，可以在脚本中添加一行 `export {}` 。
 
 如果不加后缀，Node 加载 ES6 模块会和 `require` 一样按照以下顺序寻找脚本：
+
 - `import './foo'`
   - `./foo.js`
   - `./foo/package.json`
@@ -123,20 +128,23 @@ a = 123 // Syntax Error : 'a' is read-only
 
 ES6 模块之中，顶层的 `this` 指向 `undefined`, CommonJS 模块的顶层 `this` 指向当前模块，这是两者的 个重大差异。
 
-#### import命令加载CommonJS模块
+### import命令加载CommonJS模块
 
 CommonJS 模块的输出都定义在 `module.exports` 这个属性上面。`Node` 的 `import` 命令加载 CommonJS 模块，Node 会自动将 `module.exports` 属性，当作模块的默认输出，即等同于 `export default` 。
 
 ::: code-group
+
 ```js [foo.js]
 module.exports = function () {
   console.log('hello world')
 }
 ```
+
 ```js [main.js]
 import foo from './foo.js'
 foo() // hello world
 ```
+
 :::
 
 由于 ES6 模块是编译时确定输出接口，CommonJS 模块是运行时确定输出接口，所以采用 `import` 命令加载 CommonJS 模块时，不允许采用下面的写法。
@@ -146,11 +154,12 @@ foo() // hello world
 import { readFile } from 'fs'
 ```
 
-#### require命令加载ES6模块
+### require命令加载ES6模块
 
 采用 `require` 命令加载 ES6 模块，ES6 模块的所有输出接口都会成为输入对象的属性。
 
 ::: code-group
+
 ```js [es.mjs]
 let foo = { bar: 'my-default' }
 export default foo
@@ -159,29 +168,32 @@ export function f() {
   console.log('my-f')
 }
 ```
+
 ```js [cjs.mjs]
 const es_namespace = require('./es')
 console.log(es_namespace.default) // { bar:'my-default' }
 console.log(es_namespace.baz) // 'my-baz'
 es_namespace.f() // 'my-f'
 ```
+
 :::
 
 由于 ES6 模块的 `this` 指向 `undefined` ，所以采用 `require` 命令加载 ES6 模块时，不能将 `this` 变量指向 `this` 模块，即不能使用 `this` 变量。
 
-### 循环加载
+## 循环加载
 
 循环加载指的是 a 脚本依赖 b 脚本，吧、脚本的执行又依赖 a 脚本。通常情况下循环加载存在较强的耦合性。如果处理不好会导致递归加载，使得程序陷入死循环。但实际上该情况很难避免，尤其大型项目很容易出现这种情况。
 
 目前最常见的两种模块 CommonJS 和 ES6 在处理方法也是不同的，返回的值也不一样。
 
-#### CommonJS模块的循环加载
+### CommonJS模块的循环加载
 
 CommonJS 模块格式的加载原理：一个模块就是一个脚本，`require` 命令第一次加载该脚本时就会执行整个脚本，然后在内存中生成一个对象。也就是说，CommonJS 模块无论加载多少次，都只会在第一次加载时运行一次，以后再加载时就返回第一次运行的结果，除非手动清除系统缓存。
 
 CommonJS 模块的重要特性是加载时执行，即脚本代码在 `require` 的时候就会全部执行。一旦出现某个模块被“循环加载”，就只输出已经执行的部分，还未执行的部分不会输出。
 
 ::: code-group
+
 ```js [a.js]
 exports.done = false
 var b = require('./b.js')
@@ -189,6 +201,7 @@ console.log('a', b.done)
 exports.done = true
 console.log('a.js执行完毕')
 ```
+
 ```js [b.js]
 exports.done = false
 var a = require('./a.js')
@@ -196,17 +209,20 @@ console.log('b', a.done)
 exports.done = true
 console.log('b.js执行完毕')
 ```
+
 ```js [main.js]
 var a = require('./a.js')
 var b = require('./b.js')
 console.log('a、b都执行完毕', a.done, b.done)
 ```
+
 :::
 
 上方代码首先执行 a脚本，执行了一行之后要执行 b 脚本，执行了一行后又要加载 a脚本，此时就发生循环加载，系统会去 a 脚本对应对象的 `exports` 中取值，由于a脚本只执行了一行，还没有执行到 `exports.done = true`，因此从 `exports` 中取到的值是 `false`。然后继续执行b脚本，b脚本执行完毕后，a 脚本继续执行，最后输出a脚本执行完毕。
 
 最后执行完打印如下：
-```
+
+```text
 b false
 b.js执行完毕
 a true
@@ -228,39 +244,42 @@ exports.bad = function(arg) {
 }
 ```
 
-#### ES6模块的循环加载
+### ES6模块的循环加载
 
 ES6 模块是动态引用，如果使用 `import` 命令加载一个变量，这个变量不会被缓存，而是成为一个指向被加载模块的引用，需要开发者自己保证，真正取值的时候能够取到值。
 
 ::: code-group
+
 ```js [a.js]
 import {bar} from './b.js'
 console.log('a.js')
 console.log(bar)
 export let foo = 'foo'
 ```
+
 ```js [b.js]
 import {foo} from './a.js'
 console.log('b.js')
 console.log(foo)
 export let bar = 'bar'
 ```
+
 :::
 
 上方代码首先执行 `a.js` ，然后依赖 `b.js` ，开始执行 `b.js` ，`b.js` 第一行要执行 `a.js`，由于 `a.js` 已经开始执行了，所以不会重复执行，继续执行 `b.js`。执行打印结果如下：
 
-```
+```text
 b.js
 undefined
 a.js
 bar
 ```
 
-### ES6模块的转码
+## ES6模块的转码
 
 早期 ES6 模块浏览器还不支持，为了实现快速使用，可以通过 `babel` 转码器将 ES6 模块转为 ES5 的写法。
 
-### 总结
+## 总结
 
 在浏览器中，ES6 模块可以通过 `<script type="module">` 标签加载，支持异步加载且不会阻塞渲染，改善了传统 `<script>` 标签同步加载导致的性能问题。模块内的代码运行在模块作用域，顶层 `this` 返回 `undefined`，模块自动采用严格模式。与 CommonJS 模块不同，ES6 模块输出的是值的引用，且在编译时确定输出接口，而 CommonJS 模块输出的是值的拷贝，且在运行时确定输出接口。
 

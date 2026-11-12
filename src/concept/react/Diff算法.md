@@ -108,5 +108,5 @@ class Person extends React.Component {
 
 ![pCFZfDH.png](https://s1.ax1x.com/2023/06/07/pCFZfDH.png)
 
-> [!WARNING] ⚠️ 注意
+> [!WARNING] 注意
 > 如果不存在对数据进行逆序添加、逆序删除等破坏顺序操作，仅用于渲染展示，使用索引是没有问题的。

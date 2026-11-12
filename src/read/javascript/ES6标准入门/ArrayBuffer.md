@@ -1,17 +1,18 @@
-## ArrayBuffer
+# ArrayBuffer
 
 ArrayBuffer 对象是 JavaScript 操作二进制数据的接口之一，以数组的形式处理二进制数据，被统称为二进制数组。
 
 二进制数组由3类对象组成：
+
 1. ArrayBuffer 对象：代表内存中的一段二进制数据，可以通过“视图”进行操作。视图部署了数组接口，意味着可以用数组的方法操作内存
 2. TypedArray 视图：共包括 9 种类型的视图，比如 Uint8Array（无符号 8 位整数）数组视图，Int16Array（16 位整数）数组视图，Float32Array（32 位浮点数）数组视图等等
 3. DataView 视图：可以自定义复合格式的视图，比如第一个字节是 Uint8（无符号 8 位整数）、第二、三个字节是 Int16（16 位整数）、第四个字节开始是 Float32（32 位浮点数）等等，此外还可以自定义字节序
 
 ArrayBuffer 对象代表原始的二进制数据，TypedArray 视图用于读/写简单类型的二进制数据，DataView 视图用于读/写复杂类型的二进制数据。
 
-### ArrayBuffer对象
+## ArrayBuffer对象
 
-#### 概述
+### 概述
 
 ArrayBuffer 对象代表储存二进制数据的一段内存，不能直接读写，只能通过视图 （TypedArray 视图和 DataView 视图）来读写，视图作用是以指定格式解读二进制数据。
 ArrayBuffer 是一个构造函数，用来生成 ArrayBuffer 实例。
@@ -62,7 +63,7 @@ typedArray[0] = 5;
 typedArray // [5 , 1, 2 ] 
 ```
 
-#### ArrayBuffer.prototype.byteLength
+### ArrayBuffer.prototype.byteLength
 
 ArrayBuffer 实例的 `byteLength` 属性返回分配的内存区域的字节长度。可以通过这个属性检查内存分配是否成功。
 
@@ -82,7 +83,7 @@ if (buffer.byteLength === 32) {
 }
 ```
 
-#### ArrayBuffer.prototype.slice()
+### ArrayBuffer.prototype.slice()
 
 ArrayBuffer 实例的 `slice()` 方法允许复制内存区域的一部分，生成一个新的 ArrayBuffer 对象。这个方法接受两个参数，分别表示复制开始和结束的字节序号。
 
@@ -91,7 +92,7 @@ var buffer = new ArrayBuffer(8);
 var newBuffer = buffer.slice(0, 3);
 ```
 
-#### ArrayBuffer.isView()
+### ArrayBuffer.isView()
 
 这是一个静态方法，返回一个布尔值，表示传入的参数是否为 ArrayBuffer 的视图实例，即是否为 TypedArray 实例或 DataView 实例。
 
@@ -102,35 +103,35 @@ var v = new Int32Array(buffer);
 console.log(ArrayBuffer.isView(v)); // 输出: true
 ```
 
-### TypedArray视图
+## TypedArray视图
 
 ArrayBuffer 是用于表示二进制数据缓冲区的类，可以存放多种类型的数据。TypedArray 是 ArrayBuffer 的一种视图，允许以特定格式读取 ArrayBuffer 中的数据。TypedArray 包括多种类型，如 Int8Array、Uint8Array、Float32Array 等。
 
 TypedArray 提供多种构造函数，可以通过 ArrayBuffer 创建视图，也可以直接分配内存生成实例。构造函数可以接受 ArrayBuffer 对象、字节偏移量和长度等参数。
 
-- TypedArray.prototype.entries() 
-- TypedArray.prototype.every(callbackfn, thisArg?) 
-- TypedArray.prototype.fill(value, start=O, end=this.length) 
-- TypedArray.pototype.filter(callbackfn, thisArg?) 
-- TypedArray.prototype.find(predicate, thisArg?) 
-- TypedArray.prototype.findIndex(predicate, thisArg?) 
-- TypedArray.prototype.forEach(callbackfn, thisArg?) 
-- TypedArray.prototype.indexOf(searchElement, fromIndex=0) 
-- TypedArray.prototype.join(separator) 
-- TypedArray.prototype.keys() 
-- TypedArray.prototype.lastIndexOf(searchElement, fromIndex?) 
+- TypedArray.prototype.entries()
+- TypedArray.prototype.every(callbackfn, thisArg?)
+- TypedArray.prototype.fill(value, start=O, end=this.length)
+- TypedArray.pototype.filter(callbackfn, thisArg?)
+- TypedArray.prototype.find(predicate, thisArg?)
+- TypedArray.prototype.findIndex(predicate, thisArg?)
+- TypedArray.prototype.forEach(callbackfn, thisArg?)
+- TypedArray.prototype.indexOf(searchElement, fromIndex=0)
+- TypedArray.prototype.join(separator)
+- TypedArray.prototype.keys()
+- TypedArray.prototype.lastIndexOf(searchElement, fromIndex?)
 - TypedArray.prototype.map(callbackfn, thisArg?)
-- TypedArray.prototype.reduce(callbackfn, initialValue?) 
-- TypedArray.prototype.reduceRight(callbackfn, initialValue?) 
-- TypedArray.prototype.reverse() 
-- TypedArray.prototype.slice(start=O, end=this.length) 
-- TypedArray.prototype.some(callbackfn, thisArg?) 
-- TypedArray.prototype.sort(comparefn) 
-- TypedArray.prototype.toLocaleString(reserved1?, reserved2?) 
-- TypedArray.prototype.toString() 
-- TypedArray.prototype.values() 
+- TypedArray.prototype.reduce(callbackfn, initialValue?)
+- TypedArray.prototype.reduceRight(callbackfn, initialValue?)
+- TypedArray.prototype.reverse()
+- TypedArray.prototype.slice(start=O, end=this.length)
+- TypedArray.prototype.some(callbackfn, thisArg?)
+- TypedArray.prototype.sort(comparefn)
+- TypedArray.prototype.toLocaleString(reserved1?, reserved2?)
+- TypedArray.prototype.toString()
+- TypedArray.prototype.values()
 
-#### 字节序
+### 字节序
 
 TypedArray 数组采用本机操作系统设定的字节序读写数据，通常是小端字节序。
 
@@ -142,7 +143,7 @@ for (var i = 0; i < int32View.length; i++) {
 }
 ```
 
-#### BYTES_PER_ELEMENT 属性
+### BYTES_PER_ELEMENT 属性
 
 每种 TypedArray 构造函数都有一个 BYTES_PER_ELEMENT 属性，表示数据类型占据的字节数。
 
@@ -152,7 +153,7 @@ Uint16Array.BYTES_PER_ELEMENT // 2
 Float64Array.BYTES_PER_ELEMENT // 8
 ```
 
-#### 溢出处理
+### 溢出处理
 
 不同的视图类型所能容纳的数值范围是确定的，超出这个范围就会出现溢出。不同类型的 TypedArray 视图有不同的溢出处理规则。
 
@@ -162,7 +163,7 @@ uint8[0] = 256; // 溢出，结果为 0
 uint8[0] = -1;  // 按无符号整数解释，结果为 255
 ```
 
-#### ArrayBuffer 与字符串的转换
+### ArrayBuffer 与字符串的转换
 
 ArrayBuffer 与字符串可以互相转换，前提是字符串的编码方法是确定的。
 
@@ -183,7 +184,7 @@ function str2ab(str) {
 }
 ```
 
-#### TypedArray.prototype.set() 和 subarray()
+### TypedArray.prototype.set() 和 subarray()
 
 `set` 方法用于复制数组，`subarray` 方法用于基于 TypedArray 数组的部分创建新的视图。
 
@@ -196,7 +197,7 @@ var a = new Uint16Array(8);
 var b = a.subarray(2, 3); // 创建a的子视图，包含a[2]
 ```
 
-#### TypedArray.of() 和 from()
+### TypedArray.of() 和 from()
 
 TypedArray.of 是一个静态方法，用于将参数转为 TypedArray 实例。TypedArray.from 方法接受一个可遍历的数据结构，返回一个基于此结构的 TypedArray 实例。
 
@@ -206,7 +207,7 @@ Float32Array.of(0.151, -8, 3.7) // Float32Array [0.151, -8, 3.7]
 Uint16Array.from([0, 1, 2]) // Uint16Array [0, 1, 2]
 ```
 
-### 复合视图
+## 复合视图
 
 复合视图是指在同一个ArrayBuffer对象上创建多个不同类型数据的视图。由于TypedArray的构造函数可以指定起始位置和长度，我们可以在一段连续的内存中存储不同类型的数据。
 
@@ -224,7 +225,7 @@ var usernameView = new Uint8Array(buffer, 4, 16);
 var amountDueView = new Float32Array(buffer, 20, 1);
 ```
 
-### DataView视图
+## DataView视图
 
 DataView 是一个构造函数，接受一个 ArrayBuffer 对象作为参数，并可以指定字节起始位置和长度。与 TypedArray 视图不同，DataView 允许你指定字节序（大端或小端），这使得它非常适合处理来自网络或文件的二进制数据。
 
@@ -270,9 +271,9 @@ var littleEndian = (function() {
 // 如果返回 true，则是小端字节序；如果返回 false，则是大端字节序。
 ```
 
-### 二进制数组的应用
+## 二进制数组的应用
 
-#### AJAX
+### AJAX
 
 在AJAX中，XMLHttpRequest 允许服务器返回二进制数据。如果知道返回的数据类型，可以设置 responseType 为 arraybuffer。
 
@@ -287,7 +288,7 @@ xhr.onload = function() {
 xhr.send();
 ```
 
-#### Canvas
+### Canvas
 
 Canvas元素输出的二进制像素数据是 TypedArray 数组。Uint8ClampedArray 是一种特殊类型的 TypedArray，用于Canvas元素，自动处理颜色值的溢出。
 
@@ -298,7 +299,7 @@ var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 var uint8ClampedArray = imageData.data;
 ```
 
-#### WebSocket
+### WebSocket
 
 WebSocket可以通过 ArrayBuffer 发送或接收二进制数据。
 
@@ -315,7 +316,7 @@ socket.addEventListener('message', function(event) {
 });
 ```
 
-#### Fetch API
+### Fetch API
 
 Fetch API取回的数据可以是 ArrayBuffer 对象
 
@@ -329,7 +330,7 @@ fetch(url)
 });
 ```
 
-#### File API
+### File API
 
 如果知道文件的二进制数据类型，可以使用 FileReader 将文件读取为 ArrayBuffer 对象。
 
@@ -344,7 +345,7 @@ reader.onload = function() {
 };
 ```
 
-### SharedArrayBuffer
+## SharedArrayBuffer
 
 JavaScript是单线程的，但Web Worker允许在浏览器中创建多个线程，主线程用于与用户互动，而Worker线程用于处理计算任务。每个线程的数据是隔离的，它们通过postMessage方法进行通信。
 
@@ -394,17 +395,17 @@ onmessage = function(ev) {
 };
 ```
 
-### Atomics对象
+## Atomics对象
 
 在多线程环境中，如果两个线程同时修改共享内存的同一个地址，可能会出现数据不一致的问题。为了解决这个问题，Atomics对象提供了一组方法来保证操作的原子性和线程间的同步。
 
 Atomics对象提供的方法可以分为几类：
 
 1. 读写操作
-   
    - Atomics.store()：向共享内存写入数据，保证写入操作的原子性。
    - Atomics.load()：从共享内存中读出数据，保证读取操作的原子性。
-  ```js
+
+   ```js
     // 主线程
     var sab = new SharedArrayBuffer(Int32Array.BYTES_PER_ELEMENT * 100000);
     var ia = new Int32Array(sab);
@@ -413,13 +414,13 @@ Atomics对象提供的方法可以分为几类：
     // Worker线程
     while (Atomics.load(ia, 37) == 163); // 原子性读取，等待条件满足
     console.log(ia[37]); // 123456
-  ```
+   ```
 
 2. 等待和唤醒操作
-   
-    - Atomics.wait()：使线程在特定条件下休眠。
-    - Atomics.wake()：唤醒休眠的线程。
-    ```js
+   - Atomics.wait()：使线程在特定条件下休眠。
+   - Atomics.wake()：唤醒休眠的线程。
+
+   ```js
     // 线程1
     Atomics.store(ia, 37, 123456);
     Atomics.wake(ia, 37, 1); // 唤醒等待的线程
@@ -427,26 +428,27 @@ Atomics对象提供的方法可以分为几类：
     // 线程2
     Atomics.wait(ia, 37, 163); // 等待ia[37]不等于163
     console.log(ia[37]); // 123456
-    ```
+   ```
 
 3. 运算方法
-   
-    Atomics对象还提供了一些原子运算方法，如add、sub、and、or和xor，这些方法在进行运算的同时保证操作的原子性。
-    ```js
+
+   Atomics对象还提供了一些原子运算方法，如add、sub、and、or和xor，这些方法在进行运算的同时保证操作的原子性。
+
+   ```js
     // Worker线程
     Atomics.add(ia, 112, 1); // 原子性地将ia[112]增加1
-    ```
+   ```
 
 4. 比较和交换
-   
+
    Atomics.compareExchange()：比较并交换值，如果当前值等于预期值，则更新为新值。
 
    ```js
    // 比较并交换
     Atomics.compareExchange(ia, 112, oldVal, newVal);
-    ```
+   ```
 
-### 总结
+## 总结
 
 `ArrayBuffer` 是 JavaScript 中用于操作二进制数据的接口，它代表内存中的一段二进制数据，并通过视图进行操作。视图分为 `TypedArray` 视图和 `DataView` 视图，前者包括如 `Uint8Array`、`Int16Array`、`Float32Array` 等9种类型的视图，用于读写简单类型的二进制数据；后者用于读写复杂类型的二进制数据，并允许自定义字节序。
 

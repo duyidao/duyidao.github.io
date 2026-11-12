@@ -1,18 +1,18 @@
-## 第一章 ECMAScript6简介
+# 第一章 ECMAScript6简介
 
-### 由来
+## 由来
 
 第一章第一节讲述了 <word text="ES6"/> 这个名称的由来，首先需要理清 <word text="ECMAScript"/> 和 <word text="JavaScript"/> 的关系。在最开始 JavaScript 不叫 JavaScript，而是叫 ECMAScript。因此，**ECMAScript 是 JavaScript 的规格，JavaScript 是 ECMAScript 的一种实现**。
 
-### 含义
+## 含义
 
 2011年，<word text="ECMAScript"/> 5.1 版本发布后，6.0 版本开始制定，这个版本改动较大，制定者希望能够6.1、6.2、6.3持续推进，最终决定每年6月更新发布一次标准版本。2015年6月，发布了 ECMAScript 6.0 版本。
 
-::: info 🖇 拓展
+::: info 拓展
 因此，<word text="ES6"/> 既是一个历史名词，也是一个泛指，含义是 5.1 版本以后的 <word text="JavaScript"/> 的下一代标准，涵盖了 ES2015、ES2016、ES2017 等，而 ES2015 则是正式名称，特指当年发布的正式版本的语言标准。
 :::
 
-### 提案批准流程
+## 提案批准流程
 
 - Stage 0: Strawman (展示阶段)
 - Stage I : Proposal (征求意见阶段)
@@ -20,7 +20,7 @@
 - Stage 3: Candidate (候选阶段)
 - Stage 4: Finished (定案阶段)
 
-### 历史
+## 历史
 
 <word text="ES6"/> 从开始制定到最后发布用了整整15年。1997年发布的ES1.0是第一个版本，随后连续发布了ES2.0和ES3.0。ES3.0成为通行标准，奠定了 <word text="JavaScript"/> 语言的基本语法。
 
@@ -30,7 +30,7 @@
 
 2009年，<word text="ES5"/> 发布，而ES Harmony继续发展成为 <word text="ES6"/>。2015年，ES6正式通过成为国际标准。整个过程历时15年。
 
-### Babel
+## Babel
 
 `babel.js` 是 <word text="ES6"/> 转码器，在浏览器不支持 ES6 语法时转码为 <word text="ES5"/>，这样就能执行了，下面是一个简单的例子：
 
@@ -49,7 +49,7 @@
 
 其中阮一峰老师从以下几个方面介绍讲解起了 `babel` ：
 
-- 配置文件 `.babelrc` 
+- 配置文件 `.babelrc`
 
   这是放置在项目根目录中，用于设置转码规则和插件，其基本包含 `presets` 和 `plugins` 两个参数。其中 `presets` 用于设定转码规则，通过 <word text="NPM"/> 下载依赖，下载后在 `presets` 数组中添加对应的规则。例子如下：
 
@@ -71,17 +71,17 @@
   }
   ```
   :::
-  > [!WARNING] ⚠ 注意
+  > [!WARNING] 注意
   > 要想使用以下所有 <word text="Babel"/> 工具和模块，都必须先写好 .babelrc。
 
-- 命令行转码 `babel-cli` 
+- 命令行转码 `babel-cli`
 
   <word text="Babel"/> 提供 `babel-cli` 工具，用于命令行转码。使用方式如下：
 
   1. 下载依赖
-   
+
   2. 改写 `package.json` 文件
-   
+
   3. 打包转码
 
   ::: code-group
@@ -112,7 +112,7 @@
 
   修改 `require` 命令，后续使用 `require` 加载 `.js`、`jsx`、`.es` 和 `.es6` 文件时，会优先使用 <word text="Babel"/> 转码。
 
-  > [!WARNING] ⚠ 注意
+  > [!WARNING] 注意
   > `babel-register` 只会对 `require` 命令加载的文件进行转码，而不会对当前文件进行转码。另外，由于它是实时转码，所以只适合在开发环境中使用。
 
 - babel-core
@@ -135,10 +135,10 @@
 
   想让上述的方法运行，必须使用 `babel-polyfill` 为当前环境提供一个垫片。
 
-### Traceur
+## Traceur
 
 `Traceur` 是 Google 公司的转码器，也可以将 <word text="ES6"/> 代码转为 <word text="ES5"/> 代码。具体使用此处不做过多描述。
 
-### 总结
+## 总结
 
 本章讲解了 <word text="JavaScript"/> 的历史和发展史，以及 <word text="ES6"/> 广义和狭义的含义。在浏览器不支持 ES6 新语法时如何使用 <word text="Babel"/> 转成 <word text="ES5"/> 等。

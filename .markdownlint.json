@@ -6,12 +6,19 @@
       "img",
       "details",
       "myIframe",
-      "word"
-    ],
-    "table_allowed_elements": [
       "word",
-      "br"
-    ]
+      "svg",
+      "path",
+      "ol",
+      "li",
+      "a",
+      "i",
+      "strong"
+    ],
+    "table_allowed_elements": ["word", "br", "svg", "path"]
+  },
+  "MD024": {
+    "siblings_only": true
   },
   "MD013": false,
   "MD036": false,

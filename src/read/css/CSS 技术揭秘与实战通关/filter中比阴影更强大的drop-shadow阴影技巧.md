@@ -1,12 +1,12 @@
-## filter中比阴影更强大的drop-shadow阴影技巧
+# filter中比阴影更强大的drop-shadow阴影技巧
 
 根据 [MDN - drop-shadow](https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter-function/drop-shadow) 文档，`drop-shadow()`：投影实际上是输入图像的 alpha 蒙版的一个模糊的、偏移的版本，用特定的颜色绘制并合成在图像下面。
 
-### drop-shadow 与 box-shadow 的异同
+## drop-shadow 与 box-shadow 的异同
 
 来看 `box-shadow` 和 `drop-shadow` 的不同之处。
 
-#### 作用范围的差异
+### 作用范围的差异
 
 `drop-shadow()`这个函数有点类似于 `box-shadow` 属性，但是其最本质的区别在于阴影的作用范围：
 
@@ -17,13 +17,13 @@
 
 `box-shadow` 和 `drop-shadow` 的效果对比，可以看到 `box-shadow` 的阴影是矩形，而 `drop-shadow` 的阴影是符合元素形状的。
 
-#### 语法层面的差异：扩散半径与内阴影
+### 语法层面的差异：扩散半径与内阴影
 
 2 种阴影大同小异，需要注意的就是：
 
 - `box-shadow` 有内阴影，内阴影使用关键字 `inset` 进行描述，而 `drop-shadow` 是没有内阴影的；
 - `box-shadow` 多一个阴影扩散半径参数，`drop-shadow` 是没有阴影扩散半径参数的。
 
-#### 都支持多重阴影
+### 都支持多重阴影
 
 `box-shadow` 和 `drop-shadow` 都支持多重阴影。这在滤镜的章节中已提过。

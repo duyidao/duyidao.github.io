@@ -2,9 +2,74 @@
   background-color: transparent;
 }
 
+/* 导航分组标题图标变量由 config/icons/index.ts 在构建期注入，仅作 mask 蒙版故填充固定为黑色 */
+
+/* 分组标题图标：mask 注入，颜色随标题文字色 */
+.nav-group-icon(@icon) {
+  content: '';
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 7px;
+  vertical-align: -2px;
+  background-color: currentColor;
+  opacity: 0.75;
+  -webkit-mask-image: @icon;
+  mask-image: @icon;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* 桌面端：前端知识 > 基础与框架 */
+.VPNavBarMenu>.VPNavBarMenuGroup:nth-of-type(1) .VPMenu .items>.VPMenuGroup:nth-child(1) .title::before {
+  .nav-group-icon(var(--nav-icon-sword));
+}
+
+/* 桌面端：前端知识 > 进阶 */
+.VPNavBarMenu>.VPNavBarMenuGroup:nth-of-type(1) .VPMenu .items>.VPMenuGroup:nth-child(2) .title::before {
+  .nav-group-icon(var(--nav-icon-arrow-up));
+}
+
+/* 桌面端：前端知识 > 学而时习之 */
+.VPNavBarMenu>.VPNavBarMenuGroup:nth-of-type(1) .VPMenu .items>.VPMenuGroup:nth-child(3) .title::before {
+  .nav-group-icon(var(--nav-icon-book));
+}
+
+/* 桌面端：项目履历 > 工作项目 */
+.VPNavBarMenu>.VPNavBarMenuGroup:nth-of-type(2) .VPMenu .items>.VPMenuGroup:nth-child(1) .title::before {
+  .nav-group-icon(var(--nav-icon-briefcase));
+}
+
+/* 移动端：分组内的分区标题，与桌面端保持一致（.group 为 items 下的包裹层） */
+.VPNavScreenMenu>.VPNavScreenMenuGroup:nth-of-type(1) .items>.group:nth-child(1) .VPNavScreenMenuGroupSection .title::before {
+  .nav-group-icon(var(--nav-icon-sword));
+}
+
+.VPNavScreenMenu>.VPNavScreenMenuGroup:nth-of-type(1) .items>.group:nth-child(2) .VPNavScreenMenuGroupSection .title::before {
+  .nav-group-icon(var(--nav-icon-arrow-up));
+}
+
+.VPNavScreenMenu>.VPNavScreenMenuGroup:nth-of-type(1) .items>.group:nth-child(3) .VPNavScreenMenuGroupSection .title::before {
+  .nav-group-icon(var(--nav-icon-book));
+}
+
+.VPNavScreenMenu>.VPNavScreenMenuGroup:nth-of-type(2) .items>.group:nth-child(1) .VPNavScreenMenuGroupSection .title::before {
+  .nav-group-icon(var(--nav-icon-briefcase));
+}
+
+/* 本文目录指引标题图标：桌面侧栏与移动端下拉共用 */
+.VPDocAsideOutline .outline-title::before,
+.VPLocalNavOutlineDropdown .menu-text::before {
+  .nav-group-icon(var(--nav-icon-outline));
+}
+
 .VPLocalNav {
   .container {
-    button, .VPLocalNavOutlineDropdown {
+
+    button,
+    .VPLocalNavOutlineDropdown {
       flex: 1;
       justify-content: center;
 
@@ -17,10 +82,41 @@
 
 @media screen and (min-width: 960px) {
   .VPLocalNavOutlineDropdown {
-    > div.items {
+    >div.items {
       left: 48%;
       right: 16px;
       max-height: calc(var(--vp-vh, 100vh) - 86px);
     }
   }
+}
+
+/* 导航标题内联图标：VitePress 基础样式把 svg 设为 display:block，
+   会让图标独占一行、与标题文字错位，这里恢复为内联块 */
+.VPNavBarMenu .text span svg {
+  display: inline-block;
+}
+
+.VPNavBarMenuLink span svg {
+  display: inline-block;
+}
+
+.VPNavScreenMenuGroup .button-text span svg {
+  display: inline-block;
+}
+
+.VPNavScreenMenuLink span svg {
+  display: inline-block;
+}
+
+.VPNavScreenMenuGroupLink span svg {
+  display: inline-block;
+}
+
+/* 下拉菜单内的链接：.link 是 block + 固定行高，图标若为块级会独占一行 */
+.VPMenu .link span svg {
+  display: inline-block;
+}
+
+.VPDocFooter .pager-link span svg {
+  display: inline-block;
 }

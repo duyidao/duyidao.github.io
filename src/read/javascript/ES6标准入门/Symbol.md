@@ -1,14 +1,14 @@
-## 第十章 Symbol
+# 第十章 Symbol
 
 本章就 `Symbol` 的定义和作用展开描述，重点讲解概述、属性名遍历、`for()` 和 `keyFor()` 方法，以及消除魔术字符串和模块的单例模式两个实例。
 
-### 概述
+## 概述
 
 在 <word text="ES5"/> 时，如果使用了他人的数据对象，但又想添加自己的数据，很容易会因为属性名冲突而导致数据覆盖。因为 ES5 对象的属性名都是字符串型。
 
 为了解决这个问题，<word text="ES6"/> 推出了 <word text="Symbol"/>，他是第7种数据类型。
 
-> [!NOTE] 🖇 拓展
+> [!NOTE] 拓展
 > 前6种数据类型分别是 undefined、null、布尔值（boolean）、字符串（string）、数值（number）、对象（object）。
 
 通过 <word text="Symbol"/> 函数生成，是第一无二的，不会与其他属性名造成冲突。可以接收一个字符串，主要用于控制台打印区分。
@@ -21,7 +21,7 @@ console.log(typeof s) // symbol
 console.log(typeof b) // symbol(bar)
 ```
 
-> [!WARNING] ⚠️ 注意
+> [!WARNING] 注意
 > Symbol 函数前不能使用 new 命令，否则会报错 这是因为生成的 Symbol 是一个原始类型的值，不是对象。也就是说，由于 Symbol 值不是对象，所以不能添加属性。基本上，它是 一种类似于字符串的数据类型。
 
 若 <word text="Symbol"/> 的参数是一个对象，则会调用对象的 toString 方法转为字符串后再生成 Symbol 值。
@@ -69,7 +69,7 @@ console.log(!sym) // false
 Number(sym) // Uncaught TypeError: Cannot convert a Symbol value to a number
 ```
 
-### 作为属性名的Symbol
+## 作为属性名的Symbol
 
 在<word text="ES6"/>中，<word text="Symbol"/>（符号）是一种新的基本数据类型，它的主要特点是其值是唯一且不可变的。这使得<word text="Symbol"/>特别适合作为对象属性名，用于解决属性名冲突的问题，保证属性不会被意外修改或覆盖。
 
@@ -154,7 +154,7 @@ log(LOG_LEVELS.INFO, 'Info message');
 
 `Symbol` 作为 <word text="ES6"/> 引入的一种新的基本数据类型，用于创建唯一的标识符，适合作为对象属性名或常量的定义。它的唯一性可以有效地防止属性名冲突，并且保证了常量值的独特性。
 
-### 实例：消除魔术字符串
+## 实例：消除魔术字符串
 
 魔术字符串是指在代码中多次出现、与代码强耦合的具体字符串或值。在编写风格良好的代码时，应尽量消除魔术字符串，用含义清晰的变量或常量代替，以提高代码的可读性、可维护性和安全性。
 
@@ -236,7 +236,7 @@ log(LOG_LEVELS.INFO, 'Info message');
 
 消除魔术字符串可以通过使用命名的常量、对象属性或 <word text="Symbol"/> 来实现。这些方法可以提高代码的可读性和可维护性，减少由于字符串拼写错误或修改时遗漏更新导致的 bug。
 
-### 属性名的遍历
+## 属性名的遍历
 
 `Symbol` 并不是私有属性，而是公有属性，但是不会被 `for...of` 、`for...in` 、`Object.keys()` 、`Object.getOwnPropertyNames()` 等方法遍历返回。
 
@@ -279,7 +279,7 @@ Reflect.ownKeys(obj) // ['value', Symbol('key')]
 
 由于用 `Symbol` 定义的属性不会被常规方法遍历，因此可以利用其这一特性来定义一些非私有但只希望内部使用的方法。
 
-### Symbol.for()、Symbol.keyFor()
+## Symbol.for()、Symbol.keyFor()
 
 `Symbol` 与 `Symbol.for()` 都会生成新的 `Symbol` ，二者的区别是 `Symbol` 每次生成都是返回新的 `Symbol` 值；而 `Symbol.for()` 会在全局中提供搜索，如果全局中存在该 `key` 值的 `Symbol` 值，则会返回同一个 `Symbol` 值。
 
@@ -299,10 +299,10 @@ let s2 = Symbol('bar')
 Symbol.keyFor(s2) // undefined
 ```
 
-> [!NOTE] 🖇 拓展
+> [!NOTE] 拓展
 > `Symbol.for()` 为 `Symbol` 值登记的名字是全局环境的，可以在不同的 iframe 或 service worker 中取到同一个值。
 
-### 实例：模块的Singleton模式
+## 实例：模块的Singleton模式
 
 <word text="Singleton"/> 模式确保一个类只有一个实例，并提供一个全局访问点。在 <word text="Node.js"/> 中，模块文件可以视作一个类，如何保证每次加载模块时都返回同一个实例呢？
 
@@ -371,16 +371,17 @@ Symbol.keyFor(s2) // undefined
 
   **问题：** 多次执行模块时，每次得到的 `FOO_KEY` 都不同，不过一般情况下 <word text="Node.js"/> 会缓存模块的执行结果，不会多次执行同一个脚本。
 
-> [!TIP] 💡 总结
+> [!TIP] 总结
+>
 > - **全局变量方法**容易被意外覆盖，不安全。
 > - **<word text="Symbol"/> 作为键名**可以保证键名不被外部轻易修改，但仍可能被改写。
 > - **局部 <word text="Symbol"/>**可以防止外部修改，但多次执行脚本时每次得到的 <word text="Symbol"/> 不同，不过 <word text="Node.js"/> 通常会缓存模块执行结果，一般不会影响单例实例的创建。
 
-### 内置的Symbol值
+## 内置的Symbol值
 
 <word text="ES6"/> 还提供了 11个内置的 `Symbol` 值，指向语言内部使用的方法。
 
-- `Symbol.hasInstance` 
+- `Symbol.hasInstance`
 
   指向一个内部方法，对象使用 `instanceof` 运算符时会调用该方法。如 `foo instance Foo` 内部实际上是 `Foo[Symbol.hasInstance](foo)` 。
 
@@ -554,7 +555,8 @@ Symbol.keyFor(s2) // undefined
 
 - `Symbol.unscopables`
   
-### 总结
+## 总结
+
 `Symbol` 是<word text="ES6"/>引入的第七种数据类型，通过 `Symbol` 函数生成，具有唯一性，不会与其他属性名冲突，适合用作对象属性名以避免冲突。`Symbol` 可以接收一个字符串作为描述，但这个描述并不影响 `Symbol` 的相等性比较。`Symbol` 值不能参与运算，可以转为布尔值和字符串，但不能转为数值。
 
 `Symbol` 作为属性名时，不会被常规的属性遍历方法发现，只能通过 `Object.getOwnPropertySymbols()` 获取。此外，`Symbol.for()` 和 `Symbol.keyFor()` 用于全局 `Symbol` 的创建和查找。`Symbol` 的这些特性使其在消除魔术字符串、实现`Singleton` 模式等方面非常有用。

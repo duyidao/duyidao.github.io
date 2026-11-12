@@ -1,21 +1,24 @@
-## Promise对象
+# Promise对象
 
 <word text="JavaScript"/> 中异步编程一直是重难点。传统的回调函数虽然解决了问题，但它们复杂、难以维护，且容易引发回调地狱。`Promise` 对象的出现，以其独特的状态管理和链式调用，为异步编程带来了革命性的改变。本文将深入探讨 `Promise` 的基本概念、使用方法以及其在现代 <word text="JavaScript"/> 开发中的重要性。
 
-### 含义
+## 含义
 
 `Promise` 是异步编程的一种解决方案，比传统的回调函数更合理和强大。`Promise` 是一个容器，存放着未来会发生的事件（例如回调函数），从语法上说，`Promise` 是一个对象，从它可以获取异步操作的消息。它的出现大大简化了异步编程。
 
 `Promise` 对象有两个特点：
+
 1. 对象状态不受外界影响。`Promise` 对象代表一个异步操作，有三种状态：`pending`（进行中）、`fulfilled`（已成功）和 `rejected`（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是 `Promise` 这个名字的由来，它的英语意思就是“承诺”，表示其他手段无法改变。
 2. 状态一旦发生就不会再改变。对 `Promise` 对象而言，状态只有从 `pending` 变为 `fulfilled` 和从 `pending` 变为 `rejected`，只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果，这时就称为 `resolved`（已定型），后续随时都能监听到这个状态。事件 `Event` 与它不同，错过了就不再能监听到。
 
 `Promise` 也有一些缺点：
+
 1. 无法取消 `Promise`，一旦新建它就会立即执行，无法中途取消。
 2. 如果不设置回调函数，`Promise` 内部抛出的错误，不会反应到外部。
 3. 当处于 `pending` 状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。
 
-### 基本用法
+## 基本用法
+
 `Promise` 对象是一个构造函数，用于生成 `Promise` 实例。它接受一个函数作为参数，该函数的两个参数分别是 `resolve` 和 `reject`，由 JavaScript 引擎提供，不用自己部署。
 
 `Promise` 接受一个函数作为参数，该函数有两个参数 `resolve` 和 `reject` 。`resolve` 的作用是 `Promise` 对象状态从 `pending` 变为 `resolved`；`reject` 的作用是把状态从 `pending` 变为 `rejected`。
@@ -73,7 +76,7 @@ console.log('Hi!');
 
 一般的，调用 `resolve` 或者 `reject` 后，`Promise` 的使命就完成了，后继操作应该放到 `then` 方法里面，而不应该直接写在 `resolve` 或 `reject` 的后面。所以，最好在它们前面加上 `return` 语句，这样就不会有意外。
 
-### Promise.prototype.then()
+## Promise.prototype.then()
 
 `Promise` 原型对象上具有 `.then` 方法，作用是为 `Promise` 实例添加状态改变时的回调函数。返回的是一个新的 `Promise` 实例，因此可以采用链式写法。
 
@@ -92,7 +95,8 @@ new Promise((resolve, reject) => {
 })
 ```
 
-### Promise.prototype.catch()
+## Promise.prototype.catch()
+
 `Promise.prototype.catch` 方法是 `.then(null, rejection)` 的别名，用于指定发生错误时的回调函数。当 `Promise` 对象状态变为 `reject` 或 `.then` 方法运行中抛出错误时，会调用 `catch` 方法指定的回调函数。
 
 ```js
@@ -135,14 +139,16 @@ new Promise((resolve, reject) => {
 })
 ```
 
-### Promise.all()
+## Promise.all()
+
 `Promise.all` 方法用于将多个 `Promise` 实例，包装成一个新的 `Promise` 实例。其参数一般接受一个数组，如果不是数组则要求必须具有 `Iterator` 接口，且每一项都必须是 `Promise` 实例。如果不是，则会调用 `Promise.resolve` 方法，将参数转为 `Promise` 实例，再进一步处理。
 
 `Promise.all` 方法返回的新的 `Promise` 实例，该实例的状态由数组内每一项 `Promise` 决定，分为两种情况：
+
 1. 只有当参数中的所有 `Promise` 实例都变为 `fulfilled` 状态，才会变为 `fulfilled` 状态
 2. 只要有一个变为 `rejected` 状态，就会变为 `rejected` 状态，第一个变为 `rejected` 状态的实例的返回值，会传递给 `Promise.all` 方法返回的新实例的回调函数
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > 如果数组内的 `Promise` 实例，有自己的 `.catch` 方法，那么它们抛出的错误不会传递到 `Promise.all` 方法上，会由自身 `.catch` 方法捕获；如果没有，则会传递到 `Promise.all` 方法上。
 > ```js
 > const p1 = new Promise((resolve, reject) => {
@@ -162,7 +168,8 @@ new Promise((resolve, reject) => {
 > })
 > ```
 
-### Promise.race()
+## Promise.race()
+
 `Promise.race` 方法与 `Promise.all` 方法相同，同样是将多个 `Promise` 实例，包装成一个新的 `Promise` 实例。每个参数都是 `Promise` 实例，如果不是则调用 `Promise.resolve` 转换。
 
 不同的是，只要有一个 `Promise` 实例状态变为 `fulfilled` 或 `rejected`，新的 `Promise` 实例就会变为 `fulfilled` 或 `rejected` 状态，并返回第一个变为 `fulfilled` 或 `rejected` 状态的实例的返回值。
@@ -180,7 +187,8 @@ Promise.race([
 })
 ```
 
-### Promise.resolve()
+## Promise.resolve()
+
 `Promise.resolve` 方法用于将现有对象转为 `Promise` 对象，`Promise.resolve` 方法等价于下方这种写法：
 
 ```js
@@ -190,12 +198,13 @@ new Promise(resolve => resolve('foo'))
 ```
 
 参数分为四种情况：
+
 1. 参数是一个 `Promise` 实例，则返回该实例
 2. 参数是一个具有 `.then` 方法的对象，则把该方法转为 `Promise` 对象，然后立即执行 `.then` 方法
 3. 参数不是具有 `.then` 方法的对象或根本不是对象，则返回一个 `fulfilled` 状态的 `Promise` 对象，并且返回该参数
 4. 不带任何参数，则直接返回一个 `fulfilled` 状态的 `Promise` 对象
 
-### Promise.reject()
+## Promise.reject()
 
 `Promise.reject` 方法返回一个 `rejected` 状态的 `Promise` 实例，并将给定的参数作为 `rejected` 状态的理由，返回的 `Promise` 实例的回调函数会立即执行。
 
@@ -205,7 +214,7 @@ Promise.reject('出错了')
 new Promise((resolve, reject) => reject('出错了'))
 ```
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > `Promise.reject` 方法与 `Promise.resolve` 方法不同的是，`Promise.reject` 方法的参数会原封不动作为 `reject` 状态的理由变成后续方法的参数。
 >
 > ```js
@@ -219,7 +228,8 @@ new Promise((resolve, reject) => reject('出错了'))
 > })
 > ```
 
-### Promise.try()
+## Promise.try()
+
 有一种情况：想要把某个函数放到 `Promise` 内执行，这样就能在 `.then` 内执行后续的回调函数，`.catch` 执行报错后处理。但是不确定该函数是同步函数还是异步函数。
 
 一般的，写法如下所示：
@@ -241,14 +251,14 @@ console.log('console')
 想要同步函数同步执行，异步函数异步执行，有两个解决方法：
 
 1. `async`
-   
+
    ```js
     (async () =>{ fn() })().then().catch()
    ```
    通过立即执行函数，将 `async` 函数包裹起来，立即执行里面的 `async` 函数，如果是同步的就同步执行；如果是异步的则 `.then` 执行后续。最后通过 `.catch` 捕获错误
 
 2. `new Promise`
-   
+
    ```js
     (
       () => new Promise((resolve) => {
@@ -267,9 +277,9 @@ Promise.try(fn)
 
 `Promise.try()` 方法可以用 `Promise.catch` 统一捕获所有同步或异步的报错。
 
-### 部署有用的附加方法
+## 部署有用的附加方法
 
-#### done()
+### done()
 
 `Promise` 内部错误不会冒泡，如果最后一个 `.catch` 内部还抛出错误，则无法捕捉到。为此可以在 `Promise` 原型上挂一个 `done` 方法，作用是保证抛出任何有可能出现的错误
 
@@ -293,7 +303,7 @@ Promise.prototype.done = function (onFulfilled, onRejected) {
 }
 ```
 
-#### finally()
+### finally()
 
 `finally` 方法用于指定不管 `Promise` 对象最后状态如何，都会执行的操作。该方法是 ES2018 引入标准的。
 
@@ -309,7 +319,7 @@ Promise.prototype.finally = function (callback) {
 };
 ```
 
-### 总结
+## 总结
 
 `Promise`对象是一种用于异步编程的解决方案，能够简化异步操作的处理。
 

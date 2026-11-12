@@ -72,7 +72,7 @@ import { ReactComponent as Logo } from '@assets/icons/logo.svg'
 | Web Worker                 | `import MyWorker from './task.js?worker'`  | `?worker` 后缀告知 Vite 将其编译为独立 Worker 脚本，自动返回构造函数。主线程通过 `new MyWorker()` 实例化并监听 message 事件通信。                                                  |
 | <word text="WebAssembly"/> | `import init from './fib.wasm'`            | <word text="Vite"/> 封装默认导出为 init 函数，返回 Promise。`.then(exports => { exports.fib(10) })` 调用 <word text="WASM"/> 导出方法，实现高性能计算。                            |
 
-### 自定义资源后缀与 Query 修饰符 🔑
+### 自定义资源后缀与 Query 修饰符
 
 ::: code-group
 
@@ -172,7 +172,7 @@ export default {
 
 > 机制解析：构建期自动调用 <word text="imagemin"/> 底层引擎对 `dist` 产物进行压缩。推荐在生产环境集成，可显著降低静态资源总体积（通常缩减 30%~60%）。
 
-### <word text="SVG"/> 雪碧图优化：解决海量图标请求瓶颈 🔑
+### <word text="SVG"/> 雪碧图优化：解决海量图标请求瓶颈
 
 背景：`HTTP/1.1` 环境下大量 <word text="SVG"/> 请求会导致网络阻塞；虽 `HTTP/2` 缓解了该问题，但 `Dev Server` 仍受限于单连接，生产环境仍需优化。
 

@@ -1,6 +1,6 @@
-## Vue.js 3 的设计思路
+# Vue.js 3 的设计思路
 
-### 声明式地描述 UI
+## 声明式地描述 UI
 
 用户在使用 <word text="Vue.js"/> 的时候，只需要声明式地描述 <word text="UI"/>，而不需要关心 <word text="DOM"/> 的操作，<word text="Vue.js"/> 会根据用户提供的声明式描述自动生成对应的 <word text="DOM"/>。它设计需要考虑到编写前端页面时涉及到的几个方面：
 
@@ -92,9 +92,10 @@ const vnode = {
 ```
 :::
 
-### 初识渲染器
+## 初识渲染器
 
 渲染器的作用是将<word text="虚拟DOM"/> 渲染为真实 <word text="DOM"/>。渲染器是一个函数，接收两个参数：
+
 1. <word text="虚拟DOM"/>
 2. 挂载 <word text="DOM"/> 的容器
 
@@ -172,7 +173,7 @@ function renderer(vnode, container) {
 
 这样渲染器初步就完成了，还有一些改动和优化需求，如修改了 `vnode` 对象的 `children` 后，如何快速查找到更新的内容并针对更新，而不是全部重新渲染重走一遍流程。
 
-### 组件的本质
+## 组件的本质
 
 <word text="虚拟DOM"/> 的本质是描述真实 <word text="DOM"/> 的 <word text="JavaScript"/> 对象，渲染器是把<word text="虚拟DOM"/> 渲染为真实 <word text="DOM"/> 的函数，而组件是一组 <word text="DOM"/> 元素的封装，这组 <word text="DOM"/> 元素就是组件要渲染的内容。
 
@@ -228,7 +229,7 @@ function mountComponent(vnode, container) {
 ```
 :::
 
-### 模版的工作原理
+## 模版的工作原理
 
 无论是手写<word text="虚拟DOM"/> 渲染函数还是使用模板，都是声明式代码，<word text="Vue.js"/> 同时支持这两种方式。使用模板会通过编译器编译为渲染函数，然后用渲染器把渲染函数返回的<word text="虚拟DOM"/> 转为真实 <word text="DOM"/>。
 
@@ -263,7 +264,7 @@ export default {
 ```
 :::
 
-### <word text="Vue.js"/>是各个模块组成的有机整体
+## <word text="Vue.js"/>是各个模块组成的有机整体
 
 综上所述，组件模板依赖编译器编译成渲染函数返回<word text="虚拟DOM"/>，<word text="虚拟DOM"/> 通过渲染器渲染为真实 <word text="DOM"/>。<word text="Vue.js"/> 是一个有机整体，各个模块相互协作，共同完成工作。从编译器和渲染器两个关键模块出发，看看 <word text="Vue.js"/> 是如何配合工作并实现性能优化的。
 
@@ -290,7 +291,7 @@ render() {
 
 在上方代码中，类名 `cls` 是一个变量，可能会发生变化，前文也提到过，渲染器越快找到需要更新的节点，性能越好。所以，<word text="Vue.js"/> 在编译阶段把动态内容提取出来交给渲染器，这样渲染器就不需要花费时间寻找变更点，从而提升性能。
 
-### 总结
+## 总结
 
 <word text="Vue.js"/> 3 是由编译器、渲染器等模块组成的有机整体，各模块相互协作，共同实现高效、灵活的前端开发体验。采用声明式编程，让用户通过模板或 <word text="JavaScript"/> 对象描述 <word text="UI"/>，无需手动操作 <word text="DOM"/>。
 

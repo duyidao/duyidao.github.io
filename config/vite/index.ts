@@ -5,9 +5,10 @@ import path from 'path'
 // @ts-ignore Node.js typings may not be included by this project's tsconfig.
 import { fileURLToPath } from 'url'
 import { localIconLoader } from 'vitepress-plugin-group-icons'
-import { iconToSVG } from '@iconify/utils'
+import { iconToSVG, getIcons } from '@iconify/utils'
 import * as hugeicons from '@iconify-json/hugeicons'
 import * as cib from '@iconify-json/cib'
+import * as iconParkSolid from '@iconify-json/icon-park-solid'
 
 // 读取 SVG 文件并返回一个对象，其中键是 SVG 文件的名称，值是 SVG 文件的路径
 interface SvgMap {
@@ -76,6 +77,38 @@ const iconifyIcons = {
   代码运行: iconifyToSvg(hugeicons, 'code-square'),
   时序图: iconifyToSvg(hugeicons, 'align-vertical-center'),
   less: iconifyToSvg(cib, 'less'),
+}
+
+// 运行时 <icon> 组件实际引用的图标，仅裁剪这几个，避免全量图标集进入客户端产物
+const runtimeIconNames = ['people', 'file-code', 'time', 'update-rotation']
+
+const VIRTUAL_ICON_ID = 'virtual:iconify-offline'
+const RESOLVED_VIRTUAL_ICON_ID = '\0' + VIRTUAL_ICON_ID
+
+// 构建期裁剪 icon-park-solid，仅向客户端注入用到的图标
+export function iconifyOfflinePlugin() {
+  return {
+    name: 'iconify-offline',
+    resolveId(id: string) {
+      return id === VIRTUAL_ICON_ID ? RESOLVED_VIRTUAL_ICON_ID : null
+    },
+    load(id: string) {
+      if (id !== RESOLVED_VIRTUAL_ICON_ID) return null
+
+      const data = getIcons(iconParkSolid.icons, runtimeIconNames)
+      if (!data) {
+        console.warn(
+          `[iconify] 以下图标在 icon-park-solid 中不存在: ${runtimeIconNames.join(', ')}`,
+        )
+        return `export default ${JSON.stringify({
+          prefix: 'icon-park-solid',
+          icons: {},
+        })}`
+      }
+
+      return `export default ${JSON.stringify(data)}`
+    },
+  }
 }
 
 export const customIcon = {

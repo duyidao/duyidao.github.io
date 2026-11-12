@@ -10,7 +10,7 @@
 
 ### 技术架构图
 
-```
+```mermaid
 flowchart LR
     A[MapVThree 地图组件] --> B[管理类封装]
     A --> C[基础渲染方法]
@@ -1005,7 +1005,7 @@ pathTrackerManager.clear()
 
 **执行流程**
 
-```
+```mermaid
 sequenceDiagram
     participant User as 用户 (User)
     participant PTM as PathTrackerManager

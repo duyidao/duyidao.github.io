@@ -1,8 +1,8 @@
-## clip-path 实现不规则图形及溢出场景
+# clip-path 实现不规则图形及溢出场景
 
 本章节开始介绍新的属性 `clip-path`，该元素主要用于裁剪元素的可视区域。
 
-### clip-path 基本用法
+## clip-path 基本用法
 
 `clip-path` 的基本语法如下：
 
@@ -39,7 +39,7 @@ clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 
 ![CSS clip-path界面](https://pic1.imgdb.cn/item/68f0ae8cc5157e1a8878f21a.png)
 
-### 用 clip-path 实现常见不规则图形
+## 用 clip-path 实现常见不规则图形
 
 还是用之前的例子，之前使用 `mask` 实现了内切角的效果，现在可以借助 `clip-path` 快速实现效果，这样背景色可以直接任意定制，无论是渐变还是纯色都不在话下。
 
@@ -88,7 +88,7 @@ div {
 
 > 具体效果可查看 [clip-path 实现不规则图形](https://codepen.io/duyidao/pen/KwVyWdw)
 
-### clip-path 的局限性
+## clip-path 的局限性
 
 `clip-path` 通过裁剪实现不规则图形效果，但 `clip-path` 并不是万能的，它也有一些局限性。
 
@@ -138,7 +138,7 @@ div {
 
 如果在切割裁剪完图形之后，又想要添加边框，该如何实现？
 
-### filter: drop-shadow()
+## filter: drop-shadow()
 
 `box-shadow` 是给整个盒子添加阴影效果，而 `drop-shadow()` 是创建一个符合当前元素本身形状的阴影，因此可以使用这个黑科技，给切割后的图形添加阴影，视觉上实现边框效果。
 
@@ -199,10 +199,12 @@ div {
 
 > 具体效果可查看 [drop-shadow 模拟边框](https://codepen.io/duyidao/pen/KwVyWQM)
 
+<!-- -->
+
 > [!WARNING] 注意
 > 想要实现效果，需要注意 `filter: drop-shadow()` 需要添加在父元素上，因为 `drop-shadow()` 是创建一个符合当前元素本身形状的阴影，因此需要将阴影作用在父元素上。
 
-### clip-path 的坐标可以是负数，可以超出 100%
+## clip-path 的坐标可以是负数，可以超出 100%
 
 最常见的使用的 `clip-path: polygon()` 中，`polygon()` 内需要填入具体的数值，但是这里面的值可以是负数，可以超出 100% 。
 
@@ -291,7 +293,7 @@ div {
 
 这就没法用切图就直接解决了，这个效果的核心效果就是 `display: grid` 布局结合 `clip-path` 裁剪实现的。
 
-### 用 clip-path 实现指定区域的 overflow: hidden
+## 用 clip-path 实现指定区域的 overflow: hidden
 
 `clip-path` 可以控制区域外的裁剪，那么也意味着，可以用来指定溢出隐藏的区域。什么意思呢？下面看看这个效果图。
 
@@ -328,7 +330,7 @@ div {
 
 > 具体效果可查看 [clip-path 实现指定区域的 overflow: hidden](https://codepen.io/duyidao/pen/OPMOYOX)
 
-### 总结
+## 总结
 
 本章节主要讲了 `clip-path` 的基本用法和见识了它强大的功能，主要有：
 

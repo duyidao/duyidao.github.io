@@ -1,8 +1,8 @@
-## Class的基本语法
+# Class的基本语法
 
 传统的 JavaScript 中，生成实例对象的传统方法是通过构造函数。但是这种写法与面向对象语言的写法差异大，ES6 引入了 Class（类）这个概念，作为对象的模板。通过 `class` 关键字，可以定义类。
 
-### 简介
+## 简介
 
 ES6 的 `class` 可以看作一个语法糖，它的绝大部分功能，ES5 都可以做到，新的 `class` 写法让对象原型的写法更加清晰。
 
@@ -19,7 +19,7 @@ class Point {
 }
 ```
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > 定义类时，前面不需要加 `function` ，直接将函数定义放进去即可。构造函数的名称和类名需要相同，且不需要加 `function` 关键字。
 
 类的数据类型就是函数，类本身就指向构造函数。使用的时候，也是直接对类使用 `new` 命令，跟构造函数的用法完全一致。
@@ -103,11 +103,11 @@ class MMethod {
 }
 ```
 
-### 严格模式
+## 严格模式
 
 类和模块的内部，默认就是严格模式，所以不需要使用 `use strict` 指定运行模式。只要你的代码写在类或模块之中，就只有严格模式可用。考虑到未来所有的代码，其实都是运行在模块之中，所以 ES6 实际上把整个语言升级到了严格模式。
 
-### constructor方法
+## constructor方法
 
 `constructor` 方法是类的默认方法，通过 `new` 命令生成对象实例时，自动调用该方法。一个类必须有 `constructor` 方法，如果没有显式定义，一个空的 `constructor` 方法会被默认添加。
 
@@ -146,9 +146,10 @@ class Foo {
 Foo() // TypeError: Class constructor Foo cannot be invoked without 'new'
 ```
 
-### 类的实例对象
+## 类的实例对象
 
 与 ES5 相同点：
+
 1. 生成实例对象写法也是用的 `new` 命令，否则报错
 2. 和 ES5 一样，实例的属性除非显示定义在其本身（即定义在 `this` 上），否则都是定义在原型上（即定义在 `class` 上）
 3. 类所有实例共享一个原型对象
@@ -183,7 +184,7 @@ point.__proto__ === Point.prototype // true
 
 上述代码中，`x` 和 `y` 属性定义在实例对象 `point` 上。`toString` 方法定义在 `Point` 类的原型上。
 
-> [!WARNING] ⚠ 注意
+> [!WARNING] 注意
 > `__proto__` 并不是语言本身的特性，而是各大厂商具体实现时添加的私有属性，虽然目前很多现代浏览器的 <word text="JavaScript"/> 引擎都提供这个私有属性，但依旧不建议在生产中使用，避免对环境产生依赖。生产环境中，可以使用 `Object.getPrototypeOf()` 方法来获取实例对象的原型，然后使用 `Object.prototype.hasOwnProperty()` 方法来判断属性是定义在实例对象上还是定义在原型上。
 > ```js
 > var p1 = new Point(1, 2)
@@ -198,7 +199,7 @@ point.__proto__ === Point.prototype // true
 > p3.printName() // "Oops"
 > ```
 
-### Class表达式
+## Class表达式
 
 与函数一样， `Class` 也可以使用表达式的形式定义。
 
@@ -236,7 +237,7 @@ let person = new class {
 person.sayName(); // "张三"
 ```
 
-### 不存在变量提升
+## 不存在变量提升
 
 类没有变量提升（hoisting），这一点与 ES5 完全不同。这是因为 ES6 不会把类的声明提升到作用域的顶部，涉及到继承的知识点，必须保证子类在父类之后。
 
@@ -252,11 +253,12 @@ class Foo {}
 
 `Baz` 继承 `Bar` 时，`Bar` 已经定义了。如果 Class 存在变量提升，`class` 会被提升到代码头部，而 let 没有提升，导致继承时 `Bar` 还没定义造成报错。
 
-### 私有方法
+## 私有方法
 
 私有方法 ES6 没有提供，需要变通方法来模拟实现。有三种方法可以实现：
+
 1. 命名上加以区别
-   
+
    ```js
     class A {
       // 公有方法
@@ -272,7 +274,7 @@ class Foo {}
    ```
 
 2. 将私有方法移出模块，模块内部方法对外均可见
-   
+
    ```js
     class B {
       foo(bar) {
@@ -286,7 +288,7 @@ class Foo {}
    ```
 
 3. 利用 `Symbol` 值唯一特性把私有方法命名为 `Symbol` 值
-   
+
    ```js
    const bar = Symbol('bar')
    class C {
@@ -296,7 +298,7 @@ class Foo {}
    }
    ```
 
-### 私有属性
+## 私有属性
 
 与私有方法类似，私有属性也不能从外部访问，只能通过类的内部方法访问。目前，私有属性只能通过 `#` 来定义。
 
@@ -342,7 +344,7 @@ class A {
 }
 ```
 
-### this的指向
+## this的指向
 
 类的方法内部如果含有 `this`，它默认指向类的实例。但是，必须非常小心，一旦单独使用该方法，很可能报错。
 
@@ -365,6 +367,7 @@ printName(); // TypeError: Cannot read property 'print' of undefined
 上面代码中，`printName` 方法中的 `this` 指向的是 `undefined`，导致找不到 `print` 方法而报错。
 
 解决方法有三个：
+
 1. 在构造方法中绑定 `this`，这样就不会找不到 `print` 方法了。
 
     ```js
@@ -390,7 +393,7 @@ printName(); // TypeError: Cannot read property 'print' of undefined
     ```
 
 3. 使用 `Proxy`，获取方法的时候，自动绑定 `this`
-   
+
     ```js
     function selfish (target) {
       const cache = new WeakMap();
@@ -413,7 +416,7 @@ printName(); // TypeError: Cannot read property 'print' of undefined
     const logger = selfish(new Logger());
     ```
 
-### name属性
+## name属性
 
 本质上，ES6 的类只是 ES5 的构造函数一层包装，所以函数许多特性都被 Class 继承，包括 `name` 属性。
 
@@ -424,7 +427,7 @@ Point.name // "Point"
 
 `name` 属性总是返回紧跟在 `class` 关键字后面的类名。
 
-### Class的取值函数（getter）和存值函数（setter）
+## Class的取值函数（getter）和存值函数（setter）
 
 与 ES5 一样，在 Class 内部可以使用 `get` 和 `set` 关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为。
 
@@ -450,7 +453,7 @@ inst.prop
 // 'getter'
 ```
 
-### Class的Generator方法
+## Class的Generator方法
 
 如果某个方法之前加上星号（`*`），就表示该方法是一个 Generator 函数。
 
@@ -473,7 +476,7 @@ for (let x of new Foo('hello', 'world')) {
 // world
 ```
 
-### Class的静态方法
+## Class的静态方法
 
 类相当于实例的原型，所有在类中定义的方法，都会被实例继承。如果在一个方法前，加上 `static` 关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”。
 
@@ -507,7 +510,7 @@ class Bar extends Foo {
 }
 ```
 
-### Class的静态属性和实例属性
+## Class的静态属性和实例属性
 
 静态属性指的是 Class 本身的属性，即 `Class.propname`，而不是定义在实例对象 `this` 上的属性。
 
@@ -549,7 +552,7 @@ class Foo {
 }
 ```
 
-### new target 属性
+## new target 属性
 
 `new` 是从构造函数生成的实例命令，ES6 为 `new` 命令引入了一个 `new.target` 属性，该属性一般用在构造函数之中，返回 `new` 命令作用于的那个构造函数。如果构造函数不是通过 `new` 命令或 `Reflect.construct()` 调用的，`new.target` 会返回 `undefined`，因此这个属性可以用来确定构造函数是怎么调用的。
 
@@ -577,11 +580,12 @@ var notAPerson = Person.call(person, '张三'); // 报错
 ```
 
 有几个需要注意的点：
+
 1. Class 内部调用 `new.target`，返回当前 Class。
 2. 子类继承父类时，`new.target` 会返回子类。
 3. 在函数外部，使用 `new.target` 会报错。
 
-### 总结
+## 总结
 
 ES6 引入的 `class` 关键字为 JavaScript 提供了一种新的面向对象编程方式，使得类的定义和实例化更加直观和符合传统面向对象语言的风格。`class` 可以看作是构造函数的语法糖，它通过更简洁的语法封装了原型继承的细节。在类中，可以定义构造函数 `constructor` 来初始化实例属性，以及定义实例方法和静态方法。实例方法定义在类的 `prototype` 属性上，而静态方法则直接定义在类上，不会被实例继承。类的所有方法默认都是不可枚举的，这与 ES5 中构造函数的行为有所不同。
 
