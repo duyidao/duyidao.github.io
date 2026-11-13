@@ -48,9 +48,9 @@
 
 ### React路由含义
 
-1. <word text="React"/> 的一个插件库。
+1. <word text="React"/>的一个插件库。
 2. 专门用来实现一个 SPA 应用。
-3. 基于 <word text="React"/> 的项目基本都会用到此库。
+3. 基于<word text="React"/>的项目基本都会用到此库。
 
 ### React路由内置组件
 
@@ -128,7 +128,7 @@ ReactDOM.render(
 )
 ```
 
-现在运行，效果实现，接下来实现动态样式激活的效果。 <word text="React" /> 中除了 `Link` 标签以外，还有一个 `NavLink` ，当路由匹配后它会添加一个 `active` 类名给自身，表明处于激活状态。也可通过 `activeClassName` 设置激活的类名。
+现在运行，效果实现，接下来实现动态样式激活的效果。<word text="React" />中除了 `Link` 标签以外，还有一个 `NavLink` ，当路由匹配后它会添加一个 `active` 类名给自身，表明处于激活状态。也可通过 `activeClassName` 设置激活的类名。
 
 ```jsx
 <NavLink activeClassName="activeClass" className="list-group-item" to="/about">About</NavLink>
@@ -219,7 +219,7 @@ ReactDOM.render(
 
 此时二级路由挂载到 `<Home />` 组件上，点击 `Home` 路由也能显示，可是点击二级路由切换时却失败了，返回了 `About` 组件页面上。
 
-这是因为在 <word text="React" /> 中，路由修改后会根据路由挂载顺序开始匹配，在上方示例中，一级路由先挂载。点击 `Home` 路由后会开始匹配，匹配到结果，然后进入到 `<Home />` 组件，挂载了二级路由；接着点击 `News` ，路由发生变化，从先挂载的一级路由中去匹配查找，没有找到符合的，最终重定向。
+这是因为在<word text="React" />中，路由修改后会根据路由挂载顺序开始匹配，在上方示例中，一级路由先挂载。点击 `Home` 路由后会开始匹配，匹配到结果，然后进入到 `<Home />` 组件，挂载了二级路由；接着点击 `News` ，路由发生变化，从先挂载的一级路由中去匹配查找，没有找到符合的，最终重定向。
 
 因此，二级路由想要实现，需要拼接上一级路由的路径，代码如下：
 
@@ -244,7 +244,7 @@ ReactDOM.render(
 
 - `params` 传参
 
-  可以联想一下 <word text="Vue" /> 或者 <word text="Node" /> 的动态传参的方式，通过 `/:` 的方式接收动态的传参。代码如下所示：
+  可以联想一下<word text="Vue" />或者<word text="Node" />的动态传参的方式，通过 `/:` 的方式接收动态的传参。代码如下所示：
 
   ```jsx
   <Link to={`/home/news/${item.id}/${item.title}`}></Link>
@@ -278,7 +278,7 @@ ReactDOM.render(
 
   接收的时候需要在 `location` 对象中的 `search` 属性中获取，该属性是一个字符串，如 `?id=0&title=daodao` ，需要我们手动转为对象的形式。
 
-  <word text="React" /> 脚手架下载好一个库 `querystring` ，其方法 `stringify()` 可以把一个对象转为 `key=value&key=value` 的格式；其 `parse()` 方法可以把该格式的字符串换为对象的形式。
+  <word text="React" />脚手架下载好一个库 `querystring` ，其方法 `stringify()` 可以把一个对象转为 `key=value&key=value` 的格式；其 `parse()` 方法可以把该格式的字符串换为对象的形式。
 
   引入 `querystring` 后转换格式，示例代码如下：
 

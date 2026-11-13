@@ -4,7 +4,7 @@
 
 本章节，则是从如何使用 `box-shadow` ，来实现不是阴影的效果。
 
-## 技巧一：利用阴影复制自身图形
+## 零偏移零模糊阴影复制自身图形
 
 ### 复制自身图形
 
@@ -28,18 +28,19 @@
 例如下方两个场景：
 
 - 标题左右两侧的圆点效果，只需要一个 `div` 即可，左右两侧的点只需要通过伪类 `::before` 和 `::after` 来实现第一个元素，剩下两个点则通过阴影来实现。
-  
+
   ![标题左右两侧的圆点效果](https://pic1.imgdb.cn/item/690c08603203f7be00da54f5.png)
 
 - 云朵效果，只需要一个 `div` 即可，画一个圆，然后通过阴影复制多个大小不同的圆，堆叠在一起，就能实现云朵效果。
-  
+
   ![云朵效果](https://pic1.imgdb.cn/item/690c0ab53203f7be00da7890.png)
 
 - 多层边框效果，在一些多层边框效果场景下，`border` 属性无法满足需求，这时可以通过 `box-shadow` 复制多个自身图形，设置为内阴影或外阴影，来实现多层边框效果。
-  
+
   ![多层边框效果](https://pic1.imgdb.cn/item/691144b83203f7be00ec12af.png)
 
 ::: code-group
+
 ```css [圆点.css]
 .box {
   display: flex;
@@ -47,7 +48,8 @@
   gap: 40px;
   font-size: 20px;
   line-height: 1;
-  &::before, &::after {
+  &::before,
+  &::after {
     content: '';
     display: block;
     width: 10px;
@@ -55,15 +57,20 @@
     background: #000;
     border-radius: 50%;
   }
-  
+
   &::before {
-    box-shadow: 15px 0 0 0 #000, 30px 0 0 0 #000;
+    box-shadow:
+      15px 0 0 0 #000,
+      30px 0 0 0 #000;
   }
   &::after {
-    box-shadow: -15px 0 0 0 #000, -30px 0 0 0 #000;
+    box-shadow:
+      -15px 0 0 0 #000,
+      -30px 0 0 0 #000;
   }
 }
 ```
+
 ```css [云朵.css]
 .cloud {
   width: 50px;
@@ -79,6 +86,7 @@
     50px -10px 0 0 #ccc;
 }
 ```
+
 ```css [多层边框.css]
 .border {
   width: 150px;
@@ -92,6 +100,7 @@
     0 0 0 16px yellow;
 }
 ```
+
 :::
 
 > 具体代码可以查看 [利用阴影绘制自身图形](https://codepen.io/duyidao/pen/azdrwZq)
@@ -120,8 +129,7 @@ div {
   box-shadow:
   /* [!code focus] */
     inset 0 -4px 0 0 gray,
-  /* [!code focus] */
-    inset 0 -9px 0 0 #000;
+    /* [!code focus] */ inset 0 -9px 0 0 #000;
 }
 ```
 
@@ -148,14 +156,14 @@ div {
 ```css
 @function shadowSet($vx, $vy, $color) {
   $shadow : 0 0 0 0 $color;
-  
-  @for $i from 0 through 50 { 
+
+  @for $i from 0 through 50 {
     $x: calc(2 * sin(#{$i * 15 * 1deg}) * #{$vy});
     $y: $i * $vy;
-      
+
     $shadow: $shadow, #{$x} #{$y} 0 0 $color;
   }
-  
+
   @return $shadow;
 }
 
@@ -186,7 +194,7 @@ div:nth-child(3) {
 
 ![转换为css](https://pic1.imgdb.cn/item/691151963203f7be00ec24ae.png)
 
-## 技巧二：遮罩模拟，利用阴影模拟半透明遮罩层
+## 超大扩散半径模拟全屏遮罩层
 
 来看掘金登录的遮罩层效果：
 
@@ -204,7 +212,7 @@ div:nth-child(3) {
   height: 200px;
   background: #fff;
   margin: auto;
-  box-shadow: 0 0 0 9999px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
 }
 ```
 
@@ -222,7 +230,7 @@ div:nth-child(3) {
 - 使用 `box-shadow` 生成的阴影，它是无法阻止它背后元素的交互事件的，譬如阴影后面的元素还是可以被 `hover` 和 `click`，使用这种方式时，需要配合 `pointer-event` 一起，禁止掉元素的点击相关事件
 - 从性能角度而言，`box-shadow` 属于耗性能样式，不同样式在消耗性能方面也有所不同，`box-shadow` 在渲染方面更加耗费性能，因为它的绘制代码执行时间较长，因此在实际使用时仍需要仔细考虑此方案的优缺点
 
-## 技巧三：光效动画，使用阴影实现霓虹氖灯效果
+## 多层同色阴影叠加霓虹灯光效
 
 氖灯效果，英文名 Neon，是一种常见的样式和动画效果，常用于营造一种未来感。
 
@@ -231,10 +239,12 @@ div:nth-child(3) {
 还能添加鼠标 `hover` 后再展示氖灯效果，让样式更生动。
 
 ::: code-group
+
 ```html
 <div class="box">Daodao</div>
 <div class="hover">Hover</div>
 ```
+
 ```css
 body {
   background-color: black;
@@ -248,19 +258,28 @@ body {
 }
 
 .box {
-  text-shadow: 0 0 10px #0ebeff, 0 0 20px #0ebeff, 0 0 50px #0ebeff,
-    0 0 100px #0ebeff, 0 0 200px #0ebeff;
+  text-shadow:
+    0 0 10px #0ebeff,
+    0 0 20px #0ebeff,
+    0 0 50px #0ebeff,
+    0 0 100px #0ebeff,
+    0 0 200px #0ebeff;
 }
 
 .hover {
   width: fit-content;
   margin: 50px auto;
   &:hover {
-    text-shadow: 0 0 10px #0ebeff, 0 0 20px #0ebeff, 0 0 50px #0ebeff,
-      0 0 100px #0ebeff, 0 0 200px #0ebeff;
+    text-shadow:
+      0 0 10px #0ebeff,
+      0 0 20px #0ebeff,
+      0 0 50px #0ebeff,
+      0 0 100px #0ebeff,
+      0 0 200px #0ebeff;
   }
 }
 ```
+
 :::
 
 > 一般情况下，氖灯效果会搭配背景色黑色，让氛围更有效果。
@@ -299,7 +318,10 @@ body {
   30%,
   100% {
     color: #fff;
-    text-shadow: 0px 0px 5px #0ebeff, 0px 0px 10px #0ebeff, 0px 0px 20px #0ebeff,
+    text-shadow:
+      0px 0px 5px #0ebeff,
+      0px 0px 10px #0ebeff,
+      0px 0px 20px #0ebeff,
       0px 0px 50px #0ebeff;
   }
   10%,
@@ -312,7 +334,7 @@ body {
 
 > 具体代码可以查看 [阴影实现霓虹氖灯效果](https://codepen.io/duyidao/pen/XJdbNBq)
 
-## 技巧四：阴影动画优化技巧
+## 伪元素透明度切换替代阴影重排
 
 在切换背景阴影 `box-shadow` 时，有时候会发现效果卡卡的，这是因为浏览器在不断重排盒子阴影，因此这一块性能消耗会相对大。如果切换的频繁了，性能问题就会更加明显。
 
@@ -336,7 +358,7 @@ div {
   width: 100px;
   height: 100px;
   margin: 50px auto;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 div:hover {
@@ -393,36 +415,30 @@ div:hover {
 这篇文章展示了如何巧妙地利用 box-shadow 的特性，突破其“制造阴影”的常规用途，实现更多富有创意和实用性的视觉效果与交互。
 
 1. 利用阴影复制自身图形
+   - 核心原理：box-shadow 支持多重阴影（多个阴影值），通过精确控制每个阴影的偏移量、模糊半径和扩散半径，可以将元素的形状复制并放置在不同位置。
 
-    - 核心原理：box-shadow 支持多重阴影（多个阴影值），通过精确控制每个阴影的偏移量、模糊半径和扩散半径，可以将元素的形状复制并放置在不同位置。
-
-    - 应用场景：
-
-      1. 简化<word text="DOM" />结构：例如，实现标题两侧的圆点或多个圆点，只需一个元素和伪元素配合阴影即可。
-      2. 创造复杂图形：例如，通过多个大小不同的圆的阴影堆叠，可以轻松绘制出云朵效果。
-      3. 实现多层边框：利用内阴影（`inset`）和外阴影的组合，可以创建比 border 更复杂的边框效果。
-      4. 内部复制自身：通过 `inset` 内阴影，可以实现特定的内部图案效果（如文本区域的分层阴影）。
-      5. 绘制曲线等复杂图形：结合<word text="CSS" />数学函数（如 `sin`, `cos`）和多重阴影，理论上可以近似绘制出各种曲线。
+   - 应用场景：
+     1. 简化<word text="DOM" />结构：例如，实现标题两侧的圆点或多个圆点，只需一个元素和伪元素配合阴影即可。
+     2. 创造复杂图形：例如，通过多个大小不同的圆的阴影堆叠，可以轻松绘制出云朵效果。
+     3. 实现多层边框：利用内阴影（`inset`）和外阴影的组合，可以创建比 border 更复杂的边框效果。
+     4. 内部复制自身：通过 `inset` 内阴影，可以实现特定的内部图案效果（如文本区域的分层阴影）。
+     5. 绘制曲线等复杂图形：结合<word text="CSS" />数学函数（如 `sin`, `cos`）和多重阴影，理论上可以近似绘制出各种曲线。
 
 2. 遮罩模拟，利用阴影模拟半透明遮罩层
+   - 核心原理：通过给 `box-shadow` 设置一个非常大的扩散半径（9999px）并使用半透明颜色，可以模拟一个覆盖整个视口的半透明遮罩层。
 
-      - 核心原理：通过给 `box-shadow` 设置一个非常大的扩散半径（9999px）并使用半透明颜色，可以模拟一个覆盖整个视口的半透明遮罩层。
+   - 优势：相比添加额外的<word text="DOM" />元素（如 `<div>` 或伪元素），这种方法代码更简洁。可以结合 `:hover` 等交互实现动态遮罩。
 
-      - 优势：相比添加额外的<word text="DOM" />元素（如 `<div>` 或伪元素），这种方法代码更简洁。可以结合 `:hover` 等交互实现动态遮罩。
-
-      - 注意事项：
-
-          1. 需要足够大的扩散半径才能覆盖整个视口。
-          2. 阴影不会阻止背后的元素交互，需配合 `pointer-events: none` 等属性。
-          3. `box-shadow` 本身是性能消耗较大的样式，应谨慎使用。
+   - 注意事项：
+     1. 需要足够大的扩散半径才能覆盖整个视口。
+     2. 阴影不会阻止背后的元素交互，需配合 `pointer-events: none` 等属性。
+     3. `box-shadow` 本身是性能消耗较大的样式，应谨慎使用。
 
 3. 光效动画，使用阴影实现霓虹氖灯效果
-
-      - 核心原理：通过叠加多个具有不同模糊半径和相同颜色的 `box-shadow`，并配合 `text-shadow` 或 `box-shadow` 的动画，可以创造出类似霓虹灯的发光效果。
-      - 应用场景：常用于标题、按钮或 UI 元素，营造未来感或强调效果。可以结合 `hover` 或动画，实现动态闪烁效果。
+   - 核心原理：通过叠加多个具有不同模糊半径和相同颜色的 `box-shadow`，并配合 `text-shadow` 或 `box-shadow` 的动画，可以创造出类似霓虹灯的发光效果。
+   - 应用场景：常用于标题、按钮或 UI 元素，营造未来感或强调效果。可以结合 `hover` 或动画，实现动态闪烁效果。
 
 4. 阴影动画优化技巧
-
-      - 核心原理：直接改变 `box-shadow` 属性会导致浏览器进行重排（`reflow`），性能消耗较大。优化方法是将阴影变化转化为透明度变化。
-      - 具体做法：利用伪元素（`::before` 和 `::after`）分别定义不同状态下的阴影，初始状态下一个伪元素透明度为 1（可见），另一个为 0（隐藏）。当需要切换时，通过改变这两个伪元素的 `opacity` 来实现过渡，从而避免了 `box-shadow` 的重排，提升动画流畅度。
-      - 优势：提升动画性能，尤其适用于频繁切换阴影效果的场景。
+   - 核心原理：直接改变 `box-shadow` 属性会导致浏览器进行重排（`reflow`），性能消耗较大。优化方法是将阴影变化转化为透明度变化。
+   - 具体做法：利用伪元素（`::before` 和 `::after`）分别定义不同状态下的阴影，初始状态下一个伪元素透明度为 1（可见），另一个为 0（隐藏）。当需要切换时，通过改变这两个伪元素的 `opacity` 来实现过渡，从而避免了 `box-shadow` 的重排，提升动画流畅度。
+   - 优势：提升动画性能，尤其适用于频繁切换阴影效果的场景。

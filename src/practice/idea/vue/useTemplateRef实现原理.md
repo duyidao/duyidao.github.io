@@ -1,6 +1,6 @@
 # useTemplateRef 实现原理
 
-`useTemplateRef` 是<word text="Vue 3.5" />新增的 API，用于获取模板中的 DOM 元素或组件实例。
+`useTemplateRef` 是Vue 3.5新增的 API，用于获取模板中的 DOM 元素或组件实例。
 
 在 3.5 之前，获取模板中的<word text="DOM" />元素或组件实例通过 `ref` 属性和 `ref` 方法实现。但这种方式需要在模板中添加额外的 `ref` 属性，且要求二者名字一致。
 

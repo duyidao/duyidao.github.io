@@ -2,13 +2,13 @@
 
 ## 核心主旨
 
-<word text="Esbuild"/> 是 <word text="Vite"/> 双引擎架构中负责"快"的那一半，在依赖预编译、<word text="TSX"/> 语法转译、代码压缩等关键构建阶段让 <word text="Vite"/> 获得了远超传统工具链的性能表现。无论是 <word text="Vite"/> 的配置项还是源码实现，都大量复用了 <word text="Esbuild"/> 自身的基本概念与高阶用法。
+<word text="esbuild"/>是<word text="Vite"/>双引擎架构中负责"快"的那一半，在依赖预编译、<word text="TSX"/>语法转译、代码压缩等关键构建阶段让<word text="Vite"/>获得了远超传统工具链的性能表现。无论是<word text="Vite"/>的配置项还是源码实现，都大量复用了<word text="esbuild"/>自身的基本概念与高阶用法。
 
-本文聚焦 <word text="Esbuild"/> 本体：先剖析其性能为何能比传统打包工具快 10~100 倍，再系统讲解 **命令行调用** 与 **代码调用** 两种使用方式（<word text="Build API"/> / <word text="Transform API"/>），最后通过一个 `env` 插件入门与两个完整实战（CDN 依赖拉取插件、HTML 构建插件），彻底掌握 <word text="Esbuild"/> 的插件开发范式与关键钩子。
+本文聚焦<word text="esbuild"/>本体：先剖析其性能为何能比传统打包工具快 10~100 倍，再系统讲解 **命令行调用** 与 **代码调用** 两种使用方式（<word text="Build API"/> / <word text="Transform API"/>），最后通过一个 `env` 插件入门与两个完整实战（CDN 依赖拉取插件、HTML 构建插件），彻底掌握<word text="esbuild"/>的插件开发范式与关键钩子。
 
 ## 为什么 Esbuild 性能极高
 
-<word text="Esbuild"/> 由 Figma 的 CTO「Evan Wallace」基于 <word text="Golang"/> 开发，主打性能优势。其超高构建性能可以归纳为 4 个原因：
+<word text="esbuild"/>由 Figma 的 CTO「Evan Wallace」基于<word text="Golang"/>开发，主打性能优势。其超高构建性能可以归纳为 4 个原因：
 
 ```mermaid
 graph TD
@@ -27,21 +27,21 @@ graph TD
 | ---------------- | ------------------------------------------------------ | -------------------------------------------------------- |
 | **Golang 开发**  | 构建逻辑代码直接编译为原生机器码                       | 无需"源码 → 字节码 → 机器码"的多段转换，大幅节省运行时间 |
 | **多核并行**     | 内部打包算法尽可能让所有步骤并行                       | 充分利用多核 CPU，得益于 Go 多线程共享内存               |
-| **从零造轮子**   | 大至 <word text="AST"/> 解析，小到字符串操作，全部自研 | 摆脱第三方库的性能损耗，保证极致代码性能                 |
+| **从零造轮子**   | 大至<word text="AST"/>解析，小到字符串操作，全部自研 | 摆脱第三方库的性能损耗，保证极致代码性能                 |
 | **高效内存利用** | 从头到尾尽可能复用同一份 AST 节点数据                  | 避免 JS 打包工具中频繁解析与传递 AST 造成的内存浪费      |
 
 ## Esbuild 功能使用
 
-使用 <word text="Esbuild"/> 有 2 种方式：**命令行调用** 与 **代码调用**。安装只需一条命令：
+使用<word text="esbuild"/>有 2 种方式：**命令行调用** 与 **代码调用**。安装只需一条命令：
 
 ```bash
 pnpm init -y
 pnpm i esbuild
 ```
 
-### 一、命令行调用
+### 命令行调用打包单个入口
 
-命令行是最简单的使用方式，适合快速验证与简单场景。准备一个 <word text="JSX"/> 示例：
+命令行是最简单的使用方式，适合快速验证与简单场景。准备一个<word text="JSX"/>示例：
 
 ::: code-group
 
@@ -64,9 +64,9 @@ console.log(Server.renderToString(<Greet />))
 
 执行 `pnpm run build` 即可完成打包。但命令行只能传入简单参数，稍微复杂的场景（自定义插件、精细 loader 配置）就不适用了，因此工程中更常用代码调用。
 
-### 二、代码调用
+### 代码调用 Build API 与 Transform API
 
-<word text="Esbuild"/> 对外暴露的 API 分为两类：<word text="Build API"/> 与 <word text="Transform API"/>，可在 <word text="Node.js"/> 代码中按需调用。
+<word text="esbuild"/>对外暴露的 API 分为两类：<word text="Build API"/>与<word text="Transform API"/>，可在<word text="Node.js"/>代码中按需调用。
 
 ```mermaid
 graph LR
@@ -110,7 +110,7 @@ async function runBuild() {
 runBuild()
 ```
 
-执行 `node build.js` 后，控制台会打印打包元信息，`dist` 目录中也会写入产物与 <word text="SourceMap"/> 文件。
+执行 `node build.js` 后，控制台会打印打包元信息，`dist` 目录中也会写入产物与<word text="SourceMap"/>文件。
 
 ### 常用配置项速查
 
@@ -130,20 +130,20 @@ runBuild()
 | `write`         | `boolean`                       | 是否将产物写入磁盘                         |
 | `loader`        | `Record<string, Loader>`        | 特殊后缀文件的加载器映射                   |
 
-<word text="Esbuild"/> 内置一系列 <word text="Loader"/>：`base64`、`binary`、`css`、`dataurl`、`file`、`js(x)`、`ts(x)`、`text`、`json`，针对不同文件类型调用不同加载器。
+<word text="esbuild"/>内置一系列<word text="Loader"/>：`base64`、`binary`、`css`、`dataurl`、`file`、`js(x)`、`ts(x)`、`text`、`json`，针对不同文件类型调用不同加载器。
 
 ### 为什么不推荐 buildSync
 
 `buildSync` 用法与 `build` 几乎相同，只是同步调用，但会带来两方面不良后果：
 
-- 容易使 <word text="Esbuild"/> 在当前线程阻塞，丧失**并发任务处理**的优势；
+- 容易使<word text="esbuild"/>在当前线程阻塞，丧失**并发任务处理**的优势；
 - 所有插件中都不能使用任何异步操作，给**插件开发**增加限制。
 
 ### serve：内置静态服务
 
-`serve` 是 <word text="Build API"/> 中能力较强的一个方法，有 3 个特点：
+`serve` 是<word text="Build API"/>中能力较强的一个方法，有 3 个特点：
 
-1. 在指定端口与目录上搭建**静态文件服务**，服务器用原生 Go 实现，性能比 <word text="Node.js"/> 更高；
+1. 在指定端口与目录上搭建**静态文件服务**，服务器用原生 Go 实现，性能比<word text="Node.js"/>更高；
 2. 类似 webpack-dev-server，产物默认不写磁盘，而是放在内存中通过请求访问；
 3. **每次请求**到来时都会重新构建（rebuild），永远返回最新产物。
 
@@ -188,7 +188,7 @@ sequenceDiagram
 
 ## Transform API：单文件转译
 
-除项目打包外，<word text="Esbuild"/> 还专门提供了单文件编译能力，即 <word text="Transform API"/>，同样包含异步的 `transform` 与同步的 `transformSync`：
+除项目打包外，<word text="esbuild"/>还专门提供了单文件编译能力，即<word text="Transform API"/>，同样包含异步的 `transform` 与同步的 `transformSync`：
 
 ```javascript [transform.js]
 const { transform, transformSync } = require('esbuild')
@@ -208,11 +208,11 @@ async function runTransform() {
 runTransform()
 ```
 
-与 <word text="Build API"/> 结论一致，同步的 `transformSync` 会丧失并发优势，**不推荐使用**。出于性能考虑，<word text="Vite"/> 底层正是采用异步的 `transform` 完成 TS 与 <word text="JSX"/> 的单文件转译。
+与<word text="Build API"/>结论一致，同步的 `transformSync` 会丧失并发优势，**不推荐使用**。出于性能考虑，<word text="Vite"/>底层正是采用异步的 `transform` 完成 TS 与<word text="JSX"/>的单文件转译。
 
 ## Esbuild 插件开发
 
-插件开发本质是在原有体系结构上进行**扩展**与**自定义**：通过插件可以扩展路径解析、模块加载等能力，并在构建过程中执行一系列自定义逻辑。<word text="Vite"/> 依赖预编译的实现中，就大量应用了 <word text="Esbuild"/> 插件的逻辑。
+插件开发本质是在原有体系结构上进行**扩展**与**自定义**：通过插件可以扩展路径解析、模块加载等能力，并在构建过程中执行一系列自定义逻辑。<word text="Vite"/>依赖预编译的实现中，就大量应用了<word text="esbuild"/>插件的逻辑。
 
 ### 基本概念：插件结构
 
@@ -336,7 +336,7 @@ const examplePlugin = {
 
 ## 实战 1：CDN 依赖拉取插件
 
-<word text="Esbuild"/> 原生不支持通过 <word text="HTTP"/> 从 <word text="CDN"/> 服务拉取第三方依赖。例如下面的代码直接 `import` URL 是无法运行的：
+<word text="esbuild"/>原生不支持通过<word text="HTTP"/>从<word text="CDN"/>服务拉取第三方依赖。例如下面的代码直接 `import` URL 是无法运行的：
 
 ```javascript
 // src/index.jsx
@@ -347,7 +347,7 @@ let Greet = () => <h1>Hello, juejin!</h1>
 render(<Greet />, document.getElementById('root'))
 ```
 
-这里用到了 <word text="Skypack"/>——一个提供 <word text="NPM"/> 包 <word text="ESM"/> 产物的 <word text="CDN"/> 服务。借助插件识别此类 URL 并联网获取模块内容，甚至可以**不再需要 `npm install`**。
+这里用到了<word text="Skypack"/>——一个提供<word text="NPM"/>包<word text="ESM"/>产物的<word text="CDN"/>服务。借助插件识别此类 URL 并联网获取模块内容，甚至可以**不再需要 `npm install`**。
 
 ```javascript [http-import-plugin.js]
 module.exports = () => ({
@@ -394,7 +394,7 @@ module.exports = () => ({
 
 ### 关键坑点：间接依赖的路径重写
 
-首次运行会失败，因为 <word text="Skypack"/> 返回的模块内容里还包含**相对路径**的间接依赖：
+首次运行会失败，因为<word text="Skypack"/>返回的模块内容里还包含**相对路径**的间接依赖：
 
 ```javascript
 export * from '/-/react-dom@v17.0.1/dist=es2019,mode=imports/optimized/react-dom.js'
@@ -425,11 +425,11 @@ flowchart TD
     H --> I[产出 dist 产物]
 ```
 
-> 延伸：<word text="ESM"/> <word text="CDN"/> 作为面向未来的前端基础设施，对 <word text="Vite"/> 影响重大，可极大提升生产环境下的构建性能。
+> 延伸：<word text="ESM"/> <word text="CDN"/>作为面向未来的前端基础设施，对<word text="Vite"/>影响重大，可极大提升生产环境下的构建性能。
 
 ## 实战 2：HTML 构建插件
 
-<word text="Esbuild"/> 本身不具备 HTML 构建能力：把 JS/CSS 产物打包出来后，前端项目还不能直接运行，还需要一份入口 HTML。手写虽然可行，但产物名带哈希时每次都要替换路径，因此更适合用插件自动化生成。
+<word text="esbuild"/>本身不具备 HTML 构建能力：把 JS/CSS 产物打包出来后，前端项目还不能直接运行，还需要一份入口 HTML。手写虽然可行，但产物名带哈希时每次都要替换路径，因此更适合用插件自动化生成。
 
 ### metafile 长什么样
 
@@ -539,7 +539,7 @@ flowchart LR
 
 ## 性能数据对照
 
-以 3.2MB 的大型库源码压缩为例，<word text="Esbuild"/> 与 <word text="Terser"/> 的耗时差距如下（单位：秒）：
+以 3.2MB 的大型库源码压缩为例，<word text="esbuild"/>与<word text="Terser"/>的耗时差距如下（单位：秒）：
 
 ```mermaid
 xychart-beta
@@ -556,15 +556,15 @@ xychart-beta
 
 ## 小结与进阶指引
 
-本节需要重点掌握 <word text="Esbuild"/> 的基础使用与插件开发：
+本节需要重点掌握<word text="esbuild"/>的基础使用与插件开发：
 
-1. **两种使用方式**：命令行调用适合简单验证；代码调用是工程主流，核心是 <word text="Build API"/> 与 <word text="Transform API"/>，且应优先使用异步方法（`build` / `transform`）以避免阻塞与插件异步限制。
+1. **两种使用方式**：命令行调用适合简单验证；代码调用是工程主流，核心是<word text="Build API"/>与<word text="Transform API"/>，且应优先使用异步方法（`build` / `transform`）以避免阻塞与插件异步限制。
 2. **插件结构**：`{ name, setup(build) }`，所有扩展能力都来自 `build` 对象上挂载的钩子。
-3. **两类核心钩子**：`onResolve` 控制路径解析（可返回 `namespace` 标记），`onLoad` 按 `namespace` 过滤并返回模块内容与 <word text="Loader"/>；`onStart` / `onEnd` 负责构建生命周期的首尾逻辑，其中 `onEnd` 是读取 `metafile` 的唯一入口。
+3. **两类核心钩子**：`onResolve` 控制路径解析（可返回 `namespace` 标记），`onLoad` 按 `namespace` 过滤并返回模块内容与<word text="Loader"/>；`onStart` / `onEnd` 负责构建生命周期的首尾逻辑，其中 `onEnd` 是读取 `metafile` 的唯一入口。
 4. **两个经典实战**：CDN 依赖拉取插件演示了"拦截 → 下载 → 重写间接依赖"的完整闭环；HTML 构建插件演示了如何基于 `metafile` 自动生成入口文件。
 
 **进阶方向：**
 
 - 深入 `metafile` 的 `inputs` / `outputs` 结构，实现产物分析报告与体积监控；
 - 结合 `serve` 的增量构建特性，探索开发态自定义调试服务；
-- 回看 <word text="Vite"/> 源码中依赖预构建部分，观察它如何组合使用 <word text="Esbuild"/> 插件来解决依赖兼容问题。
+- 回看<word text="Vite"/>源码中依赖预构建部分，观察它如何组合使用<word text="esbuild"/>插件来解决依赖兼容问题。

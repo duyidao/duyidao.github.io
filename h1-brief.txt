@@ -1,0 +1,3842 @@
+### about/blog
+H1: 关于刀刀博客
+H2~ ## 前言
+TXT 作为一个前端，我一直想要制作一个属于自己的博客，记录自己的所学所想，记录自己成长的点点滴滴。
+TXT “我想做一个博客”。在我大三的时候这么和学后端的舍友说道，也曾在微信公众号里设为目标，可惜苦于当时技术能力有限，想法一直都是想法，没有落实到位。现在，博客的雏形终于实现了。
+H2~ ## 刀刀博客
+TXT 这里是记录着刀刀学习与工作成果的博客，立志于做到日后翻阅时，我能够感叹道，原来我学了这么多东西呀。到那时我将不需再埋怨自己虚度光阴。
+H2~ ## 未来规划
+TXT <ol>
+TXT <li>实现博客的标签功能 <a href="https://www.liyd.net/how-to-implement-tabs-in-vitepress" target="_blank">相关网址</a><i sty
+TXT <li style="text-decoration: line-through">实现博客的搜索功能 <a href="https://www.algolia.com/" target="_blank">相关网址</a
+TXT <li style="text-decoration: line-through">实现博客的评论功能 <a href="https://chunge16.github.io/vitepress-blogs/blog/p
+TXT <li>博客首页样式等优化 <a href="https://swkende.github.io/swkende-doc/01_VitePress/03_VitePress%E4%BC%98%E5%8C%96.html"
+TXT </ol>
+
+### about/furtrue
+H1: 关于技术提升
+H2~ ## 主要方向
+TXT 1. 功能实现
+TXT 2. 项目结构设计
+TXT 3. 性能优化
+TXT 4. 知识深广度
+TXT 5. 代码质量
+H2~ ## 以小见大
+TXT > **不是实现了功能，而是好好地实现了功能；不断地发掘业务开发中的麻烦，去沉淀开发一些基础设施。**
+H2~ ### 代码写的可读性、可维护性、执行性能
+TXT - 可读性——注释，命名，代码分区，不写过多的判断和表达式
+TXT - 可维护性——如果以后发生更改，是否能很好地修改
+TXT - 执行性能——执行频次尽量减少
+
+### about/index
+H1: 关于我
+H2~ ## Hello World
+TXT 这里是杜一刀，也可以称呼我为刀刀。男，22 届应届毕业，目前就职于广州，已积累三年的工作经验，努力朝着高级前端进军。
+TXT 目前每周周末会匀一半左右的时候看看代码，学习一些新技术，保持自己的技术栈不落后。
+H2~ ## 技能掌握
+TXT 现阶段掌握且熟练运用的技能有前端三件套<word text="HTML"/>、<word text="CSS"/>、<word text="JavaScript"/>；前后端交互<word text="Axios"/>；
+TXT <word text="TypeScript"/>目前已经自学完并且根据网上的<word text="Vue3"/> + <word text="TypeScript"/>项目敲了两遍，<word text="React
+H2~ ## 学习计划
+TXT |      | 整体方向                                                                                                 
+TXT | ---- | -----------------------------------------------------------------------------------------------------
+TXT | 前期 | 掌握全面知识基础；<br/>提升熟练度，基本独立完成复杂逻辑                                                                         
+TXT | 中期 | 从写代码到写好代码，提升功能的性能；<br/>不能只是用轮子，而是尝试造轮子；<br/>理解整体的前端开发，从整体工程角度看项目开发，理解工程化。 | 设计模式，代码性能的技巧；<br/>学习<word t
+TXT | 后期 | 从自己写好代码到能够让团队高质量产出；<br/>以自己的知识为团队提供一些基础库、工具库建设；<br/>常见的工具和框架做到理解原理。             | 思考项目开发流程中的问题，尝试用<word
+
+### about/pr
+H1: 如何提交 PR
+H2~ ## 我的 PR
+H2~ ### element-plus
+TXT - [style(theme-chalk): fix el-step padding-right in vertical layout](https://github.com/element-plus/element-p
+TXT - [style(theme-chalk): [form-item] reset top position label padding-right](https://github.com/element-plus/ele
+TXT - [style(theme-chalk): el-form-item set label-position=left has pb](https://github.com/element-plus/element-pl
+TXT 已通过 2 个 PR。
+H2~ ### ant-design-vue
+TXT [style(steps): reset top direction title padding-right](https://github.com/vueComponent/ant-design-vue/pull/84
+TXT 这个 PR 还在审核中。
+H2~ ### vitest-dev
+TXT - [docs(runner): translate /config/runner.md](https://github.com/vitest-dev/docs-cn/pull/853)
+TXT - [docs(execargy): translate /config/execargv.md](https://github.com/vitest-dev/docs-cn/pull/861)
+
+### about/prev
+H1: 关于前司
+H2~ ## 关于灵思
+TXT 在灵思我实习了一年，工作了一年，主要使用的技术栈是<word text="Vue2"/> + <word text="UniApp"/>开发小程序、<word text="App"/>、<word text="H5"/>
+TXT 任职期间，我主要开发了<word text="App"/> + <word text="H5"/>的「音果云音」、小程序「视频分销」以及其他项目，通过调用<word text="UniApp"/>官方文档提供的<word
+H2~ ## 关于百度
+TXT 2023/11/07，我入职的第一天。
+TXT 在这里的工作让我感受到大厂的流程规范，严谨，以及团队之间的协作。在这里，我学到了很多，也成长了很多。
+
+### about/project
+H1: 关于项目
+H2~ ## 前端面试项目亮点和难点
+H2~ ### 划分
+H2~ #### 按项目划分
+TXT - 移动端项目
+TXT - B 端项目——公司业务后台，数字化办公
+TXT - 可视化项目
+H2~ #### 按业务划分
+TXT 1. 具体的业务功能（如果能命中公司也做的业务，加分）
+TXT 2. 基础设施建设
+TXT 3. 项目的优化
+H2~ ### 难点
+H2~ #### 移动端项目
+
+### concept/chart/canvas/图片压缩
+H1: 图片压缩
+H2~ ## Canvas 图片压缩前置知识
+H2~ ### Canvas 第三方库
+TXT `file-saver` ，其 `saveAs` 方法用于获取并保存 `blob` 等格式的图片。
+H2~ ### Canvas drawImage
+TXT 使用 `drawImage` 绘制图片，语法如下：
+TXT 参数解释：
+TXT | 参数              | 含义                                                                |
+TXT | ----------------- | ------------------------------------------------------------------- |
+TXT | `image`           | 要绘制的图像，可以是 `<img>` 元素、`<canvas>` 元素或 `Image` 对象。 |
+TXT | `sx`（可选）      | 图像剪裁的起始点 `x` 坐标。                                         |
+TXT | `sy`（可选）      | 图像剪裁的起始点 `y` 坐标。                                         |
+TXT | `sWidth`（可选）  | 图像剪裁的宽度。                                                    |
+
+### concept/chart/canvas/图片裁剪
+H1: 图片裁剪
+H2~ ## Canvas 图片裁剪获取图片
+TXT 先获取用户选择上传的图片：
+H2~ ## Canvas 图片裁剪裁剪图片
+TXT 裁剪图片使用 `drawImage()` 方法，通过后几位的参数实现裁剪后替换。代码：
+H2~ ## Canvas 总体效果
+TXT <myIframe url="https://duyidao.github.io/blogweb/#/info/canvas/tailor" />
+
+### concept/chart/canvas/文件签名与画板功能
+H1: 文件签名与画板功能
+H2~ ## Canvas 文件签名代码模块和结构
+TXT 最终效果：
+TXT ![最终效果](https://pic1.imgdb.cn/item/67a5d57fd0e0a243d4fc8f7d.png)
+TXT 该功能主要分为三个模块：主画板、签名画板、签名绘制浮层画板。
+TXT - 签名画板：用于用户签名，用户可点击清除按钮一键清除之前的签名；点击保存按钮保存签名，保存的签名会显示在签名绘制浮层画板中。
+TXT - 签名绘制浮层画板：平时不显示，当用户点击签名画板中的保存按钮时，签名绘制浮层画板显示，并显示用户保存的签名。
+TXT - 主画板：包含单子和签名画板、浮层画板三个区域，可以点击导出按钮导出图片文件。
+TXT ![代码模块和结构](https://pic1.imgdb.cn/item/67a5d50dd0e0a243d4fc8f4e.png)
+H2~ ## Canvas 文件签名前置工作
+TXT 先搭建好这个项目的基本结构，即左侧的清单、右侧的画板、底部的按钮以及浮层画板。
+TXT ::: code-group
+TXT :::
+
+### concept/chart/canvas/根据背景图片改变主题色阴影
+H1: 根据背景图片改变主题色阴影
+H2~ ## Canvas 需求效果
+TXT 前端根据用户上传的背景图主色调，给图片加上不同颜色的内阴影边框。
+H2~ ## Canvas 基本原理
+TXT 1. 任何颜色都可以由 `r`、`g`、`b`、`a` 四个通道表示。`r` 为红色系最大值为 255；`g` 为绿色系最大值为 255；`b` 为蓝色系最大值为 255；`a` 为透明度，最大值也为 255
+TXT 2. 使用<word text="Canvas"/>读取图片节点
+TXT 3. 利用<word text="Canvas"/>的 `getImageData` 获取图片每一个像素点的 `rgba` 值，以一个大数组的格式返回
+TXT 4. 判断图片的主题色可以通过 `rgb` 值算出来平均色
+H2~ ## Canvas 代码实现
+TXT ::: code-group
+TXT :::
+
+### concept/chart/canvas/滤镜
+H1: 滤镜
+H2~ ## Canvas 滤镜前置知识
+H2~ ### Canvas getImageData
+TXT `getImageData` 是 `CanvasRenderingContext2D` 对象上的一个方法，用于获取指定矩形区域的像素数据。该方法返回一个 `ImageData` 对象，其中包含了矩形区域内每个像素的<wo
+TXT 以下是 `getImageData` 方法的基本语法：
+TXT 参数解释：
+TXT | 参数     | 含义                        |
+TXT | -------- | --------------------------- |
+TXT | `x`      | 矩形区域的起始点 `x` 坐标。 |
+TXT | `y`      | 矩形区域的起始点 `y` 坐标。 |
+TXT | `width`  | 矩形区域的宽度。            |
+TXT | `height` | 矩形区域的高度。            |
+TXT 以下为示例：
+
+### concept/chart/canvas/色彩提取
+H1: 色彩提取
+H2~ ## 色彩提取思路
+TXT 有一个功能点，用户鼠标悬浮在一个图片上，整个页面的背景颜色会变为该图片的背景色。
+TXT 实现该功能，需要使用<word text="Canvas"/>画布，将图片绘制到<word text="Canvas"/>上，然后获取<word text="Canvas"/>最多的像素值，这就是色彩提取。
+TXT 但有一个问题，有一些近似的颜色，比如白色和浅色，它们在<word text="Canvas"/>上显示的颜色是相近的，但是它们的像素值却不同。所以需要使用聚合算法，做色彩近似处理。有专门的第三方库负责实现这个功能 [co
+TXT <word text="ColorThief"/>是一个<word text="JavaScript"/>库，它允许开发者从图像中提取色彩调色板。这个工具可以在浏览器环境中运行，也可以在<word text="Node"
+TXT - 在<word text="JavaScript"/>中使用它来获取图像的颜色：
+TXT ::: code-group
+TXT :::
+TXT - 在<word text="Node"/>中使用<word text="ColorThief"/>
+TXT 1. 安装<word text="ColorThief"/>：
+TXT 2. 导入并使用<word text="ColorThief"/>：
+H2~ ### Canvas ColorThief 主要方法
+
+### concept/chart/canvas/视频提取画面帧
+H1: 视频提取画面帧
+H2~ ## Canvas 视频提取画面帧思路
+TXT 视频提取画面帧主要操作是拿到视频的画面后，把画面画到<word text="Canvas" />上，<word text="Canvas" />可以拿到文件对象<word text="Blob"/>和 `url` 。而<
+TXT 所以，整体思路如下：
+TXT 1. 根据选择的文件，放到 `video` 内
+TXT 2. 定格到某一帧
+TXT 3. 把 `video` 画到<word text="Canvas" />内
+TXT 4. 导出
+H2~ ## Canvas 视频提取画面帧工具函数
+TXT 此时写一个工具函数，获取视频文件和帧，返回一个包含 `blob` 和 `url` 的对象。
+TXT 该函数主要做以下操作：
+TXT 1. 创建一个 `video` 标签
+TXT 2. 通过<word text="URL.createObjectURL"/>获取 object url 。以 `blob:` 为前缀，复制粘贴到新的网页打开就能看到视频
+
+### concept/chart/canvas/页面截图
+H1: 页面截图
+H2~ ## Canvas 页面截图
+TXT 前端实现截图需要使用<word text="HTML5"/>的<word text="Canvas" />和相关 API，具体步骤如下：
+TXT 1. 首先在页面中创建一个<word text="Canvas" />元素，并设置其宽高和样式。
+TXT 2. 使用 CanvasAPI 在<word text="Canvas" />上绘制需要截图的内容，比如页面的某个区域、某个元素、图片等。
+TXT 3. 调用 CanvasAPI 中的
+TXT toDataURL()
+TXT 方法将<word text="Canvas" />转化为<word text="Base64" />编码的图片数据。
+TXT 4. 将<word text="Base64" />编码的图片数据传递给后端进行处理或者直接在前端进行显示
+TXT 通过 `ctx.drawImage(dom)` 绘制图片，再用 `ctx.toBlob()` 方法可以对以下 DOM 元素做截图处理：
+TXT - img
+TXT - canvas
+TXT - video
+
+### concept/chart/echart/图表菜单项自定义
+H1: 图表菜单项自定义
+H2~ ## Echart 图表菜单项自定义效果
+TXT 效果：
+TXT ![效果](https://pic.imgdb.cn/item/6563042ec458853aef795b41.jpg)
+TXT 1. 图例设置为圆圈形状
+TXT 2. 文字内容自定义
+H2~ ## Echart 图表菜单项自定义实现
+TXT 对于图表菜单的修改，需要在 `legend` 对象修改。
+TXT 实现图例圆圈效果，只需要在 `legend` 对象内设置 `icon` 属性为 `circle` 即可。
+TXT 实现文字内容自定义的效果，需要在 `legend` 对象内设置 `formatter` ，该属性有两种方式：可以直接返回一个携带变量的字符串；可以是一个返回内容的函数。
+TXT 代码：
+TXT 对内容自定义设置样式，也需要使用到 `rich` 富文本属性，在 `formatter` 函数的返回值中设置 `{变量名|变量}` 的格式，然后在 `legend` 对象内设置 `textStyle` 对象用于设置图例文
+TXT 代码：
+
+### concept/chart/echart/柱状图封装
+H1: 柱状图封装
+TXT UI 出了一个柱状图，效果：
+TXT ![柱状图效果](https://pic.imgdb.cn/item/664efb7bd9c307b7e92263a2.png)
+TXT 通过观察 UI 设计图可以看出他有很多地方有相似之处，也有几个不同点，因此可以封装为一个公共组件，多个组件引入使用。
+TXT 梳理一下有哪些地方是需要父子传参做自定义操作的：
+TXT 1. 柱状图数据
+TXT 2. 柱体颜色
+TXT 3. 柱状图图例数据
+TXT 4. 柱状图 Y 轴单位
+TXT 5. 鼠标悬停内容显示
+TXT 写一个公共组件，并针对上述几个模块设置不同的参数处理。
+H2~ ## Echart 基础子组件
+TXT 基础子组件不考虑差异，代码：
+
+### concept/chart/echart/柱状图悬停文本自定义
+H1: 柱状图悬停文本自定义
+H2~ ## Echart 柱状图悬停文本自定义效果
+TXT 在项目中产品对直接使用的柱状图提出了批评意见，要求如下：
+TXT - 即使没数据也要显示所有的结构，没数据的补0
+TXT - 纵坐标数值取整，不要出现小数
+TXT - 柱体宽度固定，颜色样式要与原型图统一
+TXT - 鼠标悬停后展示同一组的所有数据
+TXT 效果：
+TXT ![效果](https://pic.imgdb.cn/item/6563221ac458853aefcfa287.jpg)
+H2~ ## Echart 柱状图悬停文本自定义实现
+H2~ ### Echart 纵轴单位规定整数
+TXT 修改纵轴的参数，只需要修改 `yAxis` 对象的值即可生效。实现该效果，只需把 `minInterval` 属性设为1，最低单位为1，就不会出现小数的情况。
+H2~ ### Echart 纵轴线不显示，横轴线为虚线
+
+### concept/chart/echart/横向柱状图参数数量设置
+H1: 横向柱状图参数数量设置
+TXT UI 图需要实现一个横向柱状图，柱状图有两个数据，一个总数、一个超限数据，且在柱体右上方还要显示其数值。效果：
+TXT ![效果](https://pic.imgdb.cn/item/65a2b066871b83018aa86dbc.jpg)
+TXT 在 ECharts 官网中，是没有这些相关的案例参考的代码和图例，但是可以在民间第三方社区中寻找别人做好的效果来参考，地址为 [makeapie echarts社区图表可视化案例](https://www.makeapi
+TXT 实现该效果，可通过拆分来依次实现：
+TXT 1. 实现横向柱状图的渲染，柱状图为重叠的多柱体，且不需要渲染 y 轴的线
+TXT 2. 鼠标悬停显示文本自定义
+TXT 3. 在柱体右上方显示数据
+H2~ ## Echart 横向柱状图柱体基础渲染
+TXT 实现第一点，一个横向柱状图，样式都为圆角柱体，且背景柱体颜色为灰色，内容柱体为渐变颜色。
+TXT 圆角样式通过为 `series` 数组内对应对象的 `itemStyle` 属性中设置 `barBorderRadius` 即可，颜色在`itemStyle` 属性中设置 `color` 即可。实现渐变颜色，`color
+TXT y 轴不显示竖线，则需要在 `yAxis` 数组对象中设置 `axisLine` 、 `axisTick` 、 `splitLine` 三个对象即可，每个对象都是添加一个 `show` 属性为 `false` 。
+TXT 代码：
+
+### concept/chart/svg/图片故障动画
+H1: SVG 滤镜实现图片故障动画
+TXT <word text="SVG"/>有很多滤镜效果，可以前往 [SVG Filter](https://yoksel.github.io/svg-filters/#/) 网站自主搭配查看效果。实现滤镜效果，需要用到湍流滤
+TXT 湍流滤镜用到了柏林噪声算法，该算法用于生成随机且自然的纹理，如纸张的褶皱、物体粗糙表面等。
+TXT 置换滤镜可以让 `turbulence` 滤镜生成的纹理置换到其他图形或文字上，实现故障效果。
+H2~ ## SVG 搭配
+TXT 前往上方链接，找到 `feTurbulence` 湍流滤镜和 `feDisplacementMap` 置换滤镜搭配使用，注意放置的顺序，置换滤镜需要放在最后。配置好后右侧效果图会发生相应的样式变化：
+TXT ![初始效果](https://pic.imgdb.cn/item/67209d65d29ded1a8c121d68.png)
+TXT 图中左侧部分有很多配置的参数，重要参数说明：
+TXT - `feTurbulence`
+TXT 1. `type` 置换滤镜的置换类型，可选 `turbulence` 湍流和 `fractalNoise` ，二者会有噪声的区别。选择 `turbulence` 躁点更尖锐，选择 `fractalNoise` 躁点更柔
+TXT ![turbulence](https://pic.imgdb.cn/item/67209fcdd29ded1a8c143eb3.png)
+TXT ![fractalNoise](https://pic.imgdb.cn/item/67209fe9d29ded1a8c145400.png)
+TXT 2. `baseFrequency` 置换滤镜的频率，频率有两个方向，左侧代表横向，右侧代表纵向。数值越小噪声越小，数值越大噪声越大。噪声越小效果会呈一条直线，噪声越大会有很多躁点。两张效果图对比：
+
+### concept/chart/svg/文字适应纹理
+H1: svg 实现文字适应纹理
+H2~ ## SVG 需求背景
+TXT 目前有一个需求，需要文字适应背景图片的纹理，且能实现文字内容颜色自定义转换的功能。
+TXT 该功能乍一看不好实现，一般可以找设计师给 UI 图，但是无法适配纹理。因此还是需要回到前端自己实现，不过可以参考 UI 的实现思路——滤镜。
+TXT 前端滤镜首先考虑 `filter` ，但是找遍 `filter` 所有属性值都无法实现。因此继续往下，想到了<word text="SVG"/>的滤镜。
+TXT <word text="SVG"/>的滤镜效果更强大，可以说<word text="CSS"/>的 `filter` 滤镜是<word text="SVG"/>滤镜的子集，尝试。
+H2~ ## SVG 滤镜
+TXT 写一个 `svg` 标签，标签内放置一个图片 `image` 和一个文本 `text` ，代码：
+TXT 其中设置了图片标签的 x 轴和 y 轴位置、宽高缩放设置，设置了文本的 x 轴和 y 轴位置、字体大小和粗细、横轴纵轴对齐方式、字体颜色。
+TXT 现在需要添加纹理，由于是让文字适配背景，因此要给文字添加滤镜。滤镜添加在 `svg` 内，通过 `defs` 和 `filter` 标签实现，为 `filter` 设置唯一值 `id` ，然后为 `text` 绑定。代码
+TXT 现在刷新页面后文本内容不见了，这是必然的，因为 `filter` 内没设置任何东西，所以无效果，后续逐步实现。
+H2~ ## SVG 文字效果
+TXT 实现文字适配图片纹理，需要一个图片滤镜，设置图片的路径以及其 x 轴和 y 轴起始坐标。最后通过 `result` 导出一个名称 `ORIGIN_IMAGE` 给后续的滤镜使用。
+
+### concept/css/effect/clip-path实现裁剪
+H1: clip-path 实现裁剪
+H2~ ## CSS 前置知识
+TXT [clip-path](https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path) 属性使用裁剪方式创建元素的可显示区域。区域内的部分显示，区域外的隐藏。
+TXT 语法：
+TXT `clip-path` 属性指定为下面列出的值的一个或多个值的组合。
+TXT 取值：
+TXT - `<clip-source>`
+TXT 用 [url()](https://developer.mozilla.org/zh-CN/docs/Web/CSS/url) 引用 [SVG](https://developer.mozilla.org/zh-CN/d
+TXT - `<basic-shape>`
+TXT 一种形状，其大小和位置由 `<geometry-box>` 的值定义。如果没有指定 `<geometry-box>`，则将使用 `border-box` 用为参考框。取值可为以下值中的任意一个：
+TXT - `inset()` 定义一个 inset 矩形。
+TXT - `circle()` 定义一个圆形（使用一个半径和一个圆心位置）。
+TXT - `ellipse()` 定义一个椭圆（使用两个半径和一个圆心位置）。
+
+### concept/css/effect/filter实现滤镜
+H1: filter 实现滤镜
+H2~ ## CSS 前置知识
+TXT [filter](https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter) 属性将模糊或颜色偏移等图形效果应用于元素自身。滤镜通常用于调整图像、背景和边框的渲染。
+TXT 罗列它所有的属性语法：
+H2~ ## CSS 实现
+TXT 针对部分函数方法做详细说明。
+H2~ ### CSS drop-shadow
+TXT 使用 `<shadow>` 参数沿图像的轮廓生成阴影效果。阴影语法类似于 `<box-shadow>`（在 [CSS 背景和边框模块](https://developer.mozilla.org/zh-CN/docs/W
+TXT 使用场景：在 `box-shadow` 只能给整个盒子添加盒子阴影，但效果只是给盒子内的透明图片添加阴影时使用。效果如下：
+TXT 代码：
+TXT 其原理是把原来的像素点颜色通过算法来计算，计算完后返回新的像素点。
+H2~ ### CSS blur
+TXT 将高斯模糊应用于输入图像。括号内输入像素单位的值，该值表示需要做模糊处理时的参考半径范围，值越大处理的结果越模糊。
+
+### concept/css/effect/var实现样式变量
+H1: var 实现样式变量
+TXT 一个父盒子内有一个子盒子小圆，该小圆在父盒子内做动画左右来回平移。
+H2~ ## CSS 思路
+TXT 小圆从父盒子左侧移动到右侧，通过 CSS 的运算方法写为如下的方式：
+TXT 子元素宽度可以获取到，自身 `100%` 即可；父元素的宽度无法通过 CSS 获取到，需要依赖 JS，而 JS 做动画不够 CSS 方便。
+TXT 二者结合：JS 获取到父元素宽度后告诉 CSS 来使用。
+H2~ ## CSS 实现
+TXT JS 获取父盒子的宽度：
+TXT 通过 `container.style.setProperty()` 方法设置，代码：
+TXT 后续即使父元素宽度改变，也能通过该方法实时获取最新的数据。
+TXT 现在 CSS 可以通过 `var` 获取变量值，设置动画。代码：
+H2~ ## CSS 说在最后
+TXT 不一定在 `js` 获取父元素宽度，可以先设置一个变量，然后在 `template` 中使用动态样式设置，最后通过 `css` 的 `var()` 方法来获取。
+
+### concept/css/effect/vmin与vmax
+H1: vmin 与 vmax
+TXT 在做移动端项目时，经常有一个要求是某张图片必须是全屏展示，且不能出现滚动条。这就说明这张图片必须是占满视口最短边。
+TXT CSS 新单位可以很优雅解决这一点，其中：
+TXT - `vmin` 表示该元素取视口最短那条边
+TXT - `vmax` 表示该元素取视口最长那条边
+TXT 代码如下：
+TXT 此时图片取视口相对最短的边，移动端上横向比纵向短，因此取横向距离。
+TXT 这样就能够实现效果了。
+H2~ ## CSS 总体效果
+TXT <myIframe url="https://duyidao.github.io/blogweb/#/detail/css/vmin" />
+
+### concept/css/effect/主题过渡动画
+H1: 主题过渡动画
+TXT [Element UI](https://element.eleme.cn/#/zh-CN/component/theme) 切换主题时有一个很炫酷的过渡动画，这主要是通过 `view transition` 实现的。
+H2~ ## CSS view transition
+TXT [view transition](https://developer.mozilla.org/zh-CN/docs/Web/API/View_Transition_API) 是一个 CSS 规范，用于在页面切换时添加过
+TXT 1. `view transition` 规则：用于定义过渡动画的属性，如 `transition-property`、`transition-duration` 等。
+TXT 2. `view transition` 事件：用于监听过渡动画的开始和结束，从而执行相应的操作。
+TXT 它的工作原理如下：
+TXT 1. 调用 `document.startViewTransition()` 方法时，会截取当前页面的屏幕截图
+TXT 2. 接着调用回调函数，在回调函数中修改<word text="DOM" />结构
+TXT 3. API 捕获页面的新状态并实时展示
+TXT 4. API 构造一个具有以下结构的伪元素树
+H2~ ## CSS 代码实现
+H2~ ### CSS 基础实现
+
+### concept/css/effect/文字立起效果
+H1: mask 实现文字立起效果
+H2~ ## CSS 效果展示
+TXT ![效果图](https://pic.imgdb.cn/item/6731a416d29ded1a8c3b2e68.png)
+H2~ ## CSS 思路分析
+TXT 该效果无法用文字阴影和盒子阴影实现，只能通过元素实现。步骤如下：
+TXT 1. `::after` 伪元素设置绝对定位
+TXT 2. 偏移适量距离，旋转适当角度，Y 轴压缩，实现阴影效果
+TXT 3. 层级设置为 -1 避免压到文字
+TXT 4. 通过 `filter` 的 `blur` 属性实现模糊效果
+TXT 5. 使用 `mask` 属性实现渐变效果
+H2~ ## CSS 代码实现
+H2~ ## CSS 总体效果
+TXT <myIframe url="https://duyidao.github.io/blogweb/#/info/css/shadow" />
+
+### concept/css/effect/渐变
+H1: CSS 渐变
+TXT 渐变，通过 `background-image` 设置渐变效果，可以在任何使用 `background-image` 的容器盒子内使用。
+TXT 渐变包含以下几种类型：
+TXT - 线性渐变 `linear-gradient()`
+TXT - 径向渐变 `radial-gradient()`
+TXT - 锥形渐变 `conic-gradient()`
+TXT - 重复渐变 `repeating-linear-gradient()` 和 `repeating-conic-gradient()`
+TXT 依次详谈这些渐变。
+H2~ ## CSS 线性渐变
+H2~ ### CSS 线性渐变的语法
+H2~ ### CSS 线性渐变的效果
+H2~ ### CSS 线性渐变的基础效果
+TXT `linear-gradient` 线性渐变是一种两个以上颜色之间的平滑过渡效果。线性渐变为某一方向指向的渐变效果，如由左到右，上到下，左上到右下等。和径向渐变不同的是，径向渐变是一中心点向周围扩散的渐变，径向渐变为某一
+
+### concept/css/effect/瀑布流
+H1: 瀑布流
+H2~ ## CSS 方法实现
+H2~ ### CSS grid 布局
+TXT 第一种方法是通过 `grid` 布局实现纯<word text="CSS" />瀑布流效果。
+TXT 核心步骤：
+TXT 1. 父容器设置为 `grid` 布局
+TXT 2. 设置网格布局的分布情况为 4 列，每列占一份
+TXT 3. 控制行高不保持一样，使用 `masonry` 变为砖石结构
+TXT 4. 添加缝隙
+H2~ ### CSS 分列调整布局
+TXT 第二种方法是通过分列布局，然后调整图片盒子之间的间距实现纯<word text="CSS" />瀑布流效果。
+TXT 核心步骤：
+TXT 1. 父盒子分为 4 列 `column-count: 4`，此时分为 4 列，盒子之间没有高度间隙
+
+### concept/css/expand/BEM
+H1: BEM
+TXT 官网：[BEM](https://getbem.com/introduction/) 。
+TXT <word text="CSS" />命名十分重要，如有重名，就会发生样式覆盖，导致最终效果显示错乱。
+TXT 对于命名，市面上有一些民间组织指定的命名规则，例如 BEM，SMACSS 和 OOCSS。
+H2~ ## CSS BEM 介绍
+TXT BEM 命名规则比较常见，其中：
+TXT - B 代表 `Block` 块，如 `header`, `container`, `menu`, `checkbox`, `input`, `nav` 等 。
+TXT - E 代表 `Element` 元素，是块的一部分，它没有独立的意义，在语义上与其块绑定在一起。如 `header title` , `menu content` , `nav item` 等。
+TXT - M 代表 `Modifier` 限定，是块或元素上的标志。用它们来改变外表或行为。如 `nav item active` , `input focus` 等。
+TXT 举例，可以在通常情况下有一个正常的按钮，在不同的情况下有两个状态。使用 `BEM` 通过类选择器对块进行样式化，所以可以使用任何我们想要的标签( `button` 、`a` 甚至 `div` )来实现它们。命名规则使用 
+H2~ ## CSS BEM 总结
+TXT 样式设置方面可以使用 `BEM` 方法，其中，E 和 M 可以省略。通过该方法可以高效设置类名与方便后续的维护。
+
+### concept/css/expand/空白节点
+H1: 空白节点
+H2~ ## CSS 空白节点场景重现
+TXT 先看一个案例，代码：
+TXT 此时打开页面是没有背景色的，因为没有内容把他撑开。如果给 `span` 添加内容，则会因为有内容高度把它撑开，显示红色的背景色。
+TXT 现在给 `span` 修改为行内块元素，代码如下：
+TXT 此时页面显示了红色空白，效果如下：
+TXT ![pP58f5d.png](https://z1.ax1x.com/2023/09/19/pP58f5d.png)
+TXT 就像一个空白的幽灵节点一样，把父盒子撑开。
+H2~ ## CSS 空白节点前置知识
+TXT 先了解一个概念，叫做基线，在所有内联相关模型中，凡是涉及到垂直方向的排版或者对齐的，都离不开最最基本的基线（base-line），那么基线是怎么定义的呢？在维基百科中有这么一个示意图：
+TXT ![tupian](https://pic4.zhimg.com/v2-18b575f052c9b170e9ff0acbac55913b_r.jpg)
+TXT 根据图片中标示，字母 x 的下边缘（线）就是基线。
+TXT 在 CSS 中有两个重要属性，`line-height` 和 `vertical-align` 都与基线有关，`line-height` 行高的定义就是两个基线之间的距离，`vertical-align` 的默认值就是 
+
+### concept/css/expand/粘性定位
+H1: 粘性定位
+H2~ ## CSS 粘性定位概念
+TXT 粘性定位是<word text="CSS" />一个好用的属性方法，当为元素设置粘性定位后，该元素即将被滑动出屏幕外时会固定在边缘，使用方法如下：
+TXT 粘性定位的深层次逻辑，`top: 0` 可以不设置么？为什么设置之后就能固定到屏幕顶部了呢？
+TXT 了解粘性定位的底层概念，需先了解两个概念：
+TXT - 包含块
+TXT - 最近可滚动元素
+TXT 包含块是<word text="CSS" />最重要的知识之一，它的概念很大，不做赘述，后续开新坑。最近可滚动元素是以自身为起点，一直查找可滚动的父元素。
+TXT 可滚动元素，设置了 `overflow: scroll` 等方法都是可滚动元素。一直查看父标签是否是可滚动元素，如果都不是，那么最后会找到整个视口。
+TXT 设置了粘性定位 `top: 0` 的元素在没接触到最近可滚动的元素（也就是视口）时是正常滚动的；但是当它接触到视口的顶部时，就会吸附到视口的顶部。
+TXT 即使吸附了，其他元素当它还在原来的位置，因此不会影响其他元素的正常排列。
+TXT 最后如果该元素触碰到父元素（即包含块）的边缘，继续滚动就不会再吸附，而是被带离视口区域。
+TXT 往回滑动则会重新保持吸附的状态。
+
+### concept/javascript/knowledge/Map
+H1: Map
+TXT Map 是一组键值对的结构，用于解决不能用对象作为键的问题
+TXT - 具有极快的查找速度
+TXT - 函数、对象、基本类型都可以作为键或值
+H2~ ## Map 基本使用
+H2~ ### Map 声明定义
+TXT 可以接受一个数组作为参数，该数组的成员是一个表示键值对的数组。
+TXT 使用 `set` 方法添加元素，支持链式操作
+TXT 构造函数 `new Map` 创建原理
+TXT 对于键是对象的 `Map`， 键保存的是内存地址，值相同但内存地址不同的视为两个键。
+H2~ ### Map 获取数量
+TXT 获取数据数量
+H2~ ### Map 元素检测
+
+### concept/javascript/knowledge/Promise
+H1: Promise
+TXT JavaScript 存在很多异步操作, `Promise` 将异步操作队列化，按照期望的顺序执行，返回符合预期的结果。可以通过链式调用多个 `Promise` 达到目的。
+TXT `Promise` 在各种开源库中已经实现，现在标准化后被浏览器默认支持。
+TXT > promise 是一个拥有 `then` 方法的对象或函数
+H2~ ## Promise 问题探讨
+TXT 下面通过多个示例感受不使用 `promise` 时，处理相应问题的不易，及生成了不便阅读的代码。
+H2~ ### Promise 定时嵌套
+TXT 定时器执行结束后，执行另一个定时器，这种嵌套造成代码不易阅读
+H2~ ### Promise 图片加载
+TXT 图片加载后设置图片边框，也需要使用回调函数处理，代码嵌套较复杂
+H2~ ### Promise 加载文件
+TXT 异步加载外部 `JS` 文件，需要使用回调函数执行，并设置错误处理的回调函数
+TXT 实例中用到的 `fn.js` 与 `daodao.js` 内容
+
+### concept/javascript/knowledge/Set
+H1: Set
+TXT 用于存储任何类型的唯一值，无论是基本类型还是对象引用。
+TXT - 只能保存值没有键名
+TXT - 严格类型检测如字符串数字不等于数值型数字
+TXT - 值是唯一的
+TXT - 遍历顺序是添加的顺序，方便保存回调函数
+H2~ ## Set 基本使用
+H2~ ### Set 基本使用
+TXT 对象属性最终都会转为字符串。使用对象做为键名时，会将对象转为字符串后使用。可以使用数组做初始数据。Set 中是严格类型约束的，下面的数值`1`与字符串`1`属于两个不同的值。使用 `add` 添加元素，不允许重复添加 `
+TXT ::: code-group
+TXT :::
+H2~ ### Set 获取数量
+TXT 获取元素数量
+
+### concept/javascript/knowledge/Symbol
+H1: Symbol
+TXT `Symbol` 用于防止属性名冲突，比如向第三方对象中添加属性时。
+TXT `Symbol` 的值是唯一的，独一无二、不会重复
+H2~ ## Symbol 基础知识
+H2~ ### Symbol 基础使用
+TXT `Symbol` 不可以添加属性
+H2~ ### Symbol 描述参数
+TXT 可传入字符串用于描述 `Symbol` ，方便在控制台分辨 `Symbol`
+TXT 传入相同参数 `Symbol` 也是独立唯一的，因为参数只是描述而已，但使用 `Symbol.for` 则不会
+TXT 使用 `description` 可以获取传入的描述参数
+H2~ ### Symbol.for
+TXT 根据描述获取 `Symbol` ，如果不存在则新建一个 `Symbol`
+TXT - 使用 `Symbol.for` 会在系统中将 `Symbol` 登记
+
+### concept/javascript/knowledge/事件循环
+H1: 事件循环
+TXT 讲<word text="事件循环" />，先要了解前因后果：浏览器的<word text="进程" />模型。事件循环跟浏览器密切相关，浏览器要执行 JS，与浏览器密切相关。了解浏览器，先讲浏览器进程模型。
+H2~ ## 浏览器进程模型
+H2~ ### 浏览器进程的概念
+TXT 一个程序，像QQ，微信，王者荣耀，他们都属于程序，程序运行需要内存空间。程序的变量、对象、函数等，这些东西都是放到内存里边的，所以它需要有一块自己专属的内存空间，不够了，再扩容。
+TXT 于是程序运行需要一块专属内存空间，可以把进程简单理解为就是这块内存空间，有这块内存空间就是进程，每个程序启动时至少有一个进程，即至少一块空间，而且进程与进程之间相互独立，内存空间之间隔离。
+TXT 隔离的好处在于，如果QQ自己出了问题，内存空间乱了套，自己崩溃了，不会影响微信。因此进程之间相互隔离，每个应用至少有一个进程，进程之间相互独立，即使要通信，也需要双方同意。
+H2~ ### 浏览器线程的概念
+TXT 进程搞清楚后，接着看线程，两者密不可分。
+TXT 运行代码的「人」，可简单称为<word text="线程" />，一个进程至少有一个线程，否则分配内存空间，不干活就没用，就会杀死进程，进程退出叫杀死进程。所以，一个进程至少有一个线程去干活，去运行代码，因此在进程启动时
+TXT 很多程序比较复杂，可能需要同时执行多块代码，比如王者荣耀，要监听各种操作，让人物跟随操作移动，还要网络通信，都需要网络，这么多事情，一个人忙不过来，于是主线程忙不过来时，会想办法多招人，启动更多线程执行代码。一个进程可以
+H2~ ### 浏览器的进程和线程
+TXT 浏览器是一个多进程多线程的应用程序，内部工作极其复杂，为了避免相互影响，减少连环崩溃几率，当启动浏览器后，它会自动启动多个进程。其中一个进程崩溃了，也不会影响到另外的进程。
+
+### concept/javascript/knowledge/作用域与闭包
+H1: 作用域与闭包
+H2~ ## 作用域
+H2~ ### 作用域的含义
+TXT 就是代码名字（变量）在某个范围内起作用和效果，目的是为了提高程序的可靠性，减少命名冲突。
+H2~ ### 作用域分类
+TXT | 作用域分类 | 特点                                                                               |
+TXT | ---------- | ---------------------------------------------------------------------------------- |
+TXT | 全局作用域 | 整个 `script` 标签，或者是一个单独的 `js` 文件                                     |
+TXT | 局部作用域 | 在函数内部的作用域，这个代码的名字只能在函数内部起效果或作用（又被称为函数作用域） |
+TXT | 块级作用域 | 块作用域由 `{}` 包括， `if` 语句和 `for` 语句里面等                                |
+TXT 全局<word text="作用域" />只有一个，每个函数又都有作用域（环境）。
+TXT - 编译器运行时会将变量定义在所在作用域
+TXT - 使用变量时会从当前作用域开始向上查找变量
+
+### concept/javascript/knowledge/函数
+H1: 函数
+H2~ ## 函数基础知识
+TXT 函数是将复用的代码块封装起来的模块，在 JS 中函数还有其他语言所不具有的特性。
+H2~ ### 函数的声明定义
+TXT 在 JS 中函数也是对象函数是 `Function` 类的创建的实例，下面的例子可以方便理解函数是对象。
+TXT 标准语法是使用函数声明来定义函数
+TXT 对象字面量属性函数简写
+TXT 全局函数会声明在 `window` 对象中，这不正确建议使用后面章节的模块处理
+TXT 当我们定义了 `screenX` 函数后就覆盖了 `window.screenX` 方法
+TXT 使用 `let/const` 时不会压入 `window`
+H2~ ### 函数的匿名函数
+TXT 函数是对象所以可以通过赋值来指向到函数对象的指针，当然指针也可以传递给其他变量，注意后面要以`;`结束。下面使用函数表达式将 `匿名函数` 赋值给变量
+TXT 标准声明的函数优先级更高，解析器会优先提取函数并放在代码树顶端，所以标准声明函数位置不限制，所以下面的代码可以正常执行。
+
+### concept/javascript/knowledge/原型与原型链
+H1: 原型与原型链
+H2~ ## 原型基础
+H2~ ### 原型对象基础
+TXT 每个对象都有一个<word text="原型" /> `prototype` 对象，通过函数创建的对象也将拥有这个原型对象。原型是一个指向对象的指针。
+TXT - 可以将原型理解为对象的父亲，对象从原型对象继承属性
+TXT - 原型就是对象除了是某个对象的父母外没有什么特别之处
+TXT - 所有函数的原型默认是 `Object` 的实例，所以可以使用 `toString/valueOf/isPrototypeOf` 等方法的原因
+TXT - 使用原型对象为多个对象共享属性或方法
+TXT - 如果对象本身不存在属性或方法将到原型上查找
+TXT - 使用原型可以解决，通过构造函数创建对象时复制多个函数造成的内存占用问题
+TXT - 原型包含 `constructor` 属性，指向构造函数
+TXT - 对象包含 `__proto__` 指向他的原型对象
+TXT 下例使用的就是数组原型对象的 `concat` 方法完成的连接操作
+
+### concept/javascript/knowledge/变量与严格模式
+H1: 变量
+H2~ ## 变量声明
+TXT 声明：开辟空间
+TXT 赋值：填充内容
+TXT 多变量声明赋值
+H2~ ## 变量弱类型
+TXT 在 JS 中变量类型由所引用的值决定
+TXT JavaScript 是弱类型语言，当变量修改时变量类型也会发生相应变化。
+H2~ ## 变量提升
+TXT 解析器会先解析代码，然后把声明的变量的声明提升到最前，这就叫做变量提升。
+TXT 使用 `var` 声明会被提升到前面，赋值还在原位置
+TXT 使用 `let` 解决变量提升的问题。
+H2~ ## 变量临时性死区
+
+### concept/javascript/knowledge/对象
+H1: 对象
+H2~ ## 对象基础知识
+TXT 对象是包括属性与方法的数据类型，JS 中大部分类型都是对象如 `String` / `Number` / `Math` / `RegExp` / `Date` 等等。
+TXT 传统的函数编程会有错综复杂的依赖很容易创造意大利式面条代码，使用对象编程的代码结构清晰，也减少了函数的参数传递，也不用担心函数名的覆盖。
+TXT ::: code-group
+TXT :::
+H2~ ### OOP
+TXT - 对象是属性和方法的集合即封装
+TXT - 将复杂功能隐藏在内部，只开放给外部少量方法，更改对象内部的复杂逻辑不会对外部调用造成影响即抽象
+TXT - 继承是通过代码复用减少冗余代码
+TXT - 根据不同形态的对象产生不同结果即多态
+H2~ ### 对象基本声明
+TXT 使用字面量形式声明对象是最简单的方式，属性与方法可以简写。字面量形式实质上在系统内部也是使用构造函数 `new Object` 创建的，后面会详细介绍构造函数。
+
+### concept/javascript/knowledge/数据类型
+H1: 数据类型
+H2~ ## 数据类型判断
+H2~ ### typeof
+TXT `typeof` 用于返回以下原始类型
+TXT - 基本类型：`number` / `string` / `boolean`
+TXT - `function`
+TXT - `object`
+TXT - `undefined`
+TXT 可以使用 `typeof` 用于判断数据的类型
+H2~ ### instanceof
+TXT **`instanceof`** 运算符用于检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上。
+TXT 也可以理解为是否为某个对象的实例，`typeof` 不能区分数组，但 `instanceof` 则可以。
+H2~ ### 值类型与对象
+
+### concept/javascript/knowledge/数组
+H1: 数组
+TXT 数组是多个变量值的集合，数组是 `Array` 对象的实例，所以可以像对象一样调用方法。
+H2~ ## 数组基本使用
+H2~ ### 创建数组
+TXT 使用对象方式创建数组
+TXT 使用字面量创建是推荐的简单作法
+TXT 多维数组定义
+TXT 数组是引用类型可以使用`const`声明并修改它的值
+TXT 使用原型的 `length`属性可以获取数组元素数量
+TXT 数组可以设置任何值，下面是使用索引添加数组
+TXT 下面直接设置 3 号数组，会将 1/2 索引的数组定义为空值
+TXT 声明多个空元素的数组
+H2~ ### Array.of
+
+### concept/javascript/knowledge/模块化
+H1: 模块化
+H2~ ## JS 模块设计
+H2~ ### JS 模块化使用分析
+TXT 项目变大时需要把不同的业务分割成多个文件，这就是<word text="模块化" />的思想。模块是比对象与函数更大的单元，使用模块组织程序便于维护与扩展。
+TXT 生产环境中一般使用打包工具如 `webpack` 构建，他提供更多的功能。但学习完本章节后学习打包工具会变得简单。
+TXT - 模块就是一个独立的文件，里面是函数或者类库
+TXT - 虽然 JS 没有命名空间的概念，使用模块可以解决全局变量冲突
+TXT - 模块需要隐藏内部实现，只对外公开接口
+TXT - 模块可以避免滥用全局变量，造成代码不可控
+TXT - 模块可以被不同的应用使用，提高编码效率
+H2~ ### JS 模块化实现原理
+TXT 在过去 JS 不支持模块时我们使用`AMD/CMD（浏览器端使用）`、`CommonJS（Node.js使用）`、`UMD(两者都支持)`等形式定义模块。
+TXT AMD 代表性的是 `require.js`，CMD 代表是淘宝的 `seaJS` 框架。
+
+### concept/javascript/knowledge/类
+H1: 类
+H2~ ## 类的基本含义
+H2~ ### 类的声明定义
+TXT 可以使用类声明和赋值表达式定义类，推荐使用类声明来定义类
+TXT 类方法间不需要逗号
+H2~ ### 类的构造函数
+TXT 使用 `constructor` 构造函数传递参数，下例中 `show` 为构造函数方法，`getName` 为原型方法
+TXT - `constructor` 会在 `new` 时自动执行
+TXT 构造函数用于传递对象的初始参数，但不是必须定义的，如果不设置系统会设置如下类型
+TXT - 子构造器中调用完 `super` 后才可以使用 `this`
+H2~ ### 类的原理分析
+TXT 类其实是函数
+TXT `constructor` 用于定义函数代码，下面是与普通函数的对比，结构是一致的
+
+### concept/javascript/knowledge/运算符与流程控制
+H1: 运算符与流程控制
+TXT 使用 `=` 进行变量赋值
+H2~ ## JS 算术运算符
+TXT 包括以下几种算术运算符。
+TXT | 运算符 | 说明   |
+TXT | ------ | ------ |
+TXT | \*     | 乘法   |
+TXT | /      | 除法   |
+TXT | +      | 加法   |
+TXT | -      | 减法   |
+TXT | %      | 取余数 |
+H2~ ## JS 复合运算符
+TXT 可以使用 `*=、/=、+=、-=、%=` 简写算术运算。即 `n*=2` 等同于 `n=n*2`。
+
+### concept/javascript/webapi/resize函数封装
+H1: resize 函数封装
+H2~ ## JS 前置知识：ResizeObserver
+TXT ResizeObserverr 的作用是监测元素的尺寸变化。这是一种强大的 WebAPI，允许开发者在元素的尺寸发生改变时 (无论是因为元素内容的变化、窗口大小的调整还是其他原因导致的尺寸改变)，执行一些操作或布局更新。
+TXT 在过去，开发者通常需要依赖定时器或者传统的 `resize` 事件来间接监测元素尺寸的变化，这种方法不仅不够精确，而且效率低下。ResizeObserverr 提供了一种更为直接和高效的方式来响应尺寸变化。
+TXT 使用 ResizeObserverr 很简单，只需要创建一个 ResizeObserverr 实例，并为它提供一个回调函数。在回调函数中，你可以基于元素尺寸的变化来执行相应的操作。然后，使用 observer 方法来指定
+H2~ ## JS resize 函数封装思路
+TXT 前端有一个交互是用户拖拽父级盒子，其内容会根据盒子宽度的变化而显示不同数量的内容。如下图所示：
+TXT ![resize](https://pic.imgdb.cn/item/6529402ac458853aef02bd86.gif)
+TXT 想要实现该功能，可以通过自定义函数搭配容器尺寸变化方法 `ResizeObserver()` 实现。初步代码如下：
+TXT 接下来配置自定义函数，主要需要做的事情只有两个：
+TXT - 在真实 DOM 元素渲染完毕后监听其尺寸的变化
+TXT - 在真实 DOM 元素卸载后取消监听减少性能浪费
+H2~ ## JS resize DOM 元素监听
+
+### concept/javascript/webapi/取色器封装
+H1: 取色器封装
+TXT 原生<word text="HTML" />中，`input` 设置 `type` 为 `color` 时可以变为颜色筛选器，用于选取颜色。缺点是只能选取组件提供的颜色，不可吸取组件外的颜色，甚至浏览器外的颜色。
+H2~ ## JS EyeDropper
+TXT 在浏览 MDN 文档时，有一个 API 吸引了我的注意，`EyeDropper` 。MDN 描述它为是一个接口，表示一个拾色器工具的实例，用户可以打开并使用它从屏幕上选择颜色。
+TXT 使用方式如下：
+TXT 1. 通过关键字 `new` 创建一个构造函数
+TXT 2. 调用其 `open()` 方法，该方法是一个异步任务
+TXT 3. 回调函数中接收参数，参数的 `sRGBHex` 属性就是颜色的值
+TXT 他也提供了用户取消拾色器模式的方法：`signal` ：终止取色的标识，类似于 `fetch` 的 `signal`
+TXT 基础使用代码如下：
+TXT ::: details 查看代码
+TXT :::
+H2~ ## JS 取色器封装函数
+
+### concept/javascript/webapi/地图数据展示
+H1: 地图数据展示
+H2~ ## JS 地图数据准备
+TXT 想要实现地图数据效果，需要准备以下两个数据：
+TXT 1. 地图边界数据
+TXT 这个数据不需要自己手写，手写也不现实，可以去往中国地图数据官网下载相关 JSON 文件。官网指路：[中国地图数据](http://www.geojson.cn/) 。
+TXT 2. 关联交互数据
+TXT 根据项目需求，如疫情地图，每个省份的疫情人数等。
+H2~ ## JS 地图展示
+TXT 首先准备好一个容器放地图：
+TXT 然后引入 `echart.js` 做地图处理，也可以选择其他数据可视化的第三方库：
+TXT 接着就要手写逻辑了，具体可以查看官方文档：
+TXT 1. 初始化获得 `echarts` 的实例，该实例有很多方法可以使用
+TXT 2. 在图片加载期间使用 `showLoading()` 方法加载 `loading` 效果
+
+### concept/javascript/webapi/复制粘贴与内容设置
+H1: 复制粘贴与内容设置
+TXT 在平时开发或日常使用电脑时，经常都会需要复制一些内容。下面有三个场景：
+TXT 1. 复制一个图片，粘贴该图片。常见于富文本框
+TXT 2. 复制一段话，粘贴后失败或者被修改为版本信息。常见于一些付费文档网站
+TXT 3. 复制一段话，末尾跟随作者信息和网站信息。常见于掘金、知乎这类网站
+TXT 这些功能都是使用同一套 API 来完成的，这个 API 就是 Clipboard API。该 API 包含两点：
+TXT - 对象，指 `navigator.clipboard` ，可用于写入和读取剪贴板
+TXT - 事件，有两个事件：
+TXT - `navigator.clipboard.oncopy`：可以监听视窗以内的复制，如 ctrl + c 和 鼠标右键复制
+TXT - `navigator.clipboard.oncut`：可以监听视窗以内的剪切，如 ctrl + x 和 鼠标右键剪切
+TXT - `navigator.clipboard.onpaste`：可以监听视窗以内的粘贴，如 ctrl + v 和 鼠标右键粘贴
+TXT 下面来依次实现上述的操作。
+H2~ ## JS 复制粘贴不允许复制并写入自定义内容
+
+### concept/javascript/webapi/数字转中文
+H1: 数字转中文
+H2~ ## JS 数字转中文思路
+TXT 通过一个函数实现数字转中文，通过以下的思路实现：
+TXT 1. 把数字转为字符串，从后面开始 4 位的分割成数组，再过滤空项
+TXT 2. 循环数组，得到每项最多 4 个数字的数据
+TXT 3. 循环该数据得到每一个数字，设置一个映射表数组，把得到的数字转换数字类型作为索引获取相应的映射对象
+TXT 4. 设置一个单位数组映射表，通过计算索引获取对应的单位
+H2~ ## JS 数字转中文初步实现
+H2~ ### JS 数字转中文千位数以内
+TXT ::: details 查看代码
+TXT :::
+H2~ ### JS 数字转中文优化
+TXT 咋一看已经实现了，但是经过测试后还是有一定的小问题，比如：
+
+### concept/javascript/webapi/网站访问用户文件夹
+H1: 网站访问用户文件夹
+TXT 网页端可通过<word text="File System Access API" />访问用户本地文件夹。
+H2~ ## JS 读取文件夹内全部文件
+H2~ ### JS 读取文件夹选择文件夹 API
+TXT 通过 `showDirectoryPicker API` 打开选择文件夹对话框，选择后需用户确认权限方可生效。代码如下：
+H2~ ### JS 读取文件夹得到文件与子文件夹
+TXT `showDirectoryPicker API` 的返回值就是得到的文件或文件夹的句柄，返回如下：
+TXT 其中，`kind` 表示得到的类型，`directory` 表示文件夹，`file` 表示文件。`name` 为该文件夹或文件的名称。
+TXT 获取可能失败，用户可能拒绝访问，用 `try...catch` 捕获错误。
+TXT 拿到了文件夹时，可通过 `.entries()` 方法获取文件夹内所有内容，返回值是异步迭代器，通过 `for await of` 循环拿到子文件句柄。句柄返回内容如下：
+TXT 由此可拿到文件夹或文件，通过递归遍历获取句柄，直到全部为文件。代码如下：
+TXT ::: details 查看代码
+TXT :::
+
+### concept/javascript/webapi/网络状态监控
+H1: 网络状态监控
+TXT 前端 `window` 内置 API 可监控用户网络状态、延迟和带宽。以下是该属性的介绍。
+H2~ ## JS 前置知识：Navigator.connection
+TXT - <word text="Navigator" />：`connection` 属性
+TXT > **实验性:** **这是一项[实验性技术](https://developer.mozilla.org/zh-CN/docs/MDN/Writing_guidelines/Experimental_deprecat
+TXT > 在将其用于生产之前，请仔细检查[浏览器兼容性表格](https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/connection#浏览器兼容性)。
+TXT **`Navigator.connection`** 只读属性返回一个包含有关系统网络连接信息的 [NetworkInformation](https://developer.mozilla.org/zh-CN/docs
+TXT 这可以用于基于用户的连接状态来选择高清晰度内容或低清晰度内容。
+TXT 值：一个 [NetworkInformation](https://developer.mozilla.org/zh-CN/docs/Web/API/NetworkInformation) 对象。包含的属性如下：
+TXT - `effectiveType` ：网络类型
+TXT - `rtt` ：延迟，单位是毫秒
+TXT - `downlink` ：带宽速度
+TXT 具体效果如下图所示：
+
+### concept/javascript/webapi/页面可见度
+H1: 页面可见度
+H2~ ## JS 页面可见度基础概念
+TXT 新建一个 HTML，初始化一个变量 n 为 0，设置一个定时器，每隔 10ms 打印一次变量 n，然后 n 自加 1。代码如下所示：
+TXT 运行后打开控制台，每隔 10ms 打印一次，直到 300 停止。但刷新后切换到其他页面，控制台打印速度变慢为 1s 一次。
+TXT 这是因为浏览器有相应优化策略：用户切换到新页面后，浏览器认为旧页面暂不需要频繁执行定时器，避免资源浪费。
+TXT 因此页面中的定时器需针对性优化。
+H2~ ## JS Page Visibility API
+TXT 页面可见度 API（<word text="Page Visibility API" />）提供了一个属性和一个事件。
+H2~ ### JS visibilitychange 事件
+TXT 可以为 `document` 绑定 `visibilitychange` 事件方法，在浏览器切换新页面或者页面切换回来（即页面可见度变化后）触发。
+H2~ ### JS visibilityState 属性
+TXT `document` 有一个 `visibilityState` 属性，用于获取当前页面的可见度，为 `visible` 表示可见，为 `hidden` 表示不可见。
+H2~ ### JS 页面可见度的整体逻辑
+
+### concept/javascript/webapi/页面自动检测更新
+H1: 页面自动检测更新
+TXT 每隔一段时间去监测是否是最新的版本。实现步骤为：
+TXT 1. 使用 `fetch` 请求首页为纯文本，获取 `html` 中的 `js` 文件
+TXT 2. 前端工程化下，对应的 `js` 文件会绑定文件指纹，只要有变动，文件指纹（也就是 `hash` 值）也会发生变动，表示当前有新版本
+TXT 文件指纹代码如下所示：
+TXT 具体效果以 B 站 为例，效果如下：
+TXT ![xiaoguo](https://pic.imgdb.cn/item/6533c458c458853aef6e35ff.jpg)
+TXT 封装对应方法函数，先获取最新页面中的 `script` 链接：
+TXT 然后调用上方函数，拿到所有 JS 访问地址，并且保存到全局变量内。然后比较旧的地址与新的地址是否一致，不一致则返回 `true` 表示需要更新。代码如下：
+TXT 调用上方的方法查看是否需要更新，如果需要则显示对应的提示。每隔一段时间调用一次，代码如下：
+
+### concept/module/browser/浏览器渲染原理
+H1: 浏览器渲染原理
+H2~ ## 浏览器如何渲染页面
+TXT 浏览器把<word text="HTML" />字符串解析成页面信息，比如像素点颜色等，这个过程就叫渲染。
+TXT 当浏览器的网络线程收到<word text="HTML" />文档后，会产生一个渲染任务，并将其传递给渲染主线程的消息队列。在事件循环机制的作用下，渲染主线程取出消息队列中的渲染任务，开启渲染流程。
+TXT ![渲染流程一图流](https://pic1.imgdb.cn/item/67ecf4570ba3d5a1d7ea154c.png)
+TXT 整个渲染流程分为多个阶段，分别是：<word text="HTML" />解析、样式计算、布局、分层、绘制、分块、光栅化、画。每个阶段都有明确的输入输出，上一个阶段的输出会成为下一个阶段的输入。这样，整个渲染流程就形成了
+TXT ![整体流程](https://pic1.imgdb.cn/item/67ecf69e0ba3d5a1d7ea67e3.png)
+H2~ ### 浏览器渲染解析HTML
+TXT 渲染的第一步是 **解析 HTML**。
+TXT <word text="HTML" />解析的时候里面有的<word text="DOM" />都会解析为一个<word text="DOM" />树（这个<word text="DOM" />生成的时候是用 C++ 生
+TXT 解析过程中遇到<word text="CSS" />解析<word text="CSS" />，遇到<word text="JavaScript" />执行<word text="JavaScript" />。为了提高解
+TXT - 如果主线程解析到 `link` 位置，此时外部的<word text="CSS" />文件还没有下载解析好，主线程不会等待，继续解析后续的<word text="HTML" />。这是因为下载和解析<word tex
+TXT ![CSS解析流程](https://pic1.imgdb.cn/item/67ed09ff0ba3d5a1d7eaff9e.png)
+
+### concept/module/browser/浏览器长截图
+H1: 浏览器长截图小技巧
+H2~ ## 浏览器长截图前言
+TXT 当遇到一篇文章很长，需要长截图的时候，一般人可能会想要找插件，其实浏览器自带的截图功能已经足够强大了。
+H2~ ## 浏览器长截图实操
+TXT 1. F12 打开控制台，找到自己要长截图的元素，这里以 [Vue.js官网](https://cn.vuejs.org/api/application.html#createapp) 为例
+TXT 2. 右键，选择 【捕获节点屏幕截图】
+TXT ![右键选择](https://pic1.imgdb.cn/item/6940d4384a4e4213d00c4875.png)
+TXT 3. 成功下载
+TXT ![成功下载](https://pic1.imgdb.cn/item/6940d48a4a4e4213d00c4e6d.png)
+TXT 查看它的截图效果，能看到样式、布局排版等还是挺精细的，截图完之后就能用在自己需要的地方了。
+
+### concept/module/git/多人合作项目变基处理
+H1: 多人合作项目变基处理
+TXT 公司项目组规定，每次新开发都要新建一个分支，开发完成之后，`merge` 合并到主分支。合并后该分支会自动被删除，下一次若想要开发，则再新建一个分支。这样做能有效防止代码混乱，保证代码的干净整洁。
+TXT 但是如果多人合作开发，容易出现他人先提交 `merge` ，这样自己的分支就会落后几个提交。此时需要 `git rebase origin/main` 来变基，使自己的分支与主分支保持一致。
+H2~ ## Git rebase变基
+TXT Git Rebase 的主要作用为：
+TXT 1. 整理提交历史：将一个分支的提交重新应用到另一个分支上
+TXT 2. 保持线性历史：让提交历史更加清晰、线性
+TXT 3. 解决冲突：在合并前解决潜在的冲突
+TXT 4. 更新分支：将分支更新到最新状态
+TXT 主要命令为：
+H2~ ## Git rebase开发与提交
+TXT 假设在自己的分支上完成了开发，在 `merge` 合并前需要 `rebase` 变基，使自己的分支与主分支保持一致，此时执行 `git rebase` 会报错，提示有改动，需要先提交。
+TXT 此时需要先 `git add` 添加改动，然后 `git commit` 提交，再执行 `git rebase`。
+
+### concept/module/git/大小写规则检测
+H1: 大小写规则检测
+TXT 在 Git 中有一个虽然很小但很致命的问题：他对英文字母大小写检测默认是忽略的。这会造成什么后果呢？
+TXT ​ 我们来看一个场景：同事 A 新建了一个文件夹 `components` ，在其中创建一个组件 `Upload.vue` ，其他页面都是以 `xxx/Upload.vue` 为路径。后面修改为小写字母 `upload.
+TXT ​ 本地环境运行没有问题，但是推送到远程服务器时由于 Git 忽略大小写，因此远程服务器还是 `Upload.vue` 文件，则路径找不到 `upload.vue` 文件开始报错。
+TXT 解决方法很简单，把忽略大小写的规则禁用即可，命令如下：
+TXT 禁用之后可以发现能够检测到文件的变化并提交远程了。
+
+### concept/module/miniProgram/两个线程
+H1: 小程序两个线程
+TXT 1. 渲染线程(UI 线程)：
+TXT 渲染线程负责小程序界面的渲染和响应用户的交互。它使用 WebView 进行页面渲染，包括解析和绘制 DOM、布局、样式计算和渲染等操作。渲染线程是单线程的，所有的界面操作都在这个线程中进行。
+TXT 2. 逻辑线程(<word text="JavaScript"/>线程)：
+TXT 逻辑线程负责小程序的逻辑运算和数据处理。它是基于<word text="JavaScript"/>运行的，负责处理用户交互、业务逻辑、数据请求、事件处理等操作。逻辑线程是独立于渲染线程的，可以并行处理多个任务，避免阻塞界
+TXT 将界面渲染和逻辑运算分离成两个线程的设计有以下好处:
+TXT - 响应速度:逻辑线程和渲染线程分开，可以并行执行，提高了小程序的响应速度和用户体验。
+TXT - 防止阻塞:逻辑线程的运行不会阻塞渲染线程，避免了长时间的计算或数据处理导致界面卡顿或无响应的情况。
+TXT - 资源隔离:渲染线程和逻辑线程是独立的，它们有各自的资源和运行环境，可以避免相互干扰和影响。
+TXT 需要注意的是，小程序的渲染线程和逻辑线程之间通过微信客户端进行通信和交互。逻辑线程可以发送请求给微信客户端，然后客户端将渲染指令发送给渲染线程进行界面渲染，同时渲染线程可以将用户的交互事件发送给逻辑线程进行处理。这种通信
+TXT 小程序之所以有两个线程，是为了提高渲染速度、避免阻塞和资源隔离。渲染线程负责界面渲染，逻辑线程负责业务逻辑和数据处理，两者通过微信客户端进行通信和交互，共同实现小程序的功能和性能。
+
+### concept/module/network/应用协议
+H1: 应用协议
+H2~ ## 应用协议URL
+TXT URL 是统一资源定位符，用于定位互联网上的资源。
+TXT URL 是一个固定格式的字符串，包含以下信息：
+TXT - 协议 `schema` ：用于指定访问资源的协议，如 `HTTP`、`HTTPS`、`FTP` 等。
+TXT - 主机名 `domain` ：用于指定访问资源的主机名，如 `www.example.com`。
+TXT - 端口号 `port` ：用于指定访问资源的端口号，如 80、443 等。
+TXT - 路径 `path` ：用于指定访问资源的路径，如 `/index.html`。
+TXT - 查询参数 `query` ：用于指定访问资源的查询参数，如 `?key=value`。
+TXT - 锚点 `hash` ：用于指定访问资源的锚点，如 `#top`。
+TXT 它表达了：从网络中哪台计算机（`domain`）的哪个程序（`port`）寻找哪个服务（`path`），并注明获取服务的具体细节（`path`），以及要用什么样的协议通信（`schema`）。
+TXT 这里包含一些细节：
+TXT - 当协议是 `HTTP` 时，端口号默认是 80，可以省略端口。
+
+### concept/module/network/浏览器通信能力
+H1: 浏览器通信能力
+H2~ ## 浏览器用户代理
+TXT 浏览器可以代替用户完成 `http` 请求，代替用户解析响应结果，并呈现给用户。因此被称为 【用户代理 user agent】。
+TXT 在网络层面，对于前端开发者，必须要知道浏览器拥有的两大核心能力：
+TXT - 自动发出请求的能力
+TXT - 自动解析响应的能力
+H2~ ### 用户代理自动发出请求的能力
+TXT 当一些事情发生的时候，浏览器会代替用户自动发出 `http` 请求，常见的包括：
+TXT 1. 用户在地址栏输入了一个 `url` 地址，并按下了回车
+TXT 浏览器会自动解析 URL,并发出一个 `GET` 请求,同时抛弃当前页面。
+TXT 2. 当用户点击了页面中的 `a` 元素
+TXT 浏览器会拿到 `a` 元素的 `href` 地址，并发出一个 `GET` 请求，同时抛弃当前页面。
+TXT 3. 当用户点击了提交按钮 `<button type="submit">...</button>`，浏览器会获取按钮所在的 `<form>` 元素，拿到它的 `action` 属性地址，同时拿到它 `method` 属
+
+### concept/module/network/网络分层模型
+H1: 网络分层模型
+H2~ ## 网络分层模型五层网络模型
+TXT 经过不断演化，网络最终形成五层模型：
+TXT |    分层    |            协议            |                                                                       
+TXT | :--------: | :------------------------: | :-----------------------------------------------------------------
+TXT |   应用层   | HTTP、FTP、DNS、SMTP、POP3 |                                                  网络应用到具体场景，不同场景建立不同协议来应对不
+TXT |   传输层   |          TCP、UDP          | 数据怎么传输，如何保证消息可靠传递。TCP 是可靠传输协议，数据包传输时出错了 TCP 会自动纠错；UDP 是广播协议，直播用的是 UDP，
+TXT |   网络层   |         IP、路由器         |                                                       如何在互联网中找到对方，通过 IP 地
+TXT | 数据链路层 |        交换机、MAC         |                                        如何在子网中如何找到对方的 MAC 地址，MAC 地址相当于电脑的指纹，
+TXT |   物理层   |        光纤、集线器        |                       不同设备之间的信息交互传输协议，如使用什么信号来传输，电信号还是光信号，光信号用什么波，电信号的波峰和波普
+TXT > [!WARNING] 注意
+TXT > IP 地址和 MAC 地址是两个不同的概念，IP 地址是网络层协议，MAC 地址是数据链路层协议。IP 地址是动态唯一，同一台设备有可能会变化；MAC 地址是静态唯一。
+H2~ ## 网络分层模型数据的传输
+
+### concept/module/network/跨域问题及解决方案
+H1: 跨域问题及解决方案
+H2~ ## 同源策略及跨域问题
+TXT <word text="同源策略" />是一套浏览器安全机制，当一个<span style="color: red">源</span>的文档和脚本，与另一个<span style="color: red">源</span
+TXT 简单来说，同源策略对 同源资源 **放行**，对异源资源 **限制**。
+TXT 因此限制造成的开发问题，称之为<word text="跨域" /> (异源)问题。
+H2~ ### 同源策略同源和异源
+TXT 源(origin) = 协议 + 域名 + 端口
+TXT 例如：`https://study.duyiedu.com/api/movie` 的源为 `https://study.duyiedu.com`；`http://localhost:8080/index.html` 的源
+TXT 两个 URL 地址地址的源<span style="color: red">完全相同</span>，则称之为<span style="color: red">同源</span>，否则称之为<span style="col
+TXT <!-- table-merge: off -->
+TXT | 源 1                       | 源 2                         | 是否同源           |
+TXT | -------------------------- | ---------------------------- | ------------------ |
+TXT | http\:\/\/localhost:8080/a | http\:\/\/localhost:8080/a/b | 是                 |
+
+### concept/module/reg/元子字符
+H1: 元子字符
+TXT 元字符是正则表达式中的最小元素，只代表单一（一个）字符
+H2~ ## 元子字符字符列表
+TXT | 元字符 | 说明                                             | 示例           |
+TXT | ------ | ------------------------------------------------ | -------------- |
+TXT | \d     | 匹配任意一个数字                                 | \[0-9]         |
+TXT | \D     | 与除了数字以外的任何一个字符匹配                 | \[^0-9]        |
+TXT | \w     | 与任意一个英文字母,数字或下划线匹配              | \[a-zA-Z\_]    |
+TXT | \W     | 除了字母,数字或下划线外与任何字符匹配            | \[^a-za-z\_]   |
+TXT | \s     | 任意一个空白字符匹配，如空格，制表符\t，换行符\n | \[\n\f\r\t\v]  |
+TXT | \S     | 除了空白符外任意一个字符匹配                     | \[^\n\f\r\t\v] |
+TXT | .      | 匹配除换行符外的任意字符                         |                |
+H2~ ## 元子字符使用体验
+
+### concept/module/reg/匹配
+H1: 匹配
+H2~ ## 重复匹配
+H2~ ### 重复匹配基本使用
+TXT 如果要重复匹配一些内容时我们要使用重复匹配修饰符，包括以下几种。
+TXT | 符号   | 说明              |
+TXT | ------ | ----------------- |
+TXT | \*     | 重复零次或更多次  |
+TXT | \+     | 重复一次或更多次  |
+TXT | \?     | 重复零次或一次    |
+TXT | \{n}   | 重复 n 次         |
+TXT | \{n,}  | 重复 n 次或更多次 |
+TXT | \{n,m} | 重复 n 到 m 次    |
+TXT > 因为正则最小单位是元字符，而我们很少只匹配一个元字符如 a、b 所以基本上重复匹配在每条正则语句中都是必用到的内容。
+
+### concept/module/reg/原子
+H1: 原子
+H2~ ## 原子表
+TXT 在一组字符中匹配某个元字符，在正则表达式中通过元字符表来完成，就是放到`[]` (方括号)中。
+H2~ ### 原子表使用语法
+TXT | 原子表 | 说明                               |
+TXT | ------ | ---------------------------------- |
+TXT | \[]    | 只匹配其中的一个原子               |
+TXT | \[^]   | 只匹配"除了"其中字符的任意一个原子 |
+TXT | \[0-9] | 匹配 0-9 任何一个数字              |
+TXT | \[a-z] | 匹配小写 a-z 任何一个字母          |
+TXT | \[A-Z] | 匹配大写 A-Z 任何一个字母          |
+H2~ ### 原子表实例操作
+TXT 使用 `[]` 匹配其中任意字符即成功，下例中匹配 `ue` 任何一个字符，而不会当成一个整体来对待
+
+### concept/module/reg/方法
+H1: 方法
+H2~ ## 正则字符方法
+TXT 下面介绍的方法是 `String` 提供的支持正则表达式的方法
+H2~ ### 正则search
+TXT `search()` 方法用于检索字符串中指定的子字符串，也可以使用正则表达式搜索，返回值为索引位置
+TXT 使用正则表达式搜索
+H2~ ### 正则match
+TXT 直接使用字符串搜索
+TXT 使用正则获取内容，下面是简单的搜索字符串
+TXT 如果使用 `g` 修饰符时，就不会有结果的详细信息了（可以使用 `exec`），下面是获取所有 h1~6 的标题元素
+H2~ ### 正则matchAll
+TXT 在新浏览器中支持使用 `matchAll` 操作，并返回迭代对象
+H2~ ### 正则split
+
+### concept/module/reg/模式修饰
+H1: 模式修饰
+TXT 正则表达式在执行时会按他们的默认执行方式进行，但有时候默认的处理方式总不能满足我们的需求，所以可以使用模式修正符更改默认方式。
+TXT | 修饰符 | 说明                                          |
+TXT | ------ | --------------------------------------------- |
+TXT | i      | 不区分大小写字母的匹配                        |
+TXT | g      | 全局搜索所有匹配内容                          |
+TXT | m      | 视为多行                                      |
+TXT | s      | 视为单行忽略换行符，使用 `.` 可以匹配所有字符 |
+TXT | y      | 从 `regexp.lastIndex` 开始匹配                |
+TXT | u      | 正确处理四个字符的 UTF-16 编码                |
+H2~ ## 模式修饰i
+TXT 将所有 `daodao.com` 统一为小写
+H2~ ## 模式修饰g
+
+### concept/module/reg/正则中的lastIndex
+H1: 正则中的lastIndex
+TXT 先来复刻一下 BUG 的产生：输入一个符合长度的手机号，符合正则校验；修改中间的一个数字，正则校验失败开始报错，再次修改则不报错。如下图所示：
+TXT ![手机号正则校验](https://pic.imgdb.cn/item/651faa94c458853aef9d4b17.gif)
+TXT 而代码也很简单，如下所示：
+TXT 正则校验失败时显示错误提示，校验成功则不显示。
+H2~ ## 正则lastIndex报错原因
+TXT 正则匹配添加粘性匹配或全局匹配时会产生一个属性 `lastIndex` 。这个属性表达的是上一次匹配时匹配到哪一个位置索引。匹配完手机号后 `reg.lastIndex` 为11，修改后它匹配不上，就会归0；下一次再匹配
+H2~ ## 正则lastIndex解决方案
+TXT 既然知道它为啥会报错，那么就知道如何解决了。有两个解决方案：
+TXT 1. 取消全局匹配
+TXT 2. 重置 `lastIndex` 的值，让他从0匹配
+
+### concept/module/reg/正则表达式
+H1: 基础知识
+TXT 正则表达式是用于匹配字符串中字符组合的模式，在 JavaScript 中，正则表达式也是对象。
+TXT - 正则表达式是在宿主环境下运行的，如 `js` / `php` / `node.js` 等
+TXT - 本章讲解的知识在其他语言中知识也是可用的，会有些函数使用上的区别
+H2~ ## 正则对比分析
+TXT 与普通函数操作字符串来比较，正则表达式可以写出更简洁、功能强大的代码。
+TXT 下面使用获取字符串中的所有数字来比较函数与正则的差异。
+TXT 使用正则表达式将简单得多
+H2~ ## 正则创建正则
+TXT <word text="JavaScript" />提供字面量与对象两种方式创建正则表达式
+H2~ ### 正则字面量创建
+TXT 使用 `//` 包裹的字面量创建方式是推荐的作法，但它不能在其中使用变量
+TXT 下面尝试使用 `a` 变量时将不可以查询，因为他把 `a` 看成字符串来查找。
+
+### concept/module/reg/运用前瞻实现密码强度检测
+H1: 运用前瞻实现密码强度检测
+TXT 有一个要求，需要设置一个正则检测密码强度，要求有两点：
+TXT 1. 密码 6-12 位
+TXT 2. 必须包含数字、大小写字母、特殊字符
+TXT 咋一看很简单，直接用 `[]` 包含以及 `{6,12}` 设置长度即可，代码如下：
+TXT 但是这并不是正确的写法，如果这么写，全是数字的密码也能通过校验。因为上方规则表示任选其一。
+TXT 想要实现要求，需要使用到前瞻运算。正则匹配实际上是规则和字符串一起移动来匹配，如下：
+TXT 首先匹配正则的开始标识 `^` ，字符串的匹配指针为字母 `a` 前面；然后正则往后一位匹配到 `a` ，字符串匹配指针也往后一位到字母 `a` ；正则往后一位到 `b` ，字符串匹配指针也往后一位到字母 `b` ...
+TXT 但如果把匹配规则改一下，使用前瞻（也就是正向预查）就无法匹配了。代码如下：
+TXT 正则匹配到前瞻时不会消耗字符，首先匹配正则的开始标识 `^` ，字符串的匹配指针为字母 `a` 前面；然后正则往后一位匹配到前瞻 `(?=a)` ，而字符串的匹配指针不会跟着往后移动。因此匹配不成功。
+TXT 那他有什么好处呢？可以在匹配的时候先不着急消耗字符串往后匹配，而是先往后看看是否满足规则。用上方的要求来说，利用前瞻不消耗的特性在最开始看后续有没有大小写字母、数字、特殊字符。
+TXT 修改后写法如下：
+TXT 现在就能够实现密码强度检测了。
+
+### concept/react/Diff算法
+H1: Diff 算法
+H2~ ## React Diff算法原理图
+TXT ![pCF9Ouq.png](https://s1.ax1x.com/2023/06/07/pCF9Ouq.png)
+H2~ ## React Diff算法key的作用
+TXT 虚拟<word text="DOM"/>中 `key` 的作用：
+TXT 1. `key` 是虚拟<word text="DOM"/>对象的标识，更新显示时 `key` 起着极其重要的作用。
+TXT 2. 当状态的数据发生变化时，`react` 会根据 【新数据】 生成 【新的虚拟 DOM】，随后 `react` 进行 【新虚拟 DOM】的 `diff` 算法比较，比较规则如下：
+TXT - 旧虚拟<word text="DOM"/>中找到与新虚拟<word text="DOM"/>相同的 `key` ：
+TXT 1. 若虚拟<word text="DOM"/>中内容没变，直接使用之前的真实 DOM
+TXT 2. 若虚拟<word text="DOM"/>中内容改变，则生成新的真实 DOM，随后再替换掉页面中之前的真实 DOM
+TXT - 旧虚拟<word text="DOM"/>中未找到与新虚拟<word text="DOM"/>相同的 `key` ：根据数据创建新的真实 DOM，随后渲染到页面
+H2~ ## React Diff算法key避免使用索引
+TXT 1. 若对数据进行添加、逆序删除等破坏顺序操作：会产生没必要的真实<word text="DOM"/>更新，效率低
+
+### concept/react/ReactRouter5
+H1: React 路由
+H2~ ## React路由SPA理解
+TXT 1. 单页 Web 应用（`single page web application，SPA`）。
+TXT 2. 整个应用只有一个完整的页面。
+TXT 3. 点击页面中的链接不会刷新页面，只会做页面的局部更新。
+TXT 4. 数据都需要通过 `ajax` 请求获取, 并在前端异步展现。
+H2~ ## React路由的理解
+H2~ ### React路由的概念
+TXT 1. 一个路由就是一个映射关系 `(key:value)`
+TXT 2. `key` 为路径, `value` 可能是 `function` 或 `component`
+H2~ ### React路由的分类
+H2~ #### React路由后端路由
+TXT 1. 路由理解： `value` 是 `function` , 用来处理客户端提交的请求。
+
+### concept/react/ReactRouter6
+H1: React Router 6
+H2~ ## ReactRouter6官网文档
+TXT 推荐自行阅读一遍官网文档（没有中文！！）
+TXT 指路：[reactrouter](https://reactrouter.com/en/6.14.1/start/tutorial)
+H2~ ## ReactRouter6概述
+TXT 1. React Router 以三个不同的包发布到 npm 上，它们分别为：
+TXT 1. `react-router`: 路由的核心库，提供了很多的：组件、钩子。
+TXT 2. <strong style="color:#dd4d40">**react-router-dom:**</strong > <strong style="color:#dd4d40">包含 `react-route
+TXT 3. `react-router-native`: 包括 `react-router` 所有内容，并添加一些专门用于 ReactNative 的 API，例如:`<NativeRouter>`等。
+TXT 2. 与 React Router 5.x 版本相比，改变了什么？
+TXT 1. 内置组件的变化：移除`<Switch/>` ，新增 `<Routes/>`等。
+TXT 2. 语法的变化：`component={About}` 变为 `element={<About/>}`等。
+TXT 3. 新增多个 hook：`useParams`、`useNavigate`、`useMatch`等。
+
+### concept/react/Redux
+H1: Redux
+H2~ ## Redux基础
+H2~ ### Redux概念
+TXT 1. `redux` 是一个专门用于做状态管理的 JS 库(不是 react 插件库)。
+TXT 2. 它可以用在<word text="React"/>，<word text="Angular"/>，<word text="Vue"/>等项目中, 但基本与<word text="React"/>配合使用。
+TXT 3. 作用: 集中式管理<word text="React"/>应用中多个组件共享的状态。
+H2~ ### Redux作用
+TXT 1. 某个组件的状态，需要让其他组件可以随时拿到（共享）。
+TXT 2. 一个组件需要改变另一个组件的状态（通信）。
+TXT 3. 总体原则：能不用就不用, 如果不用比较吃力才考虑使用。
+H2~ ### Redux工作流程
+TXT ![pCuqQwq.png](https://s1.ax1x.com/2023/06/15/pCuqQwq.png)
+H2~ ## Redux action
+
+### concept/react/拓展
+H1: 拓展
+H2~ ## React拓展setState
+TXT 更新状态的两种写法
+TXT 1. `setState(stateChange, [callback])` —— 对象式的 `setState`
+TXT - `statechange` 为状态改变对象（该对象可以体现出状态的更改）
+TXT - `callback` 是可选的回调函数，它在状态更新完毕、界面更新（`render` 调用）后触发
+TXT 这也说明，`react` 状态的更新是异步的。直接获取无法获取到最新的值，需要通过回调函数获取，代码如下所示：
+TXT 2. `setState(updater, [callback])` ——函数式的 `setState`
+TXT - `updater` 为返回的 `stateChange` 对象的函数
+TXT - `updater` 可以接收到 `state` 和 `props`
+TXT - `callback` 是可选的回调函数，它在状态更新完毕、界面更新（`render` 调用）后触发
+TXT 总结：
+TXT 对象式的 `setState` 是函数式的 `setState` 的简写方式（语法糖）
+
+### concept/react/无脚手架项目创建
+H1: React
+H2~ ## React本质
+TXT <word text="React"/>是一个用于构建用户界面的<word text="JavaScript"/>库，是一个由数据渲染视图的<word text="JavaScript"/>库。
+TXT **特点：**
+TXT 1. 采用组件化模式、声明式编码，提高开发效率及组件复用率
+TXT 2. 在<word text="React Native"/>中可以使用<word text="React"/>语法进行移动端开发
+TXT 3. 使用虚拟<word text="DOM"/> + 优秀的 Diffing 算法，尽量减少与真实<word text="DOM"/>的交互
+H2~ ## React无脚手架项目初实现
+TXT 1. 引入对应的<word text="React"/>核心库、<word text="DOM"/>操作库与 babel `jsx` 转 `js` 的资源
+TXT 2. 准备容器（如<word text="Vue"/>中挂载元素的 `#app` ）
+TXT 3. `script` 标签设置类型为 babel，进行翻译
+TXT 4. 创建虚拟<word text="DOM"/>
+TXT 5. 通过 `ReactDOM.render` 渲染到界面中
+
+### concept/react/脚手架项目创建
+H1: React
+H2~ ## React脚手架新版项目创建
+TXT 下面来创建一个 REACT 项目
+TXT 1. 首先登录[官网 (opens new window)](https://nodejs.org/en/)下载安装[NODEJS (opens new window)](https://nodejs.org/zh-cn
+TXT 2. [Yarn (opens new window)](https://yarnpkg.com/)会缓存它下载的每个包所以无需重复下载
+TXT 3. 使用 [Create React App (opens new window)](https://create-react-app.dev/)安装<word text="React"/>项目非常方便，下面来创建项目
+TXT 4. 创建项目
+TXT 5. 进入目录并启动项目
+H2~ ### React脚手架public文件介绍
+TXT - `favicon.ico` ：网站图标
+TXT - `index.html` ：单文件项目的主文件，其中：
+TXT - `<link rel="icon"` ：网站的图标
+TXT - `<meta name="viewport"` ：移动端适配的头
+
+### concept/sharp/gsap/动画参数
+H1: GSAP 动画参数
+TXT 上一章节简单介绍了 GSAP 的基本使用，这一章节稍微详细介绍一下 GSAP 的动画参数。
+H2~ ## Gsap Repeats 与 alternating repeats
+TXT `repeat` 就是用来重复播放动画，动画播放完毕后会从头开始播放，一般配合 `yoyo` 一起使用，可以实现无缝衔接动画播放。
+TXT 如果想要一直无限循环，给 `repeat` 设置为 -1 即可。
+H2~ ## Gsap Delays
+TXT `delay` 是运行之前的延迟时间，单位是秒。如果想要控制循环执行时的延迟，可以使用 `repeatDelay`。
+TXT `repeatDelay` 控制的是每次动画循环开始前的延迟时间，执行的时机是在 `repeat` 和 `delay` 之间。
+H2~ ## Gsap Easing
+TXT `ease` 是用来控制动画的缓动效果的，GSAP 提供了非常多的缓动效果，可以参考 [GSAP Easing](https://greensock.com/docs/v3/Easing)。
+TXT 例如，设置了 `linear` 缓动效果，动画会以匀速播放；设置了 `bounce` 缓动效果，动画会以弹跳的形式播放。
+TXT `ease` 的本质就是一些数学公式的计算，包含 `in` 、`out`、`inOut` 三种形式，分别表示动画开始、结束、中间的缓动效果。
+TXT 如果实在是不知道使用哪种缓动效果，可以使用 `power1.out` ，这个缓动效果是 GSAP 默认的缓动效果。
+
+### concept/sharp/gsap/基础
+H1: GSAP
+H2~ ## Gsap 引入
+TXT 想要使用 GSAP，首先需要引入 GSAP 库，可以通过以下方式引入：
+TXT - 通过 CDN 引入：
+TXT - 通过 npm 安装：
+H2~ ## Gsap 创建第一个动画
+TXT 每一个动画，GSAP 都会创建一个 `Tween` 对象，通过 `gsap.to()` 方法可以创建一个从当前状态到目标状态的动画。
+TXT 简单实现第一个动画，首先创建一个 `.box` 的盒子，宽高为 100px，背景色为红色，然后使用 GSAP 给这个盒子添加一个动画效果，使其在 2 秒内从左向右移动 200px。
+TXT ::: code-group
+TXT :::
+TXT 现在就有一个丝滑的动画效果了。
+TXT 总结一下，GSAP 的简单使用语法如下：
+TXT ![简单使用语法](https://pic1.imgdb.cn/item/68d9fce8c5157e1a8842b227.png)
+
+### concept/sharp/gsap/时间轴
+H1: GSAP 时间轴
+H2~ ## Gsap To 第三个参数
+TXT 设置了时间轴后，可以通过第三个参数配置它什么时候开始执行。如：
+TXT 上面的代码表示，在时间轴开始后的 1 秒，`.box`元素开始移动。
+TXT 小于号的意思是，当前动画在上一动画开始后立即开始；以此类推，大于号的意思是，当前动画在上一动画结束后立即开始。
+TXT 还能设置相对时间，比如上面的代码表示，当前动画在上一动画结束后的 1 秒后开始。
+TXT 更强大的是，这些参数还能组合在一起使用，比如 `<1`，表示在上一动画开始后的 1 秒后开始；`>1` 表示在上一动画结束后 1 秒后开始。
+H2~ ## Gsap Timeline 传参
+TXT `timeline()` 是一个函数方法，也能接收一个对象作为参数，例如：
+TXT 上面的代码表示，时间轴会无限循环，并且每次循环都会反转动画。
+H2~ ## Gsap Defaults
+TXT `timeline()` 方法接收的对象中，有一个 `defaults` 属性，可以设置时间轴的默认参数，例如：
+TXT 上面的代码表示，时间轴中的所有动画都会持续 1 秒，这样就能少写很多重复的代码了。
+
+### concept/sharp/node/express
+H1: Express
+H2~ ## Node Express简介
+TXT 官方给出的概念：Express 是基于<word text="Node" />平台，快速、开放、极简的 Web 开发框架。
+TXT 通俗的理解：Express 的作用和<word text="Node" />内置的 `http` 模块类似，是专门用来创建 Web 服务器的。
+TXT Express 的本质：就是一个 npm 上的第三方包，提供了快速创建 Web 服务器的便捷方法。
+TXT [Express 的中文官网](http://www.expressjs.com.cn/)
+TXT 对于前端程序员来说，最常见的两种服务器，分别是：
+TXT - Web 网站服务器：专门对外提供 Web 网页资源的服务器。
+TXT - API 接口服务器：专门对外提供 API 接口的服务器。
+TXT 使用 Express，我们可以方便、快速的创建 Web 网站的服务器或 API 接口的服务器。
+H2~ ## Node Express使用
+H2~ ### Node Express安装
+TXT 命令如下：
+
+### concept/sharp/node/fs
+H1: fs
+TXT `fs` 模块是<word text="Node" />官方提供的、用来操作文件的模块。它提供了一系列的方法和属性，用来满足用户对文件的操作需求。下面来一一介绍。
+H2~ ## 异步操作
+TXT 我们使用 `readFile` 与 `writeFile` 对文件进行异步读写操作
+TXT 同步文件操作会阻塞进程，所以使用异步文件操作拥有更好的性能，也是推荐的做法。
+H2~ ### 读取文件
+TXT 使用 `fs.readFile()` 方法，可以读取指定文件中的内容，语法格式如下：
+TXT - 参数 1：必选参数，字符串，表示文件的路径。
+TXT - 参数 2：可选参数，表示以什么编码格式来读取文件。
+TXT - 参数 3：必选参数，文件读取完成后，通过回调函数拿到读取的结果
+H2~ #### readFile 读取文件内容示例
+TXT `1.txt` 文件内容：
+TXT `index.js` 文件内容：
+
+### concept/sharp/node/http
+H1: http
+TXT `http` 模块是<word text="Node" />官方提供的、用来创建 web 服务器的模块。通过 `http` 模块提供的 `http.createServer()` 方法，就能方便的把一台普通的电脑，变成一
+TXT 如果要希望使用 `http` 模块创建 `Web` 服务器，则需要先导入它
+TXT ![img](https://doc.houdunren.com/assets/img/0_bxDKfJauHG6hjB-5.d8d959b1.png)
+H2~ ## Node http服务器相关概念
+H2~ ### Node httpIP
+TXT 如果不设置ip，或设置为 **0.0.0.0** 表示允许任何IP 访问，这样局域网其他电脑可以通过 IP 访问到你的项目。
+TXT 设置ip为 **localhost** 或 '127.0.0.1' 只允许本机访问
+TXT 你可以通过 **ifconfig** 查看本机 IP 地址，然后通过 IP 地址进行访问
+TXT 设置第二个参数主机设置为 **127.0.0.1**，表示只允许本地访问
+H2~ ### Node http域名
+TXT 管 IP 地址能够唯一地标记网络上的计算机，但IP地址是一长串数字，不直观，而且不便于记忆，于是人们又发明了另一套字符型的地址方案，即所谓的域名（ `Domain Name` ）地址。
+TXT IP地址和域名是一一对应的关系，这份对应关系存放在一种叫做域名服务器(`DNS` ，`Domain name server` )的电脑中。使用者只需通过好记的域名访问对应的服务器即可，对应的转换工作由域名服务器实现。因此
+
+### concept/sharp/node/node
+H1: Node
+H2~ ## Node 简介
+H2~ ### Node 什么是 node
+TXT `Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.`
+TXT <word text="Node" />是一个基于 `Chrome V8` 引擎的<word text="JavaScript" />运行环境。
+TXT 各个浏览器厂商会开发解析<word text="JavaScript" />的引擎如 `google chrome` 、`Apple safari`。因为不同厂商的引擎对 `ecmascript` 的解析程序不同，所以有
+TXT 比较著名的引擎是 `chrome` 的 v8，它是由 `C++` 编写的，而且它有个特点可以内置到其他 `C++` 程序中，这就为<word text="Node" />的实现提供基础。所以可以把<word text="
+TXT **Nodejs vs Browser**
+TXT - <word text="Node" />是开源、跨平台的<word text="JavaScript" />运行时环境，它是运行时，不是语言或框架，是在浏览器之外的 Javascript 使用
+TXT - <word text="Node" />可以使用<word text="JavaScript" />调用 c++，实现计算底层操作
+TXT - <word text="Node" />运行时包含 [v8 引擎 (opens new window)](https://github.com/nodejs/node/tree/main/deps/v8)（解析 ja
+TXT - <word text="Node" />使用 libuv 库，让开发者使用[JavaScript (opens new window)](https://github.com/nodejs/node/tree/mai
+TXT - <word text="Node" />没有基于浏览器的<word text="JavaScript" />的 DOM、BOM 等概念，但拥有文件系统操作功能
+
+### concept/sharp/node/path
+H1: path
+TXT `path` 模块是 `node.js` 的内置模块，导入标准命名是 `node:path` ，不过 `node:` 是可以省略的，用于解析文件路径操作。下面介绍常用属性和方法。
+H2~ ## Node pathjoin
+TXT 根据不同操作系统中的路径分隔符，组成新的文件路径
+TXT 示例代码：
+TXT > 注意：
+TXT >
+TXT > 凡是涉及到路径拼接的操作，都要使用 `path.join()` 方法进行处理。不要直接使用 + 进行字符串的拼接。
+H2~ ## Node pathbasename
+TXT 返回文件名中最后部分，一般是文件名，经常通过这个方法获取路径中的文件名。语法格式如下：
+TXT - `path <string>` 必选参数，表示一个路径的字符串
+TXT - `ext <string>` 可选参数，表示文件扩展名
+TXT - 返回： `<string>` 表示路径中的最后一部分
+
+### concept/sharp/node/模块化
+H1: 模块化
+H2~ ## Node 模块化基本概念
+TXT 模块化是指解决一个复杂问题时，自顶向下逐层把系统划分成若干模块的过程。对于整个系统来说，模块是可组合、分解和更换的单元。
+TXT > `node.js` 使用 `common.js` 模块管理，`common.js` 是 2009 年制定的模块标准。
+TXT >
+TXT > 你可能会奇怪为什么不使用 ES6 module，因为 `node.js` 推出时 `javascript` 还没有 `ES6 Module` 。
+TXT **模块特点**
+TXT - 每个文件都被视为一个模块。
+TXT - 使用 **module.exports** 导出模块，使用 **require** 导入模块。
+TXT - 建议将文件底部定义模块导出，这样会清楚的知道模块哪些内容被导出了。
+TXT - 导入时可以使用 `Js` 的解构获取具体的 `api` 。
+TXT - 使用 `module.exports` 导出模块，而不是直接使用 `exports` 导出模块。
+H2~ ### Node 模块化模块分类
+
+### concept/sharp/typescript/断言与枚举
+H1: Enums 枚举
+TXT 枚举在程序语言及 mysql 等数据库中广泛使用
+TXT - 不设置值时，值以 0 开始递增
+TXT 下而是使用枚举设置性别
+TXT 当某个字段设置数值类型的值后，后面的在它基础上递增
+TXT 可以将值设置为其他类型
+H2~ ## 断言
+H2~ ### TS as 断言
+TXT as 断言的意思就是用户断定这是什么类型，不使用系统推断的类型，说白了就是『我说是什么，就是什么』
+TXT 下例中 TS 会根据函数推断变量 f 的类型是 string | number
+TXT 我们可以由开发者来断定（断言）这就是字符串，这就是断言
+TXT 也可以使用下面的断言语法
+H2~ ### TS const 断言
+
+### concept/sharp/typescript/泛型
+H1: 泛型 Generics
+TXT 泛型指使用时才定义类型，即类型可以像参数一样定义，主要解决类、接口、函数的复用性，让它们可以处理多种类型。
+H2~ ## TS 基本使用
+TXT 下面示例返回值类型是 any，这不是我们想要的，因为我们想要具体返回类型
+TXT 使用了泛型定义后，返回值即为明确的类型
+TXT 如果调用时不指定类型系统也会自动推断类型
+H2~ ## TS 类型继承
+TXT 下面的代码是不严谨的，我们不需要处理数字，因为数字没有 length 属性，同时我们希望返回类型不是 any
+TXT 泛型是不确定的类型，所以下面读取 length 属性将报错
+TXT 我可以通过继承 `extends` 继承，让泛型定义包含 `length` 属性。
+TXT 如果你的类型只是字符串或数组，也可以使用联合类型
+TXT TS 也会自动推断，比如下面参数是 `T[]`，`TS` 会推断为数组类型，所以这时候是存在 `length` 的，不会报错，此时T指的是数组类型。
+TXT 将泛型理解为动态类型，他最终也会是一个类型，所以使用方式与我们其他类型一样的。比如下面的返回值类型，我们就返回了一个元组，包括泛型与数值类型
+
+### concept/sharp/typescript/环境配置
+H1: TypeScript
+H2~ ## TS 介绍
+TXT typescript 是 javascript 的一个超集，typescript 可以运行于任何系统，并且是开源免费的。
+TXT ![img](data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwg
+TXT typescript 有以下几个特点
+TXT - typescript 会在编译时对代码进行严格的静态类型检查，可以在编码阶段就发现问题，而不是在上线运行时才发现
+TXT - typeScript 语法遵循 ES 规范，更新速度快，不断支持最新的 ECMAScript 新特性，如装饰器、public/private 修饰符
+TXT - typescript 支持 OOP（面向对象）的接口，抽象类，多态特性
+TXT - typescript 可以为 IDE 提供更好的代码补全、接口提示、跳转到定义
+TXT - 还有重要一点是众多科技公司已经采用 typeScript 进行开发，也是前端工程师需要掌握的就业技能
+H2~ ## TS 安装环境
+TXT 下面来安装学习 typescript 时的开发环境
+H2~ ### TS node
+
+### concept/sharp/typescript/类与接口
+H1: 类
+H2~ ## TS 定义
+TXT 下面是使用 TS 约束属性并实例化对象
+TXT 通过约束数组的类型为`User`，使其成员只能是 User 类型对象
+H2~ ## TS 修饰符
+H2~ ### TS public
+TXT 第一个访问修饰符 public，指**公开**的属性或方法
+TXT - 默认情况下属性是 public （公开的），即可以在类的内部与外部修改和访问
+TXT - 不明确设置修饰符即为 public
+H2~ ### TS protected
+TXT protected 修饰符指**受保护**的，只允许在父类与子类使用，不允许在类的外部使用
+H2~ ### TS private
+TXT private 修饰符指**私有**的，不允许在子类与类的外部使用
+
+### concept/sharp/typescript/类型
+H1: 类型声明
+H2~ ## TS 类型含义
+H2~ ### TS js
+TXT javascript 本身提供类型支持，但有以下几个问题。
+TXT - js 是弱类型，类型可以根据值发生改变
+TXT - 使用 js 不能自定义类型，比如下面的 name 我们想只允许是 daodao、data，但实际上是可以传递任何值的。
+TXT 如果换成 ts 就方便了，我们可以定义类型来修饰参数 name，使其值只能为 daodao 或 data
+H2~ ### TS typescript
+TXT 可以将 typescript 中的类型理解为一类值的集合，比如 'daodao'、'刀刀'都属于 string 类型集合。
+TXT - 有些类型没有值比如 never，不能将任何值赋予 never 类型的变量
+TXT - 有些类型只有一个值，下面的`fn`变量的值只能是字符串`a`
+TXT - string、number 是无限集合，而上例中的 daodao 类型为有限集合
+H2~ ## TS 类型校验
+
+### concept/sharp/typescript/装饰器
+H1: 装饰器
+H2~ ## TS 环境配置
+TXT 装饰器（Decorators）为我们在类的声明及成员上通过编程语法扩展其功能，装饰器以函数的形式声明。
+H2~ ### TS 装饰器类型
+TXT 可用装饰器包括以下几种
+TXT | 装饰器             | 说明       |
+TXT | ------------------ | ---------- |
+TXT | ClassDecorator     | 类装饰器   |
+TXT | MethodDecorator    | 方法装饰器 |
+TXT | PropertyDecorator  | 属性装饰器 |
+TXT | ParameterDecorator | 参数装饰器 |
+H2~ ### TS 实验性
+TXT Decorators 是实验性的功能，所以开发时会提示错误，我们需要启动 Decorator 这个实验性的功能。
+
+### concept/sharp/vite/TS和CSS相关问题
+H1: TS CSS 相关问题
+H2~ ## Vite TS
+TXT 如果是一个新建的项目，那么在选择是否需要使用<word text="TypeScript" />的时候，可以选择使用<word text="TypeScript" />，这样项目就能支持<word text="TypeS
+TXT 而如果之前已经创建了一个使用<word text="JavaScript" />的项目，那么就需要在项目中 `pnpm i typescript` 引入<word text="TypeScript" />，并在根目录新建
+H2~ ## Vite CSS
+TXT 官方推荐开发使用变量来减少重复的代码，比如颜色、字体大小等。在根目录下新建一个 `postcss.config.cjs` 文件，内容如下：
+TXT 这样就能
+
+### concept/sharp/vite/Vite的SPA模式
+H1: Vite 的 SPA 模式
+H2~ ## Vite 前言
+TXT 关于<word text="Vite" />创建的项目，和曾经的项目创建（如<word text="Vue CLI" />等）存在着很多不同之处。
+TXT 本文档从入口与传统构建工具的不同入手，对比使用<word text="Vite" />创建的项目、使用<word text="Vue3" />创建的项目、使用<word text="Vue CLI" />创建的<word
+TXT 最后再来聊聊如何用<word text="Vite" />创建一个<word text="Vue2" />项目。
+H2~ ## Vite Vite 创建 Vue 项目
+H2~ ### Vite Vite 创建 Vue3 项目
+H2~ #### Vite 命令行对比
+TXT 先来看看最新版的 [Vite 官方文档](https://vitejs.cn/vite6-cn/guide/#scaffolding-your-first-vite-project)，如何新建一个项目。
+TXT 根据文档的描述，命令行如下：
+TXT ::: code-group
+TXT :::
+TXT 再来看看最新版的 [Vue.js 官方文档](https://cn.vuejs.org/guide/quick-start.html)，如何新建一个项目。
+
+### concept/vue/vue2/动态组件
+H1: Vue 动态组件与插槽
+H2~ ## Vue 动态组件
+H2~ ### Vue 动态组件基本概念
+TXT **动态组件的作用：** 可以让多个组件使用同一个挂载点，并动态切换。 `component` 本质上是一个占位符，通过 `:is` 属性来指定渲染谁。
+H2~ ### Vue 动态组件语法
+H2~ ### Vue 动态组件示例
+TXT 创建两个子组件。
+TXT ::: code-group
+TXT :::
+TXT 在 `App.vue` 中插入动态组件：
+TXT 在 `data` 中设置了子组件的变量名，点击按钮改变子组件从而实现动态组件的效果。
+TXT ![动态组件.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/81bc40a8529d44719e9a64c606370515~tplv-k3u1fbpfcp
+H2~ ### Vue 动态组件缓存
+
+### concept/vue/vue2/动态绑定
+H1: Vue
+H2~ ## Vue 动态绑定动态样式
+H2~ ### Vue 动态绑定动态 class
+TXT > 作用：通过 `v-bind` 给标签 `class` 设置动态的值，即把类名保存在<word text="Vue"/>变量中赋予给标签。
+TXT 语法： `:class="{类名 : 布尔值}"`
+TXT 判断后面的布尔值，如果为真则添加样式类名，否则移除。需要用大括号包括起来。
+TXT 绑定的数据对象不必内联到模板内，也可写在 `data` 中。
+TXT 数组的形式：
+TXT <script>
+TXT export default {
+TXT data() {
+TXT return { active: 'active', show: 'show' }
+TXT },
+
+### concept/vue/vue2/基本概念与Vue指令
+H1: Vue
+H2~ ## Vue 的基本概念
+H2~ ### Vue 什么是 Vue
+TXT 概念：<word text="Vue" />是一个 **_渐进式_** 的<word text="JavaScript"/>框架，拥有一套属于自己规则的语法。
+TXT 官网地址：[Vue 官网](https://cn.vuejs.org/) 。
+TXT > [!INFO] 补充知识点：
+TXT >
+TXT > 1. 什么是渐进式
+TXT >
+TXT >    渐进式：逐步进步，想用什么就用什么，不必全部使用。
+TXT >
+TXT > 2. 什么是库和框架
+TXT >    - 库：封装的属性或方法 (例 `JQuery.js` )
+
+### concept/vue/vue2/核心源码及设计思想
+H1: Vue2核心源码及设计思想
+H2~ ## Vue 核心源码使用Rollup搭建开发环境
+TXT 新建一个文件夹，打开终端，输入命令行：
+TXT 此时能够生成 `package.json` 文件。下载 `rollup` 和 `rollup-plugin-babel` 依赖：
+TXT 上方命令表示下载 `rollup` 模块的 `babel` 依赖，其中 `@babel/core` 用于编译高级 ES6 语法并转换为 ES5 语法。`@babel/preset-env` 是其中一个插件。下载完依赖后文
+TXT 同级目录下新建一个 `rollup.config.js` 文件，用于打包（默认找 `rollup.config.js` 文件，也可以自定义，后续指定文件）。然后返回 `package.json` 文件，书写打包编译的命令
+TXT 上方代码表示使用 `rollup` 来打包，`-c` 指定默认配置文件，`-w` 表示 `watch` ，监控文件。
+TXT 新建一个 `src` 文件夹，为打包入口，文件夹下新建一个 `index.js` 文件，作为入口文件。随便写点 ES6 语法代码。
+TXT 在打包的配置文件 `rollup.config.js` 中作打包的配置，代码如下：
+TXT > [!INFO] 题外话
+TXT >
+TXT > 最开始我把 `input` 错敲成 `imput` ，导致一直报错，提示 `options.input` 没有。
+TXT 根目录下新建一个 `.babelrc` 文件，用于配置 `babel` 。打包后会找到这个文件。代码如下：
+
+### concept/vue/vue2/组件
+H1: Vue
+H2~ ## Vue 组件
+H2~ ### Vue 组件概念
+TXT 组件就是可复用的<word text="Vue"/>文件（<word text="Vue"/>实例, 封装标签, 样式和<word text="JavaScript"/>代码）。
+TXT **组件化** ：封装的思想，把页面上**可重用的部分**封装为**组件**，从而方便项目的 开发 和 维护
+TXT **一个页面， 可以拆分成一个个组件，一个组件就是一个整体, 每个组件可以有自己独立的 结构 样式 和 行为( `html` , `css` 和 `js` )**
+H2~ ### Vue 组件使用
+TXT 1. 创建组件，封装代码
+TXT 2. 引入组件，注册组件
+TXT - 全局注册：
+TXT `main.js` 中 `vue.compnent(自定义组件名, 组件对象)`。
+TXT - 局部注册：某个<word text="Vue"/>文件中，`components:{ 自定义组件名： 组件对象 }` 。
+TXT 3. 使用组件
+
+### concept/vue/vue2/阅读框架源码方法
+H1: 阅读框架源码方法
+H2~ ## Vue 源码阅读
+H2~ ### Vue 源码打包入口文件
+TXT 首先前往<word text="Vue2" />的 `github` 下载源码项目，安装依赖。
+TXT 然后从代码的目录结构入手，先分析每一个文件夹的功能以及包含的内容：
+TXT - `bechmarks` ：性能测试
+TXT - `dist` ：最终打包出的结果
+TXT - `examples` ：官方例子 `demo`
+TXT - `flow` ：类型检测，<word text="Vue2" />当初没采用<word text="TypeScript"/>，而是采用这个微软出品的类型检测，不过目前没人使用了
+TXT - `packages` ：一些写好的包（Vue 源码中包含 `weex` ）
+TXT - `scripts` ：所有打包的脚本文件
+TXT - `src` ：源代码目录
+TXT 一般情况下我们的代码都是放在 `src` 文件夹下，因此它是重点文件夹。打开 `src` 文件夹，分析其下的每个文件夹的功用：
+
+### concept/vue/vue3/3.5增加的特性
+H1: Vue3.5特性
+TXT 关于<word text="Vue3" />新特性官方指路：[新特性](https://blog.vuejs.org/posts/vue-3-3#script-setup-typescript-dx-improvemen
+H2~ ## Vue3 setup与Typescrupt
+H2~ ### Vue3 defineProps
+H2~ #### Vue3 更好的TS提示
+TXT 在<word text="Vue3" />中，`defineProps` 能够更好的支持<word text="TypeScript" />类型提示，父组件引用子组件时能够有更好的<word text="TypeScri
+TXT 1. 设置一个 ts 类型 `type.ts`
+TXT 2. 子组件引入类型
+TXT 3. 父组件使用子组件
+TXT 运行后鼠标悬停在子组件上，可以看到其 defineProps 的类型提示。如果没有设置 msg，他还会报警告提示。
+TXT 还可以进行一个扩展，代码如下：
+TXT 现在多了一个 age 变量的类型支持。
+TXT > [!WARNING] 注意
+
+### concept/vue/vue3/内置组件
+H1: 内置组件
+H2~ ## Vue3 Teleport
+TXT `<Teleport>` 接收一个 `to prop` 来指定传送的目标。`to` 的值可以是一个<word text="CSS" />选择器字符串，也可以是一个<word text="DOM" />元素对象。这段代码的
+TXT 下面来看一个例子：
+TXT 运行后 `<Teleport>` 内的组件都渲染到了 `body` 标签上。
+H2~ ### Vue3 搭配组件使用
+TXT `<Teleport>` 只改变了渲染的<word text="DOM" />结构，它不会影响组件间的逻辑关系。也就是说，如果 `<Teleport>` 包含了一个组件，那么该组件始终和这个使用了 `<teleport>
+TXT 这也意味着来自父组件的注入也会按预期工作，子组件将在 Vue Devtools 中嵌套在父级组件下面，而不是放在实际内容移动到的地方。
+H2~ ### Vue3 禁用 Teleport
+TXT 在某些场景下可能需要视情况禁用 `<Teleport>`。举例来说，我们想要在桌面端将一个组件当做浮层来渲染，但在移动端则当作行内组件。我们可以通过对 `<Teleport>` 动态地传入一个 `disabled` pr
+TXT 这里的 `isMobile` 状态可以根据 CSS media query 的不同结果动态地更新。
+H2~ ### Vue3 多个 Teleport 共享目标
+TXT 一个可重用的模态框组件可能同时存在多个实例。对于此类场景，多个 `<Teleport>` 组件可以将其内容挂载在同一个目标元素上，而顺序就是简单的顺次追加，后挂载的将排在目标元素下更后面的位置上。
+
+### concept/vue/vue3/指令
+H1: Vue3指令
+H2~ ## Vue3 setup
+TXT `setup` 函数是一个新的组件选项, 作为组件中 `compositionAPI` 的起点
+TXT 1. 从生命周期角度来看， `setup` 会在 `beforeCreate` 钩子函数之前执行
+TXT 2. **`setup` 中不能使用 `this` ， `this` 指向 `undefined`**
+TXT 3. 在模版中需要使用的数据和函数，需要在 `setup` 中 `return` 返回，只有返回的值才能在模板中使用。
+H2~ ## Vue3 reactive
+TXT 1. `setup` 需要有返回值, 只有返回的值才能在模板中使用
+TXT 2. 默认普通的数据, 不是响应式的
+TXT 在传入一个复杂数据类型，需要将复杂类型数据, 转换成响应式数据 （返回该对象的响应式代理）
+TXT > [!IMPORTANT] reactive()的局限性
+TXT >
+TXT > `reactive()` API 有两条限制：
+
+### concept/vue/vue3/插槽
+H1: 插槽
+H2~ ## Vue3 使用
+TXT ::: code-group
+TXT :::
+H2~ ## Vue3 渲染作用域
+TXT <word text="插槽" />作用域取决于组件在哪里定义，作用域就在哪里。与组件最终放置渲染地方无关。
+TXT ::: code-group
+TXT :::
+TXT 最终触发点击事件的是父组件的 `show` 函数方法与变量。
+H2~ ## Vue3 默认值
+TXT ::: code-group
+TXT :::
+TXT 此时父组件传了一个内容为 `click` 的盒子，子组件接收页面渲染为 `click` ，如果父组件不传，则默认渲染“默认值”。
+
+### concept/vue/vue3/源码学习-Monorepo管理
+H1: Monorepo
+TXT 现在在 `monorepo` 中，除了前面的 `reactivity` 和 `vue` 两个包，我们再新增一个 `shared` 包，用于存放一些公共的工具函数，给其他包导入使用。他们配置分别如下：
+TXT - `reactivity`
+TXT ::: code-group
+TXT :::
+TXT - `vue`
+TXT ::: code-group
+TXT :::
+TXT - `shared`
+TXT ::: code-group
+TXT :::
+TXT 现在 `reactivity` 模块想要引用 `shared` 模块的方法，除了 `import { isObject } from '../../shared'`，还可以 `import { isObject } fr
+TXT 如果直接 `pnpm i @vue/shared --filter @vue/reactivity`，会把<word text="Vue" />官方的包也安装进去，这并不是我们想要的。如果想要安装本地的包，需要添加 `-
+
+### concept/vue/vue3/源码学习-patchProp
+H1: patchProp
+H2~ ## Vue3 创建函数
+TXT 在 `runtime-dom/src` 文件夹下新建一个 `patchProp.ts` 文件，导出 `patchProp` 函数。修改 `index.ts`，引入对应的函数并统一导出。
+TXT ::: code-group
+TXT :::
+TXT 回到 `html` 文件，修改引入的内容。
+TXT 查看控制台，能看到打印的节点和其类名等属性。
+TXT ![打印的节点和其类名等属性](https://pic1.imgdb.cn/item/69ba64b0b96fa53fd04c158c.png)
+TXT 这四个属性分别为：
+TXT - `el`：组件节点
+TXT - `key`：属性名
+TXT - `prevValue`：旧属性值
+TXT - `nextValue`：新属性值
+
+### concept/vue/vue3/源码学习-Reactive实现
+H1: Reactive 实现
+H2~ ## Vue3 Proxy 代理初步实现
+TXT 前面实现 `ref` 的响应式，我们封装了 `link` 方法收集依赖和 `propagate` 方法触发依赖，因此 `reactive` 的实现可以复用。
+TXT 在<word text="Vue" />官方源码中， `reactive` 都是接收一个对象，通过 `proxy` 代理对象，当访问对象的属性时，触发 `get` 代理，当修改对象的属性时，触发 `set` 代理。
+TXT 在 `get` 方法调用 `link` 方法收集依赖，并使用 `Reflect.get` 映射返回值；在 `set` 方法中使用 `Reflect.set` 保存新值，调用 `propagate` 方法触发依赖，最后返回
+TXT 而 `link` 方法需要参数 `dep` 和 `sub` ，`sub` 可以引入 `activeSub` ，而 `dep` 是一个包含 `subs` 和 `subsTail` 的类实例对象。现在就是要思考怎么实现。
+TXT 既然它需要一个包含 `subs` 和 `subsTail` 的类实例对象，那么我们可以创建一个类 `Dep`，并添加 `subs` 和 `subsTail` 两个属性。后续把这个类实例对象传给 `link` 方法生成节点
+TXT 在<word text="Vue" />官方源码中， `reactive` 会先创建一个 `WeakMap` 保存所有对象，值是一个对象；每一个对象是通过 `Map` 保存的，每一个属性值则是 `new Dep` 类实例
+TXT ![格式](https://pic1.imgdb.cn/item/696a0024242c448284bce70c.png)
+TXT 在 `trackReactive` 方法中，我们需要做的操作为：
+TXT 1. 根据 `target` 获取 `WeakMap` 中保存的对象
+TXT - 如果能拿到对象，说明之前有保存到，直接使用
+TXT - 如果拿不到对象，说明是第一次获取，`new Map` 新建一个 `Map` ， `WeakMap.set()` 保存到 `WeakMap` 中
+
+### concept/vue/vue3/源码学习-Watch实现
+H1: watch
+H2~ ## Vue3 知识点回顾
+TXT 先来回顾一个之前提到的知识点。先看一下示例代码：
+TXT 在 [前面的章节](/vue/vue3/源码学习-Ref基础实现#scheduler-调度器) 中，讲到 `effect` 可以接收第二个参数 `options`，其中包含 `scheduler` 函数。如果传了这个函数
+TXT 打印结果如下：
+TXT ![打印结果](https://pic1.imgdb.cn/item/696c789fcc965d6157f6cc39.png)
+TXT 而 `watch` 的用法和这一致，在源码中，`watch` 就是基于 `effect` 实现的。
+H2~ ## Vue3 watch 基本实现
+TXT `watch` 是一个函数，接收三个参数：`source`、`callback`、`options`。其中：
+TXT - `source` 是要监听的响应式数据，可以是 `ref`、`computed` 等，也可以是一个函数。
+TXT - `callback` 是回调函数，当 `source` 发生变化时调用。可以接收两个参数，分别是新值 `newValue` 和旧值 `oldValue`。
+TXT - `options` 是可选参数，是一个对象。
+TXT 由于第一个参数 `source` 有两种类型，所以需要通过 `isRef` 函数来判断一下，如果是 `ref` 类型，则新建一个函数 `getter`，返回 `source.value`。
+
+### concept/vue/vue3/源码学习-打包配置
+H1: 打包配置
+H2~ ## Vue3 拿到打包命令参数
+TXT 先安装一个类型提示包：
+TXT 安装完毕后就有类型提示了。
+TXT 一般情况下，打包命令都允许在后面添加参数，如：
+TXT 表示我要打包成 `cjs` 格式。要如何接收参数呢？
+TXT 通过 `process.argv` 可以获取到参数，效果如下：
+TXT ![process.argv](https://pic1.imgdb.cn/item/6810e87d58cb8da5c8d4a006.png)
+TXT 可以看到，`process.argv` 拿到的是一个数组，包含当前执行的文件路径，后面的元素就是参数。但是处理起来可能会很麻烦，所以我们可以借助<word text="Node" />自带的 `parseArgs` 方法
+TXT 该方法需要传一个 `options` 对象，对象键名是前面命令参数携带的名称。
+TXT > [!INFO] 关于名称
+TXT > 上方示例代码中参数名称是 `--format`，因此这里键名是 `format` 。如果前面的命令改为 `node scripts/dev.js ddd cjs`，则这里的键名就要改为 `ddd`。
+TXT 键值是一个对象，包含以下属性：
+
+### concept/vue/vue3/源码学习-数组响应式
+H1: 数组的响应式
+H2~ ## Vue3 场景复现
+TXT 先来看一段示例代码：
+TXT 在 `effect` 中访问了数组的第4个元素，当数组的长度改变时，数组只有前两个元素了，按理来说 `effect` 应该要重新执行。查看控制台，发现它并没有重新执行。
+TXT 如何解决这个问题呢？
+H2~ ## Vue3 长度修改触发 effect
+TXT 查看 `mutableHandlers` 中的 `set` 方法，当值发生改变时，会触发 `triggerReactive` 方法，从而触发 `effect` 的更新。
+TXT 再看 `triggerReactive` 方法：
+TXT 它会对 `trackWeakMap` 中的 `depsMap` 进行遍历，此时我们就可以对 `depsMap` 做判断了。如果它的类型是 `Array` 数组类型，则获取到它的长度。
+TXT 接着遍历 `depsMap` 中的 `dep` （即数组的每一项索引），调用 `propagate` 方法，从而触发 `effect` 的更新。
+H2~ ## Vue3 隐式更新length
+TXT 一般的，用户更多会使用 `push`、`pop`、`shift`、`unshift` 等方法来修改数组，这些也会修改数组的长度。但是目前的代码并不会通知 `effect` 更新。
+TXT 那么，要怎么知道它触发了隐式更新呢？
+
+### concept/vue/vue3/源码学习-认识渲染器
+H1: 认识渲染器
+H2~ ## Vue3 渲染器
+TXT 先来试一下如何创建一个虚拟节点。
+TXT ![创建一个虚拟节点](https://pic1.imgdb.cn/item/696f20f1b931ecccdc5afc55.png)
+TXT 查看控制台打印，包含了以下属性：
+TXT - `__v_isVNode`：判断是否是虚拟节点的标志位。
+TXT - `el`：虚拟节点的 DOM 元素。
+TXT - `type`：虚拟节点的类型。
+TXT - `props`：虚拟节点的属性。
+TXT - `children`：虚拟节点的子节点。
+TXT - ...
+TXT 如何把这个虚拟节点渲染到页面上呢？
+TXT 通过渲染器 `render`，可以将虚拟节点转换为真实<word text="DOM" />，最终渲染到页面上。
+
+### concept/vue/vue3/源码学习-项目搭建
+H1: 项目搭建
+H2~ ## Vue3 初始化
+TXT 搭建一个新的项目，新建一个文件夹，初始化项目。
+TXT 此时就新建好了一个初始项目。如果想要使用 `monorepo` 管理，需要在根目录下新建一个 `pnpm-workspace.yaml` 文件，创建完后就能变成一个 `monorepo` 管理的项目。
+TXT 接着在 `pnpm-workspace.yaml` 文件写配置项：
+TXT 这个配置项表示他会管理根目录下的 `packages` 文件夹内的全部文件。此时项目文件目录如下所示：
+H2~ ## Vue3 依赖下载
+TXT 配置完毕后，如果想要下载依赖，用之前在根目录的终端下载依赖，会出现如下错误：
+TXT 主要大意是如果想要往根路径安装依赖，则需要加一个 `-w` 的标记。
+H2~ ## Vue3 配置esbuild
+TXT 安装完<word text="TypeScript" />后输入命令 `npx tsc --init` 初始化，初始化完毕后能看到 `tsconfig.json` 文件，修改文件配置：
+TXT 接着安装 `esbuild` 依赖用于项目打包。
+TXT 此时可以自己写打包配置，在 `package.json` 修改 `scripts` ，新增一个 `dev` 命令，配置打包命令。
+
+### concept/vue/vue3/组件
+H1: 组件
+H2~ ## Vue3 组件通讯
+H2~ ### Vue3 父传子
+H2~ #### Vue3 参数
+TXT 1. `type` ：类型限制
+TXT 2. `default` ：默认值
+TXT 3. `validator` ：校验规则
+TXT 4. `required` ：是否必传
+TXT ::: code-group
+TXT :::
+H2~ #### Vue3 事件
+TXT ::: code-group
+TXT :::
+
+### concept/vue/vue3/项目初始化
+H1: 项目初始化
+H2~ ## Vue3 CDN 项目创建
+TXT 复制 `cdn` 相关 `script` 标签，，创建 `js` 文件，通过 `Vue.createApp({})` 创建节点。
+H2~ ## Vue3 脚手架项目创建
+H2~ ### Vue3 软件安装
+TXT **NODE**
+TXT 请先访问 [Node官网](https://nodejs.org/zh-cn/) 安装<word text="Node.js" />。
+TXT **淘宝镜像**
+TXT 使用 [淘宝镜像](https://developer.aliyun.com/mirror/NPM?from=tnpm) 可以快速安装 `NPM` 依赖包
+TXT **yarn**
+TXT `yarn` 是与 `npm` 类似的包管理工具，`yarn` 缓存了每个下载过的包，所以再次使用时无需重复下载。 同时利用并行下载以最大化资源利用率，因此安装速度更快。
+TXT 安装 `yarn`
+H2~ ### Vue3 创建项目
+
+### practice/ai/AI Agent+智能大屏设计器/第二章 AI Agent 工程基础/LangChain框架
+H1: LangChain框架
+H2~ ## 含义
+TXT LangChain 是一个做大模型应用的开发框架
+TXT ![LangChain框架](../../../../images/practice/ai/AI%20Agent+智能大屏设计器/LangChain.png)
+H2~ ## 流程
+TXT 整体流程就是，当应用接收到用户的请求时（比如用户发了一个提示词），会调用 LangChain， LangChain会把这些提示词、模型、工具这些能力都准备好。
+TXT 当需要复杂流程时则由 LangGraph 来控制执行步骤。过程可能会判断要不要调用工具、要不要人工干预，调完工具会把结果返回给模型。
+
+### practice/ai/AI Agent+智能大屏设计器/第二章 AI Agent 工程基础/LLM是什么
+H1: 什么是 LLM
+H2~ ## 概念
+TXT LLM 是一种通过海量数据训练出来的大语言模型，能理解上下文，并通过预测下一个 Token 来生成自然语言内容。
+TXT ![LLM](../../../../images/practice/ai/AI%20Agent+智能大屏设计器/llm含义.png)
+H2~ ## Transformer 架构是什么
+TXT Google 最初提出 Transformer，是为了改进机器翻译等序列建模任务；后来大家发现它不仅适合翻译，还特别适合语言理解、文本生成，最终发展成 LLM 这种大模型的核心架构，现在主流 LLM 大多使用 Trans
+TXT Transformer 其实就是在不断的预测下一个最可能出现的 Token。
+TXT 比如这句话：
+TXT 再比如这句：
+TXT 可能因为你比狗强，大模型选择了你。
+TXT 其实就是一直找概率最高的那个 token，往后拼接。
+TXT 模型不会直接把它当成一整句话处理，而是会先切成 Token。
+H2~ ## Token 是什么
+
+### practice/ai/AI Agent+智能大屏设计器/第二章 AI Agent 工程基础/前言
+H1: 前言
+H2~ ## 为什么要学习 AI Agent
+TXT AI 从“能回答”到“能做事”，这是一个重要的突破。
+TXT 以前更多的是**问AI**，输入问题得到回到、文案或片段代码。未来更多的是**交给AI**，理解目标、调用工具、完成任务。
+TXT 核心变化：AI不止输出文本，而是参与任务流程。
+TXT 让 AI 真正做事的关键方式：
+TXT - LLM大模型：负责理解、推理和决策
+TXT - 工具：连接系统、数据和能力
+TXT - 控制流程：一步步观察结果并继续行动
+TXT - 目标/状态管理：记录目标、上下文和当前进展
+TXT > Agent = LLM + 工具+ 流程控制 + 目标/状态管理
+H2~ ## 传统大模型 vs Agent
+TXT | 对吧维度 | 传统大模型         | Agent                |
+
+### practice/ai/AI Agent+智能大屏设计器/第二章 AI Agent 工程基础/提示词工程
+H1: 提示词工程
+
+### practice/ai/AI Agent+智能大屏设计器/第二章 AI Agent 工程基础/调试大模型 API
+H1: 购买调试大模型 API
+H2~ ## 登录
+TXT 先打开这个网站：[阿里百炼](https://bailian.console.aliyun.com/) 登录。
+TXT 类似的模型购买平台有很多，比如 硅基流动、 deepseek，不一一介绍了，我们的课程就使用 阿里百炼。
+H2~ ## 模型
+TXT 左上角 nav 菜单点击“模型”，左下角点击“用量&费用”。
+TXT ![用量费用](../../../../images/practice/ai/AI%20Agent+智能大屏设计器/用量费用.png)
+TXT 查看是否有免费额度，如果有可以免费使用；没有则需要点击右上角头像，选择“充值汇款”购买。
+TXT 充值完或者有免费不需要充值，返回上一页模块，点击“API key”，右上角点击“创建API key”按钮，描述随意，然后**不要关闭弹窗，后续无法再重新打开，建议截图保存并复制一份保存到文档里**。
+H2~ ## 调试
+TXT 然后关闭弹窗，点击上方nav菜单的“API 参考”，点击左侧的“OpenAI兼容-Chat”，还可以调试，只需要粘贴刚刚保存的 API key即可。
+TXT ![模型API参考](../../../../images/practice/ai/AI%20Agent+智能大屏设计器/模型API参考.png)
+TXT 请求体已经配置好了，其中：
+
+### practice/ai/AI Agent+智能大屏设计器/第二章 AI Agent 工程基础/项目搭建
+H1: 项目搭建
+H2~ ## 环境要求
+TXT - Node.js >= v24.10.0
+TXT - pnpm >= v10.19.0
+TXT 安装依赖：
+TXT 查看 [LangChain 官方文档](https://docs.langchain.com/oss/javascript/langchain/overview)，
+TXT 了解更多关于 LangChain 的信息。
+H2~ ## 项目新建
+TXT 新建 `src/01-chat.js` 文件，用于测试 LangChain。复制以下代码：
+TXT baseUrl 和 apiKey 是模型厂商提供的，需要替换为自己的值。
+TXT ![baseUrl](../../../../images/practice/ai/AI%20Agent+智能大屏设计器/baseUrl.png)
+TXT - OpenAI compatible：OpenAI 格式的模型，支持 LangChain 提供的 API。
+TXT - Anthropic：Anthropic 格式的模型，支持 LangChain 提供的 API。
+
+### practice/ai/企业级AI应用开发实战(js版)/Function Tool
+H1: Function Tool
+H2~ ## 机制概述
+H2~ ### 大模型操作局限
+TXT <word text="LLM" />可以回答问题，但无法直接执行具体操作（如订票）。大模型只会回复订票方法说明，不会真正调用订票接口。
+H2~ ### 上下文方案
+H2~ #### 上下文方案实现
+TXT 通过上下文方案解决：在提示词中约定，若用户要求订票，则返回<word text="JSON" />数据。代码层检测到该数据后，调用预先编写的订票方法。
+TXT ::: code-group
+TXT {
+TXT "type": "ticket",
+TXT "arguments": {
+TXT "target": "目的地"
+TXT }
+
+### practice/ai/企业级AI应用开发实战(js版)/Token 消耗优化
+H1: Token 消耗优化
+H2~ ## Token 消耗机制
+TXT <word text="Token" />的消耗可理解为：每次提问传给智能体接口的字符越多，回答越长，消耗的<word text="Token" />越多。
+TXT 每次提问消耗的<word text="Token" /> = **传给大模型接口的 message 总字符量 + 大模型接口回答的字符量**。虽然<word text="Token" />并非按字符串量精确计算，但可如此
+TXT 为保障上下文，每轮问答都会存入 `message` 并推给智能体接口。用户持续提问将导致<word text="Token" />消耗急剧增长。
+H2~ ## Token 优化策略
+TXT 核心在于限制对话记录长度，移除久远且无需再消耗<word text="Token" />的历史对话。
+TXT 1. 限制最大长度，超出则按先进先出截取旧记录
+TXT 2. 超出最大长度后，将截取部分交由 AI 做总结，避免直接丢弃，减少对上下文的影响
+TXT ::: code-group
+TXT :::
+TXT 3. 超出最大长度，做向量回归（难度高，专业需求高，不推荐）
+H2~ ## 其他优化方式
+
+### practice/ai/企业级AI应用开发实战(js版)/上下文的威力
+H1: 上下文的威力
+H2~ ## 前言
+TXT 考虑以下需求：
+TXT 1. 添加违禁问题列表，当用户询问违禁问题时拒绝回答
+TXT 2. 大模型回答按"说明需求实现思路"→"需求技术选型"→"需求具体实现"三步走，每步需用户确认
+H2~ ## 修改提示词
+H2~ ## 上下文的力量
+TXT > 80% 关于大模型接口的回答要求，都可以用上下文说明约束来完成。
+TXT 不要低估应用中 `context.md` 上下文文档的作用，需根据<word text="LLM" />应用目标，持续打磨。
+H2~ ## 推荐约束
+TXT - **违禁问题**：在上下文中添加违禁问题类型来限制
+TXT - **风格**：希望 AI 回答的风格，专业或幽默
+TXT - **输出要求**：输出格式、长度限制或其他要求
+
+### practice/ai/企业级AI应用开发实战(js版)/前端工具卡片
+H1: 前端工具卡片
+TXT 部分场景下<word text="LLM" />需要给用户返回预制卡片，让用户完成选择操作。例如：
+TXT 1. 我要点外卖 → 展示外卖选择<word text="UI" />组件 → 选择后发送消息给 AI → AI 完成订购
+TXT 2. 我要买衣服 → 展示衣服选择<word text="UI" />组件
+TXT 工具不限于服务器端执行逻辑，也可以是让前端展示预制<word text="UI" />卡片，即前端工具卡片。
+H2~ ## 卡片逻辑
+TXT 目前没有专门定义前端卡片的标准规范，采用以下变通方案：
+TXT 1. 定义前端展示类<word text="Function Tool" />，声明需要前端展示的内容
+TXT 2. 代码层检测到前端展示<word text="Function Tool" />后，下发消息给前端，`role` 保持 `tool`，附加自定义 `cardName` 属性
+
+### practice/ai/企业级AI应用开发实战(js版)/前端界面
+H1: 前端界面
+H2~ ## 基础界面
+H2~ ### 效果图
+H2~ ### 数据定义
+TXT 1. 输入框输入的问题：准备一个 `inputValue` 变量
+TXT 2. 对话区的内容：使用一个数组接管显示，变量名假定为 `convertList`，数组每个元素为提问或回答。同时需区分用户提问与 AI 回答，左侧显示 AI 回答，右侧显示用户提问。
+TXT 保持 messageList 即可，`role` 区分来源，`content` 为内容
+H2~ ### 界面搭建
+TXT 发起接口时展示思考中，AI 思考完毕后隐藏思考中。
+H2~ ### 逻辑
+H2~ ### 交互问题
+TXT 1. 当前版本每次都会重复返回内容
+TXT 历史会话会被接口反复返回。会话变长后严重影响接口速度。
+
+### practice/ai/企业级AI应用开发实战(js版)/大模型接口
+H1: 大模型接口
+H2~ ## 前言
+TXT 大模型不需要自己开发，通常所说的 AI 落地，都是调用各厂提供的大模型接口。
+TXT 实际开发的是 AI 应用的前后端，使用的是<word text="LLM" />大模型接口。
+H2~ ## 国内大模型接口厂商类型
+TXT 国内大模型接口厂商大致分为以下几类：
+TXT 1. **涵盖多家大模型的集成接口**：除自家模型外，还可选择其他家模型。如字节和阿里，还能搭配<word text="DeepSeek" />、<word text="Kimi" />等
+TXT 2. **大模型厂商自己的接口**：<word text="DeepSeek" />和<word text="Kimi" />都有自己的对外接口，这些接口通常只能选择自家的不同版本模型
+H2~ ## <word text="HTTP" />请求
+TXT 大模型接口基本都是<word text="HTTP" />接口，可直接发起<word text="HTTP" />请求。需注意找到支持<word text="HTTP" />直接请求的接口，与通过<word text="
+TXT 上方代码可以看到，大模型的请求体有两个核心属性：
+TXT - `model`：模型名称，具体调用的大模型，通过看官方文档可以找到
+TXT - `messages`：请求内容，包括角色和内容
+
+### practice/ai/企业级AI应用开发实战(js版)/提示词工程
+H1: 提示词工程
+H2~ ## 前言
+TXT 为减少 AI 幻觉、提升回答准确性而优化提问的过程，即为提示词工程。核心在于如何提问才能获得更优质的回答。
+H2~ ## 基本要素
+TXT - **目标任务**：要问的内容
+TXT - **上下文**：给出之前的记录或当前实际情况的上下文
+TXT - **输入描述**：告知 AI 提问内容或参考资料
+TXT - **输出描述**：期望 AI 回答的形式与格式要求
+H2~ ## 高级要素
+TXT - **角色扮演**：让 AI 模拟特定角色，如医生、律师、记者、程序员等
+TXT - **举例**：复杂问题给出具体示范
+TXT - **分隔符**：用分隔符隔开提示词各区域，避免混淆。常用 `###`、`---` 等
+TXT - **思考步骤**：要求 AI 按指定顺序思考，先做什么、后做什么
+
+### practice/ai/企业级AI应用开发实战(js版)/搭建服务器
+H1: 搭建服务器
+H2~ ## 前言
+TXT 前端虽然可以直接请求大模型接口，但存在以下问题：
+TXT 1. <word text="API" /> Key 写在前端容易暴露
+TXT 2. 无法鉴权和拦截攻击
+TXT 3. 后续操作如定义工具、<word text="MCP" />等无法进行
+H2~ ## <word text="OpenAI" />库
+TXT 主流编程语言都有专门调用 AI 接口的库，且基本遵循同一套标准。如<word text="Node.js" />的<word text="OpenAI" />库。
+H2~ ## 详解<word text="OpenAI" />
+TXT 1. <word text="OpenAI" />库使用的地址通常与直接<word text="HTTP" />请求不同
+TXT 2. <word text="OpenAI" />库相对于<word text="HTTP" />请求，提供了规范，更便于使用<word text="Function Call" />及<word text="MCP" 
+TXT 3. <word text="OpenAI" />库请求接口本质上仍用 `fetch` 发送<word text="HTTP" />请求，可拦截其发出的<word text="HTTP" />请求和响应
+H2~ ## 重写 fetch 查看请求和响应
+
+### practice/ai/企业级AI应用开发实战(js版)/流式传输
+H1: 流式传输
+H2~ ## 怎么做
+TXT - 后端
+TXT 1. `llm` 改为 `stream` 流式传输
+TXT 2. AI 接口修改为 `stream` 返回
+TXT - 前端
+TXT 用<word text="SSE" />方案接收后端数据
+H2~ ## <word text="SSE" />技术
+TXT <word text="SSE" />是一种基于<word text="HTTP" />的传输技术，允许接口持续向前端发送消息，而非传统<word text="HTTP" />的一次性返回后即断开。在<word text
+H2~ ## 定义 SSE 接口
+TXT 1. 正常定义一个接口
+TXT 2. 修改响应头
+TXT 3. 通过 `res.write` 方法按固定格式一次次的写入响应，而不是一次性给入
+
+### practice/handle/business/元素不定大小溢出隐藏
+H1: 元素不定大小隐藏做溢出隐藏
+H2~ ## 学习目标
+TXT 1. 需求效果的实现
+TXT 2. <word text="JavaScript" />能力锻炼
+TXT 3. IntersectionObserver 的使用
+H2~ ## 思路分析
+TXT ![一图流](https://pic1.imgdb.cn/item/67ac0d6dd0e0a243d4fe81e9.png)
+TXT 效果实现思路主要是找到最后一个显示在容器内的<word text="DOM" />元素，计算它后面的个数，加上它自己本身，然后隐藏后面的元素并显示 `+n` （`n` 为隐藏的元素个数 + 最后一个元素）。
+TXT 假设总数为 6，最后一个显示的元素是 3，那么容器就展示 2 个元素，最后一项显示 6-3+1 ，即显示 +4。
+H2~ ## 流程
+H2~ ### 壳子搭建
+TXT ![流程壳子](https://pic1.imgdb.cn/item/67e975710ba3d5a1d7e6ec01.png)
+TXT 页面首次加载时，由于无法确定哪个元素是最后一个显示的，因此先显示所有数据。声明变量数组存储展示数据和全部数据，循环生成高度不固定的元素。最外层容器高度使用随机数生成，模拟不固定高度需求。
+
+### practice/handle/business/前端下载后端传输的文件
+H1: 前端下载后端传输的文件
+TXT 前端下载后端传输的文件方案分为以下几种：
+TXT 1. 直接打开下载地址
+TXT 无法命名，仅适用于 `GET` 直接返回 `blob` 的接口。若下载接口需携带 `token` 则无法实现。
+TXT 2. 利用 `a` 标签的 `download` 属性
+TXT 较合适的方案
+TXT 3. 第三方库 `file-saver`
+H2~ ## 直接打开
+TXT 通过 `window.open()` 直接打开下载。
+TXT 缺点：
+TXT 1. 无法更改名称
+TXT 2. 没有走接口，而是通过浏览器下载，无法做 `token` 权限校验
+H2~ ## a 标签下载
+
+### practice/handle/business/前端文件上传与相关操作
+H1: 前端文件上传与相关操作
+H2~ ## 前置知识
+H2~ ### 上传方案
+TXT - 通过二进制 `blob` 传输，如通过 `formData` 传输
+TXT - 通过转为 `base64` 字符串上传，但字符串体积会较大
+H2~ ### 相关对象
+H2~ #### files
+TXT 用户选择一个或多个文件后，可通过 `<input type="file">` 元素获取文件数据，返回 `FileList` 对象，包含用户选择的文件。可获取文件类型、名称、大小等信息，前端用于做其他处理。
+TXT 其中，`file` 打印结果如下所示：
+TXT ![pCHx6Zn.png](https://s1.ax1x.com/2023/07/21/pCHx6Zn.png)
+TXT > [!TIP] 拓展
+TXT >
+TXT > `file` 对象本质是 `File` 类的实例化。这是另一种创建文件的方式，但一般不这么做，因为无法让用户自己选择，也无法写入磁盘。
+
+### practice/handle/business/前端滚动锚点注意事项
+H1: 前端滚动锚点注意事项
+H2~ ## 何为锚点
+TXT 锚点（`Anchor`）通常指<word text="HTML" />中的 `<a>` 元素，用于创建超链接，可链接到页面上其他位置或其他网页。
+H2~ ## 案例场景
+TXT 1. 从外部跳转到商品楼层页，根据 `url` 地址上的 `query` 参数，判断是否需要定位到某个指定楼层，来实现不同入口进入，定位到不同楼层
+TXT 2. 在页面中通过对应的按钮直接跳转到指定楼层
+H2~ ## 常见方案
+H2~ ### scrollIntoView
+TXT 将调用该方法的元素滚动到屏幕指定位置：中间、底部或顶部
+TXT - 优点：方便，获取元素后直接调用
+TXT - 缺点：难以精确控制，仅支持滚动到中间、顶部、底部，无法设置偏移
+TXT ::: code-group
+TXT :::
+
+### practice/handle/business/富文本编辑器
+H1: 富文本编辑器
+H2~ ## Tinymce
+H2~ ### 注意事项
+TXT 可安装对应的<word text="Vue" />/<word text="React" />组件直接作为组件使用，也可直接下载进行原生操作。
+TXT 若报找不到文件错误，需将 `tinymce` 复制到 `public` 文件夹内。
+H2~ ### 安装
+TXT 安装<word text="Vue" />模块的组件：
+TXT 若为<word text="React" />项目则改为 `@tinymce/tinymce-react`。
+TXT 安装 `tinymce` 包：
+H2~ ### 使用
+TXT 引入富文本编辑器：
+TXT 通过 `tinymce.init()` 方法的 `selector` 属性传入一个 `id` 选择器或类选择器，将富文本编辑器挂载到目标元素上。
+TXT > [!WARNING] 注意
+
+### practice/handle/business/权限控制
+H1: Vue 项目权限控制
+H2~ ## 后端返回路由规则 ※
+TXT 后端返回权限控制的一般步骤：
+TXT 1. 用户登录
+TXT 2. 根据用户 `userid` 获取对应菜单
+TXT 3. 规则化格式（根据数据生成合适的路由规则）
+TXT 4. 添加动态路由（使用 `addRoute`）
+TXT 5. 记录 `state`
+H2~ ### 登录获取，格式化数组
+TXT 新建 `perssion.js` 文件，用于动态设置路由规则。
+TXT 获取后端返回的路由数据并格式化。后端返回的数据通常是数组对象，每一项包含 `name`、`path` 与 `component`，值都是字符串。而前端路由 `component` 需要 `import()`，因此需要格式
+TXT - 首先调用接口获取数据
+TXT - 遍历返回的数据数组，格式化 `component`
+
+### practice/handle/combat/websocket实时进度
+H1: websocket 实时进度
+H2~ ## 场景复现
+TXT 现在有一个场景，在请求<word text="WebSocket"/>接口时，会分段展示当前的进度，比如执行中、执行完毕，并且展示最终的耗时。效果如下：
+TXT ![场景复现](https://pic1.imgdb.cn/item/68786ea058cb8da5c8bcb0f9.png)
+TXT 具体流程图如下：
+H2~ ## WebSocket 基本使用
+TXT 1. `new` 浏览器自带的 `WebSocket` 对象，并传入 `ws` 接口地址，就可以发起对 `ws` 接口的请求。
+TXT 2. `WebSocket` 对象有多个事件，比如 `open` 连接、`message` 来消息、`error` 连接出错、`close` 连接中断等。
+TXT 就像前端请求接口，会把 `token` 放到请求头上，后端做验证，防止非法请求，`WebSocket` 也有类似的机制和做法，比如 `token`，`uid` 等。实现思路是通过 `ws` 接口地址，把 `token` 
+H2~ ## 页面结构
+TXT 页面代码如下：
+H2~ ## ws 传输
+TXT 前后端交互主要靠 `ws` ，所以需要定义一个 `ws` 对象，用于传输数据。代码如下：
+
+### practice/handle/combat/前端工具函数开发
+H1: 前端工具函数开发
+TXT 本篇从一个需求出发，开发一个前端工具函数，并一步步对它完善、封装，提高它的易用性、复用性、可维护性。
+H2~ ## 需求
+TXT 编写一个函数，用于单位转化。如 `setUnit(100)` 返回 1 百；`setUnit(1000)` 返回 1 千。
+TXT 第一版代码：
+TXT 该版本存在以下缺陷：最多只能转换到十万，且无法添加单位，代码可读性和可维护性都很差。
+H2~ ## 扩展性改版
+H2~ ### 第一版改进
+TXT 针对上述问题，进行第一版改进。
+TXT 关于转换，可以设计一个 `Map` 映射，将单位与转换的倍数对应起来，这样在转换时，只需要遍历这个 `Map`，就可以完成转换。
+TXT 这一版的修改增强了代码的可读性和可维护性，用户可以添加单位，并且转换的范围也方便扩大，只需要在映射上添加对应的单位即可。
+TXT 但仍有问题：后续新增单位仍需人为维护，如果遇到冷门单位，只有部分组件需要，直接添加在 `Map` 里维护成本较高。
+H2~ ### 第二版改进
+
+### practice/handle/combat/动图动效方案
+H1: 前端动图动效方案
+H2~ ## 图片方案
+TXT |         名称         |        体积         |   质量   |               兼容性                | 透明底支持 |
+TXT | :------------------: | :-----------------: | :------: | :---------------------------------: | :--------: |
+TXT | <word text="GIF" />  |   同等质量下最大    |  质量低  |             基本全兼容              | 无法透明底 |
+TXT | <word text="aPNG" /> | 同等质量下小于 gif  |  质量高  |       兼容比较新的现代浏览器        | 支持透明底 |
+TXT | <word text="WebP" /> | 同等质量下小于 apng |  质量高  |   比 apng 好，但是 ios 比 apng 差   | 支持透明底 |
+TXT | <word text="AVIF" /> |   同等质量下最小    | 质量极高 | 非常差，chrome 需要 85+，ios 要 16+ | 支持透明底 |
+H2~ ### 最佳实践
+TXT 优先使用<word text="WebP" />作为首选，从大小和兼容性上都比<word text="aPNG" />好，而<word text="AVIF" />兼容性太差，不去考虑。
+TXT 同时还可以针对动图做一个降级方案，优先使用<word text="WebP" />，如果浏览器不支持<word text="WebP" />，则使用<word text="aPNG" />，如果<word text="a
+TXT 可以写一个 `js` 函数，用于处理动图降级处理。核心思路为：
+TXT - `new Image` 创建一个 `img` 标签，分别加载<word text="AVIF" />和<word text="WebP" />，哪个成功用哪个
+
+### practice/handle/combat/动态列表学习数据思维
+H1: 通过动态列表学习数据思维
+H2~ ## 需求效果
+TXT ![效果图](https://pic1.imgdb.cn/item/67cfa18d066befcec6e2b6a6.png)
+TXT 可以同时勾选、取消勾选展示对应列的表格，有一部分列允许显示隐藏，一部分列不允许显示隐藏。同时能本地存储上次的配置、表格内容支持通过 `slot` 自定义的需求。
+H2~ ## 实现思路
+TXT 实现该效果有两个方案，方案一是创建一个数组对象，每一项是一个列的配置对象，如下方代码所示：
+TXT 通过 `v-for` 循环数组，渲染每一列。但这么做有一个缺点，如果不需要某个配置，则需要直接修改数组对象，后续需要时找不回来，会随着操作丢失一部分。因此该方案不适用。
+TXT 方案二通过两个配置共同决定，`columnConfig` 是一个不会改变的对象（与方案一直接修改数组配置不同），只用来决定每一列的配置项情况，再新增一个 `state` 对象，用于定义每一列的显隐。代码如下：
+H2~ ## 实现效果
+H2~ ### 初步效果
+TXT 根据上方思路的方案二，通过 `v-for` 循环 `state` 对象，`v-if` 判断 `state` 对象的值来决定是否显示该列。这样即使不显示该列，该列的配置信息也不会丢失，可以随时恢复显示。
+TXT ::: code-group
+TXT :::
+
+### practice/handle/combat/复杂联动表单
+H1: Vue 复杂联动表单
+H2~ ## 效果展示
+TXT ![效果](https://pic1.imgdb.cn/item/67c6a327d0e0a243d40b6667.png)
+TXT 进入该页面，筛选「投放区域」下拉框选择数据后，「投放详细」表格联动其数据，自动添加对应的数据到表格中，用户手动输入每个区域对应的委托人。输入完毕后在「目标人群」模块，新增数据添加目标人群，最后点击 "提交" 按钮，将数据
+TXT 数据格式如下图所示：
+TXT ![参数格式](https://pic1.imgdb.cn/item/67c69958d0e0a243d40b4de5.png)
+H2~ ## 数据流向梳理
+TXT 拿到需求先梳理数据流向。不推荐每一个模块的下拉框、表格等各自使用一个变量，因为这样不方便联动数据，需要写很多额外代码处理。
+TXT 根据上述数据格式，声明一个变量 `formData` 用来做数据存储，最后作为接口参数给到后端。
+TXT 「投放区域」的下拉框不能使用`v-model`语法糖了，而是使用 `@change` 事件，手动处理数据并赋值到 `formData` 中。`:modul-value` 绑定`computed`计算属性计算出来的数据，当
+TXT 「投放详细」表格则直接使用 `formData` 变量作为数据源，用户修改委托人时直接修改 `formData` 中的数据。
+TXT 最后「目标人群」直接修改 `formData` 中的数据很不方便，因此作为一个子组件，它自己使用自己的数据，父组件点击 “提交” 按钮后，获取到子组件的数据，循环 `formData` 变量，把从子组件拿到的数据添加到每
+H2~ ## 页面架构
+
+### practice/handle/combat/状态思维应对多变页面
+H1: 通过状态思维应对多变页面
+H2~ ## 状态思维
+TXT 有的时候会碰到页面会基于各种因素，来产生很多变化的情况，与其一个个做判断，不妨把页面归纳为几种状态，把多个因素统一归为几种状态。然后**用数据定义好每种状态下的展示。这样就只用关心修改状态，定义不同状态下的数据就好**。
+H2~ ## 案例分析
+TXT 下面有一个页面，根据不同的状态，展示不同的内容：
+TXT 1. 用户一进入页面，此时没有 `key` 值，要有一个输入框和确认按钮，让用户输入 `key` 值。
+TXT ![无key无确认](https://pic1.imgdb.cn/item/67c66818d0e0a243d40b1b35.png)
+TXT 2. 用户输入 `key` 值后，还未确认，输入框隐藏，有一个文本显示当前的 `key` 值，按钮内容变为 “我已确认无误，使用 key”。
+TXT ![无key有确认](https://pic1.imgdb.cn/item/67c6687cd0e0a243d40b1b60.png)
+TXT 3. 点击确认无误按钮后页面存在 `key` 值了，页面由显示 `key` 值的文本和按钮组成，按钮内容变为 “修改”。
+TXT ![有key待修改](https://pic1.imgdb.cn/item/67c668e2d0e0a243d40b1b89.png)
+TXT 4. 点击修改按钮后进入修改状态，页面多出一个输入框，按钮内容变为 “确认修改”。
+TXT ![有key正在改](https://pic1.imgdb.cn/item/67c66936d0e0a243d40b1bab.png)
+
+### practice/handle/combat/需求架构设计并优雅实现
+H1: 需求架构设计并优雅实现
+H2~ ## 需求分析
+TXT 假设有一个工作台首页，目前面临以下情况：
+TXT 1. 需要请求一个接口，弹出对应的提示（如续费、添加常用应用等），随着后续的更新迭代，可能会有各种类型的提示
+TXT 2. 在别的页面进行了某些操作后，首页要感知到，并显示对应的内容
+TXT 3. 其他情况，如 `websocket` 推送处理等
+H2~ ## 什么是架构
+TXT 保障拓展性、维护性、复用性，以及低耦合的原则下设计出哪些模块，以及模块之间怎么交流。
+TXT 因此看到需求第一步，先想怎么拆分模块，保证以下两点：
+TXT - 职责单一
+TXT - 模块消息传递沟通，不直接调用
+H2~ ## 架构设计
+TXT 还是以上述的需求为例子，可以把这个首页需求中各种弹窗组件抽离出来统一在 `src/components/modelCommponent` 文件夹内，在该文件夹的根目录下创建一个配置文件 `index.js` 和一个动态组
+
+### practice/handle/element/vue动态表单实现原理
+H1: <word text="Vue" />动态表单实现原理
+H2~ ## 基础封装
+TXT 首先实现基础封装，根据父组件传入的配置项 `formItem` 生成对应表单项，再与父组件传入的 `formData` 进行双向绑定。
+TXT `formItem` 配置项：
+TXT - `label`：表单项标签
+TXT - `type`：表单项类型，如 `input`、`select`、`radio` 等
+TXT - `key`：表单项 key，用于与 `formData` 绑定
+TXT - `rules`：表单项校验规则
+TXT - `props`：表单项属性，如 `options`、`placeholder` 等
+TXT 子组件中通过 `v-for` 循环遍历 `formItem`，根据 `type` 使用 `component` 动态组件渲染对应表单组件，并使用 `v-model` 进行双向绑定。用计算属性提取全部校验规则。
+TXT 最后若有需要，可将 `el-form` 组件的方法暴露给父组件使用。例如提供 `validate` 方法用于手动触发表单校验；或提供 `resetFields` 方法用于重置表单。
+TXT ::: code-group
+TXT :::
+
+### practice/handle/element/二封el日历组件
+H1: 二次封装 el 日历组件
+H2~ ## 回顾
+TXT 第三方库按需求改造一般方案：
+TXT 1. 通过<word text="CSS" />改造达到视觉效果欺骗
+TXT 2. 通过<word text="CSS" />配合<word text="JavaScript" />操作<word text="DOM" />
+H2~ ## UI 改造
+H2~ ### 样式改造
+TXT 首先引入 `el-calendar` 日历组件，然后修改样式（样式部分不做过多赘述）：
+TXT 1. 修改整体日历的宽度和外边距，达到居中
+TXT 2. 修改每个日历格子的高度
+TXT > [!WARNING] 注意
+TXT >
+TXT > 如果该模型的样式设置了怪异盒子模型 `box-sizing: border-box`，则为其设置行高时需要把内边距去掉才能实现垂直居中。
+
+### practice/handle/element/第三方插件组合式函数封装
+H1: 第三方插件封装组合式函数
+H2~ ## 前言
+TXT 在项目中引用了拖拽第三方插件 `sortable`，拖拽时数据并没有发生变化，还是旧的数据。
+TXT ![效果图](https://pic1.imgdb.cn/item/695f4fd83ff7af7e8754bb49.png)
+TXT 可以看到，`list` 的数据并没有发生变化，还是旧的数据。
+H2~ ## 数据更新
+TXT 那么，如何让数据更新？
+TXT `Sortable` 插件提供了 `onUpdate` 回调函数，当拖拽结束后，会触发该回调函数，先看一下打印出来的内容。
+TXT ![打印出来的内容](https://pic1.imgdb.cn/item/695f50b13ff7af7e8754bb64.png)
+TXT 打印出来是一个对象，其中 `oldIndex` 是拖拽前的索引，`newIndex` 是拖拽后的索引。那么可以通过 `splice` 方法来更新数据。
+TXT 现在页面的数据已经更新了。
+H2~ ## 组合式函数封装
+TXT 但是，每次使用第三方插件时都需写一遍 `onUpdate` 回调函数，这样太麻烦，可封装一个组合式函数来解决。
+
+### practice/handle/element/组件库搭建
+H1: 组件库搭建
+H2~ ## 思路流程
+TXT 前端开发时，常常会搭建一个自己的组件库。搭建一个组件库最基础的步骤总览：
+TXT 1. 创建一个项目（脚手架、`lerna`），后续项目的 `readme.md` 就是该脚手架的文档
+TXT 2. 项目下新建文件夹，后续在此开发
+TXT 3. `Workspace` 定义连接
+TXT 4. 编写组件库入口代码，支持按需引入和全局引入。后续引入组件库只需引入入口文件代码
+TXT 5. 在文档项目中引入，开发调试
+TXT 6. 编写脚本命令，用于打包组件库
+H2~ ## 上手实操
+H2~ ### 前置操作
+TXT 接下来先新建一个项目，这里以<word text="Vite" />创建的<word text="Vue3" />项目为例。
+TXT 新建一个组件库文件夹，推荐先新建一个 `package` 文件夹，再在里面新建，原因是后续可能会用到其他工具。本次新建了一个 `MyUI` 文件夹。
+
+### practice/handle/element/组件设计技巧
+H1: <word text="Vue" />组件设计技巧
+TXT 设计一个组件需要从以下四个方面来思考：
+TXT 1. 样式
+TXT 样式应该写哪些？需要注意什么？
+TXT 2. `template`
+TXT 通过插槽传递还是直接写在子组件内？
+TXT 3. 行为
+TXT 某逻辑由父组件处理还是子组件处理？
+TXT 4. `props`
+TXT 哪些东西放在子组件内？哪些数据通过父组件传参？
+H2~ ## 样式的思考
+H2~ ### 容器、内部内容的基本样式
+TXT 以搜索栏为例：搜索栏一般有不同的输入框和搜索、重置两个按钮。一般情况下两个按钮是固定的，样式由子组件设置。
+
+### practice/handle/element/组合式函数封装
+H1: 组合式函数封装
+H2~ ## 前言
+TXT 给一个组件绑定事件，如挂载时绑定鼠标移动事件，卸载时解绑鼠标移动事件。若直接在组件内写，每次组件更新都会重新绑定事件，卸载时也会重新解绑，代码量会很多。
+TXT 因此可封装一个组合式函数，将绑定和解绑事件放在组合式函数中，减少代码量。
+H2~ ## 思考
+TXT 封装这样一个函数，需要考虑哪些问题？
+TXT 1. 谁要绑定和解绑事件？
+TXT 能用到事件绑定的，除直接 `document.querySelector` 获取的元素外，还有 `ref` 获取的元素，因此需考虑两种情况。
+TXT 2. 绑定的是什么类型的事件？
+TXT 事件有很多，`click`、`mousemove`、`keydown` 等，需使用者传递。
+TXT 3. 绑定的回调函数？
+TXT 同样由使用者传递。
+H2~ ## 实现
+
+### practice/handle/element/页码列表组件封装思路
+H1: 页码列表组件封装思路
+H2~ ## 前言
+TXT 项目中封装业务组件两大原则：
+TXT 1. 不结合具体业务逻辑
+TXT - 组件只作为数据容器，数据统一由父组件传入。
+TXT - 只编写 UI 逻辑，具体数据操作这类业务逻辑，触发父组件监听交由父组件处理。
+TXT 2. 尽量提供简便
+TXT 在不结合具体业务逻辑的前提下，让父组件使用组件尽可能方便，原则是观察大部分页面的设计，能方便满足大多数页面需求。少数页面有差距，也有扩展方案。
+H2~ ## 组件搭建
+TXT 以<word text="Element Plus" />组件库中的表格和分页器组件为基础，进行初步搭建。
+TXT 目前已尽可能简便地搭建组件，但父组件用起来仍很麻烦，与不封装直接用没有太大区别。
+TXT 因此需要观察大部分页面和接口，加入部分业务逻辑，使其满足大部分页面。同时也要让极端情况可扩展自定义。
+H2~ ## 翻页逻辑
+
+### practice/handle/test/前端Bug调试指南
+H1: 前端 Bug 调试指南
+H2~ ## 取值调用报错
+H2~ ### Cannot read properties of undefined (reading 'xxx')
+TXT 试图从一个 `undefined` 里读取某个属性，常见于从用取值的时候。
+TXT 解决方法：看这个报错马上根据报错上的 读 `xxx` 全局搜索，找到用到 `xxx` 的地方，此时已经可以断定此处有一个 `undefined` ，找出来为什么是 `undefined` 。通过判断获取 `?` 可选链等
+H2~ ### xxx is not a function
+TXT 常见于调用方法的时候，这个报错意味着 `xxx` 不是一个函数，而是一个 `undefined` 、字符串、数组、对象等，却被当成方法来调用。
+TXT 解决方法：直接按照提示搜索 `xxx` ，排查它为什么不是方法。
+H2~ ## 解析错误
+H2~ ### Expected xxx in JSON at position 1
+TXT 只见于 `JSON.parse` 解析<word text="JSON"/>字符串时，`JSON` 字符串格式有问题，一般后端返回的数据，前端<word text="Axios"/>会自动试图解析，不一定是前端主动使用 
+TXT 解决方法：检查解析的数据是否有问题，是否标准的 `JSON` 数据，可以用 `JSON` 解析工具去校验。
+H2~ ## 资源引入错误
+
+### practice/handle/test/前端代码风格定制
+H1: 前端代码风格定制
+TXT 前端代码风格规范通常由<word text="ESLint" />工具实现，通过配置文件来定制代码风格。在大厂中往往会定制一套自己的代码风格规范，而不是简单的下载<word text="ESLint" />，在代码提交时
+TXT 本文从<word text="ESLint" />基本知识和配置解读出发，<word text="ESLint" />集成到各个工具作为切入点，介绍如何定制自己的代码规范。
+H2~ ## ESLint 核心配置
+TXT <word text="ESLint" />配置项很多，不需要记太多，主要记忆以下重要的核心配置项：
+TXT - `extends`：继承已有的配置，等于把他人写好的配置合并
+TXT - `rules`：自定义规则，用于一条条定义<word text="ESLint" />规则
+TXT - `plugins`：使用一个插件，插件一般用来自定义一些规则
+TXT 配置可以写在 `package.json` 文件中，也可以写在单文件中【如 `yml` 、`cjs` 、`js` 等】。`package.json` 权重最小，`js` 文件权重最高，文件一般叫 `.eslintrc.j
+TXT `eslintrc` 可以写成很多种格式，如果是 `json` 格式，无需暴露对象，如果是 `js` 、`cjs` 格式，则需要 `module.exports` 导出对象。
+TXT ::: code-group
+TXT :::
+TXT 最后在 `package.json` 中添加相应命令，即可开始<word text="ESLint" />检查。
+
+### practice/handle/test/前端环境变量使用和原理
+H1: 前端环境变量使用和原理
+H2~ ## 核心内容
+TXT 1. 以<word text="Vue" />为例，一般项目如何定义环境和环境变量
+TXT 2. 环境变量本质
+H2~ ## 环境变量用途
+TXT 首先先明确环境变量的用途。环境主要分为开发环境、生产环境、测试环境、预发环境等等，不同的环境需要做不同的处理。如：接口服务器地址等。
+TXT 手动切换自然可以，但是容易忘记切换导致生产事故的发生，因此使用环境变量能更好的避免生产事故的发生。
+H2~ ## 环境变量使用
+TXT 使用环境变量，需要先定义好 `.env.环境名称` 文件去定义，运行命令时指定环境。每个脚手架创建的项目均有差异。
+TXT - <word text="Vite" />+<word text="Vue3" />项目
+TXT 存：`VITE_变量名 = xxx`
+TXT 取：`import.meta.env.VITE_变量名`
+TXT - `vue-cli` 项目（<word text="Webpack" />+<word text="Vue2" />）
+
+### practice/handle/test/前端自动化测试
+H1: 前端自动化测试
+H2~ ## 无头浏览器
+TXT 首先认识一下无头浏览器，无头浏览器是一个没有 UI 界面的模拟浏览器，可以用<word text="Node.js" />配合对应的库模拟用户在浏览器浏览的操作。
+TXT 常见的无头浏览器有：<word text="Puppeteer" />（推荐）、PhantomJS（老牌，不维护）、<word text="Selenium" />等。
+H2~ ## 思路实现
+TXT 1. 编写<word text="Node.js" />脚本代码
+TXT 2. 脚本 `link` 为全局指令（可不做）
+TXT 3. `js` 代码立体无头浏览器模拟访问
+TXT 4. 获取各项指标
+TXT 首先搭建一个简单的项目，目录结构如下：
+TXT 下载 `puppeteer-core` 依赖，这里不下载 `puppeteer` 是因为该模块比较大，它包含了浏览器内核，而 `puppeteer-core` 是一个轻量级的模块，只包含浏览器控制功能。
+TXT 在 `index.js` 文件内引入 `puppeteer-core`，并编写代码：
+TXT 终端命令行运行 `node index.js`，即可成功打开浏览器。
+
+### practice/handle/test/前端部署与缓存管理
+H1: 前端部署与缓存管理
+H2~ ## 学习目标
+TXT 1. <word text="Vue" />、<word text="React" />项目部署后如何工作
+TXT 2. 缓存如何工作（搭配 Node 服务器实践）
+TXT 3. <word text="JavaScript" />、<word text="CSS" />、<word text="HTML" />保证更新，又利用缓存
+H2~ ## 前端部署到服务器如何工作
+TXT ![前端部署到服务器如何工作一图流](https://pic1.imgdb.cn/item/67e977260ba3d5a1d7e6ec2e.png)
+TXT 前端打包后把静态资源放到服务器上，用户访问时，浏览器会向服务器发送请求，服务器返回 `index.html` 文件，浏览器会解析这个 `html` 文件。`html` 文件中 `script` 和 `link` 引用了静
+TXT 下面可以新建一个<word text="Vue" />项目，打包；然后再新建一个<word text="Node" />项目，把前面打包好的 `dist` 文件夹放到<word text="Node" />项目中，目录结
+TXT `server.js` 文件内容如下：
+TXT 运行<word text="Node" />浏览器访问 `locahost:8000` 即可看到前面打包的<word text="Vue" />项目。F12 打开控制台，查看网络请求，可以看到 `js` 和 `css` 
+TXT ![200](https://pic1.imgdb.cn/item/67ab02ecd0e0a243d4fe4fb5.png)
+TXT 刷新页面后再看看网络请求，会发现 `js` 和 `css` 资源都是 304 或者 200（来自内部缓存），表示浏览器缓存了这些资源，没有向服务器发送请求，而是从缓存中拿到资源。
+
+### practice/handle/test/图片预加载插件
+H1: 图片预加载
+H2~ ## 前言
+TXT 为什么需要图片预加载？
+TXT 这其实也是一种优化的手段，比如某些页面有图片，且用户极大概率会进入，如果等待用户进入该页面再去请求图片资源，会有一定的延迟，用户体验不好。提前加载图片，等用户进入页面时，图片已经加载好了，用户体验会更好。
+H2~ ## 实现
+H2~ ### html 添加 link 标签
+TXT 最简单粗暴的方式就是直接在 `index.html` 中添加对应的 `link` 标签，如下：
+TXT `link` 标签添加 `preload` 属性，会告诉浏览器该资源需要提前加载。
+TXT 这么写虽然简单，但是当图片很多的时候，`index.html` 会变得很长，且不利于维护。
+H2~ ### js 动态添加 link 标签
+TXT 既然 `index.html` 不方便维护，我们可以使用 js 动态添加 `link` 标签，如下：
+TXT 这样我们就可以动态添加 `link` 标签了，基础的功能也有。
+TXT F12 查看控制台，发现每次它都会先请求 6 张图片，剩余的都是挂起状态，直到前面的图片请求完毕后，再去请求剩余的图片。
+
+### practice/idea/js/algorithm/LRU缓存算法
+H1: LRU 缓存算法
+H2~ ## 前言
+TXT <word text="LRU" />（Least Recently Used）是一种常用的页面置换算法，选择最近最久未使用的页面予以淘汰。
+TXT 该算法赋予每个属性一个访问字段，用来记录一个属性自上次被访问以来所经历的时间 `t`，当须淘汰一个属性时，选择现有属性中其 `t` 值最大的，即最近最久未使用的属性予以淘汰。
+H2~ ## 逻辑
+TXT 可能还是觉得很抽象，下面来看看它的运行逻辑：
+TXT 1. 有一个数组，最大长度为 4（即最多只能缓存 4 个数据），数组中存储的是对象的键值对
+TXT 2. 第一次访问 `a`，第二次访问 `b`，第三次访问 `c`，第四次访问 `d`
+TXT 此时数组已经满员了，没法再承装更多的内容了。此时的数组存储如下：
+TXT | 位置 | 值  |
+TXT | ---- | --- |
+TXT | 0    | a   |
+TXT | 1    | b   |
+
+### practice/idea/js/class/类的多态
+H1: 类的多态
+H2~ ## 含义
+TXT <word text="多态" />是在父类中定义的属性和方法被子类继承后，可以有不同的实现。
+H2~ ## 使用场景
+TXT 一个 H5 项目，允许钉钉登录，也允许微信登录，二者的登录业务逻辑不同，这里就需要使用到多态，做不同的逻辑处理。
+H2~ ## 实现
+H2~ ### 父类
+TXT 先写一个父类，实现登录功能，调用一个 `getUserInfo()` 方法获取用户信息，然后调用 `login` 方法实现登录逻辑。`getUserInfo()` 方法在父类中不实现，由子类去实现。简要代码如下所示：
+H2~ ### 子类
+TXT 接下来实现两个子类，各自实现各自的 `getUSerInfo` 功能，分别实现钉钉登录和微信登录。钉钉登录需要调用钉钉的 API，微信登录需要调用微信的 API，这里只是简单模拟一下，实际项目中需要调用对应的 API。简
+H2~ ## 严谨
+TXT 每个类只支持外部调用它们的 `login` 方法，而不允许外部直接调用 `getUserInfo` 方法。
+
+### practice/idea/js/design/单例模式实现请求的复用与兼容
+H1: 优化案例：请求的复用与兼容
+H2~ ## 案例详情
+TXT 有一个项目原本是用 `https` 发请求，走 `esmoudle` 模块。
+TXT ::: code-group
+TXT :::
+TXT 后来页面需要加入到公司的 APP 中混合，不想重新开发直接复用，但因为 APP 的安全限制，APP 用的是 APP 自带的 `requestApp` 方法，并且使用起来有一定的区别。并且在 APP 环境下，不能引入原来的
+TXT 问题所在：
+TXT 1. 页面已经写好，如果一个个地方改写，工程量大，难以查找，容易错漏
+TXT 2. 根据不同的环境，引入不同的请求方法
+H2~ ## 单例模式
+TXT 目前已经初步实现需求了，但还是有进一步优化的空间。每次调用这个方法，都需要去调用 `isApp` 方法去判断环境，这样有很大的性能浪费。这里可以用<word text="单例模式" />来优化。
+TXT 单例模式，保证项目里某一个类型只创建一次。
+
+### practice/idea/js/design/设计模式
+H1: 设计模式
+H2~ ## 意义
+TXT 设计模式（<word text="Design pattern" />）代表了最佳的实践，通常被有经验的面向对象的软件开发人员所采用。设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案。这些解决方案是众多软件
+TXT 大白话就是，在合适的场景使用合适的设计模式：
+TXT - 代码比较稳定
+TXT - 代码比较高效
+TXT - 代码维护性强
+TXT - 代码比较规范
+H2~ ## 模式
+H2~ ### 工厂模式
+TXT 本质：**更方便地去创建实例**
+TXT 看下面这个案例：
+TXT `axios` 的 `create` 方法实际上就是这种工厂模式，下面粘贴一下伪代码来模拟一下：
+
+### practice/idea/js/js深度克隆
+H1: js 深度克隆
+TXT 有一个需求，需要写一个函数，调用该函数后实现<word text="深度克隆" />并返回一样的数据。下面来想该怎么实现。
+H2~ ## 原始值
+TXT 原始值好解决，直接原样返回即可。
+H2~ ## 非原始值
+H2~ ### 数组
+TXT 如果是一个数组，不能直接返回，此时返回的只是地址，修改原数组会影响克隆后的数组。
+TXT 因此需要先判断一下当前的元素是否是数组，如果是，则克隆一个空数组，然后遍历原数组，将每个元素根据递归的思想，再进行一次深度克隆。最后返回克隆后的数组。
+H2~ ### 对象
+TXT 和数组一样，如果是一个对象，不能直接返回，此时返回的只是地址，修改原对象会影响克隆后的对象。
+TXT 因此需要先判断一下当前的元素是否是对象，如果是，则克隆一个空对象，然后遍历原对象，将每个元素根据递归的思想，再进行一次深度克隆。最后返回克隆后的对象。
+H2~ ### 函数
+TXT 函数不能直接克隆，因为函数的执行需要上下文，而克隆后函数的上下文会丢失，导致函数无法执行。
+
+### practice/idea/js/promise/Axios二次封装
+H1: Axios 二次封装
+H2~ ## 基本封装部分
+H2~ ### 基本全局配置
+TXT 如 `baseURL` ，超时时间等。
+H2~ ### 密钥
+TXT `Token` ，密钥等出于权限和安全性考虑的密钥请求头设置。一般设置在请求<word text="拦截器" />上，做额外的处理。
+H2~ ### 响应
+TXT 针对不同的状态码做处理，主要针对错误请求做全局统一处理。在响应拦截器上获取到响应数据，根据状态码做处理。
+TXT 错误码包括浏览器与服务端的错误，如 404、500 等；还有业务错误码，前后端协商设置的，如 999、10 等。
+TXT 但是如果 `code` 后续如果多新增几个情况，`switch` 需要写很多，代码冗余不好维护，可以修改为<word text="策略模式" />。业务错误代码和浏览器错误码分开处理。还支持函数传参，做特殊提示定制。
+TXT 最后考虑一些特殊接口如 `blob` 数据的，接口，可以判断当前的类型是不是一个 `blob` 类型，如果是，则直接返回 `res` 即可。
+H2~ ### 代码示例
+H2~ ## 扩展
+
+### practice/idea/js/promise/write/手写Promise类与.then
+H1: 类与 .then
+H2~ ## Promise 标准
+TXT 具体<word text="Promise A+" />标准可查看 [Promise A+](https://promisesaplus.com.cn/) ，这里只拿几个点做简要提及：
+TXT 1. 要求
+TXT - "promise" 是一个拥有 `then` 方法的对象或函数，其行为符合本规范；
+TXT - "thenable" 是一个定义了 `then` 方法的对象或函数，文中译作"拥有 `then` 方法" ；
+TXT - "value" 指任何<word text="JavaScript" />的合法值（包括 `undefined`, `thenable` 和 `promise`）；
+TXT - "exception" 是使用 `throw` 语句抛出的一个值。
+TXT - "reason" 表示一个 `promise` 的拒绝原因。
+TXT 2. 状态
+TXT - 处于等待态时，<word text="Promise"/>需满足以下条件：可以迁移至完成态或拒绝态
+TXT - 处于完成态时，<word text="Promise"/>需满足以下条件：不能迁移至其他任何状态；必须拥有一个不可变的终值
+TXT - 处于拒绝态时，<word text="Promise"/>需满足以下条件：不能迁移至其他任何状态；必须拥有一个不可变的拒绝原因
+
+### practice/idea/js/promise/write/手写Promise静态方法
+H1: 静态方法
+TXT 与 `catch` 和 `finally` 类似，<word text="Promise A+" />的标准只包含了 `.then`，并没有包含其余的方法，这些方法都是 ES6 标准中新增的，因此 A+ 规范的文档没有这
+H2~ ## resolve
+TXT 根据 [MDN: Promise](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/res
+TXT 翻译成大白话就是，`Promise.resolve()` 会把值转为 `Promise`，但是分三种情况：
+TXT 1. 值本来就是 `Promise` —— 不转换直接返回
+TXT 2. 值是 `thenable` 对象（即有 `then` 方法）—— 返回 `then` 方法
+TXT 3. 都不是，直接 `resolve` 返回该值
+TXT 分析至此，`resolve` 方法只需要添加一些判断即可。
+H2~ ## reject
+TXT 根据 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject) 文档来看
+TXT > [!TIP] 特别注意
+TXT > 与 `Promise.resolve()` 不同，即使 `reason` 已经是一个 `Promise` 对象，`Promise.reject()` 方法也始终会将其封装在一个新的 `Promise` 对象中。
+
+### practice/idea/js/promise/如何避免相同的请求重复发送
+H1: 如何避免相同的请求重复发送
+H2~ ## 前言
+TXT 在项目中，可能存在一个路由页面有多个组件，其中几个组件使用了相同的传参接口，展示相同的数据。如果这些组件在页面都发起请求，那么就会导致相同的请求重复发送，浪费资源。
+TXT 如何优化，实现相同请求只发送一次，其他组件直接复用请求的结果呢？
+H2~ ## 实现
+H2~ ### 函数初步封装
+TXT 先封装一个函数，用于接收发请求的函数，成功或失败后返回对应的状态和值，先不考虑重复请求的问题。
+TXT 现在就能正常发送请求了，接下来考虑如何实现数据缓存。
+H2~ ### 数据缓存
+TXT 新建两个变量，`isPending` 用于表明当前是否有请求正在进行，`stack` 用于缓存请求的结果。
+TXT 在发送接口时，先判断 `isPending` 是否为 `true`，如果为 `true`，说明当前有请求正在进行，直接将当前请求的回调函数加入 `stack` 中，等待请求完成后再执行回调函数。不为 `true` 则正常
+TXT 请求完成后，把 `isPending` 设置为 `false`，并遍历 `stack` 数组，执行对应的成功或失败回调函数。
+TXT 现在再刷新一下页面，调用接口，可以看到控制台只有一条网络请求了。
+
+### practice/idea/js/promise/并发任务控制
+H1: 并发任务控制
+H2~ ## 前置代码要求
+TXT 首先看一段代码：
+TXT 代码有一个 `timeout` 函数，用于延迟一段时间后执行。函数 `addTask` 接收时间和名称，执行类的 `add` 方法后触发延迟函数，执行完毕后再输出文本。
+TXT 依次调用 `addTask` 函数，发现任务 3 并不是 3 秒后触发，而是 8 秒后触发。梳理一下时间顺序不难看出，他同一时间只有两个任务可以执行，如下：
+TXT 首先执行任务 1，需要等待 10 秒，然后执行任务 2，需要等待 5 秒。
+TXT 此时任务 3 需要等待前两个任务其中一个任务执行完毕才可继续执行，最早的是任务 2，5 秒后执行完毕，此时任务 3 才开始执行，等待 3 秒后执行完毕，因此是 5+3=8 秒。
+TXT 如果还是不理解，可以想象为类似于现实中的银行柜台。一个银行中只有两个柜台可以办理业务，第三个人想要办理业务，则需要等待前两个人中其中一人办理好才能办理。
+H2~ ## 配置并发类
+H2~ ### 基础属性
+TXT 需要配置以下属性：
+TXT - <word text="并发" />的数量，默认为 2
+TXT - 线程池数组，初始为空
+
+### practice/idea/js/promise/并发请求封装
+H1: 并发请求封装
+H2~ ## 需求
+TXT 有一个需求，用于一次发任意多个请求，当请求失败时则重新发送，直到所有的请求都成功发送，或超出最大重试次数，才返回最终结果。
+TXT 进阶条件是把该方法封装为可复用的<word text="并发" />请求工具。
+H2~ ## 思路梳理
+TXT 1. 要并发的请求携程方法，传给并发函数工具
+TXT 2. 给传入的方法生成内部 `id` ，方便重发
+TXT 3. 给请求返回的 `Promise` 包装一层，附带 `id`
+TXT 4. 利用 `Promise.allSettled` 发送请求
+TXT 5. 循环返回结果，找出失败的 `id` ，找到原方法再次调用发请求
+H2~ ## 实操
+H2~ ### 创建类
+TXT 写一个类，创建 `id` 并在映射表中把 `id` 和方法映射，再给函数方法属性赋值一个 `id` 。后续失败时可拿到该 `id` ，通过该映射表获取对应失败方法重试。
+
+### practice/idea/js/promise/消除异步传染性
+H1: 消除异步传染性
+H2~ ## 题目
+TXT 下面来看一段代码：
+TXT 有一个函数 `getUser` ，调用接口获取数据，通过 `async` 和 `await` 获取异步数据，此时该函数添加了 `async` 后会变为 `Promise` 异步函数。后续函数想要使用该函数也需要再一次 `
+TXT 这样虽说能够解决，但是代码看起来冗杂，且让函数从<word text="纯函数" />变成了异步函数，带来了<word text="副作用" />。如何把那些函数都变成同步函数，且最终能够打印出结果？
+TXT 首先需要定位最主要的问题在哪里。毋庸置疑，在最开始的 `getUser` 函数，因为需要获取到数据，因此才开始一系列的 `async` 和 `await` 。因此需要在这里做文章。
+TXT 在取消掉 `async` 和 `await` 后函数如下：
+TXT 此时需要它立即返回结果，但是由于接口请求还没回来，它无法返回响应的数据，但是又必须返回一个结果，那么怎么解决呢？
+H2~ ## 思路
+TXT 报错，对的没错，这里既然无法返回接口响应的数据，那么就返回一个报错信息过去。
+TXT 这个思路可以用一个图来解释，如下图所示：
+TXT ![思路](https://pic.imgdb.cn/item/65b4c667871b83018a6595b0.jpg)
+TXT 首先函数开始，执行 `fetch` 函数，由于它是异步操作，因此无法等待到它数据返回，直接返回错误信息，运行结束。
+
+### practice/idea/js/promise/请求取消abort
+H1: 请求取消
+TXT 请求可否取消呢？询问 AI 都说 `axios`、`fetch` 发起的请求可以通过 `abort` 方法取消，代码如下：
+TXT ::: code-group
+TXT :::
+TXT 运行<word text="Node.js" />服务，打开页面，点击查询按钮调用接口，查询数据，然后点击取消查询按钮，发现控制台显示请求已取消，看着好像还行，能正常工作？但是点击删除按钮后快速点击取消删除按钮取消删除请
+TXT 下面来解释一下：
+TXT - 前端浏览器发送一个删除请求给后端服务器，要求删除一条数据
+TXT - 后端那边接收到删除请求后查询数据库删除数据
+TXT - 前端这边取消删除请求
+TXT - 后端那边并不清楚请求已经被删除了，继续做删除操作
+TXT - 后端删除成功了，发送响应给浏览器
+TXT - 浏览器发现请求已经取消了，就不响应 Promise 展示
+TXT > [!IMPORTANT] 综上所述
+
+### practice/idea/js/promise/高量级任务执行优化
+H1: 高量级任务执行优化
+H2~ ## 题目
+TXT 现有一个场景，有一个小球通过动画在绕长方形运动，有一个按钮，点击后会执行高量级任务（本质是循环了上千次的函数）。点击按钮后，由于<word text="JavaScript" />是同步任务，因此小球会卡住不动，等待函数
+TXT 现在要求提供一个优化方案，需求如下：
+TXT 1. 如果要执行一步任务，需返回 `Promise`
+TXT 2. 任务执行速度要快，减少页面卡顿
+TXT 3. 尽量兼容更多的浏览器
+H2~ ## 异步任务
+TXT 他要求异步任务返回 `Promise` ，因此需要 `return` 一个 `new Promise` 在任务执行完毕后返回成功状态。
+TXT 但是点击按钮后发现还是阻塞，这是因为浏览器要执行完全部的微任务才会执行后续的任务，包括渲染。因此原本的渲染帧会被微任务挤到后面执行完微任务后再执行。
+TXT 既然微任务也会阻塞，那宏任务（或者叫延时任务）效果会不会好一点呢？
+TXT 点击后没有阻塞了，但是小球动画会有卡顿。
+TXT 想要分析为什么会造成卡顿，需要先了解宏任务执行的本质。事件循环本质是一个死循环，每次会先取出宏任务中的第一个任务，执行任务。然后判断是否到渲染的时机，到时机再渲染。
+
+### practice/idea/js/判断是否是数组
+H1: 判断是否是数组
+TXT 判断是否是数组有以下几种方法：
+TXT 1. `Object.prototype.toString`
+TXT 2. `instanceof`
+TXT 3. `isArray`
+H2~ ## Object.prototype.toString
+TXT 下面来看一段代码：
+TXT 因此可以通过第二个单词是否是 `Array` 来判断该变量是否是数组。在过去可以写出以下代码来判断：
+TXT 在以前这个方法是可以使用的，但是现在不可以了。在之前变量无法更改 `toString` 这个字符串，但是现在可以可以了，通过 `toStringTag` 来修改。代码如下：
+TXT 因此这个方法现在无法百分百保证正确了。
+H2~ ## instanceof
+TXT <word text="instanceof" />能判断一个变量的原型链条上有没有 `array` 的原型，代码如下：
+TXT 该方法也能正常运作，且不会受 `toStringTag` 的影响，继承也能够正常识别。
+
+### practice/idea/js/垃圾回收与内存泄漏
+H1: 垃圾回收与内存泄漏
+H2~ ## 垃圾回收
+TXT 一个应用程序运行过程中需要有内存，运行完之后这块内存空间不再需要了，这块空间就被称之为垃圾，白白占用内存。<word text="垃圾回收" />器作用就是回收这块垃圾空间，后续可写入新的东西。做这个事情的过程就叫做垃圾
+TXT 之所以需要学习垃圾回收和内存泄漏，是因为垃圾回收器做不到完美的垃圾回收。下面看一段代码：
+TXT 该代码主要求平均年龄，然后将年龄打印出来。当程序运行完之后，`users` 在控制台上还能打印。它是否需不需要不是由垃圾回收器说了算，而是由人说了算，垃圾回收器再聪明，也只是一个算法，无法真正回收所有不需要的内存空间。它
+TXT 但是垃圾回收器知道有一样东西一定是垃圾，就是我们都无法引用的东西。下面加一段代码：
+TXT 代码运行后无论如何也无法拿到 `users` 数组了，这块内存空间就能够被认定为垃圾。
+H2~ ## 内存泄漏
+TXT 由上可以得出，垃圾回收器回收的东西是垃圾的子集，垃圾回收器回收不到的东西就叫做内存泄漏。
+TXT 内存泄漏有两个条件：
+TXT 1. 不需要这块内存空间
+TXT 2. 垃圾回收器回收不掉
+TXT 因此如果垃圾回收器回收不掉的内存过多，就会造成严重的内存泄露，需要认为干预。人为干预就需要了解垃圾回收器的机制。
+
+### practice/idea/js/如何判断对象是否存在循环引用
+H1: 如何判断对象是否存在循环引用
+H2~ ## 前言
+TXT 首先来看看什么是循环引用。<word text="循环引用" />是对象内一个属性的值是这个对象本身，这就是对象的循环引用。
+TXT 上方示例代码中，`obj` 对象的 `c` 属性的值是 `obj` 本身，这就是循环引用。
+H2~ ## 实现
+H2~ ### 集合存储判断
+TXT 下面来实现一下这个功能。
+TXT 1. 首先判断传入的参数是否是对象，如果不是对象直接返回 `false`。
+TXT 2. 循环遍历对象的每一条属性，递归调用方法
+TXT 3. 把当前对象保存到 `new Set()` 集合中，如果当前对象在集合中存在，则表示存在循环引用；没有则继续递归调用
+H2~ ### 去除同级影响
+TXT 上方的代码有一个 Bug，它会把同级相同的也视为循环引用。
+TXT 这只能算是同级属性的属性值相同，并不能算是循环引用。但是上面的代码把 `obj.a` 的值 `{ b: 2 }` 存储到了 `seen` 集合中，当 `obj.c` 的值也是 `{ b: 2 }` 时，就会判断为循环引用
+
+### practice/idea/js/属性描述符
+H1: 属性描述符
+H2~ ## 概念
+TXT 创建一个对象 `obj` ，并为其添加一个属性 `x` ，值为 10。然后，使用 `Object.getOwnPropertyDescriptor()` 方法获取 `x` 属性的描述符。得到了以下的结果：
+TXT 结果表明，这个对象的 `x` 属性值是 10，并且是可写的、可枚举的、可配置的。
+TXT 属性描述符是可以设置的，通过 `Object.defineProperty()` 方法可以修改属性的特性。例如，将 `x` 属性值设置为 20，并且只读，不可枚举：
+TXT 设置为不可枚举之后，`x` 属性将不会出现在 `for...in` 循环中，也不会出现在 `Object.keys()` 的结果中，打印 `obj` 也不会显示 `x` 属性。
+TXT 但是没设置 `configurable` ，`x` 属性的描述符还可以修改，此时如果修改 `x` 的是否可写、是否可遍历属性描述符是允许的。
+TXT 如果设置了 `configurable: false` ，则不能修改 `x` 属性的描述符，也不能删除 `x` 属性。
+H2~ ## 项目实战
+TXT 声明一个类，构造器内声明一个数据对象 `data` ，这个 `data` 希望是内部修改的，外部只能使用，不能修改它的值。
+TXT 此时虽然外部使用的人无法修改，但是没有任何报错提示。如果是多人大型项目开发，开发者发现修改了 `data` 属性，但是没有任何报错提示，这会导致混乱。因此有一个报错提示是很有必要的。
+H2~ ## 访问器
+TXT `Object.defineProrperty()` 方法可以设置访问器属性，访问器属性由一对 `get` 和 `set` 函数组成。读取对象的属性，实际上是从 `get` 函数上获取值，设置对象的属性，实际上是调用 `
+
+### practice/idea/js/异步数据竞态取消
+H1: 异步数据竞态取消
+H2~ ## 前言
+TXT 在项目中，难免会遇到一些 `tab` 栏切换操作，例如订单状态、优惠券等，这些 `tab` 栏切换时，需要从服务器获取数据，如果切换的频率很高，就会导致频繁的请求，有可能会造成新的数据接口请求回来了，旧的数据接口才在后面
+H2~ ## 思路
+TXT 每一次请求新的接口时，抛弃上一次的旧接口，这样就可以保证每次请求的数据都是最新的。
+H2~ ## 实现
+TXT 写一个函数方法 `createCancelTask`，接收一个<word text="Promise" />回调函数。
+TXT 声明一个空函数 `cancel`，用于取消上一次的请求。
+TXT 返回一个函数，参数是接口函数获取到的参数；该函数再返回 `new Promise`，用于执行完回调函数后，返回 `resolve` 数据。
+TXT 接下来就是实现功能，在 `new Promise` 函数中，执行完 `cancel` 函数后，为 `cancel` 函数赋值一个新的值，用于把 `resolve` 和 `reject` 置空。这样，当新的接口请求回来时，
+TXT 在使用的时候，把 `createCancelTask` 函数作为接口函数的包装函数。
+TXT 它的执行流程是：
+TXT 1. 调用 `init(1)`，`cancel` 函数为空函数，执行后无任何副作用。修改 `cancel` 函数为把它当前的 `resolve` 和 `reject` 置空。执行 `task` 函数
+
+### practice/idea/optimize/性能优化
+H1: 性能优化
+TXT 性能方面着重考虑几点：
+TXT 1. 首屏加载优化：首屏速度顾名思义，就是刚进页面获取资源渲染页面的速度
+TXT 2. 缓存优化：再次打开网页怎么让速度变快
+TXT 3. 渲染优化：操作速度是用户在点击、输入等操作后需要等待的时间
+TXT 4. 长任务拆分：动画怎么保证流畅
+H2~ ## 首屏速度，白屏时间等
+TXT 先来分析一下首屏速度的组成：
+TXT ![首屏速度组成](https://pic1.imgdb.cn/item/67ebf66b0ba3d5a1d7e9624b.png)
+TXT 从图不难看出，在浏览器打开页面，需要先从服务器获取资源，获取完资源后才能执行 `js` 文件，这部分时间就是白屏时间；执行完 `js` 文件后请求数据，渲染 DOM 元素，这部分是渲染时间。
+TXT 在白屏时间中执行 `js` 文件的速度一般情况下是很快的，除非项目用到了大的算法。因此大多数项目白屏时间主要在从服务器请求资源的这段时间。如果是<word text="Vue"/>或<word text="React"/
+TXT 执行完 `js` 文件后浏览器开始渲染页面，发 `axios` 请求获取数据渲染真实 DOM，最后页面呈现数据。
+H2~ ### 指标细化
+
+### practice/idea/optimize/打包优化
+H1: 打包优化
+TXT 项目的构建速度由两个方面决定：
+TXT - 处理的内容数量
+TXT - 进行的操作
+TXT 优化操作一般有以下几点：
+TXT 1. 减少处理内容数量
+TXT 指定 `include` 和 `exclude` 排除掉一些不必要的处理； DLL 优化处理
+TXT 2. 提高处理效率
+TXT 多线程操作；缓存 `sourcemap`
+TXT 3. 减少操作的数量
+TXT 去掉一些没意义的操作
+H2~ ## 减少处理内容数量
+H2~ ### 排除不必要的处理
+
+### practice/idea/optimize/资源加载优化
+H1: 资源加载优化
+TXT 首屏速度是用户体验最关键的一环，资源加载速度是影响性最大的因素。资源的加载速度 = 资源大小 + 网速。资源大小影响的方面有：
+TXT 1. 压缩。压缩可以影响资源大小，但是脚手架和工具基本已经做好了，编程上没法再做更多
+TXT 2. 一部分代码分割出来做异步加载，需要使用的时候再加载出来。这是核心思想
+TXT 3. 代码尽量精简
+H2~ ## 异步加载
+H2~ ### prefetch 加载
+TXT 假设 `Page1` 和 `Page2` 是同步加载的，`Page3` 是异步加载，则会有以下的流程：
+TXT ![流程](https://pic1.imgdb.cn/item/67ebfb740ba3d5a1d7e9664f.png)
+TXT 无论是同步还是异步都会先创建一个 `link` 标签去请求加载，只不过异步的 `Page3` 会标记 `prefetch` 。没有该标记则说明是需要优先加载的，同步加载的资源都加载完毕后再去加载异步加载的资源。
+TXT 通过项目来观察一下 `prefetch` 加载的过程。无论是组件还是路由，异步加载一般都是使用 `import` 方法来引入使用，代码如下：
+TXT :::code-group
+TXT :::
+
+### practice/idea/optimize/项目速度优化
+H1: 优化项目速度
+H2~ ## RequestAnimation
+H2~ ### 需要原因
+TXT 如果一个长时间运行的 JS 操作，可能会阻塞浏览器的渲染，这样我们页面就看不到反应，导致长时间白屏，或者页面不展示任何效果。
+TXT 解决方法为把操作切成一片一片的，先操作一片，操作完后渲染，再操作下一片。
+TXT 用一副图例来说明如下：
+TXT ![requestAnimation图例说明](https://pic1.imgdb.cn/item/67ebe93b0ba3d5a1d7e95a5e.png)
+TXT 例如，我要渲染一个表格，该表格有 50000 条数据，则光是渲染和滑动就有很明显的卡顿现象。代码如下：
+TXT 使用时间切片，把渲染操作分成 500 个小片段，每次渲染 500 条数据，渲染完成后再渲染下一批，这样就不会有卡顿现象。
+H2~ ### 实现
+TXT `requestAnimation` 定义的任务，会在浏览器渲染完成后去执行。所以我们只需要把每个切片放到 `requestAnimation` 。它在执行完一个后，会等着浏览器渲染完成再执行下一个。
+TXT 下面通过代码来实现这一思想，还是以上方案例为例：
+TXT 上方代码利用时间切片的思想，先切出 500 条数据，渲染成功到页面上后再获取后续的数据，此时页面用户在看前 500 条数据，后续的数据在悄悄渲染。这样就不会有卡顿的效果。
+
+### practice/idea/vue/nextTick
+H1: $nextTick
+H2~ ## 执行原理
+TXT <word text="Vue" />更新<word text="DOM" />是异步的。侦听到数据变化后，<word text="Vue" />将开启一个任务队列，缓冲同一事件循环中的所有数据变更。同一个 watche
+TXT 在下一个事件循环 `tick` 中，<word text="Vue" />刷新队列并执行已去重的任务。
+TXT `$nextTick` 内部采用宏任务和微任务结合的异步队列技术，保证回调在<word text="DOM" />更新之后执行。执行时间依赖浏览器刷新机制，在下一个浏览器刷新周期之前执行，而非立即执行。
+H2~ ## 宏任务还是微任务
+TXT 核心代码—— `nextTick` 函数：
+TXT 关键分支：
+TXT `nextTick` 既可以是宏任务，也可以是微任务。
+TXT 微任务的定义：
+TXT <word text="Vue" />环境支持<word text="Promise" />时使用<word text="Promise" />，否则 `microTimerFunc` 回退为宏任务 `macroTime
+TXT `macroTimerFunc` 的定义：
+TXT 优先级：`setImmediate`（仅 IE10+） > `MessageChannel` > `setTimeout`。三者均为宏任务。
+
+### practice/idea/vue/Vue2 VS Vue3
+H1: Vue2 VS Vue3
+H2~ ## Vue2
+H2~ ### 响应式缺陷
+H2~ #### 无法监听到对象属性的动态添加和删除
+TXT 在 `data` 中声明一个对象：
+TXT 页面上通过 `for...in...` 循环该对象，能看到数据 `a`。为对象 `obj` 添加属性 `b`：
+TXT 控制台能输出 `b`，但页面只有 `a` 没有 `b`，属性 `b` 没有响应式。
+H2~ #### 无法监听到数组下标和 length 长度的变化
+TXT <word text="Vue2" />内部重写了部分数组 API 使其保持响应式：
+TXT - `array.pop()`
+TXT - `array.push()`
+TXT - `array.shift()`
+TXT - `array.unshift()`
+
+### practice/idea/vue/vue异步组件实现原理
+H1: Vue 异步组件实现原理
+TXT 在<word text="Vue" />中，`defineAsyncComponent` 方法用于定义异步组件，实现按需加载，减少初始加载时间，提高性能。
+TXT 传入一个返回 `Promise` 的函数，`Promise` 中返回组件对象即可异步加载。
+H2~ ## 初步实现
+H2~ ### 占位符渲染
+TXT 实现一个简单的 `defineAsyncComponent`，不考虑传参，返回占位符并渲染在页面上。
+TXT ::: code-group
+TXT :::
+H2~ ### 异步函数加载
+TXT 接收一个参数，类型为函数，返回 `Promise`，`Promise` 中返回组件对象。
+TXT 在 `defineAsyncComponent` 中调用该函数，函数执行完毕后在 `.then` 中将返回的组件对象赋值给 `component.value`，实现异步加载。
+TXT ::: code-group
+TXT :::
+
+### practice/idea/vue/全局状态管理
+H1: 全局状态管理
+TXT 小项目或对代码体积有要求的项目，可能不希望引入<word text="Pinia" />、<word text="Vuex" />等全局状态管理库，而是自己实现一个简单的全局状态管理。
+H2~ ## 实现
+TXT 通过<word text="闭包" />将状态存储，使用时拿到之前存储的值。第一次调用时无数据，触发一次回调函数；后续调用时直接返回之前存储的返回值。
+TXT ::: code-group
+TXT :::
+H2~ ## 细化
+TXT 通过 `effectScope` 创建闭包，将状态存储在闭包中。`defineStore` 返回的函数第一次调用时执行 `effectScope` 中的函数，将状态存储并返回；第二次调用时直接返回之前存储的状态。
+TXT `effectScope` 用于创建作用域，作用域中的变量和函数在作用域销毁后会自动清理。它用于分组和管理多个响应式 `effect`，解决复杂场景下组织和清理 `effect` 的问题。
+H2~ ## 动手实操
+TXT <myIframe url="https://example.duyidao.cn/hook/usePinia" />
+
+### practice/idea/vue/更新机制和优化
+H1: Vue 的更新机制和优化
+H2~ ## 原理思考
+H2~ ### Vue2 响应式失效的常见原因
+H2~ #### 新增或删除属性、下标改数组等失效场景
+TXT 1. 对于对象新增初始化没有的属性，或者删除
+TXT 2. 对于数组用了下标修改
+TXT 3. 把 DOM 用 `innerHTML` 操作了内容
+TXT 4. 在 `mounted` 里对数据赋值，来源数据变更没更新（`vuex`、`vuerouter`）
+TXT ::: code-group
+TXT :::
+TXT 示例四中，Vue 路由切换实际上只是切换 `router-view` 组件的内容，整个组件的 `mounted` 生命周期函数只执行一次，如果一开始进入登录页，`header` 能够隐藏；如果一开始进入的是首页，后面才跳
+TXT 示例五中，`mounted` 里对 `data` 赋值，来源数据变更没更新，原因在于 `data` 保存了 `params` 的值，而 Vue 的更新机制是引用才更新，而该组件没有 `params` 变量的依赖，因此 `
+H2~ #### $set、整体替换与 forceUpdate 的修复方式
+
+### practice/idea/vue/模板自动解包Ref
+H1: 模板自动解包 Ref
+TXT 在<word text="Vue" />中，用 `ref` 声明的响应式变量，在 `script` 中使用时，需要通过 `.value` 来访问其值；而在模板 `template` 中，却可以直接访问其值。这是因为在模板
+TXT 模板自动解包 Ref 是通过底层调用 `proxyRefs` 函数实现的。
+TXT ::: code-group
+TXT :::
+TXT `proxyRefs` 函数接收一个对象，并返回一个新的 Proxy 对象，它的 `get` 和 `set` 方法都被重写了。
+TXT 在 `get` 方法中，如果访问的属性是 `ReactiveFlags.RAW`，则直接返回原对象；否则，调用 `unref` 函数，将 `ref` 自动解包，并返回其值。
+H2~ ## 亮点
+TXT 源码着重做了几处判断：
+TXT 1. `isReactive(objectWithRefs)`：判断传入的对象是否是由 `reactive` 声明的响应式对象。
+TXT 如果是，则直接返回原对象，不进行代理。因为 `reactive` 声明的响应式对象，其属性已经是响应式的，且不需要做 `.value` 的解包处理。
+TXT 反之，通过 `new Proxy` 创建一个代理对象，并重写其 `get` 和 `set` 方法。让 `template` 中访问的属性也能保持响应式。
+TXT 2. `get` 获取值时，`key === ReactiveFlags.RAW`：判断访问的属性是否是 `ReactiveFlags.RAW`。
+
+### practice/idea/vue/父组件监听子组件生命周期
+H1: 父组件监听子组件生命周期
+TXT 父组件监听子组件的生命周期，<word text="Vue2" />可以使用 `@hook` 事件， `@hook` 事件是 Vue2.4.0+ 新增的特性，允许开发者监听组件内生命周期钩子。
+TXT 但如果是<word text="Vue3" />，则无法直接监听子组件的生命周期，因为<word text="Vue3" />中没有 `@hook` 事件。需要修改为 `@vue` 事件。
+TXT 这个方法不仅可以监听子组件的生命周期，还能监听子节点的生命周期，即普通的 `div` 也能监听到。
+H2~ ## 动手实操
+TXT <myIframe url="https://example.duyidao.cn/vue/listenerSon" />
+
+### practice/idea/vue/组件内的模板复用
+H1: Vue 组件内的模板复用
+H2~ ## 场景
+TXT 模块多处复用，代码如下：
+TXT `.container` 内容重复出现，如何不独立封装为子组件，实现模块内复用？
+H2~ ## 解决方案
+H2~ ### 组件即函数
+TXT 在<word text="Vue" />中，组件即函数，`<template></template>` 后续会被转化为函数，可通过函数参数实现复用。
+TXT 创建一个对象，包含 `setup` 函数，从第二个参数解构出 `slots` 插槽，通过 `slots.default()` 获取插槽内容：
+TXT ::: code-group
+TXT :::
+TXT 利用插槽特性，从 `DefineTemplate` 的 `setup` 中获取相同模块并保存到 `render`，调用 `render()` 即可复用。
+TXT 打印 `slot.default()` 的内容：
+TXT ![打印slot.default()的内容](https://pic1.imgdb.cn/item/69392b416166b81101362ae4.png)
+
+### practice/idea/vue/组件状态重置
+H1: Vue 组件状态重置
+H2~ ## 场景
+TXT 业务中有重置按钮，需要把用户修改的值重置为默认旧值，之前的写法：
+TXT 属性少时可以这样写，属性多时每次重置都要写一遍，维护成本高，需要优化。
+H2~ ## ref
+H2~ ### 传入函数式
+TXT 声明一个函数，接收回调函数，返回默认值，重置时重新赋值：
+TXT ::: code-group
+TXT :::
+TXT 传入函数，重新赋值时是新对象地址，不会有内存冲突，每次都是新值。
+TXT 缺点：必须传入函数，步骤繁琐。如果只想传入对象，需要修改。
+H2~ ### 传入对象式
+TXT 修改为接收对象，内部通过 `JSON.parse` 和 `JSON.stringify` 做深拷贝，避免浅拷贝修改旧值后新值也跟着变化。
+
+### practice/idea/vue/自定义事件封装
+H1: 自定义事件封装
+H2~ ## 元素平滑上升
+TXT Vue 项目中通过封装自定义事件，实现盒子滚动到视口内时平滑上升的效果。
+H2~ ### 前置知识
+TXT 1. [Element.animate()](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/animate) ：创建一个新的 Animation 对象并
+TXT 接收两个参数：
+TXT - 第一个参数：描述动画的 Keyframes 数组对象，包含一个或多个 CSS 样式和时间。
+TXT - 第二个参数：描述动画的选项对象，包含动画属性，如持续时间 `duration`、延迟时间 `delay`、动画效果 `ease` 等。
+TXT 返回的动画对象实例可控制动画的暂停、播放、取消等操作。调用对应的 `pause()`、`play()`、`cancel()` 方法即可。
+TXT 2. [`IntersectionObserver`] ：异步观察目标元素与其祖先元素或顶级文档视口（viewport）交叉状态的方法，设计为异步以避免阻塞主线程。一个 IntersectionObserver 对象被创
+H2~ ### 思路
+TXT 1. 创建自定义事件，在 `mounted` 组件挂载生命周期钩子上，使用 Web Animation API 应用动画。写法为 `el.animate(关键帧, 配置)`。组件挂载后直接触发动画。
+TXT 2. 先让动画暂停，使用<word text="IntersectionObserver" />监听元素是否出现在视口内，出现则播放动画。在 `unmounted` 组件卸载生命周期钩子上，取消对元素的监听。
+
+### read/css/CSS 技术揭秘与实战通关/css 阴影
+H1: CSS 阴影
+TXT 本章节开了新篇，开始学习<word text="CSS" />的阴影。阴影看起来简单，实际上千变万化，能实现很多奇妙的效果。
+H2~ ## 阴影基础
+TXT 回顾阴影的基础语法，更多细节可参考 [MDN 阴影](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Reference/Properties/box-shadow)。
+TXT 阴影主要分为以下三种：
+TXT - 盒阴影 `box-shadow` ：
+TXT - `h-shadow` ：水平阴影的位置。允许负值。
+TXT - `v-shadow` ：垂直阴影的位置。允许负值。
+TXT - `blur` ：模糊距离。
+TXT - `spread` ：阴影的尺寸。
+TXT - `color` ：阴影的颜色。
+TXT - 文字阴影 `text-shadow` ：
+TXT - `h-shadow` ：水平阴影的位置。允许负值。
+
+### read/css/CSS 技术揭秘与实战通关/mask实现高阶动画效果
+H1: mask 实现高阶动画效果
+H2~ ## 用 mask 实现图片切换动画
+TXT 在上一个章节 [用 mask-position 动画实现内容切换](/read/CSS%20技术揭秘与实战通关/巧用遮罩解决各类视觉难题#用-mask-position-动画实现内容切换) 中，通过放大 `mask-si
+TXT 再看 [用 mask 实色过渡实现图片斜角融合](/read/CSS%20技术揭秘与实战通关/巧用遮罩解决各类视觉难题#用-mask-实色过渡实现图片斜角融合) 的例子，两个图片斜角融合，也可以通过修改 `mask: l
+TXT 直接使用 `linear-gradient` 的写法如下：
+TXT 保存后效果并没有平滑的过渡，而是生硬的从 0% 到 50% 再到 100% 的三个阶段。`linear-gradient` 不支持动画效果，因此，如果想要用上面的代码实现效果，需要从 0% 到 100% 每个阶段都设置一
+TXT 借助 `scss` 的循环，可以大大简化代码，但是依然不够优雅，这仅仅是代码层面的简化，编译后的代码依然会非常庞大，而且编译后的代码也不利于维护。
+H2~ ## 用 CSS @property 简化代码
+TXT 在第二章 [通过 css property 实现背景色渐变动画](/read/CSS%20技术揭秘与实战通关/background的进阶技巧与实战#通过-css-property-实现背景色渐变动画) 里，可以使用现代语
+TXT ::: code-group
+TXT :::
+TXT > 具体效果可查看 [@property 实现渐变动画](https://codepen.io/duyidao/pen/XJXzKWL)
+H2~ ## 用 mask 实现转场动画
+
+### read/css/CSS 技术揭秘与实战通关/shadow的高级技巧
+H1: shadow的高级技巧
+TXT 上一章节讲了 `box-shadow` 怎么使用，以及如何不使用 `box-shadow` ，而是用别的方法，来模拟实现阴影的效果。
+TXT 本章节，则是从如何使用 `box-shadow` ，来实现不是阴影的效果。
+H2~ ## 零偏移零模糊阴影复制自身图形
+H2~ ### 复制自身图形
+TXT 关于阴影 `box-shadow` 第一个核心技巧就是能复制自身，最重要的点是它**能设置多个（多重阴影）**。
+TXT 当阴影的模糊半径和扩散半径都为0时，能得到一个和元素本身一样大小的阴影，当然如果仅仅这样是看不到效果的，因为被压在元素下方。这时再调整它的水平偏移和垂直偏移，就能得到如下效果：
+TXT ![效果](https://pic1.imgdb.cn/item/690c052c3203f7be00da1eac.png)
+TXT 利用这个技巧，在需要重复自身图形的场景，可以运用这个技巧减少<word text="DOM" />的节点数量。
+TXT 例如下方两个场景：
+TXT - 标题左右两侧的圆点效果，只需要一个 `div` 即可，左右两侧的点只需要通过伪类 `::before` 和 `::after` 来实现第一个元素，剩下两个点则通过阴影来实现。
+TXT ![标题左右两侧的圆点效果](https://pic1.imgdb.cn/item/690c08603203f7be00da54f5.png)
+TXT - 云朵效果，只需要一个 `div` 即可，画一个圆，然后通过阴影复制多个大小不同的圆，堆叠在一起，就能实现云朵效果。
+
+### read/javascript/ES6标准入门/ArrayBuffer
+H1: ArrayBuffer
+TXT ArrayBuffer 对象是 JavaScript 操作二进制数据的接口之一，以数组的形式处理二进制数据，被统称为二进制数组。
+TXT 二进制数组由3类对象组成：
+TXT 1. ArrayBuffer 对象：代表内存中的一段二进制数据，可以通过“视图”进行操作。视图部署了数组接口，意味着可以用数组的方法操作内存
+TXT 2. TypedArray 视图：共包括 9 种类型的视图，比如 Uint8Array（无符号 8 位整数）数组视图，Int16Array（16 位整数）数组视图，Float32Array（32 位浮点数）数组视图等等
+TXT 3. DataView 视图：可以自定义复合格式的视图，比如第一个字节是 Uint8（无符号 8 位整数）、第二、三个字节是 Int16（16 位整数）、第四个字节开始是 Float32（32 位浮点数）等等，此外还可以
+TXT ArrayBuffer 对象代表原始的二进制数据，TypedArray 视图用于读/写简单类型的二进制数据，DataView 视图用于读/写复杂类型的二进制数据。
+H2~ ## ArrayBuffer对象
+H2~ ### 概述
+TXT ArrayBuffer 对象代表储存二进制数据的一段内存，不能直接读写，只能通过视图 （TypedArray 视图和 DataView 视图）来读写，视图作用是以指定格式解读二进制数据。
+TXT ArrayBuffer 是一个构造函数，用来生成 ArrayBuffer 实例。
+TXT ArrayBuffer 的参数（即内存大小）单位是字节（byte），1 个字节是 8 位（bit）。
+TXT 以上代码生成了一段 8 字节的内存，每个字节的值默认都是 0。
+
+### read/javascript/ES6标准入门/async函数
+H1: async函数
+H2~ ## 含义
+TXT <word text="ES7"/>引入了 `async` 函数，使得异步操作变得更加方便。`async` 可以看作 `Generator` 函数的语法糖，将 `Generator` 函数的星号（*）替换成 `async
+TXT 具体改进体现在以下4点：
+TXT 1. 内置执行器
+TXT `Generator` 函数的执行必须靠执行器，而 `async` 函数自带执行器。也就是说，`async` 函数的执行，与普通函数一模一样，只要一行。
+TXT 2. 更好的语义
+TXT `async` 和 `await`，比起星号和 `yield`，语义更清楚了。`async` 表示函数里有异步操作，`await` 表示紧跟在后面的表达式需要等待结果。
+TXT 3. 更广的适用性
+TXT `await` 后面可以是 `Promise` 对象和原始类型的值（数值、字符串和布尔值，但这时等同于同步操作）。
+TXT 4. 返回值是 `Promise`
+TXT `async` 函数的返回值是 `Promise` 对象，这比 `Generator` 函数的返回值是 `Iterator` 对象方便多了。你可以用 `then` 方法指定下一步的操作。
+H2~ ## 用法
+
+### read/javascript/ES6标准入门/Class的基本语法
+H1: Class的基本语法
+TXT 传统的 JavaScript 中，生成实例对象的传统方法是通过构造函数。但是这种写法与面向对象语言的写法差异大，ES6 引入了 Class（类）这个概念，作为对象的模板。通过 `class` 关键字，可以定义类。
+H2~ ## 简介
+TXT ES6 的 `class` 可以看作一个语法糖，它的绝大部分功能，ES5 都可以做到，新的 `class` 写法让对象原型的写法更加清晰。
+TXT > [!WARNING] 注意
+TXT > 定义类时，前面不需要加 `function` ，直接将函数定义放进去即可。构造函数的名称和类名需要相同，且不需要加 `function` 关键字。
+TXT 类的数据类型就是函数，类本身就指向构造函数。使用的时候，也是直接对类使用 `new` 命令，跟构造函数的用法完全一致。
+TXT 构造函数的 `prototype` 属性在 ES6 的 “类”上面继续存在。事实上，类的所有方法都定义在类的 `prototype` 属性上面。由于类的方法都是定义在 `prototype` 对象上面，所以类的新方法可以
+TXT 类的 `prototype` 对象上的 `constructor` 方法，直接指向“类”本身。
+TXT 类的内部所有定义的方法，都是不可枚举的（non-enumerable）。ES5 的构造函数，所有的属性和方法都是可枚举的。
+TXT 类的属性名可以采用表达式。
+H2~ ## 严格模式
+TXT 类和模块的内部，默认就是严格模式，所以不需要使用 `use strict` 指定运行模式。只要你的代码写在类或模块之中，就只有严格模式可用。考虑到未来所有的代码，其实都是运行在模块之中，所以 ES6 实际上把整个语言升级
+
+### read/javascript/ES6标准入门/Class的继承
+H1: Class的继承
+H2~ ## 简介
+TXT 比起 ES5 修改原型链实现继承的方式，ES6 的 `class` 通过 `extends` 关键字实现继承，子类继承父类的所有属性和方法，需要用 `super` 方法，继承父类的 `this` 对象，否则会因为得不到 
+TXT ES5 继承实质是先创建子类的实例对象 `this`，然后再将父类的方法添加到 `this` 上（`Parent.apply(this)`）。ES6 继承实质是先创建父类的实例对象 `this`（所以必须先调用 `sup
+TXT 如果子类没有定义 `constructor` 方法，这个方法会被默认添加，代码如下。不管有没有显式定义，任何一个子类都有 `constructor` 方法。且只有调用了 `super` 方法，子类实例的 `this` 才
+H2~ ## Object.getPrototypeOf()
+TXT `Object.getPrototypeOf` 方法可以用来从子类上获取父类。因此可以用这个方法判断某个子类是否继承了另一个类作为父类。
+H2~ ## super关键字
+TXT `super` 关键字既可以当作函数使用，也可以当作对象使用。
+TXT - 在作为函数使用时，代表父类的构造函数
+TXT ES6 要求，子类的构造函数必须执行一次 `super` 函数，否则新建实例会报错。
+TXT `super` 虽然代表了父类 `A` 的构造函数，但是返回的是子类 `B` 的实例，即 `super` 内部的 `this` 指的是 `B` 的实例，因此 `super()` 在子类 `B` 的构造函数中执行时，它内部
+TXT 另外，`super` 函数只能用在子类的构造函数之中，用在其他地方会报错。
+
+### read/javascript/ES6标准入门/Generator函数的语法
+H1: Generator函数的语法
+H2~ ## 简介
+H2~ ### 基本概念
+TXT `Generator` 函数是<word text="ES6"/>提供的一种异步编程解决方案，从语法角度，他是一个状态机，封装了多个内部状态。执行后会返回一个遍历器对象，可以依次遍历 `Generator` 函数内部的每
+TXT 形式上，他是一个普通函数，但是有两个特征。一是，`function` 关键字与函数名之间有一个星号；二是，函数体内部使用 `yield` 表达式，定义不同的内部状态。
+TXT 调用 `Generator` 函数后，该函数并不执行，返回的也不是函数运行结果，而是一个指向内部状态的指针对象，也就是遍历器对象。必须调用遍历器对象的 `next` 方法，使得指针指向下一个状态。
+TXT 上面代码中，`Generator` 函数 `helloWorldGenerator` 有三个状态：`hello`，`world` 和 `return` 语句（即函数结束）。调用 `next` 方法，指针会从函数头部或上一
+TXT <word text="ES6"/>没有规定 `*` 号写在哪，以下几种方式都能通过：
+TXT - `function* foo() {}`
+TXT - `function *foo() {}`
+TXT - `function*foo() {}`
+TXT - `function * foo() {}`
+H2~ ### yield表达式
+
+### read/javascript/ES6标准入门/Module的加载实现
+H1: Module的加载实现
+TXT 上一章讲述模块的语法，本章重心在浏览器和 `Node` 之中如何加载 ES6 模块。
+H2~ ## 浏览器加载
+TXT 传统方法是在 HTML 页面中通过 `script` 标签加载 JavaScript 脚本。
+TXT 浏览器渲染引擎遇到 `script` 会停下等待脚执行完再继续往下，即会以同步方式，下载并执行该模块。如果脚本体积很大，导致浏览器堵塞，用户会感觉到浏览器“卡死”了，用户体验极差。
+TXT 因此浏览器允许脚本异步加载。
+TXT `defer` 和 `async` 的区别是：
+TXT - `defer` 是在 HTML 解析完之后，`DOMContentLoaded` 事件触发前执行，多个 `defer` 脚本按顺序执行。
+TXT - `async` 是一旦下载完，渲染引擎就中断渲染，执行这个脚本，多个 `async` 脚本不能保证顺序。
+TXT 浏览器加载 ES6 模块也是一样，使用 `script` 标签，但是要加入 `type="module"` 属性，让浏览器知道他是 ES6 模块。浏览器对于带有 `type="module"` 的 `script`，都是
+TXT 另外，也可以使用 `import` 命令加载模块。
+TXT 对于外部加载的模块脚本，需要注意以下几点：
+TXT - 代码是在模块作用域之中运行，而不是在全局作用域运行。模块内部的顶层变量，外部不可见。
+
+### read/javascript/ES6标准入门/Module的语法
+H1: Module的语法
+H2~ ## 概述
+TXT JavaScript 一直没有模块（`module`）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代现有的 Common
+TXT ES6之前，最主要的方法有 CommonJS（用于服务器） 和 AMD（用于浏览器） 两种，ES6 后在语言规格层面实现了模块功能，可以取代 CommonJS 和 AMD，成为主流解决方案。
+TXT 这种方法是 “运行时加载”，只有运行时才能得到这个对象，无法在编译时做 “静态优化”。ES6 模块不是对象，而是通过 `export` 命令显式指定输出的代码，再通过 `import` 命令输入。
+TXT 这个方法属于 “编译时加载” 或者静态加载，即 ES6 可以在编译时就完成模块加载，效率要比 CommonJS 高，当然这也导致了没法引用 ES6 模块本身，因为它不是对象。
+TXT 除了静态加载，ES6 模块还有以下好处：
+TXT - 不再需要UMD模块格式，将来服务器和浏览器都会支持 ES6 模块格式。
+TXT - 将来浏览器的新 API 就能用模块格式提供，不再必须做成全局变量或者navigator对象的属性。
+TXT - 不再需要对象作为命名空间（比如Math对象），未来这些功能可以通过模块提供。
+H2~ ## 严格模式
+TXT ES6 的模块自动采用严格模式，不管你有没有在模块头部加上 `"use strict";`。
+TXT 严格模式主要有以下限制：
+
+### read/javascript/ES6标准入门/Promise对象
+H1: Promise对象
+TXT <word text="JavaScript"/>中异步编程一直是重难点。传统的回调函数虽然解决了问题，但它们复杂、难以维护，且容易引发回调地狱。`Promise` 对象的出现，以其独特的状态管理和链式调用，为异步编程带
+H2~ ## 含义
+TXT `Promise` 是异步编程的一种解决方案，比传统的回调函数更合理和强大。`Promise` 是一个容器，存放着未来会发生的事件（例如回调函数），从语法上说，`Promise` 是一个对象，从它可以获取异步操作的消息。
+TXT `Promise` 对象有两个特点：
+TXT 1. 对象状态不受外界影响。`Promise` 对象代表一个异步操作，有三种状态：`pending`（进行中）、`fulfilled`（已成功）和 `rejected`（已失败）。只有异步操作的结果，可以决定当前是哪一种
+TXT 2. 状态一旦发生就不会再改变。对 `Promise` 对象而言，状态只有从 `pending` 变为 `fulfilled` 和从 `pending` 变为 `rejected`，只要这两种情况发生，状态就凝固了，不会
+TXT `Promise` 也有一些缺点：
+TXT 1. 无法取消 `Promise`，一旦新建它就会立即执行，无法中途取消。
+TXT 2. 如果不设置回调函数，`Promise` 内部抛出的错误，不会反应到外部。
+TXT 3. 当处于 `pending` 状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。
+H2~ ## 基本用法
+TXT `Promise` 对象是一个构造函数，用于生成 `Promise` 实例。它接受一个函数作为参数，该函数的两个参数分别是 `resolve` 和 `reject`，由 JavaScript 引擎提供，不用自己部署。
+
+### read/javascript/ES6标准入门/Reflect
+H1: Reflect
+TXT `Reflect` 对象不仅提供了一种更加清晰和一致的方式来操作对象属性，还与 `Proxy` 对象紧密协作，为开发者提供了强大的元编程能力。本文将深入探讨 `Reflect` 的静态方法、其与 `Proxy` 的关系以
+H2~ ## 概述
+TXT `Reflect`对象与`Proxy`对象一样，也是<word text="ES6"/>为了操作对象而提供的新 API。`Reflect`对象的设计目的有以下几个。
+TXT 1. 将`Object`对象的一些明显属于语言内部的方法（比如`Object.defineProperty`），放到`Reflect`对象上。现阶段，某些方法同时在`Object`和`Reflect`对象上部署，未来的新
+TXT 2. 修改某些方法返回的结果。如 `Object.defineProperty(obj,name,desc)`在无法定义属性时，会抛出一个错误，为了解决错误不得不用 `try...catch` 捕获；而`Reflect.
+TXT 3. 让 `Object` 操作变成函数行为。某些`Object`操作是命令式，比如 `name in obj` 和 `delete obj[name]`，而 `Reflect.has(obj,name)` 和 `Ref
+TXT 4. `Reflect`对象的方法与`Proxy`对象的方法一一对应，只要是`Proxy`对象的方法，就能在`Reflect`对象上找到对应的方法。这就让`Proxy`对象可以方便地调用对应的`Reflect`方法，完成
+H2~ ## 静态方法
+TXT `Reflect` 对象一共有13个静态方法。
+H2~ ### Reflect.get(target,name,receiver)
+TXT `Reflect.get`方法查找并返回`target`对象的`name`属性键值，如果没有该属性，则返回`undefined`。接受三个参数，`target`对象，`name`属性名，`receiver`可选参数。
+TXT 如果`target`对象中指定了`getter`，`Reflect.get`会以`receiver`为上下文调用`getter`函数。
+
+### read/javascript/ES6标准入门/修饰器
+H1: 修饰器
+H2~ ## 类的修饰
+TXT 修饰器是一个函数，可以改变类的行为，如添加静态属性，写法如下：
+TXT > [!WARNING] 注意
+TXT > 修饰器对类的行为的改变，是代码编译时发生的，而不是在运行时。这意味着，修饰器本质就是编译时执行的函数。
+TXT 修饰器函数的第一个参数就是所要修饰的目标类，如果一个参数不够用，可以在修饰器外面再封装一层函数。
+TXT 如果想给类添加实例属性，可以在修饰器函数中，修改类的 `prototype` 对象。
+H2~ ## 方法的修饰
+TXT 修饰器不仅可以修饰类，还可以修饰类的属性。
+TXT 此时，函数修饰器 `readonly` 接受3个参数：
+TXT - `target`：要修饰的目标对象
+TXT - `name`：所要修饰的属性名
+TXT - `descriptor`：该属性的描述对象，原来的值如下：
+
+### read/javascript/ES6标准入门/变量的解构赋值
+H1: 变量的解构赋值及其常见用途
+TXT 本文讲解解构的知识点，分别从数组、对象、字符串、数值和布尔值、函数参数等方向展开，最后讨论解构的问题与用途。
+H2~ ## 数组的解构赋值
+TXT 数组的解构分为基本用法和默认值两个方面。
+H2~ ### 基本用法
+TXT ES6 允许从数组和对象中按照一定模式获取值并赋值给变量，这一行为被称为<word text="解构赋值" />，其写法如下：
+TXT 本质上是遵循 “模式匹配” 原则，只要等式两边模式相等，就可以对应赋值。如：
+TXT 若解构不成功或者对应位置没有值，则变量的值会等于 `undefined` ；若解构不完全（即等式右边的值比左侧多），则会正常解构赋值。示例代码如下：
+TXT 如果等式右侧是不允许遍历的解构，则会直接报错。
+H2~ ### 默认值
+TXT 解构赋值允许设置默认值。ES6 内部严格使用相等运算符判断该位置是否有值，只有 `=== undefined` 才会把默认值赋值给变量。示例代码如下：
+TXT 若使用表达式作为默认值，则该表达式是惰性的，在需要使用时才会执行。
+TXT 默认值也可以设置为其他变量，前提是该变量必须已经声明，否则会报错。
+
+### read/javascript/ES6标准入门/编程风格
+H1: 编程风格
+TXT 本章探讨如何编写合理的、规范的、易于阅读和维护的代码。
+H2~ ## 块级作用域
+H2~ ### let取代var
+TXT ES6 推出了 `let` 和 `const` 两个命令，用来声明变量，其中 `let` 可以完全取代 `var` ，因为两者之间没有本质的区别，且 `let` 没有副作用。例如 `var` 会导致变量提升，且没有作用域
+H2~ ### 全局常量和线程安全
+TXT `const` 声明的是常量，一旦声明，常量的值就不能改变。在声明时必须初始化，否则会报错。`const` 声明的变量只在声明所在的块级作用域内有效。用 `const` 声明有以下几个优点：
+TXT - 提醒阅读者该变量不可更改
+TXT - 符合函数式编程的思想，运算不能更改值，只能新建值
+TXT - JavaScript编译器对 `const` 进行优化，有利于提高运行效率
+H2~ ## 字符串
+TXT 静态字符串一律使用单引号，动态字符串一律使用反引号。
+H2~ ## 解构赋值
+
+### read/javascript/ES6标准入门/读懂ECMAScript规格
+H1: 读懂ECMAScript规格
+H2~ ## 概述
+TXT 规格是计算机语言的官方标准，详细描述了语法、类型、语句、关键字、保留字、操作符、全局对象、内置对象、编码、运行时环境等各方面细节。
+H2~ ## 相等运算符
+TXT 相等运算符语法行为多变，规格中对其行为的规定如下：
+TXT 算法细节：
+TXT 1. 如果 `x` 不是正常值，中断执行
+TXT 2. 如果 `y` 不是正常值，中断执行
+TXT 3. 如果 `Type(x)` 与 `Type(y)` 相同，执行严格相等运算 `x === y`
+TXT 4. 如果 `Type(x)` 是 `Undefined`，`Type(y)` 是 `Null`，返回 `true`
+TXT 5. 如果 `Type(x)` 是 `Null` ，`Type(y)` 是 `Undefined` ，返回 `true`
+TXT 6. 如果 `Type(x)` 是数值， `Type(y)` 是字符串，返回 `x == ToNumber(y)` 的结果
+TXT 7. 如果 `Type(x)` 是字符串， `Type(y)` 是数值，返回 `ToNumber(x) == y` 的结果
+
+### read/vite/深入浅出Vite/代码规范：如何利用 Lint 工具链来保证代码风格和质量？
+H1: 前端代码规范工具链
+H2~ ## 代码规范的重要性
+TXT 在工程项目中，代码不仅是给机器执行的，更是给人阅读的。尤其是在多人协作的团队中，代码规范能够：
+TXT 1. 统一团队代码风格，避免不同风格的代码混杂
+TXT 2. 提高代码质量和可维护性
+TXT 3. 提前规避语法错误
+TXT 4. 提升团队协作效率
+TXT 而要保证规范的落地，我们需要借助自动化的<word text="Lint"/>工具链，将代码规范检查交给机器完成。
+H2~ ## <word text="JavaScript"/>/<word text="TypeScript"/>规范工具：<word text="ESLint"/>
+H2~ ### <word text="ESLint"/>简介
+TXT <word text="ESLint"/>是在<word text="ECMAScript"/>/<word text="JavaScript"/>代码中识别和报告模式匹配的工具，由前端大牛 Nicholas C. Za
+TXT 核心特点：
+TXT - 插件化的<word text="JavaScript"/>代码静态检查工具
+
+### read/vue/Vue.js设计与实现/Vue.js 3 的设计思路
+H1: Vue.js 3 的设计思路
+H2~ ## 声明式地描述 UI
+TXT 用户在使用<word text="Vue.js"/>的时候，只需要声明式地描述<word text="UI"/>，而不需要关心<word text="DOM"/>的操作，<word text="Vue.js"/>会根据用
+TXT - <word text="DOM"/>元素，是 `div` 还是 `a` 标签
+TXT - 属性，`class` 类名或者 `id` 、超链接的 `href` 等
+TXT - 事件，比如点击事件 `click`、鼠标移入事件 `mouseover` 等
+TXT - 层级结构，比如 `div` 包含 `a` 标签等是否有子元素
+TXT <word text="Vue.js"/>的相应解决方案是：
+TXT - 和<word text="HTML"/>一样，采取一致的方式描述<word text="DOM"/>元素，如 `<div></div>`
+TXT - 和<word text="HTML"/>一样，采取一致的方式描述属性，如 `<div id="div1"></div>`
+TXT - 使用 `v-bind` 或 `:` 指令描述*动态的*属性和事件，如 `<div :id="id"></div>`
+TXT - 使用 `v-on` 或 `@` 指令描述事件，如 `<div @click="handleClick"></div>`
+TXT - 和<word text="HTML"/>一样，使用标签嵌套描述层级结构，如 `<div><a></a></div>`
+
+### read/vue/Vue.js设计与实现/内建组件和模块
+H1: 内建组件和模块
+
+### read/vue/Vue.js设计与实现/原始值的响应式方案
+H1: 原始值的响应式方案
+
+### read/vue/Vue.js设计与实现/双端 Diff 算法
+H1: 双端 Diff 算法
+
+### read/vue/Vue.js设计与实现/同构渲染
+H1: 同构渲染
+
+### read/vue/Vue.js设计与实现/响应系统的作用与实现
+H1: 响应系统的作用与实现
+TXT 除了前面提到的编译器和渲染器，响应系统也是<word text="Vue.js"/>的核心组成部分。响应系统的主要作用是让<word text="Vue.js"/>应用程序在数据发生变化时，自动更新视图。想要提响应系统，
+H2~ ## 响应式数据和副作用函数
+TXT 副作用函数是指那些会产生副作用的函数，即函数执行会直接或间接影响其他函数的执行或修改了全局变量。
+TXT ::: code-group
+TXT :::
+TXT 在上述代码两个例子中，`effect` 函数就是一个副作用函数，例子一修改了 `body` 的内容导致其他函数读取 `body` 内容时会受到影响，例子二的函数会直接修改全局变量 `a` 的值。
+TXT 说完副作用函数，来看看什么是响应式数据。响应式数据是指那些能够自动追踪依赖并响应数据变化的值。例如上述代码组的例子一，当 `obj.text` 的值发生变化时，期望 `effect` 函数会自动重新执行，从而更新 `bo
+TXT 实现这个目标后对象 `obj` 就是响应式数据。
+H2~ ## 响应式数据的基本实现
+TXT <word text="JavaScript"/>中，读取对象会触发其 `get` 方法，修改对象会触发其 `set` 方法。因此，可以通过重写对象的 `get` 和 `set` 方法来实现响应式数据。读取对象属性时，将
+TXT ::: code-group
+TXT :::
+
+### read/vue/Vue.js设计与实现/异步组件与函数式组件
+H1: 异步组件与函数式组件
+
+### read/vue/Vue.js设计与实现/快速 Diff 算法
+H1: 快速 Diff 算法
+
+### read/vue/Vue.js设计与实现/挂载与更新
+H1: 挂载与更新
+
+### read/vue/Vue.js设计与实现/权衡的艺术
+H1: 权衡的艺术
+TXT 本章节霍春阳关于框架的封装如何权衡命令式与声明式、如何兼顾性能与可维护性等方面进行了深入的剖析，分析了<word text="虚拟DOM"/>的设计目的为了解决什么问题，还对比了运行时与编译时的区别。
+H2~ ## 命令式与声明式
+TXT 命令式与声明式各有优劣，命令式代码更符合人类直觉，但可维护性较差，声明式代码可维护性较好，但不符合人类直觉。因此，在框架的设计中，需要权衡命令式与声明式，以实现更好的可维护性与符合人类直觉的代码。
+TXT 原生<word text="JavaScript"/>与早期框架<word text="jQuery"/>都是命令式的，更加注重执行的过程；而<word text="Vue.js"/>则是声明式的，更加注重结果，过程如何
+TXT ::: code-group
+TXT :::
+H2~ ## 性能与可维护性
+TXT 声明式与命令式各有优劣，在设计框架时，还需要权衡性能与可维护性。这里可以先说出结论：
+TXT > [!IMPORTANT] 结论
+TXT > 声明式代码的性能不优于命令式代码的性能。
+TXT 举个例子，想要修改一个 `div` 的内容，用命令式代码实现只需要一行代码。而且这个代码是性能最好的代码，没有优化的空间了。而用声明式代码想要实现最优的性能，需要先找到前后的差异变化，再更新变化的部分。但是最终完成的还是
+TXT ::: code-group
+
+### read/vue/Vue.js设计与实现/框架设计的核心要素
+H1: 框架设计的核心要素
+TXT 框架设计核心要素除了功能的实现，还有良好的报错定位、良好的按需导入减少打包体积等。
+H2~ ## 提升用户的开发体验
+TXT <word text="Vue.js"/> 3 源码有一个 `warn` 函数，用于抛出相对应的错误提示开发者在框架使用时的错误。如下方代码：
+TXT <word text="Vue.js"/>会根据无法根据所提供的选择器找到对应的<word text="DOM"/>节点抛出报错。如果<word text="Vue.js"/>内部没有做处理，则浏览器控制台会抛出<wor
+TXT ::: code-group
+TXT :::
+TXT 除了更好定位的报错信息提示外，还有其他地方可以入手让开发者体验更好，例如浏览器允许自定义编写 `formatter` 自定义 `console.log` 输出变量。<word text="Vue.js"/>源码有一个 `
+TXT ::: code-group
+TXT :::
+H2~ ## 控制框架代码体积
+TXT 框架的大小也是衡量框架标准之一，框架代码体积越小，浏览器加载所需资源越少。不过前面提到<word text="Vue.js"/>提供了完善的报错信息，这无疑需要更多的代码。因此<word text="Vue.js"/>使
+TXT 上方示例代码中的 `__DEV__` 就是用于环境判断。<word text="Vue.js"/>对<word text="Rollup"/>做了项目构建，如果是开发环境，`__DEV__` 为 `true` ，如果是生
+
+### read/vue/Vue.js设计与实现/渲染器的设计
+H1: 渲染器的设计
+
+### read/vue/Vue.js设计与实现/简单 Diff 算法
+H1: 简单 Diff 算法
+
+### read/vue/Vue.js设计与实现/组件的实现原理
+H1: 组件的实现原理
+
+### read/vue/Vue.js设计与实现/编译优化
+H1: 编译优化
+
+### read/vue/Vue.js设计与实现/编译器核心技术概览
+H1: 编译器核心技术概览
+
+### read/vue/Vue.js设计与实现/解析器
+H1: 解析器
+
+### read/vue/Vue.js设计与实现/非原始值的响应式方案
+H1: 非原始值的响应式方案
+
+### vitepress/algolia
+H1: 搜索
+H2~ ## 本地搜索
+TXT 查看[官方文档](https://vitepress.dev/zh/reference/default-theme-search)，只需在 `.vitepress/config.js` 文件中将 `themeConfig
+TXT 该方法优点是简单快捷，缺点是搜索速度较慢，且无法实时更新。
+H2~ ## Algolia
+TXT <word text="Algolia" />是一个提供搜索服务的云平台，它可以帮助你快速地构建强大的搜索功能。比起本地搜索它最大的优点就是速度更快。
+TXT 实现 Algolia 搜索需要以下步骤：
+TXT 1. 为<word text="VitePress" />项目申请 Algolia 内容抓取申请
+TXT [地址](https://docsearch.algolia.com/apply/)。打开链接，填写自己的 VitePress 项目 URL 地址、电子邮箱、VitePress 项目<word text="GitHub"
+TXT 2. 等待一段时间，Algolia 会给你发送一封邮件，邮件中包含一个链接，如下图所示
+TXT ![链接](https://pic1.imgdb.cn/item/67cede61066befcec6e27836.png)
+TXT 3. 登录 Algolia 账号，会有一个红色提示关注应用，关注后复制 `APPID`、`APIKEY`、`INDEXNAME`，如下图所示
+TXT ![复制](https://pic1.imgdb.cn/item/67cee04d066befcec6e27866.png)
+
+### vitepress/build
+H1: 打包
+TXT 项目搭建成功后，接下来该打包了。
+TXT <word text="VitePress" />打包需要做一个前置步骤：在 `config.js` 文件中设置 `base` 打包基准路径，路径填啥取决于部署时仓库的名称是啥。
+TXT 例如：我的仓库名称为 “daodao” ，则我的 `base` 参数如下：
+TXT 如果仓库名称为 `github用户名.github.io` 或者 `gitee用户名.gitee.io` ，则视为默认路径，斜杆即可。
+TXT 前置工作做好以后，运行打包命令打包项目。
+TXT ::: code-group
+TXT :::
+TXT 一旦打包成功后，就可以通过运行命令来进行本地测试。
+TXT ::: code-group
+TXT :::
+TXT 可以看到效果即为成功。
+
+### vitepress/css
+H1: 样式美化
+H2~ ## 巨人的肩膀
+TXT 以下的样式美化参考了 [yiov 博客](https://vitepress.yiov.top/style.html) 实现。
+TXT - 代码块 Mac 风格美化
+TXT - 导航栏毛玻璃美化
+TXT - 超链接前缀图标美化
+TXT - 引用块样式美化
+TXT - 侧边栏前置图标美化
+TXT - 主题色修改
+
+### vitepress/deploy
+H1: 部署
+H2~ ## gitee 部署
+H2~ ### 创建仓库
+TXT 重点：
+TXT - 如果第二阶段打包时 `base` 参数为 `/` ，仓库名称应为 `gitee用户名.gitee.io`。（以我的账号为例，应为 `duyidao.gitee.io`）
+TXT - 如果参数为 `/一个单词/` ，仓库名称也要取对应的名称。（如第二阶段我的代码是 `base: '/daodao/'`，仓库名称如下图所示）
+TXT ![创建仓库](https://s1.ax1x.com/2023/02/01/pSBXbdg.png)
+H2~ ### 设置开源
+TXT 把仓库设为开源
+H2~ ### 选择 Gitee Pages 服务
+TXT 1. 点击服务选择<word text="Gitee Pages" />服务。
+TXT ![选择服务](https://s1.ax1x.com/2023/02/01/pSBvp9A.png)
+TXT 2. 选择分支
+
+### vitepress/dev
+H1: 搭建
+TXT |         官网         |                                      链接                                      |
+TXT | :------------------: | :----------------------------------------------------------------------------: |
+TXT |    VitePress 官网    |                 [VitePress 官网](https://vitepress.vuejs.org/)                 |
+TXT | VitePress 中文网文档 | [VitePress 中文网文档](https://vitejs.cn/vitepress/guide/getting-started.html) |
+H2~ ## 项目创建
+TXT 1. 新建一个文件夹(文件名可以自行取，但不建议叫 `vitepress`)，进入该文件夹并初始化 `package.json` 文件。
+TXT ::: code-group
+TXT :::
+TXT 2. 本地安装 `vitePress` 。
+TXT ::: code-group
+TXT :::
+TXT 3. 根目录下新建一个 `docs` 文件夹，进入文件夹，新建一个 `index.md` 文档，输入内容。
+
+### vitepress/index
+H1: 关于此模块
+TXT 刀刀博客从搭建到部署在 `Gitee Pages` 上，前前后后大约花费 2 个星期左右。其中，花费的时间主要在于 `vitePress` 的使用以及部署的要点上，百度搜索大量的文章。
+TXT 目前还没有系统的，从 0 到 1 的 `vitePress` 搭建教程，因此 “不如总结一下自己的经验以及踩过的坑吧” 想法油然而生。如果这个教程很幸运能够帮助到别人，哪怕只有一小点，也是我的荣幸。
+TXT 本模块分为三部分：
+TXT 1. 搭建。目的是能够搭建一个完整的博客框架，`yarn docs:dev` 运行在本地时能跑起来。
+TXT 2. 打包。此阶段目标是 `yarn docs:build` 命令打包生成 `dist` 文件夹后运行 `yarn docs:serve` 命令能够在本地看到效果。
+TXT 3. 部署。最后一步了，本阶段目标是部署到 `Gitee Pages` 并且能够正常访问。
+TXT 我的源码：[刀刀博客源码](https://gitee.com/duyidao/blog)
+TXT 下面，开始博客搭建之旅。
+
+### vitepress/know
+H1: 拓展学习
+TXT 部署成功并不是终点，<word text="VitePress"/>的学习之旅还在继续。此模块收集一些知识点与功能的使用，还在不断完善中。
+H2~ ## 路由跳转
+TXT 路由跳转有两种模式：
+TXT 1. 首页配置、导航栏侧边栏配置：`/目录/` ，如 `/learn/` 匹配的是 `learn` 文件夹下的 `index.md` 文件。
+TXT 2. <word text="Markdown"/>文件配置： `[路由名称](/目录/)` ，如 `[我是learn模块的index.md](/learn/)` 。
+H2~ ## 组件使用
+TXT 可以使用<word text="Vue2"/>的组件。
+TXT - 在 `.vitepress/theme/index.js` 中， 因为 `enhanceApp` 函数接受 `Vue.app` 对象，所以可以像普通 [Vue](https://cn.vuejs.org/) 插件那样
+TXT - 在全局组件中使用该组件
+TXT ::: code-group
+TXT :::
+TXT ::: warning 注意
+
+### vitepress/review
+H1: 评论功能添加
+H2~ ## 前置配置
+H2~ ### 新增仓库
+TXT 新建一个仓库，专门用于存放用户评论的数据。要求该仓库是公开的。创建完毕后前往 `setting` 模块，下拉勾选 `Discussions` 选项，点击 `install` 按钮，开启 `Discussions` 功能。
+TXT ![配置](https://pic.imgdb.cn/item/676d187ad0e0a243d4ead8bc.png)
+H2~ ### <word text="GitHub"/>账号下载插件
+TXT 点击右上角的个人头像，选择`Setting` 设置，左侧导航栏下拉找到 `Applications` 。点击 `New OAuth App` 新建一个应用。搜索 [giscus](https://giscus.app/z
+TXT ![配置](https://pic.imgdb.cn/item/676d17d9d0e0a243d4ead581.png)
+H2~ ### 官网配置
+TXT 前往 [giscus](https://giscus.app/zh-CN) 官网，复制刚刚新建好的公开仓库地址到输入框内，选择 "Discussion 的标题包含页面的 pathname" 显示评论者的昵称。
+TXT ![配置](https://pic.imgdb.cn/item/676d190ad0e0a243d4eadba0.png)
+TXT 讨论分类推荐选择 `announcements` ：
+TXT ![讨论分类](https://pic.imgdb.cn/item/676d1965d0e0a243d4eadd5c.png)
+
+### work/南网/无人机/点云3D可视化与标注模块
+H1: 点云3D可视化与标注模块
+H2~ ## 业务背景与痛点
+H2~ ### 项目背景
+TXT 在无人机室内巡检与数字孪生场景中，我们需要在浏览器端展示和管理海量点云数据（PCD格式），并支持空间标注功能。业务场景包括：
+TXT - **模型资产管理**：上传、下载、删除点云模型文件
+TXT - **3D空间标注**：在点云上标注关键点/框，记录位置、颜色、说明等信息
+TXT - **多引擎适配**：同时支持 Three.js（点云）和 Cesium（实景三维）两种渲染引擎
+H2~ ### 核心痛点
+TXT | 痛点               | 具体表现                                             | 影响                         |
+TXT | ------------------ | ---------------------------------------------------- | ---------------------------- |
+TXT | **大文件加载崩溃** | 单模型数十万至千万级点，主线程解析导致浏览器内存溢出 | 页面卡死，用户体验极差       |
+TXT | **3D交互复杂**     | 画框、标点、视角切换等交互逻辑与渲染耦合严重         | 代码难以维护，扩展成本高     |
+TXT | **多引擎适配**     | Three.js 与 Cesium 标注逻辑重复实现                  | 开发效率低，一致性难保证     |
+
+### work/数说/AI报告/CXO畅写编辑器集成方案
+H1: CXO 畅写编辑器集成方案
+H2~ ## 概述
+TXT 在数说项目的文档编辑模块中，集成了 CXO（畅写）编辑器以实现富文本的在线协同与排版。由于编辑器体积庞大且依赖复杂的字体与脚本资源，直接同步加载会导致首屏渲染阻塞。本文档详细阐述 CXO 编辑器的异常处理、资源按需加载及
+H2~ ## 异常处理与状态同步
+TXT 在初始化编辑器实例时，需注册全局回调事件以捕获文档冲突、版本过旧等异常状态。
+H2~ ## 资源按需加载与字体预加载
+H2~ ### 脚本动态注入
+TXT 为避免主包体积膨胀，CXO 的核心脚本仅在 `init` 阶段进行懒加载。通过判断 `window.CXO_API` 是否存在，决定是否动态创建<word text="HTML" />的 `script` 标签。
+H2~ ### 隐藏 iframe 字体预加载
+TXT CXO 依赖大量自定义字体，若在主线程同步加载，极易引发<word text="FOIT" />（Flash of Invisible Text）或<word text="FOUT" />（Flash of Unstyl
+H2~ ### 预加载原理剖析
+TXT |           渲染阶段            |               主页面直接加载                |                隐藏 `iframe` 预加载           
+TXT | :---------------------------: | :-----------------------------------------: | :-----------------------------
+
+### work/数说/AI报告/自动化路由配置指南
+H1: 自动化路由配置指南
+H2~ ## 概述
+TXT 在基于<word text="Vue3" />与<word text="TypeScript" />构建的企业级中后台项目中，路由配置的维护成本往往随业务规模的扩张而急剧增加。为提升开发效率并保障类型安全，本项目引入了<
+H2~ ## 核心依赖与配置
+H2~ ### 依赖安装
+TXT 通过包管理器安装核心插件及路由基础库：
+H2~ ### Vite 构建配置
+TXT 在 `vite.config.ts` 中集成<word text="UnpluginVueRouter" />与<word text="AutoImport" />插件，并配置类型声明文件的生成路径。
+H2~ ## 目录结构与路由映射
+TXT 插件会扫描指定目录（默认为 `src/pages`）下的文件结构，并自动将其转换为路由配置。映射规则如下表所示：
+TXT | 文件路径                        | 生成路由路径      | 路由名称 (编程式导航) | 参数类型推导            |
+TXT | ------------------------------- | ----------------- | --------------------- | ----------------------- |
+TXT | `src/pages/index.vue`           | `/`               | `/`                   | 无参数                  |
+
+### work/数说/需求洞察/代理配置
+H1: 代理配置指南
+H2~ ## 概述
+TXT 在数说项目的实际开发中，通常面临“一套代码，多套环境”的部署需求。例如，项目需同时适配公司内网环境（`xxx.datastory.com`）与客户私有化环境（`yyy.changan.com`）。为提升本地联调效率，需通
+H2~ ## 核心工具介绍
+TXT | 工具名称                     | 功能定位                               | 适用场景                                        
+TXT | :--------------------------- | :------------------------------------- | :-----------------------------------
+TXT | <word text="Whistle" />      | 基于 Node.js 的跨平台 Web 调试代理工具 | 配置底层网络请求转发、Mock 数据、修改<word text="HTTP" /> Header
+TXT | <word text="SwitchyOmega" /> | 浏览器代理管理扩展插件                 | 灵活切换浏览器代理配置，实现特定域名走代理，其余走直连               |
+H2~ ## 代理配置流程
+H2~ ### 在 Whistle 中配置域名转发规则
+TXT 1. 安装与启动
+TXT 通过<word text="NPM" />全局安装并启动<word text="Whistle" />服务。
+TXT 启动成功后，访问 `http://127.0.0.1:8899` 即可进入<word text="Whistle" />可视化配置面板。
+
+### work/灵思/华润水泥/jeecg/树组件默认展开
+H1: 树组件默认展开
+TXT 用户要求树组件默认展开，一般树结构都会有默认展开、指定展开的 `API` ，查阅官方文档，果不其然可以使用 `defaultExpandAll` 字段，设置为 `true` 即可。
+TXT 试用一下：
+TXT 刷新项目后查看效果，发现并没有用。
+H2~ ## 解决方案
+TXT 继续翻阅文档，发现个属性，换一种思路，默认展开全部树节点 === 展开指定树节点字段中设置全部的节点 `id` ，该思路成立。把上方代码修改一下：
+TXT 刷新页面查看效果，发现能够默认展开全部的树节点。
+
+### work/灵思/华润水泥/jeecg/表格行选中
+H1: 表格行选中
+TXT <word text="Ant Design Vue" />组件库中有一个表格组件 `a-table` ，可实现单选表格或多选表格的效果，但是只有点击单选框或多选框才有效。用户想要点击当前行也能选中该行的数据。
+H2~ ## 思路
+TXT 查看官方文档有没有实现该需求的 `api` 。官网文档指路：[Table 表格](https://1x.antdv.com/components/table-cn/#API) 。
+TXT 官方文档有这么一段 `customRow` 用法，示例方法为：
+TXT 可以看到，在 `on` 对象内绑定了 `click` 事件可以获取到当前行点击的事件，触发点击事件后，如果当前行未选中，就把当前行的 `id` 追加到表格行选中的数组内，反之把当前行的 `id` 从数组中去除。
+H2~ ## 代码
+
+### work/灵思/华润水泥/Vue-color的使用
+H1: Vue-color 的使用
+TXT 水泥项目有一个需求：提供颜色选择器给用户选择颜色，旁边能还让用户看到预览颜色及其 `rgb` 内容。根据搜寻最后找到插件<word text="vue-color" />。Github 官方文档地址为： [vue-col
+H2~ ## 引入插件
+TXT ::: code-group
+TXT :::
+H2~ ## 使用
+TXT 1. 导入下载好的插件
+TXT 在项目中新建一个测试页面 `test.vue` ，导入相对应的模块
+TXT 2. 注册组件并使用
+TXT - 设置默认显示的颜色
+TXT - 引入组件并注册
+TXT - 使用
+H2~ ## 项目
+
+### work/灵思/华润水泥/图片对比可拖拽封装
+H1: 图片可拖拽对比轮子
+H2~ ## 效果
+TXT 多张效果图中可以两两对比，效果图可拖拽移动位置，可通过鼠标滚轮放大缩小。
+H2~ ## 拖拽
+H2~ ### 用 setCapture 与 releaseCapture 实现拖拽的思路
+TXT 拖拽事件分为以下三步：
+TXT 1. 鼠标移入图片标签内，捕获所有鼠标按下的事件 `setCapture`
+TXT 2. 获取鼠标移动事件 `onmousemove` ，获取其移动的偏移量 `clientX` 与 `clientY`
+TXT 3. 获取鼠标松开事件，取消所有事件捕获 `releaseCapture`
+TXT ::: info 需要注意的要点：
+TXT - 当前移动的是哪个图片（通过传参来判断）
+TXT - 图片 `dom` 元素是动态创建的，不是固定写死的，因此要动态为元素绑定移动事件
+TXT :::
+
+### work/灵思/职技网/Vant组件二次封装
+H1: vant 组件二次封装
+TXT 为了更方便复用组件，更贴切业务范围，本项目对<word text="Vant" />的部分组件进行二次封装，提高组件的复用性和可维护性。
+H2~ ## NavBar 导航栏
+TXT 封装导航栏，可以凭借更少更好记的代码实现大多数页面使用导航栏。封装导航栏需要实现以下几点：
+TXT 1. 导航栏的标题：类型字符串，非必传，默认为空字符串。
+TXT 2. 导航栏的左侧文字：类型字符串，非必传，默认为空字符串。
+TXT 3. 是否显示左侧返回箭头：类型为布尔值，非必传，默认为真。
+TXT 4. 是否显示右侧内容：类型字符串，非必填，默认为空。
+TXT 5. 点击左侧事件：通过 `$emit` 子传父在父组件触发事件，部分页面用于清空 `Vuex` 和本地存储的内容。
+TXT 代码如下所示：
+H2~ ## Area 地区选择器
+TXT 地区选择器主要封装以下方面：
+TXT - 页面上
+
+### work/灵思/职技网/下载附件
+H1: 下载附件
+TXT 本项目招聘会模块有一个 **下载附件** 的功能，该功能主要是用户点击后下载后台上传的附件，文件格式为 `.jpg` 、`.png` 、`.zip` 、`.doc` 等。
+H2~ ## 接口调用
+TXT 调用接口，传递参数，下载文件，发现浏览器网络能看到下载的图片，但是报错。
+TXT 原因是下载的附件后端以二进制<word text="Blob" />的格式返回，需要设置相应的请求头，普通的接口调用会报错。解决方法有以下两点：
+TXT 1. 通过`window.open`跳转新页面下载。原理是利用浏览器的特性，让浏览器帮我们下载，前端不用做任何处理。
+TXT 2. 通过设置请求头下载 `blob` 格式的文件，也是本项目使用的方法。
+H2~ ## window.open 下载
+TXT 拼接文件路径让其跳转到浏览器中，凭借浏览器特性来下载，代码如下所示：
+H2~ ## blob 下载
+TXT - 设置请求头调用接口下载文件，指定接收类型 `responseType` 为二进制数组 `arraybuffer` 。
+TXT - 成功回调中获取 `data` ，通过 `new Blob` 转 `blob` 格式的数据，通过 `window.URL.createObjectURL` 把链接用一个变量保存，执行以下操作：
+TXT 1. 创建一个 `a` 标签
+
+### work/灵思/职技网/微信授权
+H1: 微信授权
+TXT 职技网需要通过公众号为用户发送消息提醒，因此用到了<word text="微信网页授权" />。第一次尝试这个功能，在此记录从 0 开始的微信网页授权实现之路。
+TXT 微信网页授权官网指路：[微信网页开发/网页授权](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authoriza
+H2~ ## 思路剖析
+TXT 根据官方文档的说法，翻译成大白话就是：
+TXT 1. 拿到需要发送消息提醒的公众号的 `AppId` 和授权后重定向的回调链接地址 `redirect_uri` 进行拼接。
+TXT 2. 根据文档的链接放置到对应的参数位置，`location.href` 路由跳转（地址分析见下方）。
+TXT 3. 跳转成功后路径上会有一个 `code` 值，获取到该 `code` 值调用后端的接口。
+TXT 4. 返回 `openId` 就算成功。
+TXT 微信授权跳转地址示例如下所示：
+TXT 其中：
+TXT - `appid` ：公众号的唯一标识（必填）
+TXT - `redirect_uri` ：授权后重定向的回调链接地址， 需要使用使用 `urlEncode` 对链接进行处理（必填，本地如何获取见下方《本地环境》）
+
+### work/灵思/视频分销/关注公众号
+H1: 关注公众号
+H2~ ## 需求
+TXT 客户提出需求：本项目中的提现功能需要用户关注公众号，只有关注了公众号后才能提现佣金。
+H2~ ## 思路
+TXT 首先需要判断用户是否关注了公众号，这里后端写好了一个接口，通过调用接口获取用户关注公众号的数据；如果用户没有关注公众号，则返回 `null` 。
+TXT 接着需要引导用户关注公众号，这里有几个实现思路：
+TXT - 贴上公众号二维码让用户自行复制图片长按识别二维码
+TXT - <word text="微信小程序" />官方提供的公众号关注组件 `official-account`
+TXT - 给予公众号名称让用户搜索关注
+TXT - 客服消息
+TXT 通过为按钮组件设置类型为客服类型，开启会话内信息卡片 `show-message-card` （注意只有 `open-type="contact"` 时有效），效果如下图所示：
+TXT ![p9I2l9K.jpg](https://s1.ax1x.com/2023/05/22/p9I2l9K.jpg)
+H2~ ## 条件
+
+### work/灵思/视频分销/分享
+H1: 分享
+TXT <word text="微信小程序" />拥有分享给好友和分享到朋友圈的功能，通过点击右上角选择功能实现。但是分享功能的实现需要开发者在对应页面设置 `onShareAppMessage` 和 `onShareTimel
+H2~ ## 分享给好友
+TXT 分享给好友需要用到 `onShareAppMessage` 方法，可获取三个参数：
+TXT |    参数    |  类型  |                                                                                           
+TXT | :--------: | :----: | :-------------------------------------------------------------------------------------
+TXT |    from    | String |                                                                       转发事件来源。 button：页
+TXT |   target   | Object |                                                              如果 from 值是 button，则 targe
+TXT | webViewUrl | String | 页面中包含[web-view](https://developers.weixin.qq.com/miniprogram/dev/component/web-view.ht
+TXT 此事件处理函数需要 **返回** 一个 **对象**，用于自定义转发内容，返回内容如下：
+TXT |   字段   |                                                    说明                                              
+TXT | :------: | :------------------------------------------------------------------------------------------------
+TXT |  title   |                                                  转发标题                                            
+
+### work/灵思/视频分销/刷新token
+H1: 刷新 token
+TXT 本项目 `token` 有效时长为 2 小时，超时后需要额外调用接口获取新的 `token` 并替换原来旧的 `token` ，手动实现 `token` 刷新。
+TXT **思路分析：**
+TXT 1. 获取用户登录以及上一次获取到 `token` 的时间戳并保存
+TXT 2. 在用户发送请求时判断当前时间戳与保存的时间戳是否超过 1.5 小时，如果超过则调用获取 `token` 的接口。
+TXT ::: warning 注意
+TXT 调用接口不能使用封装后的方法，因为调用刷新 `token` 的接口已经封装好了，如果继续调用封装好的方法会一直判断时间戳，调用接口，判断时间戳......进入死循环。
+TXT :::
+TXT 不要用了框架就忘记原生方法。<word text="UniApp" />提供一个方法 [uni.request](https://uniapp.dcloud.net.cn/api/request/request.html
+TXT **参数说明**
+TXT |    参数名    |           类型            | 必填 | 默认值 |                        说明                        |
+TXT | :----------: | :-----------------------: | :--: | :----: | :------------------------------------------------
+TXT |     url      |          String           |  是  |        |                开发者服务器接口地址                |
+
+### work/灵思/视频分销/商城
+H1: 商城
+H2~ ## 视频轮播图动态轮播
+H2~ ### 思路
+TXT 在商品详情页中，使用了<word text="uView" />组件库的 `Awiper` 轮播图组件。该组件前面介绍过，可以设置视频和图片在轮播图内。
+TXT 今天测试提了一个需求：在视频播放的时候轮播图还在自动轮播，能不能视频播放时停止自动轮播，结束或暂停播放后再继续自动轮播。
+TXT 查阅文档，文档上提供了 `click` 点击方法，可以判断用户点击的是不是视频，点击一次停止轮播，再次点击继续轮播。
+TXT 但是这并不是最好的选择，他无法侦听到视频播放结束的事件。此时官方文档没有能解决我们需求的方法，官方的组件也无法满足我们的需求，我们可以复制其底层代码，自己添加事件。
+TXT 本项目<word text="uView" />通过<word text="HBuilder" />导入，因此找到 `uni-module` 文件夹，找到 `u-swiper.vue` 组件，复制粘贴到自己创建的组件文件
+H2~ ### 源码赏析
+TXT 看看别人封装的组件源码，学习学习。
+TXT 他们是获取到父组件传入的数组，通过原生 `swiper` 轮播图组件，循环数组内容渲染到 `swiper-item` 上，通过 `v-if` 判断当前对象的类型，图片类型用 `image` 显示，视频类型用 `video
+TXT 这也就是为什么他要求我们在传入数组时以对象的形式，包括路径和类型的参数。
+TXT 其中，视频与图片都有 `@tap` 点击事件，对应文档提供的 `click` 点击事件，其事件代码如下所示：
+
+### work/灵思/视频分销/图片上传组件封装
+H1: 图片上传组件封装
+TXT 基于<word text="uView" />的 `u-upload` 组件进行二次封装，实现可复用的图片上传组件。
+H2~ ## 思路分析
+TXT - 用户选择图片后触发组件的 `afterRead` 事件
+TXT - 调用 [uni.uploadfile](https://uniapp.dcloud.net.cn/api/request/network-file.html#uploadfile) 事件上传图片
+TXT - 上传成功保存到数组内，上传失败弹出提示
+TXT - 通过父组件传递的参数判断是否要显示删除按钮（一般用于详情和编辑功能复用的场景）
+H2~ ## 总体代码
+TXT ::: details 点击查看详细代码
+TXT :::
+H2~ ## 知识拓展
+TXT 在小程序和 APP 中，无法通过以下方式收集 `formData`形式的数据：
+TXT 如果使用，会报错 `FormData is not defined.` 。此时可以通过 `uView` 提供的 `upload` 组件配合 `uni.uploadFile` 方法获取 `formData` 形式的数据。
+
+### work/灵思/视频分销/微信授权快捷登录
+H1: 微信快捷登录
+H2~ ## 获取令牌
+TXT 将 [button](https://developers.weixin.qq.com/miniprogram/dev/component/button.html) 组件 `open-type` 的值设置为 `getPh
+TXT ::: tip 温馨提示
+TXT `getPhoneNumber` 返回的 `code` 与 `wx.login` 返回的 `code` 作用是不一样的，不能混用。
+TXT :::
+H2~ ## 代码示例
+H2~ ## 返回参数说明
+TXT | 参数 |  类型  | 说明                                                                                              
+TXT | :--- | :----: | :-------------------------------------------------------------------------------------------
+TXT | code | String | 动态令牌。可通过动态令牌换取用户手机号。使用方法详情 [phonenumber.getPhoneNumber](https://developers.weixin.qq.com/min
+H2~ ## bug
+TXT 出现 `getPhoneNumber:fail:access denied` 。
+
+### work/灵思/视频分销/视频轮播
+H1: 视频轮播
+H2~ ## 前言
+TXT 项目有一个视频图片轮播图的功能，想要实现像淘宝那种效果，但由于技术能力有限，最终实现的效果为轮播图 + 视频组件的形式。
+TXT 轮播图第一张固定为视频的封面图，点击后 `v-show` 切换成视频组件 `video` 。暂停后切换回来轮播图组件。
+TXT 这里使用 `v-show` 的原因是切换回轮播图后用户下一次点击时能够继续上一次的进度观看。
+H2~ ## 视频组件层级
+TXT `app`端底层逻辑的原因，视频标签层级很高，无法使用常规标签和样式覆盖，<word text="UniApp" />提供了专属标签 [cover-view](https://uniapp.dcloud.net.cn/c
+TXT 该标签支持 `click` 事件，使用方式为被 `video` 等标签包裹在内，渲染文本。
+H2~ ## 下载视频到相册
+TXT 下载视频到相册用到了 [uni.savevideotophotosalbum](https://uniapp.dcloud.net.cn/api/media/video.html#savevideotophotosalb
+TXT |  参数名  |   类型   | 必填 |                         说明                         |
+TXT | :------: | :------: | :--: | :--------------------------------------------------: |
+TXT | filePath |  String  |  是  | 视频文件路径，可以是临时文件路径也可以是永久文件路径 |
+
+### work/灵思/视频分销/请求封装
+H1: 请求封装
+TXT `uView` 组件库提供了 `http` 请求封装的方法，详情点击 [链接](https://www.uviewui.com/js/http.html) 查看。
+H2~ ## 方法封装
+H2~ ### 全局配置
+TXT 在 `/config/request.js` 中，通过 `uni.$u.http.setConfig()` 方法配置根路径：
+H2~ ### 请求拦截
+TXT 在 `/config/request.js` 中，通过 `uni.$u.http.interceptors.request.use()` 方法配置请求拦截器：
+TXT - 设置请求头，根据接口不同的参数设置该请求是传 `json` 格式还是表单格式。
+TXT - 携带 `token` 。登录成功后会把用户 `token` 本地存储，在请求拦截器内获取到并携带过去给后端。
+TXT 其中有一个 `custom` 对象属性，该属性是由 `uni.$u.http` 第三个参数获取，因此代码可以改为如下形式：
+TXT 使用的时候可以通过如下方法设置：
+TXT 现在该接口就是 POST 请求的 JSON 格式。
+H2~ ### 拓展
+
+### work/灵思/视频分销/附件下载
+H1: 附件下载
+TXT 用户需要下载附件的功能，此时通过 `uni.downloadFile` 方法下载文件保存到临时地址，在其成功回调中调用 `openDocument` 方法下载附件。
+TXT `openDocument` 方法参数如下所示
+TXT |   属性   |  类型   | 默认值 | 必填 |                      说明                      |                                  
+TXT | :------: | :-----: | :----: | :--: | :--------------------------------------------: | :---------------------
+TXT | filePath | string  |        |  是  | 文件路径 (本地路径) ，可通过 downloadFile 获得 |                                      
+TXT | showMenu | boolean | false  |  否  |               是否显示右上角菜单               | [2.11.0](https://developers.weix
+TXT | fileType | string  |        |  否  |         文件类型，指定文件类型打开文件         | [1.4.0](https://developers.weixin.qq.c
+TXT <word text="微信小程序" />中文件保存到手机的方式比较特殊，我们需要把 `showMenu` 设为 `true` ，预览的时候显示右上角的菜单，通过另存为的方式保存文件。
+TXT 示例代码：
+H2~ ## 遇到的问题
+TXT 运行之后效果实现了，本来以为松了口气，但是测试说她的 IOS 系统手机无法打开预览，测试一下后发现报错，信息如下：
+TXT ::: danger 报错信息
+
+### work/灵思/音果云音/APP/Tabbar
+H1: tabbar 页
+TXT 主页面 `tabBar` 页面根据高保真原型图设计开发即可。
+H2~ ## 首页轮播图跳转
+TXT 用户有一个需求是点击轮播图的图片跳转到指定链接页面，`UniApp` 有一个内置的组件 [webview](https://uniapp.dcloud.net.cn/component/web-view.html#web
+TXT | 属性名           |  类型  |                     说明 |
+TXT | :--------------- | :----: | -----------------------: |
+TXT | `src`            | String | `webview` 指向网页的链接 |
+TXT | `webview-styles` | Object |         `webview` 的样式 |
+TXT 更多属性前往官网查看。
+TXT 实现步骤如下：
+TXT - 点击轮播图路由跳转
+TXT - 拿到链接参数赋给 `src` 属性
+TXT ::: code-group
+
+### work/灵思/音果云音/APP/个人
+H1: 证件照裁剪
+TXT 音果项目客户那边需要生成证书，证书生成个人证件照有宽高要求。因此 `APP` 这边需要对用户上传的图片做裁剪操作，上传成功后点击可预览，如下所示：
+TXT ![p9gyE26.png](https://s1.ax1x.com/2023/05/15/p9gyE26.png)
+H2~ ## chooseImage
+TXT <word text="UniApp" />提供了图片选择的方法 `uni.chooseImage()` ，其中可设置选择的图片、压缩类型、拍摄或相册获取等等，官方文档指路：[chooseImage](https://u
+TXT 选择图片成功后触发成功回调函数，参数中可获取临时地址，用于调用接口上传图片。
+TXT 根据官方文档描述，我们可以设置 `crop` 属性，做图像裁剪参数，设置后 `sizeType` 失效。
+H2~ ### crop
+TXT **参数说明**
+TXT | 参数名  |  类型   | 必填 |                                                                    说明                   
+TXT | :-----: | :-----: | :--: | :--------------------------------------------------------------------------------
+TXT | quality | Number  |  否  |                                  取值范围为 1-100，数值越小，质量越低（仅对 jpg 格式有效）。默认值为 80。      
+TXT |  width  | Number  |  是  |                                                 裁剪的宽度，单位为 px，用于计算裁剪宽高比。           
+
+### work/灵思/音果云音/APP/分享
+H1: 分享
+TXT 使用者点击分享按钮后会跳到分享页，生成落地海报，点击保存按钮可将海报保存到相册中。思路整理：
+TXT - 由于要能够下载整张落地页海报到相册，因此需用到画布组件 [canvas](https://uniapp.dcloud.net.cn/component/canvas.html#canvas) 。
+TXT - 画布内容生成用到 [uni.canvasToTempFilePath](https://uniapp.dcloud.net.cn/api/canvas/canvasToTempFilePath.html#canvas
+TXT - 生成的图片通过 [uni.saveImageToPhotosAlbum](https://uniapp.dcloud.net.cn/api/media/image.html#saveimagetophotosalbu
+H2~ ## 画布设置
+TXT 根据官方文档，在使用画布标签时需要为其添加一个 `id` 属性，该 `id` 必须唯一，不可重复。
+H2~ ### 获取设备信息
+TXT 由于是整张落地页海报，因此获取用户设备大小是第一步，根据该大小来调整图片宽高。
+H2~ ### 获取图片信息
+TXT 落地页的背景图片在本地文件夹中，绘制画布时需要等待其绘制背景图片，可以通过 [uni.getImageInfo](https://uniapp.dcloud.net.cn/api/media/image.html#get
+TXT 可以看到图片获取成功，可以进行下一步的绘制了。
+H2~ ### 渲染上下文
+
+### work/灵思/音果云音/APP/分包
+H1: 分包
+TXT 将<word text="微信小程序" />的代码和资源拆分成多个包，按需加载，减少主包体积，提升首屏加载速度。
+H2~ ## 分包策略
+H2~ ## 配置
+TXT 说明：
+TXT - `root`: 分包根目录
+TXT - `name`: 分包别名（用于 preloadRule）
+TXT - `pages`: 分包页面路径
+TXT - `independent`: 是否独立分包（独立分包可突破2MB限制）
+TXT - `preloadRule`: 预下载规则
+H2~ ## 预下载策略
+H2~ ## uni-app 分包配置
+TXT ::: code-group
+
+### work/灵思/音果云音/APP/商品
+H1: sku 商品规格
+TXT 工具类商品提供<word text="SKU" />规格搜索，每项分类都有几个选项，选择完相应的规格后会显示对应的图片、价格、库存数量等。
+H2~ ## 数据返回
+TXT 查看后端返回的数据，根据后端返回的数据来做页面渲染与事件点击操作。
+H2~ ### 商品规格
+TXT 后端返回一个数组对象，对象内返回相应的数据：
+TXT - `sku` ：相应的规格数组，后续用于判断选择的规格是否与之相等
+TXT - `cover` ：该规格对应的商品图
+TXT - `stock` ：该规格对应的库存
+TXT - `salesPrice` ：该规格对应的售价
+TXT - `goodsId` ：该规格商品 `id`
+H2~ ### 型号
+TXT ![p9gc9hR.png](https://s1.ax1x.com/2023/05/15/p9gc9hR.png)
+
+### work/灵思/音果云音/APP/操作
+H1: 操作
+H2~ ## 蓝牙连接
+TXT 用户需要 `app` 连接蓝牙设备进行各自操作的功能，<word text="UniApp" />有对应的 `API` 可以使用，详情请见 [蓝牙](https://uniapp.dcloud.net.cn/api/sy
+H2~ ### 初始化蓝牙
+TXT ::: warning 注意
+TXT 最开始需要初始化蓝牙模块，初始化成功后才能调用其他蓝牙相关的 API，否则会返回 _未初始化蓝牙适配器_ 的错误。
+TXT :::
+TXT 开启成功后会返回 `{"errMsg":"openBluetoothAdapter:ok"}` 提示。
+H2~ ### 开启搜寻
+TXT 开始搜寻附近的蓝牙外围设备。
+TXT ::: warning 注意
+TXT 此操作比较耗费系统资源，搜索并连接到设备后调用  `uni.stopBluetoothDevicesDiscovery`  方法停止搜索。
+TXT :::
+
+### work/灵思/音果云音/APP/支付
+H1: 支付
+TXT 根据后端的接口文档，支付模块需要调用两个接口：
+TXT 1. 创建订单
+TXT 创建成功后会返回相应的订单编号
+TXT 2. 支付
+TXT 拿到订单编号后调用支付接口
+H2~ ## 微信支付
+TXT 由于项目客户未申请到微信开发者账号，因此暂时无法实现此业务。
+H2~ ## 支付宝支付
+TXT - 调用支付接口获取回调参数<word text="Alipay" /> SDK
+TXT - 通过 `uni.requestPayment` 调用<word text="Alipay" />支付
+TXT **参数说明**
+TXT |     参数名     |      类型       |      必填      |                                                                
+
+### work/灵思/音果云音/APP/无感刷新
+H1: 无感刷新
+H2~ ## 核心原理与流程
+TXT 通常采用 双 Token 机制：
+TXT - <word text="Access Token" />：短效（如 2 小时），用于请求接口。
+TXT - <word text="Refresh Token" />：长效（如 7 天），专门用于换取新的<word text="Access Token" />。
+TXT 交互流程如下：
+TXT 1. 前端请求接口，携带 Access Token。
+TXT 2. 后端验证失败（返回 401），告知 Token 过期。
+TXT 3. 前端拦截 401 响应，暂停当前请求。
+TXT 4. 前端检查是否正在刷新 Token：
+TXT - 是：将当前请求加入队列，等待刷新完成。
+TXT - 否：调用刷新接口，获取新 Access Token。
+TXT 5. 刷新成功后：
+
+### work/灵思/音果云音/APP/更新
+H1: 更新
+TXT 现有一个需求：客户想要点击 “检查更新” 按钮后判断当前是否是最新版本，不是最新版本则自动更新下载最新版本的 `APP` ，无需去到外部下载。
+H2~ ## 前置知识
+TXT `plus` 开头的方法是 `APP` 原生功能，是 `5+Runtime` 的内部对象，在普通浏览器运行 plus api 时控制台必然会输出 `puls is not defined` 错误提示。
+TXT 详细的 `runtime` 方法与属性可查阅官方文档 [runtime](https://www.html5plus.org/doc/zh_cn/runtime.html) 。
+H2~ ### plus.runtime.getProperty
+TXT 拿到的是当前应用的版本，如果热更新过就是热更新的版本。其接收两个参数：
+TXT - 参数一：应用的 `Appid` （必传）。
+TXT - 参数二：获得应用信息成功回调函数（必传）。
+TXT 示例代码：
+TXT 回调函数的参数中 `version` 属性是我们需要的版本号；`name` 属性是我们需要的应用名称。
+TXT ::: warning 注意
+TXT `plus.runtime.version` 也能获取版本号，二者不同之处在于 `plus.runtime.version` 获取到的是`manifest.json`中设置的 `apk/ipa` 版本号，整包更新的版本。
+
+### work/灵思/音果云音/APP/测试
+H1: 测试页
+TXT 现有一个需求：点击上一题前往上一题，点击下一题前往下一题，最后一道题做完提交测试。看到效果第一时间考虑的是该如何布局才能更简便呢？（以下思路以及代码由 CharHua 同事提供）
+TXT <word text="UniApp" />有一个内置组件 `swiper` ，滑块视图容器。一般用于左右滑动或上下滑动，比如`banner`轮播图。注意滑动切换和滚动的区别，滑动切换是一屏一屏的切换。`swiper`下
+TXT **属性说明**
+TXT |     属性名      |    类型     | 默认值 |                                          说明                                
+TXT | :-------------: | :---------: | :----: | :------------------------------------------------------------------
+TXT | indicator-dots  |   Boolean   | false  |                                   是否显示面板指示点                        
+TXT |     current     |   Number    |   0    |                                  当前所在滑块的 index                     
+TXT | current-item-id |   String    |        |                   当前所在滑块的 item-id ，不能与 current 被同时指定               
+TXT |     @change     | EventHandle |        | current 改变时会触发 change 事件，event.detail \= \{current: current, source
+TXT 滑块正好符合测试题上下题切换的需求，每一个 swiper-item 为一道题目，切换题目即触发 change 事件切换到相邻的滑块。
+TXT 整体代码如下所示。
+TXT ::: code-group
+
+### work/灵思/音果云音/APP/登录
+H1: 登录页
+H2~ ## 业务分析
+TXT 1. 获取验证码
+TXT 1. 调用接口
+TXT 2. 获取参数并传参
+TXT 2. 验证码登录/账号密码登录
+TXT 3. 游客登录
+TXT 4. 服务条款、隐私协议
+TXT 5. 忘记密码
+TXT 6. 微信授权登录
+H2~ ## 业务实现
+H2~ ### 获取验证码
+TXT 点击获取验证码按钮
+
+### work/灵思/音果云音/APP/详情
+H1: 详情
+H2~ ## 音频详情
+TXT 音频详情页需要一个播放音频的控件，在最开始的时候使用的是<word text="UniApp" />提供的 `audio` 组件，在 `app` 上运行无误，但是在 `h5` 上运行时报错，发现其组件停止维护。根据项目经
+H2~ ### 音频组件
+H2~ #### 初步实现
+H2~ ##### 用 createInnerAudioContext 读取时长与播放状态
+TXT 音频 API 详情查看 [音频组件控制](https://uniapp.dcloud.net.cn/api/media/audio-context.html#createinneraudiocontext) 官方文档。该
+TXT 需要实现的功能包括但不限于音频的总时长、当前播放的时长、进度条、暂停播放的控制等。
+TXT 首先查看文档的代码示例，示例代码如下：
+TXT 从示例代码可以得知，使用 `uni.createInnerAudioContext()` 方法创建一个音频对象，通过 `src` 属性接收音频的路径，`autoplay` 为是否自动播放，`onPlay` 开始播放后触发
+TXT 查看 `innerAudioContext` 对象属性列表和方法列表，找到了我们需要的几个参数：
+TXT - `currentTime` ：当前音频的播放位置（单位：s），只有在当前有合法的 `src` 时返回。在音频播放事件内也要实时获取数据并赋值。
+TXT - `paused` ：当前是否暂停或停止状态，`true` 表示暂停或停止，`false` 表示正在播放。通过该状态判断按钮的点击事件是触发播放还是暂停。
+
+### work/灵思/音果云音/H5/海报页
+H1: 海报页
+H2~ ## 浏览器判断
+TXT 海报页提供使用者下载软件的功能，但<word text="微信" />内置浏览器会有一点问题，因此需要添加一个判断，如果当前用户打开的是微信内置浏览器，则显示一个蒙版，阻止用户操作并提示其打开其他浏览器。
+TXT `navigator.userAgent`：浏览器用于 `HTTP` 请求的用户代理头的值，通过 `UserAgent` 可以取得浏览器类别、版本，客户端操作系统等信息。
+TXT 1. 在 PC 端打开，`navigator.userAgent` 显示如下
+TXT 2. 在手机 web 端打开，`navigator.userAgent` 显示如下
+TXT 总体代码如下所示：
+H2~ ## 缓存清除
+TXT 现在项目成功上架安卓和苹果商店后，需要通过接口动态获取最新版本下载数据。但是由于有缓存，导致每次获取的版本都不是最新的。因此需要添加以下的代码到`index.html`文件中，禁止从缓存获取数据，通过服务器获取数据。代码
+
+### work/百度/佛开/LED大屏/大屏自定义样式
+H1: 大屏自定义样式
+H2~ ## 概述
+TXT 百度地图默认采用白色底色样式。为满足大屏项目的视觉规范，需通过 `setMapStyleV2` 方法对地图进行个性化样式定制。本文档详细说明通过样式 ID 与样式<word text="JSON" />文件两种实现路径。
+H2~ ### 通过样式 ID 配置
+TXT **实现步骤**
+TXT 1. 登录百度地图开放平台控制台，进入"我的地图"模块。
+TXT 2. 创建并编辑地图样式，调整道路、水系、绿地等元素的颜色与显隐。
+TXT 3. 发布样式，获取生成的样式 ID（`styleId`）。
+TXT 4. 在代码中调用 `setMapStyleV2` 方法应用样式。
+TXT > 约束条件：发布的 `styleId` 必须与当前项目使用的 `ak`（密钥）属于同一开发者账号。
+TXT **核心代码**
+H2~ ### 通过样式 JSON 文件配置
+TXT **实现步骤**
+
+### work/百度/佛开/LED大屏/大屏覆盖物
+H1: 大屏覆盖物
+H2~ ## 概述
+TXT 在百度二维地图（<word text="BMapGL" />）中，扎点、折线、文本等地图元素统称为覆盖物（Overlay）。本文档详细阐述在佛开项目大屏端中，如何高效使用 `Polyline`、`Label` 以及<wo
+H2~ ## 折线覆盖物 (Polyline)
+TXT **实现原理**
+TXT 使用 `Polyline` 类绘制折线，需传入坐标点数组与样式配置对象。
+TXT **核心代码**
+TXT > [!warning] 注意
+TXT > 在遍历数组生成坐标点时，必须使用 map 或 filter 等返回新数组的方法。若使用 forEach，将无法正确传递坐标数组导致报错。
+H2~ ## 文本标注 (Label)
+TXT **实现原理**
+TXT 通过 `Label` 类创建文本标注，支持自定义位置、偏移量及丰富的<word text="CSS" />样式（如内边距、背景色等）。
+TXT **核心代码**
+
+### work/百度/佛开/LED大屏/项目大屏打包
+H1: 项目大屏打包
+H2~ ## 概述
+TXT 在项目部署阶段，需对构建产物进行打包处理。针对百度地图佛开项目大屏端，路由配置与基础路径（Base URL）的定义是打包流程中的核心环节。本文档详细说明如何通过环境变量与<word text="Vite" />配置实现灵
+H2~ ## 路由与基础路径配置
+H2~ ### 环境变量定义
+TXT 为便于后续开发与生产环境的统一维护，将路由基础路径定义在环境变量文件 `.env.production` 中。
+H2~ ### Vite 配置加载
+TXT <word text="Vue3" />项目基于<word text="Vite" />构建。在 `vite.config.js` 中，无法直接通过 `import.meta.env` 获取环境变量，需使用<word t
+TXT **配置流程**
+TXT **核心代码实现**
+H2~ ## 环境变量与配置说明
+TXT | 变量/配置名     | 作用域                    | 说明                                                                    
+TXT | :-------------- | :------------------------ | :-------------------------------------------------------------
+
+### work/百度/佛开/平台端/3D路由跳转
+H1: 3D 路由跳转
+H2~ ## 概述
+TXT 在百度地图佛开项目大屏端的初期设计中，路由切换采用的是 `element-ui` 的 `tab` 组件。为满足 UI 设计对科幻风格与视觉冲击力的要求，需将传统的平面切换重构为具备 3D 空间旋转与透明度渐变的路由跳转效
+H2~ ## 核心原理分析
+TXT 实现 3D 路由切换效果，需解决三个核心技术点：激活状态的判定、不透明度的梯度计算、以及 3D 空间旋转角度的映射。
+TXT 1. 激活状态判定
+TXT 通过比对当前路由路径（`router.path`）与配置数组中的 `url` 字段，确定当前处于激活状态的索引（`activeIndex`）。
+TXT 2. 不透明度梯度计算
+TXT 激活项保持完全可见（透明度为 1），其余项根据与激活项的索引差值，透明度呈线性递减。
+TXT 3. 3D 旋转角度计算
+TXT 利用<word text="CSS" />的 `transform-style: preserve-3d` 属性构建 3D 渲染上下文，通过 `rotateY` 控制各元素在 Y 轴上的旋转角度。角度计算需考虑元素相对于
+TXT | 方位判定  |     计算逻辑      |                         说明                         |
+TXT | :-------: | :---------------: | :--------------------------------------------------: |
+
+### work/百度/佛开/平台端/子组件动态挂载
+H1: 子组件动态挂载
+H2~ ## 概述
+TXT 在复杂的大屏布局中，左右两侧通常包含大量的数据卡片组件。若采用传统的逐个 `import` 导入方式，不仅代码冗余，且不利于后续维护。本文档阐述如何利用<word text="Vite" />的 `import.meta
+H2~ ## 批量导入与统一导出
+H2~ ### 实现原理
+TXT 通过<word text="Vite" />提供的 `import.meta.glob` API 批量获取指定目录下的 `.vue` 文件模块，结合 `defineAsyncComponent` 将其注册为异步组件，最终
+H2~ ### import.meta.glob 与 defineAsyncComponent 的批量注册代码
+H2~ ## 字典驱动与组件过滤
+H2~ ### 配置字典
+TXT 页面所需组件的布局与顺序由后端接口返回的字典配置决定（此处以本地配置为例）。字典中定义了组件名称、占用网格尺寸及标题等信息。
+H2~ ### 提取组件数组
+TXT 通过 `reduce` 方法解析字典路径，获取当前页面特定侧位的组件配置数组，并将其与异步组件映射表结合，生成最终用于渲染的数据源。
+H2~ ## 动态挂载与动画控制
+
+### work/百度/图业融合/MapVThree地图组件
+H1: MapVThree 地图组件
+H2~ ## MapVThree 简介
+TXT <word text="MapVThree" />是百度地图官方的三维可视化库，用于在百度地图上实现三维数据可视化。
+TXT 官方文档：[Mapvthree 开发文档](https://lbsyun.baidu.com/docs/jsapi?title=jsapithree/index)
+TXT 由于地图方法在每个图层都要使用，因此需要统一封装成公共方法，通过传值的形式设置不同的属性。
+H2~ ### 技术架构图
+H2~ ### 地图方法封装
+H2~ #### 点的封装
+TXT **实现原理**
+TXT 根据官方文档，渲染点需要完成以下步骤：
+TXT **核心步骤**
+TXT 1. 引入必要方法
+TXT - `Icon`：用于创建点标记
+
+### work/百度/图业融合/项目优化
+H1: 项目优化
+H2~ ## 性能优化
+H2~ ### 点聚合 (<word text="MarkerClusterer" />)
+TXT 当点位过多时，使用百度地图官方库进行聚合，避免页面卡顿与内存溢出。
+H2~ ### 视口裁剪
+TXT 核心思想：仅渲染可视区域内的点位。通过监听 `moveend` 和 `zoomend` 事件，结合防抖函数，动态计算 `bounds` 并过滤渲染。
+H2~ ### 数据抽稀 (<word text="Turf.js" />)
+TXT 面对庞大的面数据（<word text="Polygon" />），使用<word text="Turf.js" />的 `simplify` 方法简化坐标点，大幅降低渲染耗时。
+H2~ ### 接口请求缓存
+TXT 使用<word text="Map" />在内存中缓存庞大接口数据，避免重复请求。
+H2~ ### 细粒度响应式追踪
+TXT 在<word text="Vue3" />中，地图实例等复杂对象应使用 `shallowRef` 替代 `ref`。`shallowRef` 仅追踪第一层属性变化，避免深层<word text="Proxy" />劫持带
+H2~ ## 体验优化
+
+### work/百度/图业融合/项目规范
+H1: 项目规范
+H2~ ## 规范必要性
+TXT 多人协作项目中，统一规范可避免代码风格冲突，明确本地改动范围，保障项目顺利推进与后续维护。规范范围涵盖目录结构、代码风格等。
+H2~ ## 文件夹规范
+TXT 项目包含多个图层，需保持目录结构一致，便于排查与维护。
+TXT - `examples`：存放一级路由组件，用于引入地图与本图层组件。
+TXT - `src/components/Common`：存放公共组件（如地图组件）。
+TXT - `src/components/Layer`：存放各图层专属组件。
+TXT - `src` 下公共资源与图层私有资源分工：
+TXT - `assets`：静态资源（图片、字体等）。
+TXT - `components`：当前图层组件。
+TXT - `store`：多组件共享的变量与事件函数。
+TXT - `utils`：当前图层公共方法。

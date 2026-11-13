@@ -36,7 +36,7 @@ span {
 }
 ```
 
-最终编译成 <word text="CSS"/> 代码如下：
+最终编译成<word text="CSS"/>代码如下：
 
 ```css
 span:nth-child(1) {

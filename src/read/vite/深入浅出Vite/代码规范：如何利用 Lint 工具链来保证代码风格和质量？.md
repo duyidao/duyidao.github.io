@@ -9,18 +9,18 @@
 3. 提前规避语法错误
 4. 提升团队协作效率
 
-而要保证规范的落地，我们需要借助自动化的 <word text="Lint"/> 工具链，将代码规范检查交给机器完成。
+而要保证规范的落地，我们需要借助自动化的<word text="Lint"/>工具链，将代码规范检查交给机器完成。
 
-## <word text="JavaScript"/>/<word text="TypeScript"/> 规范工具：<word text="ESLint"/>
+## <word text="JavaScript"/>/<word text="TypeScript"/>规范工具：<word text="ESLint"/>
 
-### <word text="ESLint"/> 简介
+### <word text="ESLint"/>简介
 
-<word text="ESLint"/> 是在 <word text="ECMAScript"/>/<word text="JavaScript"/> 代码中识别和报告模式匹配的工具，由前端大牛 Nicholas C. Zakas（《<word text="JavaScript"/> 高级程序设计》作者）在 2013 年创建。
+<word text="ESLint"/>是在<word text="ECMAScript"/>/<word text="JavaScript"/>代码中识别和报告模式匹配的工具，由前端大牛 Nicholas C. Zakas（《<word text="JavaScript"/>高级程序设计》作者）在 2013 年创建。
 
 核心特点：
 
-- 插件化的 <word text="JavaScript"/> 代码静态检查工具
-- 通过解析代码的 <word text="AST"/>（抽象语法树）来分析代码格式
+- 插件化的<word text="JavaScript"/>代码静态检查工具
+- 通过解析代码的<word text="AST"/>（抽象语法树）来分析代码格式
 - 检查代码的风格和质量问题
 - 已成为前端项目的标配工具
 
@@ -49,7 +49,7 @@ pnpm i eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @types
 
 1. parser - 解析器
 
-   <word text="ESLint"/> 默认使用 <word text="Espree"/>（基于 <word text="Acorn"/>）进行 <word text="AST"/> 解析，但 <word text="Acorn"/> 不支持 <word text="TypeScript"/>，因此需要引入专门的解析器。
+   <word text="ESLint"/>默认使用<word text="Espree"/>（基于<word text="Acorn"/>）进行<word text="AST"/>解析，但<word text="Acorn"/>不支持<word text="TypeScript"/>，因此需要引入专门的解析器。
 
    ```javascript
    // .eslintrc.js
@@ -58,7 +58,7 @@ pnpm i eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @types
    }
    ```
 
-   工作原理： <word text="@typescript-eslint/parser"/> 将 <word text="TypeScript"/> 代码转换为 <word text="Espree"/> 能够识别的 <word text="Estree"/> 格式，然后在 <word text="ESLint"/> 下进行格式检查。
+   工作原理：`@typescript-eslint/parser`将<word text="TypeScript"/>代码转换为<word text="Espree"/>能够识别的<word text="Estree"/>格式，然后在<word text="ESLint"/>下进行格式检查。
 
 2. parserOptions - 解析器选项
 
@@ -102,7 +102,7 @@ pnpm i eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @types
 
 4. plugins - 插件
 
-   <word text="ESLint"/> 本身没有内置 <word text="TypeScript"/> 的代码规则，需要通过插件拓展：
+   <word text="ESLint"/>本身没有内置<word text="TypeScript"/>的代码规则，需要通过插件拓展：
 
    ```javascript
    module.exports = {
@@ -127,7 +127,7 @@ pnpm i eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @types
 
 5. extends - 继承配置
 
-   extends 用于继承其他 <word text="ESLint"/> 配置，避免手动配置大量规则：
+   extends 用于继承其他<word text="ESLint"/>配置，避免手动配置大量规则：
 
    ```javascript
    module.exports = {
@@ -222,14 +222,14 @@ module.exports = {
 }
 ```
 
-### <word text="ESLint"/> 与 <word text="Prettier"/> 强强联合
+### <word text="ESLint"/>与<word text="Prettier"/>强强联合
 
 工具定位：
 
 - <word text="ESLint"/>：专注于代码风格检查和语法错误提示
 - <word text="Prettier"/>：专注于代码格式化，更加专业
 
-安装 <word text="Prettier"/>：
+安装<word text="Prettier"/>：
 
 ```bash
 pnpm i prettier -D
@@ -256,8 +256,8 @@ module.exports = {
 pnpm i eslint-config-prettier eslint-plugin-prettier -D
 ```
 
-- `eslint-config-prettier`：覆盖 <word text="ESLint"/> 中与 <word text="Prettier"/> 冲突的规则
-- `eslint-plugin-prettier`：让 <word text="Prettier"/> 接管 `eslint --fix` 的修复能力
+- `eslint-config-prettier`：覆盖<word text="ESLint"/>中与<word text="Prettier"/>冲突的规则
+- `eslint-plugin-prettier`：让<word text="Prettier"/>接管 `eslint --fix` 的修复能力
 
 定义 lint 脚本：
 
@@ -276,13 +276,13 @@ pnpm i eslint-config-prettier eslint-plugin-prettier -D
 pnpm run lint:script
 ```
 
-<word text="VSCode"/> 配置：
+<word text="VSCode"/>配置：
 
-安装 <word text="ESLint"/> 和 <word text="Prettier"/> 插件，开启 `Format On Save`，保存时自动修复。
+安装<word text="ESLint"/>和<word text="Prettier"/>插件，开启 `Format On Save`，保存时自动修复。
 
-### 在 <word text="Vite"/> 中接入 <word text="ESLint"/>
+### 在<word text="Vite"/>中接入<word text="ESLint"/>
 
-安装 <word text="Vite"/> <word text="ESLint"/> 插件：
+安装<word text="Vite"/> <word text="ESLint"/>插件：
 
 ```bash
 pnpm i vite-plugin-eslint -D
@@ -308,18 +308,18 @@ export default defineConfig({
 
 - 在开发阶段实时扫描代码
 - 在命令行展示规范问题
-- 采用独立进程，不影响 <word text="Vite"/> 启动速度
+- 采用独立进程，不影响<word text="Vite"/>启动速度
 
 ## 样式规范工具：<word text="Stylelint"/>
 
 ### Stylelint 简介
 
-<word text="Stylelint"/> 是一个强大的现代化样式 <word text="Lint"/> 工具，主要功能：
+<word text="Stylelint"/>是一个强大的现代化样式<word text="Lint"/>工具，主要功能：
 
-- 帮助避免 <word text="CSS"/> 语法错误
+- 帮助避免<word text="CSS"/>语法错误
 - 统一样式代码风格
-- 内置 170+ 个 <word text="CSS"/> 书写规则
-- 支持 <word text="CSS"/> 预处理器（<word text="Sass"/>、<word text="Less"/>）
+- 内置 170+ 个<word text="CSS"/>书写规则
+- 支持<word text="CSS"/>预处理器（<word text="Sass"/>、<word text="Less"/>）
 - 提供插件化扩展机制
 - 被 Google、Github 等大型团队使用
 
@@ -352,9 +352,9 @@ module.exports = {
 }
 ```
 
-### <word text="Stylelint"/> 的 rules 配置
+### <word text="Stylelint"/>的 rules 配置
 
-<word text="Stylelint"/> 的规则配置与 <word text="ESLint"/> 类似，但有以下三种方式：
+<word text="Stylelint"/>的规则配置与<word text="ESLint"/>类似，但有以下三种方式：
 
 ```javascript
 module.exports = {
@@ -406,9 +406,9 @@ package.json 配置：
 pnpm run lint:style
 ```
 
-### 在 <word text="Vite"/> 中集成 <word text="Stylelint"/>
+### 在<word text="Vite"/>中集成<word text="Stylelint"/>
 
-安装 <word text="Vite"/> 插件：
+安装<word text="Vite"/>插件：
 
 ```bash
 # Vite 2.x
@@ -434,33 +434,33 @@ export default defineConfig({
 })
 ```
 
-<word text="VSCode"/> 配置：
+<word text="VSCode"/>配置：
 
-安装 <word text="Stylelint"/> 插件，实时感知样式代码规范问题。
+安装<word text="Stylelint"/>插件，实时感知样式代码规范问题。
 
-## <word text="Husky"/> + <word text="lint-staged"/> 的 <word text="Git"/> 提交工作流
+## <word text="Husky"/> + <word text="lint-staged"/>的<word text="Git"/>提交工作流
 
-### 为什么需要 <word text="Git"/> 提交前检查？
+### 为什么需要<word text="Git"/>提交前检查？
 
 问题：
 
-- <word text="VSCode"/> 插件和 <word text="Vite"/> 插件只能提前暴露问题
+- <word text="VSCode"/>插件和<word text="Vite"/>插件只能提前暴露问题
 - 不能保证开发者一定会修复
 - 可能导致不符合规范的代码提交到仓库
 
 解决方案：
 
-在 `git commit` 时进行卡点检查，只有通过 <word text="Lint"/> 检查才允许提交。
+在 `git commit` 时进行卡点检查，只有通过<word text="Lint"/>检查才允许提交。
 
-### <word text="Husky"/> 安装与配置
+### <word text="Husky"/>安装与配置
 
-安装 <word text="Husky"/>：
+安装<word text="Husky"/>：
 
 ```bash
 pnpm i husky -D
 ```
 
-初始化 <word text="Husky"/>：
+初始化<word text="Husky"/>：
 
 ```bash
 npx husky install
@@ -489,17 +489,17 @@ npx husky add .husky/pre-commit "npm run lint"
 > - <word text="Husky"/> 4.x 及以下版本可在 package.json 中配置
 > - <word text="Husky"/> 7.x 及以上版本必须使用 husky install 和 husky add 命令
 
-### <word text="lint-staged"/> 解决全量扫描问题
+### <word text="lint-staged"/>解决全量扫描问题
 
 问题：
 
-直接在 <word text="Husky"/> 中执行 `npm run lint` 会对全量代码进行检查，即使某些文件没有改动。随着项目增大，提交速度会越来越慢。
+直接在<word text="Husky"/>中执行 `npm run lint` 会对全量代码进行检查，即使某些文件没有改动。随着项目增大，提交速度会越来越慢。
 
 解决方案：
 
-使用 <word text="lint-staged"/> 只对暂存区（git add 的文件）进行 <word text="Lint"/> 检查。
+使用<word text="lint-staged"/>只对暂存区（git add 的文件）进行<word text="Lint"/>检查。
 
-安装 <word text="lint-staged"/>：
+安装<word text="lint-staged"/>：
 
 ```bash
 pnpm i -D lint-staged
@@ -526,13 +526,13 @@ npx --no -- lint-staged
 工作流程：
 
 1. 执行 git commit
-2. <word text="Husky"/> 触发 pre-commit 钩子
-3. <word text="lint-staged"/> 扫描暂存区文件
+2. <word text="Husky"/>触发 pre-commit 钩子
+3. <word text="lint-staged"/>扫描暂存区文件
 4. 对匹配的文件执行对应的 lint 命令
 5. 自动 git add 修复后的文件
 6. 通过检查后完成提交
 
-### <word text="Commitlint"/> 规范提交信息
+### <word text="Commitlint"/>规范提交信息
 
 为什么需要规范 `commit` 信息？
 
@@ -599,10 +599,10 @@ npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAM
 
 | 工具                       | 作用                                                         | 检查内容                                              |
 | -------------------------- | ------------------------------------------------------------ | ----------------------------------------------------- |
-| <word text="ESLint"/>      | <word text="JavaScript"/>/<word text="TypeScript"/> 代码规范 | 语法错误、代码风格、最佳实践                          |
+| <word text="ESLint"/>      | <word text="JavaScript"/>/<word text="TypeScript"/>代码规范 | 语法错误、代码风格、最佳实践                          |
 | <word text="Prettier"/>    | 代码格式化                                                   | 缩进、引号、分号等格式统一                            |
-| <word text="Stylelint"/>   | 样式代码规范                                                 | <word text="CSS"/>/<word text="SCSS"/> 语法和风格检查 |
-| <word text="Husky"/>       | <word text="Git"/> 钩子管理                                  | 在 commit 前执行检查脚本                              |
+| <word text="Stylelint"/>   | 样式代码规范                                                 | <word text="CSS"/>/<word text="SCSS"/>语法和风格检查 |
+| <word text="Husky"/>       | <word text="Git"/>钩子管理                                  | 在 commit 前执行检查脚本                              |
 | <word text="lint-staged"/> | 增量检查                                                     | 只对暂存区文件进行检查                                |
 | <word text="Commitlint"/>  | 提交信息规范                                                 | 检查 commit message 格式                              |
 

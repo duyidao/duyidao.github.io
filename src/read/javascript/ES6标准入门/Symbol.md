@@ -1,17 +1,17 @@
-# 第十章 Symbol
+# Symbol 数据类型与内置 Symbol 值
 
-本章就 `Symbol` 的定义和作用展开描述，重点讲解概述、属性名遍历、`for()` 和 `keyFor()` 方法，以及消除魔术字符串和模块的单例模式两个实例。
+本文就 `Symbol` 的定义和作用展开描述，重点讲解概述、属性名遍历、`for()` 和 `keyFor()` 方法，以及消除魔术字符串和模块的单例模式两个实例。
 
 ## 概述
 
-在 <word text="ES5"/> 时，如果使用了他人的数据对象，但又想添加自己的数据，很容易会因为属性名冲突而导致数据覆盖。因为 ES5 对象的属性名都是字符串型。
+在<word text="ES5"/>时，如果使用了他人的数据对象，但又想添加自己的数据，很容易会因为属性名冲突而导致数据覆盖。因为 ES5 对象的属性名都是字符串型。
 
-为了解决这个问题，<word text="ES6"/> 推出了 <word text="Symbol"/>，他是第7种数据类型。
+为了解决这个问题，<word text="ES6"/>推出了<word text="Symbol"/>，他是第7种数据类型。
 
 > [!NOTE] 拓展
 > 前6种数据类型分别是 undefined、null、布尔值（boolean）、字符串（string）、数值（number）、对象（object）。
 
-通过 <word text="Symbol"/> 函数生成，是第一无二的，不会与其他属性名造成冲突。可以接收一个字符串，主要用于控制台打印区分。
+通过<word text="Symbol"/>函数生成，是第一无二的，不会与其他属性名造成冲突。可以接收一个字符串，主要用于控制台打印区分。
 
 ```js
 let s = Symbol()
@@ -24,20 +24,20 @@ console.log(typeof b) // symbol(bar)
 > [!WARNING] 注意
 > Symbol 函数前不能使用 new 命令，否则会报错 这是因为生成的 Symbol 是一个原始类型的值，不是对象。也就是说，由于 Symbol 值不是对象，所以不能添加属性。基本上，它是 一种类似于字符串的数据类型。
 
-若 <word text="Symbol"/> 的参数是一个对象，则会调用对象的 toString 方法转为字符串后再生成 Symbol 值。
+若<word text="Symbol"/>的参数是一个对象，则会调用对象的 toString 方法转为字符串后再生成 Symbol 值。
 
 ```js
 const obj = {
   toString() {
     return 'abc'
-  }
+  },
 }
 
 const sym = Symbol(obj)
 console.log(sym) // Symbol(abc)
 ```
 
-<word text="Symbol"/> 函数的参数只表示对当前 Symbol 值的描述，因此相同参数的 Symbol 函数的返回值是不相等的。
+<word text="Symbol"/>函数的参数只表示对当前 Symbol 值的描述，因此相同参数的 Symbol 函数的返回值是不相等的。
 
 ```js
 const s1 = Symbol()
@@ -51,7 +51,7 @@ const b2 = Symbol('bar')
 b1 === b2 // false
 ```
 
-<word text="Symbol"/> 不可以参与运算，可以转为布尔值和字符串，不可转为数值。
+<word text="Symbol"/>不可以参与运算，可以转为布尔值和字符串，不可转为数值。
 
 ```js
 const sym = Symbol('abc')
@@ -78,35 +78,35 @@ Number(sym) // Uncaught TypeError: Cannot convert a Symbol value to a number
 1. 方括号结构
 
    ```js
-   var mySymbol = Symbol();
-   var a = {};
-   
-   a[mySymbol] = 'Hello!';
-   
-   console.log(a[mySymbol]); // 输出: "Hello!"
+   var mySymbol = Symbol()
+   var a = {}
+
+   a[mySymbol] = 'Hello!'
+
+   console.log(a[mySymbol]) // 输出: "Hello!"
    ```
 
 2. 方括号定义属性
 
    ```js
-   var mySymbol = Symbol();
-   
+   var mySymbol = Symbol()
+
    var a = {
-     [mySymbol]: 'Hello!'
-   };
-   
-   console.log(a[mySymbol]); // 输出: "Hello!"
+     [mySymbol]: 'Hello!',
+   }
+
+   console.log(a[mySymbol]) // 输出: "Hello!"
    ```
 
 3. 使用Object.defineProperty
 
    ```js
-   var mySymbol = Symbol();
-   var a = {};
-   
-   Object.defineProperty(a, mySymbol, { value: 'Hello!' });
-   
-   console.log(a[mySymbol]); // 输出: "Hello!"
+   var mySymbol = Symbol()
+   var a = {}
+
+   Object.defineProperty(a, mySymbol, { value: 'Hello!' })
+
+   console.log(a[mySymbol]) // 输出: "Hello!"
    ```
 
 注意事项：
@@ -116,16 +116,16 @@ Number(sym) // Uncaught TypeError: Cannot convert a Symbol value to a number
    因为点运算符后面总是字符串，不会将<word text="Symbol"/>作为标识符，而是将其转换为字符串。同理，在对象的使用 Symbol 值定义属性时，Symbol 值必须放在方括号中。
 
    ```js
-   var mySymbol = Symbol();
-   var a = {};
-   
-   a.mySymbol = 'Hello!'; // 错误的写法，属性名实际是字符串 "mySymbol"
-   
-   console.log(a[mySymbol]); // undefined
-   console.log(a['mySymbol']); // 输出: "Hello!"
-   
+   var mySymbol = Symbol()
+   var a = {}
+
+   a.mySymbol = 'Hello!' // 错误的写法，属性名实际是字符串 "mySymbol"
+
+   console.log(a[mySymbol]) // undefined
+   console.log(a['mySymbol']) // 输出: "Hello!"
+
    a = {
-     [mySymbol]: function() {}
+     [mySymbol]: function () {},
    }
    ```
 
@@ -139,20 +139,20 @@ Number(sym) // Uncaught TypeError: Cannot convert a Symbol value to a number
 const LOG_LEVELS = {
   DEBUG: Symbol('debug'),
   INFO: Symbol('info'),
-  WARN: Symbol('warn')
-};
+  WARN: Symbol('warn'),
+}
 
 function log(level, message) {
   // 省略具体实现
 }
 
-log(LOG_LEVELS.DEBUG, 'Debug message');
-log(LOG_LEVELS.INFO, 'Info message');
+log(LOG_LEVELS.DEBUG, 'Debug message')
+log(LOG_LEVELS.INFO, 'Info message')
 ```
 
 这种方式保证了每个常量都是独一无二的<word text="Symbol"/>，可以用于标识不同的日志级别或其他场景下的常量。
 
-`Symbol` 作为 <word text="ES6"/> 引入的一种新的基本数据类型，用于创建唯一的标识符，适合作为对象属性名或常量的定义。它的唯一性可以有效地防止属性名冲突，并且保证了常量值的独特性。
+`Symbol` 作为<word text="ES6"/>引入的一种新的基本数据类型，用于创建唯一的标识符，适合作为对象属性名或常量的定义。它的唯一性可以有效地防止属性名冲突，并且保证了常量值的独特性。
 
 ## 实例：消除魔术字符串
 
@@ -164,20 +164,20 @@ log(LOG_LEVELS.INFO, 'Info message');
 
    ```js
    // 使用命名的常量
-   const SHAPE_TRIANGLE = 'Triangle';
-   
+   const SHAPE_TRIANGLE = 'Triangle'
+
    function getArea(shape, options) {
-     let area = 0;
+     let area = 0
      switch (shape) {
        case SHAPE_TRIANGLE:
-        area = 0.5 * options.width * options.height;
-        break;
+         area = 0.5 * options.width * options.height
+         break
        // 其他形状的处理
      }
-     return area;
+     return area
    }
-   
-   getArea(SHAPE_TRIANGLE, { width: 100, height: 100 });
+
+   getArea(SHAPE_TRIANGLE, { width: 100, height: 100 })
    ```
 
    将字符串 `'Triangle'` 定义为常量 `SHAPE_TRIANGLE`，用来代替原来的魔术字符串。这样做可以减少代码中字符串的重复出现，提高代码的可维护性。
@@ -189,21 +189,21 @@ log(LOG_LEVELS.INFO, 'Info message');
    ```js
    // 使用对象属性
    const shapeType = {
-     triangle: 'Triangle'
-   };
-   
+     triangle: 'Triangle',
+   }
+
    function getArea(shape, options) {
-     let area = 0;
+     let area = 0
      switch (shape) {
        case shapeType.triangle:
-         area = 0.5 * options.width * options.height;
-         break;
+         area = 0.5 * options.width * options.height
+         break
        // 其他形状的处理
      }
-     return area;
+     return area
    }
-   
-   getArea(shapeType.triangle, { width: 100, height: 100 });
+
+   getArea(shapeType.triangle, { width: 100, height: 100 })
    ```
 
    `shapeType` 对象中的 `triangle` 属性存储了字符串 `'Triangle'`，在 `getArea` 函数中使用 `shapeType.triangle` 来替代原始的魔术字符串。
@@ -215,32 +215,32 @@ log(LOG_LEVELS.INFO, 'Info message');
    ```js
    // 使用Symbol作为属性值
    const shapeType = {
-     triangle: Symbol()
-   };
-   
+     triangle: Symbol(),
+   }
+
    function getArea(shape, options) {
-     let area = 0;
+     let area = 0
      switch (shape) {
        case shapeType.triangle:
-         area = 0.5 * options.width * options.height;
-         break;
+         area = 0.5 * options.width * options.height
+         break
        // 其他形状的处理
      }
-     return area;
+     return area
    }
-   
-   getArea(shapeType.triangle, { width: 100, height: 100 });
+
+   getArea(shapeType.triangle, { width: 100, height: 100 })
    ```
 
    由于 shapeType.triangle 的值是一个<word text="Symbol"/>，保证了它的唯一性。这种做法适用于需要确保属性值不与其他任何值冲突的情况，同时能有效地消除魔术字符串。
 
-消除魔术字符串可以通过使用命名的常量、对象属性或 <word text="Symbol"/> 来实现。这些方法可以提高代码的可读性和可维护性，减少由于字符串拼写错误或修改时遗漏更新导致的 bug。
+消除魔术字符串可以通过使用命名的常量、对象属性或<word text="Symbol"/>来实现。这些方法可以提高代码的可读性和可维护性，减少由于字符串拼写错误或修改时遗漏更新导致的 bug。
 
 ## 属性名的遍历
 
 `Symbol` 并不是私有属性，而是公有属性，但是不会被 `for...of` 、`for...in` 、`Object.keys()` 、`Object.getOwnPropertyNames()` 等方法遍历返回。
 
-若需要获取某个对象的 <word text="Symbol"/> 属性名，则需要通过 `Object.getOwnPropertySymbols` 方法获取。该方法返回的是一个数组，每一项是当前对象所有用作属性名的 <word text="Symbol"/> 值。
+若需要获取某个对象的<word text="Symbol"/>属性名，则需要通过 `Object.getOwnPropertySymbols` 方法获取。该方法返回的是一个数组，每一项是当前对象所有用作属性名的<word text="Symbol"/>值。
 
 ```js
 let a = Symbol('a')
@@ -253,7 +253,7 @@ let obj = {
 }
 
 Object.defineProperty(obj, f, {
-  value: 'foo'
+  value: 'foo',
 })
 
 for (let i in obj) {
@@ -271,7 +271,7 @@ console.log(objSym) // [Symbol(a), Symbol(b), Symbol(f)]
 ```js
 let obj = {
   [Symbol('key')]: 1,
-  value: 'daodao'
+  value: 'daodao',
 }
 
 Reflect.ownKeys(obj) // ['value', Symbol('key')]
@@ -304,82 +304,82 @@ Symbol.keyFor(s2) // undefined
 
 ## 实例：模块的Singleton模式
 
-<word text="Singleton"/> 模式确保一个类只有一个实例，并提供一个全局访问点。在 <word text="Node.js"/> 中，模块文件可以视作一个类，如何保证每次加载模块时都返回同一个实例呢？
+<word text="Singleton"/>模式确保一个类只有一个实例，并提供一个全局访问点。在<word text="Node.js"/>中，模块文件可以视作一个类，如何保证每次加载模块时都返回同一个实例呢？
 
 - 方法一：使用全局变量 `_foo`。
 
   ```js
   // mod.js
   function A() {
-    this.foo = 'hello';
+    this.foo = 'hello'
     if (!global._foo) {
-      global._foo = new A();
-      module.exports = global._foo;
+      global._foo = new A()
+      module.exports = global._foo
     }
   }
-  
+
   // 使用方式
-  const a = require('./mod.js');
-  console.log(a.foo); // 输出 'hello'
+  const a = require('./mod.js')
+  console.log(a.foo) // 输出 'hello'
   ```
 
   **问题：** 全局变量 `_foo` 可被其他模块修改，可能导致实例失真。
 
-- 方法二：使用 <word text="Symbol"/> 作为键名
+- 方法二：使用<word text="Symbol"/>作为键名
 
   ```js
   // mod.js
-  const FOO_KEY = Symbol.for('foo');
-  
+  const FOO_KEY = Symbol.for('foo')
+
   function A() {
-    this.foo = 'hello';
+    this.foo = 'hello'
     if (!global[FOO_KEY]) {
-      global[FOO_KEY] = new A();
-      module.exports = global[FOO_KEY];
+      global[FOO_KEY] = new A()
+      module.exports = global[FOO_KEY]
     }
   }
-  
+
   // 使用方式
-  const a = require('./mod.js');
-  console.log(a.foo); // 输出 'hello'
+  const a = require('./mod.js')
+  console.log(a.foo) // 输出 'hello'
   ```
 
-  **优点：** 使用 `Symbol.for('foo')` 作为键名，外部无法直接引用到该 <word text="Symbol"/>，可以避免意外覆盖。
+  **优点：** 使用 `Symbol.for('foo')` 作为键名，外部无法直接引用到该<word text="Symbol"/>，可以避免意外覆盖。
 
   **问题：** 全局变量依然可以被改写，例如 `global[Symbol.for('foo')] = 123;`。
 
-- 方法三：使用局部 <word text="Symbol"/>
+- 方法三：使用局部<word text="Symbol"/>
 
   ```js
   // mod.js
-  const FOO_KEY = Symbol('foo');
-  
+  const FOO_KEY = Symbol('foo')
+
   function A() {
-    this.foo = 'hello';
+    this.foo = 'hello'
     if (!global[FOO_KEY]) {
-      global[FOO_KEY] = new A();
-      module.exports = global[FOO_KEY];
+      global[FOO_KEY] = new A()
+      module.exports = global[FOO_KEY]
     }
   }
-  
+
   // 使用方式
-  const a = require('./mod.js');
-  console.log(a.foo); // 输出 'hello'
+  const a = require('./mod.js')
+  console.log(a.foo) // 输出 'hello'
   ```
 
-  **优点：** 使用局部 <word text="Symbol"/>，其他脚本无法引用到 `FOO_KEY`，避免外部修改。
+  **优点：** 使用局部<word text="Symbol"/>，其他脚本无法引用到 `FOO_KEY`，避免外部修改。
 
-  **问题：** 多次执行模块时，每次得到的 `FOO_KEY` 都不同，不过一般情况下 <word text="Node.js"/> 会缓存模块的执行结果，不会多次执行同一个脚本。
+  **问题：** 多次执行模块时，每次得到的 `FOO_KEY` 都不同，不过一般情况下<word text="Node.js"/>会缓存模块的执行结果，不会多次执行同一个脚本。
 
 > [!TIP] 总结
 >
 > - **全局变量方法**容易被意外覆盖，不安全。
-> - **<word text="Symbol"/> 作为键名**可以保证键名不被外部轻易修改，但仍可能被改写。
-> - **局部 <word text="Symbol"/>**可以防止外部修改，但多次执行脚本时每次得到的 <word text="Symbol"/> 不同，不过 <word text="Node.js"/> 通常会缓存模块执行结果，一般不会影响单例实例的创建。
+> - **<word text="Symbol"/>作为键名**可以保证键名不被外部轻易修改，但仍可能被改写。
+> - **局部<word text="Symbol"/>**可以防止外部修改，但多次执行脚本时每次得到的<word text="Symbol"/>不同，不过<word text="Node.js"/>通常会缓存模块执行结果，一般不会影响单例实例的创建。
 
 ## 内置的Symbol值
 
-<word text="ES6"/> 还提供了 11个内置的 `Symbol` 值，指向语言内部使用的方法。
+<word text="ES6"/>还提供了 11个内置的 `Symbol` 值，指向语言内部使用的方法。
 
 - `Symbol.hasInstance`
 
@@ -391,16 +391,16 @@ Symbol.keyFor(s2) // undefined
       return foo instanceof Array
     }
   }
-  
+
   [1, 2, 3] instanceof new Event() // true
   {a: 1} instanceof new Event() // false
-  
+
   class OwnNum {
     static [Symbol.hasInstance] (foo) {
       return foo % 2 === 0
     }
   }
-  
+
   1 instanceof new OwnNum() // false
   2 instanceof new OwnNum() // true
   ```
@@ -412,23 +412,19 @@ Symbol.keyFor(s2) // undefined
   数组默认是 `true` 或 `undefined` ，表示可以展开；若手动修改为 `false` ，则表示不可展开。
 
   ```js
-  let arr1 = [1, 2]
-  ['a', 'b'].concat(arr1, '开') // ['a', 'b', 1, 2, '开']
-  
+  let arr1 = [1, 2][('a', 'b')].concat(arr1, '开') // ['a', 'b', 1, 2, '开']
+
   let arr2 = [3, 4]
-  arr2[Symbol.isConcatSpreadable] = false
-  ['c', 'd'].concat(arr2, '不开') // ['c', 'd', [3, 4], '不开']
+  arr2[Symbol.isConcatSpreadable] = false[('c', 'd')].concat(arr2, '不开') // ['c', 'd', [3, 4], '不开']
   ```
 
   对象默认是 `false` 不可展开，想要展开需要手动设置为 `true` 。
 
   ```js
-  let obj1 = {length: 1, 0: 'a'}
-  [1, 2].concat(obj, 'open') // [1, 2, obj, 'open']
-  
-  let obj2 = {length: 1, 0: 'b'}
-  obj2[Symbol.isConcatSpreadable] = true
-  [3, 4].concat(obj, 'open') // [3, 4, 'b', 'open']
+  let obj1 = { length: 1, 0: 'a' }[(1, 2)].concat(obj, 'open') // [1, 2, obj, 'open']
+
+  let obj2 = { length: 1, 0: 'b' }
+  obj2[Symbol.isConcatSpreadable] = true[(3, 4)].concat(obj, 'open') // [3, 4, 'b', 'open']
   ```
 
   对于类而言，`Symbol.isConcatSpreadable` 属性必须写为类的实例。
@@ -446,14 +442,13 @@ Symbol.keyFor(s2) // undefined
       this[Symbol.isConcatSpreadable] = false
     }
   }
-  
+
   let a1 = new A()
   a1[0] = 1
   a1[1] = 2
   let b1 = new B()
   b1[0] = 3
-  b1[1] = 4
-  ['a', 'b'].concat(a1).concat(b1) // ['a', 'b', 1, 2, [3, 4]]
+  b1[1] = (4)[('a', 'b')].concat(a1).concat(b1) // ['a', 'b', 1, 2, [3, 4]]
   ```
 
 - `Symbol.species`
@@ -466,15 +461,15 @@ Symbol.keyFor(s2) // undefined
   class MyArray extends Array {
     // 使用 get 读取器定义 Symbol.species 属性
     static get [Symbol.species]() {
-      return Array;
+      return Array
     }
   }
-  
-  let a = new MyArray(1, 2, 3);
-  let mapped = a.map(x => x * x);
-  
-  console.log(mapped instanceof MyArray); // false
-  console.log(mapped instanceof Array);   // true
+
+  let a = new MyArray(1, 2, 3)
+  let mapped = a.map((x) => x * x)
+
+  console.log(mapped instanceof MyArray) // false
+  console.log(mapped instanceof Array) // true
   ```
 
 - `Symbol.match`
@@ -483,21 +478,21 @@ Symbol.keyFor(s2) // undefined
 
   ```js
   String.prototype.match(regexp) //等同于 regexp[Symbol.match](this)
-  
+
   class MyMatcher {
     [Symbol.match] (string) {
       return 'hello world'.indexOf(string)
     }
   }
-  
+
   'e'.match(new MyMatcher()) // 1
-  
+
   class BooleanMatch {
     [Symbol.match] (string) {
       return Boolean(string)
     }
   }
-  
+
   1.match(new BooleanMatch()) // true
   ```
 
@@ -509,14 +504,14 @@ Symbol.keyFor(s2) // undefined
 
   ```js
   // 定义一个空对象 x
-  const x = {};
-  
+  const x = {}
+
   // 使用 Symbol.replace 属性定义一个方法
-  x[Symbol.replace] = (...s) => console.log(s);
-  
+  x[Symbol.replace] = (...s) => console.log(s)
+
   // 调用字符串的 replace 方法，并传入 x 对象作为搜索值
-  'Hello'.replace(x, 'World');
-  
+  'Hello'.replace(x, 'World')
+
   // 控制台输出为：[ 'Hello', 'World' ]
   ```
 
@@ -530,17 +525,17 @@ Symbol.keyFor(s2) // undefined
   // 定义一个自定义的搜索类 MySearch
   class MySearch {
     constructor(value) {
-      this.value = value;
+      this.value = value
     }
-  
+
     // 使用 Symbol.search 属性定义一个方法
     [Symbol.search](string) {
-      return string.indexOf(this.value);
+      return string.indexOf(this.value)
     }
   }
-  
+
   // 调用字符串的 search 方法，并传入 MySearch 类的实例作为正则表达式参数
-  console.log('foobar'.search(new MySearch('foo'))); // 输出为 0
+  console.log('foobar'.search(new MySearch('foo'))) // 输出为 0
   ```
 
 - `Symbol.split`
@@ -554,7 +549,7 @@ Symbol.keyFor(s2) // undefined
 - `Symbol.toStringTag`
 
 - `Symbol.unscopables`
-  
+
 ## 总结
 
 `Symbol` 是<word text="ES6"/>引入的第七种数据类型，通过 `Symbol` 函数生成，具有唯一性，不会与其他属性名冲突，适合用作对象属性名以避免冲突。`Symbol` 可以接收一个字符串作为描述，但这个描述并不影响 `Symbol` 的相等性比较。`Symbol` 值不能参与运算，可以转为布尔值和字符串，但不能转为数值。

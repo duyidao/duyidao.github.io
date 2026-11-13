@@ -2,9 +2,9 @@
 
 ## 核心主旨
 
-<word text="Rollup"/> 是一款基于 <word text="ESM"/> 模块规范实现的 <word text="JavaScript"/> 打包工具，既是 <word text="Vite"/> 生产环境下的核心打包引擎，其插件机制也被 <word text="Vite"/> 完整兼容，堪称 <word text="Vite"/> 的构建基石。
+<word text="Rollup"/>是一款基于<word text="ESM"/>模块规范实现的<word text="JavaScript"/>打包工具，既是<word text="Vite"/>生产环境下的核心打包引擎，其插件机制也被<word text="Vite"/>完整兼容，堪称<word text="Vite"/>的构建基石。
 
-本文把「基础使用」与「插件机制」两大部分合并为一条完整的知识链路：先从零跑通一次打包，掌握 `input`、`output`、`external`、`plugins` 等核心配置与 <word text="JavaScript API"/> 的编程式调用；再深入 <word text="Rollup"/> 的 <word text="Build 阶段"/> / <word text="Output 阶段"/> 两大构建生命周期，拆解 <word text="Hook"/> 的五种执行类型与完整工作流；最后以官方插件源码为范例，实战 `resolveId`、`load`、`transform`、`renderChunk`、`generateBundle` 五个高频 <word text="Hook"/>，建立可独立编写 <word text="Rollup 插件"/> 的能力。
+本文把「基础使用」与「插件机制」两大部分合并为一条完整的知识链路：先从零跑通一次打包，掌握 `input`、`output`、`external`、`plugins` 等核心配置与<word text="JavaScript API"/>的编程式调用；再深入<word text="Rollup"/>的<word text="Build 阶段"/> / <word text="Output 阶段"/>两大构建生命周期，拆解<word text="Hook"/>的五种执行类型与完整工作流；最后以官方插件源码为范例，实战 `resolveId`、`load`、`transform`、`renderChunk`、`generateBundle` 五个高频<word text="Hook"/>，建立可独立编写<word text="Rollup 插件"/>的能力。
 
 ## Rollup 在 Vite 架构中的定位
 
@@ -20,11 +20,11 @@ graph TD
     C --> C3["Esbuild 负责压缩收尾"]
 ```
 
-<word text="Vite"/> 之所以能在生态上实现「降维打击」，正是因为直接兼容了 <word text="Rollup"/> 积累多年的插件生态。理解 <word text="Rollup"/> 的配置与 <word text="Hook"/>，等同于拿到 <word text="Vite"/> 插件开发的通用语言。
+<word text="Vite"/>之所以能在生态上实现「降维打击」，正是因为直接兼容了<word text="Rollup"/>积累多年的插件生态。理解<word text="Rollup"/>的配置与<word text="Hook"/>，等同于拿到<word text="Vite"/>插件开发的通用语言。
 
 ## 快速上手：打出第一份产物
 
-### 一、初始化项目
+### 用 npm init 与 pnpm i rollup 初始化项目
 
 ```bash [bash]
 npm init -y
@@ -43,7 +43,7 @@ pnpm i rollup
     └── util.js
 ```
 
-### 二、编写源码与配置
+### 入口源码与 rollup.config.js 配置
 
 ::: code-group
 
@@ -85,7 +85,7 @@ export default buildOptions
 
 > `-c` 表示读取 `rollup.config.js` 中的配置；配置文件顶部的 `@type` 注释可让 VSCode 获得完整的类型提示。
 
-### 三、执行构建
+### 执行构建并观察产物
 
 执行 `npm run build` 后，产物如下：
 
@@ -96,11 +96,11 @@ const add = (a, b) => a + b
 console.log(add(1, 2))
 ```
 
-可以观察到 `util.js` 中的 `multi` 方法并未出现在产物中——这是 <word text="Rollup"/> 天然的 <word text="Tree Shaking"/> 能力。
+可以观察到 `util.js` 中的 `multi` 方法并未出现在产物中——这是<word text="Rollup"/>天然的<word text="Tree Shaking"/>能力。
 
-### 四、Tree Shaking 的本质
+### Tree Shaking 依赖 ESM 静态分析
 
-所谓 Tree Shaking（摇树），是编译原理中 <word text="DCE"/>（Dead Code Elimination，消除无用代码）技术的一种实现。由于 <word text="ESM"/> 的依赖关系是静态确定的、与运行时状态无关，<word text="Rollup"/> 可以在编译阶段分析依赖关系，对 <word text="AST"/> 中未被引用的节点执行删除。
+所谓 Tree Shaking（摇树），是编译原理中<word text="DCE"/>（Dead Code Elimination，消除无用代码）技术的一种实现。由于<word text="ESM"/>的依赖关系是静态确定的、与运行时状态无关，<word text="Rollup"/>可以在编译阶段分析依赖关系，对<word text="AST"/>中未被引用的节点执行删除。
 
 ```mermaid
 flowchart LR
@@ -114,7 +114,7 @@ flowchart LR
 
 ## 常用配置解读
 
-### 一、多产物配置
+### output 改造为数组输出多份产物
 
 类库场景通常需要同时暴露多种格式产物以兼顾兼容性。把 `output` 从对象改造为数组即可：
 
@@ -135,7 +135,7 @@ export default buildOptions
 
 数组中每个元素都是一个描述对象，分别决定一类产物的输出行为。
 
-### 二、多入口配置
+### input 的数组与对象多入口形态
 
 `input` 支持字符串、数组与对象三种形态，多入口与多产物通常组合使用：
 
@@ -163,9 +163,9 @@ const buildUtilOptions = { input: ['src/util.js'], output: [] }
 export default [buildIndexOptions, buildUtilOptions]
 ```
 
-<word text="Vite"/> 自身的源码打包就是典型的多配置场景，需要把项目代码拆分到不同部分、用不同配置分别打包。
+<word text="Vite"/>自身的源码打包就是典型的多配置场景，需要把项目代码拆分到不同部分、用不同配置分别打包。
 
-### 三、自定义 output 配置
+### output 配置项与文件名占位符
 
 `output` 用来声明输出行为，常用配置项如下：
 
@@ -173,10 +173,10 @@ export default [buildIndexOptions, buildUtilOptions]
 | ---------------- | ------------------------------------------------------------- | ------------------------------------------------ |
 | `dir`            | 产物输出目录                                                  | `path.resolve(__dirname, 'dist')`                |
 | `entryFileNames` | 入口模块的输出文件名                                          | `[name].js`                                      |
-| `chunkFileNames` | 非入口模块（如动态 import 产生的 <word text="Chunk"/>）文件名 | `chunk-[hash].js`                                |
+| `chunkFileNames` | 非入口模块（如动态 import 产生的<word text="Chunk"/>）文件名 | `chunk-[hash].js`                                |
 | `assetFileNames` | 静态资源文件输出文件名                                        | `assets/[name]-[hash][extname]`                  |
 | `format`         | 产物模块格式                                                  | `amd` / `cjs` / `es` / `iife` / `umd` / `system` |
-| `sourcemap`      | 是否生成 <word text="SourceMap"/>                             | `true` / `false`                                 |
+| `sourcemap`      | 是否生成<word text="SourceMap"/>                             | `true` / `false`                                 |
 | `name`           | iife / umd 格式对外暴露的全局变量名                           | `MyBundle`                                       |
 | `globals`        | 全局变量声明映射                                              | `{ jquery: '$' }`                                |
 
@@ -189,7 +189,7 @@ export default [buildIndexOptions, buildUtilOptions]
 | `[format]`  | 产物模块格式，如 `es`、`cjs`     |
 | `[extname]` | 产物后缀名（含 `.`）             |
 
-### 四、依赖 external
+### external 外部化第三方依赖
 
 对于不希望被打包进产物的第三方包，通过 `external` 做外部化：
 
@@ -199,13 +199,13 @@ export default [buildIndexOptions, buildUtilOptions]
 }
 ```
 
-在 <word text="SSR"/> 构建或 ESM <word text="CDN"/> 场景下，这个配置极为关键——产物中保留 `import 'react'` 的原始语句，交由运行时环境提供依赖。
+在<word text="SSR"/>构建或 ESM <word text="CDN"/>场景下，这个配置极为关键——产物中保留 `import 'react'` 的原始语句，交由运行时环境提供依赖。
 
-### 五、接入插件能力
+### 用插件补足 CommonJS 等原生不支持的能力
 
-<word text="Rollup"/> 无法覆盖所有场景，诸如兼容 <word text="CommonJS"/> 打包、注入环境变量、配置路径别名、压缩产物代码等，都需要引入对应插件。
+<word text="Rollup"/>无法覆盖所有场景，诸如兼容<word text="CommonJS"/>打包、注入环境变量、配置路径别名、压缩产物代码等，都需要引入对应插件。
 
-一个高频痛点：<word text="Rollup"/> 能「输出」<word text="CommonJS"/> 格式产物，但「输入」侧仅支持 <word text="ESM"/>。而生态中仍有大量库只提供 <word text="CommonJS"/> 产物（如 `lodash`），直接引入会报错。
+一个高频痛点：<word text="Rollup"/>能「输出」<word text="CommonJS"/>格式产物，但「输入」侧仅支持<word text="ESM"/>。而生态中仍有大量库只提供<word text="CommonJS"/>产物（如 `lodash`），直接引入会报错。
 
 ```bash [bash]
 pnpm i @rollup/plugin-node-resolve @rollup/plugin-commonjs
@@ -214,7 +214,7 @@ pnpm i @rollup/plugin-node-resolve @rollup/plugin-commonjs
 | 插件                          | 职责                                                            |
 | ----------------------------- | --------------------------------------------------------------- |
 | `@rollup/plugin-node-resolve` | 允许加载第三方依赖，否则 `import React from 'react'` 不会被识别 |
-| `@rollup/plugin-commonjs`     | 将 <word text="CommonJS"/> 代码转换为 <word text="ESM"/>        |
+| `@rollup/plugin-commonjs`     | 将<word text="CommonJS"/>代码转换为<word text="ESM"/>        |
 
 ```javascript [rollup.config.js]
 import resolve from '@rollup/plugin-node-resolve'
@@ -243,16 +243,16 @@ export default {
 }
 ```
 
-> `output.plugins` 存在限制：只有使用 Output 阶段相关 <word text="Hook"/> 的插件才能配置在这里，否则行为不可预期。
+> `output.plugins` 存在限制：只有使用 Output 阶段相关<word text="Hook"/>的插件才能配置在这里，否则行为不可预期。
 
-### 六、常用插件库速查
+### 常用官方与社区插件速查
 
 | 插件                        | 用途                                                            |
 | --------------------------- | --------------------------------------------------------------- |
-| `@rollup/plugin-json`       | 支持 `.json` 加载，配合 <word text="Tree Shaking"/> 按需打包    |
-| `@rollup/plugin-babel`      | 在 <word text="Rollup"/> 中使用 <word text="Babel"/> 做语法转译 |
-| `@rollup/plugin-typescript` | 支持 <word text="TypeScript"/> 开发                             |
-| `@rollup/plugin-alias`      | 支持 <word text="Alias"/> 别名配置                              |
+| `@rollup/plugin-json`       | 支持 `.json` 加载，配合<word text="Tree Shaking"/>按需打包    |
+| `@rollup/plugin-babel`      | 在<word text="Rollup"/>中使用<word text="Babel"/>做语法转译 |
+| `@rollup/plugin-typescript` | 支持<word text="TypeScript"/>开发                             |
+| `@rollup/plugin-alias`      | 支持<word text="Alias"/>别名配置                              |
 | `@rollup/plugin-replace`    | 变量字符串替换                                                  |
 | `rollup-plugin-visualizer`  | 分析打包产物，生成体积可视化报告                                |
 
@@ -260,7 +260,7 @@ export default {
 
 配置文件在复杂场景下不够灵活，此时可直接使用编程式 API，核心是 `rollup.rollup` 与 `rollup.watch`。
 
-### 一、一次性打包：rollup.rollup
+### rollup.rollup 一次性打包
 
 ```javascript [build.js]
 const rollup = require('rollup')
@@ -326,7 +326,7 @@ sequenceDiagram
     B-->>S: 释放资源，结束构建
 ```
 
-### 二、监听模式：rollup.watch
+### rollup.watch 监听源码变动
 
 `watch` 模式会在源文件变动后自动重新打包，配置与 `rollup.config.js` 基本一致，仅多出 `watch` 字段：
 
@@ -386,9 +386,9 @@ graph LR
     E --> F["bundle.close"]
 ```
 
-### 一、Build 阶段：只建图，不打包
+### Build 阶段只建模块图不产出代码
 
-Build 阶段负责创建模块依赖图、初始化各模块的 <word text="AST"/> 以及模块间依赖关系。此时得到的 `bundle` 对象并不包含打包产物，只存储模块内容与依赖关系，并挂载后续阶段要用的方法：
+Build 阶段负责创建模块依赖图、初始化各模块的<word text="AST"/>以及模块间依赖关系。此时得到的 `bundle` 对象并不包含打包产物，只存储模块内容与依赖关系，并挂载后续阶段要用的方法：
 
 ```json [bundle 对象结构]
 {
@@ -416,7 +416,7 @@ Build 阶段负责创建模块依赖图、初始化各模块的 <word text="AST"
 }
 ```
 
-### 二、Output 阶段：真正的打包
+### Output 阶段生成并写入产物
 
 真正生成产物的动作发生在 `bundle.generate` 或 `bundle.write` 中，两者的唯一区别是后者会把产物写入磁盘：
 
@@ -447,16 +447,16 @@ console.log('result:', result)
 
 ## 插件 Hook 类型体系
 
-### 一、按构建阶段划分
+### Build Hook 与 Output Hook 的阶段差异
 
 | 分类                       | 执行阶段    | 操作粒度                | 主要职责                             |
 | -------------------------- | ----------- | ----------------------- | ------------------------------------ |
 | <word text="Build Hook"/>  | Build 阶段  | 模块级（单文件）        | 模块代码转换、AST 解析、模块依赖解析 |
-| <word text="Output Hook"/> | Output 阶段 | <word text="Chunk"/> 级 | 代码打包、产物内容修改、资源增删     |
+| <word text="Output Hook"/> | Output 阶段 | <word text="Chunk"/>级 | 代码打包、产物内容修改、资源增删     |
 
-### 二、按执行方式划分
+### Async、Parallel、Sequential 与 First 的执行方式
 
-| 类型         | 含义                                       | 底层实现      | 典型 <word text="Hook"/>                     |
+| 类型         | 含义                                       | 底层实现      | 典型<word text="Hook"/>                     |
 | ------------ | ------------------------------------------ | ------------- | -------------------------------------------- |
 | `Async`      | 异步钩子，内部可以包含异步逻辑             | `Promise`     | `resolveId`、`load`、`transform`             |
 | `Sync`       | 同步钩子，内部不允许异步逻辑               | 直接调用      | 部分 `banner` / `intro` 类钩子               |
@@ -510,13 +510,13 @@ flowchart TD
 2. 调用 `buildStart`，正式开启构建流程。
 3. 从 `input` 指定的入口文件开始，进入 `resolveId` 解析文件路径。
 4. 通过 `load` 加载模块内容。
-5. 执行所有 `transform` 钩子，对模块内容做自定义转换（如 <word text="Babel"/> 转译）。
+5. 执行所有 `transform` 钩子，对模块内容做自定义转换（如<word text="Babel"/>转译）。
 6. 对最终模块内容做 AST 分析，得到全部 import 语句，调用 `moduleParsed`：
    - 普通 import：再次执行 `resolveId`，回到步骤 3；
    - 动态 import：执行 `resolveDynamicImport`，成功则回到步骤 4，失败则回到步骤 3。
 7. 全部 import 解析完毕后执行 `buildEnd`，Build 阶段结束。
 
-若路径在 `resolveId` / `resolveDynamicImport` 中被标记为 <word text="External"/>，则跳过 `load`、`transform` 等后续处理。
+若路径在 `resolveId` / `resolveDynamicImport` 中被标记为<word text="External"/>，则跳过 `load`、`transform` 等后续处理。
 
 ### watch 模式的两个专属钩子
 
@@ -555,7 +555,7 @@ flowchart TD
 2. `renderStart`：并发执行，正式进入打包。
 3. `banner` / `footer` / `intro` / `outro`：并发执行，往产物固定位置（头部 / 尾部）插入协议声明、项目介绍等自定义内容。
 4. `renderDynamicImport`：从入口模块开始扫描，自定义动态 import 语句的生成内容。
-5. `augmentChunkHash`：对每个即将生成的 <word text="Chunk"/> 决定是否变更哈希值，在 watch 模式（多次打包）下尤为实用。
+5. `augmentChunkHash`：对每个即将生成的<word text="Chunk"/>决定是否变更哈希值，在 watch 模式（多次打包）下尤为实用。
 6. `resolveFileUrl` / `resolveImportMeta`：分别处理 `import.meta.url` 与其他 `import.meta` 属性。
 7. `renderChunk`：逐 chunk 调用，此处可以直接操作打包产物代码。
 8. `generateBundle`：入参包含全部产物信息（`chunk` 与 `asset`），可在此删除不需要的产物，被删除的内容不会输出。
@@ -579,7 +579,7 @@ sequenceDiagram
 
 ### 两大阶段 Hook 数量分布
 
-按官方文档公开的 <word text="Hook"/> 计算，Output 阶段的钩子明显多于 Build 阶段：
+按官方文档公开的<word text="Hook"/>计算，Output 阶段的钩子明显多于 Build 阶段：
 
 ```mermaid
 xychart-beta
@@ -591,7 +591,7 @@ xychart-beta
 
 ### 一次构建中各核心 Hook 的调用频次
 
-以「入口 + 2 个静态依赖」共 3 个模块、最终合并为 1 个 chunk 的项目为例，各核心 <word text="Hook"/> 的调用次数如下：
+以「入口 + 2 个静态依赖」共 3 个模块、最终合并为 1 个 chunk 的项目为例，各核心<word text="Hook"/>的调用次数如下：
 
 ```mermaid
 xychart-beta
@@ -605,9 +605,9 @@ xychart-beta
 
 ## 常用 Hook 实战
 
-开发 <word text="Rollup 插件"/> 的本质，就是编写一个个 <word text="Hook"/> 函数——一个插件基本就是多种 <word text="Hook"/> 的组合。遵循二八定律：20% 的 API 覆盖 80% 的场景。
+开发<word text="Rollup 插件"/>的本质，就是编写一个个<word text="Hook"/>函数——一个插件基本就是多种<word text="Hook"/>的组合。遵循二八定律：20% 的 API 覆盖 80% 的场景。
 
-### 一、路径解析：resolveId
+### resolveId 解析模块路径与别名
 
 `resolveId` 为 `Async + First` 类型，用于解析模块路径。以官方 `alias` 插件为例：
 
@@ -670,7 +670,7 @@ export default function alias(options) {
 | `string` | 立即终止后续插件处理，直接作为解析结果                          |
 | 对象     | 终止后续处理，可携带 `id`、`external`、`treeshake` 等更丰富信息 |
 
-### 二、加载模块内容：load
+### load 加载模块源码
 
 `load` 同样是 `Async + First` 类型，按 `resolveId` 解析出的路径加载模块内容。以官方 `image` 插件为例：
 
@@ -707,9 +707,9 @@ export default function image(opts = {}) {
 | 返回值          | 行为                                                          |
 | --------------- | ------------------------------------------------------------- |
 | `null`          | 交给下一个插件处理                                            |
-| `string` / 对象 | 终止后续处理；对象可携带 <word text="SourceMap"/>、AST 等细节 |
+| `string` / 对象 | 终止后续处理；对象可携带<word text="SourceMap"/>、AST 等细节 |
 
-### 三、代码转换：transform
+### transform 串行转换模块代码
 
 `transform` 为 `Async + Sequential` 类型（异步串行），对加载后的模块内容做自定义转换。以官方 `replace` 插件为例：
 
@@ -726,7 +726,7 @@ export default {
 }
 ```
 
-核心实现基于 <word text="MagicString"/> 做字符串替换并生成映射：
+核心实现基于<word text="MagicString"/>做字符串替换并生成映射：
 
 ```javascript [replace 插件]
 import MagicString from 'magic-string'
@@ -763,7 +763,7 @@ function executeReplacement(code, id) {
 
 这种「瀑布流」式传递意味着：越靠后的插件，看到的是越靠前插件处理后的代码。
 
-### 四、Chunk 级修改：renderChunk
+### renderChunk 修改 Chunk 级产物
 
 `replace` 插件同样实现了 `renderChunk`：
 
@@ -783,15 +783,15 @@ export default function replace(options = {}) {
 }
 ```
 
-之所以在 `transform` 之后还要再做一次替换，是因为后续插件的 `transform` 仍可能产生符合替换规则的字符串——在 <word text="Chunk"/> 级别兜底，替换结果才足够准确。
+之所以在 `transform` 之后还要再做一次替换，是因为后续插件的 `transform` 仍可能产生符合替换规则的字符串——在<word text="Chunk"/>级别兜底，替换结果才足够准确。
 
 | 入参            | 返回值                    | 说明                                     |
 | --------------- | ------------------------- | ---------------------------------------- |
 | `code`、`chunk` | `{ code, map }` 或 `null` | `chunk` 为产物元信息，可直接改写产物代码 |
 
-### 五、产物生成最后一步：generateBundle
+### generateBundle 产物落盘前最后修改
 
-`generateBundle` 为异步串行钩子，可在此删除无用 <word text="Chunk"/> / 静态资源，或自行添加文件。以官方 `html` 插件为例：
+`generateBundle` 为异步串行钩子，可在此删除无用<word text="Chunk"/> / 静态资源，或自行添加文件。以官方 `html` 插件为例：
 
 ```javascript [html 插件]
 export default function html(opts = {}) {
@@ -825,7 +825,7 @@ export default function html(opts = {}) {
 | ------------------ | ----------------------------------------------------------------- |
 | `output`、`bundle` | 删除不需要的 chunk / asset，或通过 `this.emitFile` 输出自定义文件 |
 
-### 六、五个高频 Hook 速查报表
+### 五个高频 Hook 速查报表
 
 | <word text="Hook"/> | 阶段   | 执行类型             | 操作粒度 | 典型用途                               |
 | ------------------- | ------ | -------------------- | -------- | -------------------------------------- |
@@ -839,9 +839,9 @@ export default function html(opts = {}) {
 
 | 设计维度         | 具体表现                                                                                                                                                               |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **逻辑集中管理** | 各阶段 <word text="Hook"/> 可写在同一插件中，<word text="Webpack"/> 里需要 Loader + Plugin 两套机制的能力，在 <word text="Rollup"/> 中只需 `transform` + `renderChunk` |
-| **API 简洁直观** | 插件本质是返回一个含 `name` 与若干 <word text="Hook"/> 函数的对象，学习成本低                                                                                          |
-| **插件互相调用** | 通过 <word text="Plugin Context"/> 的 `this.resolve` / `this.load` 触发其他插件的对应钩子，灵活性极高                                                                  |
+| **逻辑集中管理** | 各阶段<word text="Hook"/>可写在同一插件中，<word text="Webpack"/>里需要 Loader + Plugin 两套机制的能力，在<word text="Rollup"/>中只需 `transform` + `renderChunk` |
+| **API 简洁直观** | 插件本质是返回一个含 `name` 与若干<word text="Hook"/>函数的对象，学习成本低                                                                                          |
+| **插件互相调用** | 通过<word text="Plugin Context"/>的 `this.resolve` / `this.load` 触发其他插件的对应钩子，灵活性极高                                                                  |
 | **非侵入式扩展** | 核心打包逻辑与插件逻辑分离，避免核心代码臃肿，提升可维护性                                                                                                             |
 
 ```mermaid
@@ -859,17 +859,17 @@ graph LR
 
 ## 小结与进阶指引
 
-本文从「怎么用」走到「怎么扩展」，完整覆盖了 <word text="Rollup"/> 的两条主线：
+本文从「怎么用」走到「怎么扩展」，完整覆盖了<word text="Rollup"/>的两条主线：
 
-1. **基础配置**：`input`（字符串 / 数组 / 对象）、`output`（多产物数组、文件名占位符、`format`）、`external`（外部化）、`plugins`（顶层与 `output` 内两种位置），配合 `resolve` + `commonjs` 解决 <word text="CommonJS"/> 依赖打包问题。
+1. **基础配置**：`input`（字符串 / 数组 / 对象）、`output`（多产物数组、文件名占位符、`format`）、`external`（外部化）、`plugins`（顶层与 `output` 内两种位置），配合 `resolve` + `commonjs` 解决<word text="CommonJS"/>依赖打包问题。
 2. **编程式调用**：`rollup.rollup` 三步走（生成 bundle → `generate` / `write` → `close`）；`rollup.watch` 通过 `restart` / `change` / `event` 事件驱动增量构建。
 3. **构建生命周期**：Build 阶段建依赖图、解析 AST，Output 阶段才真正打包；`bundle` 对象在两阶段之间充当载体。
 4. **Hook 类型体系**：`Async` / `Sync` 描述同步性，`Parallel` / `Sequential` / `First` 描述协作方式，二者可叠加。
 5. **工作流顺序**：Build 阶段围绕 `resolveId → load → transform → moduleParsed` 递归展开；Output 阶段从 `outputOptions` 一路走到 `closeBundle`，其中 `generateBundle` 与 `writeBundle` 的差别在于产物是否已落盘。
-6. **五大高频 Hook**：`resolveId` 与 `load` 是「异步优先」，`transform` / `renderChunk` / `generateBundle` 是「异步串行」；`transform` 面向模块、后两者面向 <word text="Chunk"/> 与产物集合。
+6. **五大高频 Hook**：`resolveId` 与 `load` 是「异步优先」，`transform` / `renderChunk` / `generateBundle` 是「异步串行」；`transform` 面向模块、后两者面向<word text="Chunk"/>与产物集合。
 
 **进阶方向：**
 
-- 对照 <word text="Vite"/> 源码中的 <word text="Plugin Container"/> 实现，观察它如何在开发阶段模拟 <word text="Rollup"/> 的 <word text="Hook"/> 调度，并额外注入 `configureServer`、`transformIndexHtml` 等 Vite 专属钩子；
+- 对照<word text="Vite"/>源码中的<word text="Plugin Container"/>实现，观察它如何在开发阶段模拟<word text="Rollup"/>的<word text="Hook"/>调度，并额外注入 `configureServer`、`transformIndexHtml` 等 Vite 专属钩子；
 - 尝试编写一个「虚拟模块 + 产物分析」插件，组合 `resolveId`（返回虚拟 id）、`load`（返回内存内容）与 `generateBundle`（输出统计报告），体会插件间协作的完整闭环；
 - 结合 `augmentChunkHash` 与 `renderChunk`，在 watch 模式下实现稳定的产物哈希与增量更新策略。

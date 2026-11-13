@@ -2,7 +2,7 @@
 
 官网：[BEM](https://getbem.com/introduction/) 。
 
-<word text="CSS" /> 命名十分重要，如有重名，就会发生样式覆盖，导致最终效果显示错乱。
+<word text="CSS" />命名十分重要，如有重名，就会发生样式覆盖，导致最终效果显示错乱。
 
 对于命名，市面上有一些民间组织指定的命名规则，例如 BEM，SMACSS 和 OOCSS。
 

@@ -2,7 +2,7 @@
 
 ## MapVThree 简介
 
-<word text="MapVThree" /> 是百度地图官方的三维可视化库，用于在百度地图上实现三维数据可视化。
+<word text="MapVThree" />是百度地图官方的三维可视化库，用于在百度地图上实现三维数据可视化。
 
 官方文档：[Mapvthree 开发文档](https://lbsyun.baidu.com/docs/jsapi?title=jsapithree/index)
 

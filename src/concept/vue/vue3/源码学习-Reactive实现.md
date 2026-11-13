@@ -71,7 +71,7 @@ function triggerReactive(target, key) {
 
 既然它需要一个包含 `subs` 和 `subsTail` 的类实例对象，那么我们可以创建一个类 `Dep`，并添加 `subs` 和 `subsTail` 两个属性。后续把这个类实例对象传给 `link` 方法生成节点绑定到链表上就好了。现在需要思考用什么形式的数据格式，来关联保存 `reactive` 对象的属性。
 
-在<word text="Vue" /> 官方源码中， `reactive` 会先创建一个 `WeakMap` 保存所有对象，值是一个对象；每一个对象是通过 `Map` 保存的，每一个属性值则是 `new Dep` 类实例对象。格式如下图所示：
+在<word text="Vue" />官方源码中， `reactive` 会先创建一个 `WeakMap` 保存所有对象，值是一个对象；每一个对象是通过 `Map` 保存的，每一个属性值则是 `new Dep` 类实例对象。格式如下图所示：
 
 ![格式](https://pic1.imgdb.cn/item/696a0024242c448284bce70c.png)
 
@@ -617,7 +617,7 @@ class RefImpl {
 > })
 > ```
 
-如果在 `reactive` 对象内使用了 `ref` 创建的属性，<word text="Vue" /> 官方内部会帮我们自动拿到 `.value` 的值，我们使用时无需 `state1.a.value`，而是直接 `state1.a` 即可。
+如果在 `reactive` 对象内使用了 `ref` 创建的属性，<word text="Vue" />官方内部会帮我们自动拿到 `.value` 的值，我们使用时无需 `state1.a.value`，而是直接 `state1.a` 即可。
 
 想要实现这个功能，可以借助前面实现 `RefImpl` 时，创建的 `isRef` 方法，只要是 `ref` 变量，他都有一个 `__v_isRef` 属性，因此我们可以借助这个方法很轻松就能判断当前的值是不是 `ref` ，如果是返回 `.value` ，不是返回自身。
 

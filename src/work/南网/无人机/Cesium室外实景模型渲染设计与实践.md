@@ -37,7 +37,7 @@ flowchart TD
     B --> C["Viewer 离线化配置<br/>Ion token 置空 / baseLayer<br/>/ 视觉调优"]
     B --> D["禁用内置相机控制器<br/>绑定原生 pointer 事件"]
     B --> E{"autoLoad ?"}
-    
+
     E -- 是 --> F["CesiumTilesetLoader.loadFromURL"]
     F --> G["解析根 tileset.json<br/>读取 root boundingVolume<br/>与 geometricError"]
     G --> H["递归外部子 tileset<br/>BlockB / BlockY 的 tileset.json"]
@@ -45,13 +45,13 @@ flowchart TD
     I --> J["primitives.add 并 zoomTo 适配视角"]
     J --> K["setOrbitTarget<br/>钉定模型包围球中心"]
     K --> L["交互就绪<br/>平移 / 旋转 / 缩放 /<br/>拾取经纬度"]
-    
+
     E -- 否 --> L
 ```
 
 ## 格式解析：3D Tiles 与 b3dm
 
-### 1. 瓦片树与地理参考判定
+### 瓦片树结构与地理参考判定
 
 根 `tileset.json` 是整棵瓦片树的唯一入口，本数据集的实际内容如下（节选）：
 
@@ -103,7 +103,7 @@ root (geometricError 1653.6, ECEF box)
       └── L13 → L14 → L15 → L16 → L17
 ```
 
-### 2. b3dm 二进制布局
+### b3dm 二进制字段布局
 
 b3dm（Batched 3D Model）是 3D Tiles 1.0 定义的瓦片内容格式之一，本质是"批次元信息 + 内嵌 glTF 二进制"的容器：
 
@@ -120,7 +120,7 @@ b3dm（Batched 3D Model）是 3D Tiles 1.0 定义的瓦片内容格式之一，�
 
 由此可得两条工程结论：其一，b3dm 不可双击预览，需经 3D Tiles 运行时或抽取内嵌 GLB 后交由 glTF viewer；其二，瓦片内几何通常携带 RTC_CENTER（相对中心偏移），顶点以瓦片中心为原点存储以规避浮点精度问题，这也是渲染端无需关心 ECEF 大坐标的原因。
 
-### 3. LOD 调度：屏幕空间误差
+### 屏幕空间误差驱动的 LOD 调度
 
 瓦片细化由屏幕空间误差（SSE）驱动，而非距离阈值：
 
@@ -269,6 +269,7 @@ private applyOrbit(dx: number, dy: number) {
 平移跟手感取决于"每屏幕像素对应多少世界尺寸"，按下时按相机到命中点距离一次性换算：
 
 ::: code-group
+
 ```js [index.js]
 pixelScale = (2 × d × tan(fovy / 2)) / clientHeight
 ```
@@ -281,6 +282,7 @@ camera.moveUp(dy * this.panPixelScale)
 // 轨道中心同步平移，保证后续旋转仍绕视觉中心
 Cesium.Cartesian3.add(this.orbitTarget, delta, this.orbitTarget)
 ```
+
 :::
 
 ### 拾取 NaN 防御

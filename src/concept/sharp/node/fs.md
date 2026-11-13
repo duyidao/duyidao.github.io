@@ -20,7 +20,7 @@ fs.readFile(path[, options], callback)
 - 参数 2：可选参数，表示以什么编码格式来读取文件。
 - 参数 3：必选参数，文件读取完成后，通过回调函数拿到读取的结果
 
-#### 示例代码
+#### readFile 读取文件内容示例
 
 `1.txt` 文件内容：
 
@@ -33,27 +33,27 @@ hello
 - 成功情况
 
   ```js
-  const fs = require("fs");
-  fs.readFile("./1.txt", "utf8", function (err, dataStr) {
-    console.log(err); // null
-    console.log(dataStr); // hello
-  });
+  const fs = require('fs')
+  fs.readFile('./1.txt', 'utf8', function (err, dataStr) {
+    console.log(err) // null
+    console.log(dataStr) // hello
+  })
   ```
 
 - 失败情况
 
   ```js
-  const fs = require("fs");
-  fs.readFile("./11.txt", "utf8", function (err, dataStr) {
-    console.log(err);
+  const fs = require('fs')
+  fs.readFile('./11.txt', 'utf8', function (err, dataStr) {
+    console.log(err)
     // {
     // errno: -4058,
     // code: 'ENOENT',
     // syscall: 'open',
     // path: 'C:\\Users\\Administrator\\Desktop\\blog\\node\\11.txt'
     // }
-    console.log(dataStr); // undefined
-  });
+    console.log(dataStr) // undefined
+  })
   ```
 
 ### 写入文件
@@ -69,32 +69,32 @@ fs.writeFile(file, data[, options], callback)
 - 参数 3：可选参数，表示以什么格式写入文件内容，默认值是 utf8。
 - 参数 4：必选参数，文件写入完成后的回调函数
 
-#### 示例代码
+#### writeFile 成功与失败回调示例
 
 - 成功状态
 
   ```js
-  const fs = require("fs");
+  const fs = require('fs')
 
-  fs.writeFile("./1.txt", "add", "utf8", function (err) {
-    console.log(err); // null
-  });
+  fs.writeFile('./1.txt', 'add', 'utf8', function (err) {
+    console.log(err) // null
+  })
   ```
 
 - 失败状态
 
   ```js
-  const fs = require("fs");
+  const fs = require('fs')
 
-  fs.writeFile("./11.txt", "add", "utf8", function (err) {
-    console.log(err);
+  fs.writeFile('./11.txt', 'add', 'utf8', function (err) {
+    console.log(err)
     // {
     //  errno: -4058,
     //  code: 'ENOENT',
     //  syscall: 'open',
     //  path: 'C:\\Users\\Administrator\\Desktop\\blog\\abc\\1.txt'
     // }
-  });
+  })
   ```
 
 ### 案例
@@ -119,26 +119,26 @@ fs.writeFile(file, data[, options], callback)
 代码：
 
 ```js
-const fs = require("fs");
+const fs = require('fs')
 
-fs.readFile("./1.txt", "utf8", function (err, dataStr) {
+fs.readFile('./1.txt', 'utf8', function (err, dataStr) {
   // 判断读取是否成功
   if (err) {
-    return console.log("读取文件失败，", err);
+    return console.log('读取文件失败，', err)
   }
 
   // 把获取到的字符串中的 = 正则替换为：，空格替换为换行
-  const arr = dataStr.replace(/\=/g, "：").replace(/ /g, "\r\n");
+  const arr = dataStr.replace(/\=/g, '：').replace(/ /g, '\r\n')
 
-  fs.writeFile("./2.txt", arr, "utf8", function (err) {
+  fs.writeFile('./2.txt', arr, 'utf8', function (err) {
     // 判断写入是否成功
     if (err) {
-      console.log("成绩写入失败");
+      console.log('成绩写入失败')
     } else {
-      console.log("成绩写入成功");
+      console.log('成绩写入成功')
     }
-  });
-});
+  })
+})
 ```
 
 ## 同步操作
@@ -217,9 +217,11 @@ console.log('先输出...')
 ```js
 import { readFile } from 'fs/promises'
 
-readFile('hd.txt', 'utf-8').then((content) => {
-  console.log(content)
-}).catch(error=>console.log(error))
+readFile('hd.txt', 'utf-8')
+  .then((content) => {
+    console.log(content)
+  })
+  .catch((error) => console.log(error))
 ```
 
 ## 路径拼接
@@ -290,7 +292,7 @@ fileType('hd').then((type) => {
 import { unlink, writeFileSync } from 'fs'
 writeFileSync('hd.txt', 'houdunren')
 setTimeout(() => {
- //三秒后删除文件
+  //三秒后删除文件
   unlink('hd.txt', (error) => {
     if (error) throw error
     console.log('文件删除成功')
@@ -397,10 +399,10 @@ rmdir('hd')
 下面是递归删除目录，非空目录也可以一次删除
 
 ```js
-import { rmdir } from "fs";
+import { rmdir } from 'fs'
 
-rmdir("hd", { recursive: true }, (error) => {
-  if (error) throw error;
-  console.log("目录删除成功");
-});
+rmdir('hd', { recursive: true }, (error) => {
+  if (error) throw error
+  console.log('目录删除成功')
+})
 ```

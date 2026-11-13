@@ -4,8 +4,8 @@
 
 第三方库按需求改造一般方案：
 
-1. 通过 <word text="CSS" /> 改造达到视觉效果欺骗
-2. 通过 <word text="CSS" /> 配合 <word text="JavaScript" /> 操作 <word text="DOM" />
+1. 通过<word text="CSS" />改造达到视觉效果欺骗
+2. 通过<word text="CSS" />配合<word text="JavaScript" />操作<word text="DOM" />
 
 ## UI 改造
 

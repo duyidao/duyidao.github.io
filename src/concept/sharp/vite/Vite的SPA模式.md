@@ -2,9 +2,9 @@
 
 ## Vite 前言
 
-关于<word text="Vite" />创建的项目，和曾经的项目创建（如<word text="Vue Cli" />等）存在着很多不同之处。
+关于<word text="Vite" />创建的项目，和曾经的项目创建（如<word text="Vue CLI" />等）存在着很多不同之处。
 
-本文档从入口与传统构建工具的不同入手，对比使用<word text="Vite" />创建的项目、使用<word text="Vue3" />创建的项目、使用<word text="Vue Cli" />创建的<word text="Vue2" />项目，有何差异。
+本文档从入口与传统构建工具的不同入手，对比使用<word text="Vite" />创建的项目、使用<word text="Vue3" />创建的项目、使用<word text="Vue CLI" />创建的<word text="Vue2" />项目，有何差异。
 
 最后再来聊聊如何用<word text="Vite" />创建一个<word text="Vue2" />项目。
 
@@ -190,6 +190,6 @@ export default defineConfig({
 
 ### Vite Vue Cli 创建 Vue 项目
 
-接下来用<word text="Vue Cli" />创建一个<word text="Vue3" />项目，看看有何不同。
+接下来用<word text="Vue CLI" />创建一个<word text="Vue3" />项目，看看有何不同。
 
 #### Vite 目录结构

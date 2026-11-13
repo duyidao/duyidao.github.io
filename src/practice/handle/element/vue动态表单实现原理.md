@@ -1,4 +1,4 @@
-# <word text="Vue" /> 动态表单实现原理
+# <word text="Vue" />动态表单实现原理
 
 ## 基础封装
 
@@ -314,7 +314,7 @@ function changeRef(inputInstance) {
 
 ## 事件绑定
 
-额外提一下如何给每个表单绑定事件，如 `blur`、`change` 等。<word text="Vue" /> 底层源码中，事件会被转换为 `on` 开头 + 事件名首字母大写的形式，如 `blur` 事件在 <word text="Vue" /> 中会被转为 `onBlur`。
+额外提一下如何给每个表单绑定事件，如 `blur`、`change` 等。<word text="Vue" />底层源码中，事件会被转换为 `on` 开头 + 事件名首字母大写的形式，如 `blur` 事件在<word text="Vue" />中会被转为 `onBlur`。
 
 因此，在属性中添加对应事件，子组件会通过 `v-bind` 将这些事件绑定到对应组件上。
 

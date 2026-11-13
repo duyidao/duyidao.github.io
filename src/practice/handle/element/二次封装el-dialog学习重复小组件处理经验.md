@@ -77,7 +77,7 @@ export const signProp = (content) => {
 }
 ```
 
-这么写点击按钮后页面能生成对应 <word text="DOM" />，点击不同意按钮也能卸载。但再次点击按钮后不再生成 <word text="DOM" />，因为 `render` 函数只会执行一次，执行完后虽然页面真实 <word text="DOM" /> 被删除了，但 `render` 认为已挂载，就不再执行。
+这么写点击按钮后页面能生成对应<word text="DOM" />，点击不同意按钮也能卸载。但再次点击按钮后不再生成<word text="DOM" />，因为 `render` 函数只会执行一次，执行完后虽然页面真实<word text="DOM" />被删除了，但 `render` 认为已挂载，就不再执行。
 
 参考一下 Element UI 的方法修改。
 
@@ -119,7 +119,7 @@ export const signProp = (content, handler) => {
 }
 ```
 
-它是通过原生 <word text="DOM" /> 来加入到 `body` 内，这样就不会管虚拟 <word text="DOM" /> 是否挂载。
+它是通过原生<word text="DOM" />来加入到 `body` 内，这样就不会管虚拟<word text="DOM" />是否挂载。
 
 现在可以在各个需要的场景使用该方法了。
 
@@ -146,9 +146,9 @@ import { signProp } from './signProp.jsx'
 
 ### h 与 createApp 方案
 
-这个写法与前面的 JSX 方案类似，只不过不使用标签方式，而是使用 <word text="Vue" /> 提供的 `h` 和 `createApp` 方式。
+这个写法与前面的 JSX 方案类似，只不过不使用标签方式，而是使用<word text="Vue" />提供的 `h` 和 `createApp` 方式。
 
-首先声明一个函数，接收三个参数：第一个参数是弹窗内部要渲染的组件（这里以 Element Plus 组件的弹窗为例），第二个参数是内部组件的 `props`，第三个参数是弹窗组件的 `props`。通过 `h` 创建完虚拟 <word text="DOM" /> 后，再通过 `createApp` 创建一个 <word text="Vue" /> 实例，最后通过 `mount` 方法挂载到 `body` 上。
+首先声明一个函数，接收三个参数：第一个参数是弹窗内部要渲染的组件（这里以 Element Plus 组件的弹窗为例），第二个参数是内部组件的 `props`，第三个参数是弹窗组件的 `props`。通过 `h` 创建完虚拟<word text="DOM" />后，再通过 `createApp` 创建一个<word text="Vue" />实例，最后通过 `mount` 方法挂载到 `body` 上。
 
 ::: code-group
 

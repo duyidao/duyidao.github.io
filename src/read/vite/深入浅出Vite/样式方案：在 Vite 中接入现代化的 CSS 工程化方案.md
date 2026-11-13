@@ -2,7 +2,7 @@
 
 ## 核心主旨
 
-样式工程化是现代前端项目不可或缺的一环。原生 <word text="CSS"/> 存在开发体验欠佳、样式污染、浏览器兼容性差、产物体积过大等四大痛点。本文系统梳理了社区主流的 5 类 <word text="CSS"/> 工程化方案（<word text="CSS"/> 预处理器、<word text="CSS Modules"/>、<word text="PostCSS"/>、<word text="CSS in JS"/>、<word text="CSS"/> 原子化框架），并通过实战演示如何在 <word text="Vite"/> 中零配置或自定义接入这些方案，帮助你根据项目痛点选择合适的样式策略。
+样式工程化是现代前端项目不可或缺的一环。原生<word text="CSS"/>存在开发体验欠佳、样式污染、浏览器兼容性差、产物体积过大等四大痛点。本文系统梳理了社区主流的 5 类<word text="CSS"/>工程化方案（<word text="CSS"/>预处理器、<word text="CSS Modules"/>、<word text="PostCSS"/>、<word text="CSS in JS"/>、<word text="CSS"/>原子化框架），并通过实战演示如何在<word text="Vite"/>中零配置或自定义接入这些方案，帮助你根据项目痛点选择合适的样式策略。
 
 ## 原生 CSS 的四大痛点与解决方案矩阵
 
@@ -40,17 +40,17 @@
 
 | 方案类型                    | 代表工具                                                      | 核心优势                                     | 解决的问题              | 适用场景                            |
 | --------------------------- | ------------------------------------------------------------- | -------------------------------------------- | ----------------------- | ----------------------------------- |
-| <word text="CSS"/> 预处理器 | <word text="Sass"/>/<word text="Less"/>/<word text="Stylus"/> | 变量、嵌套、逻辑控制                         | 开发体验、代码复用      | 传统项目、需要样式复用              |
+| <word text="CSS"/>预处理器 | <word text="Sass"/>/<word text="Less"/>/<word text="Stylus"/> | 变量、嵌套、逻辑控制                         | 开发体验、代码复用      | 传统项目、需要样式复用              |
 | <word text="CSS Modules"/>  | 内置支持                                                      | 类名哈希化                                   | 样式污染、命名冲突      | 组件化开发、隔离样式                |
-| <word text="PostCSS"/>      | <word text="autoprefixer"/>/<word text="pxtorem"/>            | <word text="AST"/> 解析与转换                | 浏览器兼容、单位转换    | 跨浏览器适配、移动端                |
-| <word text="CSS in JS"/>    | <word text="styled-components"/>/<word text="emotion"/>       | <word text="JavaScript"/> 中写样式、动态样式 | 开发体验、样式隔离、DCE | <word text="React"/> 项目、动态主题 |
-| <word text="CSS"/> 原子化   | <word text="Tailwind CSS"/>/<word text="Windi CSS"/>          | 原子类名、按需生成                           | 开发效率、产物体积      | 快速原型、设计系统                  |
+| <word text="PostCSS"/>      | <word text="autoprefixer"/>/<word text="pxtorem"/>            | <word text="AST"/>解析与转换                | 浏览器兼容、单位转换    | 跨浏览器适配、移动端                |
+| <word text="CSS in JS"/>    | <word text="styled-components"/>/<word text="emotion"/>       | <word text="JavaScript"/>中写样式、动态样式 | 开发体验、样式隔离、DCE | <word text="React"/>项目、动态主题 |
+| <word text="CSS"/>原子化   | <word text="Tailwind CSS"/>/<word text="Windi CSS"/>          | 原子类名、按需生成                           | 开发效率、产物体积      | 快速原型、设计系统                  |
 
 ## CSS 预处理器实战：Sass/Less/Stylus
 
 ### Vite 的零配置支持
 
-<word text="Vite"/> 内置对 <word text="CSS"/> 预处理器的支持，只需安装对应库即可使用：
+<word text="Vite"/>内置对<word text="CSS"/>预处理器的支持，只需安装对应库即可使用：
 
 ```bash
 # 安装 Sass（以 Sass 为例）
@@ -193,11 +193,11 @@ localsConvention: 类名转换规则（camelCase 等）
 
 ### 核心能力与插件生态
 
-<word text="PostCSS"/> 通过 <word text="AST"/>（抽象语法树）解析 <word text="CSS"/>，可实现：
+<word text="PostCSS"/>通过<word text="AST"/>（抽象语法树）解析<word text="CSS"/>，可实现：
 
 - 自动添加浏览器前缀（<word text="autoprefixer"/>）
-- <word text="px"/> 转 <word text="rem"/>（<word text="postcss-pxtorem"/>）
-- 支持最新 <word text="CSS"/> 语法（<word text="postcss-preset-env"/>）
+- `px`转`rem`（<word text="postcss-pxtorem"/>）
+- 支持最新<word text="CSS"/>语法（<word text="postcss-preset-env"/>）
 - 代码压缩优化（<word text="cssnano"/>）
 
 ### Autoprefixer 实战配置
@@ -249,9 +249,9 @@ export default defineConfig({
 | 插件名称                          | 功能                                    | 适用场景     | 配置示例               |
 | --------------------------------- | --------------------------------------- | ------------ | ---------------------- |
 | <word text="autoprefixer"/>       | 自动添加浏览器前缀                      | 跨浏览器兼容 | `overrideBrowserslist` |
-| <word text="postcss-pxtorem"/>    | <word text="px"/> 转 <word text="rem"/> | 移动端适配   | `rootValue: 16`        |
-| <word text="postcss-preset-env"/> | 支持最新 <word text="CSS"/> 语法        | 未来语法兼容 | `stage: 3`             |
-| <word text="cssnano"/>            | 智能压缩 <word text="CSS"/>             | 生产环境优化 | `preset: 'default'`    |
+| <word text="postcss-pxtorem"/>    | `px`转`rem` | 移动端适配   | `rootValue: 16`        |
+| <word text="postcss-preset-env"/> | 支持最新<word text="CSS"/>语法        | 未来语法兼容 | `stage: 3`             |
+| <word text="cssnano"/>            | 智能压缩<word text="CSS"/>             | 生产环境优化 | `preset: 'default'`    |
 
 插件资源：探索更多插件请访问 [链接](https://www.postcss.parts/)
 
@@ -259,7 +259,7 @@ export default defineConfig({
 
 ### 主流方案对比
 
-| 方案                             | <word text="Babel"/> 插件                     | 特点           | 适用框架                                |
+| 方案                             | <word text="Babel"/>插件                     | 特点           | 适用框架                                |
 | -------------------------------- | --------------------------------------------- | -------------- | --------------------------------------- |
 | <word text="styled-components"/> | <word text="babel-plugin-styled-components"/> | 标签模板语法   | <word text="React"/>                    |
 | <word text="emotion"/>           | <word text="@emotion/babel-plugin"/>          | 更轻量、性能优 | <word text="React"/>/<word text="Vue"/> |
@@ -320,15 +320,15 @@ function App() {
 }
 ```
 
-### <word text="CSS in JS"/> 构建侧考量
+### <word text="CSS in JS"/>构建侧考量
 
 | 考量维度                 | 解决方案                                   |
 | ------------------------ | ------------------------------------------ |
-| 选择器命名               | <word text="Babel"/> 插件自动生成哈希类名  |
-| DCE（死代码消除）        | <word text="Babel"/> 插件标记未使用样式    |
-| 代码压缩                 | 生产环境通过 <word text="Babel"/> 插件优化 |
+| 选择器命名               | <word text="Babel"/>插件自动生成哈希类名  |
+| DCE（死代码消除）        | <word text="Babel"/>插件标记未使用样式    |
+| 代码压缩                 | 生产环境通过<word text="Babel"/>插件优化 |
 | <word text="SourceMap"/> | 插件支持生成源码映射                       |
-| <word text="SSR"/> 支持  | 框架提供服务端渲染 API                     |
+| <word text="SSR"/>支持  | 框架提供服务端渲染 API                     |
 
 ## CSS 原子化框架：Tailwind CSS vs Windi CSS
 
@@ -336,8 +336,8 @@ function App() {
 
 | 特性     | <word text="Tailwind CSS"/> v2 | <word text="Windi CSS"/> | <word text="Tailwind CSS"/> v3 |
 | -------- | ------------------------------ | ------------------------ | ------------------------------ |
-| 编译速度 | 慢                             | 快 20-100 倍             | 快（引入 <word text="JIT"/>）  |
-| 按需生成 | 全量打包                       | 按需编译                 | <word text="JIT"/> 模式        |
+| 编译速度 | 慢                             | 快 20-100 倍             | 快（引入<word text="JIT"/>）  |
+| 按需生成 | 全量打包                       | 按需编译                 | <word text="JIT"/>模式        |
 | 高级功能 | 基础原子类                     | Attributify/Shortcuts    | 基础原子类                     |
 | 配置方式 | `tailwind.config.js`           | `windi.config.ts`        | `tailwind.config.js`           |
 
@@ -507,7 +507,7 @@ function App() {
 | ---------------------------------------- | ------------------------ | ------------------------------------ |
 | 追求极致开发速度                         | Windi CSS                | 编译快、Attributify 提升效率         |
 | 需要稳定生态                             | Tailwind CSS v3          | 社区庞大、文档完善                   |
-| 已有 <word text="Tailwind CSS"/> v2 项目 | 升级到 v3                | 引入 <word text="JIT"/> 解决性能问题 |
+| 已有<word text="Tailwind CSS"/> v2 项目 | 升级到 v3                | 引入<word text="JIT"/>解决性能问题 |
 | 需要高级定制                             | <word text="Windi CSS"/> | Shortcuts/Attributify 更灵活         |
 
 ## 样式方案选型决策树

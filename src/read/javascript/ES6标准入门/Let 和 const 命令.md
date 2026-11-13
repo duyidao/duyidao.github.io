@@ -1,6 +1,6 @@
-# 第二章 Let 和 const 命令
+# let 与 const 声明命令及其与 var 的差异
 
-第二章分别讲解了 `let` 和 `const` 两个用于声明变量的命令，并介绍了他们与 `var` 之间的异同点。
+本文分别讲解 `let` 和 `const` 两个用于声明变量的命令，并介绍它们与 `var` 之间的异同点。
 
 ## let 命令
 
@@ -11,20 +11,20 @@
 `let` 用于声明变量，与 `var` 相比，`let` 声明的变量只在代码块内有效，以下是一个经典场景：
 
 ```js {6-7,16-17}
-for (var i = 0; i < 10; i ++) {
-  a[i] = function() {
+for (var i = 0; i < 10; i++) {
+  a[i] = function () {
     console.log(i)
-  };
+  }
 }
 a[6]() // 10
 console.log(i) // 10。var 声明的，在全局范围内都有效，所以全局只有 一个变量 i。 每一次循环，变量 i 的值都会发生改变，而循环内，被赋给数组 a 的函数内部的 console.log(i)中的 i 指向全局的 i。也就是说，所有数组 a 的成员中的 i 指向的都是同一个 i，导致运行时输出的是最后一轮的 i 值，也就是 10
 
 // ------------------------------------
 
-for (let i = 0; i < 10; i ++) {
-  a[i] = function() {
+for (let i = 0; i < 10; i++) {
+  a[i] = function () {
     console.log(i)
-  };
+  }
 }
 a[6]() // 5
 console.log(i) // i is not defined
@@ -38,12 +38,12 @@ console.log(i) // i is not defined
 
 ```js
 // var的情况
-console.log (foo); // 输出 undefined
-var foo = 2;
+console.log(foo) // 输出 undefined
+var foo = 2
 
 // let的情况
-console.log(bar); // 报错ReferenceError
-let bar = 2;
+console.log(bar) // 报错ReferenceError
+let bar = 2
 ```
 
 ### 暂时性死区
@@ -55,14 +55,14 @@ ES6 规定，若使用 `let` 和 `const` 声明变量，则在变量声明前都
 ```js
 while (true) {
   // TDZ 开始
-  tmp = 'abc'; // ReferenceError
-  console.log (tmp); // ReferenceError
-  
-  let tmp; // TDZ结束
-  console.log (tmp) ; // undefined
- 
-  tmp = 123;
-  console.log(tmp); // 123
+  tmp = 'abc' // ReferenceError
+  console.log(tmp) // ReferenceError
+
+  let tmp // TDZ结束
+  console.log(tmp) // undefined
+
+  tmp = 123
+  console.log(tmp) // 123
 }
 ```
 
@@ -70,7 +70,7 @@ while (true) {
 
 ```js
 function fn(x = y, y = 2) {
-  console.log(x); // ReferenceError。因为x用到了y变量赋值，而y变量在其后面声明，因此是死区
+  console.log(x) // ReferenceError。因为x用到了y变量赋值，而y变量在其后面声明，因此是死区
 }
 
 let x = x // ReferenceError
@@ -85,12 +85,12 @@ let x = x // ReferenceError
 `let` 相比 `var` ，还有一个不同点是不允许重复声明。
 
 ```js {3,6}
-var a = 1;
-var a = 2;
-console.log(a); // 2
+var a = 1
+var a = 2
+console.log(a) // 2
 
-let b = 1;
-let b = 2; // 报错
+let b = 1
+let b = 2 // 报错
 ```
 
 ## 作用域
@@ -104,13 +104,13 @@ ES5 中只存在全局作用域和函数作用域两种，很多场景都显得�
 - 场景一：内部变量覆盖外部变量
 
   ```js
-  var a = 1;
-  
+  var a = 1
+
   if (true) {
-    var a = 2;
+    var a = 2
   }
-  
-  console.log(a); // 2
+
+  console.log(a) // 2
   ```
 
 - 场景二：循环变量全局泄漏
@@ -119,7 +119,7 @@ ES5 中只存在全局作用域和函数作用域两种，很多场景都显得�
   for (var i = 0; i <= 3; i++) {
     // ...
   }
-  console.log(i); // 4
+  console.log(i) // 4
   ```
 
 ### ES6 的块级作用域
@@ -127,23 +127,25 @@ ES5 中只存在全局作用域和函数作用域两种，很多场景都显得�
 `let` 为 JavaScript 提供了块级作用域。外层作用域无法访问内层作用域的变量；内层作用域可以定义外层作用域同名变量且不会覆盖。
 
 ```js
-let a = 1;
+let a = 1
 
 if (true) {
-  let a = 2;
-  console.log(a); // 2
+  let a = 2
+  console.log(a) // 2
 }
-console.log(a); // 1
+console.log(a) // 1
 ```
 
 ::: tip 拓展
 在 ES6 块级作用域出来前，想要实现上述方案，需要用到立即执行函数（IIFE），代码如下：
+
 ```js
-(function () {
+;(function () {
   var tmp = '...'
   // ...
 })
 ```
+
 块级作用域的出现让立即执行函数的写法不再必要。
 :::
 
@@ -164,7 +166,7 @@ ES6 引入了块级作用域，并明确允许在块级作用域中声明函数�
 
 ```js
 {
-  let a = 1;
+  let a = 1
   let f = function () {
     // ...
   }
@@ -197,13 +199,13 @@ if (true) function f() {} // 报错
 例如，假设我们需要计算一个数的平方并加上另一个数，我们可以使用如下的代码：
 
 ```javascript
-let t = 2;
-let l = 3;
+let t = 2
+let l = 3
 let r = do {
-  let x = t * t;
-  x + l;
+  let x = t * t
+  x + l
 }
-console.log(r); // 输出 7
+console.log(r) // 输出 7
 ```
 
 以上代码中，我们使用do表达式将两个操作封装在一起，并将计算结果赋值给变量r。最终，我们可以在代码块外部获取变量r的值。
@@ -219,13 +221,13 @@ console.log(r); // 输出 7
 3. `const` 声明的变量不存在变量提升，同时也存在暂时性死区
 
 ```js
-const a = 1;
-a = 2; // TypeError: Assignment to constant variable
+const a = 1
+a = 2 // TypeError: Assignment to constant variable
 
-const foo; // SyntaxError: Missing initializer in const declaration
+const foo // SyntaxError: Missing initializer in const declaration
 
-console.log(tmp); // ReferenceError
-const tmp = 123;
+console.log(tmp) // ReferenceError
+const tmp = 123
 ```
 
 ### 本质
@@ -237,13 +239,13 @@ const关键字实际上保证的是变量指向的内存地址不得改动，对
 将一个对象声明为常量时，赋值行为受以下限制：
 
 ```javascript
-const foo = {};
+const foo = {}
 // 为foo添加一个属性，可以成功
-foo.prop = 123;
-console.log(foo.prop); // 输出 123
+foo.prop = 123
+console.log(foo.prop) // 输出 123
 
 // 将foo指向另一个对象，就会报错
-foo = {}; // TypeError: "foo" is read-only
+foo = {} // TypeError: "foo" is read-only
 ```
 
 上面的代码中，常量 `foo` 储存的是一个地址，这个地址指向一个对象。不可变的只是这个地址，即不能把 `foo` 指向另一个地址，但对象本身是可变的，所以依然可以为其添加新属性。
@@ -251,22 +253,22 @@ foo = {}; // TypeError: "foo" is read-only
 另外，如果真的想将对象冻结，应该使用 `Object.freeze` 方法。例如：
 
 ```javascript
-const foo = Object.freeze({});
+const foo = Object.freeze({})
 // 在严格模式下，下面一行会报错
-foo.prop = 123;
+foo.prop = 123
 ```
 
 除了将对象本身冻结，对象的属性也应该冻结。以下是一个将对象彻底冻结的函数：
 
 ```javascript
 var constantize = (obj) => {
-  Object.freeze(obj);
+  Object.freeze(obj)
   Object.keys(obj).forEach((key) => {
     if (typeof obj[key] === 'object') {
-      constantize(obj[key]);
+      constantize(obj[key])
     }
-  });
-};
+  })
+}
 ```
 
 这样，通过调用 `constantize` 函数，可以彻底冻结一个对象及其所有属性。
@@ -286,10 +288,10 @@ ES5中只有两种声明变量的方法：使用 `var` 命令和 `function` 命�
 举例来说，使用 `var` 声明的全局变量会成为顶层对象的属性，而使用 `let` 声明的全局变量则不会成为顶层对象的属性，返回 `undefined`。这样的设计改变了全局变量与顶层对象属性之间的关系，使得代码更加清晰和可靠。
 
 ```js
-var a = 1;
+var a = 1
 window.a // 1。如果是在 node 环境中，可写成 global.a 或 this.a
 
-let b = 2;
+let b = 2
 window.b // undefined
 ```
 

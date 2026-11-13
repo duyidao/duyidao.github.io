@@ -185,7 +185,7 @@ JSX 使用方式如下：
 
 > <word text="Vue"/>推荐在绝大多数情况下使用模板来创建你的<word text="HTML"/>。然而在一些场景中，你真的需要<word text="JavaScript"/>的完全编程的能力。这时你可以用渲染函数，它比模板更接近编译器。
 
-简单的说，在<word text="Vue"/>中我们使用模板<word text="HTML"/> 语法组建页面的，使用 Render 函数我们可以用<word text="JavaScript"/>语言来构建<word text="DOM"/>。
+简单的说，在<word text="Vue"/>中我们使用模板<word text="HTML"/>语法组建页面的，使用 Render 函数我们可以用<word text="JavaScript"/>语言来构建<word text="DOM"/>。
 因为<word text="Vue"/>是虚拟<word text="DOM"/>，所以在拿到 Template 模板时也要转译成 VNode 的函数，而用 Render 函数构建<word text="DOM"/>，Vue 就免去了转译的过程。
 
 通过 `createElementVNode` 方法可以实现 `render` 函数编译<word text="DOM"/>元素。

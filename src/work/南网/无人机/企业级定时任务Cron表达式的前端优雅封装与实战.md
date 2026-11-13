@@ -158,7 +158,7 @@ export function getCronDescription(cron: string): string {
 
 ## 业务场景实战
 
-### 场景一：新建定时巡检任务
+### 表单配置生成定时巡检任务
 
 在“任务管理”页面，用户通过表单配置时间。
 
@@ -207,7 +207,7 @@ const handleSubmit = async () => {
 </script>
 ```
 
-### 场景二：编辑已有任务（数据回显）
+### 后端表达式还原为编辑表单
 
 后端返回 `cronExpression: "0 30 10 ? * 2"`，前端需要还原表单。
 

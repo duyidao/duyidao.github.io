@@ -5,10 +5,12 @@
 `blur()` 应该是<word text="CSS" />中使用频率最高的滤镜了，它能将高斯模糊应用于元素上。语法也很简单：
 
 ::: code-group
+
 ```html
 <div></div>
 <div class="blur"></div>
 ```
+
 ```css
 div {
   width: 200px;
@@ -19,6 +21,7 @@ div {
   filter: blur(5px);
 }
 ```
+
 :::
 
 二者效果如下：
@@ -35,7 +38,7 @@ div {
 
 ### 利用模糊实现彩色阴影 / 渐变阴影
 
-在阴影的章节中，讨论了如何使用模糊效果实现[彩色阴影和渐变阴影](/read/CSS%20技术揭秘与实战通关/css%20阴影#彩色阴影-渐变阴影)，以及高级技巧[利用阴影复制自身图形](/read/CSS%20技术揭秘与实战通关/shadow的高级技巧#技巧一-利用阴影复制自身图形)。
+在阴影的章节中，讨论了如何使用模糊效果实现[彩色阴影和渐变阴影](/read/CSS%20技术揭秘与实战通关/css%20阴影#彩色阴影-渐变阴影)，以及高级技巧[零偏移零模糊阴影复制自身图形](/read/CSS%20技术揭秘与实战通关/shadow的高级技巧#零偏移零模糊阴影复制自身图形)。
 
 回顾一下知识点，如何给下面这张图片添加一个彩色阴影。
 
@@ -48,7 +51,7 @@ div {
   position: relative;
   background: url($img) no-repeat center center;
   background-size: 100% 100%;
-  
+
   &::after {
     content: "";
     position: absolute;
@@ -77,21 +80,23 @@ div {
 首先实现一个简单文字的 3D 变换动画，主要是借助 `transform-style: preserve-3d` 和 `perspective`，并且让文字绕 Y 轴进行旋转。
 
 ::: code-group
+
 ```html
 <p>
-    <span>C</span>
-    <span>S</span>
-    <span>S</span>
-    <span>3</span>
-    <span>D</span>
-    <span>E</span>
-    <span>F</span>
-    <span>F</span>
-    <span>E</span>
-    <span>C</span>
-    <span>T</span>
+  <span>C</span>
+  <span>S</span>
+  <span>S</span>
+  <span>3</span>
+  <span>D</span>
+  <span>E</span>
+  <span>F</span>
+  <span>F</span>
+  <span>E</span>
+  <span>C</span>
+  <span>T</span>
 </p>
 ```
+
 ```css
 body {
   perspective: 160vmin;
@@ -113,6 +118,7 @@ p {
   }
 }
 ```
+
 :::
 
 可以得到如下所示的一个 3D 文字运动效果：
@@ -126,7 +132,8 @@ p {
 
 $count: 12;
 
-body, html {
+body,
+html {
   font-family: 'Lobster', cursive;
   perspective: 160vmin;
   overflow: hidden;
@@ -137,19 +144,23 @@ p {
   font-size: 24vmin;
   transform-style: preserve-3d;
   animation: rotate 10s infinite ease-in-out;
-    
+
   span {
-    text-shadow: 
-      1px 1px 0 rgba(0, 0, 0, .9),2px 2px 0 rgba(0, 0, 0, .7),3px 3px 0 rgba(0, 0, 0, .5),4px 4px 0 rgba(0, 0, 0, .3),5px 5px 0 rgba(0, 0, 0, .1);
-      
-    &:nth-child(-n+5) { 
-      animation-delay: -5s; 
+    text-shadow:
+      1px 1px 0 rgba(0, 0, 0, 0.9),
+      2px 2px 0 rgba(0, 0, 0, 0.7),
+      3px 3px 0 rgba(0, 0, 0, 0.5),
+      4px 4px 0 rgba(0, 0, 0, 0.3),
+      5px 5px 0 rgba(0, 0, 0, 0.1);
+
+    &:nth-child(-n + 5) {
+      animation-delay: -5s;
     }
   }
 }
 
 @for $i from 1 to 7 {
-  span:nth-child(#{$i}), 
+  span:nth-child(#{$i}),
   span:nth-last-child(#{$i}) {
     animation: filterBlur-#{$i} 10s infinite ease-in-out;
   }
@@ -210,10 +221,12 @@ p {
 裁剪的方式可以借助 `overflow: hidden` 裁剪多余的边缘部分，再可以借助 `transform: scale()` 将整个模糊效果放大，使颜色更为聚焦。
 
 ::: code-group
+
 ```html
 <div></div>
 <div class="box"></div>
 ```
+
 ```css
 body {
   display: flex;
@@ -232,7 +245,7 @@ div {
 }
 
 div::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -246,6 +259,7 @@ div::before {
   transform: scale(3); /* [!code focus] */
 }
 ```
+
 :::
 
 最终效果：
@@ -277,10 +291,12 @@ div::before {
 在组件库或者一些网站中，鼠标 `hover` 悬停在按钮组件或者一些图片上，会有一些颜色的对比度变化。可能有人以为是换了颜色，实际上变化的是 `contrast()` 对比度。
 
 ::: code-group
+
 ```html
 <div class="btn">Btn</div>
-<img class="img" src="https://picsum.photos/100/50" alt="">
+<img class="img" src="https://picsum.photos/100/50" alt="" />
 ```
+
 ```css
 body {
   display: flex;
@@ -291,7 +307,8 @@ body {
   gap: 50px;
 }
 
-div, img {
+div,
+img {
   width: 100px;
   height: 50px;
 }
@@ -302,10 +319,12 @@ div {
   background: orange;
 }
 
-div:hover, img:hover {
+div:hover,
+img:hover {
   filter: contrast(90%);
 }
 ```
+
 :::
 
 如果想要高亮，`contrast` 的值设置超过 100% 即可。
@@ -346,14 +365,17 @@ div:hover, img:hover {
 例如：
 
 ::: code-group
+
 ```html
 <div class="g-container">
   <div class="g-ball-a"></div>
   <div class="g-ball-b"></div>
 </div>
 ```
+
 ```css
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   display: flex;
@@ -382,7 +404,7 @@ html, body {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: #3F51B5;
+  background: #3f51b5;
   top: 60px;
   right: 40px;
   animation: filterBallMove2 4s ease-out infinite;
@@ -400,6 +422,7 @@ html, body {
   }
 }
 ```
+
 :::
 
 效果如下：
@@ -431,15 +454,13 @@ html, body {
 而 `blur()` 和 `contrast()` 的作用为：
 
 1. `blur()` 的作用
-
-    - 在两个球体重叠区域产生柔化边缘效果
-    - 使球体的边界变得模糊，形成平滑的过渡
-    - 这种模糊效果让两个球体的重叠部分不是简单的颜色叠加，而是产生了渐变融合
+   - 在两个球体重叠区域产生柔化边缘效果
+   - 使球体的边界变得模糊，形成平滑的过渡
+   - 这种模糊效果让两个球体的重叠部分不是简单的颜色叠加，而是产生了渐变融合
 
 2. `contrast()` 的作用
-
-    - 增强颜色对比度，使球体明暗层次更清晰
-    - 让重叠区域的明暗变化更加明显
+   - 增强颜色对比度，使球体明暗层次更清晰
+   - 让重叠区域的明暗变化更加明显
 
 当然，`blur()` 不仅能设置在父元素上，同时也能设置在子元素上，效果是一样的。
 
@@ -472,7 +493,7 @@ html, body {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: #3F51B5;
+  background: #3f51b5;
   top: 60px;
   right: 40px;
   filter: blur(6px); /* [!code ++] */
@@ -497,7 +518,7 @@ html, body {
   border: 100px solid #000;
   border-bottom: 100px solid transparent;
   background-color: #b5932f;
-  transform: scaleX(.4);
+  transform: scaleX(0.4);
   filter: blur(20px) contrast(30);
 }
 ```
@@ -529,31 +550,33 @@ html, body {
 当然，还能模拟华为的充电特效。
 
 ::: code-group
+
 ```html
 <div class="g-container">
-    <div class="g-number">98.7%</div>
-    <div class="g-contrast">
-        <div class="g-circle"></div>
-        <ul class="g-bubbles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </div>
+  <div class="g-number">98.7%</div>
+  <div class="g-contrast">
+    <div class="g-circle"></div>
+    <ul class="g-bubbles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
 </div>
 ```
+
 ```css
 html,
 body {
@@ -596,7 +619,7 @@ body {
   height: 300px;
   box-sizing: border-box;
   filter: blur(8px);
-    
+
   &::after {
     content: "";
     position: absolute;
@@ -609,7 +632,7 @@ body {
     border-radius: 42% 38% 62% 49% / 45%;
     animation: rotate 10s infinite linear;
   }
-    
+
   &::before {
     content: "";
     position: absolute;
@@ -642,7 +665,7 @@ li {
   background: #00ff6f;
 }
 
-@for $i from 0 through 15 { 
+@for $i from 0 through 15 {
   li:nth-child(#{$i}) {
     $width: 15 + random(15) + px;
     left: 15 + random(70) + px;
@@ -679,6 +702,7 @@ li {
   }
 }
 ```
+
 :::
 
 > 具体代码可以查看 [融合模拟华为充电特效](https://codepen.io/duyidao/pen/gbrxBqy)
@@ -688,9 +712,11 @@ li {
 同样的，还能使用 `filter: blur()` 与 `filter: contrast()` 的组合，实现文字融合特效。
 
 ::: code-group
+
 ```html
 <h1>刀刀小站，每天都要比昨天更有进步</h1>
 ```
+
 ```css
 body {
   display: flex;
@@ -723,6 +749,7 @@ h1 {
   }
 }
 ```
+
 :::
 
 > 具体代码可以查看 [融合效果实现文字融合特效](https://codepen.io/duyidao/pen/qEZXQBy)
@@ -747,7 +774,7 @@ div {
 }
 
 div::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;

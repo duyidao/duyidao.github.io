@@ -2,13 +2,13 @@
 
 ## 概述
 
-在企业级任务管理系统中，日程表是核心交互模块之一。为满足查看当月每日日程、定制化日程样式及日期联动等需求，本项目引入了 <word text="FullCalendar" /> 组件库。本文详细阐述基于 `@fullcalendar/vue3` 的日程表组件封装方案，涵盖插槽定制、数据驱动配置及跨组件联动机制。
+在企业级任务管理系统中，日程表是核心交互模块之一。为满足查看当月每日日程、定制化日程样式及日期联动等需求，本项目引入了<word text="FullCalendar" />组件库。本文详细阐述基于 `@fullcalendar/vue3` 的日程表组件封装方案，涵盖插槽定制、数据驱动配置及跨组件联动机制。
 
 ## 核心依赖与初始化
 
 ### 依赖安装
 
-<word text="FullCalendar" /> 采用模块化设计，需按需引入核心库、视图插件及交互插件。
+<word text="FullCalendar" />采用模块化设计，需按需引入核心库、视图插件及交互插件。
 
 ```bash
 pnpm i @fullcalendar/core @fullcalendar/daygrid @fullcalendar/interaction @fullcalendar/vue3
@@ -16,7 +16,7 @@ pnpm i @fullcalendar/core @fullcalendar/daygrid @fullcalendar/interaction @fullc
 
 ### 组件挂载与插槽定制
 
-通过 <word text="FullCalendar" /> 提供的具名插槽，可深度定制"更多日程"提示及单个日程卡片的渲染逻辑。
+通过<word text="FullCalendar" />提供的具名插槽，可深度定制"更多日程"提示及单个日程卡片的渲染逻辑。
 
 ```vue
 <template>
@@ -128,7 +128,7 @@ const calendarOptions = {
 
 ### 跨组件联动：日期选择器
 
-为实现外部 `a-date-picker` 与日程表的双向联动，需通过 `ref` 获取 <word text="FullCalendar" /> 实例并调用其暴露的 <word text="API" />。
+为实现外部 `a-date-picker` 与日程表的双向联动，需通过 `ref` 获取<word text="FullCalendar" />实例并调用其暴露的<word text="API" />。
 
 ```mermaid
 sequenceDiagram

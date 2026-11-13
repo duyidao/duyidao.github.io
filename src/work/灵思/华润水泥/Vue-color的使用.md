@@ -1,6 +1,6 @@
 # Vue-color 的使用
 
-水泥项目有一个需求：提供颜色选择器给用户选择颜色，旁边能还让用户看到预览颜色及其 `rgb` 内容。根据搜寻最后找到插件 <word text="vue-color" /> 。Github 官方文档地址为： [vue-color](https://hub.nuaa.cf/xiaokaike/vue-color) 。
+水泥项目有一个需求：提供颜色选择器给用户选择颜色，旁边能还让用户看到预览颜色及其 `rgb` 内容。根据搜寻最后找到插件<word text="vue-color" />。Github 官方文档地址为： [vue-color](https://hub.nuaa.cf/xiaokaike/vue-color) 。
 
 ## 引入插件
 

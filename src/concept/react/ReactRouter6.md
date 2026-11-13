@@ -177,7 +177,7 @@ export default function Home() {
 
 ### ReactRouter6 `<Outlet>`
 
-当`<Route>`产生嵌套时，渲染其对应的后续子路由。可以理解为 <word text="Vue" /> 中二级路由及以后路由的 `router-view` 。
+当`<Route>`产生嵌套时，渲染其对应的后续子路由。可以理解为<word text="Vue" />中二级路由及以后路由的 `router-view` 。
 
 示例代码：
 

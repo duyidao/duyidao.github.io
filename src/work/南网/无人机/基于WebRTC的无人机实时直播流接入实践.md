@@ -2,11 +2,11 @@
 
 ## 背景
 
-项目需要在浏览器端直接播放无人机摄像头的实时画面，延迟要求尽可能低。最终选型走了 <word text="WebRTC"/> 协议，流媒体服务端用的 <word text="ZLMediaKit"/>。整套链路跑下来踩了不少坑，这里把核心实现和细节整理出来。
+项目需要在浏览器端直接播放无人机摄像头的实时画面，延迟要求尽可能低。最终选型走了<word text="WebRTC"/>协议，流媒体服务端用的<word text="ZLMediaKit"/>。整套链路跑下来踩了不少坑，这里把核心实现和细节整理出来。
 
 ## 整体链路
 
-信令交互没有走 <word text="WebSocket"/>，而是用了一次简单的 <word text="HTTP" /> 请求完成 <word text="SDP"/> 交换：
+信令交互没有走<word text="WebSocket"/>，而是用了一次简单的<word text="HTTP" />请求完成<word text="SDP"/>交换：
 
 ```mermaid
 flowchart TD
@@ -32,7 +32,7 @@ flowchart TD
 
 1. 创建 PeerConnection 并声明媒体需求
 
-   拿到播放地址后，先关掉上一次的连接，再创建新的 <word text="RTCPeerConnection"/> 实例。这里 `iceServers` 传了空数组，因为无人机直播场景下浏览器和流媒体服务器在同一内网，不需要 <word text="STUN"/> / <word text="TURN"/> 做穿透。
+   拿到播放地址后，先关掉上一次的连接，再创建新的<word text="RTCPeerConnection"/>实例。这里 `iceServers` 传了空数组，因为无人机直播场景下浏览器和流媒体服务器在同一内网，不需要<word text="STUN"/> / <word text="TURN"/>做穿透。
 
    ```ts
    const pc = new RTCPeerConnection({ iceServers: [] })
@@ -47,7 +47,7 @@ flowchart TD
 
 2. 监听媒体轨道
 
-   <word text="RTCPeerConnection"/> 的 `ontrack` 回调在 <word text="ICE"/> 协商完成、媒体流到达时触发。这里拿到 `streams[0]` 直接塞给 `<video>` 元素：
+   <word text="RTCPeerConnection"/>的 `ontrack` 回调在<word text="ICE"/>协商完成、媒体流到达时触发。这里拿到 `streams[0]` 直接塞给 `<video>` 元素：
 
    ```ts
    pc.ontrack = (ev: RTCTrackEvent) => {
@@ -69,11 +69,11 @@ flowchart TD
    }
    ```
 
-   `play()` 返回 <word text="Promise"/>，浏览器自动播放策略可能拦截，所以必须 `catch`。实际部署时给 `<video>` 加了 `muted` 属性来规避限制。
+   `play()` 返回<word text="Promise"/>，浏览器自动播放策略可能拦截，所以必须 `catch`。实际部署时给 `<video>` 加了 `muted` 属性来规避限制。
 
 3. SDP 交换：`Offer → HTTP POST → Answer`
 
-   这是整条链路里最关键的一步。等 <word text="ICE"/> 候选收集完成（或超时 1 秒兜底），把本地 <word text="SDP"/> 通过 <word text="HTTP"/> POST 发给 <word text="ZLMediaKit"/>：
+   这是整条链路里最关键的一步。等<word text="ICE"/>候选收集完成（或超时 1 秒兜底），把本地<word text="SDP"/>通过<word text="HTTP"/> POST 发给<word text="ZLMediaKit"/>：
 
    ```ts
    pc.createOffer()
@@ -112,8 +112,8 @@ flowchart TD
    ```
 
    几个细节：
-   - <word text="ZLMediaKit"/> 的 <word text="WebRTC"/> 播放接口要求 `Content-Type` 为 `application/sdp`，不是 `application/json`。
-   - <word text="ICE"/> 收集加了 1 秒超时。内网环境下候选收集通常很快，但偶尔会卡在 `gathering` 状态，不兜底的话整个链路就挂住了。
+   - <word text="ZLMediaKit"/>的<word text="WebRTC"/>播放接口要求 `Content-Type` 为 `application/sdp`，不是 `application/json`。
+   - <word text="ICE"/>收集加了 1 秒超时。内网环境下候选收集通常很快，但偶尔会卡在 `gathering` 状态，不兜底的话整个链路就挂住了。
    - 返回的 `Answer` 是纯文本，直接 `resp.text()` 读取，不需要 `JSON` 解析。
 
 4. 连接状态监听
@@ -132,7 +132,7 @@ flowchart TD
 
 5. 资源清理
 
-   组件卸载时必须关闭 <word text="RTCPeerConnection"/> 并清空 `srcObject`，否则连接会一直占着，浏览器控制台能看到大量 `CLOSED` 状态的残留连接：
+   组件卸载时必须关闭<word text="RTCPeerConnection"/>并清空 `srcObject`，否则连接会一直占着，浏览器控制台能看到大量 `CLOSED` 状态的残留连接：
 
    ```ts
    const closeWebRTC = () => {
@@ -174,14 +174,14 @@ flowchart TD
 </div>
 ```
 
-`v-if="playUrl"` 确保只有拿到播放地址后才渲染视频容器，避免空 <word text="DOM"/> 节点。
+`v-if="playUrl"` 确保只有拿到播放地址后才渲染视频容器，避免空<word text="DOM"/>节点。
 
 ## 踩坑记录
 
 | 问题                                    | 原因                                                 | 处理                                                    |
 | --------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------- |
-| 画面出不来，控制台无报错                | `iceServers` 配了公网 <word text="STUN"/> 但内网不通 | 改为空数组                                              |
+| 画面出不来，控制台无报错                | `iceServers` 配了公网<word text="STUN"/>但内网不通 | 改为空数组                                              |
 | `play()` 被浏览器拦截                   | 自动播放策略要求静音                                 | `<video>` 加 `muted`                                    |
 | 切换设备后旧画面残留                    | 没有 `close()` 旧的 PeerConnection                   | 切换前先调 `closeWebRTC()`                              |
 | Answer 设置报错 `InvalidStateError`     | Offer 还没 `setLocalDescription` 就发了请求          | 严格按 createOffer → setLocal → POST → setRemote 顺序走 |
-| 全屏状态在 <word text="Vue" /> 里不响应 | `document.fullscreenElement` 不是响应式的            | 监听 `fullscreenchange` 事件手动同步                    |
+| 全屏状态在<word text="Vue" />里不响应 | `document.fullscreenElement` 不是响应式的            | 监听 `fullscreenchange` 事件手动同步                    |

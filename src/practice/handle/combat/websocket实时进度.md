@@ -2,7 +2,7 @@
 
 ## 场景复现
 
-现在有一个场景，在请求 <word text="WebSocket"/> 接口时，会分段展示当前的进度，比如执行中、执行完毕，并且展示最终的耗时。效果如下：
+现在有一个场景，在请求<word text="WebSocket"/>接口时，会分段展示当前的进度，比如执行中、执行完毕，并且展示最终的耗时。效果如下：
 
 ![场景复现](https://pic1.imgdb.cn/item/68786ea058cb8da5c8bcb0f9.png)
 
@@ -178,7 +178,7 @@ wss.on('connection', (ws, req) => {
 :::
 
 > [!IMPORTANT] 题外话
-> `ws` 服务是基于 <word text="HTTP"/> 服务的升级，因此需要先创建一个 `http` 服务，再创建一个 `ws` 服务，并且需要把 `ws` 服务绑定到 `http` 服务上，这样 `ws` 服务才能处理 `http` 请求。
+> `ws` 服务是基于<word text="HTTP"/>服务的升级，因此需要先创建一个 `http` 服务，再创建一个 `ws` 服务，并且需要把 `ws` 服务绑定到 `http` 服务上，这样 `ws` 服务才能处理 `http` 请求。
 
 ## 出错处理
 

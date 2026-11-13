@@ -563,13 +563,13 @@ CORS （`Cross-Origin Resource Sharing`，跨域资源共享）由一系列 HTTP
 
 使用 [nodemon](https://www.npmjs.com/package/nodemon) 这个工具，它能够监听项目文件的变动，当代码被修改后，`nodemon` 会自动帮我们重启项目，极大方便了开发和调试。
 
-### Node Express安装
+### 全局安装 nodemon
 
 ```sh
 npm i -g nodemon
 ```
 
-### Node Express使用
+### 用 nodemon 启动脚本实现自动重启
 
 ```sh
 nodemon xxx.js

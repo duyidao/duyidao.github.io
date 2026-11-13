@@ -1,10 +1,10 @@
-# 第十一章 Set和Map数据结构
+# Set 与 Map 数据结构及其弱引用版本
 
-本章讲解数据结构 `Set` 和 `Map`。这两个数据结构在开发中十分常用，并且二者都有弱引用写法。
+本文讲解数据结构 `Set` 和 `Map`。这两个数据结构在开发中十分常用，并且二者都有弱引用写法。
 
 ## Set
 
-<word text="Set"/> 是 <word text="ES6"/> 引入的一种新的数据结构，类似于数组，但其中的元素值唯一，不允许重复。
+<word text="Set"/>是<word text="ES6"/>引入的一种新的数据结构，类似于数组，但其中的元素值唯一，不允许重复。
 
 ### 基本用法
 
@@ -15,8 +15,8 @@
    可以通过传入一个数组或其他可迭代对象来初始化 Set，初始化时会自动去除重复的元素。
 
    ```js
-   const s = new Set(); // 创建一个空的 `Set` 实例
-   const set1 = new Set([1, 2, 3, 4, 4]); // 初始化 Set，自动去重
+   const s = new Set() // 创建一个空的 `Set` 实例
+   const set1 = new Set([1, 2, 3, 4, 4]) // 初始化 Set，自动去重
    ```
 
 2. **向 `Set` 添加元素**:
@@ -24,8 +24,8 @@
    使用 `add` 方法向 `Set` 添加新元素，如果元素已经存在则不会重复添加。
 
    ```js
-   const s = new Set();
-   [2, 3, 5, 4, 5, 2, 2].forEach(x => s.add(x));
+   const s = new Set()
+   ;[2, 3, 5, 4, 5, 2, 2].forEach((x) => s.add(x))
    // s 现在为 `Set` { 2, 3, 5, 4 }
    ```
 
@@ -34,9 +34,9 @@
    使用 `for...of` 循环可以遍历 `Set` 中的所有元素，遍历顺序即插入顺序。
 
    ```js
-   const s = new Set([2, 3, 5, 4]);
+   const s = new Set([2, 3, 5, 4])
    for (let i of s) {
-      console.log(i); // 输出 2, 3, 5, 4
+     console.log(i) // 输出 2, 3, 5, 4
    }
    ```
 
@@ -45,8 +45,8 @@
    使用 `size` 属性可以获取 `Set` 中元素的数量。
 
    ```js
-   const items = new Set([1, 2, 3, 4, 5, 5, 5, 5]);
-   items.size; // 输出 5
+   const items = new Set([1, 2, 3, 4, 5, 5, 5, 5])
+   items.size // 输出 5
    ```
 
 5. **特殊情况处理**:
@@ -54,24 +54,24 @@
    `Set` 内部使用 `Same-value equality` 算法判断元素是否相等，类似于 `===` 运算符，但是对 `NaN` 的处理不同。在 `Set` 中 `NaN` 是等于自身的。
 
    ```js
-   let set = new Set();
-   set.add(NaN);
-   set.add(NaN);
-   set; // 输出 `Set` { NaN }
+   let set = new Set()
+   set.add(NaN)
+   set.add(NaN)
+   set // 输出 `Set` { NaN }
    ```
 
    对象是根据引用地址判断是否相等，而非对象内容。
 
    ```js
-   let set = new Set();
-   set.add({}); // 第一个空对象
-   set.add({}); // 第二个空对象，不同的引用
-   set.size; // 输出 2
+   let set = new Set()
+   set.add({}) // 第一个空对象
+   set.add({}) // 第二个空对象，不同的引用
+   set.size // 输出 2
    ```
 
 ### Set实例的属性和方法
 
-<word text="Set"/> 拥有 2个属性和 4种方法：
+<word text="Set"/>拥有 2个属性和 4种方法：
 
 - 属性
   1. `Set.prototype.constructor`：构造函数，默认是 `Set` 函数
@@ -101,7 +101,7 @@ s.has(2) // false
 
 `Array.from` 可以把 `Set` 转为数组，这就提供了数组去重的方法。
 
-### 遍历操作
+### Set 的四种遍历方法与键值同源特性
 
 `Set` 有四种遍历方法：
 
@@ -115,21 +115,21 @@ s.has(2) // false
 
   ```js
   let set = new Set(['daodao', 'xiaodao', 'duyidao'])
-  
+
   for (let key of set.keys()) {
     console.log(key)
   }
   // daodao
   // xiaodao
   // duyidao
-  
+
   for (let value of set.values()) {
     console.log(value)
   }
   // daodao
   // xiaodao
   // duyidao
-  
+
   for (let entrie of set.entries()) {
     console.log(entrie)
   }
@@ -144,7 +144,7 @@ s.has(2) // false
 
   ```js
   let set = new Set([1, 2, 3])
-  
+
   set.forEach((value, key) => {
     console.log(value)
   })
@@ -157,7 +157,7 @@ s.has(2) // false
 
 ## WeakSet
 
-### 含义
+### WeakSet 的成员限制与弱引用
 
 `WeakSet` 与 `Set` 一样，也是不重复值的集合，但是有两点区别：
 
@@ -165,7 +165,7 @@ s.has(2) // false
 
    ```js
    let wset = new WeakSet()
-   
+
    wset.add(1) // TypeError: Invalid value used in weak set.
    ```
 
@@ -176,7 +176,10 @@ s.has(2) // false
 `WeakSet` 是一个构造函数，需要使用 `new` 创建数据结构。可以接收任何具有 `iterable` 接口的对象作为参数。
 
 ```js
-let a = new WeakSet([[1, 2], [3, 4]])
+let a = new WeakSet([
+  [1, 2],
+  [3, 4],
+])
 ```
 
 请注意，上述代码是每一项成员都是一个数组，只有数组对象可以作为 `WeakSet` 的成员。
@@ -193,9 +196,9 @@ let b = new WeakSet([1, 2]) // 报错
 
 ## Map
 
-### 含义
+### Map 突破对象键名只能是字符串的限制
 
-<word text="ES6"/> 之前都是使用对象 `Object` 做键值对的集合，但是对象有一个很大的限制，他只能使用字符串作为键名。
+<word text="ES6"/>之前都是使用对象 `Object` 做键值对的集合，但是对象有一个很大的限制，他只能使用字符串作为键名。
 
 ```js
 let element = document.querySelector('#content')
@@ -206,9 +209,9 @@ obj[element] = 'content'
 console.log(obj['[object HTMLDivElement]']) // content
 ```
 
-对象只能接受字符串，因此获取到的 <word text="DOM"/> 元素会被 `toString()` 隐式转换为字符串。
+对象只能接受字符串，因此获取到的<word text="DOM"/>元素会被 `toString()` 隐式转换为字符串。
 
-<word text="ES6"/> 新出了 `Map` 数据结构，类似于对象，但是键名不仅限于字符串，各种类型（包括对象）都可以作为键名。
+<word text="ES6"/>新出了 `Map` 数据结构，类似于对象，但是键名不仅限于字符串，各种类型（包括对象）都可以作为键名。
 
 `Map` 有两种添加值的方法：
 
@@ -227,9 +230,9 @@ console.log(obj['[object HTMLDivElement]']) // content
    ```js
    let m = new Map([
      ['name', '张三'],
-     ['age', '24']
+     ['age', '24'],
    ])
-   
+
    m.size // 2
    m.get('name') // 张三
    m.has('age') // true
@@ -240,11 +243,11 @@ console.log(obj['[object HTMLDivElement]']) // content
    ```js
    const items = [
      ['name', '张三'],
-     ['age', '24']
+     ['age', '24'],
    ]
-   
+
    const map = new Map()
-   
+
    items.forEach(([value, key]) => {
      map.set(key, value)
    })
@@ -255,21 +258,21 @@ console.log(obj['[object HTMLDivElement]']) // content
    ```js
    let set = new Set([
      ['foo', 123],
-     ['bar', 456]
+     ['bar', 456],
    ])
-   
+
    let map = new Map(set)
-   
+
    map.get('foo') // 123
    map.get('bar') // 456
-   
+
    let m1 = new Map([
      ['n', 1],
-     ['m', 2]
+     ['m', 2],
    ])
-   
+
    let m2 = new Map(m1)
-   
+
    m2.get('n') // 1
 
    m2.get('m') // 2
@@ -281,10 +284,10 @@ console.log(obj['[object HTMLDivElement]']) // content
 > ```js
 > // 基本数据类型
 > let mm = new Map()
-> 
+>
 > mm.set(0, '0')
 > mm.get(-0) // '0'
-> 
+>
 > mm.set(NaN, 123)
 > mm.get(NaN) // 123
 > ```
@@ -293,10 +296,10 @@ console.log(obj['[object HTMLDivElement]']) // content
 >
 > ```js
 > let map = new Map()
-> 
+>
 > map.set(['a'], 1)
 > map.get(['a']) // undefined
-> 
+>
 > let arr = ['b']
 > map.set(arr, 'array')
 > map.get(arr) // array
@@ -312,9 +315,9 @@ console.log(obj['[object HTMLDivElement]']) // content
   let map = new Map([
     ['a', 1],
     ['b', 2],
-    ['c', 3]
+    ['c', 3],
   ])
-  
+
   map.size // 3
   ```
 
@@ -324,22 +327,22 @@ console.log(obj['[object HTMLDivElement]']) // content
 
   ```js
   const m = new Map()
-   .set(1, 'daodao')
-   .set('2', 'xiaodao')
-   .set(undefined, 'duyidao')
+    .set(1, 'daodao')
+    .set('2', 'xiaodao')
+    .set(undefined, 'duyidao')
   ```
 
   `get(key)` 方法获取 `key` 对应的键值，找不到返回 `undefined` 。
 
   ```js
   const m = new Map()
-  
+
   const sayHi = () => {
     console.log('hello')
   }
-  
+
   m.set('hi', sayHi)
-  
+
   m.get('hi') // function
   m.get('hello') // undefined
   ```
@@ -350,7 +353,7 @@ console.log(obj['[object HTMLDivElement]']) // content
 
   `clear()` 方法清空所有成员，无返回值。
 
-### 遍历操作
+### Map 的四种遍历方法与插入顺序
 
 同 `Set` 一致，`Map` 也拥有 `keys()` 、`values()` 、`entries()` 和 `forEach()` 四种遍历方法，遍历的顺序也是插入顺序。
 
@@ -402,7 +405,7 @@ let mapMap = new Map([...map].map(([key, value]) => [key * 2, value + '-'])) // 
 ```js
 let map = new Map([
   [1, 'a'],
-  [2, 'b']
+  [2, 'b'],
 ])
 
 map.forEach((value, key, item) => {
@@ -415,13 +418,13 @@ map.forEach((value, key, item) => {
 ```js
 let map = new Map([
   [1, 'a'],
-  [2, 'b']
+  [2, 'b'],
 ])
 
 let obj = {
   sayLog: (v, k, e) => {
     console.log(v, k, e)
-  }
+  },
 }
 
 map.forEach((value, key, item) => {
@@ -438,9 +441,9 @@ map.forEach((value, key, item) => {
   ```js
   let map = new Map([
     [1, 'a'],
-    [2, 'b']
+    [2, 'b'],
   ])
-  
+
   console.log([...map]) // [[1, 'a'], [2, 'b']]
   ```
 
@@ -450,9 +453,10 @@ map.forEach((value, key, item) => {
 
   ```js
   let arr = [
-    [1, 'a'], [2, 'b']
+    [1, 'a'],
+    [2, 'b'],
   ]
-  
+
   const map = new Map(arr)
   ```
 
@@ -463,9 +467,9 @@ map.forEach((value, key, item) => {
   ```js
   let map = new Map([
     ['yes', true],
-    ['no', false]
+    ['no', false],
   ])
-  
+
   const toObj = (params) => {
     let obj = Object.create(null)
     for (let [k, v] of params) {
@@ -473,7 +477,7 @@ map.forEach((value, key, item) => {
     }
     return obj
   }
-  
+
   console.log(toObj(map)) // {yes: true, no: false}
   ```
 
@@ -484,17 +488,17 @@ map.forEach((value, key, item) => {
   ```js
   let obj = {
     yes: true,
-    no: false
+    no: false,
   }
-  
-  const toMap = params => {
+
+  const toMap = (params) => {
     let map = new Map()
     for (let k of Object.keys(params)) {
       map.set(k, params[k])
     }
     return map
   }
-  
+
   console.log(toMap(obj)) // Map(2) {'yes' => true, 'no' => false}
   ```
 
@@ -507,10 +511,10 @@ map.forEach((value, key, item) => {
     function toObjJSON(params) {
       return JSON.stringify(toObj(params)) // 使用上方`Map` 转对象中的方法
     }
-    
+
     let map = new Map([
       ['a', 1],
-      ['b', 2]
+      ['b', 2],
     ])
     ```
 
@@ -521,8 +525,8 @@ map.forEach((value, key, item) => {
   `JSON` 转为 `Map` ，正常情况下所有键名都是字符串
 
   ```js
-  function jsonToStrMap(jsonStr) { 
-    return objToStrMap (JSON .parse(jsonStr) ); 
+  function jsonToStrMap(jsonStr) {
+    return objToStrMap(JSON.parse(jsonStr))
   }
   jsonToStrMap('{"yes": true, "no": false }') // Map {’ yes ’=> true,’no’ => false}
   ```
@@ -530,7 +534,7 @@ map.forEach((value, key, item) => {
   但是，有 种特殊情况：整个 `JSON` 就是 个数组，且每个数组成员本身又是 个具有两个成员的数组。这时，它可以一一对应地转为 `Map` 。这往往是数组转为 `JSON` 的逆操作。
 
   ```js
-  function jsonToMap(jsonStr) { 
+  function jsonToMap(jsonStr) {
     return new Map(JSON.parse(jsonStr))
   }
   jsonToMap('[[true, 7], [{"foo": 3}, ["abc"]]]') // Map {true=> 7 , Object {foo: 3) => [’ abc ’ ]}
@@ -538,7 +542,7 @@ map.forEach((value, key, item) => {
 
 ## WeakMap
 
-### 含义
+### WeakMap 的键名限制与不计入回收
 
 `WeakMap` 和 `Map` 相似，都是用 `set()` 生成键值对集合，`get()` 获取值，`has()` 判断是否存在，`delete` 删除键值对。
 
@@ -550,12 +554,12 @@ map.forEach((value, key, item) => {
    垃圾回收机制是判断当前变量是否被使用到，如果被使用到就不会被回收，因此有时候如果使用了某些数据变量用完后没及时置空，则这些变量会一直占用内存，导致内存泄漏。
 
    ```js
-    let obj1 = {
-      a: 1,
-      b: 2
-    }
+   let obj1 = {
+     a: 1,
+     b: 2,
+   }
 
-    let arr = [obj1, 23]
+   let arr = [obj1, 23]
    ```
 
    而 `WeakMap` 的键名是弱引用，垃圾回收机制会自动回收键名所指向的对象，因此不会造成内存泄漏。变量被垃圾回收后， `WeakMap` 中对应的键值对也会自动消失，无法访问。
@@ -563,11 +567,11 @@ map.forEach((value, key, item) => {
 > [!WARNING] 注意
 > `WeakMap` 引用的只是键名而不是键值，键值依然是正常引用的。
 
-### 语法
+### WeakMap 不可遍历的构造限制
 
-由于 `WeakMap` 是弱类型引用，因此某个键名是否存在完全不可预测，可能上一秒还存在，下一秒对象被垃圾回收机制运行回收了，消失找不到了。为了防止这种不确定性，<word text="ES6"/> 规定，`WeakMap` 没有遍历操作，也没有 `size` 属性，也不支持 `clear` 方法。因此，`WeakMap` 只能用来存储键值对，而不能用来存放任何复杂的数据结构。
+由于 `WeakMap` 是弱类型引用，因此某个键名是否存在完全不可预测，可能上一秒还存在，下一秒对象被垃圾回收机制运行回收了，消失找不到了。为了防止这种不确定性，<word text="ES6"/>规定，`WeakMap` 没有遍历操作，也没有 `size` 属性，也不支持 `clear` 方法。因此，`WeakMap` 只能用来存储键值对，而不能用来存放任何复杂的数据结构。
 
-### 用途
+### WeakMap 存储 DOM 私有数据的用途
 
 `WeakMap` 的用途主要是用来存储私有数据，因为它的键名是弱引用，垃圾回收机制会自动回收键名所指向的对象，因此不会造成内存泄漏。
 
@@ -585,26 +589,26 @@ map.forEach((value, key, item) => {
 2. `WeakMap` 可以用来部署私有属性。
 
 ```js
-   const _counter= new WeakMap(); 
-    const _action= new WeakMap(); 
-    class Countdown {
-      constructor(counter, action) { 
-    _counter.set(this, counter); 
-    _action.set(this, action);
-      }
-      dec() { 
-        let counter= _counter.get(this); 
-        if (counter < 1) return ; 
-          counter--; 
-          _counter.set(this, counter) ; 
-          if (counter === 0) {
-            _action.get(this) ();
-          }
-        }
+const _counter = new WeakMap()
+const _action = new WeakMap()
+class Countdown {
+  constructor(counter, action) {
+    _counter.set(this, counter)
+    _action.set(this, action)
+  }
+  dec() {
+    let counter = _counter.get(this)
+    if (counter < 1) return
+    counter--
+    _counter.set(this, counter)
+    if (counter === 0) {
+      _action.get(this)()
     }
-    const c = new Countdown(2, () => console.log('DONE ')); 
-c.dec() 
-c.dec() 
+  }
+}
+const c = new Countdown(2, () => console.log('DONE '))
+c.dec()
+c.dec()
 ```
 
 ## 总结

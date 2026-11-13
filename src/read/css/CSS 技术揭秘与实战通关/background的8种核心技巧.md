@@ -1,4 +1,4 @@
-# 第一章 CSS 最强大属性 background 的 8 种核心技巧
+# CSS background 渐变的 8 种核心技巧
 
 <word text="CSS" />的 `background` 除了设置背景色和背景图，还能设置渐变。渐变包含以下四种：
 
@@ -27,7 +27,7 @@ background: linear-gradient(direction, color-stop1, color-stop2, ...);
 - `color-stop1, color-stop2, ...`：指定渐变的颜色和位置，颜色和位置之间用空格隔开，颜色可以是任意有效的 CSS 颜色值
 - `color-stop` 可指定位置，也可不指定。不指定时颜色均匀分布。
 
-### 技巧一：渐变颜色可以设置透明色
+### 透明色渐变实现内容渐隐
 
 灵活使用透明色，可以让效果更有层次感。
 
@@ -69,7 +69,7 @@ div {
 
 > 具体效果可查看 [codepen](https://codepen.io/duyidao/pen/Byjdmxe)
 
-### 技巧二：渐变颜色可以实色过渡
+### 相同色标位置实现实色过渡
 
 渐变的过渡效果一般是颜色逐渐变化，但有时需要直接变成实色，可以添加范围来实现。
 
@@ -96,7 +96,7 @@ div {
 
 > 具体效果可查看 [codepen](https://codepen.io/duyidao/pen/EaPvbOv)
 
-### 技巧三：渐变可以叠加多层
+### 四向渐变叠加拼合内切图形
 
 以三角形例子作为延展，一个矩形的 `div` ，通过叠加四个渐变，可以实现四个角都被内切的图形效果：
 
@@ -115,14 +115,11 @@ div {
   width: 200px;
   height: 100px;
   margin: 10px auto;
-  background: linear-gradient(45deg, transparent 20px, skyblue 0) bottom left / 50%
-      50%, linear-gradient(-45deg, transparent 20px, skyblue 0) bottom right / 50%
-      50%,
-    linear-gradient(-135deg, transparent 20px, skyblue 0) top right / 50% 50%, linear-gradient(
-        135deg,
-        transparent 20px,
-        skyblue 0
-      ) top left / 50% 50%;
+  background:
+    linear-gradient(45deg, transparent 20px, skyblue 0) bottom left / 50% 50%,
+    linear-gradient(-45deg, transparent 20px, skyblue 0) bottom right / 50% 50%,
+    linear-gradient(-135deg, transparent 20px, skyblue 0) top right / 50% 50%,
+    linear-gradient(135deg, transparent 20px, skyblue 0) top left / 50% 50%;
   background-repeat: no-repeat;
 }
 ```
@@ -131,7 +128,7 @@ div {
 
 > 具体效果可查看 [codepen](https://codepen.io/duyidao/pen/OPMjOqe)
 
-### 技巧四：利用重复渐变减少代码量
+### 重复渐变替代冗长色标列表
 
 在一些重复的场景下，使用重复渐变可以减少很多代码量。
 
@@ -197,9 +194,9 @@ div {
 
 线性渐变的四个技巧径向渐变也适用，因此跳过，从后面不同的地方讲起。
 
-### 技巧五：衔接消除锯齿
+### 预留衔接空间消除径向渐变锯齿
 
-技巧二可以通过设置一样的范围参数实现实色过渡，但是径向渐变直接这么设置，会有锯齿现象。
+相同色标位置实现实色过渡的思路也可以用在径向渐变上，但直接这么设置会有锯齿现象。
 
 ::: code-group
 
@@ -237,7 +234,7 @@ div {
 
 > 具体效果可查看 [codepen](https://codepen.io/duyidao/pen/dPGzdMY)
 
-### 技巧六：利用多层渐变组合图形实现波浪等效果
+### 双伪元素径向渐变堆叠出波浪
 
 ![波浪效果](https://pic1.imgdb.cn/item/68ec9d21c5157e1a886ba455.png)
 
@@ -336,7 +333,7 @@ div {
 
 > 具体效果可查看 [codepen](https://codepen.io/duyidao/pen/emJEVwY)
 
-### 技巧七：repeat 配合 position 完成特殊图案
+### 锥形渐变配合 background-position 铺满边角
 
 如果把锥形渐变的中心点设置在左上方 15px 的位置，起始方向向右，然后设置渐变，前 90deg 为粉色，后 270deg 为透明色，这样就能实现一个小正方形的效果。
 
@@ -381,7 +378,7 @@ div {
 
 > 具体效果可查看 [锥形渐变实现四个角](https://codepen.io/duyidao/pen/NPxvYGo)
 
-### 技巧八：利用小单位实现造型迥异的图案
+### 亚像素单位生成高密度纹理
 
 以上都是设置正常大小的单位实现的效果，如果利用小单位，比如 0.1 ，0.01 等等，可以实现造型迥异的图案。
 

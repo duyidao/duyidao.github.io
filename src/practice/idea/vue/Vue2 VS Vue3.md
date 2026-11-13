@@ -254,9 +254,9 @@ console.log(person)
 
 ### hook
 
-<word text="Vue3" /> 中的 `hook` 通常称为 `Composition API`，是 [Vue](https://cn.vuejs.org/) 框架的重要特性。本质是**组件内部使用的函数**，能在不影响组件逻辑的情况下增强和扩展组件功能。
+<word text="Vue3" />中的 `hook` 通常称为 `Composition API`，是 [Vue](https://cn.vuejs.org/) 框架的重要特性。本质是**组件内部使用的函数**，能在不影响组件逻辑的情况下增强和扩展组件功能。
 
-`Hook` 的主要作用是**允许在组件之间重用状态逻辑**。例如，处理异步请求和管理请求状态的功能，可能在多个组件中都需要。在<word text="Vue2.x" />中，需要使用 `mixins` 或 `HOC`（高阶组件）来抽象和重用这些逻辑，但容易导致命名冲突和逻辑混乱。
+`Hook` 的主要作用是**允许在组件之间重用状态逻辑**。例如，处理异步请求和管理请求状态的功能，可能在多个组件中都需要。在Vue2.x中，需要使用 `mixins` 或 `HOC`（高阶组件）来抽象和重用这些逻辑，但容易导致命名冲突和逻辑混乱。
 
 使用<word text="Vue3" />的 `Composition API`，可以避免上述问题。通过调用 `useFetch` 这样的自定义 `hook`，在任何组件中重用异步请求逻辑：
 

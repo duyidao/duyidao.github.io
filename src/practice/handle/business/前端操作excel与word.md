@@ -9,7 +9,7 @@
 
 ### 前端解析 Excel 文件
 
-通过 `arrayBuffer` 方法将 <word text="Blob" /> 转为二进制数据，使用 `xlsx` 库的 `read` 方法读取数据对象。
+通过 `arrayBuffer` 方法将<word text="Blob" />转为二进制数据，使用 `xlsx` 库的 `read` 方法读取数据对象。
 
 核心数据结构：
 
@@ -18,8 +18,8 @@
 
 使用 `utils` 提供的方法进行格式转换：
 
-- `sheet_to_json`：将工作表数据转为 <word text="JSON" /> 数组
-- `sheet_to_html`：将工作表数据转为 <word text="HTML" /> 字符串
+- `sheet_to_json`：将工作表数据转为<word text="JSON" />数组
+- `sheet_to_html`：将工作表数据转为<word text="HTML" />字符串
 
 ```vue
 <template>
@@ -53,14 +53,14 @@ export default {
 ```
 
 > [!WARNING] 注意
-> 通过接口请求获取的 <word text="Blob" /> 格式数据同样适用此方法。
+> 通过接口请求获取的<word text="Blob" />格式数据同样适用此方法。
 
 ### 前端生成 Excel 文件
 
 使用 `utils` 提供的方法将数据转为工作表对象：
 
 - 数组数据使用 `json_to_sheet`
-- <word text="DOM" /> 中的 `table` 元素使用 `table_to_sheet`
+- <word text="DOM" />中的 `table` 元素使用 `table_to_sheet`
 
 生成流程：
 
@@ -162,11 +162,11 @@ import vueofficeExcel from "@vue-office/excel";
 
 ### 总结
 
-无论是 `Word` 还是 `Excel`，预览的数据源要么是线上地址，要么是 `DataURL`。若后端返回地址则直接使用；若返回 <word text="Blob" />，则通过 `readAsDataURL` 方法转为 `Base64` 格式。
+无论是 `Word` 还是 `Excel`，预览的数据源要么是线上地址，要么是 `DataURL`。若后端返回地址则直接使用；若返回<word text="Blob" />，则通过 `readAsDataURL` 方法转为 `Base64` 格式。
 
 ### 拓展
 
-<word text="React" /> 的第三方库 `fileviews` 支持多种文件格式预览，接收两个参数：
+<word text="React" />的第三方库 `fileviews` 支持多种文件格式预览，接收两个参数：
 
 - `filePath`：文件地址
 - `fileType`：文件类型
@@ -244,7 +244,7 @@ export default {
 2. 转为 `ArrayBuffer`
 3. 通过 `PizZip` 解析压缩包
 4. 使用 `Docxtemplater` 填充数据并渲染
-5. 生成 <word text="Blob" /> 并保存
+5. 生成<word text="Blob" />并保存
 
 ```js
 import PizZip from 'pizzip'

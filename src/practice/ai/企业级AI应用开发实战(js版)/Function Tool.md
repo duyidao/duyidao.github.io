@@ -4,13 +4,13 @@
 
 ### 大模型操作局限
 
-<word text="LLM" /> 可以回答问题，但无法直接执行具体操作（如订票）。大模型只会回复订票方法说明，不会真正调用订票接口。
+<word text="LLM" />可以回答问题，但无法直接执行具体操作（如订票）。大模型只会回复订票方法说明，不会真正调用订票接口。
 
 ### 上下文方案
 
 #### 上下文方案实现
 
-通过上下文方案解决：在提示词中约定，若用户要求订票，则返回 <word text="JSON" /> 数据。代码层检测到该数据后，调用预先编写的订票方法。
+通过上下文方案解决：在提示词中约定，若用户要求订票，则返回<word text="JSON" />数据。代码层检测到该数据后，调用预先编写的订票方法。
 
 ::: code-group
 
@@ -68,18 +68,18 @@ app.get('/simple', async (req, res) => {
 
 此方案存在以下问题：
 
-1. 当用户只需普通聊天时，`content` 返回的是普通文本而非 <word text="JSON" /> 字符串，`JSON.parse` 会报错。核心矛盾：无法区分 `content` 究竟是要调用内置方法的 <word text="JSON" />，还是纯文本回复。
-2. 并非所有大模型都能稳定理解上下文并返回标准 <word text="JSON" />。部分模型可能在 <word text="JSON" /> 前后附加额外文字，或包裹 <word text="Markdown" /> 代码块语法。
+1. 当用户只需普通聊天时，`content` 返回的是普通文本而非<word text="JSON" />字符串，`JSON.parse` 会报错。核心矛盾：无法区分 `content` 究竟是要调用内置方法的<word text="JSON" />，还是纯文本回复。
+2. 并非所有大模型都能稳定理解上下文并返回标准<word text="JSON" />。部分模型可能在<word text="JSON" />前后附加额外文字，或包裹<word text="Markdown" />代码块语法。
 
 需要一种机制，将"大模型调用方法"与"纯文本回答"明确区分，且所有模型统一遵循。
 
 ### Function Tool 机制
 
-意义：<word text="LLM" /> 只能做语言回答与逻辑推理，无法执行具体操作。通过 <word text="Function Tool" /> 机制，提前声明可用工具，大模型在需要时返回工具调用指令，由代码层执行。
+意义：<word text="LLM" />只能做语言回答与逻辑推理，无法执行具体操作。通过<word text="Function Tool" />机制，提前声明可用工具，大模型在需要时返回工具调用指令，由代码层执行。
 
-规范：所有大模型接口遵循统一的 <word text="Function Tool" /> 定义与输出规范。告知大模型可用工具时使用同一种格式输入，大模型声明调用哪个工具也使用同一种格式输出。
+规范：所有大模型接口遵循统一的<word text="Function Tool" />定义与输出规范。告知大模型可用工具时使用同一种格式输入，大模型声明调用哪个工具也使用同一种格式输出。
 
-区分：大模型调用 <word text="Function Tool" /> 时使用独立字段，不与 `content` 混合；将执行结果反馈给大模型时，使用专门的 `role: tool`。
+区分：大模型调用<word text="Function Tool" />时使用独立字段，不与 `content` 混合；将执行结果反馈给大模型时，使用专门的 `role: tool`。
 
 #### 定义 Function Tool
 
@@ -180,7 +180,7 @@ app.get('/simple', async (req, res) => {
 
 #### 流式传输
 
-生产环境的接口通常使用 <word text="SSE" /> 流式传输。大模型调用 <word text="Function Tool" /> 时也会分片段返回，但**必须等全部返回后再处理，不可像文本那样边返回边处理**。
+生产环境的接口通常使用<word text="SSE" />流式传输。大模型调用<word text="Function Tool" />时也会分片段返回，但**必须等全部返回后再处理，不可像文本那样边返回边处理**。
 
 ```js [server.js]
 const { tools, toolMap } = require('./tools.js')
@@ -217,7 +217,7 @@ app.get('/simple', async (req, res) => {
 })
 ```
 
-查看数据格式，`choices` 中 `delta` 多了 `tool_calls` 字段，即 <word text="Function Tool" /> 的返回结果。返回逻辑如下：
+查看数据格式，`choices` 中 `delta` 多了 `tool_calls` 字段，即<word text="Function Tool" />的返回结果。返回逻辑如下：
 
 1. 首次返回完整数据对象，包含 `id`、`index`、`type`、`function` 对象，`function` 对象包含 `name` 和 `arguments` 两个属性，`name` 是函数名，`arguments` 是函数参数。
 2. 后续 `arguments` 拆成片段逐次返回。属性可能缺失，如 `name` 和 `id`。
@@ -449,7 +449,7 @@ app.get('/simple', async (req, res) => {
 
 ### 前端消息过滤
 
-调用 <word text="Function Tool" /> 时前端不应展示中间过程。以订票为例，用户发出订票指令后，应直接收到"订票成功"的答复，工具调用与执行结果均不展示。
+调用<word text="Function Tool" />时前端不应展示中间过程。以订票为例，用户发出订票指令后，应直接收到"订票成功"的答复，工具调用与执行结果均不展示。
 
 1. 前端判断 `content` 为空字符串时不展示
 2. `role` 为 `tool` 的消息也不展示

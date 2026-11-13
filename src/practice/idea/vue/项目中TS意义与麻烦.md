@@ -2,11 +2,11 @@
 
 ## TS 作用
 
-首先来聊聊<word text="Typescript"/>的作用，<word text="Typescript"/>最大的意义就是避免写错写、漏写，能基本上屏蔽掉低级错误。
+首先来聊聊<word text="TypeScript" />的作用，<word text="TypeScript" />最大的意义就是避免写错写、漏写，能基本上屏蔽掉低级错误。
 
 1. 编写一些公用方法和全局配置对象，用于提醒使用者别传错参数或者参数值
 2. 编写组件时用于提示使用者有没有写错 `props`
-3. 一些第三方库如果使用<word text="Typescript"/>编写，可以检测有没有调错方法写错配置等
+3. 一些第三方库如果使用<word text="TypeScript" />编写，可以检测有没有调错方法写错配置等
 
 ### 公共方法
 
@@ -44,11 +44,11 @@ defineProps<propsType>()
 
 :::
 
-后续在父组件中使用时如果不传 a，则提示错误，<word text="Typescript"/>的作用体现出来了。
+后续在父组件中使用时如果不传 a，则提示错误，<word text="TypeScript" />的作用体现出来了。
 
 ### 第三方库
 
-一些第三方库，比如<word text="Vue-router"/>，在使用<word text="Javascript"/>写时如果只传了 `path` 没传 `component` 或 `redirct` ，不会有任何报错提示，直到项目运行。换成<word text="Typescript"/>后代码保存后就有提示。
+一些第三方库，比如<word text="Vue Router" />，在使用<word text="JavaScript" />写时如果只传了 `path` 没传 `component` 或 `redirct` ，不会有任何报错提示，直到项目运行。换成<word text="TypeScript" />后代码保存后就有提示。
 
 ![报错](https://pic.imgdb.cn/item/6609408c9f345e8d037af522.png)
 
@@ -63,7 +63,7 @@ defineProps<propsType>()
 来看几个场景：
 
 1. 一般来说接口请求完后保存数据后，会使用一些属性，在一开始就会给变量初始化空对象。但是在使用时会报错。
-2. 在使用一个变量时，一开始声明为空对象，虽然后续会给值，但是<word text="Typescript"/>判断还是一个空对象，因此报错。
+2. 在使用一个变量时，一开始声明为空对象，虽然后续会给值，但是<word text="TypeScript" />判断还是一个空对象，因此报错。
 
 ```js
 const list = ref({})
@@ -100,7 +100,7 @@ console.log(list.value.a)
 
 ### 第三方库使用时没定义每个属性
 
-比如使用<word text="Vue-router"/>，在函数接收形参时会报错说有隐式 `any` 类型。此时可以鼠标悬停查看其类型，一般正规大型的第三方库可以导出。导出后使用即可。
+比如使用<word text="Vue Router" />，在函数接收形参时会报错说有隐式 `any` 类型。此时可以鼠标悬停查看其类型，一般正规大型的第三方库可以导出。导出后使用即可。
 
 ```tsx
 import type { RouteRecordRaw } from 'vue-router'
@@ -116,7 +116,7 @@ function parseRoute(arr: RouteRecordRaw[]) {
 
 ### Dom 类型报错
 
-在给一个 `div` 绑定一个点击事件时，形参会被推定为 `MouseEvent` ，其 `target` 属性会推定为 `EventTarget | null` 类型，这个时候如果再 `.innerHTML` 则会报错，因为只有 `HTMLElement` 类型才有该属性，<word text="Typescript"/>推断不对了，此时通过断言就能修改。如果是 `input` 想要拿到 `.value` ，则需断言为 `HTMLInputElement` 。
+在给一个 `div` 绑定一个点击事件时，形参会被推定为 `MouseEvent` ，其 `target` 属性会推定为 `EventTarget | null` 类型，这个时候如果再 `.innerHTML` 则会报错，因为只有 `HTMLElement` 类型才有该属性，<word text="TypeScript" />推断不对了，此时通过断言就能修改。如果是 `input` 想要拿到 `.value` ，则需断言为 `HTMLInputElement` 。
 
 ```vue
 <div

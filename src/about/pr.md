@@ -42,7 +42,7 @@
 
 然后 `pnpm i` 安装依赖，安装完毕后就可以开始运行项目修改代码了。
 
-有一些项目的 PR 是需要先提交到一个临时用于合并的分支，统一时间后再一起合并到 `dev` 分支或主分支，此时即使在 <word text="GitHub"/> 点击 `Sync fork` 按钮更新分支也没用，需要输入以下命令行：
+有一些项目的 PR 是需要先提交到一个临时用于合并的分支，统一时间后再一起合并到 `dev` 分支或主分支，此时即使在<word text="GitHub"/>点击 `Sync fork` 按钮更新分支也没用，需要输入以下命令行：
 
 ```bash
 git checkout -b docs/xxx upstream/merge
@@ -61,17 +61,17 @@ git checkout -b docs/xxx upstream/merge
 
 ### 修改代码
 
-#### element-plus
+#### 修改 element-plus 样式与组件代码
 
 我的修改都是基于修改样式，所以在 `packages/theme-chalk/src` 目录找到对应的组件样式文件，然后修改样式。
 
 如果想要修改的是组件代码，则需要去到 `packages/components/src` 目录找到对应的组件文件。
 
-#### ant-design-vue
+#### 修改 ant-design-vue 组件样式
 
 我的修改也是基于样式修改，所以在 `components/组件名称/style` 下找到对应的文件，然后修改样式。
 
-#### vitest-cn
+#### 翻译 vitest-cn 中文文档
 
 这个项目的 PR 主要围绕文档翻译，所以在 `docs-cn/config/` 目录下找到对应的文件，然后修改文档。
 
@@ -79,12 +79,12 @@ git checkout -b docs/xxx upstream/merge
 
 修改完毕后，就该提交了，不同的代码仓库提交的流程也不一样，但是规范最终也是大相径庭。
 
-#### element-plus
+#### 用 pnpm cz 提交 element-plus 改动
 
 首先 `git add` 添加修改的文件，然后执行 `pnpm cz` ，根据提示填写提交信息。他会出现以下信息：
 
 - type：修改类型，比如修复 bug，添加功能等
-  
+
   ```bash
   feat     # 一个新功能（feature）
   fix      # 一个 bug fix
@@ -97,7 +97,7 @@ git checkout -b docs/xxx upstream/merge
   由于我修改的是样式，因此选择 `style` ，点击键盘的上下箭头，选中 `style` 后，回车。
 
 - scope：修改范围。
-  
+
   ```bash
   theme-chalk # 主题样式
   components  # 组件
@@ -114,28 +114,27 @@ git checkout -b docs/xxx upstream/merge
   这里填写简短的改动标题，注意有字数限制，因此需要尽可能简短精干。
 
 - body：修改内容详细描述。
-  
+
   详细的描述，描述自己修改了啥，这里尽可能地详细描述，但不要太长，要易于阅读。
 
 - breaking changes：是否破坏性修改。
-  
 - footer：关闭的 issue 编号。
-  
+
   如果没有要关闭的 `issue` ，这里直接回车忽略
 
 完毕后，`git push` 提交代码。
 
-#### ant-design-vue
+#### 直接 git commit 提交 ant-design-vue 改动
 
 `ant-design-vue` 的提交流程没这么复杂，直接 `git add` 添加修改的文件，然后 `git commit` 提交代码，然后 `git push` 提交代码。
 
-#### vitest-cn
+#### 指定分支推送 vitest-cn 改动
 
 前面提到的 `merge` 分支就是这个项目的，因此普通的 `git push` 不满足，它会默认提交到 `dev` 分支，从而报错。因此，需要使用 `git push origin <branch-name>` 提交代码，其中 `<branch-name>` 是分支名称。
 
 ### 创建 PR
 
-提交完代码后，查看 <word text="GitHub"/> 仓库，上方有一个 `Compare & pull request` 按钮，点击后，填写标题和描述，然后点击 `Create pull request` 按钮，提交 PR。
+提交完代码后，查看<word text="GitHub"/>仓库，上方有一个 `Compare & pull request` 按钮，点击后，填写标题和描述，然后点击 `Create pull request` 按钮，提交 PR。
 
 不同的是 `ant-design-vue` 在创建 PR 后，需要在 `markdown` 中，按照规范详细描述自己改动了啥。具体的规范可以参考：[feat[cssvar]: switch support cssvar](https://github.com/vueComponent/ant-design-vue/pull/7940)。参考这个 PR 的模板作为提交
 

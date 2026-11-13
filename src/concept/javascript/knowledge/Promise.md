@@ -1107,7 +1107,7 @@ const promise = new Promise((resolve, reject) => {
 
 ## 实例操作
 
-### 异步请求
+### 将 ajax 回调改造成 Promise 请求
 
 下面是将 `ajax` 修改为 `promise` 后，代码结构清晰了很多 。
 
@@ -1359,9 +1359,7 @@ new Promise(resolve => {
 .catch(error => console.log(errro));
 ```
 
-### 异步请求
-
-下面是使用链式操作获取学生成绩
+### 用 then 串联两次请求取成绩
 
 ```js
 function ajax(url) {

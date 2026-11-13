@@ -36,7 +36,7 @@ const inst = window.CXO_API.CXEditor(config.id, {
 
 ### 脚本动态注入
 
-为避免主包体积膨胀，CXO 的核心脚本仅在 `init` 阶段进行懒加载。通过判断 `window.CXO_API` 是否存在，决定是否动态创建 <word text="HTML" /> 的 `script` 标签。
+为避免主包体积膨胀，CXO 的核心脚本仅在 `init` 阶段进行懒加载。通过判断 `window.CXO_API` 是否存在，决定是否动态创建<word text="HTML" />的 `script` 标签。
 
 ```typescript
 function loadCXOApi() {
@@ -53,7 +53,7 @@ function loadCXOApi() {
 
 ### 隐藏 iframe 字体预加载
 
-CXO 依赖大量自定义字体，若在主线程同步加载，极易引发 <word text="FOIT" />（Flash of Invisible Text）或 <word text="FOUT" />（Flash of Unstyled Text）现象。本项目采用隐藏 `iframe` 的方案进行字体预加载。
+CXO 依赖大量自定义字体，若在主线程同步加载，极易引发<word text="FOIT" />（Flash of Invisible Text）或<word text="FOUT" />（Flash of Unstyled Text）现象。本项目采用隐藏 `iframe` 的方案进行字体预加载。
 
 ```typescript
 function loadCXOFont() {
@@ -68,8 +68,8 @@ function loadCXOFont() {
 
 |           渲染阶段            |               主页面直接加载                |                隐藏 `iframe` 预加载                 |
 | :---------------------------: | :-----------------------------------------: | :-------------------------------------------------: |
-| <word text="Layout" /> (布局) | 触发主页面 <word text="Reflow" />，阻塞渲染 | 独立渲染上下文，不参与主页面 <word text="Reflow" /> |
-| <word text="Paint" /> (绘制)  |  字体未就绪时触发 <word text="Repaint" />   |  隐藏节点不触发 <word text="Paint" />，无视觉闪烁   |
+| <word text="Layout" /> (布局) | 触发主页面<word text="Reflow" />，阻塞渲染 | 独立渲染上下文，不参与主页面<word text="Reflow" /> |
+| <word text="Paint" /> (绘制)  |  字体未就绪时触发<word text="Repaint" />   |  隐藏节点不触发<word text="Paint" />，无视觉闪烁   |
 |          资源优先级           |         高优先级，阻塞关键渲染路径          |       低优先级（Idle），并行加载不抢占主线程        |
 |           缓存命中            |               需等待网络请求                |       预加载后写入浏览器缓存，主页面直接命中        |
 
@@ -77,7 +77,7 @@ function loadCXOFont() {
 
 ### 内存泄漏防范
 
-编辑器实例包含大量的事件监听与 <word text="DOM" /> 引用，必须在组件卸载时予以销毁。借助 <word text="VueUse" /> 的 `tryOnBeforeUnmount` 钩子实现安全清理。
+编辑器实例包含大量的事件监听与<word text="DOM" />引用，必须在组件卸载时予以销毁。借助<word text="VueUse" />的 `tryOnBeforeUnmount` 钩子实现安全清理。
 
 ```typescript
 import { tryOnBeforeUnmount } from '@vueuse/core'

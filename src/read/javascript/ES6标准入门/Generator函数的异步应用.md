@@ -1,6 +1,6 @@
 # Generator函数的异步应用
 
-<word text="JavaScript"/> 是单线程语言，如果没有异步编程，则会造成卡死，因此需要异步编程。
+<word text="JavaScript"/>是单线程语言，如果没有异步编程，则会造成卡死，因此需要异步编程。
 
 ## 传统方法
 
@@ -23,7 +23,7 @@
 
 ### 回调函数
 
-<word text="JavaScript"/> 中，异步任务是通过回调函数来实现的。回调函数就是将第二段任务写进一个函数内，在第一段任务执行完毕后通过回调函数执行第二段任务。回调函数英文名为 `callback`，意为"被调用的函数"。
+<word text="JavaScript"/>中，异步任务是通过回调函数来实现的。回调函数就是将第二段任务写进一个函数内，在第一段任务执行完毕后通过回调函数执行第二段任务。回调函数英文名为 `callback`，意为"被调用的函数"。
 
 ```js
 window.addEventListener('load', () => {
@@ -98,7 +98,7 @@ function * fn () {
 
 ### 协程 Generator 函数的实现
 
-<word text="Generator"/> 函数是协程在 <word text="ES6"/> 的实现，最大的特点就是可以交出函数的执行权（即暂停执行）。<word text="Generator"/> 函数内部可以暂停执行（`yield`），也可以恢复执行（`next`）。
+<word text="Generator"/>函数是协程在<word text="ES6"/>的实现，最大的特点就是可以交出函数的执行权（即暂停执行）。<word text="Generator"/>函数内部可以暂停执行（`yield`），也可以恢复执行（`next`）。
 
 ```js
 function * fn () {
@@ -260,7 +260,7 @@ function f(thunk) {
 
 ### JavaScript的Thunk函数
 
-<word text="JavaScript"/> 语言是传值调用，它的 `Thunk` 函数含义有所不同。在 <word text="JavaScript"/> 中， `Thunk` 函数替换的不是表达式，而是多参数函数，将其替换成单参数的版本，且只接受回调函数作为参数。
+<word text="JavaScript"/>语言是传值调用，它的 `Thunk` 函数含义有所不同。在<word text="JavaScript"/>中， `Thunk` 函数替换的不是表达式，而是多参数函数，将其替换成单参数的版本，且只接受回调函数作为参数。
 
 ```js
 // 正常版本的readFile（多参数版本）
@@ -385,9 +385,9 @@ co(gen).then(function () {
 
 ## 总结
 
-<word text="JavaScript"/> 是单线程语言，需要异步编程来避免阻塞。传统的异步编程方法包括回调函数、事件监听、发布/订阅和 `Promise` 对象。
+<word text="JavaScript"/>是单线程语言，需要异步编程来避免阻塞。传统的异步编程方法包括回调函数、事件监听、发布/订阅和 `Promise` 对象。
 
-`Generator` 函数是 <word text="ES6"/> 中实现协程的方式，允许函数执行权的交出和恢复，通过 `yield` 和 `next` 实现。
+`Generator` 函数是<word text="ES6"/>中实现协程的方式，允许函数执行权的交出和恢复，通过 `yield` 和 `next` 实现。
 
 `Generator` 函数可以用于异步任务封装，使得异步代码的写法更接近同步代码。`Thunk` 函数是将多参数函数转换为单参数版本的函数，常用于自动执行 `Generator` 函数。
 

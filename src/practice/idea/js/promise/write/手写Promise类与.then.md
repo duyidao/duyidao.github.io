@@ -73,7 +73,7 @@ const p = new MyPromise((resolve, reject) => {
 })
 ```
 
-### 优化
+### 状态管理的重构：异常捕获与私有化
 
 初步实现了 `Promise` 的状态管理，不过需要考虑以下几点：
 
@@ -440,7 +440,7 @@ p.then(res => {
 })
 ```
 
-### 优化
+### then 链式调用的重构：容错与参数可省
 
 下面有几个小点需要优化一下：
 
@@ -555,7 +555,7 @@ console.log('end')
 
 想要实现异步的效果，可以用到 `queueMicrotask`，但是它有兼容性问题，可以写一个函数，做兼容性处理。
 
-新建一个函数，判断当前环境 `queueMicrotask` 类型是否是一个函数，如果是说明该方法可用，直接使用；如果不是，则判断当前环境是否是<word text="NodeJS" />，如果是则可以使用 `process.nextTick`；如果是浏览器环境则没有 `process`，可以改用 `MutationObserver`；如果都没有，就只能使用 `setTimeout`。
+新建一个函数，判断当前环境 `queueMicrotask` 类型是否是一个函数，如果是说明该方法可用，直接使用；如果不是，则判断当前环境是否是<word text="Node.js" />，如果是则可以使用 `process.nextTick`；如果是浏览器环境则没有 `process`，可以改用 `MutationObserver`；如果都没有，就只能使用 `setTimeout`。
 
 ```js
 // 常量

@@ -48,7 +48,7 @@ const clickFn3 = async () => {
 
 ## 实现
 
-首先需要了解 <word text="Vue" /> 提供的 `useAttrs` 组合式 API。该 API 可获取组件上除 `props` 以外的所有属性，如 `class`、`style` 等属性，以及 `click` 等事件。
+首先需要了解<word text="Vue" />提供的 `useAttrs` 组合式 API。该 API 可获取组件上除 `props` 以外的所有属性，如 `class`、`style` 等属性，以及 `click` 等事件。
 
 因此可利用 `useAttrs` 获取 `el-button` 上除 `props` 以外的所有属性，然后通过 `v-bind` 绑定到 `el-button` 上。
 

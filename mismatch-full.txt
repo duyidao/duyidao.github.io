@@ -1,0 +1,737 @@
+KEY: concept/chart/echart/饼图轮播，hover图例后修改中间内容
+  meta: 饼图轮播，hover 图例后修改中间内容
+  doc : 饼图轮播，hover图例后修改中间内容
+  h2  : Echart 饼图需求梳理 / Echart 饼图轮播 / Echart hover / Echart 总体效果
+  para: 客户那边说内容一直展示一条数据的值不符合他们的期望，要求能够实现内容轮播滚动，且鼠标悬停在图例上时，能够实现中间内容展示对应的数据。
+
+KEY: concept/css/effect/下划线动画
+  meta: 下划线动画
+  doc : background 配合 linear-gradient 实现下划线动画
+  h2  : CSS 基础效果 / CSS 动画过渡 / CSS 细节优化 / CSS 总体效果
+  para: 需求：鼠标移动到标题上有一个下划线显示的动画，从左往右。鼠标移出后从左往右隐藏。如果是多行文本他也会按顺序从第一行开始到最后一行结束。
+
+KEY: concept/css/effect/文字立起效果
+  meta: 文字立起效果
+  doc : mask 实现文字立起效果
+  h2  : CSS 效果展示 / CSS 思路分析 / CSS 代码实现 / CSS 总体效果
+  para: 该效果无法用文字阴影和盒子阴影实现，只能通过元素实现。步骤如下：
+
+KEY: concept/css/effect/渐变
+  meta: 渐变
+  doc : CSS 渐变
+  h2  : CSS 线性渐变
+  para: 渐变，通过 `background-image` 设置渐变效果，可以在任何使用 `background-image` 的容器盒子内使用。
+
+KEY: concept/javascript/knowledge/任务管理与Promise核心
+  meta: 任务管理与Promise核心
+  doc : 任务管理与 Promise 核心
+  h2  : 任务管理基本信息 / 任务管理实例操作 / Promise 核心
+  para: JavaScript 语言的一大特点就是单线程，也就是说同一个时间只能处理一个任务。为了协调事件、用户交互、脚本、UI 渲染和网络处理等行为，防止主线程的不阻塞，（事件循环）Eve
+
+KEY: concept/javascript/knowledge/变量与严格模式
+  meta: 变量与严格模式
+  doc : 变量
+  h2  : 变量声明 / 变量弱类型 / 变量提升 / 变量临时性死区 / 变量作用域
+  para: 声明：开辟空间
+
+KEY: concept/module/browser/浏览器长截图
+  meta: 浏览器长截图
+  doc : 浏览器长截图小技巧
+  h2  : 浏览器长截图前言 / 浏览器长截图实操
+  para: 当遇到一篇文章很长，需要长截图的时候，一般人可能会想要找插件，其实浏览器自带的截图功能已经足够强大了。
+
+KEY: concept/module/miniProgram/两个线程
+  meta: 小程序双线程架构
+  doc : 小程序两个线程
+  h2  : 
+  para: 1. 渲染线程(UI 线程)：
+
+KEY: concept/module/reg/元子字符
+  meta: 正则表达式：元子字符
+  doc : 元子字符
+  h2  : 元子字符字符列表 / 元子字符使用体验 / 元子字符所有字符
+  para: 元字符是正则表达式中的最小元素，只代表单一（一个）字符
+
+KEY: concept/module/reg/匹配
+  meta: 正则表达式：匹配
+  doc : 匹配
+  h2  : 重复匹配 / 全局匹配
+  para: 如果要重复匹配一些内容时我们要使用重复匹配修饰符，包括以下几种。
+
+KEY: concept/module/reg/原子
+  meta: 正则表达式：原子
+  doc : 原子
+  h2  : 原子表 / 原子组
+  para: 在一组字符中匹配某个元字符，在正则表达式中通过元字符表来完成，就是放到`[]` (方括号)中。
+
+KEY: concept/module/reg/方法
+  meta: 正则表达式：方法
+  doc : 方法
+  h2  : 正则字符方法 / 正则方法 / 断言匹配
+  para: 下面介绍的方法是 `String` 提供的支持正则表达式的方法
+
+KEY: concept/module/reg/模式修饰
+  meta: 正则表达式：模式修饰
+  doc : 模式修饰
+  h2  : 模式修饰i / 模式修饰g / 模式修饰m / 模式修饰u / 模式修饰lastIndex
+  para: 正则表达式在执行时会按他们的默认执行方式进行，但有时候默认的处理方式总不能满足我们的需求，所以可以使用模式修正符更改默认方式。
+
+KEY: concept/module/reg/正则中的lastIndex
+  meta: 正则表达式：lastIndex
+  doc : 正则中的lastIndex
+  h2  : 正则lastIndex报错原因 / 正则lastIndex解决方案
+  para: 先来复刻一下 BUG 的产生：输入一个符合长度的手机号，符合正则校验；修改中间的一个数字，正则校验失败开始报错，再次修改则不报错。如下图所示：
+
+KEY: concept/module/reg/正则表达式
+  meta: 正则表达式
+  doc : 基础知识
+  h2  : 正则对比分析 / 正则创建正则 / 正则选择符 / 正则字符转义 / 正则字符边界
+  para: 正则表达式是用于匹配字符串中字符组合的模式，在 JavaScript 中，正则表达式也是对象。
+
+KEY: concept/module/reg/运用前瞻实现密码强度检测
+  meta: 正则表达式：前瞻实现密码强度检测
+  doc : 运用前瞻实现密码强度检测
+  h2  : 
+  para: 有一个要求，需要设置一个正则检测密码强度，要求有两点：
+
+KEY: concept/react/Diff算法
+  meta: React Diff 算法
+  doc : Diff 算法
+  h2  : React Diff算法原理图 / React Diff算法key的作用 / React Diff算法key避免使用索引
+  para: 虚拟<word text="DOM"/>中 `key` 的作用：
+
+KEY: concept/react/ReactRouter5
+  meta: React Router 5
+  doc : React 路由
+  h2  : React路由SPA理解 / React路由的理解 / React路由react-router-dom
+  para: 1. 单页 Web 应用（`single page web application，SPA`）。
+
+KEY: concept/react/拓展
+  meta: React 拓展
+  doc : 拓展
+  h2  : React拓展setState / React拓展lazyLoad / React拓展stateHook / React拓展EffectHook / React拓展RefHook
+  para: 更新状态的两种写法
+
+KEY: concept/react/无脚手架项目创建
+  meta: React 无脚手架项目创建
+  doc : React
+  h2  : React本质 / React无脚手架项目初实现 / React虚拟DOM的创建方式 / React虚拟DOM与真实DOM / React jsx语法规则
+  para: <word text="React"/>是一个用于构建用户界面的<word text="JavaScript"/>库，是一个由数据渲染视图的<word text="JavaScri
+
+KEY: concept/react/脚手架项目创建
+  meta: React 脚手架项目创建
+  doc : React
+  h2  : React脚手架新版项目创建
+  para: 下面来创建一个 REACT 项目
+
+KEY: concept/sharp/node/fs
+  meta: Node.js fs 模块
+  doc : fs
+  h2  : 异步操作 / 同步操作 / 路径拼接 / 文件信息 / 目录管理
+  para: `fs` 模块是<word text="Node" />官方提供的、用来操作文件的模块。它提供了一系列的方法和属性，用来满足用户对文件的操作需求。下面来一一介绍。
+
+KEY: concept/sharp/node/http
+  meta: Node.js HTTP 模块
+  doc : http
+  h2  : Node http服务器相关概念 / Node http基本使用 / Node http路由基础 / Node http响应数据 / Node http表单数据
+  para: `http` 模块是<word text="Node" />官方提供的、用来创建 web 服务器的模块。通过 `http` 模块提供的 `http.createServer()` 
+
+KEY: concept/sharp/node/node
+  meta: Node.js 基础
+  doc : Node
+  h2  : Node 简介 / Node 安装运行 / Node 类型支持
+  para: `Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.`
+
+KEY: concept/sharp/node/path
+  meta: Node.js Path 模块
+  doc : path
+  h2  : Node pathjoin / Node pathbasename / Node pathextname / Node path\_\_dirname / Node path\_\_filename
+  para: `path` 模块是 `node.js` 的内置模块，导入标准命名是 `node:path` ，不过 `node:` 是可以省略的，用于解析文件路径操作。下面介绍常用属性和方法。
+
+KEY: concept/sharp/node/模块化
+  meta: Node.js 模块化
+  doc : 模块化
+  h2  : Node 模块化基本概念 / Node 模块化模块管理 / Node 模块化ES6 Module / Node 模块化第三方模块
+  para: 模块化是指解决一个复杂问题时，自顶向下逐层把系统划分成若干模块的过程。对于整个系统来说，模块是可组合、分解和更换的单元。
+
+KEY: concept/sharp/typescript/断言与枚举
+  meta: TypeScript 断言与枚举
+  doc : Enums 枚举
+  h2  : 断言
+  para: 枚举在程序语言及 mysql 等数据库中广泛使用
+
+KEY: concept/sharp/typescript/泛型
+  meta: TypeScript 泛型
+  doc : 泛型 Generics
+  h2  : TS 基本使用 / TS 类型继承 / TS 类 / TS 接口 / TS 值类型
+  para: 泛型指使用时才定义类型，即类型可以像参数一样定义，主要解决类、接口、函数的复用性，让它们可以处理多种类型。
+
+KEY: concept/sharp/typescript/环境配置
+  meta: TypeScript 环境配置
+  doc : TypeScript
+  h2  : TS 介绍 / TS 安装环境 / TS 编辑器 / TS 编译 TS / TS 常见问题
+  para: typescript 是 javascript 的一个超集，typescript 可以运行于任何系统，并且是开源免费的。
+
+KEY: concept/sharp/typescript/类与接口
+  meta: TypeScript 类与接口
+  doc : 类
+  h2  : TS 定义 / TS 修饰符 / TS constructor / TS static / TS get/set
+  para: 下面是使用 TS 约束属性并实例化对象
+
+KEY: concept/sharp/typescript/类型
+  meta: TypeScript 类型
+  doc : 类型声明
+  h2  : TS 类型含义 / TS 类型校验 / TS 类型推断 / TS 配置文件 / TS 基本类型
+  para: javascript 本身提供类型支持，但有以下几个问题。
+
+KEY: concept/sharp/typescript/装饰器
+  meta: TypeScript 装饰器
+  doc : 装饰器
+  h2  : TS 环境配置 / TS 类装饰器 / TS 装饰器工厂 / TS 方法装饰器 / TS 属性装饰器
+  para: 装饰器（Decorators）为我们在类的声明及成员上通过编程语法扩展其功能，装饰器以函数的形式声明。
+
+KEY: concept/sharp/vite/TS和CSS相关问题
+  meta: TS 和 CSS 相关问题
+  doc : TS CSS 相关问题
+  h2  : Vite TS / Vite CSS
+  para: 如果是一个新建的项目，那么在选择是否需要使用<word text="TypeScript" />的时候，可以选择使用<word text="TypeScript" />，这样项目就
+
+KEY: concept/vue/vue2/动态组件
+  meta: 动态组件
+  doc : Vue 动态组件与插槽
+  h2  : Vue 动态组件 / Vue 动态组件插槽 / Vue 动态组件自定义指令 / Vue ESLint 指令
+  para: **动态组件的作用：** 可以让多个组件使用同一个挂载点，并动态切换。 `component` 本质上是一个占位符，通过 `:is` 属性来指定渲染谁。
+
+KEY: concept/vue/vue2/动态绑定
+  meta: 动态绑定
+  doc : Vue
+  h2  : Vue 动态绑定动态样式
+  para: 语法： `:class="{类名 : 布尔值}"`
+
+KEY: concept/vue/vue2/基本概念与Vue指令
+  meta: Vue 基本概念与指令
+  doc : Vue
+  h2  : Vue 的基本概念 / Vue 脚手架 `@vue/cli` / Vue 指令 / Vue 总结 / Vue 思维导图
+  para: 概念：<word text="Vue" />是一个 **_渐进式_** 的<word text="JavaScript"/>框架，拥有一套属于自己规则的语法。
+
+KEY: concept/vue/vue2/手写Router及Vuex
+  meta: 手写 Router 及 Vuex
+  doc : 从零手写 VueRouter 及 Vuex
+  h2  : VueRouter
+  para: 在一个<word text="Vue" />的项目中，入口文件 `main.js` 中负责渲染组件和引入路由，代码如下所示：
+
+KEY: concept/vue/vue2/核心源码及设计思想
+  meta: Vue2 核心源码及设计思想
+  doc : Vue2核心源码及设计思想
+  h2  : Vue 核心源码使用Rollup搭建开发环境 / Vue 核心源码Vue响应式原理实现 / Vue 核心源码Vue 对象属性劫持 / Vue 核心源码数组方法劫持 / Vue 核心源码模板编译原理，转化ast语法树
+  para: 新建一个文件夹，打开终端，输入命令行：
+
+KEY: concept/vue/vue2/组件
+  meta: Vue2 组件
+  doc : Vue
+  h2  : Vue 组件 / Vue 组件通信
+  para: 组件就是可复用的<word text="Vue"/>文件（<word text="Vue"/>实例, 封装标签, 样式和<word text="JavaScript"/>代码）。
+
+KEY: concept/vue/vue3/3.5增加的特性
+  meta: Vue3.5 特性
+  doc : Vue3.5特性
+  h2  : Vue3 setup与Typescrupt / Vue3 实验性功能 / Vue3 其他功能
+  para: 关于<word text="Vue3" />新特性官方指路：[新特性](https://blog.vuejs.org/posts/vue-3-3#script-setup-type
+
+KEY: concept/vue/vue3/指令
+  meta: Vue3 指令
+  doc : Vue3指令
+  h2  : Vue3 setup / Vue3 reactive / Vue3 ref / Vue3 `script setup`语法 / Vue3 v-model
+  para: `setup` 函数是一个新的组件选项, 作为组件中 `compositionAPI` 的起点
+
+KEY: concept/vue/vue3/插槽
+  meta: Vue3 插槽
+  doc : 插槽
+  h2  : Vue3 使用 / Vue3 渲染作用域 / Vue3 默认值 / Vue3 具名插槽 / Vue3 动态插槽名
+  para: ::: code-group
+
+KEY: concept/vue/vue3/源码学习-Computed优化
+  meta: Vue3 源码学习：Computed 优化
+  doc : Computed 计算属性 缓存
+  h2  : Vue3 问题复现 / Vue3 dirty 标志 / Vue3 懒计算 / Vue3 值没变 / Vue3 effect 优化
+  para: 还是以上一章节的示例代码为例：
+
+KEY: concept/vue/vue3/源码学习-Computed实现
+  meta: Vue3 源码学习：Computed 实现
+  doc : Computed 计算属性 实现
+  h2  : Vue3 基础实现 / Vue3 关联关系绑定 / Vue3 subs 更新 / Vue3 小结
+  para: `computed` 计算属性是一个特殊的存在，它既是 `sub` 也是 `dep`。
+
+KEY: concept/vue/vue3/源码学习-h和createVNode的实现
+  meta: Vue3 源码学习：h 和 createVNode 的实现
+  doc : h和createVNode的实现
+  h2  : Vue3 render / Vue3 h 函数创建 / Vue3 createVNode 函数创建 / Vue3 h和createVNode的实现 / Vue3 isVNode的实现
+  para: 在 `@vue/runtime-core/src/renderer.ts` 文件，导出一个函数 `createRenderer`，用于创建渲染器。该函数 `return` 返回一个
+
+KEY: concept/vue/vue3/源码学习-Monorepo管理
+  meta: Vue3 源码学习：Monorepo 管理
+  doc : Monorepo
+  h2  : 
+  para: 现在在 `monorepo` 中，除了前面的 `reactivity` 和 `vue` 两个包，我们再新增一个 `shared` 包，用于存放一些公共的工具函数，给其他包导入使用。
+
+KEY: concept/vue/vue3/源码学习-patchProp
+  meta: Vue3 源码学习：patchProp
+  doc : patchProp
+  h2  : Vue3 创建函数 / Vue3 类名等属性的挂载和卸载
+  para: 在 `runtime-dom/src` 文件夹下新建一个 `patchProp.ts` 文件，导出 `patchProp` 函数。修改 `index.ts`，引入对应的函数并统一导
+
+KEY: concept/vue/vue3/源码学习-Reactive实现
+  meta: Vue3 源码学习：Reactive 实现
+  doc : Reactive 实现
+  h2  : Vue3 Proxy 代理初步实现 / Vue3 this 指向代理对象 / Vue3 重复代理处理 / Vue3 Ref 方法复用 / Vue3 优化 Proxy 对象参数反复创建
+  para: 前面实现 `ref` 的响应式，我们封装了 `link` 方法收集依赖和 `propagate` 方法触发依赖，因此 `reactive` 的实现可以复用。
+
+KEY: concept/vue/vue3/源码学习-Ref基础实现
+  meta: Vue3 源码学习：Ref 基础实现
+  doc : 响应式 Reactivity 基础实现
+  h2  : Vue3 初步实现 / Vue3 链表 / Vue3 链表应用 / Vue3 Effect 完善 / Vue3 dep 与 sub 双向关联与复用
+  para: 下面先来初步实现响应式原理。<word text="Vue3" />的响应式原理主要是通过变量的 `get` 、 `set` 和副作用函数 `effect` 来实现的。每当访问变量
+
+KEY: concept/vue/vue3/源码学习-Ref进阶优化
+  meta: Vue3 源码学习：Ref 进阶优化
+  doc : 响应式 Reactivity 进阶优化
+  h2  : Vue3 分支切换 / Vue3 依赖清理 / Vue3 小结 / Vue3 节点复用 / Vue3 避免递归
+  para: 先看一个例子：
+
+KEY: concept/vue/vue3/源码学习-toRef、unRef、proxyRef
+  meta: Vue3 源码学习：toRef、unRef、proxyRef
+  doc : toRef、toRefs、unRef、proxyRefs
+  h2  : Vue3 toRef / Vue3 toRefs / Vue3 unRef / Vue3 proxyRefs
+  para: `toRef` 函数可以将一个响应式对象的属性转换为响应式引用，这样就可以在不直接修改原始对象的情况下，对对象的属性进行操作。
+
+KEY: concept/vue/vue3/源码学习-Watch实现
+  meta: Vue3 源码学习：Watch 实现
+  doc : watch
+  h2  : Vue3 知识点回顾 / Vue3 watch 基本实现 / Vue3 watch 的返回值 / Vue3 watch 的选项 / Vue3 watch 监听 reactive
+  para: 先来回顾一个之前提到的知识点。先看一下示例代码：
+
+KEY: concept/vue/vue3/源码学习-打包配置
+  meta: Vue3 源码学习：打包配置
+  doc : 打包配置
+  h2  : Vue3 拿到打包命令参数 / Vue3 获取打包入口地址 / Vue3 输出打包结果 / Vue3 iife / Vue3 注意
+  para: 先安装一个类型提示包：
+
+KEY: concept/vue/vue3/源码学习-数组响应式
+  meta: Vue3 源码学习：数组响应式
+  doc : 数组的响应式
+  h2  : Vue3 场景复现 / Vue3 长度修改触发 effect / Vue3 隐式更新length / Vue3 其他情况 / Vue3 总结
+  para: 先来看一段示例代码：
+
+KEY: concept/vue/vue3/源码学习-认识渲染器
+  meta: Vue3 源码学习：认识渲染器
+  doc : 认识渲染器
+  h2  : Vue3 渲染器 / Vue3 createRender / Vue3 其他属性 / Vue3 新建包
+  para: 先来试一下如何创建一个虚拟节点。
+
+KEY: concept/vue/vue3/源码学习-项目搭建
+  meta: Vue3 源码学习：项目搭建
+  doc : 项目搭建
+  h2  : Vue3 初始化 / Vue3 依赖下载 / Vue3 配置esbuild
+  para: 搭建一个新的项目，新建一个文件夹，初始化项目。
+
+KEY: concept/vue/vue3/组件
+  meta: Vue3 组件
+  doc : 组件
+  h2  : Vue3 组件通讯 / Vue3 透传 Attributes / Vue3 模板 ref 的使用 / Vue3 动态组件 / Vue3 依赖注入
+  para: 1. `type` ：类型限制
+
+KEY: concept/vue/vue3/项目初始化
+  meta: Vue3 项目初始化
+  doc : 项目初始化
+  h2  : Vue3 CDN 项目创建 / Vue3 脚手架项目创建 / Vue3 入口文件详解 / Vue3 使用 ES 模块创建 vue3 项目 / Vue3 跨域请求
+  para: 复制 `cdn` 相关 `script` 标签，，创建 `js` 文件，通过 `Vue.createApp({})` 创建节点。
+
+KEY: practice/ai/企业级AI应用开发实战(js版)/Function Tool
+  meta: Function Tool 函数调用机制详解
+  doc : Function Tool
+  h2  : 机制概述 / 执行 Function Tool
+  para: <word text="LLM" />可以回答问题，但无法直接执行具体操作（如订票）。大模型只会回复订票方法说明，不会真正调用订票接口。
+
+KEY: practice/ai/企业级AI应用开发实战(js版)/Token 消耗优化
+  meta: Token 消耗优化策略
+  doc : Token 消耗优化
+  h2  : Token 消耗机制 / Token 优化策略 / 其他优化方式
+  para: <word text="Token" />的消耗可理解为：每次提问传给智能体接口的字符越多，回答越长，消耗的<word text="Token" />越多。
+
+KEY: practice/ai/企业级AI应用开发实战(js版)/上下文的威力
+  meta: 上下文的威力：提示词工程实践
+  doc : 上下文的威力
+  h2  : 前言 / 修改提示词 / 上下文的力量 / 推荐约束 / 总结
+  para: 考虑以下需求：
+
+KEY: practice/ai/企业级AI应用开发实战(js版)/前端工具卡片
+  meta: 前端工具卡片实现方案
+  doc : 前端工具卡片
+  h2  : 卡片逻辑
+  para: 部分场景下<word text="LLM" />需要给用户返回预制卡片，让用户完成选择操作。例如：
+
+KEY: practice/ai/企业级AI应用开发实战(js版)/前端界面
+  meta: AI 对话前端界面搭建与会话管理
+  doc : 前端界面
+  h2  : 基础界面 / 会话管理
+  para: 1. 输入框输入的问题：准备一个 `inputValue` 变量
+
+KEY: practice/ai/企业级AI应用开发实战(js版)/大模型接口
+  meta: 大模型接口调用指南
+  doc : 大模型接口
+  h2  : 前言 / 国内大模型接口厂商类型 / <word text="HTTP" />请求 / HTTP 响应
+  para: 大模型不需要自己开发，通常所说的 AI 落地，都是调用各厂提供的大模型接口。
+
+KEY: practice/ai/企业级AI应用开发实战(js版)/提示词工程
+  meta: 提示词工程实践指南
+  doc : 提示词工程
+  h2  : 前言 / 基本要素 / 高级要素 / 举例 / 思考
+  para: 为减少 AI 幻觉、提升回答准确性而优化提问的过程，即为提示词工程。核心在于如何提问才能获得更优质的回答。
+
+KEY: practice/ai/企业级AI应用开发实战(js版)/搭建服务器
+  meta: AI 应用后端服务器搭建
+  doc : 搭建服务器
+  h2  : 前言 / <word text="OpenAI" />库 / 详解<word text="OpenAI" /> / 重写 fetch 查看请求和响应 / 携带历史
+  para: 前端虽然可以直接请求大模型接口，但存在以下问题：
+
+KEY: practice/ai/企业级AI应用开发实战(js版)/流式传输
+  meta: SSE 流式传输实现方案
+  doc : 流式传输
+  h2  : 怎么做 / <word text="SSE" />技术 / 定义 SSE 接口 / 成熟方案
+  para: 1. `llm` 改为 `stream` 流式传输
+
+KEY: practice/handle/business/元素不定大小溢出隐藏
+  meta: 元素不定大小溢出隐藏方案
+  doc : 元素不定大小隐藏做溢出隐藏
+  h2  : 学习目标 / 思路分析 / 流程
+  para: 1. 需求效果的实现
+
+KEY: practice/handle/business/内嵌iframe与传递消息
+  meta: 内嵌 Iframe 通信与 DOM 操作实践
+  doc : 操作内嵌 Iframe 与传递消息
+  h2  : 可改源码时用 postMessage 双向通信 / 不可改源码时直接操作内部 DOM
+  para: 适用场景：可修改<word text="Iframe" />内源码，实现父页面与<word text="Iframe" />之间的双向消息传递。
+
+KEY: practice/handle/business/富文本编辑器
+  meta: 富文本编辑器集成与二次开发指南
+  doc : 富文本编辑器
+  h2  : Tinymce / vue-quill-editor
+  para: 可安装对应的<word text="Vue" />/<word text="React" />组件直接作为组件使用，也可直接下载进行原生操作。
+
+KEY: practice/handle/business/自动引入依赖
+  meta: 自动引入依赖配置指南
+  doc : 摆脱手动依赖引入，自动引入依赖
+  h2  : 学习目标 / 基本使用
+  para: 1. `unplugin-vue-components` 和 `unplugin-auto-import` 基本使用
+
+KEY: practice/handle/combat/有用的TS项目技巧
+  meta: TypeScript 项目实用技巧
+  doc : 实战中有用的 TypeScript 项目技巧
+  h2  : 第三方库处理技巧 / 基于已有类型快速处理新类型
+  para: <word text="TypeScript" />非常核心的作用就是帮助我们在开发的时候减少拼写，缺少必填项这样的错误。所以在使用一些第三方库时也希望能规定好类型。
+
+KEY: practice/handle/combat/状态思维应对多变页面
+  meta: 状态思维应对多变页面
+  doc : 通过状态思维应对多变页面
+  h2  : 状态思维 / 案例分析 / 思考实现
+  para: 有的时候会碰到页面会基于各种因素，来产生很多变化的情况，与其一个个做判断，不妨把页面归纳为几种状态，把多个因素统一归为几种状态。然后**用数据定义好每种状态下的展示。这样就只用关心
+
+KEY: practice/handle/element/vue动态表单实现原理
+  meta: Vue 动态表单实现原理
+  doc : <word text="Vue" />动态表单实现原理
+  h2  : 基础封装 / 参数精简 / 事件绑定 / 组件自定义与默认 / 插槽
+  para: 首先实现基础封装，根据父组件传入的配置项 `formItem` 生成对应表单项，再与父组件传入的 `formData` 进行双向绑定。
+
+KEY: practice/handle/element/二封el表格组件无限滚动
+  meta: 通过 el-table 实现多数据完美无限滚动
+  doc : 通过 el-table 实现多数据完美无限滚动效果
+  h2  : 思考 / 实现 / 总结
+  para: 有一个场景：表格数据有 200 多条，用户滚动和操作起来十分卡顿，需要优化。
+
+KEY: practice/handle/element/组件设计技巧
+  meta: Vue 组件设计技巧
+  doc : <word text="Vue" />组件设计技巧
+  h2  : 样式的思考 / 组件的思考 / 行为的思考 / props 的思考 / 总结
+  para: 设计一个组件需要从以下四个方面来思考：
+
+KEY: practice/idea/js/promise/write/手写Promise类与.then
+  meta: 类与.then
+  doc : 类与 .then
+  h2  : Promise 标准 / 类的搭建 / then 方法 / 异步处理 / .then 返回 Promise
+  para: 具体<word text="Promise A+" />标准可查看 [Promise A+](https://promisesaplus.com.cn/) ，这里只拿几个点做简要提
+
+KEY: practice/idea/vue/nextTick
+  meta: $nextTick 实现原理
+  doc : $nextTick
+  h2  : 执行原理 / 宏任务还是微任务
+  para: <word text="Vue" />更新<word text="DOM" />是异步的。侦听到数据变化后，<word text="Vue" />将开启一个任务队列，缓冲同一事件循
+
+KEY: practice/idea/vue/Vue2 VS Vue3
+  meta: Vue2 VS Vue3 响应式原理对比
+  doc : Vue2 VS Vue3
+  h2  : Vue2 / Vue3 / Vue2 与 Vue3 区别 / Vite VS Webpack
+  para: 在 `data` 中声明一个对象：
+
+KEY: read/css/CSS 技术揭秘与实战通关/background的8种核心技巧
+  meta: CSS 最强大属性 background 的 8 种核心技巧
+  doc : CSS background 渐变的 8 种核心技巧
+  h2  : 线性渐变 linear-gradient / 径向渐变 radial-gradient / 锥形渐变 conic-gradient / 总结
+  para: <word text="CSS" />的 `background` 除了设置背景色和背景图，还能设置渐变。渐变包含以下四种：
+
+KEY: read/css/CSS 技术揭秘与实战通关/blur模糊滤镜使用技巧及搭配contrast元素边缘处理
+  meta: blur 模糊滤镜使用技巧及搭配 contrast 元素边缘处理
+  doc : blur模糊滤镜使用技巧及搭配contrast元素边缘处理
+  h2  : 模糊滤镜 blur() / 对比度滤镜 contrast() / 模糊滤镜叠加对比度滤镜的融合效果 / 总结
+  para: `blur()` 应该是<word text="CSS" />中使用频率最高的滤镜了，它能将高斯模糊应用于元素上。语法也很简单：
+
+KEY: read/css/CSS 技术揭秘与实战通关/filter中比阴影更强大的drop-shadow阴影技巧
+  meta: filter 中比阴影更强大的 drop-shadow 阴影技巧
+  doc : filter中比阴影更强大的drop-shadow阴影技巧
+  h2  : drop-shadow 与 box-shadow 的异同
+  para: 根据 [MDN - drop-shadow](https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter-function/dr
+
+KEY: read/css/CSS 技术揭秘与实战通关/filter的三种滤镜模式
+  meta: filter 在 CSS 中的三种滤镜模式及其特殊性介绍
+  doc : filter在CSS中的三种滤镜模式及其特殊性介绍
+  h2  : filter 滤镜基础扫盲 / filter 滤镜是可以叠加使用的 / filter 与 backdrop-filter 的异同 / 作用了 filter 和 backdrop-filter 的元素会导致 3D 效果失效 / 作用了 `filter` 和 `backdrop-filter` 的元素会使内部的 fixed 定位失效
+  para: 在<word text="CSS" />中，不同的滤镜有着不同的使用方式和作用，使用方式分为以下三种：
+
+KEY: read/css/CSS 技术揭秘与实战通关/shadow的高级技巧
+  meta: shadow 的高级技巧
+  doc : shadow的高级技巧
+  h2  : 零偏移零模糊阴影复制自身图形 / 超大扩散半径模拟全屏遮罩层 / 多层同色阴影叠加霓虹灯光效 / 伪元素透明度切换替代阴影重排 / 总结
+  para: 上一章节讲了 `box-shadow` 怎么使用，以及如何不使用 `box-shadow` ，而是用别的方法，来模拟实现阴影的效果。
+
+KEY: read/javascript/ES6标准入门/async函数
+  meta: async 函数
+  doc : async函数
+  h2  : 含义 / 用法 / 语法 / async函数实现原理 / 与其他异步处理方法的比较
+  para: <word text="ES7"/>引入了 `async` 函数，使得异步操作变得更加方便。`async` 可以看作 `Generator` 函数的语法糖，将 `Generator
+
+KEY: read/javascript/ES6标准入门/Class的基本语法
+  meta: Class 的基本语法
+  doc : Class的基本语法
+  h2  : 简介 / 严格模式 / constructor方法 / 类的实例对象 / Class表达式
+  para: 传统的 JavaScript 中，生成实例对象的传统方法是通过构造函数。但是这种写法与面向对象语言的写法差异大，ES6 引入了 Class（类）这个概念，作为对象的模板。通过 `c
+
+KEY: read/javascript/ES6标准入门/Class的继承
+  meta: Class 的继承
+  doc : Class的继承
+  h2  : 简介 / Object.getPrototypeOf() / super关键字 / 类的prototype属性和__proto__属性 / 原生构造函数的继承
+  para: 比起 ES5 修改原型链实现继承的方式，ES6 的 `class` 通过 `extends` 关键字实现继承，子类继承父类的所有属性和方法，需要用 `super` 方法，继承父类的
+
+KEY: read/javascript/ES6标准入门/ECMAScript6简介
+  meta: ECMAScript 6 简介
+  doc : ECMAScript 6 的由来与规范演进
+  h2  : 由来 / 含义 / 提案批准流程 / 历史 / Babel
+  para: 本节讲述<word text="ES6"/>这个名称的由来，首先需要理清<word text="ECMAScript"/>和<word text="JavaScript"/>的关系
+
+KEY: read/javascript/ES6标准入门/Generator函数的异步应用
+  meta: Generator 函数的异步应用
+  doc : Generator函数的异步应用
+  h2  : 传统方法 / 基本概念 / Generator函数 / Thunk函数 / co模块
+  para: <word text="JavaScript"/>是单线程语言，如果没有异步编程，则会造成卡死，因此需要异步编程。
+
+KEY: read/javascript/ES6标准入门/Generator函数的语法
+  meta: Generator 函数的语法
+  doc : Generator函数的语法
+  h2  : 简介 / next方法的参数 / for...of循环 / Generator.prototype.throw() / Generator.prototype.return()
+  para: `Generator` 函数是<word text="ES6"/>提供的一种异步编程解决方案，从语法角度，他是一个状态机，封装了多个内部状态。执行后会返回一个遍历器对象，可以依次遍
+
+KEY: read/javascript/ES6标准入门/Iterator和for...of循环
+  meta: Iterator 和 for...of 循环
+  doc : Iterator和for...of循环
+  h2  : Iterator（遍历器）的概念 / 默认的Iterator接口 / 调用Iterator接口的场合 / 字符串的Iterator接口 / Iterator接口与Generator函数
+  para: <word text="JavaScript"/>随着<word text="ES6"/>的引入，`Iterator` 和 `for...of` 循环成为了处理集合数据的新方式。它
+
+KEY: read/javascript/ES6标准入门/Let 和 const 命令
+  meta: Let 和 const 命令
+  doc : let 与 const 声明命令及其与 var 的差异
+  h2  : let 命令 / 作用域 / const 命令 / 顶层对象属性 / global 对象
+  para: 本文分别讲解 `let` 和 `const` 两个用于声明变量的命令，并介绍它们与 `var` 之间的异同点。
+
+KEY: read/javascript/ES6标准入门/Module的加载实现
+  meta: Module 的加载实现
+  doc : Module的加载实现
+  h2  : 浏览器加载 / ES6模块与CommonJS模块的差异 / Node.js的模块加载 / 循环加载 / ES6模块的转码
+  para: 上一章讲述模块的语法，本章重心在浏览器和 `Node` 之中如何加载 ES6 模块。
+
+KEY: read/javascript/ES6标准入门/Module的语法
+  meta: Module 的语法
+  doc : Module的语法
+  h2  : 概述 / 严格模式 / export命令 / import命令 / 模块的整体加载
+  para: JavaScript 一直没有模块（`module`）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。ES6 在语言标准的层面上，实现了模块功能，而且实现得相
+
+KEY: read/javascript/ES6标准入门/Promise对象
+  meta: Promise 对象
+  doc : Promise对象
+  h2  : 含义 / 基本用法 / Promise.prototype.then() / Promise.prototype.catch() / Promise.all()
+  para: <word text="JavaScript"/>中异步编程一直是重难点。传统的回调函数虽然解决了问题，但它们复杂、难以维护，且容易引发回调地狱。`Promise` 对象的出现，以
+
+KEY: read/javascript/ES6标准入门/Proxy
+  meta: Proxy
+  doc : Proxy 代理机制与 13 种拦截方法
+  h2  : 概述 / 实例方法 / Proxy.revocable() / this 问题 / 总结
+  para: 在<word text="JavaScript"/>中，`Proxy` 对象提供了一种全新的能力，允许拦截和自定义对象的基本操作。这种代理机制使得开发者能够精确控制对象的行为，从属
+
+KEY: read/javascript/ES6标准入门/Set和Map数据结构
+  meta: Set 和 Map 数据结构
+  doc : Set 与 Map 数据结构及其弱引用版本
+  h2  : Set / WeakSet / Map / WeakMap / 总结
+  para: 本文讲解数据结构 `Set` 和 `Map`。这两个数据结构在开发中十分常用，并且二者都有弱引用写法。
+
+KEY: read/javascript/ES6标准入门/Symbol
+  meta: Symbol
+  doc : Symbol 数据类型与内置 Symbol 值
+  h2  : 概述 / 作为属性名的Symbol / 实例：消除魔术字符串 / 属性名的遍历 / Symbol.for()、Symbol.keyFor()
+  para: 本文就 `Symbol` 的定义和作用展开描述，重点讲解概述、属性名遍历、`for()` 和 `keyFor()` 方法，以及消除魔术字符串和模块的单例模式两个实例。
+
+KEY: read/javascript/ES6标准入门/函数的扩展
+  meta: 函数的扩展
+  doc : ES6 函数扩展：默认参数、箭头函数与尾调用优化
+  h2  : 函数参数默认值 / rest参数 / 严格模式 / name属性 / 箭头函数
+  para: 本文介绍函数的相关扩展，包括参数默认值、`rest` 参数、严格模式、`name` 属性、箭头函数、`this` 绑定、尾调用优化等七个方面。
+
+KEY: read/javascript/ES6标准入门/变量的解构赋值
+  meta: 变量的解构赋值
+  doc : 变量的解构赋值及其常见用途
+  h2  : 数组的解构赋值 / 对象的解构赋值 / 字符串的解构赋值 / 数值和布尔值的解构赋值 / 函数参数的解构赋值
+  para: 本文讲解解构的知识点，分别从数组、对象、字符串、数值和布尔值、函数参数等方向展开，最后讨论解构的问题与用途。
+
+KEY: read/javascript/ES6标准入门/字符串的扩展
+  meta: 字符串的扩展
+  doc : ES6 字符串的扩展方法与模板字符串
+  h2  : 字符的 Unicode 表示法 / codePointAt() / String.fromCodePoint() / 字符串的遍历器接口 / at()
+  para: ES6 为字符串扩展了多个方法，本文逐一讲述。
+
+KEY: read/javascript/ES6标准入门/对象的扩展
+  meta: 对象的扩展
+  doc : ES6 对象扩展：简洁表示法、遍历与 Object 新增方法
+  h2  : 属性简洁表示法 / 属性名表达式 / 方法的name属性 / Object.is() / Object.assign()
+  para: ES6 为对象添加了扩展，包括属性的简洁表示法、属性名表达式、方法 name 属性、`Object` 属性上的方法（如 `is()`、`assign()` 等）、属性可枚举性、属性
+
+KEY: read/javascript/ES6标准入门/数值的扩展
+  meta: 数值的扩展
+  doc : ES6 数值表示法、Math 扩展与指数运算符
+  h2  : 二进制与八进制表示法 / Number.isFinite()、Number.isNaN() / Number.parselnt()、Number.parseFloat() / Number.isInteger() / Number.EPSILON
+  para: 本文从二进制与八进制、数值实例的方法、Math 对象的扩展、运算符、Integer 数据类型五个方面讨论数值的扩展。
+
+KEY: read/javascript/ES6标准入门/数组的扩展
+  meta: 数组的扩展
+  doc : ES6 数组扩展：扩展运算符与实例方法
+  h2  : 扩展运算符 / Array.from() / Array.of() / copyWithin() / find()和findIndex()
+  para: 本文从扩展运算符和实例相关方法两方面讲解数组的扩展。
+
+KEY: read/javascript/ES6标准入门/正则的扩展
+  meta: 正则的扩展
+  doc : ES6 正则的构造函数、修饰符与新增属性
+  h2  : RegExp 构造函数 / 字符串的正则方法 / u 修饰符 / y 修饰符 / sticky 属性
+  para: ES6 为正则扩展了多个方法和修饰符，本文逐一讲述。
+
+KEY: read/javascript/ES6标准入门/读懂ECMAScript规格
+  meta: 读懂 ECMAScript 规格
+  doc : 读懂ECMAScript规格
+  h2  : 概述 / 相等运算符 / 数组的空位 / 数组的map方法 / 总结
+  para: 规格是计算机语言的官方标准，详细描述了语法、类型、语句、关键字、保留字、操作符、全局对象、内置对象、编码、运行时环境等各方面细节。
+
+KEY: read/vite/深入浅出Vite/前端工程化与 Vite 核心精要：从模块化演进到现代构建实践
+  meta: 前端工程化与 Vite 核心精要
+  doc : 前端工程化与 Vite 核心精要：从模块化演进到现代构建实践
+  h2  : 核心主旨与前端工程四大痛点 / 前端模块化演进史：从“伪模块化”到标准统一 / Vite 破局之道：为何成为构建工具的最优解？ / 学习瓶颈与系统化进阶路径 / ESM / CommonJS / AMD 核心特性对比总结
+  para: 现代前端项目已深度依赖构建工具，工具链的迭代（如<word text="Webpack"/>、<word text="Rollup"/>、<word text="esbuild"/
+
+KEY: read/vite/深入浅出Vite/静态资源：在 Vite 中处理各种静态资源？
+  meta: 静态资源：在 Vite 中处理各种静态资源
+  doc : 静态资源：在 Vite 中处理各种静态资源？
+  h2  : 核心主旨 / 静态资源处理的两大核心挑战 / 开发期加载实战：五大资源类型与<word text="Vite"/>零配置支持 / 生产环境优化：从部署到体积控制的完整链路 / 静态资源工程化速查与决策矩阵
+  para: 静态资源（图片、<word text="JSON" />、<word text="Web Worker" />、<word text="WASM" />等）并非标准<word te
+
+KEY: vitepress/dev
+  meta: 构建
+  doc : 搭建
+  h2  : 项目创建 / 目录结构 / 首页配置 / 配置文件配置 / 页面编写
+  para: 1. 新建一个文件夹(文件名可以自行取，但不建议叫 `vitepress`)，进入该文件夹并初始化 `package.json` 文件。
+
+KEY: vitepress/index
+  meta: 引言
+  doc : 关于此模块
+  h2  : 
+  para: 刀刀博客从搭建到部署在 `Gitee Pages` 上，前前后后大约花费 2 个星期左右。其中，花费的时间主要在于 `vitePress` 的使用以及部署的要点上，百度搜索大量的文
+
+KEY: work/南网/无人机/Leaflet地图封装与使用
+  meta: Leaflet 地图封装与使用
+  doc : Leaflet 地图的深度封装与室内外一体化实践
+  h2  : 业务背景与核心痛点 / 技术选型与架构设计 / 核心封装机制 (Hook 化设计) / 复杂交互与算法实现 / 业务场景实战：控制台与航线库
+  para: 在无人机室内/室外一体化巡检与数字孪生项目中，地图模块是承载**航线规划、设备实时监控、机巢管理**的核心载体。业务要求系统能够同时支持：
+
+KEY: work/南网/无人机/公共表单组件的封装与拓展
+  meta: Vue3 + Element Plus 通用搜索表单组件
+  doc : Vue3 + Element Plus 通用搜索表单组件 (SearchForm) 设计与实践
+  h2  : 概述 / 核心特性 / 架构设计 / 核心实现机制 / API 参考
+  para: 在企业级后台管理系统中，搜索表单是数据列表页面的标准配置。随着业务复杂度的提升，传统的手写表单方式存在代码冗余、维护成本高、类型安全性差等问题。本文介绍基于Vue 3 (Compo
+
+KEY: work/南网/无人机/公共表格组件的封装与拓展
+  meta: Vue3 + Element Plus 企业级动态表格组件
+  doc : Vue3 + Element Plus 企业级动态表格组件 (DynamicTable) 设计与实践
+  h2  : 概述 / 核心架构与封装特性 / 高阶特性实现原理 / 三段式渐进刷新机制 / API 参考
+  para: 在企业级后台管理系统中，数据表格是承载复杂业务逻辑的核心载体。随着业务场景的深化，原生的 UI 组件库（如 `Element Plus`）在应对动态列渲染、复杂单元格合并、多选联动
+
+KEY: work/数说/nourseN次方/web端/基于FullCalendar的日程表组件封装与实践
+  meta: 基于 FullCalendar 的日程表组件封装
+  doc : 基于 FullCalendar 的日程表组件封装与实践
+  h2  : 概述 / 核心依赖与初始化 / 数据驱动与参数配置
+  para: 在企业级任务管理系统中，日程表是核心交互模块之一。为满足查看当月每日日程、定制化日程样式及日期联动等需求，本项目引入了<word text="FullCalendar" />组件库
+
+KEY: work/数说/nourseN次方/移动端/Vant数字键盘组件在PC端与移动端的兼容性适配
+  meta: Vant 数字键盘组件 PC 端与移动端兼容性适配
+  doc : Vant 数字键盘组件在 PC 端与移动端的兼容性适配
+  h2  : 概述 / 问题复现 / 根因分析 / 解决方案 / 知识拓展：PC 端与移动端事件映射
+  para: 在移动端 H5 项目中，验证码输入模块集成了 `Vant` 数字键盘组件。在 PC 端测试环境下，暴露出物理键盘输入失效及虚拟键盘点击无响应的兼容性问题。本文档详述该问题的排查思路
+
+KEY: work/数说/nourseN次方/移动端/移动端空间切换导致Token丢失问题排查
+  meta: 移动端空间切换导致 Token 丢失
+  doc : 移动端空间切换导致 Token 丢失问题排查
+  h2  : 概述 / 问题复现 / 根因分析 / 解决方案 / 方案优势
+  para: 在移动端 H5 项目中，用户勾选"15天免登录"后，在切换业务空间时偶发<word text="Token" />丢失并要求重新登录的缺陷。本文档剖析该问题的触发机制，并提供基于组
+
+KEY: work/数说/nourseN次方/移动端/移动端跨域Iframe本地存储失效问题排查与解决
+  meta: 移动端跨域 Iframe 本地存储失效问题
+  doc : 移动端跨域 Iframe 本地存储失效问题排查与解决
+  h2  : 概述 / 问题复现 / 根因分析 / 解决方案 / 知识拓展：同源策略与隐私保护
+  para: 在移动端 H5 项目中，常通过 `Iframe` 嵌入第三方页面或子应用以实现功能解耦。本文档记录在特定跳转场景下，子页面无法读取父页面 `LocalStorage` 数据的异常排
+
+KEY: work/灵思/华润水泥/jeecg/vxe-table搭配其他组件
+  meta: vxe-table 搭配其他组件
+  doc : j-vxe-table 搭配其他组件
+  h2  : 类型 / 插槽 / 使用 / 拓展
+  para: `j-vxe-table` 是<word text="JeecgBoot" />基于<word text="vxe-table" />组件开发的自定义组件，在弹窗组件中引入一个子表
+
+KEY: work/灵思/华润水泥/图片对比可拖拽封装
+  meta: 图片可拖拽对比
+  doc : 图片可拖拽对比轮子
+  h2  : 效果 / 拖拽 / 滚轮缩放 / 完整组件源码
+  para: 多张效果图中可以两两对比，效果图可拖拽移动位置，可通过鼠标滚轮放大缩小。
+
+KEY: work/灵思/职技网/Vant组件二次封装
+  meta: Vant 组件二次封装
+  doc : vant 组件二次封装
+  h2  : NavBar 导航栏 / Area 地区选择器 / 文件上传组件
+  para: 为了更方便复用组件，更贴切业务范围，本项目对<word text="Vant" />的部分组件进行二次封装，提高组件的复用性和可维护性。
+
+KEY: work/灵思/视频分销/刷新token
+  meta: 刷新 Token
+  doc : 刷新 token
+  h2  : 
+  para: 本项目 `token` 有效时长为 2 小时，超时后需要额外调用接口获取新的 `token` 并替换原来旧的 `token` ，手动实现 `token` 刷新。
+
+KEY: work/灵思/音果云音/APP/Tabbar
+  meta: Tabbar 页
+  doc : tabbar 页
+  h2  : 首页轮播图跳转 / tabbar 隐藏
+  para: 主页面 `tabBar` 页面根据高保真原型图设计开发即可。
+
+KEY: work/灵思/音果云音/APP/商品
+  meta: SKU 商品规格
+  doc : sku 商品规格
+  h2  : 数据返回 / 页面实现 / 选择规格 / 总结
+  para: 工具类商品提供<word text="SKU" />规格搜索，每项分类都有几个选项，选择完相应的规格后会显示对应的图片、价格、库存数量等。

@@ -137,7 +137,7 @@ export * from './reactivity'
 > 1. 一般的，如果想要给类设置一个内部私有属性，不会直接使用 `this.xxx`，而是外部设置一个枚举，然后在类内部使用 `枚举[xxx]` 的方式。以上方代码示例为例，`ReactiveFlags` 是一个枚举，`ReactiveFlags.IS_REF` 是枚举中的一个属性，用于标记当前对象是否是 `ref` 对象，返回一个布尔值。
 > 2. `set` 函数中，需要先执行赋值操作，再执行副作用函数，先后顺序不能搞错，不然会导致先触发副作用函数，再赋值，这样副作用函数中拿到的值是旧的值。
 
-### Vue3 小结
+### RefImpl 中 get 收集依赖与 set 触发副作用
 
 创建一个 `RefImpl` 类，用于实现 `ref` 函数，该类包含一个 `_value` 属性，用于存储 `ref` 函数的参数值，在 `get` 方法中收集副作用函数依赖，`set` 方法中触发副作用函数；同时创建 `effect` 函数，用于存储副作用函数。有一个单线程思想的 `activeSub` 变量，有值代表当前有副作用函数触发。
 
@@ -253,7 +253,7 @@ if (node3.prev) {
 
 ![双向链表删除](https://pic1.imgdb.cn/item/6813211158cb8da5c8d5fed1.png)
 
-### Vue3 小结
+### 数组与链表在头节点增删的时间复杂度对比
 
 只针对头节点操作，不考虑移除中间节点。
 
@@ -569,7 +569,7 @@ export function triggerRef(dep) {
 
 :::
 
-### Vue3 小结
+### 用链表结构收集多个副作用函数
 
 副作用函数的收集不再是直接保存一个函数，而是以链表的方式收集多个副作用函数，第一次触发副作用函数时把它保存到头部，后续的副作用函数依次保存为下一个节点。并且当触发 `trigger` 时，会遍历链表，生成一个数组，依次执行每个副作用函数。
 
@@ -859,7 +859,7 @@ const runner = effect(
 )
 ```
 
-### Vue3 小结
+### Effect 类实例化与 run、scheduler 扩展
 
 `effect` 不再是普通的函数，而是一个类实例，并扩展了 `run`、`scheduler` 方法。
 
@@ -1165,7 +1165,7 @@ export const link = (dep, sub) => {
 
 1. 新建一个 `run` 方法，用于调用依赖项函数，先保存当前的 `activeSub` 赋值给 `prevSub` 变量，然后赋值 `this` 给 `activeSub` （此时 `activeSub` 就代表 `EffectReactive` 类）。再把类的 `depsTail` 属性置为 `undefined` ，表示刚触发该函数，然后执行传过来的 `fn` 函数，并把执行结果 `return` 返回回去。
 
-2. 等待函数执行完毕后，再把 `prevSub` 赋值给 `activeSub` ，表示当前的 `effect` 接收到的回调函数 `fn` 已经执行完毕，该执行上一个保存还没执行完的 `effect` 回调了。这个是为了解决 `effect` 函数嵌套的<word text="BUG" /> ，代码示例如下：
+2. 等待函数执行完毕后，再把 `prevSub` 赋值给 `activeSub` ，表示当前的 `effect` 接收到的回调函数 `fn` 已经执行完毕，该执行上一个保存还没执行完的 `effect` 回调了。这个是为了解决 `effect` 函数嵌套的BUG，代码示例如下：
 
    ```js
    effect(() => {

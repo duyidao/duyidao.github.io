@@ -6,12 +6,12 @@
 
 但修改不能修改源码，使用第三方组件时尽可能避开源码的修改，避免引起不必要的错误。如何修改呢？可用以下两种方法：
 
-- 纯 <word text="CSS" /> 样式修改
-- 使用原生 <word text="JavaScript" /> 操作 <word text="DOM" />
+- 纯<word text="CSS" />样式修改
+- 使用原生<word text="JavaScript" />操作<word text="DOM" />
 
 ## CSS 修改
 
-先看看 <word text="CSS" /> 修改的方法，可采取让他显示一定数量，比如两个，后续的隐藏。找到对应类名设置样式：
+先看看<word text="CSS" />修改的方法，可采取让他显示一定数量，比如两个，后续的隐藏。找到对应类名设置样式：
 
 ```vue
 <style>
@@ -21,7 +21,7 @@
 </style>
 ```
 
-虽然效果实现了，但还是很不合理，这样如果不点开看还以为只选择了两个选项，没有相应提示。因此纯 <word text="CSS" /> 修改法不合适。
+虽然效果实现了，但还是很不合理，这样如果不点开看还以为只选择了两个选项，没有相应提示。因此纯<word text="CSS" />修改法不合适。
 
 ## 使用 JavaScript 操作 DOM
 
@@ -104,4 +104,4 @@ export default {
 
 ## 总结
 
-遇到此类需求，可先用 <word text="CSS" /> 隐藏一些不需要显示的东西，达到"伪装"的实现效果；如果还是达不到效果，就通过 <word text="JavaScript" /> 直接操作 <word text="DOM" /> 来实现需求。
+遇到此类需求，可先用<word text="CSS" />隐藏一些不需要显示的东西，达到"伪装"的实现效果；如果还是达不到效果，就通过<word text="JavaScript" />直接操作<word text="DOM" />来实现需求。

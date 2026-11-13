@@ -44,7 +44,7 @@ flowchart TD
 
 2. 数据同步与防抖机制
 
-   编辑页的数据变更需实时同步至 `iframe`。为避免频繁通信导致子窗口渲染卡顿，采用 <word text="VueUse" /> 的 `watchDebounced` 进行防抖处理，并通过 `JSON.stringify` 序列化复杂对象。
+   编辑页的数据变更需实时同步至 `iframe`。为避免频繁通信导致子窗口渲染卡顿，采用<word text="VueUse" />的 `watchDebounced` 进行防抖处理，并通过 `JSON.stringify` 序列化复杂对象。
 
    ```typescript
    import { watchDebounced } from '@vueuse/core'

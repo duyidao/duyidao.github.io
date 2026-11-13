@@ -18,7 +18,7 @@
 
 ### 选择 Gitee Pages 服务
 
-1. 点击服务选择 <word text="Gitee Pages" /> 服务。
+1. 点击服务选择<word text="Gitee Pages" />服务。
 
    ![选择服务](https://s1.ax1x.com/2023/02/01/pSBvp9A.png)
 

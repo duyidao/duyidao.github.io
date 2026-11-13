@@ -5,8 +5,8 @@
 ### Redux概念
 
 1. `redux` 是一个专门用于做状态管理的 JS 库(不是 react 插件库)。
-2. 它可以用在 <word text="React"/> ， <word text="Angular"/> ， <word text="Vue"/> 等项目中, 但基本与 <word text="React"/> 配合使用。
-3. 作用: 集中式管理 <word text="React"/> 应用中多个组件共享的状态。
+2. 它可以用在<word text="React"/>，<word text="Angular"/>，<word text="Vue"/>等项目中, 但基本与<word text="React"/>配合使用。
+3. 作用: 集中式管理<word text="React"/>应用中多个组件共享的状态。
 
 ### Redux作用
 
@@ -194,8 +194,8 @@ export default reduxer
 
 ### Redux react-redux理解
 
-1. 一个 <word text="React"/> 插件库
-2. 专门用来简化 <word text="React"/> 应用中使用 `redux`
+1. 一个<word text="React"/>插件库
+2. 专门用来简化<word text="React"/>应用中使用 `redux`
 
 ### Redux react-redux模型图
 
