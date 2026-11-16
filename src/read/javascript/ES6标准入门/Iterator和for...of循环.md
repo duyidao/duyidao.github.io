@@ -335,7 +335,7 @@ for (let [key, value] of entries(obj)) {
 
 ## 总结
 
-`Iterator` 是<word text="JavaScript"/> <word text="ES6"/>引入的一种接口，用于统一访问不同数据结构的元素。它允许使用 `for...of` 循环遍历具有 `Iterator` 接口的数据结构，如数组、字符串、Map、Set 等。`Iterator` 对象通过 `next()` 方法返回包含 `value` 和 `done` 属性的对象，其中 `value` 是当前元素的值，`done` 指示遍历是否结束。
+`Iterator` 是<word text="JavaScript"/><word text="ES6"/>引入的一种接口，用于统一访问不同数据结构的元素。它允许使用 `for...of` 循环遍历具有 `Iterator` 接口的数据结构，如数组、字符串、Map、Set 等。`Iterator` 对象通过 `next()` 方法返回包含 `value` 和 `done` 属性的对象，其中 `value` 是当前元素的值，`done` 指示遍历是否结束。
 
 默认的 `Iterator` 接口通过数据结构的 `Symbol.iterator` 属性访问。除了 `for...of` 循环，解构赋值、扩展运算符、`yield*` 等也会调用 `Iterator` 接口。字符串和类似数组的对象（如 `arguments` 和 `NodeList`）也具有 `Iterator` 接口。
 

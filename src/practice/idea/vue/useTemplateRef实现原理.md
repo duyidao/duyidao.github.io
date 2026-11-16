@@ -32,9 +32,9 @@ const containerRef = useTemplateRef('elRef')
 
 ![ref和useTemplateRef](https://pic1.imgdb.cn/item/6948b221a7234ce61d8e892e.png)
 
-## 实现
+## 手写 useTemplateRef
 
-### 思路
+### 用实例 refs 绑定 shallowRef
 
 搭建一个空函数，接收字符串 `key`，返回 `ref` 对象。
 

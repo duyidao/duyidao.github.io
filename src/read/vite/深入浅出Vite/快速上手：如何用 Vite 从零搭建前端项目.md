@@ -54,7 +54,7 @@ pnpm create vite
     :::
 2. 核心机制拆解
 
-    - Dev Server 拦截与实时编译：浏览器识别 type="module" 后发起请求，<word text="Vite"/> Dev Server 拦截该请求，读取源码并在内存中完成<word text="TSX"/>剥离、<word text="CSS"/>处理等操作，最终将标准<word text="ESM"/>格式返回给浏览器。
+    - Dev Server 拦截与实时编译：浏览器识别 type="module" 后发起请求，<word text="Vite"/>Dev Server 拦截该请求，读取源码并在内存中完成<word text="TSX"/>剥离、<word text="CSS"/>处理等操作，最终将标准<word text="ESM"/>格式返回给浏览器。
     - import = HTTP Request 范式：在<word text="Vite"/>开发环境中，每一个 import 语句都代表一次独立的 HTTP 请求。浏览器解析到新依赖后自动发起请求，<word text="Vite"/>按需编译返回，形成动态依赖图。
     - No-Bundle 本质：开发阶段完全跳过递归打包过程，将模块加载任务交还给浏览器原生能力。这是<word text="Vite"/>实现冷启动提速与毫秒级热更新（<word text="HMR"/>）的根本原因。
 

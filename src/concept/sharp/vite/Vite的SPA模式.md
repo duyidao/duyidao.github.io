@@ -50,7 +50,7 @@ pnpm create vue@latest
 
 #### Vite 入口文件对比
 
-新建一个项目后，我们来看看入口文件有何不同。
+新建一个项目后，入口文件有如下不同。
 
 ::: code-group
 

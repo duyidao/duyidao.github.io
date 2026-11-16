@@ -32,7 +32,7 @@ flowchart TD
 
 1. 创建 PeerConnection 并声明媒体需求
 
-   拿到播放地址后，先关掉上一次的连接，再创建新的<word text="RTCPeerConnection"/>实例。这里 `iceServers` 传了空数组，因为无人机直播场景下浏览器和流媒体服务器在同一内网，不需要<word text="STUN"/> / <word text="TURN"/>做穿透。
+   拿到播放地址后，先关掉上一次的连接，再创建新的<word text="RTCPeerConnection"/>实例。这里 `iceServers` 传了空数组，因为无人机直播场景下浏览器和流媒体服务器在同一内网，不需要<word text="STUN"/>/<word text="TURN"/>做穿透。
 
    ```ts
    const pc = new RTCPeerConnection({ iceServers: [] })
@@ -47,7 +47,7 @@ flowchart TD
 
 2. 监听媒体轨道
 
-   <word text="RTCPeerConnection"/>的 `ontrack` 回调在<word text="ICE"/>协商完成、媒体流到达时触发。这里拿到 `streams[0]` 直接塞给 `<video>` 元素：
+<word text="RTCPeerConnection"/>的 `ontrack` 回调在<word text="ICE"/>协商完成、媒体流到达时触发。这里拿到 `streams[0]` 直接塞给 `<video>` 元素：
 
    ```ts
    pc.ontrack = (ev: RTCTrackEvent) => {
@@ -73,7 +73,7 @@ flowchart TD
 
 3. SDP 交换：`Offer → HTTP POST → Answer`
 
-   这是整条链路里最关键的一步。等<word text="ICE"/>候选收集完成（或超时 1 秒兜底），把本地<word text="SDP"/>通过<word text="HTTP"/> POST 发给<word text="ZLMediaKit"/>：
+   这是整条链路里最关键的一步。等<word text="ICE"/>候选收集完成（或超时 1 秒兜底），把本地<word text="SDP"/>通过<word text="HTTP"/>POST 发给<word text="ZLMediaKit"/>：
 
    ```ts
    pc.createOffer()

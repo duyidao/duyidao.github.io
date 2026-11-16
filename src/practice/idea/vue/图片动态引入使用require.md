@@ -65,7 +65,7 @@
 
 ## require 执行
 
-`require` 是<word text="Node" />方法，用于引入模块、<word text="JSON" />或本地文件。
+`require` 是<word text="Node.js"/>方法，用于引入模块、<word text="JSON" />或本地文件。
 
 [资源渲染](/idea/vue/图片动态引入使用require#资源渲染) 中提到，<word text="Webpack" />会将 `require` 引入的资源当成模块，根据配置文件规则打包。最后示例代码中编译后的场景分为两种：`img` 文件夹下的图片路径和 `base64`。
 

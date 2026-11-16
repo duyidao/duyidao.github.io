@@ -2,7 +2,7 @@
 
 ## CSS 前置知识
 
-通过设置 [-webkit-box-reflect](https://developer.mozilla.org/zh-CN/docs/Web/CSS/-webkit-box-reflect) <word text="CSS" />属性可让你将元素内容在特定方向上进行轴对称反射。
+通过设置 [-webkit-box-reflect](https://developer.mozilla.org/zh-CN/docs/Web/CSS/-webkit-box-reflect)<word text="CSS" />属性可让你将元素内容在特定方向上进行轴对称反射。
 
 该方法主要有三个属性值，分别如下：
 

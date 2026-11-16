@@ -244,7 +244,7 @@ ReactDOM.render(
 
 - `params` 传参
 
-  可以联想一下<word text="Vue" />或者<word text="Node" />的动态传参的方式，通过 `/:` 的方式接收动态的传参。代码如下所示：
+  可以联想一下<word text="Vue" />或者<word text="Node.js"/>的动态传参的方式，通过 `/:` 的方式接收动态的传参。代码如下所示：
 
   ```jsx
   <Link to={`/home/news/${item.id}/${item.title}`}></Link>
@@ -278,7 +278,7 @@ ReactDOM.render(
 
   接收的时候需要在 `location` 对象中的 `search` 属性中获取，该属性是一个字符串，如 `?id=0&title=daodao` ，需要我们手动转为对象的形式。
 
-  <word text="React" />脚手架下载好一个库 `querystring` ，其方法 `stringify()` 可以把一个对象转为 `key=value&key=value` 的格式；其 `parse()` 方法可以把该格式的字符串换为对象的形式。
+<word text="React" />脚手架下载好一个库 `querystring` ，其方法 `stringify()` 可以把一个对象转为 `key=value&key=value` 的格式；其 `parse()` 方法可以把该格式的字符串换为对象的形式。
 
   引入 `querystring` 后转换格式，示例代码如下：
 

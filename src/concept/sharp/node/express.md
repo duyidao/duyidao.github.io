@@ -2,8 +2,8 @@
 
 ## Node Express简介
 
-官方给出的概念：Express 是基于<word text="Node" />平台，快速、开放、极简的 Web 开发框架。
-通俗的理解：Express 的作用和<word text="Node" />内置的 `http` 模块类似，是专门用来创建 Web 服务器的。
+官方给出的概念：Express 是基于<word text="Node.js"/>平台，快速、开放、极简的 Web 开发框架。
+通俗的理解：Express 的作用和<word text="Node.js"/>内置的 `http` 模块类似，是专门用来创建 Web 服务器的。
 
 Express 的本质：就是一个 npm 上的第三方包，提供了快速创建 Web 服务器的便捷方法。
 [Express 的中文官网](http://www.expressjs.com.cn/)
@@ -559,7 +559,7 @@ CORS （`Cross-Origin Resource Sharing`，跨域资源共享）由一系列 HTTP
 
 ## nodemon
 
-在编写调试<word text="Node" />项目的时候，如果修改了项目的代码，则需要频繁的手动 `close` 掉，然后再重新启动，非常繁琐。
+在编写调试<word text="Node.js"/>项目的时候，如果修改了项目的代码，则需要频繁的手动 `close` 掉，然后再重新启动，非常繁琐。
 
 使用 [nodemon](https://www.npmjs.com/package/nodemon) 这个工具，它能够监听项目文件的变动，当代码被修改后，`nodemon` 会自动帮我们重启项目，极大方便了开发和调试。
 

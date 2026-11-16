@@ -65,7 +65,7 @@ fn() {
 
 > 原因：
 >
-> 1. <word text="Vue" />无法检测 `property` 的添加或移除。由于<word text="Vue" />在初始化实例时对 `property` 执行 `getter/setter` 转化，所以 `property` 必须在 `data` 对象上存在才能让<word text="Vue" />将其转换为响应式。
+> 1.<word text="Vue" />无法检测 `property` 的添加或移除。由于<word text="Vue" />在初始化实例时对 `property` 执行 `getter/setter` 转化，所以 `property` 必须在 `data` 对象上存在才能让<word text="Vue" />将其转换为响应式。
 > 2. 通过数组下标修改数组不会触发响应式。尤雨溪在 GitHub 上说明过，由于数组长度可能很大，通过索引修改数据的方式会造成很大的性能消耗，因此不对索引方法作额外处理。
 
 ### 数组响应式
@@ -385,7 +385,7 @@ const Component = {
 这里用 `onMounted` 函数代替了 `created` 生命周期钩子，"hello" 函数从 `hook` 中解构出来。<word text="Vue3" />的 `hook` 将逻辑保持在独立函数中，使组件代码保持清晰。
 
 > [!NOTE]
-> <word text="Vue3" />可继续使用 `mixin`。但推荐使用 `Composition API` 来组合和重用逻辑，使逻辑组合和重用更方便、灵活，可读性和可维护性更好。根据<word text="Vue3" />官方文档，`Mixin` 在<word text="Vue3" />中已被标记为不推荐，将来可能被 `Composition API` 完全取代。
+><word text="Vue3" />可继续使用 `mixin`。但推荐使用 `Composition API` 来组合和重用逻辑，使逻辑组合和重用更方便、灵活，可读性和可维护性更好。根据<word text="Vue3" />官方文档，`Mixin` 在<word text="Vue3" />中已被标记为不推荐，将来可能被 `Composition API` 完全取代。
 
 ## Vue2 与 Vue3 区别
 

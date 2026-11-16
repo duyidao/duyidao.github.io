@@ -4,7 +4,7 @@
 
 <word text="Token" />的消耗可理解为：每次提问传给智能体接口的字符越多，回答越长，消耗的<word text="Token" />越多。
 
-每次提问消耗的<word text="Token" /> = **传给大模型接口的 message 总字符量 + 大模型接口回答的字符量**。虽然<word text="Token" />并非按字符串量精确计算，但可如此近似理解。给大模型接口的字符串越多，<word text="Token" />消耗越大。
+每次提问消耗的<word text="Token" />= **传给大模型接口的 message 总字符量 + 大模型接口回答的字符量**。虽然<word text="Token" />并非按字符串量精确计算，但可如此近似理解。给大模型接口的字符串越多，<word text="Token" />消耗越大。
 
 为保障上下文，每轮问答都会存入 `message` 并推给智能体接口。用户持续提问将导致<word text="Token" />消耗急剧增长。
 

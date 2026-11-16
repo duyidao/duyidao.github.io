@@ -39,5 +39,5 @@
 - 基础使用篇：从零初始化项目，接入现代<word text="CSS"/>方案与<word text="Lint"/>工具链，掌握静态资源处理与预编译技巧，独立搭建完整脚手架。
 - 双引擎篇：深入<word text="esbuild"/>与<word text="Rollup"/>核心机制，掌握插件开发范式与最小必要知识，为高级应用奠基。
 - 高级应用篇：实战构建性能优化、自定义插件编写、生产环境智能拆包、<word text="SSR"/>工程搭建及基于模块联邦的跨应用架构。
-- 源码剖析篇：逐层拆解<word text="JIT"/>、Proxy Module、Module Graph、<word text="HMR"/> Boundary、Plugin Container 等核心概念，建立系统化源码阅读能力。
+- 源码剖析篇：逐层拆解<word text="JIT"/>、Proxy Module、Module Graph、<word text="HMR"/>Boundary、Plugin Container 等核心概念，建立系统化源码阅读能力。
 - 手写实战篇：从零手写 No-Bundle Dev Server 与简易 Bundler，完整覆盖<word text="AST"/>词法/语法分析、依赖图与作用域链构建、<word text="Tree Shaking"/>、循环依赖检测及代码生成，实现千行级底层原理实战。

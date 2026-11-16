@@ -38,7 +38,7 @@ useEffect(() => {
 
 :::
 
-机制解析：<word text="Vite"/> Dev Server 拦截图片请求，读取文件后返回 `/assets/xxx-xxx.png` 路径。<word text="CSS"/>中的 `url('@assets/...')` 与<word text="JavaScript"/> import 享受同一套路径解析与热更新逻辑。
+机制解析：<word text="Vite"/>Dev Server 拦截图片请求，读取文件后返回 `/assets/xxx-xxx.png` 路径。<word text="CSS"/>中的 `url('@assets/...')` 与<word text="JavaScript"/>import 享受同一套路径解析与热更新逻辑。
 
 ### <word text="SVG"/>组件化加载 (<word text="vite-plugin-svgr"/>)
 

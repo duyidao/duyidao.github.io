@@ -6,7 +6,7 @@
 
 ### **引入一个第三方库的方法、组件或对象，怎么取出这个方法、组件、对象的 ts 类型呢？**
 
-以<word text="Vue Router" />和 `vscode` 编辑器为例，在路由文件中鼠标悬停在 `createRouter` 方法上，按住 `ctrl` 键，鼠标单击左键，可以跳转到 `createRouter` 方法的类型注释上。
+以<word text="VueRouter"/>和 `vscode` 编辑器为例，在路由文件中鼠标悬停在 `createRouter` 方法上，按住 `ctrl` 键，鼠标单击左键，可以跳转到 `createRouter` 方法的类型注释上。
 
 ```js
 export declare function createRouter(options: RouterOptions): Router;
@@ -23,7 +23,7 @@ export declare interface RouterOptions extends PathParserOptions {
 }
 ```
 
-这些有什么用呢？<word text="Vue Router" />有一个方法 `addRoute` 可以添加路由规则，这个路由规则类型必须要正确才能生效，想要获取正确的路由规则类型，可以用上面的方法查看 `RouterOptions` 中的 `routes` 属性，这个属性的类型是 `Readonly<RouterRecordRaw[]>`，一路点击跳转到对应的方法、属性上，就能看到需要的类型了。也能引入这些规则，为自己的方法函数参数绑定类型说明。
+这些有什么用呢？<word text="VueRouter"/>有一个方法 `addRoute` 可以添加路由规则，这个路由规则类型必须要正确才能生效，想要获取正确的路由规则类型，可以用上面的方法查看 `RouterOptions` 中的 `routes` 属性，这个属性的类型是 `Readonly<RouterRecordRaw[]>`，一路点击跳转到对应的方法、属性上，就能看到需要的类型了。也能引入这些规则，为自己的方法函数参数绑定类型说明。
 
 ```js
 import type { RouteRecordRaw, Router } from "vue-router";

@@ -164,7 +164,7 @@ import vueofficeExcel from "@vue-office/excel";
 
 无论是 `Word` 还是 `Excel`，预览的数据源要么是线上地址，要么是 `DataURL`。若后端返回地址则直接使用；若返回<word text="Blob" />，则通过 `readAsDataURL` 方法转为 `Base64` 格式。
 
-### 拓展
+### React 用 fileviews 预览多格式文件
 
 <word text="React" />的第三方库 `fileviews` 支持多种文件格式预览，接收两个参数：
 

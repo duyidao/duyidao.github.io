@@ -86,7 +86,7 @@
 
    局限：语法冗长、回调嵌套深，代码可读性与维护性差；属过渡性社区方案，未成为终极标准。
 
-1. <word text="ESM"/> (ES Module)：官方大一统标准
+1. <word text="ESM"/>(ES Module)：官方大一统标准
    ECMAScript 官方推出的语言级模块规范，彻底终结规范割据。
    ::: code-group
 
@@ -106,7 +106,7 @@
 
    :::
    核心优势：
-   - 原生跨平台：现代浏览器 `(<script type="module">)` 与<word text="Node.js"/> (v12.20+) 双端原生支持。
+   - 原生跨平台：现代浏览器 `(<script type="module">)` 与<word text="Node.js"/>(v12.20+) 双端原生支持。
    - 静态分析友好：编译期即可确定依赖树，天然支持<word text="Tree Shaking"/>、预编译与依赖图优化。
    - 现代架构基石：浏览器原生<word text="ESM"/>使<word text="Vite"/>得以实现开发期 No-Bundle，跳过全量打包直接交由浏览器解析，性能提升一个量级。
 
@@ -130,7 +130,7 @@
 1. 基础使用篇：从 0 初始化项目，接入现代<word text="CSS"/>/<word text="Lint"/>工具链，掌握静态资源处理与预编译技巧，独立搭建完整脚手架。
 2. 双引擎篇：深入<word text="esbuild"/>与<word text="Rollup"/>核心机制，掌握插件开发范式与最小必要知识，为高级应用奠基。
 3. 高级应用篇：实战构建性能优化、自定义插件编写、生产环境智能拆包、<word text="SSR"/>工程搭建及模块联邦跨应用架构。
-4. 源码剖析篇：逐层拆解<word text="JIT"/>、Proxy Module、Module Graph、<word text="HMR"/> Boundary、Plugin Container 等核心概念，建立系统化源码阅读能力。
+4. 源码剖析篇：逐层拆解<word text="JIT"/>、Proxy Module、Module Graph、<word text="HMR"/>Boundary、Plugin Container 等核心概念，建立系统化源码阅读能力。
 5. 手写实战篇：从零手写 No-Bundle Dev Server 与简易 Bundler，覆盖<word text="AST"/>词法/语法分析、依赖图构建、<word text="Tree Shaking"/>、循环依赖检测及代码生成，实现千行级底层原理实战。
 
 ## ESM / CommonJS / AMD 核心特性对比总结

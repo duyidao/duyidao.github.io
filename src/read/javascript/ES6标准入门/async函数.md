@@ -1,6 +1,6 @@
 # async函数
 
-## 含义
+## async 是自带执行器的 Generator 语法糖
 
 <word text="ES7"/>引入了 `async` 函数，使得异步操作变得更加方便。`async` 可以看作 `Generator` 函数的语法糖，将 `Generator` 函数的星号（*）替换成 `async`，将 `yield` 替换成 `await`，仅此而已。
 

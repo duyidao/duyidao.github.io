@@ -10,7 +10,7 @@
 
 现阶段掌握且熟练运用的技能有前端三件套<word text="HTML"/>、<word text="CSS"/>、<word text="JavaScript"/>；前后端交互<word text="Axios"/>；框架<word text="Vue"/>、多端开发<word text="UniApp"/>等。<word text="React"/>与<word text="TypeScript"/>学习了，网上项目敲过，但还未正式企业项目中使用过。
 
-<word text="TypeScript"/>目前已经自学完并且根据网上的<word text="Vue3"/> + <word text="TypeScript"/>项目敲了两遍，<word text="React"/>还在自学阶段。
+<word text="TypeScript"/>目前已经自学完并且根据网上的<word text="Vue3"/>+<word text="TypeScript"/>项目敲了两遍，<word text="React"/>还在自学阶段。
 
 ## 学习计划
 

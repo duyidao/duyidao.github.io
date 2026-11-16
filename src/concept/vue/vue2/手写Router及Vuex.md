@@ -38,7 +38,7 @@ VueRouter 会调用插件的 `install` 方法。最后导出一个路由实例�
 
 > [!INFO] 题外话
 >
-> <word text="Node.js" />中没有前端 `url` 地址，因此内部采用的是 `memeryHistory` 。通过<word text="Node" />+<word text="Vue" />实现路由跳转。（服务端渲染能用到）
+><word text="Node.js" />中没有前端 `url` 地址，因此内部采用的是 `memeryHistory` 。通过<word text="Node.js"/>+<word text="Vue" />实现路由跳转。（服务端渲染能用到）
 
 ### VueRouter install 方法
 

@@ -4,9 +4,9 @@
 
 本节讲述<word text="ES6"/>这个名称的由来，首先需要理清<word text="ECMAScript"/>和<word text="JavaScript"/>的关系。在最开始 JavaScript 不叫 JavaScript，而是叫 ECMAScript。因此，**ECMAScript 是 JavaScript 的规格，JavaScript 是 ECMAScript 的一种实现**。
 
-## 含义
+## ES6 既指 2015 正式版也统称其后标准
 
-2011年，<word text="ECMAScript"/> 5.1 版本发布后，6.0 版本开始制定，这个版本改动较大，制定者希望能够6.1、6.2、6.3持续推进，最终决定每年6月更新发布一次标准版本。2015年6月，发布了 ECMAScript 6.0 版本。
+2011年，<word text="ECMAScript"/>5.1 版本发布后，6.0 版本开始制定，这个版本改动较大，制定者希望能够6.1、6.2、6.3持续推进，最终决定每年6月更新发布一次标准版本。2015年6月，发布了 ECMAScript 6.0 版本。
 
 ::: info 拓展
 因此，<word text="ES6"/>既是一个历史名词，也是一个泛指，含义是 5.1 版本以后的<word text="JavaScript"/>的下一代标准，涵盖了 ES2015、ES2016、ES2017 等，而 ES2015 则是正式名称，特指当年发布的正式版本的语言标准。
@@ -83,7 +83,7 @@ arr.map(function (item) {
 
 - 命令行转码 `babel-cli`
 
-  <word text="Babel"/>提供 `babel-cli` 工具，用于命令行转码。使用方式如下：
+<word text="Babel"/>提供 `babel-cli` 工具，用于命令行转码。使用方式如下：
   1. 下载依赖
 
   2. 改写 `package.json` 文件
@@ -146,7 +146,7 @@ arr.map(function (item) {
 
 - babel-polyfill
 
-  <word text="Babel"/>默认只转换新的 `JavaScript` 句法（`syntax`），而不转换新的<word text="API"/>，如 `Iterator`、`Generator`、`Set`、`Maps`、`Proxy`、`Reflect`、`Symbol`、`Promise` 等全局对象，以及一些定义在全局对象上的方法（如 `Object.assign`）都不会转码。
+<word text="Babel"/>默认只转换新的 `JavaScript` 句法（`syntax`），而不转换新的<word text="API"/>，如 `Iterator`、`Generator`、`Set`、`Maps`、`Proxy`、`Reflect`、`Symbol`、`Promise` 等全局对象，以及一些定义在全局对象上的方法（如 `Object.assign`）都不会转码。
 
   想让上述的方法运行，必须使用 `babel-polyfill` 为当前环境提供一个垫片。
 

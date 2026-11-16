@@ -73,7 +73,7 @@ export function proxyRefs<T extends object>(
 
    反之，直接将新值赋给 `ref`。
 
-## 使用
+## proxyRefs 解包 setup 返回值
 
 `proxyRefs` 函数的使用示例：
 

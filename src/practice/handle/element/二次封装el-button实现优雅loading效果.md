@@ -46,7 +46,7 @@ const clickFn3 = async () => {
 
 那么，如何二次封装一个 `el-button`？
 
-## 实现
+## 用 useAttrs 透传并内置 loading
 
 首先需要了解<word text="Vue" />提供的 `useAttrs` 组合式 API。该 API 可获取组件上除 `props` 以外的所有属性，如 `class`、`style` 等属性，以及 `click` 等事件。
 

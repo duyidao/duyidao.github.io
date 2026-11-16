@@ -49,7 +49,7 @@ pnpm i eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @types
 
 1. parser - 解析器
 
-   <word text="ESLint"/>默认使用<word text="Espree"/>（基于<word text="Acorn"/>）进行<word text="AST"/>解析，但<word text="Acorn"/>不支持<word text="TypeScript"/>，因此需要引入专门的解析器。
+<word text="ESLint"/>默认使用<word text="Espree"/>（基于<word text="Acorn"/>）进行<word text="AST"/>解析，但<word text="Acorn"/>不支持<word text="TypeScript"/>，因此需要引入专门的解析器。
 
    ```javascript
    // .eslintrc.js
@@ -102,7 +102,7 @@ pnpm i eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @types
 
 4. plugins - 插件
 
-   <word text="ESLint"/>本身没有内置<word text="TypeScript"/>的代码规则，需要通过插件拓展：
+<word text="ESLint"/>本身没有内置<word text="TypeScript"/>的代码规则，需要通过插件拓展：
 
    ```javascript
    module.exports = {
@@ -282,7 +282,7 @@ pnpm run lint:script
 
 ### 在<word text="Vite"/>中接入<word text="ESLint"/>
 
-安装<word text="Vite"/> <word text="ESLint"/>插件：
+安装<word text="Vite"/><word text="ESLint"/>插件：
 
 ```bash
 pnpm i vite-plugin-eslint -D
@@ -438,7 +438,7 @@ export default defineConfig({
 
 安装<word text="Stylelint"/>插件，实时感知样式代码规范问题。
 
-## <word text="Husky"/> + <word text="lint-staged"/>的<word text="Git"/>提交工作流
+## <word text="Husky"/>+<word text="lint-staged"/>的<word text="Git"/>提交工作流
 
 ### 为什么需要<word text="Git"/>提交前检查？
 
@@ -486,8 +486,8 @@ npx husky add .husky/pre-commit "npm run lint"
 
 > 注意事项：
 >
-> - <word text="Husky"/> 4.x 及以下版本可在 package.json 中配置
-> - <word text="Husky"/> 7.x 及以上版本必须使用 husky install 和 husky add 命令
+> -<word text="Husky"/>4.x 及以下版本可在 package.json 中配置
+> -<word text="Husky"/>7.x 及以上版本必须使用 husky install 和 husky add 命令
 
 ### <word text="lint-staged"/>解决全量扫描问题
 

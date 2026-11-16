@@ -48,7 +48,7 @@ defineProps<propsType>()
 
 ### 第三方库
 
-一些第三方库，比如<word text="Vue Router" />，在使用<word text="JavaScript" />写时如果只传了 `path` 没传 `component` 或 `redirct` ，不会有任何报错提示，直到项目运行。换成<word text="TypeScript" />后代码保存后就有提示。
+一些第三方库，比如<word text="VueRouter"/>，在使用<word text="JavaScript" />写时如果只传了 `path` 没传 `component` 或 `redirct` ，不会有任何报错提示，直到项目运行。换成<word text="TypeScript" />后代码保存后就有提示。
 
 ![报错](https://pic.imgdb.cn/item/6609408c9f345e8d037af522.png)
 
@@ -100,7 +100,7 @@ console.log(list.value.a)
 
 ### 第三方库使用时没定义每个属性
 
-比如使用<word text="Vue Router" />，在函数接收形参时会报错说有隐式 `any` 类型。此时可以鼠标悬停查看其类型，一般正规大型的第三方库可以导出。导出后使用即可。
+比如使用<word text="VueRouter"/>，在函数接收形参时会报错说有隐式 `any` 类型。此时可以鼠标悬停查看其类型，一般正规大型的第三方库可以导出。导出后使用即可。
 
 ```tsx
 import type { RouteRecordRaw } from 'vue-router'

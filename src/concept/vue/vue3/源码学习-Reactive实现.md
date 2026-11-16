@@ -274,7 +274,7 @@ function triggerReactive(target, key, res) {
 
 第一行是一开始执行 `effect` 回调函数运行到 `stat.count` 这行代码时，触发了 `get` 收集依赖.然后执行回调函数 `console.log` 打印 `state.count` 的值，此时 `state.count` 的值是 `1`。过了一秒后修改了 `state.a` 的值，触发了 `set` 。
 
-触发 `set` 后理应重新执行依赖项 `effect` 回调函数，但是并没有，我们来看看 `WeakMap` 中有没有收集到它的依赖项。回到 `trackReactive` 函数，打印 `target` 和 `key` 看看：
+触发 `set` 后理应重新执行依赖项 `effect` 回调函数，但是并没有。接着检查 `WeakMap` 中是否收集到对应依赖。回到 `trackReactive` 函数，打印 `target` 和 `key`：
 
 ![打印](https://pic1.imgdb.cn/item/681efe3e58cb8da5c8eacc33.png)
 

@@ -4,7 +4,7 @@
 
 <word text="Rollup"/>是一款基于<word text="ESM"/>模块规范实现的<word text="JavaScript"/>打包工具，既是<word text="Vite"/>生产环境下的核心打包引擎，其插件机制也被<word text="Vite"/>完整兼容，堪称<word text="Vite"/>的构建基石。
 
-本文把「基础使用」与「插件机制」两大部分合并为一条完整的知识链路：先从零跑通一次打包，掌握 `input`、`output`、`external`、`plugins` 等核心配置与<word text="JavaScript API"/>的编程式调用；再深入<word text="Rollup"/>的<word text="Build 阶段"/> / <word text="Output 阶段"/>两大构建生命周期，拆解<word text="Hook"/>的五种执行类型与完整工作流；最后以官方插件源码为范例，实战 `resolveId`、`load`、`transform`、`renderChunk`、`generateBundle` 五个高频<word text="Hook"/>，建立可独立编写<word text="Rollup 插件"/>的能力。
+本文把「基础使用」与「插件机制」两大部分合并为一条完整的知识链路：先从零跑通一次打包，掌握 `input`、`output`、`external`、`plugins` 等核心配置与<word text="JavaScript API"/>的编程式调用；再深入<word text="Rollup"/>的<word text="Build 阶段"/>/<word text="Output 阶段"/>两大构建生命周期，拆解<word text="Hook"/>的五种执行类型与完整工作流；最后以官方插件源码为范例，实战 `resolveId`、`load`、`transform`、`renderChunk`、`generateBundle` 五个高频<word text="Hook"/>，建立可独立编写<word text="Rollup 插件"/>的能力。
 
 ## Rollup 在 Vite 架构中的定位
 
@@ -199,7 +199,7 @@ export default [buildIndexOptions, buildUtilOptions]
 }
 ```
 
-在<word text="SSR"/>构建或 ESM <word text="CDN"/>场景下，这个配置极为关键——产物中保留 `import 'react'` 的原始语句，交由运行时环境提供依赖。
+在<word text="SSR"/>构建或 ESM<word text="CDN"/>场景下，这个配置极为关键——产物中保留 `import 'react'` 的原始语句，交由运行时环境提供依赖。
 
 ### 用插件补足 CommonJS 等原生不支持的能力
 
@@ -791,7 +791,7 @@ export default function replace(options = {}) {
 
 ### generateBundle 产物落盘前最后修改
 
-`generateBundle` 为异步串行钩子，可在此删除无用<word text="Chunk"/> / 静态资源，或自行添加文件。以官方 `html` 插件为例：
+`generateBundle` 为异步串行钩子，可在此删除无用<word text="Chunk"/>/ 静态资源，或自行添加文件。以官方 `html` 插件为例：
 
 ```javascript [html 插件]
 export default function html(opts = {}) {

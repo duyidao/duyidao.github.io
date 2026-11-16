@@ -615,17 +615,6 @@
     ],
     "authors": []
   },
-  "practice/ai/企业级AI应用开发实战(js版)/markdown 语法及渲染": {
-    "title": "Markdown 语法及前端渲染实践",
-    "description": "梳理 Markdown 基础语法，介绍基于 VueMarkdown、remark-gfm、rehype-highlight 等插件实现代码高亮、自定义样式与插槽定制的完整渲染方案。",
-    "tags": [
-      "markdown",
-      "vue",
-      "highlight",
-      "rendering"
-    ],
-    "authors": []
-  },
   "practice/ai/企业级AI应用开发实战(js版)/Token 消耗优化": {
     "title": "Token 消耗优化策略",
     "description": "分析大模型 Token 消耗机制，提供限制对话长度、AI 总结截取内容、RAG 向量检索等优化方案，降低 API 调用成本。",
@@ -2239,25 +2228,6 @@
       }
     ]
   },
-  "read/vite/深入浅出Vite/代码规范-如何利用 Lint 工具链来保证代码风格和质量？": {
-    "title": "代码规范-如何利用 Lint 工具链来保证代码风格和质量？",
-    "description": "系统介绍前端代码规范工具链：ESLint 配置与原理、Prettier 格式化、Stylelint 样式检查、Husky+lint-staged Git 提交工作流及 Commitlint 提交信息规范。",
-    "tags": [
-      "vite",
-      "eslint",
-      "prettier",
-      "stylelint",
-      "husky",
-      "lint-staged"
-    ],
-    "authors": [
-      {
-        "author": "神三元",
-        "link": "https://juejin.cn/book/7050063811973218341",
-        "title": "深入浅出 Vite"
-      }
-    ]
-  },
   "read/vue/Vue.js设计与实现/响应系统的作用与实现": {
     "title": "响应系统的作用与实现",
     "description": "深入讲解 Vue.js 响应系统的核心原理：响应式数据与副作用函数、Proxy 代理、WeakMap 依赖收集、分支切换与 cleanup 清理机制。",
@@ -3759,17 +3729,6 @@
     ],
     "authors": []
   },
-  "concept/sharp/node/NPM": {
-    "title": "npm",
-    "description": "讲解 npm 包管理工具的使用，包括 package.json、依赖管理、脚本配置等。",
-    "tags": [
-      "nodejs",
-      "npm",
-      "package-manager",
-      "dependency"
-    ],
-    "authors": []
-  },
   "concept/sharp/node/http": {
     "title": "Node.js HTTP 模块",
     "description": "讲解 Node.js http 模块的使用，包括创建服务器、处理请求与响应等。",
@@ -3986,18 +3945,6 @@
       "MapVThree",
       "threejs",
       "component"
-    ],
-    "authors": []
-  },
-  "work/百度/图业融合/BUG修改与记录": {
-    "title": "BUG 修改与记录",
-    "description": "记录百度图业融合项目中的 Bug 排查与修复，包括 JSON 解析错误、组件库问题、Vue 响应式问题等。",
-    "tags": [
-      "baidu",
-      "bug",
-      "debug",
-      "vue",
-      "element-ui"
     ],
     "authors": []
   },
@@ -4419,18 +4366,6 @@
     ],
     "authors": []
   },
-  "work/数说/需求洞察/Tooltip无法显示": {
-    "title": "ECharts Tooltip 无法显示问题排查",
-    "description": "排查和解决 ECharts 组件 Tooltip 无法显示的问题，涉及 Vue3 响应式与 ECharts 实例冲突。",
-    "tags": [
-      "shushuo",
-      "echarts",
-      "tooltip",
-      "vue3",
-      "debug"
-    ],
-    "authors": []
-  },
   "work/数说/nourseN次方/移动端/移动端跨域Iframe本地存储失效问题排查与解决": {
     "title": "移动端跨域 Iframe 本地存储失效问题",
     "description": "排查移动端跨域 Iframe 导致 localStorage 无法获取的问题，分析根因并给出解决方案。",
@@ -4595,18 +4530,6 @@
       "map",
       "drone",
       "gis"
-    ],
-    "authors": []
-  },
-  "work/南网/无人机/公共视频播放组件的封装与拓展": {
-    "title": "公共视频播放组件封装",
-    "description": "讲解南网无人机项目中公共视频播放组件的封装与拓展实现。",
-    "tags": [
-      "nangwang",
-      "video",
-      "player",
-      "component",
-      "vue"
     ],
     "authors": []
   },
@@ -4984,7 +4907,37 @@
     ],
     "authors": []
   },
-  "read/vite/深入浅出Vite/开篇": {
+  "vitepress/css": {
+    "title": "样式美化",
+    "description": "VitePress 博客样式美化指南，包括自定义主题、CSS 变量覆盖和响应式布局调整。",
+    "tags": [
+      "vitepress",
+      "css",
+      "theme",
+      "style"
+    ],
+    "authors": []
+  },
+  "read/vite/深入浅出Vite/代码规范：如何利用 Lint 工具链来保证代码风格和质量？": {
+    "title": "前端代码规范工具链",
+    "description": "系统介绍前端代码规范工具链：ESLint 配置与原理、Prettier 格式化、Stylelint 样式检查、Husky+lint-staged Git 提交工作流及 Commitlint 提交信息规范。",
+    "tags": [
+      "vite",
+      "eslint",
+      "prettier",
+      "stylelint",
+      "husky",
+      "lint-staged"
+    ],
+    "authors": [
+      {
+        "author": "神三元",
+        "link": "https://juejin.cn/book/7050063811973218341",
+        "title": "深入浅出 Vite"
+      }
+    ]
+  },
+  "read/vite/深入浅出Vite/开篇：让 Vite 助力你的前端工程化之路": {
     "title": "开篇 ：让 Vite 助力你的前端工程化之路",
     "description": "深入浅出 Vite 系列开篇，介绍 Vite 的诞生背景、核心优势以及前端工程化的发展历程。",
     "tags": [
@@ -4995,14 +4948,122 @@
     ],
     "authors": []
   },
-  "vitepress/css": {
-    "title": "样式美化",
-    "description": "VitePress 博客样式美化指南，包括自定义主题、CSS 变量覆盖和响应式布局调整。",
+  "practice/ai/AI Agent+智能大屏设计器/第二章 AI Agent 工程基础/LangChain框架": {
+    "title": "LangChain框架",
+    "description": "介绍 LangChain 作为大模型应用开发框架的定位与组成，说明如何用链式调用把模型、提示词与工具组装成可执行流程。",
     "tags": [
-      "vitepress",
-      "css",
-      "theme",
-      "style"
+      "ai",
+      "langchain",
+      "llm",
+      "agent"
+    ],
+    "authors": []
+  },
+  "practice/ai/AI Agent+智能大屏设计器/第二章 AI Agent 工程基础/LLM是什么": {
+    "title": "什么是 LLM",
+    "description": "说明大语言模型的训练数据基础、上下文理解方式，以及通过预测下一个 Token 生成自然语言的原理。",
+    "tags": [
+      "ai",
+      "llm",
+      "token",
+      "nlp"
+    ],
+    "authors": []
+  },
+  "practice/ai/AI Agent+智能大屏设计器/第二章 AI Agent 工程基础/前言": {
+    "title": "从问答到 Agent 执行",
+    "description": "交代 AI 从问答到执行任务的转变，以及本系列从工程基础到 Agent 落地的学习安排。",
+    "tags": [
+      "ai",
+      "agent",
+      "intro"
+    ],
+    "authors": []
+  },
+  "practice/ai/AI Agent+智能大屏设计器/第二章 AI Agent 工程基础/提示词工程": {
+    "title": "提示词工程",
+    "description": "讲解面向大模型的提示词设计方法，包括角色、约束与结构化输出等工程化写法。",
+    "tags": [
+      "ai",
+      "prompt",
+      "llm"
+    ],
+    "authors": []
+  },
+  "practice/ai/AI Agent+智能大屏设计器/第二章 AI Agent 工程基础/调试大模型 API": {
+    "title": "购买调试大模型 API",
+    "description": "以阿里百炼为例说明大模型 API 的开通、鉴权与调试流程，便于后续课程直接调用。",
+    "tags": [
+      "ai",
+      "api",
+      "bailian",
+      "llm"
+    ],
+    "authors": []
+  },
+  "practice/ai/AI Agent+智能大屏设计器/第二章 AI Agent 工程基础/项目搭建": {
+    "title": "项目搭建",
+    "description": "给出 Node.js 与 pnpm 版本要求及项目初始化步骤，作为后续 Agent 实验的工程起点。",
+    "tags": [
+      "ai",
+      "nodejs",
+      "pnpm",
+      "setup"
+    ],
+    "authors": []
+  },
+  "read/vite/深入浅出Vite/双引擎架构：Vite 是如何站在巨人的肩膀上实现的？": {
+    "title": "双引擎架构：Vite 是如何站在巨人的肩膀上实现的？",
+    "description": "拆解 Vite 对 Esbuild 与 Rollup 的分工，说明预构建、转译、压缩与生产打包如何组成双引擎架构。",
+    "tags": [
+      "vite",
+      "esbuild",
+      "rollup",
+      "architecture"
+    ],
+    "authors": []
+  },
+  "work/南网/无人机/Cesium室外实景模型渲染设计与实践": {
+    "title": "Cesium 3D Tiles（b3dm）室外实景模型渲染设计与实践",
+    "description": "介绍倾斜摄影 3D Tiles 成果在 Cesium 中的加载、瓦片判定与室外实景渲染实践。",
+    "tags": [
+      "cesium",
+      "3d-tiles",
+      "b3dm",
+      "gis"
+    ],
+    "authors": []
+  },
+  "work/南网/无人机/企业级定时任务Cron表达式的前端优雅封装与实战": {
+    "title": "企业级定时任务 Cron 表达式的前端优雅封装与实战",
+    "description": "讲解巡检定时任务配置界面如何将用户选择转换为 Quartz Cron 表达式，以及工具模块的封装方式。",
+    "tags": [
+      "cron",
+      "quartz",
+      "vue",
+      "utils"
+    ],
+    "authors": []
+  },
+  "work/南网/无人机/点云2D地图模块设计与实践": {
+    "title": "点云 2D 地图（PNG + 元数据）模块设计与实践",
+    "description": "说明室内点云由 3D 改为高度切片 2D 俯视图的原因，以及 PNG 与元数据在 Leaflet 上的叠加与交互。",
+    "tags": [
+      "point-cloud",
+      "leaflet",
+      "map",
+      "png"
+    ],
+    "authors": []
+  },
+  "work/南网/无人机/点云3D可视化与标注模块": {
+    "title": "点云3D可视化与标注模块",
+    "description": "介绍浏览器端 PCD 点云展示、模型资产管理与空间标注的实现路径。",
+    "tags": [
+      "point-cloud",
+      "threejs",
+      "pcd",
+      "annotation"
     ],
     "authors": []
   }

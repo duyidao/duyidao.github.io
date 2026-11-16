@@ -205,7 +205,7 @@ export default {
 
 > [!IMPORTANT] 总结
 >
-> <word text="DOM" />中插值表达式赋值, <word text="Vue" />的变量必须在 `data` 里声明。
+><word text="DOM" />中插值表达式赋值,<word text="Vue" />的变量必须在 `data` 里声明。
 
 ### Vue `MVVM` 设计模式
 
@@ -247,7 +247,7 @@ export default {
 
 > [!IMPORTANT] 总结
 >
-> <word text="Vue" />指令, 实质上就是特殊的 `html` 标签属性, 特点: `v-` 开头。`v-bind` 把<word text="Vue" />变量的值, 赋予给<word text="DOM" />属性上, 影响标签显示效果。
+><word text="Vue" />指令, 实质上就是特殊的 `html` 标签属性, 特点: `v-` 开头。`v-bind` 把<word text="Vue" />变量的值, 赋予给<word text="DOM" />属性上, 影响标签显示效果。
 
 #### Vue 指令 v-bind 动态参数
 
@@ -865,7 +865,7 @@ Vue.component('custom-input', {
 
 > [!WARNING] 注意
 >
-> <word text="Vue" />不能监测到数组里赋值的动作而更新, 如果需要请使用 `Vue.set()` 或者 `this.$set()` ，或者覆盖整个数组。即直接采用**数组[索引]**的方式修改值是不会被 `v-for` 监测到的。关于这点下图为<word text="Vue" />创始人和发现这个问题并在 `issue` 上提问的程序员的对话截图。知道即可。
+><word text="Vue" />不能监测到数组里赋值的动作而更新, 如果需要请使用 `Vue.set()` 或者 `this.$set()` ，或者覆盖整个数组。即直接采用**数组[索引]**的方式修改值是不会被 `v-for` 监测到的。关于这点下图为<word text="Vue" />创始人和发现这个问题并在 `issue` 上提问的程序员的对话截图。知道即可。
 
 #### Vue 指令 v-for 的就地更新与虚拟 DOM
 

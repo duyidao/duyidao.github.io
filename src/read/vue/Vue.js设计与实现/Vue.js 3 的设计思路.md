@@ -293,7 +293,7 @@ render() {
 
 ## 总结
 
-<word text="Vue.js"/> 3 是由编译器、渲染器等模块组成的有机整体，各模块相互协作，共同实现高效、灵活的前端开发体验。采用声明式编程，让用户通过模板或<word text="JavaScript"/>对象描述<word text="UI"/>，无需手动操作<word text="DOM"/>。
+<word text="Vue.js"/>3 是由编译器、渲染器等模块组成的有机整体，各模块相互协作，共同实现高效、灵活的前端开发体验。采用声明式编程，让用户通过模板或<word text="JavaScript"/>对象描述<word text="UI"/>，无需手动操作<word text="DOM"/>。
 
 - 声明式 UI 描述：通过模板或<word text="虚拟DOM"/>对象（如使用 `h` 函数创建）来声明<word text="UI"/>，包括<word text="DOM"/>元素、属性、事件和层级结构等。
 - 渲染器渲染虚拟 DOM：渲染器接收<word text="虚拟DOM"/>和挂载容器两个参数，将<word text="虚拟DOM"/>转换为真实<word text="DOM"/>并插入容器。渲染器会处理元素创建、属性设置、事件绑定和子元素递归渲染等操作。

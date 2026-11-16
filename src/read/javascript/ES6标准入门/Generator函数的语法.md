@@ -456,7 +456,7 @@ obj.a // undefined
 
 上面代码中，`Generator` 函数 `g` 在 `this` 对象上添加了一个属性 `a`，但是 `obj` 对象拿不到这个属性。
 
-## 含义
+## Generator 是封装多状态的遍历器生成函数
 
 ## 总结
 

@@ -21,7 +21,7 @@
 - 类型：`JVXETypes.slot` 。
 - 参数：`slotName`：**【必填】** slot 的名称，根据该字段做具名插槽。
 
-## 使用
+## 具名插槽在单元格切换输入框与效果图
 
 ::: code-group
 
@@ -86,6 +86,6 @@ handleOkConsultDesign(record, props) {
 },
 ```
 
-## 拓展
+## 确定时 Object.assign 合并行数据而非写入 dataSource
 
 一开始使用 `j-vxe-table` 组件时看文档以为他新增时数据保存到 `dataSource` 数组内，在那里操作数据好一会发现没有数据可操作，点击底层代码后才得知，他的原理是点击确定按钮后通过 `Object.ossign` 把数据合并传参，点击编辑后才把数据赋值给 `dataSource` 做回显操作。

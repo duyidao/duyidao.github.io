@@ -3,883 +3,1518 @@
     "en": "Vite",
     "cn": "Vite",
     "descript": "下一代前端构建工具，提供快速的开发服务器和优化的生产构建，由 Vue.js 作者开发。",
-    "tags": ["build", "tool", "frontend"]
+    "tags": [
+      "build",
+      "tool",
+      "frontend"
+    ]
   },
   "Vue3": {
     "en": "Vue3",
     "cn": "Vue3",
     "descript": "Vue.js 框架的最新主要版本，引入组合式 API 和基于 Proxy 的响应式系统，性能与开发体验大幅提升。",
-    "tags": ["framework", "vue", "javascript"]
+    "tags": [
+      "framework",
+      "vue",
+      "javascript"
+    ]
   },
   "Vue2": {
     "en": "Vue2",
     "cn": "Vue2",
     "descript": "Vue.js 框架的经典版本，基于 Object.defineProperty 实现响应式系统，广泛应用于企业级中后台项目。",
-    "tags": ["framework", "vue", "javascript"]
+    "tags": [
+      "framework",
+      "vue",
+      "javascript"
+    ]
   },
   "Vue": {
     "en": "Vue",
     "cn": "Vue 框架",
     "descript": "一套用于构建用户界面的渐进式 JavaScript 框架，核心库专注于视图层，易于与第三方库或既有项目整合。",
-    "tags": ["framework", "frontend", "javascript"]
+    "tags": [
+      "framework",
+      "frontend",
+      "javascript"
+    ]
   },
   "TypeScript": {
     "en": "TypeScript",
     "cn": "TypeScript 编程语言",
     "descript": "由微软开发的自由和开源的编程语言，作为 JavaScript 的超集，添加了静态类型系统和基于类的面向对象编程支持。",
-    "tags": ["language", "typescript", "type-safety"]
+    "tags": [
+      "language",
+      "typescript",
+      "type-safety"
+    ]
   },
   "UnpluginVueRouter": {
     "en": "UnpluginVueRouter",
     "cn": "Vue 自动化路由插件",
     "descript": "基于文件系统的 Vue Router 自动化插件，支持自动生成路由配置、动态参数推导及 TypeScript 类型声明文件。",
-    "tags": ["vue", "router", "plugin", "vite"]
+    "tags": [
+      "vue",
+      "router",
+      "plugin",
+      "vite"
+    ]
   },
   "AutoImport": {
     "en": "AutoImport",
     "cn": "自动导入插件",
     "descript": "Vite/Webpack 插件，用于按需自动导入 Vue、Vue Router 等 API，无需手动编写 import 语句，并生成对应的 TypeScript 声明。",
-    "tags": ["vite", "plugin", "auto-import"]
+    "tags": [
+      "vite",
+      "plugin",
+      "auto-import"
+    ]
   },
   "SSE": {
     "en": "SSE",
     "cn": "服务器推送事件",
     "descript": "Server-Sent Events 的缩写，一种允许服务器通过 HTTP 连接向客户端推送实时更新的 Web 技术，适用于单向流式数据场景。",
-    "tags": ["network", "protocol", "streaming"]
+    "tags": [
+      "network",
+      "protocol",
+      "streaming"
+    ]
   },
   "Ant Design X Vue": {
     "en": "Ant Design X Vue",
     "cn": "Ant Design X Vue 组件库",
     "descript": "基于 Vue 3 的 AI 交互组件库，提供流式对话、模型调度、消息管理等开箱即用的 AI 应用开发组件。",
-    "tags": ["ui", "component", "ai", "vue3"]
+    "tags": [
+      "ui",
+      "component",
+      "ai",
+      "vue3"
+    ]
   },
   "XRequest": {
     "en": "XRequest",
     "cn": "XRequest 请求实例",
     "descript": "Ant Design X Vue 提供的流式请求工厂函数，用于初始化 SSE 连接并处理流式数据块的回调。",
-    "tags": ["ai", "request", "sse"]
+    "tags": [
+      "ai",
+      "request",
+      "sse"
+    ]
   },
   "AbortController": {
     "en": "AbortController",
     "cn": "中断控制器",
     "descript": "Web API 提供的接口，用于在一个或多个 DOM 请求完成前中断它们，常与 fetch 结合实现请求取消功能。",
-    "tags": ["web", "api", "network"]
+    "tags": [
+      "web",
+      "api",
+      "network"
+    ]
   },
   "EventSource": {
     "en": "EventSource",
     "cn": "事件源接口",
     "descript": "Web API 提供的接口，用于接收服务器推送事件（SSE），通过 HTTP 连接保持打开状态以接收实时更新。",
-    "tags": ["web", "api", "sse"]
+    "tags": [
+      "web",
+      "api",
+      "sse"
+    ]
   },
   "WebSocket": {
     "en": "WebSocket",
     "cn": "WebSocket 协议",
     "descript": "一种在单个 TCP 连接上进行全双工通信的协议，允许客户端与服务器之间进行低延迟的实时数据交换。",
-    "tags": ["network", "protocol", "realtime"]
+    "tags": [
+      "network",
+      "protocol",
+      "realtime"
+    ]
   },
   "VueUse": {
     "en": "VueUse",
     "cn": "VueUse 工具集",
     "descript": "基于 Vue 组合式 API 的实用工具函数集合，提供丰富的响应式钩子（如 useScroll、useDocumentVisibility 等）。",
-    "tags": ["vue", "utils", "composition-api"]
+    "tags": [
+      "vue",
+      "utils",
+      "composition-api"
+    ]
   },
   "Range": {
     "en": "Range",
     "cn": "文档范围对象",
     "descript": "DOM API 提供的接口，表示文档中的一个连续范围（选区），可用于提取、操作或复制页面中的特定内容。",
-    "tags": ["dom", "api", "selection"]
+    "tags": [
+      "dom",
+      "api",
+      "selection"
+    ]
   },
   "Selection": {
     "en": "Selection",
     "cn": "选区对象",
     "descript": "DOM API 提供的接口，表示用户选择的文本范围或光标位置，通过 window.getSelection() 获取。",
-    "tags": ["dom", "api", "selection"]
+    "tags": [
+      "dom",
+      "api",
+      "selection"
+    ]
   },
   "ClipboardItem": {
     "en": "ClipboardItem",
     "cn": "剪贴板数据项",
     "descript": "Clipboard API 提供的接口，用于表示写入或读取剪贴板的数据项，支持多种 MIME 类型（如 text/html、image/png）。",
-    "tags": ["web", "api", "clipboard"]
+    "tags": [
+      "web",
+      "api",
+      "clipboard"
+    ]
   },
   "Blob": {
     "en": "Blob",
     "cn": "二进制大对象",
     "descript": "Web API 提供的接口，表示一个不可变、原始数据的类文件对象，常用于存储文件或剪贴板富文本数据。",
-    "tags": ["web", "api", "file"]
+    "tags": [
+      "web",
+      "api",
+      "file"
+    ]
   },
   "FOIT": {
     "en": "FOIT",
     "cn": "不可见文本闪烁",
     "descript": "Flash of Invisible Text 的缩写，指在 Web 字体加载完成前，浏览器隐藏文本内容以避免布局偏移的现象。",
-    "tags": ["web", "performance", "font"]
+    "tags": [
+      "web",
+      "performance",
+      "font"
+    ]
   },
   "FOUT": {
     "en": "FOUT",
     "cn": "无样式文本闪烁",
     "descript": "Flash of Unstyled Text 的缩写，指在 Web 字体加载完成前，浏览器使用系统默认字体渲染文本，加载完成后发生字体替换的现象。",
-    "tags": ["web", "performance", "font"]
+    "tags": [
+      "web",
+      "performance",
+      "font"
+    ]
   },
   "Reflow": {
     "en": "Reflow",
     "cn": "重排/回流",
     "descript": "浏览器渲染引擎重新计算文档中元素的几何位置和大小的过程，通常由 DOM 结构或样式变更触发，消耗较高性能。",
-    "tags": ["browser", "rendering", "performance"]
+    "tags": [
+      "browser",
+      "rendering",
+      "performance"
+    ]
   },
   "Repaint": {
     "en": "Repaint",
     "cn": "重绘",
     "descript": "浏览器重新绘制元素外观（如颜色、背景）的过程，不涉及几何位置计算，性能消耗低于 Reflow。",
-    "tags": ["browser", "rendering", "performance"]
+    "tags": [
+      "browser",
+      "rendering",
+      "performance"
+    ]
   },
   "Layout": {
     "en": "Layout",
     "cn": "布局计算",
     "descript": "浏览器渲染流水线中的布局阶段，负责计算 DOM 树中每个元素的精确位置和大小（即 Reflow 过程）。",
-    "tags": ["browser", "rendering", "pipeline"]
+    "tags": [
+      "browser",
+      "rendering",
+      "pipeline"
+    ]
   },
   "Paint": {
     "en": "Paint",
     "cn": "绘制阶段",
     "descript": "浏览器渲染流水线中的绘制阶段，负责将布局计算后的元素转换为屏幕上的实际像素（即 Repaint 过程）。",
-    "tags": ["browser", "rendering", "pipeline"]
+    "tags": [
+      "browser",
+      "rendering",
+      "pipeline"
+    ]
   },
   "Promise": {
     "en": "Promise",
     "cn": "Promise 对象",
     "descript": "JavaScript 中用于异步操作的最终完成（或失败）及其结果值的对象，是现代异步编程的核心基础。",
-    "tags": ["javascript", "async", "es6"]
+    "tags": [
+      "javascript",
+      "async",
+      "es6"
+    ]
   },
   "URL": {
     "en": "URL",
     "cn": "统一资源定位符",
     "descript": "Uniform Resource Locator 的缩写，用于完整描述 Internet 上信息资源的位置和访问方法。",
-    "tags": ["web", "network", "standard"]
+    "tags": [
+      "web",
+      "network",
+      "standard"
+    ]
   },
   "API": {
     "en": "API",
     "cn": "应用程序编程接口",
     "descript": "Application Programming Interface 的缩写，指软件系统不同组成部分衔接的约定，用于提供组件与系统间的交互能力。",
-    "tags": ["software", "development", "interface"]
+    "tags": [
+      "software",
+      "development",
+      "interface"
+    ]
   },
   "DOM": {
     "en": "DOM",
     "cn": "文档对象模型",
     "descript": "Document Object Model 的缩写，是 HTML 和 XML 文档的编程接口，提供了对文档的结构化表述及动态操作能力。",
-    "tags": ["web", "api", "browser"]
+    "tags": [
+      "web",
+      "api",
+      "browser"
+    ]
   },
   "HTML": {
     "en": "HTML",
     "cn": "超文本标记语言",
     "descript": "HyperText Markup Language 的缩写，用于创建网页结构的标准标记语言，是 Web 开发的基础。",
-    "tags": ["web", "standard", "markup"]
+    "tags": [
+      "web",
+      "standard",
+      "markup"
+    ]
   },
   "CSS": {
     "en": "CSS",
     "cn": "层叠样式表",
     "descript": "Cascading Style Sheets 的缩写，用于描述 HTML 文档的呈现效果，包括布局、颜色、字体等视觉样式。",
-    "tags": ["web", "style", "frontend"]
+    "tags": [
+      "web",
+      "style",
+      "frontend"
+    ]
   },
   "JSON": {
     "en": "JSON",
     "cn": "JavaScript 对象表示法",
     "descript": "JavaScript Object Notation 的缩写，是一种轻量级的数据交换格式，采用完全独立于编程语言的文本格式存储数据。",
-    "tags": ["data", "format", "exchange"]
+    "tags": [
+      "data",
+      "format",
+      "exchange"
+    ]
   },
   "HTTP": {
     "en": "HTTP",
     "cn": "超文本传输协议",
     "descript": "HyperText Transfer Protocol 的缩写，是一种用于分布式、协作式和超媒体信息系统的应用层协议，是万维网数据通信的基础。",
-    "tags": ["network", "protocol", "web"]
+    "tags": [
+      "network",
+      "protocol",
+      "web"
+    ]
   },
   "Proxy": {
     "en": "Proxy",
     "cn": "Proxy 代理器",
     "descript": "ES6 提供的对象代理机制，用于拦截和自定义对象的基本操作（如属性读取、赋值、函数调用等），支持 13 种拦截方法，可在不修改目标对象的情况下控制对对象的访问，是 Vue3 响应式系统的核心。",
-    "tags": ["javascript", "es6", "proxy", "metaprogramming", "vue3"]
+    "tags": [
+      "javascript",
+      "es6",
+      "proxy",
+      "metaprogramming",
+      "vue3"
+    ]
   },
   "ECharts": {
     "en": "ECharts",
     "cn": "ECharts 可视化图表库",
     "descript": "由 Apache 软件基金会孵化的开源 JavaScript 数据可视化图表库，提供直观、交互丰富、可高度个性化定制的数据可视化图表。",
-    "tags": ["chart", "visualization", "javascript"]
+    "tags": [
+      "chart",
+      "visualization",
+      "javascript"
+    ]
   },
   "Pinia": {
     "en": "Pinia",
     "cn": "Pinia 状态管理库",
     "descript": "Vue.js 的新一代状态管理库，被官方推荐为 Vuex 的替代品，提供类型安全、模块化及组合式 API 支持。",
-    "tags": ["vue", "state", "management"]
+    "tags": [
+      "vue",
+      "state",
+      "management"
+    ]
   },
   "GeoJSON": {
     "en": "GeoJSON",
     "cn": "地理空间数据交换格式",
     "descript": "一种基于 JSON 格式的地理空间数据交换标准，用于编码各种地理数据结构，如点、线、面及属性信息。",
-    "tags": ["geo", "data", "format"]
+    "tags": [
+      "geo",
+      "data",
+      "format"
+    ]
   },
   "JavaScript API": {
     "en": "JavaScript API",
     "cn": "JavaScript 应用程序编程接口",
     "descript": "百度地图等第三方服务提供给开发者的 JavaScript 接口集合，用于在 Web 页面中嵌入地图、添加覆盖物及实现交互功能。",
-    "tags": ["bmap", "api", "javascript"]
+    "tags": [
+      "bmap",
+      "api",
+      "javascript"
+    ]
   },
   "Whistle": {
     "en": "Whistle",
     "cn": "Whistle 代理调试工具",
     "descript": "基于 Node.js 实现的跨平台 Web 调试代理工具，支持配置代理规则、Mock 数据、修改 HTTP Header 等。",
-    "tags": ["tool", "proxy", "debug"]
+    "tags": [
+      "tool",
+      "proxy",
+      "debug"
+    ]
   },
   "SwitchyOmega": {
     "en": "SwitchyOmega",
     "cn": "SwitchyOmega 代理管理插件",
     "descript": "一款强大的浏览器代理设置扩展，用于快速切换和管理代理服务器，支持基于域名通配符的自动代理规则配置。",
-    "tags": ["tool", "browser", "extension"]
+    "tags": [
+      "tool",
+      "browser",
+      "extension"
+    ]
   },
   "NPM": {
     "en": "NPM",
     "cn": "NPM 包管理器",
     "descript": "Node.js 的默认包管理器，用于安装、发布和管理 JavaScript 项目依赖包，是全球最大的开源库生态系统；存在幽灵依赖和磁盘冗余问题。",
-    "tags": ["nodejs", "package", "tool", "package-manager"]
+    "tags": [
+      "nodejs",
+      "package",
+      "tool",
+      "package-manager"
+    ]
   },
   "BMapGL": {
     "en": "BMapGL",
     "cn": "百度地图 GL 命名空间",
     "descript": "百度地图 JavaScript API GL 版的全局命名空间，包含所有三维与二维地图的类、方法和常量。",
-    "tags": ["bmap", "api", "namespace"]
+    "tags": [
+      "bmap",
+      "api",
+      "namespace"
+    ]
   },
   "Polyline": {
     "en": "Polyline",
     "cn": "折线覆盖物",
     "descript": "百度地图 API 中用于在地图上绘制折线的覆盖物类，支持设置颜色、宽度、透明度等样式属性。",
-    "tags": ["bmap", "overlay", "line"]
+    "tags": [
+      "bmap",
+      "overlay",
+      "line"
+    ]
   },
   "Label": {
     "en": "Label",
     "cn": "文本标注",
     "descript": "百度地图 API 中用于在地图上添加文本标注的覆盖物类，支持自定义位置、偏移量及丰富的 CSS 样式。",
-    "tags": ["bmap", "overlay", "text"]
+    "tags": [
+      "bmap",
+      "overlay",
+      "text"
+    ]
   },
   "CustomHtmlLayer": {
     "en": "CustomHtmlLayer",
     "cn": "自定义 HTML 图层",
     "descript": "百度地图 API 提供的自定义 HTML 图层类，允许使用原生 DOM 元素批量渲染覆盖物，适用于大量图标的高性能渲染。",
-    "tags": ["bmap", "overlay", "html", "dom"]
+    "tags": [
+      "bmap",
+      "overlay",
+      "html",
+      "dom"
+    ]
   },
   "CustomOverlay": {
     "en": "CustomOverlay",
     "cn": "自定义覆盖物",
     "descript": "百度地图 API 中用于自定义单个覆盖物的基类，需继承该类并实现 draw 等绘制方法，适用于高度定制化的单一元素。",
-    "tags": ["bmap", "overlay", "class"]
+    "tags": [
+      "bmap",
+      "overlay",
+      "class"
+    ]
   },
   "FullCalendar": {
     "en": "FullCalendar",
     "cn": "FullCalendar 日历组件库",
     "descript": "一款功能强大的开源 JavaScript 日历组件库，支持多种视图、拖拽交互及事件管理，提供 Vue、React 等框架的官方适配。",
-    "tags": ["ui", "component", "calendar", "javascript"]
+    "tags": [
+      "ui",
+      "component",
+      "calendar",
+      "javascript"
+    ]
   },
   "Git": {
     "en": "Git",
     "cn": "Git 版本控制系统",
     "descript": "一个免费的、开源的分布式版本控制系统，支持快速高效的项目版本管理，适用于从小型到超大型项目的协作开发。",
-    "tags": ["tool", "version-control", "devops"]
+    "tags": [
+      "tool",
+      "version-control",
+      "devops"
+    ]
   },
   "Iframe": {
     "en": "Iframe",
     "cn": "内联框架",
     "descript": "HTML 标签，用于在当前网页中嵌入另一个独立的网页或文档，实现页面内容的嵌套与隔离。",
-    "tags": ["html", "web", "embed"]
+    "tags": [
+      "html",
+      "web",
+      "embed"
+    ]
   },
   "LocalStorage": {
     "en": "LocalStorage",
     "cn": "本地存储",
     "descript": "Web Storage API 的一部分，允许在浏览器中持久化存储键值对数据，除非手动清除，否则数据不会过期。",
-    "tags": ["web", "api", "storage"]
+    "tags": [
+      "web",
+      "api",
+      "storage"
+    ]
   },
   "Same-Origin Policy": {
     "en": "Same-Origin Policy",
     "cn": "同源策略",
     "descript": "浏览器的核心安全机制，限制不同源（协议、域名、端口均相同）的文档或脚本之间的交互，防止恶意脚本窃取数据。",
-    "tags": ["web", "security", "browser"]
+    "tags": [
+      "web",
+      "security",
+      "browser"
+    ]
   },
   "Vant": {
     "en": "Vant",
     "cn": "Vant 移动端组件库",
     "descript": "由有赞团队开源的轻量、可靠的移动端 Vue 组件库，提供丰富的基础组件和业务组件，适用于移动端 H5 开发。",
-    "tags": ["ui", "component", "vue", "mobile"]
+    "tags": [
+      "ui",
+      "component",
+      "vue",
+      "mobile"
+    ]
   },
   "SDK": {
     "en": "SDK",
     "cn": "软件开发工具包",
     "descript": "Software Development Kit 的缩写，为特定的软件包、软件框架、硬件平台或操作系统提供开发工具集合。",
-    "tags": ["tool", "development", "integration"]
+    "tags": [
+      "tool",
+      "development",
+      "integration"
+    ]
   },
   "Token": {
     "en": "Token",
     "cn": "身份验证令牌",
     "descript": "在身份验证和授权机制中，代表用户登录状态的加密字符串，常用于无状态的 API 鉴权（如 JWT）。",
-    "tags": ["security", "auth", "network"]
+    "tags": [
+      "security",
+      "auth",
+      "network"
+    ]
   },
   "WebRTC": {
     "en": "WebRTC",
     "cn": "Web 实时通信",
     "descript": "Web Real-Time Communication 的缩写，浏览器原生支持的点对点实时音视频通信与数据交换技术，无需安装插件即可实现低延迟媒体传输。",
-    "tags": ["web", "protocol", "realtime", "streaming"]
+    "tags": [
+      "web",
+      "protocol",
+      "realtime",
+      "streaming"
+    ]
   },
   "RTCPeerConnection": {
     "en": "RTCPeerConnection",
     "cn": "RTCPeerConnection 接口",
     "descript": "WebRTC 的核心 API，表示浏览器与远端对等节点之间的连接，负责管理媒体轨道、ICE 协商及 SDP 交换。",
-    "tags": ["webrtc", "api", "browser"]
+    "tags": [
+      "webrtc",
+      "api",
+      "browser"
+    ]
   },
   "SDP": {
     "en": "SDP",
     "cn": "会话描述协议",
     "descript": "Session Description Protocol 的缩写，用于描述多媒体会话的协商信息，包括媒体类型、编解码器、网络地址等，是 WebRTC 信令交换的基础格式。",
-    "tags": ["webrtc", "protocol", "signaling"]
+    "tags": [
+      "webrtc",
+      "protocol",
+      "signaling"
+    ]
   },
   "ICE": {
     "en": "ICE",
     "cn": "交互式连接建立",
     "descript": "Interactive Connectivity Establishment 的缩写，WebRTC 中用于 NAT 穿透和候选地址收集的框架，通过 STUN/TURN 获取可达的通信路径。",
-    "tags": ["webrtc", "protocol", "network"]
+    "tags": [
+      "webrtc",
+      "protocol",
+      "network"
+    ]
   },
   "ZLMediaKit": {
     "en": "ZLMediaKit",
     "cn": "ZLMediaKit 流媒体服务器",
     "descript": "一款基于 C++ 的高性能开源流媒体服务器，支持 RTSP、RTMP、HLS、WebRTC 等多种协议，常用于视频监控与直播场景。",
-    "tags": ["streaming", "server", "webrtc", "tool"]
+    "tags": [
+      "streaming",
+      "server",
+      "webrtc",
+      "tool"
+    ]
   },
   "STUN": {
     "en": "STUN",
     "cn": "STUN 穿透协议",
     "descript": "Session Traversal Utilities for NAT 的缩写，用于帮助 WebRTC 端点发现自身的公网 IP 和端口，辅助 NAT 穿透。",
-    "tags": ["webrtc", "protocol", "network"]
+    "tags": [
+      "webrtc",
+      "protocol",
+      "network"
+    ]
   },
   "TURN": {
     "en": "TURN",
     "cn": "TURN 中继协议",
     "descript": "Traversal Using Relays around NAT 的缩写，当 STUN 穿透失败时，通过中继服务器转发媒体数据，保证 WebRTC 连接可达。",
-    "tags": ["webrtc", "protocol", "network"]
+    "tags": [
+      "webrtc",
+      "protocol",
+      "network"
+    ]
   },
   "Composition API": {
     "en": "Composition API",
     "cn": "组合式 API",
     "descript": "Vue 3 引入的基于函数的 API 集合，通过 setup 函数组织组件逻辑，允许以逻辑关注点为粒度组织组件代码，相较选项式 API 具备更优的逻辑复用能力与 TypeScript 类型推导支持。",
-    "tags": ["vue3", "api", "framework", "vue", "typescript"]
+    "tags": [
+      "vue3",
+      "api",
+      "framework",
+      "vue",
+      "typescript"
+    ]
   },
   "Computed Property": {
     "en": "Computed Property",
     "cn": "计算属性",
     "descript": "Vue 中基于响应式依赖派生的缓存值，仅在其依赖的响应式状态变更时重新求值，是声明式派生数据的核心机制。",
-    "tags": ["vue", "reactivity", "performance"]
+    "tags": [
+      "vue",
+      "reactivity",
+      "performance"
+    ]
   },
   "State Machine": {
     "en": "State Machine",
     "cn": "状态机",
     "descript": "由有限状态集合与状态迁移规则构成的计算模型，任意时刻仅处于单一活跃状态，常用于建模前端交互流程与异步任务推进逻辑。",
-    "tags": ["architecture", "design-pattern", "frontend"]
+    "tags": [
+      "architecture",
+      "design-pattern",
+      "frontend"
+    ]
   },
   "Progressive Rendering": {
     "en": "Progressive Rendering",
     "cn": "渐进式渲染",
     "descript": "将内容划分为多个批次按时间片依次渲染的策略，优先呈现部分可用内容，降低单帧渲染压力并缩短用户感知等待时间。",
-    "tags": ["rendering", "performance", "ux"]
+    "tags": [
+      "rendering",
+      "performance",
+      "ux"
+    ]
   },
   "Race Condition": {
     "en": "Race Condition",
     "cn": "竞态条件",
     "descript": "多个异步请求的响应顺序与发起顺序不一致时，旧请求响应覆盖新请求数据导致的状态不一致问题，常通过请求序号或 AbortController 防护。",
-    "tags": ["async", "concurrency", "network"]
+    "tags": [
+      "async",
+      "concurrency",
+      "network"
+    ]
   },
   "Keep-Alive": {
     "en": "Keep-Alive",
     "cn": "组件缓存",
     "descript": "Vue 内置的缓存机制，使非活跃组件实例保留在内存中，路由切换时避免重复创建与销毁，对应 activated 与 deactivated 生命周期。",
-    "tags": ["vue", "cache", "lifecycle"]
+    "tags": [
+      "vue",
+      "cache",
+      "lifecycle"
+    ]
   },
   "Lifecycle Hooks": {
     "en": "Lifecycle Hooks",
     "cn": "生命周期钩子",
     "descript": "框架在组件挂载、更新、卸载等特定阶段注入的回调函数，如 onMounted、onUnmounted、onActivated 等，用于在精确时机执行副作用管理。",
-    "tags": ["vue", "lifecycle", "api"]
+    "tags": [
+      "vue",
+      "lifecycle",
+      "api"
+    ]
   },
   "NextTick": {
     "en": "NextTick",
     "cn": "下一 DOM 更新周期",
     "descript": "Vue 提供的异步等待机制，将回调延迟至本次响应式变更对应的 DOM 更新完成后执行，用于在数据变更后读取最新 DOM 状态。",
-    "tags": ["vue", "api", "dom"]
+    "tags": [
+      "vue",
+      "api",
+      "dom"
+    ]
   },
   "Memory Leak": {
     "en": "Memory Leak",
     "cn": "内存泄漏",
     "descript": "已分配的内存因引用未释放而无法回收的现象，前端场景中多由未清理的定时器、悬挂的事件监听与脱离文档的 DOM 引用引起。",
-    "tags": ["performance", "memory", "debugging"]
+    "tags": [
+      "performance",
+      "memory",
+      "debugging"
+    ]
   },
   "LLM": {
     "en": "LLM",
     "cn": "大语言模型",
     "descript": "Large Language Model 的缩写，基于海量文本数据训练的大规模神经网络模型，具备自然语言理解与生成能力，是 AI 对话应用的核心引擎。",
-    "tags": ["ai", "model", "nlp"]
+    "tags": [
+      "ai",
+      "model",
+      "nlp"
+    ]
   },
   "Markdown": {
     "en": "Markdown",
     "cn": "Markdown 标记语言",
     "descript": "一种轻量级标记语言，使用纯文本格式语法编写，可转换为结构化的 HTML 文档，广泛应用于文档编写与 AI 对话内容渲染。",
-    "tags": ["format", "markup", "text"]
+    "tags": [
+      "format",
+      "markup",
+      "text"
+    ]
   },
   "JSON Schema": {
     "en": "JSON Schema",
     "cn": "JSON Schema 规范",
     "descript": "一种用于描述 JSON 数据结构的规范，定义数据类型、必填字段、取值范围等约束，常用于 Function Call 工具参数定义。",
-    "tags": ["json", "schema", "validation"]
+    "tags": [
+      "json",
+      "schema",
+      "validation"
+    ]
   },
   "OpenAI": {
     "en": "OpenAI",
     "cn": "OpenAI 公司",
     "descript": "一家人工智能研究公司，开发了 GPT 系列大语言模型，提供 Chat Completions API 等大模型调用接口，是 Function Call 规范的主要推动者之一。",
-    "tags": ["ai", "company", "api"]
+    "tags": [
+      "ai",
+      "company",
+      "api"
+    ]
   },
   "Qwen": {
     "en": "Qwen",
     "cn": "通义千问模型",
     "descript": "阿里云推出的大语言模型系列，提供 qwen-plus、qwen-max 等不同规格的模型版本，支持 Function Call、流式传输等能力。",
-    "tags": ["ai", "model", "llm"]
+    "tags": [
+      "ai",
+      "model",
+      "llm"
+    ]
   },
   "Function Call": {
     "en": "Function Call",
     "cn": "函数调用机制",
     "descript": "大模型 API 提供的能力，允许提前声明工具函数及其参数 JSON Schema，大模型在需要时返回标准化的工具调用指令，由代码层执行具体操作。",
-    "tags": ["ai", "api", "tool"]
+    "tags": [
+      "ai",
+      "api",
+      "tool"
+    ]
   },
   "VueMarkdown": {
     "en": "VueMarkdown",
     "cn": "VueMarkdown 组件",
     "descript": "基于 Vue 的 Markdown 渲染组件，支持 remark 与 rehype 插件体系，可实现代码高亮、自定义样式与插槽定制。",
-    "tags": ["vue", "markdown", "component"]
+    "tags": [
+      "vue",
+      "markdown",
+      "component"
+    ]
   },
   "remark-gfm": {
     "en": "remark-gfm",
     "cn": "remark-gfm 插件",
     "descript": "remark 的 GitHub Flavored Markdown 插件，扩展 Markdown 渲染能力，支持表格、删除线、任务列表等 GFM 语法。",
-    "tags": ["markdown", "plugin", "remark"]
+    "tags": [
+      "markdown",
+      "plugin",
+      "remark"
+    ]
   },
   "rehype-highlight": {
     "en": "rehype-highlight",
     "cn": "rehype-highlight 插件",
     "descript": "rehype 的代码高亮插件，基于 highlight.js 为 Markdown 代码块提供语法高亮渲染。",
-    "tags": ["markdown", "plugin", "highlight"]
+    "tags": [
+      "markdown",
+      "plugin",
+      "highlight"
+    ]
   },
   "highlight.js": {
     "en": "highlight.js",
     "cn": "highlight.js 高亮库",
     "descript": "一款开源的 JavaScript 语法高亮库，支持 190+ 种编程语言，提供多种主题样式，常与 Markdown 渲染组件配合使用。",
-    "tags": ["syntax", "highlight", "javascript"]
+    "tags": [
+      "syntax",
+      "highlight",
+      "javascript"
+    ]
   },
   "React": {
     "en": "React",
     "cn": "React 框架",
     "descript": "由 Facebook 开发的开源 JavaScript 库，用于构建用户界面，采用组件化与虚拟 DOM 的架构模式，拥有庞大的生态系统。",
-    "tags": ["framework", "frontend", "javascript"]
+    "tags": [
+      "framework",
+      "frontend",
+      "javascript"
+    ]
   },
   "react-markdown": {
     "en": "react-markdown",
     "cn": "react-markdown 组件",
     "descript": "基于 React 的 Markdown 渲染组件，支持 remark 与 rehype 插件体系，可将 Markdown 文本安全渲染为 React 组件树。",
-    "tags": ["react", "markdown", "component"]
+    "tags": [
+      "react",
+      "markdown",
+      "component"
+    ]
   },
   "RAG": {
     "en": "RAG",
     "cn": "检索增强生成",
     "descript": "Retrieval-Augmented Generation 的缩写，结合信息检索与大语言模型生成的技术架构，先检索相关知识再交由大模型生成回答，有效减少幻觉并提升回答准确性。",
-    "tags": ["ai", "retrieval", "llm"]
+    "tags": [
+      "ai",
+      "retrieval",
+      "llm"
+    ]
   },
   "DeepSeek": {
     "en": "DeepSeek",
     "cn": "DeepSeek 大模型",
     "descript": "深度求索公司推出的大语言模型系列，支持 Function Call、流式传输等能力，以开源和高性价比著称。",
-    "tags": ["ai", "model", "llm"]
+    "tags": [
+      "ai",
+      "model",
+      "llm"
+    ]
   },
   "MCP": {
     "en": "MCP",
     "cn": "模型上下文协议",
     "descript": "Model Context Protocol 的缩写，由 Anthropic 提出的开放协议，用于标准化 AI 模型与外部工具、数据源之间的交互方式。",
-    "tags": ["ai", "protocol", "tool"]
+    "tags": [
+      "ai",
+      "protocol",
+      "tool"
+    ]
   },
   "Node.js": {
     "en": "Node.js",
     "cn": "Node.js 运行时",
     "descript": "基于 Chrome V8 引擎的 JavaScript 运行时环境，使 JavaScript 能够在服务器端运行，广泛应用于后端服务与工具链开发。",
-    "tags": ["javascript", "runtime", "server"]
+    "tags": [
+      "javascript",
+      "runtime",
+      "server"
+    ]
   },
   "IntersectionObserver": {
     "en": "IntersectionObserver",
     "cn": "交叉观察器 API",
     "descript": "浏览器提供的 API，用于异步监听目标元素与祖先元素或视口的交叉状态变化，常用于懒加载、无限滚动、元素可见性检测等场景。",
-    "tags": ["browser", "api", "dom"]
+    "tags": [
+      "browser",
+      "api",
+      "dom"
+    ]
   },
   "Webpack": {
     "en": "Webpack",
     "cn": "Webpack 打包工具",
     "descript": "现代 JavaScript 应用程序的静态模块打包器，将项目中的各类资源视为模块并构建依赖图，最终打包为浏览器可识别的静态文件。",
-    "tags": ["build", "tool", "javascript"]
+    "tags": [
+      "build",
+      "tool",
+      "javascript"
+    ]
   },
   "HTML5": {
     "en": "HTML5",
     "cn": "HTML5 标准",
     "descript": "HTML 的第五次重大修订版本，引入了语义化标签、音视频原生支持、Canvas 绘图、本地存储等新特性，是现代 Web 应用的基础标准。",
-    "tags": ["html", "standard", "web"]
+    "tags": [
+      "html",
+      "standard",
+      "web"
+    ]
   },
   "FileSaver.js": {
     "en": "FileSaver.js",
     "cn": "FileSaver.js 库",
     "descript": "一个用于在客户端保存文件的 JavaScript 库，提供 saveAs 方法将 Blob 或 File 对象保存到本地，可在浏览器中触发文件下载，兼容多种浏览器，广泛用于图片下载、文档导出等场景。",
-    "tags": ["javascript", "library", "file"]
+    "tags": [
+      "javascript",
+      "library",
+      "file"
+    ]
   },
   "VueRouter": {
     "en": "VueRouter",
     "cn": "Vue Router",
     "descript": "Vue.js 官方路由管理器，用于构建单页面应用的路由系统，支持动态路由、导航守卫、路由元信息等核心功能。",
-    "tags": ["vue", "router", "spa"]
+    "tags": [
+      "vue",
+      "router",
+      "spa"
+    ]
   },
   "GIF": {
     "en": "GIF",
     "cn": "GIF 图像格式",
     "descript": "Graphics Interchange Format 的缩写，一种支持多帧动画的位图图像格式，兼容性极好但色彩有限（256 色），不支持透明底。",
-    "tags": ["image", "format", "animation"]
+    "tags": [
+      "image",
+      "format",
+      "animation"
+    ]
   },
   "aPNG": {
     "en": "aPNG",
     "cn": "aPNG 图像格式",
     "descript": "Animated Portable Network Graphics 的缩写，PNG 的动画扩展格式，支持高质量动画与透明底，兼容现代浏览器但体积比 WebP 大。",
-    "tags": ["image", "format", "animation"]
+    "tags": [
+      "image",
+      "format",
+      "animation"
+    ]
   },
   "WebP": {
     "en": "WebP",
     "cn": "WebP 图像格式",
     "descript": "Google 开发的现代图像格式，同时支持有损和无损压缩，支持动画与透明底，在同等质量下体积显著小于 GIF 和 aPNG。",
-    "tags": ["image", "format", "animation"]
+    "tags": [
+      "image",
+      "format",
+      "animation"
+    ]
   },
   "AVIF": {
     "en": "AVIF",
     "cn": "AVIF 图像格式",
     "descript": "AV1 Image File Format 的缩写，基于 AV1 视频编码的新型图像格式，压缩率极高，质量极好，但浏览器兼容性较差。",
-    "tags": ["image", "format", "animation"]
+    "tags": [
+      "image",
+      "format",
+      "animation"
+    ]
   },
   "Lottie": {
     "en": "Lottie",
     "cn": "Lottie 动画",
     "descript": "Airbnb 开源的动画解决方案，通过解析 JSON 文件渲染矢量动画，支持 AE 导出、跨平台运行，体积小且高清无损。",
-    "tags": ["animation", "json", "vector"]
+    "tags": [
+      "animation",
+      "json",
+      "vector"
+    ]
   },
   "Lottie-web": {
     "en": "Lottie-web",
     "cn": "lottie-web 库",
     "descript": "Lottie 动画的 Web 端播放库，支持 SVG、Canvas、HTML 三种渲染方式，可在浏览器中解析并播放 Lottie JSON 动画文件。",
-    "tags": ["animation", "library", "web"]
+    "tags": [
+      "animation",
+      "library",
+      "web"
+    ]
   },
   "Canvas": {
     "en": "Canvas",
     "cn": "Canvas 画布",
     "descript": "HTML5 引入的绘图元素，通过 JavaScript 脚本在网页上绘制图形、动画及游戏，支持 2D 和 WebGL 3D 渲染上下文。",
-    "tags": ["html5", "graphics", "animation"]
+    "tags": [
+      "html5",
+      "graphics",
+      "animation"
+    ]
   },
   "SVG": {
     "en": "SVG",
     "cn": "SVG 矢量图形",
     "descript": "Scalable Vector Graphics 的缩写，基于 XML 的矢量图像格式，支持无损缩放、CSS 样式控制及 JavaScript 交互，是 Lottie 动画的底层渲染方式。",
-    "tags": ["image", "vector", "xml"]
+    "tags": [
+      "image",
+      "vector",
+      "xml"
+    ]
   },
   "CSS3": {
     "en": "CSS3",
     "cn": "CSS3 标准",
     "descript": "CSS 的第三代标准，引入了动画（Animation）、过渡（Transition）、变换（Transform）、弹性布局（Flexbox）等新特性，是现代 Web 动效的基础。",
-    "tags": ["css", "animation", "standard"]
+    "tags": [
+      "css",
+      "animation",
+      "standard"
+    ]
   },
   "Base64": {
     "en": "Base64",
     "cn": "Base64 编码",
     "descript": "一种基于 64 个可打印字符表示二进制数据的编码方式，常用于在文本中嵌入图片、字体等二进制资源，减少 HTTP 请求；数据量比原始二进制约增加 33%。",
-    "tags": ["encoding", "data", "web", "data-url"]
+    "tags": [
+      "encoding",
+      "data",
+      "web",
+      "data-url"
+    ]
   },
   "Function Tool": {
     "en": "Function Tool",
     "cn": "Function Tool 函数工具机制",
     "descript": "大模型 Function Call 机制中的工具定义单元，用于声明大模型可调用的函数工具，包含名称、描述及 JSON Schema 参数规范。",
-    "tags": ["function-call", "llm", "ai"]
+    "tags": [
+      "function-call",
+      "llm",
+      "ai"
+    ]
   },
   "UI": {
     "en": "UI",
     "cn": "用户界面",
     "descript": "User Interface 的缩写，指软件或应用中用户可见和交互的视觉界面层，包括布局、组件、样式等。",
-    "tags": ["frontend", "design", "interface"]
+    "tags": [
+      "frontend",
+      "design",
+      "interface"
+    ]
   },
   "Kimi": {
     "en": "Kimi",
     "cn": "Kimi 大模型",
     "descript": "月之暗面（Moonshot AI）开发的国产大语言模型及智能助手，支持超长上下文处理，提供 API 接口供开发者调用。",
-    "tags": ["llm", "ai", "api"]
+    "tags": [
+      "llm",
+      "ai",
+      "api"
+    ]
   },
   "FileReader": {
     "en": "FileReader",
     "cn": "FileReader API",
     "descript": "Web API 中用于异步读取用户文件内容的对象，支持将文件读取为文本、二进制数据、DataURL 或 Base64 等多种格式，读取完成后触发 load 事件。",
-    "tags": ["web-api", "javascript", "file"]
+    "tags": [
+      "web-api",
+      "javascript",
+      "file"
+    ]
   },
   "FormData": {
     "en": "FormData",
     "cn": "FormData API",
     "descript": "Web API 中用于构建和处理表单数据的对象，可将文本、文件和二进制数据格式化为 multipart/form-data 格式，通过 XMLHttpRequest 或 Fetch API 发送到服务器。",
-    "tags": ["web-api", "javascript", "form"]
+    "tags": [
+      "web-api",
+      "javascript",
+      "form"
+    ]
   },
   "PostCSS": {
     "en": "PostCSS",
     "cn": "PostCSS 工具",
     "descript": "基于 JavaScript 插件生态的 CSS 处理工具，通过插件实现 CSS 语法转换、自动添加浏览器前缀、px 转 rem/vw 等自动化任务，是前端工程化核心工具链之一。",
-    "tags": ["css", "tool", "automation"]
+    "tags": [
+      "css",
+      "tool",
+      "automation"
+    ]
   },
   "VSCode": {
     "en": "VSCode",
     "cn": "Visual Studio Code 编辑器",
     "descript": "微软推出的开源代码编辑器，拥有丰富的插件生态，支持 ESLint/Prettier/Stylelint 等工具集成，是目前最流行的前端开发 IDE。",
-    "tags": ["editor", "ide", "tool"]
+    "tags": [
+      "editor",
+      "ide",
+      "tool"
+    ]
   },
   "Axios": {
     "en": "Axios",
     "cn": "Axios 请求库",
     "descript": "基于 Promise 的 HTTP 客户端，用于浏览器和 Node.js，支持请求拦截、响应拦截、自动 JSON 解析、取消请求等功能，是前端最常用的 HTTP 请求库。",
-    "tags": ["http", "library", "javascript", "promise", "ajax"]
+    "tags": [
+      "http",
+      "library",
+      "javascript",
+      "promise",
+      "ajax"
+    ]
   },
   "CORS": {
     "en": "CORS",
     "cn": "跨域资源共享",
     "descript": "Cross-Origin Resource Sharing 的缩写，一种浏览器安全机制，允许服务器通过 HTTP 头声明哪些外部来源可以访问其资源，解决浏览器的同源策略限制。",
-    "tags": ["http", "security", "browser"]
+    "tags": [
+      "http",
+      "security",
+      "browser"
+    ]
   },
   "Fetch": {
     "en": "Fetch",
     "cn": "Fetch API",
     "descript": "浏览器原生提供的 HTTP 请求接口，基于 Promise 设计，替代传统的 XMLHttpRequest，提供更简洁的链式调用和流式处理能力。",
-    "tags": ["http", "api", "browser"]
+    "tags": [
+      "http",
+      "api",
+      "browser"
+    ]
   },
   "ESLint": {
     "en": "ESLint",
     "cn": "ESLint 代码检查工具",
     "descript": "插件化的 JavaScript/TypeScript 代码静态检查工具，通过 AST 解析分析代码格式，支持自定义规则和插件扩展，已成为前端项目标配。",
-    "tags": ["lint", "javascript", "typescript", "tool", "code-style"]
+    "tags": [
+      "lint",
+      "javascript",
+      "typescript",
+      "tool",
+      "code-style"
+    ]
   },
   "AST": {
     "en": "AST",
     "cn": "抽象语法树",
     "descript": "Abstract Syntax Tree 的缩写，源代码的树状结构表示，将代码解析为结构化节点，是 ESLint、Babel、Webpack 等工具分析和转换代码的基础。",
-    "tags": ["compiler", "javascript", "tool"]
+    "tags": [
+      "compiler",
+      "javascript",
+      "tool"
+    ]
   },
   "Puppeteer": {
     "en": "Puppeteer",
     "cn": "Puppeteer 无头浏览器",
     "descript": "Google 开源的 Node.js 无头浏览器库，提供 API 模拟用户在浏览器中的操作，常用于网页截图、PDF 生成、自动化测试和爬虫等场景。",
-    "tags": ["testing", "browser", "nodejs"]
+    "tags": [
+      "testing",
+      "browser",
+      "nodejs"
+    ]
   },
   "Nginx": {
     "en": "Nginx",
     "cn": "Nginx 服务器",
     "descript": "高性能的 HTTP 和反向代理服务器，常用于前端静态资源部署、负载均衡、缓存管理和反向代理，是前端部署的主流服务器软件。",
-    "tags": ["server", "deploy", "cache"]
+    "tags": [
+      "server",
+      "deploy",
+      "cache"
+    ]
   },
   "JSX": {
     "en": "JSX",
     "cn": "JSX 语法扩展",
     "descript": "JavaScript 的语法扩展，允许在 JavaScript 中编写类似 HTML 的结构，常用于 React 和 Vue 的 render 函数中描述 UI。",
-    "tags": ["javascript", "syntax", "react", "vue"]
+    "tags": [
+      "javascript",
+      "syntax",
+      "react",
+      "vue"
+    ]
   },
   "JavaScript": {
     "en": "JavaScript",
     "cn": "JavaScript 编程语言",
     "descript": "一种具有函数优先的轻量级解释型编程语言，作为 Web 页面的核心脚本语言，支持面向对象、命令式及声明式编程范式。",
-    "tags": ["language", "web", "frontend"]
+    "tags": [
+      "language",
+      "web",
+      "frontend"
+    ]
   },
   "ECMAScript": {
     "en": "ECMAScript",
     "cn": "ECMAScript 规范",
     "descript": "由 Ecma International 标准化的脚本语言规范，JavaScript 是其最著名的实现，ES6（ES2015）是该规范的第 6 个版本。",
-    "tags": ["standard", "javascript", "specification"]
+    "tags": [
+      "standard",
+      "javascript",
+      "specification"
+    ]
   },
   "ES6": {
     "en": "ES6",
     "cn": "ES6/ES2015 标准",
     "descript": "ECMAScript 的第 6 个版本，正式名称为 ECMAScript 2015，引入了类、模块、箭头函数、Promise 等重大特性，是现代 JavaScript 的基石。",
-    "tags": ["standard", "javascript", "ecmascript"]
+    "tags": [
+      "standard",
+      "javascript",
+      "ecmascript"
+    ]
   },
   "ES5": {
     "en": "ES5",
     "cn": "ES5/ECMAScript 5 标准",
     "descript": "ECMAScript 的第 5 个版本，于 2009 年发布，正式引入严格模式（strict mode）、JSON 支持、数组方法（forEach/map/filter 等），是 JavaScript 标准化的重要里程碑。",
-    "tags": ["standard", "javascript", "ecmascript"]
+    "tags": [
+      "standard",
+      "javascript",
+      "ecmascript"
+    ]
   },
   "Babel": {
     "en": "Babel",
     "cn": "Babel 转码器",
     "descript": "一款开源的 JavaScript 编译器，用于将 ES6+ 代码转换为向后兼容的 JavaScript 版本，以便在当前和旧版浏览器或环境中运行。",
-    "tags": ["tool", "compiler", "javascript", "es6"]
+    "tags": [
+      "tool",
+      "compiler",
+      "javascript",
+      "es6"
+    ]
   },
   "Traceur": {
     "en": "Traceur",
     "cn": "Traceur 转码器",
     "descript": "Google 开发的 JavaScript 转码器，可将 ES6 代码转换为 ES5 代码，是早期 ES6 转码方案之一，现已被 Babel 取代。",
-    "tags": ["tool", "compiler", "javascript", "es6"]
+    "tags": [
+      "tool",
+      "compiler",
+      "javascript",
+      "es6"
+    ]
   },
   "Generator": {
     "en": "Generator",
     "cn": "Generator 函数",
     "descript": "ES6 引入的异步编程解决方案，通过 yield 表达式暂停和恢复函数执行，返回遍历器对象，是协程在 JavaScript 中的实现。",
-    "tags": ["javascript", "es6", "async", "iterator"]
+    "tags": [
+      "javascript",
+      "es6",
+      "async",
+      "iterator"
+    ]
   },
   "Thunk": {
     "en": "Thunk",
     "cn": "Thunk 函数",
     "descript": "一种将多参数函数转换为单参数版本（仅接受回调函数）的编程模式，常用于 Generator 函数的自动流程管理。",
-    "tags": ["javascript", "pattern", "async", "generator"]
+    "tags": [
+      "javascript",
+      "pattern",
+      "async",
+      "generator"
+    ]
   },
   "Thunkify": {
     "en": "Thunkify",
     "cn": "Thunkify 模块",
     "descript": "Node.js 的 NPM 模块，用于将符合 Node.js 回调风格的函数转换为 Thunk 函数，便于 Generator 函数的自动执行。",
-    "tags": ["npm", "nodejs", "thunk", "generator"]
+    "tags": [
+      "npm",
+      "nodejs",
+      "thunk",
+      "generator"
+    ]
   },
   "co": {
     "en": "co",
     "cn": "co 模块",
     "descript": "Node.js 的 NPM 模块，用于自动执行 Generator 函数，内部封装了 Thunk 函数和 Promise 对象的自动执行逻辑。",
-    "tags": ["npm", "nodejs", "generator", "async"]
+    "tags": [
+      "npm",
+      "nodejs",
+      "generator",
+      "async"
+    ]
   },
   "V8": {
     "en": "V8",
     "cn": "V8 引擎",
     "descript": "Google 开发的开源 JavaScript 和 WebAssembly 引擎，使用 C++ 编写，用于 Chrome 浏览器和 Node.js 运行时，具有即时编译（JIT）和高性能特性。",
-    "tags": ["engine", "javascript", "chrome", "nodejs"]
+    "tags": [
+      "engine",
+      "javascript",
+      "chrome",
+      "nodejs"
+    ]
   },
   "Symbol": {
     "en": "Symbol",
     "cn": "Symbol 数据类型",
     "descript": "ES6 引入的第 7 种基本数据类型，通过 Symbol 函数生成唯一且不可变的值，主要用于对象属性名以避免属性名冲突，也可用于定义常量。",
-    "tags": ["javascript", "es6", "datatype", "primitive"]
+    "tags": [
+      "javascript",
+      "es6",
+      "datatype",
+      "primitive"
+    ]
   },
   "Singleton": {
     "en": "Singleton",
     "cn": "单例模式",
     "descript": "一种创建型设计模式，确保一个类只有一个实例，并提供一个全局访问点。在 Node.js 模块系统中常用于保证模块实例的唯一性。",
-    "tags": ["pattern", "design-pattern", "nodejs"]
+    "tags": [
+      "pattern",
+      "design-pattern",
+      "nodejs"
+    ]
   },
   "Set": {
     "en": "Set",
     "cn": "Set 数据结构",
     "descript": "ES6 引入的集合数据结构，类似于数组但元素值唯一不重复，支持 add/delete/has/clear 方法及 keys/values/entries/forEach 遍历操作。",
-    "tags": ["javascript", "es6", "datastructure", "collection"]
+    "tags": [
+      "javascript",
+      "es6",
+      "datastructure",
+      "collection"
+    ]
   },
   "Map": {
     "en": "Map",
     "cn": "Map 数据结构",
     "descript": "ES6 引入的键值对集合数据结构，键名不限于字符串，支持各种类型作为键，提供 set/get/has/delete/clear 方法及遍历操作。",
-    "tags": ["javascript", "es6", "datastructure", "collection"]
+    "tags": [
+      "javascript",
+      "es6",
+      "datastructure",
+      "collection"
+    ]
   },
   "WeakSet": {
     "en": "WeakSet",
     "cn": "WeakSet 数据结构",
     "descript": "ES6 引入的弱引用集合，成员只能是对象且为弱引用（不影响垃圾回收），不可遍历，仅有 add/delete/has 方法。",
-    "tags": ["javascript", "es6", "datastructure", "weak-reference"]
+    "tags": [
+      "javascript",
+      "es6",
+      "datastructure",
+      "weak-reference"
+    ]
   },
   "WeakMap": {
     "en": "WeakMap",
     "cn": "WeakMap 数据结构",
     "descript": "ES6 引入的弱引用键值对集合，键名只能是对象且为弱引用，不可遍历，适用于存储私有数据或 DOM 节点关联数据以防止内存泄漏。",
-    "tags": ["javascript", "es6", "datastructure", "weak-reference"]
+    "tags": [
+      "javascript",
+      "es6",
+      "datastructure",
+      "weak-reference"
+    ]
   },
   "ES7": {
     "en": "ES7",
     "cn": "ES7/ECMAScript 2016 标准",
     "descript": "ECMAScript 的第 7 个版本，于 2016 年发布，引入 async/await 语法、Array.prototype.includes 方法、指数运算符（**），是 JavaScript 异步编程标准化的里程碑。",
-    "tags": ["standard", "javascript", "ecmascript", "async"]
+    "tags": [
+      "standard",
+      "javascript",
+      "ecmascript",
+      "async"
+    ]
   },
   "Reflect": {
     "en": "Reflect",
     "cn": "Reflect 反射对象",
     "descript": "ES6 引入的内置对象，提供 13 个静态方法用于操作对象属性，与 Proxy 的方法一一对应，使 Object 操作变为函数行为，并为 Proxy 提供默认行为。",
-    "tags": ["javascript", "es6", "reflect", "metaprogramming"]
+    "tags": [
+      "javascript",
+      "es6",
+      "reflect",
+      "metaprogramming"
+    ]
   },
   "ESM": {
     "en": "ESM",
     "cn": "ES Module 模块规范",
     "descript": "ECMAScript 官方推出的语言级模块规范，支持 import/export 静态声明，编译期即可确定依赖树，天然支持 Tree Shaking，现代浏览器和 Node.js 双端原生支持。",
-    "tags": ["javascript", "module", "standard", "es6"]
+    "tags": [
+      "javascript",
+      "module",
+      "standard",
+      "es6"
+    ]
   },
   "CommonJS": {
     "en": "CommonJS",
     "cn": "CommonJS 模块规范",
     "descript": "Node.js 默认的模块规范，通过 module.exports 导出和 require() 同步加载，运行时动态解析，主要用于服务端。",
-    "tags": ["javascript", "module", "nodejs", "cjs"]
+    "tags": [
+      "javascript",
+      "module",
+      "nodejs",
+      "cjs"
+    ]
   },
   "AMD": {
     "en": "AMD",
     "cn": "AMD 异步模块定义规范",
     "descript": "Asynchronous Module Definition，浏览器端的异步模块加载方案，通过 define() 声明依赖，配合 RequireJS 等 Loader 实现异步预加载，解决 CommonJS 的同步阻塞问题。",
-    "tags": ["javascript", "module", "browser", "amd"]
+    "tags": [
+      "javascript",
+      "module",
+      "browser",
+      "amd"
+    ]
   },
   "CMD": {
     "en": "CMD",
     "cn": "CMD 通用模块定义规范",
     "descript": "Common Module Definition，由 Sea.js 推广的模块规范，与 AMD 类似但强调就近依赖（用到时才 require），在国内前端社区曾广泛使用。",
-    "tags": ["javascript", "module", "browser", "cmd"]
+    "tags": [
+      "javascript",
+      "module",
+      "browser",
+      "cmd"
+    ]
   },
   "CJS": {
     "en": "CJS",
     "cn": "CommonJS 缩写",
     "descript": "CommonJS 的简称，Node.js 默认模块规范，运行时同步加载模块。",
-    "tags": ["javascript", "module", "nodejs", "abbreviation"]
+    "tags": [
+      "javascript",
+      "module",
+      "nodejs",
+      "abbreviation"
+    ]
   },
   "Rollup": {
     "en": "Rollup",
     "cn": "Rollup 打包工具",
     "descript": "基于 ES Module 的 JavaScript 模块打包器，以 Tree Shaking 为核心特性，生成更小、更高效的代码包，Vite 生产环境底层使用 Rollup 进行打包，Vue.js 也使用 Rollup 进行生产构建。",
-    "tags": ["build-tool", "javascript", "bundler", "vite", "esm", "build"]
+    "tags": [
+      "build-tool",
+      "javascript",
+      "bundler",
+      "vite",
+      "esm",
+      "build"
+    ]
   },
   "Sass": {
     "en": "Sass",
     "cn": "Sass CSS 预处理器",
     "descript": "一种 CSS 预处理器，支持变量、嵌套、混入（Mixin）、继承等高级特性，通过编译生成标准 CSS 文件，是主流的前端样式工程化方案。",
-    "tags": ["css", "preprocessor", "stylesheet", "frontend"]
+    "tags": [
+      "css",
+      "preprocessor",
+      "stylesheet",
+      "frontend"
+    ]
   },
   "Tree Shaking": {
     "en": "Tree Shaking",
     "cn": "Tree Shaking 摇树优化",
     "descript": "一种基于 ES Module 静态结构的死代码消除（Dead Code Elimination）技术，编译期分析依赖树，移除未引用的代码，减小打包体积。",
-    "tags": ["optimization", "javascript", "bundler", "esm"]
+    "tags": [
+      "optimization",
+      "javascript",
+      "bundler",
+      "esm"
+    ]
   },
   "HMR": {
     "en": "HMR",
     "cn": "HMR 模块热替换",
     "descript": "Hot Module Replacement，在应用运行时替换、添加或删除模块而无需刷新整个页面，是 Vite 和 Webpack 等构建工具提升开发体验的核心功能。",
-    "tags": ["dev-server", "javascript", "bundler", "vite"]
+    "tags": [
+      "dev-server",
+      "javascript",
+      "bundler",
+      "vite"
+    ]
   },
   "SSR": {
     "en": "SSR",
     "cn": "SSR 服务端渲染",
     "descript": "Server Side Rendering，在服务器端将页面组件渲染为 HTML 字符串发送给浏览器，可提升首屏加载速度和 SEO 效果，Vite 内置 SSR 支持。",
-    "tags": ["rendering", "server", "seo", "vite"]
+    "tags": [
+      "rendering",
+      "server",
+      "seo",
+      "vite"
+    ]
   },
   "JIT": {
     "en": "JIT",
     "cn": "JIT 即时编译",
     "descript": "Just In Time compilation，在程序运行时动态编译代码为机器码的技术，V8 引擎和 Tailwind CSS v3+ 均使用 JIT 模式提升性能。",
-    "tags": ["compilation", "performance", "v8", "engine"]
+    "tags": [
+      "compilation",
+      "performance",
+      "v8",
+      "engine"
+    ]
   },
   "SvelteKit": {
     "en": "SvelteKit",
     "cn": "SvelteKit 框架",
     "descript": "基于 Svelte 的全栈 Web 应用框架，内置路由、SSR、代码分割等功能，深度集成 Vite 作为构建工具。",
-    "tags": ["framework", "svelte", "vite", "ssr"]
+    "tags": [
+      "framework",
+      "svelte",
+      "vite",
+      "ssr"
+    ]
   },
   "Astro": {
     "en": "Astro",
     "cn": "Astro 框架",
     "descript": "现代静态站点构建框架，默认输出零 JavaScript 的静态 HTML，支持按需加载交互组件（Islands Architecture），深度集成 Vite。",
-    "tags": ["framework", "ssg", "vite", "islands"]
+    "tags": [
+      "framework",
+      "ssg",
+      "vite",
+      "islands"
+    ]
   },
   "Terser": {
     "en": "Terser",
@@ -898,912 +1533,1852 @@
     "en": "RequireJS",
     "cn": "RequireJS 模块加载器",
     "descript": "浏览器端的 AMD 模块加载器，实现 JavaScript 文件的异步加载和依赖管理，解决了早期前端模块化加载问题。",
-    "tags": ["javascript", "module", "browser", "amd"]
+    "tags": [
+      "javascript",
+      "module",
+      "browser",
+      "amd"
+    ]
   },
   "core-js": {
     "en": "core-js",
     "cn": "core-js 垫片库",
     "descript": "JavaScript 标准库的 Polyfill（垫片）库，为旧版浏览器提供 ES6+ 新特性的实现，是 Babel 转译的重要配套工具。",
-    "tags": ["javascript", "polyfill", "babel", "compatibility"]
+    "tags": [
+      "javascript",
+      "polyfill",
+      "babel",
+      "compatibility"
+    ]
   },
   "TSC": {
     "en": "TSC",
     "cn": "TypeScript 编译器",
     "descript": "TypeScript Compiler，将 TypeScript 代码编译为 JavaScript 代码的命令行工具，支持类型检查、ES 版本降级等。",
-    "tags": ["typescript", "compiler", "javascript", "tool"]
+    "tags": [
+      "typescript",
+      "compiler",
+      "javascript",
+      "tool"
+    ]
   },
   "Lint": {
     "en": "Lint",
     "cn": "Lint 代码检查",
     "descript": "静态代码分析工具的总称，用于检查代码中的语法错误、风格问题和潜在 Bug，前端常用 ESLint（JavaScript）和 Stylelint（CSS）。",
-    "tags": ["tool", "code-quality", "static-analysis", "eslint"]
+    "tags": [
+      "tool",
+      "code-quality",
+      "static-analysis",
+      "eslint"
+    ]
   },
   "pnpm": {
     "en": "pnpm",
     "cn": "pnpm 包管理器",
     "descript": "高效的 Node.js 包管理器，通过硬链接和符号链接实现跨项目依赖共享，解决 npm/yarn 的磁盘冗余和幽灵依赖问题，已成为现代前端项目的标配。",
-    "tags": ["nodejs", "package-manager", "tool", "performance"]
+    "tags": [
+      "nodejs",
+      "package-manager",
+      "tool",
+      "performance"
+    ]
   },
   "yarn": {
     "en": "yarn",
     "cn": "yarn 包管理器",
     "descript": "Facebook 推出的 Node.js 包管理器，改进 npm 的性能和安全性，支持离线缓存和确定性安装。",
-    "tags": ["nodejs", "package-manager", "tool"]
+    "tags": [
+      "nodejs",
+      "package-manager",
+      "tool"
+    ]
   },
   "Svelte": {
     "en": "Svelte",
     "cn": "Svelte 框架",
     "descript": "编译时前端框架，在构建阶段将组件编译为高效的原生 JS 代码，无运行时虚拟 DOM，体积极小，已在 SvelteKit 框架中深度集成 Vite。",
-    "tags": ["framework", "javascript", "compiler", "vite"]
+    "tags": [
+      "framework",
+      "javascript",
+      "compiler",
+      "vite"
+    ]
   },
   "CRA": {
     "en": "CRA",
     "cn": "Create React App 脚手架",
     "descript": "React 官方脚手架工具，提供零配置的 React 项目创建体验，底层使用 Webpack，相较于 Vite 冷启动较慢。",
-    "tags": ["react", "scaffold", "build-tool", "webpack"]
+    "tags": [
+      "react",
+      "scaffold",
+      "build-tool",
+      "webpack"
+    ]
   },
   "create-react-app": {
     "en": "create-react-app",
     "cn": "Create React App 完整名称",
     "descript": "React 官方命令行工具（CRA 全称），一键生成 React 项目模板。",
-    "tags": ["react", "scaffold", "tool", "abbreviation"]
+    "tags": [
+      "react",
+      "scaffold",
+      "tool",
+      "abbreviation"
+    ]
   },
   "TSX": {
     "en": "TSX",
     "cn": "TSX TypeScript JSX",
     "descript": "TypeScript 版本的 JSX 文件扩展名，在 React/Vue 等框架中使用，Vite 通过 Esbuild 或插件直接支持 TSX 编译。",
-    "tags": ["typescript", "react", "jsx", "vite"]
+    "tags": [
+      "typescript",
+      "react",
+      "jsx",
+      "vite"
+    ]
   },
   "CDN": {
     "en": "CDN",
     "cn": "CDN 内容分发网络",
     "descript": "Content Delivery Network，通过全球分布的边缘节点缓存和分发静态资源，降低用户访问延迟，Vite 通过 base 配置支持 CDN 部署。",
-    "tags": ["network", "deployment", "performance", "vite"]
+    "tags": [
+      "network",
+      "deployment",
+      "performance",
+      "vite"
+    ]
   },
   "Less": {
     "en": "Less",
     "cn": "Less CSS 预处理器",
     "descript": "CSS 预处理器，支持变量、嵌套、混入（Mixin）等特性，语法与 CSS 高度兼容，学习成本低。",
-    "tags": ["css", "preprocessor", "stylesheet", "frontend"]
+    "tags": [
+      "css",
+      "preprocessor",
+      "stylesheet",
+      "frontend"
+    ]
   },
   "Stylus": {
     "en": "Stylus",
     "cn": "Stylus CSS 预处理器",
     "descript": "CSS 预处理器，语法风格自由灵活，支持缩进式语法和函数式编程风格，可省略冒号、分号等符号。",
-    "tags": ["css", "preprocessor", "stylesheet", "frontend"]
+    "tags": [
+      "css",
+      "preprocessor",
+      "stylesheet",
+      "frontend"
+    ]
   },
   "CSS Modules": {
     "en": "CSS Modules",
     "cn": "CSS Modules 样式模块化",
     "descript": "CSS 模块化方案，通过哈希化类名实现样式隔离，防止全局污染，Vite 对 .module.css 文件开箱即用。",
-    "tags": ["css", "modularization", "vite", "frontend"]
+    "tags": [
+      "css",
+      "modularization",
+      "vite",
+      "frontend"
+    ]
   },
   "CSS in JS": {
     "en": "CSS in JS",
     "cn": "CSS in JS 在 JS 中写样式",
     "descript": "在 JavaScript 中编写 CSS 样式的技术方案，代表库有 styled-components 和 emotion，支持动态样式和组件级隔离。",
-    "tags": ["css", "javascript", "react", "frontend"]
+    "tags": [
+      "css",
+      "javascript",
+      "react",
+      "frontend"
+    ]
   },
   "Tailwind CSS": {
     "en": "Tailwind CSS",
     "cn": "Tailwind CSS 原子化框架",
     "descript": "CSS 原子化框架，通过预定义的原子类名快速构建界面，v3 引入 JIT 模式实现按需生成，极大减小产物体积。",
-    "tags": ["css", "framework", "utility-first", "frontend"]
+    "tags": [
+      "css",
+      "framework",
+      "utility-first",
+      "frontend"
+    ]
   },
   "Windi CSS": {
     "en": "Windi CSS",
     "cn": "Windi CSS 原子化框架",
     "descript": "CSS 原子化框架，编译速度比 Tailwind CSS v2 快 20-100 倍，支持 Attributify 和 Shortcuts 高级功能，按需编译。",
-    "tags": ["css", "framework", "utility-first", "frontend"]
+    "tags": [
+      "css",
+      "framework",
+      "utility-first",
+      "frontend"
+    ]
   },
   "autoprefixer": {
     "en": "autoprefixer",
     "cn": "autoprefixer 自动添加前缀",
     "descript": "PostCSS 插件，根据 Can I Use 数据自动为 CSS 属性添加浏览器厂商前缀，解决跨浏览器兼容问题。",
-    "tags": ["css", "postcss", "compatibility", "plugin"]
+    "tags": [
+      "css",
+      "postcss",
+      "compatibility",
+      "plugin"
+    ]
   },
   "emotion": {
     "en": "emotion",
     "cn": "emotion CSS in JS 库",
     "descript": "高性能 CSS in JS 库，支持 React 和 Vue，比 styled-components 更轻量，提供更好的 SSR 支持。",
-    "tags": ["css", "css-in-js", "react", "vue"]
+    "tags": [
+      "css",
+      "css-in-js",
+      "react",
+      "vue"
+    ]
   },
   "styled-components": {
     "en": "styled-components",
     "cn": "styled-components 样式组件库",
     "descript": "基于标签模板语法的 CSS in JS 库，将样式与 React 组件绑定，通过 Babel 插件支持 SSR 和 DCE 优化。",
-    "tags": ["css", "css-in-js", "react", "babel"]
+    "tags": [
+      "css",
+      "css-in-js",
+      "react",
+      "babel"
+    ]
   },
   "babel-plugin-styled-components": {
     "en": "babel-plugin-styled-components",
     "cn": "babel-plugin-styled-components 插件",
     "descript": "styled-components 的 Babel 插件，提供自动生成 displayName、SSR 支持和死代码消除等构建优化。",
-    "tags": ["babel", "plugin", "css-in-js", "optimization"]
+    "tags": [
+      "babel",
+      "plugin",
+      "css-in-js",
+      "optimization"
+    ]
   },
   "@emotion/babel-plugin": {
     "en": "@emotion/babel-plugin",
     "cn": "emotion Babel 插件",
     "descript": "emotion 的 Babel 插件，提供源码映射、压缩优化和 SSR 支持，是 emotion 在 Vite 中的核心编译依赖。",
-    "tags": ["babel", "plugin", "css-in-js", "optimization"]
+    "tags": [
+      "babel",
+      "plugin",
+      "css-in-js",
+      "optimization"
+    ]
   },
   "postcss-pxtorem": {
     "en": "postcss-pxtorem",
     "cn": "postcss-pxtorem 插件",
     "descript": "PostCSS 插件，自动将 px 单位转换为 rem 单位，常用于移动端适配方案。",
-    "tags": ["css", "postcss", "mobile", "plugin"]
+    "tags": [
+      "css",
+      "postcss",
+      "mobile",
+      "plugin"
+    ]
   },
   "postcss-preset-env": {
     "en": "postcss-preset-env",
     "cn": "postcss-preset-env 插件",
     "descript": "PostCSS 插件，通过 stage 配置支持最新的 CSS 草案语法，并自动降级为兼容写法。",
-    "tags": ["css", "postcss", "compatibility", "plugin"]
+    "tags": [
+      "css",
+      "postcss",
+      "compatibility",
+      "plugin"
+    ]
   },
   "cssnano": {
     "en": "cssnano",
     "cn": "cssnano CSS 压缩工具",
     "descript": "PostCSS 生态的 CSS 压缩优化工具，用于生产环境智能压缩 CSS 代码，移除冗余样式和注释。",
-    "tags": ["css", "postcss", "minification", "optimization"]
+    "tags": [
+      "css",
+      "postcss",
+      "minification",
+      "optimization"
+    ]
   },
   "pxtorem": {
     "en": "pxtorem",
     "cn": "px 转 rem 方案",
     "descript": "将 CSS 中的 px 单位自动转换为 rem 单位的方案，常见于 PostCSS 插件 postcss-pxtorem，用于移动端响应式适配。",
-    "tags": ["css", "mobile", "responsive", "postcss"]
+    "tags": [
+      "css",
+      "mobile",
+      "responsive",
+      "postcss"
+    ]
   },
   "SourceMap": {
     "en": "SourceMap",
     "cn": "SourceMap 源码映射",
     "descript": "源码映射文件，将编译、压缩后的代码映射回原始源码，便于开发调试，Babel 和 Vite 均支持生成 SourceMap。",
-    "tags": ["debugging", "devtool", "babel", "vite"]
+    "tags": [
+      "debugging",
+      "devtool",
+      "babel",
+      "vite"
+    ]
   },
   "vite-plugin-svgr": {
     "en": "vite-plugin-svgr",
     "cn": "vite-plugin-svgr 插件",
     "descript": "Vite 插件，将 SVG 文件转换为 React 函数式组件，支持通过 props 动态修改样式属性。",
-    "tags": ["vite", "plugin", "svg", "react"]
+    "tags": [
+      "vite",
+      "plugin",
+      "svg",
+      "react"
+    ]
   },
   "vite-plugin-imagemin": {
     "en": "vite-plugin-imagemin",
     "cn": "vite-plugin-imagemin 插件",
     "descript": "Vite 插件，构建时自动调用 imagemin 引擎压缩图片产物（PNG/JPEG/SVG），通常可缩减 30%60% 体积。",
-    "tags": ["vite", "plugin", "image", "optimization"]
+    "tags": [
+      "vite",
+      "plugin",
+      "image",
+      "optimization"
+    ]
   },
   "vite-plugin-svg-icons": {
     "en": "vite-plugin-svg-icons",
     "cn": "vite-plugin-svg-icons 插件",
     "descript": "Vite 插件，将指定目录下的 SVG 图标合并为雪碧图（Sprite），通过 <use> 标签引用，将 N 次请求降为 1 次。",
-    "tags": ["vite", "plugin", "svg", "optimization"]
+    "tags": [
+      "vite",
+      "plugin",
+      "svg",
+      "optimization"
+    ]
   },
   "WebAssembly": {
     "en": "WebAssembly",
     "cn": "WebAssembly 浏览器汇编",
     "descript": "WASM 的全称，一种可在浏览器中运行的低级字节码格式，支持 C/C++/Rust 等语言编译后在 Web 端高性能运行，Vite 支持直接 import WASM 文件。",
-    "tags": ["browser", "performance", "wasm", "vite"]
+    "tags": [
+      "browser",
+      "performance",
+      "wasm",
+      "vite"
+    ]
   },
   "Web Worker": {
     "en": "Web Worker",
     "cn": "Web Worker 浏览器线程",
     "descript": "浏览器提供的多线程 API，可在后台线程执行 JS 代码而不阻塞主线程，Vite 通过 ?worker 后缀支持直接导入 Worker 脚本。",
-    "tags": ["browser", "javascript", "performance", "vite"]
+    "tags": [
+      "browser",
+      "javascript",
+      "performance",
+      "vite"
+    ]
   },
   "WASM": {
     "en": "WASM",
     "cn": "WASM WebAssembly 缩写",
     "descript": "WebAssembly 的缩写，一种可在浏览器中高效运行的低级字节码格式，Vite 支持直接 import .wasm 文件。",
-    "tags": ["browser", "performance", "abbreviation", "vite"]
+    "tags": [
+      "browser",
+      "performance",
+      "abbreviation",
+      "vite"
+    ]
   },
   "imagemin": {
     "en": "imagemin",
     "cn": "imagemin 图片压缩引擎",
     "descript": "Node.js 图片压缩引擎，支持 PNG、JPEG、GIF、SVG 等多种格式的压缩优化，Vite 通过 vite-plugin-imagemin 集成。",
-    "tags": ["image", "optimization", "nodejs", "vite"]
+    "tags": [
+      "image",
+      "optimization",
+      "nodejs",
+      "vite"
+    ]
   },
   "Sprite": {
     "en": "Sprite",
     "cn": "Sprite 雪碧图",
     "descript": "CSS 雪碧图技术，将多个小图标合并为一张大图，通过 background-position 定位显示，减少 HTTP 请求数，SVG 场景下通过 <use> 标签引用。",
-    "tags": ["css", "optimization", "svg", "performance"]
+    "tags": [
+      "css",
+      "optimization",
+      "svg",
+      "performance"
+    ]
   },
   "SVGO": {
     "en": "SVGO",
     "cn": "SVGO SVG 优化工具",
     "descript": "SVG Optimizer，用于清理 SVG 文件中冗余的元数据、注释和隐藏元素，减小文件体积，可集成到 imagemin 或 Vite 构建流程中。",
-    "tags": ["svg", "optimization", "tool", "vite"]
+    "tags": [
+      "svg",
+      "optimization",
+      "tool",
+      "vite"
+    ]
   },
   "Prettier": {
     "en": "Prettier",
     "cn": "Prettier 代码格式化工具",
     "descript": "专注于代码格式化的工具，支持 JS/TS/CSS/HTML 等多种语言，通过统一格式规则消除代码风格争议，常与 ESLint 集成使用。",
-    "tags": ["format", "javascript", "css", "tool"]
+    "tags": [
+      "format",
+      "javascript",
+      "css",
+      "tool"
+    ]
   },
   "Stylelint": {
     "en": "Stylelint",
     "cn": "Stylelint 样式检查工具",
     "descript": "强大的现代化样式 Lint 工具，内置 170+ CSS 规则，支持 Sass/Less 预处理器，提供插件化扩展机制，用于统一 CSS/SCSS 代码风格。",
-    "tags": ["lint", "css", "scss", "tool"]
+    "tags": [
+      "lint",
+      "css",
+      "scss",
+      "tool"
+    ]
   },
   "SCSS": {
     "en": "SCSS",
     "cn": "SCSS 样式预处理器",
     "descript": "Sass 的 CSS 超集语法，完全兼容 CSS3，提供变量、嵌套、混入等特性，通过 Dart Sass 编译器编译为原生 CSS。",
-    "tags": ["css", "preprocessor", "sass"]
+    "tags": [
+      "css",
+      "preprocessor",
+      "sass"
+    ]
   },
   "Husky": {
     "en": "Husky",
     "cn": "Husky Git 钩子工具",
     "descript": "Git 钩子管理工具，用于在 git commit/push 等操作前自动执行脚本，配合 lint-staged 实现提交前代码检查，保障代码质量。",
-    "tags": ["git", "tool", "workflow"]
+    "tags": [
+      "git",
+      "tool",
+      "workflow"
+    ]
   },
   "lint-staged": {
     "en": "lint-staged",
     "cn": "lint-staged 增量检查工具",
     "descript": "只对 Git 暂存区文件执行 Lint 检查的工具，避免全量扫描，显著提升 commit 阶段的检查速度，常与 Husky 配合使用。",
-    "tags": ["lint", "git", "tool", "workflow"]
+    "tags": [
+      "lint",
+      "git",
+      "tool",
+      "workflow"
+    ]
   },
   "Commitlint": {
     "en": "Commitlint",
     "cn": "Commitlint 提交信息规范工具",
     "descript": "用于检查 Git commit message 格式的工具，基于 conventional commits 规范，保证提交信息的一致性和可读性。",
-    "tags": ["git", "convention", "tool", "workflow"]
+    "tags": [
+      "git",
+      "convention",
+      "tool",
+      "workflow"
+    ]
   },
   "Vue.js": {
     "en": "Vue.js",
     "cn": "Vue.js 框架",
     "descript": "渐进式 JavaScript 框架，采用声明式渲染和组件化架构，Vue3 使用 Proxy 实现响应式系统，支持 Composition API 和 Options API。",
-    "tags": ["framework", "javascript", "vue"]
+    "tags": [
+      "framework",
+      "javascript",
+      "vue"
+    ]
   },
   "虚拟DOM": {
     "en": "Virtual DOM",
     "cn": "虚拟 DOM",
     "descript": "用 JavaScript 对象模拟真实 DOM 树的技术，通过 Diff 算法找出最小变更集，减少直接操作 DOM 的开销，提升渲染性能。",
-    "tags": ["dom", "javascript", "framework", "performance"]
+    "tags": [
+      "dom",
+      "javascript",
+      "framework",
+      "performance"
+    ]
   },
   "Diff": {
     "en": "Diff",
     "cn": "Diff 差异算法",
     "descript": "比较新旧虚拟 DOM 树差异的算法，找出最小更新操作集，是声明式框架实现高性能渲染的核心技术。",
-    "tags": ["algorithm", "dom", "framework", "performance"]
+    "tags": [
+      "algorithm",
+      "dom",
+      "framework",
+      "performance"
+    ]
   },
   "jQuery": {
     "en": "jQuery",
     "cn": "jQuery 库",
     "descript": "经典的 JavaScript DOM 操作库，简化了 DOM 遍历、事件处理和 AJAX 调用，命令式风格，曾是前端开发标配。",
-    "tags": ["library", "javascript", "dom"]
+    "tags": [
+      "library",
+      "javascript",
+      "dom"
+    ]
   },
   "innerHTML": {
     "en": "innerHTML",
     "cn": "innerHTML 属性",
     "descript": "DOM 元素属性，用于获取或设置元素内部的 HTML 字符串，更新时需销毁重建所有 DOM，性能较差，常与虚拟 DOM 对比。",
-    "tags": ["dom", "html", "javascript"]
+    "tags": [
+      "dom",
+      "html",
+      "javascript"
+    ]
   },
   "Tree-Shaking": {
     "en": "Tree-Shaking",
     "cn": "Tree-Shaking 摇树优化",
     "descript": "消除 dead code 的打包优化技术，依赖 ESM 静态结构分析模块依赖，只保留实际使用的代码，减少打包体积。Rollup、Webpack 等工具原生支持。",
-    "tags": ["optimization", "build", "esm", "javascript"]
+    "tags": [
+      "optimization",
+      "build",
+      "esm",
+      "javascript"
+    ]
   },
   "IIFE": {
     "en": "IIFE",
     "cn": "IIFE 立即执行函数",
     "descript": "Immediately Invoked Function Expression，定义后立即执行的 JavaScript 函数表达式，常用于创建独立作用域和 UMD 格式打包。",
-    "tags": ["javascript", "pattern", "build"]
+    "tags": [
+      "javascript",
+      "pattern",
+      "build"
+    ]
   },
   "Espree": {
     "en": "Espree",
     "cn": "Espree 解析器",
     "descript": "ESLint 默认的 JavaScript 解析器，基于 Acorn，将 JS 代码解析为 ESTree 格式的 AST，支持 ECMAScript 标准语法。",
-    "tags": ["parser", "javascript", "ast", "eslint"]
+    "tags": [
+      "parser",
+      "javascript",
+      "ast",
+      "eslint"
+    ]
   },
   "Acorn": {
     "en": "Acorn",
     "cn": "Acorn 解析器",
     "descript": "轻量级 JavaScript 解析器，将 JS 代码解析为 AST，Espree 和 Webpack 均基于 Acorn 构建，速度快但本身不支持 TypeScript 语法。",
-    "tags": ["parser", "javascript", "ast"]
+    "tags": [
+      "parser",
+      "javascript",
+      "ast"
+    ]
   },
   "Estree": {
     "en": "Estree",
     "cn": "Estree AST 规范",
     "descript": "ECMAScript AST 标准规范，定义 JavaScript 抽象语法树节点格式，Espree 和 @typescript-eslint/parser 均遵循此规范。",
-    "tags": ["ast", "javascript", "specification"]
+    "tags": [
+      "ast",
+      "javascript",
+      "specification"
+    ]
   },
   "Object.defineProperty": {
     "en": "Object.defineProperty",
     "cn": "Object.defineProperty API",
     "descript": "ES5 提供的对象属性定义方法，可精确控制属性描述符（writable/enumerable/configurable），Vue2 基于此实现响应式系统，但无法监听数组索引和新增属性。",
-    "tags": ["javascript", "es5", "api", "vue"]
+    "tags": [
+      "javascript",
+      "es5",
+      "api",
+      "vue"
+    ]
   },
   "渲染器": {
     "en": "Renderer",
     "cn": "渲染器",
     "descript": "将虚拟 DOM 转换为真实 DOM 的函数，负责创建元素、设置属性、绑定事件和递归渲染子节点，是声明式框架的核心模块之一。",
-    "tags": ["dom", "virtual-dom", "framework", "vue"]
+    "tags": [
+      "dom",
+      "virtual-dom",
+      "framework",
+      "vue"
+    ]
   },
   "编译器": {
     "en": "Compiler",
     "cn": "编译器",
     "descript": "将模板编译为渲染函数的工具，在构建或运行时将 HTML 模板转换为 JavaScript 代码，编译阶段可提取动态内容以优化渲染性能。",
-    "tags": ["build", "framework", "vue", "template"]
+    "tags": [
+      "build",
+      "framework",
+      "vue",
+      "template"
+    ]
   },
   "响应式数据": {
     "en": "Reactive Data",
     "cn": "响应式数据",
     "descript": "能够自动追踪依赖并在值变化时触发相关副作用函数重新执行的数据，基于 Proxy 或 Object.defineProperty 实现，是 Vue 响应系统的核心概念。",
-    "tags": ["vue", "javascript", "proxy", "reactivity"]
+    "tags": [
+      "vue",
+      "javascript",
+      "proxy",
+      "reactivity"
+    ]
   },
   "副作用函数": {
     "en": "Side Effect Function",
     "cn": "副作用函数",
     "descript": "执行时会影响外部状态（如修改全局变量、操作 DOM）的函数，在响应式系统中被自动收集为依赖，数据变化时重新执行以更新视图。",
-    "tags": ["javascript", "reactivity", "vue"]
+    "tags": [
+      "javascript",
+      "reactivity",
+      "vue"
+    ]
   },
   "模板": {
     "en": "Template",
     "cn": "模板",
     "descript": "基于 HTML 的声明式 UI 描述语法，通过编译器编译为渲染函数，支持插值、指令（v-bind/v-on/v-if/v-for）等特性，是 Vue 组件的主要写法。",
-    "tags": ["vue", "html", "compiler", "frontend"]
+    "tags": [
+      "vue",
+      "html",
+      "compiler",
+      "frontend"
+    ]
   },
   "MIME": {
     "en": "MIME",
     "cn": "MIME 类型",
     "descript": "Multipurpose Internet Mail Extensions，互联网媒体类型标准，用于标识文件格式和内容类型，如 image/png、text/html、application/json 等。",
-    "tags": ["http", "web", "browser"]
+    "tags": [
+      "http",
+      "web",
+      "browser"
+    ]
   },
   "DataURL": {
     "en": "Data URL",
     "cn": "Data URL 方案",
     "descript": "一种将资源内嵌到文档中的方案，格式为 data:[<mediatype>][;base64],<data>，可将图片等文件直接编码为字符串嵌入 HTML 或 CSS。",
-    "tags": ["html", "css", "base64", "web"]
+    "tags": [
+      "html",
+      "css",
+      "base64",
+      "web"
+    ]
   },
   "html2canvas": {
     "en": "html2canvas",
     "cn": "html2canvas 库",
     "descript": "JavaScript 截图库，可将 HTML 元素渲染为 Canvas 对象，支持将网页内容保存为图片。",
-    "tags": ["javascript", "canvas", "screenshot", "browser"]
+    "tags": [
+      "javascript",
+      "canvas",
+      "screenshot",
+      "browser"
+    ]
   },
   "URL.createObjectURL": {
     "en": "URL.createObjectURL",
     "cn": "URL.createObjectURL API",
     "descript": "浏览器 API，用于为 File 或 Blob 对象创建临时 URL（blob: 协议），可用于预览本地文件，使用后需调用 URL.revokeObjectURL 释放内存。",
-    "tags": ["javascript", "browser", "api", "blob"]
+    "tags": [
+      "javascript",
+      "browser",
+      "api",
+      "blob"
+    ]
   },
   "ImageData": {
     "en": "ImageData",
     "cn": "图像数据对象",
     "descript": "Canvas API 提供的接口，表示 Canvas 元素指定矩形区域的底层像素数据，通过 data 属性（Uint8ClampedArray）访问每个像素的 RGBA 通道值。",
-    "tags": ["canvas", "api", "pixel"]
+    "tags": [
+      "canvas",
+      "api",
+      "pixel"
+    ]
   },
   "RGBA": {
     "en": "RGBA",
     "cn": "RGBA 颜色模型",
     "descript": "Red Green Blue Alpha 的缩写，在 RGB 颜色模型基础上增加 Alpha 通道表示透明度，每个通道取值范围 0-255，是 Canvas 像素操作的基础颜色编码。",
-    "tags": ["color", "canvas", "pixel"]
+    "tags": [
+      "color",
+      "canvas",
+      "pixel"
+    ]
   },
   "ColorThief": {
     "en": "ColorThief",
     "cn": "ColorThief 色彩提取库",
     "descript": "一个 JavaScript 库，用于从图像中提取主导颜色或调色板，支持浏览器和 Node.js 环境，采用智能采样算法确保提取的颜色具有代表性。",
-    "tags": ["color", "javascript", "canvas", "library"]
+    "tags": [
+      "color",
+      "javascript",
+      "canvas",
+      "library"
+    ]
   },
   "RGB": {
     "en": "RGB",
     "cn": "RGB 颜色模型",
     "descript": "Red Green Blue 的缩写，一种加色模型，通过红、绿、蓝三原色以不同强度叠加来呈现各种颜色，每通道取值范围 0-255，是数字图像处理的基础。",
-    "tags": ["color", "image", "standard"]
+    "tags": [
+      "color",
+      "image",
+      "standard"
+    ]
   },
   "getImageData": {
     "en": "getImageData",
     "cn": "获取图像数据方法",
     "descript": "Canvas 2D 渲染上下文的方法，用于获取画布上指定矩形区域的像素数据，返回 ImageData 对象，其 data 属性包含每个像素的 RGBA 通道值。",
-    "tags": ["canvas", "api", "method", "pixel"]
+    "tags": [
+      "canvas",
+      "api",
+      "method",
+      "pixel"
+    ]
   },
   "GSAP": {
     "en": "GSAP",
     "cn": "GSAP 动画库",
     "descript": "GreenSock Animation Platform，一个高性能 JavaScript 动画库，提供 to/from/fromTo 等动画函数以及 Timeline 时间轴功能，支持对任意可读写属性做流畅动画。",
-    "tags": ["javascript", "animation", "library", "svg"]
+    "tags": [
+      "javascript",
+      "animation",
+      "library",
+      "svg"
+    ]
   },
   "UniApp": {
     "en": "UniApp",
     "cn": "UniApp 跨端框架",
     "descript": "基于 Vue.js 的跨端开发框架，一套代码可编译到 iOS、Android、Web 及各类小程序平台，提供统一的 API 和组件体系。",
-    "tags": ["framework", "vue", "cross-platform", "uniapp"]
+    "tags": [
+      "framework",
+      "vue",
+      "cross-platform",
+      "uniapp"
+    ]
   },
   "SKU": {
     "en": "SKU",
     "cn": "SKU 库存量单位",
     "descript": "Stock Keeping Unit 的缩写，电商系统中用于标识商品规格的最小库存单位，每个 SKU 对应一组唯一的商品属性组合。",
-    "tags": ["ecommerce", "inventory"]
+    "tags": [
+      "ecommerce",
+      "inventory"
+    ]
   },
   "微信小程序": {
     "en": "WeChat Mini Program",
     "cn": "微信小程序",
     "descript": "微信生态内的轻量级应用，无需下载安装即可使用，支持通过微信 API 调用支付、授权、分享等原生能力。",
-    "tags": ["wechat", "miniprogram", "platform"]
+    "tags": [
+      "wechat",
+      "miniprogram",
+      "platform"
+    ]
   },
   "Alipay": {
     "en": "Alipay",
     "cn": "支付宝",
     "descript": "阿里巴巴旗下的第三方支付平台，为移动端应用提供 SDK 和 API 支持在线支付、转账等功能。",
-    "tags": ["payment", "platform", "sdk"]
+    "tags": [
+      "payment",
+      "platform",
+      "sdk"
+    ]
   },
   "Access Token": {
     "en": "Access Token",
     "cn": "访问令牌",
     "descript": "用于访问受保护资源的凭证令牌，通常为短时效，客户端在请求 API 时携带此令牌以证明身份和授权。",
-    "tags": ["auth", "token", "security"]
+    "tags": [
+      "auth",
+      "token",
+      "security"
+    ]
   },
   "Refresh Token": {
     "en": "Refresh Token",
     "cn": "刷新令牌",
     "descript": "用于获取新 Access Token 的长效凭证令牌，当 Access Token 过期时，客户端使用 Refresh Token 换取新的 Access Token，无需用户重新登录。",
-    "tags": ["auth", "token", "security"]
+    "tags": [
+      "auth",
+      "token",
+      "security"
+    ]
   },
   "JeecgBoot": {
     "en": "JeecgBoot",
     "cn": "JeecgBoot 低代码平台",
     "descript": "基于 SpringBoot 和 Ant Design Vue 的低代码开发平台，提供在线表单设计、代码生成器等功能，支持快速搭建企业级后台管理系统。",
-    "tags": ["low-code", "java", "vue", "backend"]
+    "tags": [
+      "low-code",
+      "java",
+      "vue",
+      "backend"
+    ]
   },
   "vxe-table": {
     "en": "vxe-table",
     "cn": "vxe-table 表格组件",
     "descript": "基于 Vue 的企业级表格组件库，支持虚拟滚动、树形表格、可编辑单元格、导出导入等高级功能，JeecgBoot 基于此封装了 j-vxe-table 组件。",
-    "tags": ["vue", "table", "component", "grid"]
+    "tags": [
+      "vue",
+      "table",
+      "component",
+      "grid"
+    ]
   },
   "uView": {
     "en": "uView",
     "cn": "uView UI 组件库",
     "descript": "UniApp 生态下的多端兼容 UI 组件库，提供丰富的组件和工具函数，支持微信小程序、APP、H5 等多平台。",
-    "tags": ["ui", "vue", "uniapp", "component"]
+    "tags": [
+      "ui",
+      "vue",
+      "uniapp",
+      "component"
+    ]
   },
   "HBuilder": {
     "en": "HBuilder",
     "cn": "HBuilder 开发工具",
     "descript": "DCloud 推出的前端开发 IDE，深度集成 UniApp 框架，支持代码提示、真机调试、云打包等功能。",
-    "tags": ["ide", "uniapp", "tool"]
+    "tags": [
+      "ide",
+      "uniapp",
+      "tool"
+    ]
   },
   "微信网页授权": {
     "en": "WeChat Web Authorization",
     "cn": "微信网页授权",
     "descript": "微信公众平台提供的 OAuth2.0 授权机制，允许公众号在网页中获取用户基本信息（如 openid、昵称），用于免登录和身份识别。",
-    "tags": ["wechat", "auth", "oauth"]
+    "tags": [
+      "wechat",
+      "auth",
+      "oauth"
+    ]
   },
   "vue-color": {
     "en": "vue-color",
     "cn": "vue-color 颜色选择器",
     "descript": "基于 Vue 的颜色选择器组件，提供 Sketch、Photoshop、Chrome 等多种取色器风格，支持颜色格式转换和双向绑定。",
-    "tags": ["vue", "color", "component", "picker"]
+    "tags": [
+      "vue",
+      "color",
+      "component",
+      "picker"
+    ]
   },
   "natapp": {
     "en": "natapp",
     "cn": "natapp 内网穿透工具",
     "descript": "基于 ngrok 的内网穿透服务，可将本地开发环境映射到公网域名，用于微信开发调试等需要公网访问的场景。",
-    "tags": ["network", "tunnel", "debug", "tool"]
+    "tags": [
+      "network",
+      "tunnel",
+      "debug",
+      "tool"
+    ]
   },
   "Element Plus": {
     "en": "Element Plus",
     "cn": "Element Plus 组件库",
     "descript": "基于 Vue 3 的桌面端 UI 组件库，是 Element UI 的 Vue 3 升级版本，提供表单、表格、弹窗等丰富的企业级组件。",
-    "tags": ["vue", "ui", "component", "vue3"]
+    "tags": [
+      "vue",
+      "ui",
+      "component",
+      "vue3"
+    ]
   },
   "Ant Design Vue": {
     "en": "Ant Design Vue",
     "cn": "Ant Design Vue 组件库",
     "descript": "基于 Ant Design 设计规范的 Vue 组件库，提供表格、树形控件、表单等企业级 UI 组件，常用于中后台管理系统开发。",
-    "tags": ["vue", "ui", "component", "ant-design"]
+    "tags": [
+      "vue",
+      "ui",
+      "component",
+      "ant-design"
+    ]
   },
   "VitePress": {
     "en": "VitePress",
     "cn": "VitePress 静态站点生成器",
     "descript": "基于 Vite 和 Vue 的静态站点生成器（SSG），专为文档和博客设计，支持 Markdown 编写、Vue 组件嵌入和主题定制。",
-    "tags": ["vitepress", "ssg", "vue", "vite", "documentation"]
+    "tags": [
+      "vitepress",
+      "ssg",
+      "vue",
+      "vite",
+      "documentation"
+    ]
   },
   "Gitee Pages": {
     "en": "Gitee Pages",
     "cn": "Gitee Pages 静态托管",
     "descript": "码云（Gitee）提供的静态网站托管服务，支持将仓库中的 HTML/CSS/JS 文件自动部署为可访问的网站。",
-    "tags": ["gitee", "hosting", "deploy", "static"]
+    "tags": [
+      "gitee",
+      "hosting",
+      "deploy",
+      "static"
+    ]
   },
   "Giscus": {
     "en": "Giscus",
     "cn": "Giscus 评论系统",
     "descript": "基于 GitHub Discussions 的评论系统插件，通过 GitHub OAuth 登录，评论数据存储在仓库的 Discussions 中，常用于 VitePress 等静态博客。",
-    "tags": ["comment", "github", "plugin", "vitepress"]
+    "tags": [
+      "comment",
+      "github",
+      "plugin",
+      "vitepress"
+    ]
   },
   "Algolia": {
     "en": "Algolia",
     "cn": "Algolia 搜索服务",
     "descript": "提供搜索即服务（Search-as-a-Service）的云平台，为网站和文档提供快速、实时的全文搜索能力，是 VitePress 官方推荐的搜索方案之一。",
-    "tags": ["search", "cloud", "vitepress", "service"]
+    "tags": [
+      "search",
+      "cloud",
+      "vitepress",
+      "service"
+    ]
   },
   "GitHub Actions": {
     "en": "GitHub Actions",
     "cn": "GitHub Actions 自动化流水线",
     "descript": "GitHub 提供的 CI/CD 自动化平台，通过 YAML 配置定义工作流，支持代码推送时自动触发构建、测试和部署等任务。",
-    "tags": ["github", "ci-cd", "automation", "deploy"]
+    "tags": [
+      "github",
+      "ci-cd",
+      "automation",
+      "deploy"
+    ]
   },
   "闭包": {
     "en": "Closure",
     "cn": "闭包",
     "descript": "JavaScript 中的核心概念，指函数能够访问其定义时所在作用域中的变量，即使该函数在作用域之外执行。常用于数据封装、模块化和回调函数。",
-    "tags": ["javascript", "scope", "function"]
+    "tags": [
+      "javascript",
+      "scope",
+      "function"
+    ]
   },
   "垃圾回收": {
     "en": "Garbage Collection",
     "cn": "垃圾回收",
     "descript": "自动管理内存的机制，由垃圾回收器（GC）定期查找并释放不再被引用的内存空间，JavaScript 引擎（如 V8）使用标记清除等算法实现。",
-    "tags": ["memory", "javascript", "v8", "performance"]
+    "tags": [
+      "memory",
+      "javascript",
+      "v8",
+      "performance"
+    ]
   },
   "原型链": {
     "en": "Prototype Chain",
     "cn": "原型链",
     "descript": "JavaScript 实现继承的核心机制，每个对象都有一个内部 [[Prototype]] 链接指向其原型对象，形成一条链式查找路径，是 instanceof 和属性查找的基础。",
-    "tags": ["javascript", "inheritance", "prototype", "oop"]
+    "tags": [
+      "javascript",
+      "inheritance",
+      "prototype",
+      "oop"
+    ]
   },
   "instanceof": {
     "en": "instanceof",
     "cn": "instanceof 运算符",
     "descript": "JavaScript 二元运算符，用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上，常用于判断对象类型。",
-    "tags": ["javascript", "operator", "type-check", "prototype"]
+    "tags": [
+      "javascript",
+      "operator",
+      "type-check",
+      "prototype"
+    ]
   },
   "拦截器": {
     "en": "Interceptor",
     "cn": "拦截器",
     "descript": "Axios 等 HTTP 客户端提供的中间件机制，在请求发送前或响应返回后拦截并处理，常用于统一添加 Token、日志记录、错误处理等。",
-    "tags": ["axios", "http", "middleware", "request"]
+    "tags": [
+      "axios",
+      "http",
+      "middleware",
+      "request"
+    ]
   },
   "观察者模式": {
     "en": "Observer Pattern",
     "cn": "观察者模式",
     "descript": "一种行为设计模式，定义对象间的一对多依赖关系，当被观察对象状态改变时，所有依赖它的观察者都会收到通知并自动更新，常用于事件处理系统。",
-    "tags": ["design-pattern", "behavioral", "event", "javascript"]
+    "tags": [
+      "design-pattern",
+      "behavioral",
+      "event",
+      "javascript"
+    ]
   },
   "策略模式": {
     "en": "Strategy Pattern",
     "cn": "策略模式",
     "descript": "一种行为设计模式，定义一系列算法并将每个算法封装起来使其可以互相替换，策略模式让算法的变化独立于使用算法的客户端，常用于替代多重条件分支。",
-    "tags": ["design-pattern", "behavioral", "algorithm", "javascript"]
+    "tags": [
+      "design-pattern",
+      "behavioral",
+      "algorithm",
+      "javascript"
+    ]
   },
   "组合模式": {
     "en": "Composite Pattern",
     "cn": "组合模式",
     "descript": "一种结构型设计模式，将对象组合成树状结构以表示「部分-整体」的层次关系，使客户端对单个对象和组合对象的使用具有一致性，常用于 UI 组件嵌套。",
-    "tags": ["design-pattern", "structural", "component", "tree"]
+    "tags": [
+      "design-pattern",
+      "structural",
+      "component",
+      "tree"
+    ]
   },
   "多态": {
     "en": "Polymorphism",
     "cn": "多态",
     "descript": "面向对象编程的核心特性之一，指父类中定义的属性和方法被子类继承后可以有不同的实现，通过方法重写实现同一接口的不同行为。",
-    "tags": ["oop", "class", "inheritance", "typescript"]
+    "tags": [
+      "oop",
+      "class",
+      "inheritance",
+      "typescript"
+    ]
   },
   "LRU": {
     "en": "LRU",
     "cn": "LRU 缓存算法",
     "descript": "Least Recently Used 的缩写，一种常用的缓存淘汰策略，当缓存容量满时优先淘汰最近最少使用的数据，常用于浏览器缓存、数据库缓存、操作系统页面置换等场景。",
-    "tags": ["algorithm", "cache", "data-structure"]
+    "tags": [
+      "algorithm",
+      "cache",
+      "data-structure"
+    ]
   },
   "Vuex": {
     "en": "Vuex",
     "cn": "Vuex 状态管理库",
     "descript": "Vue.js 的官方状态管理库，采用集中式存储管理应用的所有组件的状态，包含 State、Getter、Mutation、Action 和 Module 五大核心概念。",
-    "tags": ["vue", "state-management", "store"]
+    "tags": [
+      "vue",
+      "state-management",
+      "store"
+    ]
   },
   "插槽": {
     "en": "Slot",
     "cn": "插槽",
     "descript": "Vue 组件的内容分发机制，允许父组件向子组件指定位置插入模板片段，包括默认插槽、具名插槽和作用域插槽，是实现组件灵活组合的核心 API。",
-    "tags": ["vue", "component", "template"]
+    "tags": [
+      "vue",
+      "component",
+      "template"
+    ]
   },
   "循环引用": {
     "en": "Circular Reference",
     "cn": "循环引用",
     "descript": "指对象内部某个属性直接或间接引用对象自身，形成引用闭环，在 JSON 序列化、深拷贝、垃圾回收等场景中需要特殊处理。",
-    "tags": ["javascript", "object", "memory"]
+    "tags": [
+      "javascript",
+      "object",
+      "memory"
+    ]
   },
   "浮点数": {
     "en": "Floating-Point Number",
     "cn": "浮点数",
     "descript": "计算机中用于表示小数的数值类型，遵循 IEEE 754 标准，由于二进制存储精度限制，部分十进制小数无法精确表示，会产生精度误差。",
-    "tags": ["computer-science", "number", "ieee754"]
+    "tags": [
+      "computer-science",
+      "number",
+      "ieee754"
+    ]
   },
   "引用类型": {
     "en": "Reference Type",
     "cn": "引用类型",
     "descript": "JavaScript 中通过内存地址存储和访问的数据类型，包括 Object、Array、Function 等，赋值时传递的是内存地址而非值本身，修改会相互影响。",
-    "tags": ["javascript", "data-type", "memory"]
+    "tags": [
+      "javascript",
+      "data-type",
+      "memory"
+    ]
   },
   "深度克隆": {
     "en": "Deep Clone",
     "cn": "深度克隆",
     "descript": "创建对象或数组的完整副本，递归复制所有嵌套层级，新对象与原对象完全独立，修改互不影响，与浅拷贝（Shallow Copy）相对。",
-    "tags": ["javascript", "object", "algorithm"]
+    "tags": [
+      "javascript",
+      "object",
+      "algorithm"
+    ]
   },
   "纯函数": {
     "en": "Pure Function",
     "cn": "纯函数",
     "descript": "函数式编程的核心概念，指对于相同的输入永远返回相同的输出，且不产生任何可观察的副作用（如修改外部变量、发送网络请求等），具有可预测性和可测试性。",
-    "tags": ["functional-programming", "javascript", "design"]
+    "tags": [
+      "functional-programming",
+      "javascript",
+      "design"
+    ]
   },
   "副作用": {
     "en": "Side Effect",
     "cn": "副作用",
     "descript": "函数在执行过程中除了返回值之外，还对函数外部环境产生的额外影响，如修改全局变量、DOM 操作、网络请求、写入文件等，在函数式编程中应尽量避免。",
-    "tags": ["functional-programming", "javascript", "design"]
+    "tags": [
+      "functional-programming",
+      "javascript",
+      "design"
+    ]
   },
   "并发": {
     "en": "Concurrency",
     "cn": "并发",
     "descript": "计算机科学中同时处理多个任务的能力，在 JavaScript 中通过事件循环和异步机制实现，多个任务交替执行而非同时执行，区别于并行（Parallelism）。",
-    "tags": ["computer-science", "async", "javascript"]
+    "tags": [
+      "computer-science",
+      "async",
+      "javascript"
+    ]
   },
   "Page Visibility API": {
     "en": "Page Visibility API",
     "cn": "页面可见度 API",
     "descript": "浏览器提供的 Web API，通过 visibilitychange 事件和 visibilityState 属性检测页面的可见状态，用于优化资源消耗（如暂停动画、降低定时器频率等）。",
-    "tags": ["web-api", "browser", "performance"]
+    "tags": [
+      "web-api",
+      "browser",
+      "performance"
+    ]
   },
   "模块化": {
     "en": "Modularization",
     "cn": "模块化",
     "descript": "将程序按功能拆分为独立模块的开发方式，每个模块隐藏内部实现并对外暴露接口，可解决全局变量污染、提高代码复用性和可维护性，常见规范有 AMD、CMD、CommonJS、ES Module。",
-    "tags": ["javascript", "architecture", "commonjs", "esmodule"]
+    "tags": [
+      "javascript",
+      "architecture",
+      "commonjs",
+      "esmodule"
+    ]
   },
   "事件循环": {
     "en": "Event Loop",
     "cn": "事件循环",
     "descript": "JavaScript 的运行机制，负责协调同步任务、异步任务（微任务和宏任务）的执行顺序，主线程通过不断从任务队列中取出任务执行来实现非阻塞 I/O。",
-    "tags": ["javascript", "async", "browser"]
+    "tags": [
+      "javascript",
+      "async",
+      "browser"
+    ]
   },
   "进程": {
     "en": "Process",
     "cn": "进程",
     "descript": "操作系统资源分配的基本单位，每个进程拥有独立的内存空间，进程之间相互隔离，一个程序的运行至少需要一个进程，浏览器是多进程架构的典型应用。",
-    "tags": ["computer-science", "os", "browser"]
+    "tags": [
+      "computer-science",
+      "os",
+      "browser"
+    ]
   },
   "线程": {
     "en": "Thread",
     "cn": "线程",
     "descript": "操作系统调度的最小执行单元，一个进程可包含多个线程，线程共享进程的内存空间，主线程是进程启动时自动创建的线程，JavaScript 在浏览器中运行在主线程上。",
-    "tags": ["computer-science", "os", "browser"]
+    "tags": [
+      "computer-science",
+      "os",
+      "browser"
+    ]
   },
   "原型": {
     "en": "Prototype",
     "cn": "原型",
     "descript": "JavaScript 中每个对象都有一个内部属性指向其原型对象，原型对象上的属性和方法可被实例共享，通过 prototype 和 __proto__ 实现继承关系，是 JavaScript 原型继承机制的基础。",
-    "tags": ["javascript", "oop", "inheritance"]
+    "tags": [
+      "javascript",
+      "oop",
+      "inheritance"
+    ]
   },
   "作用域": {
     "en": "Scope",
     "cn": "作用域",
     "descript": "变量和函数可被访问的范围，分为全局作用域、函数作用域和块级作用域（ES6 引入 let/const），作用域决定了变量的生命周期和可见性，是 JavaScript 闭包机制的基础。",
-    "tags": ["javascript", "closure", "variable"]
+    "tags": [
+      "javascript",
+      "closure",
+      "variable"
+    ]
   },
   "作用域链": {
     "en": "Scope Chain",
     "cn": "作用域链",
     "descript": "JavaScript 中变量查找的机制，当访问一个变量时，先从当前作用域查找，若未找到则逐级向上层作用域查找，直到全局作用域，这一层层嵌套的作用域形成作用域链。",
-    "tags": ["javascript", "closure", "variable"]
+    "tags": [
+      "javascript",
+      "closure",
+      "variable"
+    ]
   },
   "跨域": {
     "en": "Cross-Origin",
     "cn": "跨域",
     "descript": "浏览器同源策略下的安全限制，当页面源与请求目标源的协议、域名或端口任一不同时即为跨域，需通过 CORS、JSONP、代理等方式解决。",
-    "tags": ["network", "browser", "security"]
+    "tags": [
+      "network",
+      "browser",
+      "security"
+    ]
   },
   "宏任务": {
     "en": "Macro Task",
     "cn": "宏任务",
     "descript": "JavaScript 事件循环中的一类任务，包括 script 整体代码、setTimeout、setInterval、I/O、UI 渲染等，每个事件循环周期执行一个宏任务。",
-    "tags": ["javascript", "async", "event-loop"]
+    "tags": [
+      "javascript",
+      "async",
+      "event-loop"
+    ]
   },
   "微任务": {
     "en": "Micro Task",
     "cn": "微任务",
     "descript": "JavaScript 事件循环中优先级高于宏任务的一类任务，包括 Promise.then/catch/finally、MutationObserver、queueMicrotask 等，在当前宏任务执行完毕后立即执行清空微任务队列。",
-    "tags": ["javascript", "async", "event-loop"]
+    "tags": [
+      "javascript",
+      "async",
+      "event-loop"
+    ]
   },
   "解构赋值": {
     "en": "Destructuring Assignment",
     "cn": "解构赋值",
     "descript": "ES6 引入的语法，允许按模式匹配从数组或对象中提取值并赋值给变量，支持默认值设置和嵌套解构，简化了从复杂数据结构中提取数据的操作。",
-    "tags": ["javascript", "es6", "syntax"]
+    "tags": [
+      "javascript",
+      "es6",
+      "syntax"
+    ]
   },
   "Navigator": {
     "en": "Navigator",
     "cn": "Navigator 接口",
     "descript": "浏览器提供的 Web API 接口，代表用户代理的状态和身份，通过 window.navigator 访问，可获取浏览器信息、网络连接状态、剪贴板、地理位置等用户环境信息。",
-    "tags": ["web-api", "browser", "network"]
+    "tags": [
+      "web-api",
+      "browser",
+      "network"
+    ]
   },
   "File System Access API": {
     "en": "File System Access API",
     "cn": "文件系统访问 API",
     "descript": "浏览器提供的 Web API，允许网页在用户授权后直接读取和写入用户本地文件系统中的文件和文件夹，通过 showDirectoryPicker 和 showOpenFilePicker 等方法实现。",
-    "tags": ["web-api", "browser", "file-system"]
+    "tags": [
+      "web-api",
+      "browser",
+      "file-system"
+    ]
   },
   "App": {
     "en": "App",
     "cn": "App 应用",
     "descript": "Application 的缩写，泛指移动端原生应用程序，通过 Uniapp 等跨端框架可同时编译为 iOS 和 Android 平台的 App。",
-    "tags": ["mobile", "uniapp", "cross-platform"]
+    "tags": [
+      "mobile",
+      "uniapp",
+      "cross-platform"
+    ]
   },
   "H5": {
     "en": "H5",
     "cn": "H5 页面",
     "descript": "HTML5 的简称，在移动端开发语境中泛指运行在移动浏览器或 WebView 中的网页应用，是 Uniapp 等跨端框架支持的编译目标之一。",
-    "tags": ["mobile", "html", "uniapp", "cross-platform"]
+    "tags": [
+      "mobile",
+      "html",
+      "uniapp",
+      "cross-platform"
+    ]
   },
   "HBuilderX": {
     "en": "HBuilderX",
     "cn": "HBuilderX 开发工具",
     "descript": "DCloud 推出的新一代前端开发 IDE，是 HBuilder 的升级版本，深度集成 Uniapp 框架，支持代码提示、真机调试、云打包和多端编译发布。",
-    "tags": ["ide", "uniapp", "tool", "cross-platform"]
+    "tags": [
+      "ide",
+      "uniapp",
+      "tool",
+      "cross-platform"
+    ]
   },
   "AI": {
     "en": "AI",
     "cn": "人工智能",
     "descript": "Artificial Intelligence 的缩写，指通过计算机模拟人类智能的技术，在前端开发中可用于代码生成、智能问答、内容推荐等场景。",
-    "tags": ["artificial-intelligence", "tool", "assistant"]
+    "tags": [
+      "artificial-intelligence",
+      "tool",
+      "assistant"
+    ]
   },
   "3D": {
     "en": "3D",
     "cn": "三维可视化",
     "descript": "Three-Dimensional 的缩写，指在二维平面上模拟三维空间效果的技术，前端可通过 WebGL、Three.js 等实现 3D 模型渲染和交互。",
-    "tags": ["visualization", "webgl", "rendering"]
+    "tags": [
+      "visualization",
+      "webgl",
+      "rendering"
+    ]
   },
   "Gzip": {
     "en": "Gzip",
     "cn": "Gzip 压缩格式",
     "descript": "GNU Zip 的缩写，一种广泛使用的文件压缩格式和压缩算法，前端构建工具（如 Vite、Webpack）通常配置 Gzip 插件对静态资源进行预压缩，以减小传输体积并提升加载速度。",
-    "tags": ["compression", "performance", "build", "format"]
+    "tags": [
+      "compression",
+      "performance",
+      "build",
+      "format"
+    ]
   },
   "esbuild": {
     "en": "esbuild",
     "cn": "esbuild 构建工具",
     "descript": "使用 Go 语言编写的极速 JavaScript/TypeScript 打包器与转译器，速度比传统工具快 10-100 倍，Vite 开发阶段用它完成依赖预构建与 TS/JSX 单文件转译。",
-    "tags": ["build-tool", "javascript", "bundler", "vite", "go"]
+    "tags": [
+      "build-tool",
+      "javascript",
+      "bundler",
+      "vite",
+      "go"
+    ]
   },
   "UMD": {
     "en": "UMD",
     "cn": "UMD 通用模块定义",
     "descript": "Universal Module Definition 的缩写，一种同时兼容 CommonJS、AMD 和全局变量的 JavaScript 模块格式，旨在解决不同模块系统之间的兼容问题。",
-    "tags": ["javascript", "module", "format", "compatibility"]
+    "tags": [
+      "javascript",
+      "module",
+      "format",
+      "compatibility"
+    ]
   },
   "Monorepo": {
     "en": "Monorepo",
     "cn": "Monorepo 单仓多包架构",
     "descript": "单一代码仓库（Single Repository）中管理多个项目或包的策略，便于代码共享、统一版本管理和原子化提交，现代前端工程常用 pnpm workspace 实现。",
-    "tags": ["architecture", "workflow", "package-manager", "pnpm"]
+    "tags": [
+      "architecture",
+      "workflow",
+      "package-manager",
+      "pnpm"
+    ]
   },
   "Golang": {
     "en": "Golang",
     "cn": "Go 语言",
     "descript": "Google 推出的静态类型编译型语言，代码直接编译为原生机器码，具备协程并发与共享内存优势，Esbuild 正是基于 Go 实现，因此获得远超 JS 打包工具的构建性能。",
-    "tags": ["programming-language", "build-tool", "esbuild", "performance"]
+    "tags": [
+      "programming-language",
+      "build-tool",
+      "esbuild",
+      "performance"
+    ]
   },
   "Build API": {
     "en": "Build API",
     "cn": "Build API 构建接口",
     "descript": "Esbuild 面向项目打包的 API 集合，包含异步的 build、同步的 buildSync 以及提供静态服务的 serve，支持入口、产物格式、拆包、SourceMap、元信息等完整配置。",
-    "tags": ["esbuild", "api", "bundler", "build"]
+    "tags": [
+      "esbuild",
+      "api",
+      "bundler",
+      "build"
+    ]
   },
   "Transform API": {
     "en": "Transform API",
     "cn": "Transform API 转译接口",
     "descript": "Esbuild 面向单文件转译的 API，包含异步的 transform 与同步的 transformSync，接收代码字符串与编译配置，返回转译结果，Vite 底层用它完成 TS/JSX 单文件编译。",
-    "tags": ["esbuild", "api", "transformer", "compile"]
+    "tags": [
+      "esbuild",
+      "api",
+      "transformer",
+      "compile"
+    ]
   },
   "onResolve": {
     "en": "onResolve",
     "cn": "onResolve 路径解析钩子",
     "descript": "Esbuild 插件钩子，在模块路径解析阶段触发，可拦截并重写模块路径、返回 namespace 标记，用于处理自定义协议、CDN URL 或虚拟模块。",
-    "tags": ["esbuild", "plugin", "hook", "resolve"]
+    "tags": [
+      "esbuild",
+      "plugin",
+      "hook",
+      "resolve"
+    ]
   },
   "onLoad": {
     "en": "onLoad",
     "cn": "onLoad 模块加载钩子",
     "descript": "Esbuild 插件钩子，在模块内容加载阶段触发，通过 namespace 过滤目标模块并返回 contents 与 loader，实现自定义模块内容的注入。",
-    "tags": ["esbuild", "plugin", "hook", "loader"]
+    "tags": [
+      "esbuild",
+      "plugin",
+      "hook",
+      "loader"
+    ]
   },
   "Metafile": {
     "en": "Metafile",
     "cn": "Metafile 构建元信息",
     "descript": "Esbuild 构建时生成的元信息文件，记录所有输入模块与输出产物的路径、体积及依赖关系，需在配置中开启 metafile，是编写 HTML 生成、产物分析等插件的关键数据源。",
-    "tags": ["esbuild", "plugin", "build", "analysis"]
+    "tags": [
+      "esbuild",
+      "plugin",
+      "build",
+      "analysis"
+    ]
   },
   "Namespace": {
     "en": "Namespace",
     "cn": "Namespace 命名空间",
     "descript": "Esbuild 插件机制中的模块分类标识，onResolve 钩子可为模块返回 namespace，onLoad 钩子再依据该标识过滤出需要处理的模块，实现路径解析与内容加载的联动。",
-    "tags": ["esbuild", "plugin", "resolve", "module"]
+    "tags": [
+      "esbuild",
+      "plugin",
+      "resolve",
+      "module"
+    ]
   },
   "Loader": {
     "en": "Loader",
     "cn": "Loader 加载器",
     "descript": "Esbuild 内置的文件类型处理规则，包括 base64、binary、css、dataurl、file、js(x)、ts(x)、text、json 等，通过 loader 配置为不同后缀文件指定加载方式。",
-    "tags": ["esbuild", "build-tool", "file", "compile"]
+    "tags": [
+      "esbuild",
+      "build-tool",
+      "file",
+      "compile"
+    ]
   },
   "Skypack": {
     "en": "Skypack",
     "cn": "Skypack CDN 服务",
     "descript": "提供 npm 第三方包 ESM 产物的 CDN 服务，可直接通过 URL 引入依赖而无需本地安装，常作为 Esbuild 插件实战中 CDN 依赖拉取的对象。",
-    "tags": ["cdn", "esm", "npm", "frontend"]
+    "tags": [
+      "cdn",
+      "esm",
+      "npm",
+      "frontend"
+    ]
   },
   "DCE": {
     "en": "Dead Code Elimination",
     "cn": "DCE 死代码消除",
     "descript": "编译原理中的死代码消除技术，通过静态分析移除永远不会被执行或从未被引用的代码。Rollup 的 Tree Shaking 正是 DCE 在 ES Module 场景下的一种实现。",
-    "tags": ["optimization", "compiler", "tree-shaking", "rollup"]
+    "tags": [
+      "optimization",
+      "compiler",
+      "tree-shaking",
+      "rollup"
+    ]
   },
   "Build 阶段": {
     "en": "Build Phase",
     "cn": "Build 构建阶段",
     "descript": "Rollup 构建生命周期的第一个阶段，由 rollup.rollup() 触发，负责解析入口、创建模块依赖图、初始化各模块 AST 并收集依赖关系。此阶段产物尚未生成，仅得到承载模块信息的 bundle 对象。",
-    "tags": ["rollup", "lifecycle", "build", "ast"]
+    "tags": [
+      "rollup",
+      "lifecycle",
+      "build",
+      "ast"
+    ]
   },
   "Output 阶段": {
     "en": "Output Phase",
     "cn": "Output 输出阶段",
     "descript": "Rollup 构建生命周期的第二个阶段，由 bundle.generate() 或 bundle.write() 触发，负责真正执行打包、生成 chunk 与静态资源，并通过 write 将产物写入磁盘。",
-    "tags": ["rollup", "lifecycle", "bundle", "chunk"]
+    "tags": [
+      "rollup",
+      "lifecycle",
+      "bundle",
+      "chunk"
+    ]
   },
   "Build Hook": {
     "en": "Build Hook",
     "cn": "Build 阶段钩子",
     "descript": "在 Rollup 的 Build 阶段执行的插件钩子，主要涉及模块代码转换、AST 解析与模块依赖解析，操作粒度为单个模块（单文件）级别，如 options、buildStart、resolveId、load、transform、moduleParsed、buildEnd。",
-    "tags": ["rollup", "plugin", "hook", "build"]
+    "tags": [
+      "rollup",
+      "plugin",
+      "hook",
+      "build"
+    ]
   },
   "Output Hook": {
     "en": "Output Generation Hook",
     "cn": "Output 阶段钩子",
     "descript": "官方称为 Output Generation Hook，在 Rollup 的 Output 阶段执行，主要负责代码打包与产物输出，操作粒度通常为 chunk 级别，如 renderStart、renderChunk、generateBundle、writeBundle、closeBundle。",
-    "tags": ["rollup", "plugin", "hook", "output"]
+    "tags": [
+      "rollup",
+      "plugin",
+      "hook",
+      "output"
+    ]
   },
   "Hook": {
     "en": "Hook",
     "cn": "钩子函数",
     "descript": "构建工具在生命周期特定阶段自动调用的回调函数。Rollup 插件本质就是若干 Hook 的集合：Hook 既定义插件「做什么」，也通过所属阶段声明「什么时候做」。按执行方式分为 Async、Sync、Parallel、Sequential、First 五类。",
-    "tags": ["plugin", "lifecycle", "rollup", "vite"]
+    "tags": [
+      "plugin",
+      "lifecycle",
+      "rollup",
+      "vite"
+    ]
   },
   "Rollup 插件": {
     "en": "Rollup Plugin",
     "cn": "Rollup 插件",
     "descript": "以对象形式声明 name 属性并组合若干 Hook 函数来扩展 Rollup 构建能力的模块。可通过 plugins 配置在顶层或 output 内注册，Rollup 插件生态也被 Vite 的 Plugin Container 完整兼容。",
-    "tags": ["rollup", "plugin", "build-tool", "vite"]
+    "tags": [
+      "rollup",
+      "plugin",
+      "build-tool",
+      "vite"
+    ]
   },
   "Chunk": {
     "en": "Chunk",
     "cn": "Chunk 代码块",
     "descript": "Rollup 在 Output 阶段生成的产物单元，通常由多个源文件合并而成，包含入口 chunk 与异步 chunk。renderChunk、generateBundle 等 Output 钩子以 chunk 为操作粒度。",
-    "tags": ["rollup", "bundle", "output", "build"]
+    "tags": [
+      "rollup",
+      "bundle",
+      "output",
+      "build"
+    ]
   },
   "Alias": {
     "en": "Alias",
     "cn": "Alias 路径别名",
     "descript": "为模块路径配置简写映射的机制，Rollup 通过 @rollup/plugin-alias 在 resolveId 钩子中把别名替换为真实路径，Vite 则通过 resolve.alias 在配置层直接支持。",
-    "tags": ["rollup", "resolve", "plugin", "vite"]
+    "tags": [
+      "rollup",
+      "resolve",
+      "plugin",
+      "vite"
+    ]
   },
   "External": {
     "en": "External",
     "cn": "External 外部化",
     "descript": "Rollup 配置项，用于声明不参与打包的依赖，产物中保留原始 import 语句交由运行时提供。常见于 SSR 构建与 ESM CDN 场景，也可由 resolveId 钩子通过返回对象的 external 字段动态标记。",
-    "tags": ["rollup", "config", "ssr", "cdn"]
+    "tags": [
+      "rollup",
+      "config",
+      "ssr",
+      "cdn"
+    ]
   },
   "MagicString": {
     "en": "MagicString",
     "cn": "MagicString 字符串编辑库",
     "descript": "专为源码转换设计的字符串操作库，支持在不破坏原有位置信息的前提下执行 overwrite、append 等编辑，并可生成高精度 SourceMap，Rollup 官方 replace 插件即基于它实现。",
-    "tags": ["rollup", "sourcemap", "plugin", "transform"]
+    "tags": [
+      "rollup",
+      "sourcemap",
+      "plugin",
+      "transform"
+    ]
   },
   "Plugin Context": {
     "en": "Plugin Context",
     "cn": "插件上下文对象",
     "descript": "Rollup 在每个 Hook 执行时绑定到 this 的对象，提供 resolve、load、emitFile、warn 等能力。借助 this.resolve 可触发除当前插件外所有插件的 resolveId 钩子，实现插件间的互相调用。",
-    "tags": ["rollup", "plugin", "hook", "api"]
+    "tags": [
+      "rollup",
+      "plugin",
+      "hook",
+      "api"
+    ]
   },
   "Plugin Container": {
     "en": "Plugin Container",
     "cn": "插件容器",
     "descript": "Vite 内部用于调度插件的核心模块，在开发阶段模拟 Rollup 的插件生命周期（options、resolveId、load、transform 等），使 Vite 能够直接复用海量 Rollup 插件，同时支持 configureServer、transformIndexHtml 等 Vite 专属钩子。",
-    "tags": ["vite", "plugin", "rollup", "architecture"]
+    "tags": [
+      "vite",
+      "plugin",
+      "rollup",
+      "architecture"
+    ]
+  },
+  "Vue CLI": {
+    "en": "Vue CLI",
+    "cn": "Vue CLI 脚手架",
+    "descript": "Vue 官方命令行工具，用于创建、开发与构建 Vue 项目，内置 webpack 配置与插件体系。",
+    "tags": [
+      "vue",
+      "cli",
+      "scaffold"
+    ]
+  },
+  "CSSOM": {
+    "en": "CSSOM",
+    "cn": "CSS 对象模型",
+    "descript": "浏览器将 CSS 解析为可被 JavaScript 读写的对象树，与 DOM 一起参与渲染管线。",
+    "tags": [
+      "css",
+      "browser",
+      "rendering"
+    ]
+  },
+  "GitHub": {
+    "en": "GitHub",
+    "cn": "GitHub",
+    "descript": "基于 Git 的代码托管与协作平台，提供仓库、Pull Request、Issues 与 Actions 等能力。",
+    "tags": [
+      "git",
+      "platform",
+      "collaboration"
+    ]
+  },
+  "Internet Explorer": {
+    "en": "Internet Explorer",
+    "cn": "IE 浏览器",
+    "descript": "微软早期桌面浏览器，因内核与标准滞后，前端兼容性处理中常需单独适配。",
+    "tags": [
+      "browser",
+      "compatibility"
+    ]
+  },
+  "Microsoft Edge": {
+    "en": "Microsoft Edge",
+    "cn": "Edge 浏览器",
+    "descript": "微软基于 Chromium 的现代浏览器，接替 Internet Explorer 成为 Windows 默认浏览器。",
+    "tags": [
+      "browser",
+      "chromium"
+    ]
+  },
+  "Promise A+": {
+    "en": "Promises/A+",
+    "cn": "Promise A+ 规范",
+    "descript": "社区对 Promise then 行为的开放规范，定义了微任务调度、值穿透与链式调用的互操作标准。",
+    "tags": [
+      "javascript",
+      "promise",
+      "spec"
+    ]
+  },
+  "Turf.js": {
+    "en": "Turf.js",
+    "cn": "Turf.js",
+    "descript": "在浏览器与 Node.js 中运行的空间分析库，提供缓冲区、相交、距离等 GIS 运算。",
+    "tags": [
+      "gis",
+      "geojson",
+      "library"
+    ]
+  },
+  "Animate.css": {
+    "en": "Animate.css",
+    "cn": "Animate.css",
+    "descript": "开箱即用的 CSS 动画类名库，通过添加类即可触发淡入、滑动等预设动画。",
+    "tags": [
+      "css",
+      "animation",
+      "library"
+    ]
+  },
+  "GPU": {
+    "en": "GPU",
+    "cn": "图形处理器",
+    "descript": "负责图形与并行计算的处理器，浏览器合成层、WebGL/WebGPU 渲染都依赖它。",
+    "tags": [
+      "hardware",
+      "graphics",
+      "performance"
+    ]
+  },
+  "同源策略": {
+    "en": "Same-Origin Policy",
+    "cn": "同源策略",
+    "descript": "浏览器安全模型：协议、主机、端口均相同才视为同源，限制跨源 DOM 与部分网络访问。",
+    "tags": [
+      "security",
+      "browser",
+      "cors"
+    ]
+  },
+  "Angular": {
+    "en": "Angular",
+    "cn": "Angular",
+    "descript": "Google 维护的 TypeScript 前端框架，提供组件、依赖注入与完整的应用脚手架。",
+    "tags": [
+      "framework",
+      "typescript",
+      "frontend"
+    ]
+  },
+  "React Native": {
+    "en": "React Native",
+    "cn": "React Native",
+    "descript": "用 React 组件模型开发原生移动应用的框架，JavaScript 通过桥接调用原生视图。",
+    "tags": [
+      "react",
+      "mobile",
+      "native"
+    ]
+  },
+  "XMLHttpRequest": {
+    "en": "XMLHttpRequest",
+    "cn": "XMLHttpRequest",
+    "descript": "浏览器原生 HTTP 请求 API，Ajax 的基础，现多用 fetch 替代，但仍见于兼容与进度监听场景。",
+    "tags": [
+      "browser",
+      "network",
+      "api"
+    ]
+  },
+  "Selenium": {
+    "en": "Selenium",
+    "cn": "Selenium",
+    "descript": "浏览器自动化测试框架，可驱动真实浏览器执行脚本，用于端到端测试与爬取。",
+    "tags": [
+      "test",
+      "e2e",
+      "automation"
+    ]
+  },
+  "Storage": {
+    "en": "Web Storage",
+    "cn": "Web Storage",
+    "descript": "浏览器本地键值存储接口的统称，包括 localStorage 与 sessionStorage。",
+    "tags": [
+      "browser",
+      "storage",
+      "webapi"
+    ]
+  },
+  "Cookie": {
+    "en": "Cookie",
+    "cn": "Cookie",
+    "descript": "浏览器随请求携带的小型键值数据，用于会话与状态，受域名、路径与 HttpOnly 等约束。",
+    "tags": [
+      "browser",
+      "http",
+      "session"
+    ]
+  },
+  "单例模式": {
+    "en": "Singleton",
+    "cn": "单例模式",
+    "descript": "保证一个类仅有一个实例并提供全局访问点的设计模式，前端常用于请求缓存与全局状态。",
+    "tags": [
+      "pattern",
+      "javascript"
+    ]
+  },
+  "Vue EventBus": {
+    "en": "EventBus",
+    "cn": "Vue 事件总线",
+    "descript": "通过中央事件发射器在组件间通信的模式，Vue2 常用，Vue3 更推荐 provide/inject 或状态库。",
+    "tags": [
+      "vue",
+      "event",
+      "pattern"
+    ]
+  },
+  "React Fiber": {
+    "en": "Fiber",
+    "cn": "React Fiber",
+    "descript": "React 16 起的协调架构，把更新拆成可中断单元，以支持时间切片与优先级调度。",
+    "tags": [
+      "react",
+      "architecture",
+      "scheduler"
+    ]
+  },
+  "Mixin": {
+    "en": "Mixin",
+    "cn": "混入",
+    "descript": "把可复用选项混入组件的机制，Vue2 常用 mixin，组合式 API 下多用 composable 替代。",
+    "tags": [
+      "vue",
+      "reuse",
+      "pattern"
+    ]
+  },
+  "微信": {
+    "en": "WeChat",
+    "cn": "微信",
+    "descript": "腾讯即时通讯与开放平台，网页与 App 中常涉及微信内置浏览器、授权登录与 JSSDK。",
+    "tags": [
+      "wechat",
+      "platform",
+      "oauth"
+    ]
+  },
+  "MapVThree": {
+    "en": "MapVThree",
+    "cn": "MapVThree",
+    "descript": "百度地图可视化引擎，面向海量地理数据的图层、动画与交互渲染。",
+    "tags": [
+      "map",
+      "baidu",
+      "visualization"
+    ]
+  },
+  "MarkerClusterer": {
+    "en": "MarkerClusterer",
+    "cn": "点聚合",
+    "descript": "地图上按视野聚合相邻标记的算法组件，缩放时拆合，减轻海量 Marker 的渲染压力。",
+    "tags": [
+      "map",
+      "cluster",
+      "marker"
+    ]
   }
 }

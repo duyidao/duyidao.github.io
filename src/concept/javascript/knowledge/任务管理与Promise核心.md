@@ -126,7 +126,7 @@ new Promise((resolve) => {
 console.log(2)
 ```
 
-我们来看下面稍复杂的任务代码
+下面是稍复杂的任务代码
 
 ```js
 setTimeout(() => {

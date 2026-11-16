@@ -1,6 +1,6 @@
 # LangChain框架
 
-## 含义
+## LangChain 是大模型应用开发框架
 
 LangChain 是一个做大模型应用的开发框架
 

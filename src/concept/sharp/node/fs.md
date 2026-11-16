@@ -1,6 +1,6 @@
 # fs
 
-`fs` 模块是<word text="Node" />官方提供的、用来操作文件的模块。它提供了一系列的方法和属性，用来满足用户对文件的操作需求。下面来一一介绍。
+`fs` 模块是<word text="Node.js"/>官方提供的、用来操作文件的模块。它提供了一系列的方法和属性，用来满足用户对文件的操作需求。下面来一一介绍。
 
 ## 异步操作
 
@@ -150,7 +150,7 @@ fs.readFile('./1.txt', 'utf8', function (err, dataStr) {
 
 使用 **`readFile`** 与 **`writeFile`** 可以对文件进行异步操作，不阻塞进程拥有更好的性能。
 
-- <word text="Node" />以错误优先为思想，所以回调函数第一个参数为错误信息，没有错误时值为 `null`
+- <word text="Node.js"/>以错误优先为思想，所以回调函数第一个参数为错误信息，没有错误时值为 `null`
 
 ```js
 import { readFile, writeFile } from 'fs'
@@ -210,7 +210,7 @@ console.log('先输出...')
 
 #### fs/promises
 
-其实我们不需要自己封装，因为<word text="Node" />提供了<word text="Promise" />操作机制
+其实我们不需要自己封装，因为<word text="Node.js"/>提供了<word text="Promise" />操作机制
 
 **`fs` / `promises`** 提供了<word text="Promise" />操作机制
 

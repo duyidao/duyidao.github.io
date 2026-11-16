@@ -17,7 +17,7 @@
 
    上方代码中，`setTimeout` 是立即执行的，执行完毕后的 `fn` 才是加入宏任务队列。
 
-   <word text="Promise" />同理， `new Promise` 是同步操作，其回调函数是作为参数传入，`new Promise` 创建<word text="Promise" />后立即执行，因此也是同步的。
+<word text="Promise" />同理， `new Promise` 是同步操作，其回调函数是作为参数传入，`new Promise` 创建<word text="Promise" />后立即执行，因此也是同步的。
 
    而 `.then` 和 `.catch` 也是立即执行的，只不过执行完毕后没有把它们加入到异步队列里。因为此时 `new Promise` 还是 `pending` 状态，直到调用 `resolve` 变为 `fullfilled` 状态，才会把 `.then` 回调函数加入到微任务队列里。同理，直到调用 `reject` 变为 `rejected` 状态，才会把 `.catch` 回调函数加入到微任务队列里。
 

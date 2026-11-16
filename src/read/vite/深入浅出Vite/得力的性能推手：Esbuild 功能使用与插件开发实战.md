@@ -4,7 +4,7 @@
 
 <word text="esbuild"/>是<word text="Vite"/>双引擎架构中负责"快"的那一半，在依赖预编译、<word text="TSX"/>语法转译、代码压缩等关键构建阶段让<word text="Vite"/>获得了远超传统工具链的性能表现。无论是<word text="Vite"/>的配置项还是源码实现，都大量复用了<word text="esbuild"/>自身的基本概念与高阶用法。
 
-本文聚焦<word text="esbuild"/>本体：先剖析其性能为何能比传统打包工具快 10~100 倍，再系统讲解 **命令行调用** 与 **代码调用** 两种使用方式（<word text="Build API"/> / <word text="Transform API"/>），最后通过一个 `env` 插件入门与两个完整实战（CDN 依赖拉取插件、HTML 构建插件），彻底掌握<word text="esbuild"/>的插件开发范式与关键钩子。
+本文聚焦<word text="esbuild"/>本体：先剖析其性能为何能比传统打包工具快 10~100 倍，再系统讲解 **命令行调用** 与 **代码调用** 两种使用方式（<word text="Build API"/>/<word text="Transform API"/>），最后通过一个 `env` 插件入门与两个完整实战（CDN 依赖拉取插件、HTML 构建插件），彻底掌握<word text="esbuild"/>的插件开发范式与关键钩子。
 
 ## 为什么 Esbuild 性能极高
 
@@ -425,7 +425,7 @@ flowchart TD
     H --> I[产出 dist 产物]
 ```
 
-> 延伸：<word text="ESM"/> <word text="CDN"/>作为面向未来的前端基础设施，对<word text="Vite"/>影响重大，可极大提升生产环境下的构建性能。
+> 延伸：<word text="ESM"/><word text="CDN"/>作为面向未来的前端基础设施，对<word text="Vite"/>影响重大，可极大提升生产环境下的构建性能。
 
 ## 实战 2：HTML 构建插件
 

@@ -183,7 +183,7 @@ JSX 使用方式如下：
 
 **Render 函数是 Vue2.x 新增的一个函数、主要用来提升节点的性能，它是基于<word text="JavaScript"/>计算。使用 Render 函数将 Template 里面的节点解析成虚拟的 Dom 。**
 
-> <word text="Vue"/>推荐在绝大多数情况下使用模板来创建你的<word text="HTML"/>。然而在一些场景中，你真的需要<word text="JavaScript"/>的完全编程的能力。这时你可以用渲染函数，它比模板更接近编译器。
+><word text="Vue"/>推荐在绝大多数情况下使用模板来创建你的<word text="HTML"/>。然而在一些场景中，你真的需要<word text="JavaScript"/>的完全编程的能力。这时你可以用渲染函数，它比模板更接近编译器。
 
 简单的说，在<word text="Vue"/>中我们使用模板<word text="HTML"/>语法组建页面的，使用 Render 函数我们可以用<word text="JavaScript"/>语言来构建<word text="DOM"/>。
 因为<word text="Vue"/>是虚拟<word text="DOM"/>，所以在拿到 Template 模板时也要转译成 VNode 的函数，而用 Render 函数构建<word text="DOM"/>，Vue 就免去了转译的过程。
