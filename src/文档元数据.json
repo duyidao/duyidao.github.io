@@ -1,6 +1,6 @@
 {
   "read/css/CSS 技术揭秘与实战通关/background的8种核心技巧": {
-    "title": "CSS 最强大属性 background 的 8 种核心技巧",
+    "title": "CSS background 渐变的 8 种核心技巧",
     "description": "系统梳理 CSS background 的 8 种核心技巧，涵盖线性渐变、径向渐变、锥形渐变及重复渐变的实用场景与代码示例。",
     "tags": [
       "css",
@@ -26,7 +26,7 @@
     "authors": []
   },
   "read/css/CSS 技术揭秘与实战通关/blur模糊滤镜使用技巧及搭配contrast元素边缘处理": {
-    "title": "blur 模糊滤镜使用技巧及搭配 contrast 元素边缘处理",
+    "title": "blur模糊滤镜使用技巧及搭配contrast元素边缘处理",
     "description": "介绍 CSS blur 模糊滤镜的毛玻璃、彩色阴影、3D 视差、主题色提取等应用技巧，以及 blur 与 contrast 滤镜融合的燃熔效果。",
     "tags": [
       "css",
@@ -51,7 +51,7 @@
     "authors": []
   },
   "read/css/CSS 技术揭秘与实战通关/filter的三种滤镜模式": {
-    "title": "filter 在 CSS 中的三种滤镜模式及其特殊性介绍",
+    "title": "filter在CSS中的三种滤镜模式及其特殊性介绍",
     "description": "介绍 CSS filter 的三种使用方式（filter、backdrop-filter、SVG 滤镜），对比作用对象差异，深入分析 Backdrop Root 导致 3D 失效与 fixed 定位失效的原理。",
     "tags": [
       "css",
@@ -63,7 +63,7 @@
     "authors": []
   },
   "read/css/CSS 技术揭秘与实战通关/shadow的高级技巧": {
-    "title": "shadow 的高级技巧",
+    "title": "shadow的高级技巧",
     "description": "讲解 box-shadow 复制自身图形、绘制曲线、遮罩模拟、氖灯效果、hover 过渡动画等高级技巧，并对比阴影动画中重绘与重排的性能差异。",
     "tags": [
       "css",
@@ -126,7 +126,7 @@
     "authors": []
   },
   "read/css/CSS 技术揭秘与实战通关/filter中比阴影更强大的drop-shadow阴影技巧": {
-    "title": "filter 中比阴影更强大的 drop-shadow 阴影技巧",
+    "title": "filter中比阴影更强大的drop-shadow阴影技巧",
     "description": "对比 drop-shadow 与 box-shadow 在作用范围、语法层面的差异，展示 drop-shadow 在非矩形边框、多重阴影、不规则形状等场景中的优势。",
     "tags": [
       "css",
@@ -138,7 +138,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/数组的扩展": {
-    "title": "数组的扩展",
+    "title": "ES6 数组扩展：扩展运算符与实例方法",
     "description": "梳理 ES6 数组扩展的核心特性：扩展运算符、Array.from、Array.of、copyWithin、find/findIndex、fill、entries/keys/values、includes 等方法的语法与使用场景。",
     "tags": [
       "es6",
@@ -150,7 +150,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/对象的扩展": {
-    "title": "对象的扩展",
+    "title": "ES6 对象扩展：简洁表示法、遍历与 Object 新增方法",
     "description": "梳理 ES6 对象扩展的核心特性：属性简洁表示法、属性名表达式、方法 name 属性、Object.is、Object.assign 的语法与使用场景。",
     "tags": [
       "es6",
@@ -162,7 +162,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/数值的扩展": {
-    "title": "数值的扩展",
+    "title": "ES6 数值表示法、Math 扩展与指数运算符",
     "description": "梳理 ES6 数值扩展的核心特性：二进制与八进制表示法、Number 新增方法、Math 对象扩展、指数运算符、Integer 数据类型。",
     "tags": [
       "es6",
@@ -174,7 +174,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/函数的扩展": {
-    "title": "函数的扩展",
+    "title": "ES6 函数扩展：默认参数、箭头函数与尾调用优化",
     "description": "梳理 ES6 函数扩展的核心特性：参数默认值、rest 参数、严格模式、name 属性、箭头函数、this 绑定、尾调用优化。",
     "tags": [
       "es6",
@@ -186,7 +186,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/正则的扩展": {
-    "title": "正则的扩展",
+    "title": "ES6 正则的构造函数、修饰符与新增属性",
     "description": "梳理 ES6 正则扩展的核心特性：RegExp 构造函数、u/y/s 修饰符、sticky/flags 属性、后行断言等。",
     "tags": [
       "es6",
@@ -198,7 +198,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/字符串的扩展": {
-    "title": "字符串的扩展",
+    "title": "ES6 字符串的扩展方法与模板字符串",
     "description": "梳理 ES6 字符串扩展的核心特性：Unicode 表示法、codePointAt、遍历器接口、includes/startsWith/endsWith、repeat、padStart/padEnd、模板字符串等。",
     "tags": [
       "es6",
@@ -210,7 +210,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/读懂ECMAScript规格": {
-    "title": "读懂 ECMAScript 规格",
+    "title": "读懂ECMAScript规格",
     "description": "通过相等运算符、数组空位、数组 map 方法的规格解读，展示如何阅读 ECMAScript 语言规范。",
     "tags": [
       "ecmascript",
@@ -222,7 +222,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/变量的解构赋值": {
-    "title": "变量的解构赋值",
+    "title": "变量的解构赋值及其常见用途",
     "description": "梳理 ES6 解构赋值的核心特性：数组解构、对象解构、字符串解构、数值和布尔值解构、函数参数解构、圆括号问题及常见用途。",
     "tags": [
       "es6",
@@ -257,7 +257,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/Module的语法": {
-    "title": "Module 的语法",
+    "title": "Module的语法",
     "description": "梳理 ES6 Module 的核心语法：export/import 命令、严格模式、模块整体加载、export default、export 与 import 的复合写法。",
     "tags": [
       "es6",
@@ -269,7 +269,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/Module的加载实现": {
-    "title": "Module 的加载实现",
+    "title": "Module的加载实现",
     "description": "梳理 ES6 模块在浏览器和 Node.js 中的加载实现：浏览器异步加载、ES6 与 CommonJS 差异、循环加载的处理机制。",
     "tags": [
       "es6",
@@ -293,7 +293,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/Class的基本语法": {
-    "title": "Class 的基本语法",
+    "title": "Class的基本语法",
     "description": "梳理 ES6 Class 的核心语法：简介、constructor 方法、类的实例对象、Class 表达式、不存在变量提升、私有方法与私有属性、this 指向、静态方法、new.target 属性。",
     "tags": [
       "es6",
@@ -305,7 +305,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/Class的继承": {
-    "title": "Class 的继承",
+    "title": "Class的继承",
     "description": "梳理 ES6 Class 继承机制：extends 关键字、super 关键字、类的 prototype 和 __proto__ 属性、extends 的继承目标、原生构造函数的继承。",
     "tags": [
       "es6",
@@ -318,7 +318,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/Let 和 const 命令": {
-    "title": "Let 和 const 命令",
+    "title": "let 与 const 声明命令及其与 var 的差异",
     "description": "梳理 ES6 的 let 和 const 声明命令：基础用法、变量提升、暂时性死区、重复声明、块级作用域、do 表达式。",
     "tags": [
       "es6",
@@ -331,7 +331,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/ECMAScript6简介": {
-    "title": "ECMAScript 6 简介",
+    "title": "ECMAScript 6 的由来与规范演进",
     "description": "介绍 ES6 的由来、含义、提案批准流程及发展历史，并讲解 Babel 和 Traceur 转码器的基本用法与配置。",
     "tags": [
       "es6",
@@ -343,7 +343,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/Generator函数的异步应用": {
-    "title": "Generator 函数的异步应用",
+    "title": "Generator函数的异步应用",
     "description": "梳理 Generator 函数在异步编程中的应用：协程概念、Thunk 函数、Thunkify 模块、co 模块自动执行器，以及与传统回调、Promise 的对比。",
     "tags": [
       "es6",
@@ -355,7 +355,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/Generator函数的语法": {
-    "title": "Generator 函数的语法",
+    "title": "Generator函数的语法",
     "description": "详解 Generator 函数的语法特性：基本概念、yield 表达式、next 方法参数、for...of 循环、throw/return 方法、yield* 表达式，以及 Generator 函数的 this 含义。",
     "tags": [
       "es6",
@@ -367,7 +367,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/Symbol": {
-    "title": "Symbol",
+    "title": "Symbol 数据类型与内置 Symbol 值",
     "description": "讲解 ES6 第七种数据类型 Symbol 的定义、特性、作为属性名的用法、消除魔术字符串、Singleton 模块模式，以及 11 个内置 Symbol 值的用途。",
     "tags": [
       "es6",
@@ -379,7 +379,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/Set和Map数据结构": {
-    "title": "Set 和 Map 数据结构",
+    "title": "Set 与 Map 数据结构及其弱引用版本",
     "description": "讲解 ES6 新增的 Set、Map 数据结构及其弱引用版本 WeakSet、WeakMap 的用法、遍历操作、数据类型转换，以及 WeakMap 在存储私有数据方面的应用。",
     "tags": [
       "es6",
@@ -391,7 +391,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/Proxy": {
-    "title": "Proxy",
+    "title": "Proxy 代理机制与 13 种拦截方法",
     "description": "讲解 ES6 Proxy 代理机制：概述、13 种拦截方法（get/set/apply/has/construct 等）、Proxy.revocable 可撤销代理、this 问题，以及 Reflect 与 Proxy 的配合使用。",
     "tags": [
       "es6",
@@ -403,7 +403,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/async函数": {
-    "title": "async 函数",
+    "title": "async函数",
     "description": "讲解 ES7 async/await 异步编程方案：含义、用法、语法、返回 Promise 对象、错误处理、实现原理、与其他异步方案的对比，以及异步遍历器 Async Iterator。",
     "tags": [
       "es7",
@@ -426,7 +426,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/Promise对象": {
-    "title": "Promise 对象",
+    "title": "Promise对象",
     "description": "讲解 ES6 Promise 异步编程方案：含义、特点、基本用法、原型方法（then/catch/finally）、静态方法（all/race/resolve/reject/try）、部署附加方法 done 和 finally。",
     "tags": [
       "es6",
@@ -437,7 +437,7 @@
     "authors": []
   },
   "read/javascript/ES6标准入门/Iterator和for...of循环": {
-    "title": "Iterator 和 for...of 循环",
+    "title": "Iterator和for...of循环",
     "description": "讲解 ES6 Iterator 遍历器概念、默认 Iterator 接口、调用场合、字符串的 Iterator 接口、与 Generator 函数的关系、return/throw 方法，以及 for...of 循环的用法和与其他遍历语法的比较。",
     "tags": [
       "es6",
@@ -449,7 +449,7 @@
     "authors": []
   },
   "read/vite/深入浅出Vite/前端工程化与 Vite 核心精要：从模块化演进到现代构建实践": {
-    "title": "前端工程化与 Vite 核心精要",
+    "title": "前端工程化与 Vite 核心精要：从模块化演进到现代构建实践",
     "description": "从模块化演进史（IIFE/CommonJS/AMD/ESM）到 Vite 破局之道，详解前端工程四大痛点及 Vite 解决方案，对比 ESM/CommonJS/AMD 核心特性，规划系统化进阶路径。",
     "tags": [
       "vite",
@@ -485,7 +485,7 @@
     "authors": []
   },
   "read/vite/深入浅出Vite/静态资源：在 Vite 中处理各种静态资源？": {
-    "title": "静态资源：在 Vite 中处理各种静态资源",
+    "title": "静态资源：在 Vite 中处理各种静态资源？",
     "description": "Vite 静态资源工程化全链路，涵盖图片/SVG/JSON/Worker/WASM 开发期加载与生产环境 CDN/内联/压缩/雪碧图优化策略。",
     "tags": [
       "vite",
@@ -539,7 +539,7 @@
     "authors": []
   },
   "practice/handle/business/富文本编辑器": {
-    "title": "富文本编辑器集成与二次开发指南",
+    "title": "富文本编辑器",
     "description": "涵盖 Tinymce 与 vue-quill-editor 的安装配置、界面定制、插件开发及图片上传至服务器的完整实践方案。",
     "tags": [
       "tinymce",
@@ -575,7 +575,7 @@
     ]
   },
   "practice/handle/business/内嵌iframe与传递消息": {
-    "title": "内嵌 Iframe 通信与 DOM 操作实践",
+    "title": "操作内嵌 Iframe 与传递消息",
     "description": "分别基于 postMessage 跨窗口通信与 contentDocument 直接操作两种方案，解决 Iframe 内消息传递、光标插入及数据保存问题。",
     "tags": [
       "iframe",
@@ -593,7 +593,7 @@
     ]
   },
   "practice/ai/企业级AI应用开发实战(js版)/Function Tool": {
-    "title": "Function Tool 函数调用机制详解",
+    "title": "Function Tool",
     "description": "深入解析大模型 Function Call 机制，涵盖上下文方案缺陷、标准 Function Tool 定义与输出规范、流式 tool_calls 数据拼接、工具执行与结果回传的完整链路。",
     "tags": [
       "function-call",
@@ -605,7 +605,7 @@
     "authors": []
   },
   "practice/ai/企业级AI应用开发实战(js版)/前端工具卡片": {
-    "title": "前端工具卡片实现方案",
+    "title": "前端工具卡片",
     "description": "阐述 AI 应用中前端预制 UI 卡片的变通实现方案，通过 Function Tool 声明与自定义 cardName 属性下发前端卡片渲染指令。",
     "tags": [
       "function-call",
@@ -616,7 +616,7 @@
     "authors": []
   },
   "practice/ai/企业级AI应用开发实战(js版)/Token 消耗优化": {
-    "title": "Token 消耗优化策略",
+    "title": "Token 消耗优化",
     "description": "分析大模型 Token 消耗机制，提供限制对话长度、AI 总结截取内容、RAG 向量检索等优化方案，降低 API 调用成本。",
     "tags": [
       "token",
@@ -627,7 +627,7 @@
     "authors": []
   },
   "practice/ai/企业级AI应用开发实战(js版)/上下文的威力": {
-    "title": "上下文的威力：提示词工程实践",
+    "title": "上下文的威力",
     "description": "阐述通过上下文提示词约束大模型回答的实践方法，涵盖违禁问题过滤、回答风格控制、幻觉约束、逻辑步骤约束等核心技巧。",
     "tags": [
       "prompt-engineering",
@@ -638,7 +638,7 @@
     "authors": []
   },
   "practice/ai/企业级AI应用开发实战(js版)/前端界面": {
-    "title": "AI 对话前端界面搭建与会话管理",
+    "title": "前端界面",
     "description": "从零搭建 AI 聊天前端界面，涵盖数据定义、界面布局、增量更新优化、多用户会话管理及前后端接口联调的全链路实践。",
     "tags": [
       "chat",
@@ -649,7 +649,7 @@
     "authors": []
   },
   "practice/ai/企业级AI应用开发实战(js版)/大模型接口": {
-    "title": "大模型接口调用指南",
+    "title": "大模型接口",
     "description": "梳理国内大模型接口厂商类型、HTTP 请求与响应格式、role 与 content 结构、choices 解析及常见答疑，帮助快速上手大模型 API 调用。",
     "tags": [
       "llm",
@@ -660,7 +660,7 @@
     "authors": []
   },
   "practice/ai/企业级AI应用开发实战(js版)/提示词工程": {
-    "title": "提示词工程实践指南",
+    "title": "提示词工程",
     "description": "系统介绍提示词工程的基本要素、高级要素及上下文文档编写方法，涵盖角色扮演、举例、分隔符、思考步骤等核心技巧。",
     "tags": [
       "prompt-engineering",
@@ -671,7 +671,7 @@
     "authors": []
   },
   "practice/ai/企业级AI应用开发实战(js版)/搭建服务器": {
-    "title": "AI 应用后端服务器搭建",
+    "title": "搭建服务器",
     "description": "从零搭建 Node.js Express 服务器代理大模型 API 请求，涵盖 OpenAI SDK 使用、fetch 拦截调试、消息历史管理及流式传输基础。",
     "tags": [
       "nodejs",
@@ -682,7 +682,7 @@
     "authors": []
   },
   "practice/ai/企业级AI应用开发实战(js版)/流式传输": {
-    "title": "SSE 流式传输实现方案",
+    "title": "流式传输",
     "description": "对比原生 EventSource 与 fetch-event-source 两种 SSE 方案，详解流式接口定义、数据格式解析、前后端代码改造及生产环境最佳实践。",
     "tags": [
       "sse",
@@ -693,7 +693,7 @@
     "authors": []
   },
   "practice/handle/business/元素不定大小溢出隐藏": {
-    "title": "元素不定大小溢出隐藏方案",
+    "title": "元素不定大小隐藏做溢出隐藏",
     "description": "基于 IntersectionObserver API 实现不定高度元素的溢出检测与隐藏，动态计算可见元素数量并显示 +N 标记。",
     "tags": [
       "intersection-observer",
@@ -795,7 +795,7 @@
     ]
   },
   "practice/handle/business/自动引入依赖": {
-    "title": "自动引入依赖配置指南",
+    "title": "摆脱手动依赖引入，自动引入依赖",
     "description": "详解 unplugin-auto-import 与 unplugin-vue-components 的配置方法，涵盖本地工具方法、第三方库、Vue 组件及自定义组件库的自动引入规则。",
     "tags": [
       "vite",
@@ -812,7 +812,7 @@
     ]
   },
   "practice/handle/element/vue动态表单实现原理": {
-    "title": "Vue 动态表单实现原理",
+    "title": "动态表单实现原理",
     "description": "从基础封装到参数精简、事件绑定、组件自定义、插槽使用，逐步讲解 Vue 动态表单的完整实现方案。",
     "tags": [
       "vue",
@@ -934,7 +934,7 @@
     ]
   },
   "practice/handle/element/组件设计技巧": {
-    "title": "Vue 组件设计技巧",
+    "title": "组件设计技巧",
     "description": "从样式、模板、行为、props 四个维度总结 Vue 组件设计经验，涵盖低权值 CSS、插槽分割、行为周期拆分、数据定义等实用技巧。",
     "tags": [
       "vue",
@@ -985,7 +985,7 @@
     ]
   },
   "practice/handle/element/二封el表格组件无限滚动": {
-    "title": "通过 el-table 实现多数据完美无限滚动",
+    "title": "通过 el-table 实现多数据完美无限滚动效果",
     "description": "对比触底加载与固定数量渲染两种方案，通过自定义指令实现 el-table 大数据量下的丝滑无限滚动体验。",
     "tags": [
       "element-plus",
@@ -1053,7 +1053,7 @@
     ]
   },
   "practice/handle/combat/状态思维应对多变页面": {
-    "title": "状态思维应对多变页面",
+    "title": "通过状态思维应对多变页面",
     "description": "将复杂多变的页面通过状态归纳法简化为有限状态集，用数据驱动视图渲染，避免大量条件判断导致的代码膨胀。",
     "tags": [
       "state-machine",
@@ -1070,7 +1070,7 @@
     ]
   },
   "practice/handle/combat/有用的TS项目技巧": {
-    "title": "TypeScript 项目实用技巧",
+    "title": "实战中有用的 TypeScript 项目技巧",
     "description": "系统梳理 TypeScript 在实际项目中的实用技巧，涵盖第三方库类型提取、基于已有类型快速生成新类型、Omit/Pick 工具类型等。",
     "tags": [
       "typescript",
@@ -1162,7 +1162,7 @@
     ]
   },
   "practice/idea/js/promise/write/手写Promise类与.then": {
-    "title": "类与.then",
+    "title": "类与 .then",
     "description": "手写实现 Promise 类与 .then 方法，对照 Promise A+ 规范逐步实现核心逻辑，涵盖状态管理、thenable 处理等细节。",
     "tags": [
       "promise",
@@ -1935,7 +1935,7 @@
     ]
   },
   "practice/idea/vue/nextTick": {
-    "title": "$nextTick 实现原理",
+    "title": "$nextTick",
     "description": "深入剖析 Vue 的 $nextTick 异步更新机制，从源码层面解读宏任务与微任务的选择策略，涵盖 Promise、setImmediate、MessageChannel 等异步调度方案。",
     "tags": [
       "vue",
@@ -2011,7 +2011,7 @@
     ]
   },
   "practice/idea/vue/Vue2 VS Vue3": {
-    "title": "Vue2 VS Vue3 响应式原理对比",
+    "title": "Vue2 VS Vue3",
     "description": "对比 Vue2 与 Vue3 的响应式系统差异，涵盖 Vue2 的 Object.defineProperty 局限性、数组重写机制、$set/$remove 等补丁方案，以及 Vue3 的 Proxy 代理优势。",
     "tags": [
       "vue2",
@@ -2471,7 +2471,7 @@
     "authors": []
   },
   "concept/chart/echart/饼图轮播，hover图例后修改中间内容": {
-    "title": "饼图轮播，hover 图例后修改中间内容",
+    "title": "饼图轮播，hover图例后修改中间内容",
     "description": "讲解 ECharts 饼图使用 highlight/downplay dispatchAction 实现轮播，以及通过 on('highlight') 事件实现 hover 图例后动态修改中间内容。",
     "tags": [
       "echart",
@@ -2603,7 +2603,7 @@
     ]
   },
   "concept/css/effect/渐变": {
-    "title": "渐变",
+    "title": "CSS 渐变",
     "description": "讲解 CSS 渐变的使用，包括线性渐变 linear-gradient、径向渐变 radial-gradient、锥形渐变 conic-gradient、重复渐变，以及色标位置、硬过渡、条纹、叠加等高级技巧。",
     "tags": [
       "css",
@@ -2689,7 +2689,7 @@
     ]
   },
   "concept/css/effect/下划线动画": {
-    "title": "下划线动画",
+    "title": "background 配合 linear-gradient 实现下划线动画",
     "description": "讲解使用 background 配合 linear-gradient 实现下划线动画效果，包括背景定位、尺寸控制、hover 过渡以及方向细节优化。",
     "tags": [
       "css",
@@ -2761,7 +2761,7 @@
     ]
   },
   "concept/css/effect/文字立起效果": {
-    "title": "文字立起效果",
+    "title": "mask 实现文字立起效果",
     "description": "讲解使用 mask 和 filter 实现文字立起阴影效果，通过伪元素 + transform + mask 渐变实现立体文字阴影。",
     "tags": [
       "css",
@@ -2946,7 +2946,7 @@
     ]
   },
   "concept/sharp/vite/TS和CSS相关问题": {
-    "title": "TS 和 CSS 相关问题",
+    "title": "TS CSS 相关问题",
     "description": "讲解 Vite 项目中 TypeScript 和 CSS 的配置与使用，包括 TS 引入、CSS 模块化、scoped 样式等。",
     "tags": [
       "vite",
@@ -3064,7 +3064,7 @@
     "authors": []
   },
   "concept/javascript/knowledge/任务管理与Promise核心": {
-    "title": "任务管理与Promise核心",
+    "title": "任务管理与 Promise 核心",
     "description": "讲解 JavaScript 任务管理机制，包括事件循环、宏任务与微任务、脚本加载、定时器、任务分解、进度条示例和 Promise 核心原理。",
     "tags": [
       "javascript",
@@ -3102,7 +3102,7 @@
     "authors": []
   },
   "concept/javascript/knowledge/变量与严格模式": {
-    "title": "变量与严格模式",
+    "title": "变量",
     "description": "讲解 JavaScript 变量声明、弱类型、变量提升、临时性死区（TDZ）、作用域（var/let/const 区别）以及严格模式的使用。",
     "tags": [
       "javascript",
@@ -3222,7 +3222,7 @@
     ]
   },
   "concept/module/browser/浏览器长截图": {
-    "title": "浏览器长截图",
+    "title": "浏览器长截图小技巧",
     "description": "介绍浏览器自带截图功能实现长截图的方法，无需安装额外插件。",
     "tags": [
       "browser",
@@ -3255,7 +3255,7 @@
     ]
   },
   "concept/vue/vue2/基本概念与Vue指令": {
-    "title": "Vue 基本概念与指令",
+    "title": "Vue",
     "description": "讲解 Vue 基本概念、渐进式框架特点，以及 v-bind、v-model、v-on 等核心指令的使用方法。",
     "tags": [
       "vue",
@@ -3266,7 +3266,7 @@
     "authors": []
   },
   "concept/vue/vue2/核心源码及设计思想": {
-    "title": "Vue2 核心源码及设计思想",
+    "title": "Vue2核心源码及设计思想",
     "description": "使用 Rollup 搭建 Vue2 开发环境，讲解 Vue2 核心源码及设计思想。",
     "tags": [
       "vue2",
@@ -3277,7 +3277,7 @@
     "authors": []
   },
   "concept/vue/vue2/手写Router及Vuex": {
-    "title": "手写 Router 及 Vuex",
+    "title": "从零手写 VueRouter 及 Vuex",
     "description": "手写实现 Vue Router 和 Vuex 的核心功能，深入理解路由和状态管理原理。",
     "tags": [
       "vue2",
@@ -3288,7 +3288,7 @@
     "authors": []
   },
   "concept/vue/vue2/动态绑定": {
-    "title": "动态绑定",
+    "title": "Vue",
     "description": "讲解 Vue2 中动态绑定 class、style 等属性的方法，以及对象和数组语法的使用。",
     "tags": [
       "vue2",
@@ -3299,7 +3299,7 @@
     "authors": []
   },
   "concept/vue/vue2/动态组件": {
-    "title": "动态组件",
+    "title": "Vue 动态组件与插槽",
     "description": "讲解 Vue2 动态组件的使用，包括 component 标签、keep-alive 缓存等。",
     "tags": [
       "vue2",
@@ -3309,7 +3309,7 @@
     "authors": []
   },
   "concept/vue/vue2/组件": {
-    "title": "Vue2 组件",
+    "title": "Vue",
     "description": "讲解 Vue2 组件化开发，包括组件注册、props、事件、插槽等核心概念。",
     "tags": [
       "vue2",
@@ -3331,7 +3331,7 @@
     "authors": []
   },
   "concept/vue/vue3/3.5增加的特性": {
-    "title": "Vue3.5 特性",
+    "title": "Vue3.5特性",
     "description": "介绍 Vue3.5 新增特性，包括 defineProps 更好的 TypeScript 提示、响应式 Props 解构等。",
     "tags": [
       "vue3",
@@ -3341,7 +3341,7 @@
     "authors": []
   },
   "concept/vue/vue3/项目初始化": {
-    "title": "Vue3 项目初始化",
+    "title": "项目初始化",
     "description": "讲解 Vue3 项目初始化，包括 CDN、脚手架、ES 模块三种创建方式，以及样式、修饰符等配置。",
     "tags": [
       "vue3",
@@ -3363,7 +3363,7 @@
     "authors": []
   },
   "concept/vue/vue3/组件": {
-    "title": "Vue3 组件",
+    "title": "组件",
     "description": "讲解 Vue3 组件通讯、透传 Attributes、模板 ref、动态组件、依赖注入、异步组件等核心机制。",
     "tags": [
       "vue3",
@@ -3375,7 +3375,7 @@
     "authors": []
   },
   "concept/vue/vue3/插槽": {
-    "title": "Vue3 插槽",
+    "title": "插槽",
     "description": "讲解 Vue3 插槽的使用，包括默认插槽、具名插槽、作用域插槽等。",
     "tags": [
       "vue3",
@@ -3386,7 +3386,7 @@
     "authors": []
   },
   "concept/vue/vue3/指令": {
-    "title": "Vue3 指令",
+    "title": "Vue3指令",
     "description": "讲解 Vue3 自定义指令的创建和使用方法。",
     "tags": [
       "vue3",
@@ -3396,7 +3396,7 @@
     "authors": []
   },
   "concept/vue/vue3/源码学习-项目搭建": {
-    "title": "Vue3 源码学习：项目搭建",
+    "title": "项目搭建",
     "description": "Vue3 源码学习系列，搭建源码调试环境，包括初始化、依赖下载、esbuild 配置。",
     "tags": [
       "vue3",
@@ -3407,7 +3407,7 @@
     "authors": []
   },
   "concept/vue/vue3/源码学习-认识渲染器": {
-    "title": "Vue3 源码学习：认识渲染器",
+    "title": "认识渲染器",
     "description": "Vue3 源码学习系列，讲解渲染器的基本概念和 createRenderer 的实现。",
     "tags": [
       "vue3",
@@ -3418,7 +3418,7 @@
     "authors": []
   },
   "concept/vue/vue3/源码学习-数组响应式": {
-    "title": "Vue3 源码学习：数组响应式",
+    "title": "数组的响应式",
     "description": "Vue3 源码学习系列，讲解数组响应式处理，包括长度修改、隐式更新 length 等场景。",
     "tags": [
       "vue3",
@@ -3429,7 +3429,7 @@
     "authors": []
   },
   "concept/vue/vue3/源码学习-打包配置": {
-    "title": "Vue3 源码学习：打包配置",
+    "title": "打包配置",
     "description": "Vue3 源码学习系列，讲解打包配置，包括命令参数获取、入口地址、输出结果、iife 格式。",
     "tags": [
       "vue3",
@@ -3440,7 +3440,7 @@
     "authors": []
   },
   "concept/vue/vue3/源码学习-Watch实现": {
-    "title": "Vue3 源码学习：Watch 实现",
+    "title": "watch",
     "description": "Vue3 源码学习系列，讲解 watch 的实现原理，包括依赖收集和回调触发机制。",
     "tags": [
       "vue3",
@@ -3451,7 +3451,7 @@
     "authors": []
   },
   "concept/vue/vue3/源码学习-Ref基础实现": {
-    "title": "Vue3 源码学习：Ref 基础实现",
+    "title": "响应式 Reactivity 基础实现",
     "description": "Vue3 源码学习系列，讲解 ref 的基础实现原理，包括 getter/setter 和依赖追踪。",
     "tags": [
       "vue3",
@@ -3462,7 +3462,7 @@
     "authors": []
   },
   "concept/vue/vue3/源码学习-Computed实现": {
-    "title": "Vue3 源码学习：Computed 实现",
+    "title": "Computed 计算属性 实现",
     "description": "Vue3 源码学习系列，讲解 computed 的实现原理，包括缓存机制和依赖追踪。",
     "tags": [
       "vue3",
@@ -3473,7 +3473,7 @@
     "authors": []
   },
   "concept/vue/vue3/源码学习-Computed优化": {
-    "title": "Vue3 源码学习：Computed 优化",
+    "title": "Computed 计算属性 缓存",
     "description": "Vue3 源码学习系列，讲解 computed 的优化实现，包括脏检查、调度器等优化策略。",
     "tags": [
       "vue3",
@@ -3484,7 +3484,7 @@
     "authors": []
   },
   "concept/vue/vue3/源码学习-toRef、unRef、proxyRef": {
-    "title": "Vue3 源码学习：toRef、unRef、proxyRef",
+    "title": "toRef、toRefs、unRef、proxyRefs",
     "description": "Vue3 源码学习系列，讲解 toRef、unRef、proxyRef 的实现原理和使用场景。",
     "tags": [
       "vue3",
@@ -3496,7 +3496,7 @@
     "authors": []
   },
   "concept/vue/vue3/源码学习-patchProp": {
-    "title": "Vue3 源码学习：patchProp",
+    "title": "patchProp",
     "description": "Vue3 源码学习系列，讲解 patchProp 的实现，包括 class、style、事件等属性的处理。",
     "tags": [
       "vue3",
@@ -3507,7 +3507,7 @@
     "authors": []
   },
   "concept/vue/vue3/源码学习-h和createVNode的实现": {
-    "title": "Vue3 源码学习：h 和 createVNode 的实现",
+    "title": "h和createVNode的实现",
     "description": "Vue3 源码学习系列，讲解 h 函数和 createVNode 的实现原理，了解虚拟 DOM 的创建过程。",
     "tags": [
       "vue3",
@@ -3519,7 +3519,7 @@
     "authors": []
   },
   "concept/vue/vue3/源码学习-Ref进阶优化": {
-    "title": "Vue3 源码学习：Ref 进阶优化",
+    "title": "响应式 Reactivity 进阶优化",
     "description": "Vue3 源码学习系列，讲解 ref 的进阶优化实现，包括性能优化和边界处理。",
     "tags": [
       "vue3",
@@ -3530,7 +3530,7 @@
     "authors": []
   },
   "concept/vue/vue3/源码学习-Reactive实现": {
-    "title": "Vue3 源码学习：Reactive 实现",
+    "title": "Reactive 实现",
     "description": "Vue3 源码学习系列，讲解 reactive 的实现原理，包括 Proxy 拦截和依赖收集。",
     "tags": [
       "vue3",
@@ -3541,7 +3541,7 @@
     "authors": []
   },
   "concept/vue/vue3/源码学习-Monorepo管理": {
-    "title": "Vue3 源码学习：Monorepo 管理",
+    "title": "Monorepo",
     "description": "Vue3 源码学习系列，讲解 Vue3 的 Monorepo 项目管理方式，包括包结构和依赖关系。",
     "tags": [
       "vue3",
@@ -3552,7 +3552,7 @@
     "authors": []
   },
   "concept/react/脚手架项目创建": {
-    "title": "React 脚手架项目创建",
+    "title": "React",
     "description": "讲解使用 create-react-app 脚手架创建 React 项目的方法和目录结构。",
     "tags": [
       "react",
@@ -3562,7 +3562,7 @@
     "authors": []
   },
   "concept/react/无脚手架项目创建": {
-    "title": "React 无脚手架项目创建",
+    "title": "React",
     "description": "讲解不依赖脚手架手动创建 React 项目的方法，包括 Webpack 配置和 Babel 设置。",
     "tags": [
       "react",
@@ -3573,7 +3573,7 @@
     "authors": []
   },
   "concept/react/拓展": {
-    "title": "React 拓展",
+    "title": "setState、Hooks 与组件通信进阶",
     "description": "讲解 React 拓展知识，包括 Hooks 进阶、Context 高级用法、性能优化等。",
     "tags": [
       "react",
@@ -3606,7 +3606,7 @@
     "authors": []
   },
   "concept/react/ReactRouter5": {
-    "title": "React Router 5",
+    "title": "React 路由",
     "description": "讲解 React Router 5 的使用方法，并与 React Router 6 进行对比。",
     "tags": [
       "react",
@@ -3617,7 +3617,7 @@
     "authors": []
   },
   "concept/react/Diff算法": {
-    "title": "React Diff 算法",
+    "title": "Diff 算法",
     "description": "讲解 React 的 Diff 算法原理，包括 tree diff、component diff、element diff 三个策略。",
     "tags": [
       "react",
@@ -3628,7 +3628,7 @@
     "authors": []
   },
   "concept/sharp/typescript/环境配置": {
-    "title": "TypeScript 环境配置",
+    "title": "TypeScript",
     "description": "讲解 TypeScript 开发环境配置，包括 tsconfig.json 配置项说明和编译选项。",
     "tags": [
       "typescript",
@@ -3639,7 +3639,7 @@
     "authors": []
   },
   "concept/sharp/typescript/类型": {
-    "title": "TypeScript 类型",
+    "title": "类型声明",
     "description": "讲解 TypeScript 基础类型系统，包括原始类型、数组、元组、枚举、any、unknown、void 等。",
     "tags": [
       "typescript",
@@ -3651,7 +3651,7 @@
     "authors": []
   },
   "concept/sharp/typescript/类与接口": {
-    "title": "TypeScript 类与接口",
+    "title": "类",
     "description": "讲解 TypeScript 中类与接口的使用，包括继承、抽象类、接口实现、implements 等。",
     "tags": [
       "typescript",
@@ -3663,7 +3663,7 @@
     "authors": []
   },
   "concept/sharp/typescript/泛型": {
-    "title": "TypeScript 泛型",
+    "title": "泛型 Generics",
     "description": "讲解 TypeScript 泛型的使用，包括泛型函数、泛型接口、泛型约束等。",
     "tags": [
       "typescript",
@@ -3674,7 +3674,7 @@
     "authors": []
   },
   "concept/sharp/typescript/断言与枚举": {
-    "title": "TypeScript 断言与枚举",
+    "title": "Enums 枚举",
     "description": "讲解 TypeScript 类型断言和枚举的使用，包括 as 断言、const 枚举、反向映射等。",
     "tags": [
       "typescript",
@@ -3685,7 +3685,7 @@
     "authors": []
   },
   "concept/sharp/typescript/装饰器": {
-    "title": "TypeScript 装饰器",
+    "title": "装饰器",
     "description": "讲解 TypeScript 装饰器的使用，包括类装饰器、方法装饰器、属性装饰器、参数装饰器。",
     "tags": [
       "typescript",
@@ -3697,7 +3697,7 @@
     "authors": []
   },
   "concept/sharp/node/node": {
-    "title": "Node.js 基础",
+    "title": "Node",
     "description": "讲解 Node.js 基本概念，包括模块系统、全局对象、事件循环等核心知识。",
     "tags": [
       "nodejs",
@@ -3708,7 +3708,7 @@
     "authors": []
   },
   "concept/sharp/node/模块化": {
-    "title": "Node.js 模块化",
+    "title": "模块化",
     "description": "讲解 Node.js 模块化机制，包括 CommonJS、ES Module、模块导出与导入等。",
     "tags": [
       "nodejs",
@@ -3719,7 +3719,7 @@
     "authors": []
   },
   "concept/sharp/node/path": {
-    "title": "Node.js Path 模块",
+    "title": "path",
     "description": "讲解 Node.js path 模块的使用，包括路径拼接、解析、格式化等常用方法。",
     "tags": [
       "nodejs",
@@ -3730,7 +3730,7 @@
     "authors": []
   },
   "concept/sharp/node/http": {
-    "title": "Node.js HTTP 模块",
+    "title": "http",
     "description": "讲解 Node.js http 模块的使用，包括创建服务器、处理请求与响应等。",
     "tags": [
       "nodejs",
@@ -3742,7 +3742,7 @@
     "authors": []
   },
   "concept/sharp/node/fs": {
-    "title": "Node.js fs 模块",
+    "title": "fs",
     "description": "讲解 Node.js fs 文件系统模块的使用，包括文件读写、目录操作、流操作等。",
     "tags": [
       "nodejs",
@@ -3764,7 +3764,7 @@
     "authors": []
   },
   "concept/module/reg/正则表达式": {
-    "title": "正则表达式",
+    "title": "基础知识",
     "description": "讲解正则表达式的基础知识，包括创建方式、修饰符、边界符、量词、范围符等。",
     "tags": [
       "regex",
@@ -3775,7 +3775,7 @@
     "authors": []
   },
   "concept/module/reg/元子字符": {
-    "title": "正则表达式：元子字符",
+    "title": "元子字符",
     "description": "讲解正则表达式中元字符的使用，包括 \\d、\\w、\\s 等预定义字符类。",
     "tags": [
       "regex",
@@ -3786,7 +3786,7 @@
     "authors": []
   },
   "concept/module/reg/原子": {
-    "title": "正则表达式：原子",
+    "title": "原子",
     "description": "讲解正则表达式中原子和原子组的概念与使用。",
     "tags": [
       "regex",
@@ -3797,7 +3797,7 @@
     "authors": []
   },
   "concept/module/reg/模式修饰": {
-    "title": "正则表达式：模式修饰",
+    "title": "模式修饰",
     "description": "讲解正则表达式模式修饰符的使用，包括 g、i、m、s、u 等修饰符的作用。",
     "tags": [
       "regex",
@@ -3809,7 +3809,7 @@
     "authors": []
   },
   "concept/module/reg/方法": {
-    "title": "正则表达式：方法",
+    "title": "方法",
     "description": "讲解正则表达式相关方法，包括 test、exec、match、replace、search、split 等。",
     "tags": [
       "regex",
@@ -3821,7 +3821,7 @@
     "authors": []
   },
   "concept/module/reg/匹配": {
-    "title": "正则表达式：匹配",
+    "title": "匹配",
     "description": "讲解正则表达式匹配规则，包括字符匹配、位置匹配、分组匹配等。",
     "tags": [
       "regex",
@@ -3832,7 +3832,7 @@
     "authors": []
   },
   "concept/module/reg/正则中的lastIndex": {
-    "title": "正则表达式：lastIndex",
+    "title": "正则中的lastIndex",
     "description": "讲解正则表达式 lastIndex 属性的作用，以及全局匹配下的索引变化机制。",
     "tags": [
       "regex",
@@ -3843,7 +3843,7 @@
     "authors": []
   },
   "concept/module/reg/运用前瞻实现密码强度检测": {
-    "title": "正则表达式：前瞻实现密码强度检测",
+    "title": "运用前瞻实现密码强度检测",
     "description": "讲解正则表达式前瞻断言的使用，实现密码强度检测的实战案例。",
     "tags": [
       "regex",
@@ -3903,7 +3903,7 @@
     "authors": []
   },
   "concept/module/miniProgram/两个线程": {
-    "title": "小程序双线程架构",
+    "title": "小程序两个线程",
     "description": "讲解微信小程序的双线程架构设计，包括渲染线程和逻辑线程的分离与通信机制。",
     "tags": [
       "miniprogram",
@@ -4110,7 +4110,7 @@
     "authors": []
   },
   "work/灵思/音果云音/APP/商品": {
-    "title": "SKU 商品规格",
+    "title": "sku 商品规格",
     "description": "讲解音果云音项目 SKU 商品规格选择的实现，包括多规格联动和价格计算。",
     "tags": [
       "lingsi",
@@ -4122,7 +4122,7 @@
     "authors": []
   },
   "work/灵思/音果云音/APP/Tabbar": {
-    "title": "Tabbar 页",
+    "title": "tabbar 页",
     "description": "讲解音果云音项目底部导航栏和 Tabbar 页面的实现。",
     "tags": [
       "lingsi",
@@ -4249,7 +4249,7 @@
     "authors": []
   },
   "work/灵思/视频分销/刷新token": {
-    "title": "刷新 Token",
+    "title": "刷新 token",
     "description": "讲解视频分销项目 Token 刷新机制的实现方案。",
     "tags": [
       "lingsi",
@@ -4284,7 +4284,7 @@
     "authors": []
   },
   "work/灵思/职技网/Vant组件二次封装": {
-    "title": "Vant 组件二次封装",
+    "title": "vant 组件二次封装",
     "description": "讲解职技网项目中对 Vant 组件的二次封装实践。",
     "tags": [
       "lingsi",
@@ -4296,7 +4296,7 @@
     "authors": []
   },
   "work/灵思/华润水泥/图片对比可拖拽封装": {
-    "title": "图片可拖拽对比",
+    "title": "图片可拖拽对比轮子",
     "description": "讲解华润水泥项目中图片可拖拽对比组件的封装实现。",
     "tags": [
       "lingsi",
@@ -4343,7 +4343,7 @@
     "authors": []
   },
   "work/灵思/华润水泥/jeecg/vxe-table搭配其他组件": {
-    "title": "vxe-table 搭配其他组件",
+    "title": "j-vxe-table 搭配其他组件",
     "description": "讲解华润水泥项目中 vxe-table 与 JEECG 其他组件搭配使用的方案。",
     "tags": [
       "lingsi",
@@ -4367,7 +4367,7 @@
     "authors": []
   },
   "work/数说/nourseN次方/移动端/移动端跨域Iframe本地存储失效问题排查与解决": {
-    "title": "移动端跨域 Iframe 本地存储失效问题",
+    "title": "移动端跨域 Iframe 本地存储失效问题排查与解决",
     "description": "排查移动端跨域 Iframe 导致 localStorage 无法获取的问题，分析根因并给出解决方案。",
     "tags": [
       "shushuo",
@@ -4379,7 +4379,7 @@
     "authors": []
   },
   "work/数说/nourseN次方/移动端/移动端空间切换导致Token丢失问题排查": {
-    "title": "移动端空间切换导致 Token 丢失",
+    "title": "移动端空间切换导致 Token 丢失问题排查",
     "description": "排查移动端切换空间时 Token 丢失的问题，分析原因并给出解决方案。",
     "tags": [
       "shushuo",
@@ -4391,7 +4391,7 @@
     "authors": []
   },
   "work/数说/nourseN次方/移动端/Vant数字键盘组件在PC端与移动端的兼容性适配": {
-    "title": "Vant 数字键盘组件 PC 端与移动端兼容性适配",
+    "title": "Vant 数字键盘组件在 PC 端与移动端的兼容性适配",
     "description": "讲解 Vant 数字键盘组件在 PC 端和移动端的兼容性适配方案。",
     "tags": [
       "shushuo",
@@ -4427,7 +4427,7 @@
     "authors": []
   },
   "work/数说/nourseN次方/web端/基于FullCalendar的日程表组件封装与实践": {
-    "title": "基于 FullCalendar 的日程表组件封装",
+    "title": "基于 FullCalendar 的日程表组件封装与实践",
     "description": "讲解基于 FullCalendar 封装的日程表组件，包括数据驱动、参数配置、跨组件联动等。",
     "tags": [
       "shushuo",
@@ -4498,7 +4498,7 @@
     "authors": []
   },
   "work/南网/无人机/公共表格组件的封装与拓展": {
-    "title": "Vue3 + Element Plus 企业级动态表格组件",
+    "title": "Vue3 + Element Plus 企业级动态表格组件 (DynamicTable) 设计与实践",
     "description": "讲解基于 Vue3 和 Element Plus 封装的企业级动态表格组件，支持动态列、搜索、分页等功能。",
     "tags": [
       "nangwang",
@@ -4510,7 +4510,7 @@
     "authors": []
   },
   "work/南网/无人机/公共表单组件的封装与拓展": {
-    "title": "Vue3 + Element Plus 通用搜索表单组件",
+    "title": "Vue3 + Element Plus 通用搜索表单组件 (SearchForm) 设计与实践",
     "description": "讲解基于 Vue3 和 Element Plus 封装的通用搜索表单组件，支持动态表单配置。",
     "tags": [
       "nangwang",
@@ -4522,7 +4522,7 @@
     "authors": []
   },
   "work/南网/无人机/Leaflet地图封装与使用": {
-    "title": "Leaflet 地图封装与使用",
+    "title": "Leaflet 地图的深度封装与室内外一体化实践",
     "description": "讲解南网无人机项目中 Leaflet 地图的封装与使用，包括地图初始化、图层管理、标注等。",
     "tags": [
       "nangwang",
@@ -4534,7 +4534,7 @@
     "authors": []
   },
   "vitepress/index": {
-    "title": "引言",
+    "title": "关于此模块",
     "description": "VitePress 博客搭建系列引言，介绍刀刀博客从搭建到部署的整体历程与经验总结。",
     "tags": [
       "vitepress",
@@ -4596,7 +4596,7 @@
     "authors": []
   },
   "vitepress/dev": {
-    "title": "构建",
+    "title": "搭建",
     "description": "讲解 VitePress 项目的搭建步骤，包括依赖安装、配置初始化与项目结构介绍。",
     "tags": [
       "vitepress",
